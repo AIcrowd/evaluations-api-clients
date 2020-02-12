@@ -1,0 +1,10 @@
+# OrganisationQuota
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**quota** | **i32** | Quota to be added or reduced | [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

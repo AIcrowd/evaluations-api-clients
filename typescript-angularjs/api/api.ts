@@ -1,0 +1,15 @@
+export * from './ArgoApi';
+import { ArgoApi } from './ArgoApi';
+export * from './AuthApi';
+import { AuthApi } from './AuthApi';
+export * from './ClustersApi';
+import { ClustersApi } from './ClustersApi';
+export * from './GradersApi';
+import { GradersApi } from './GradersApi';
+export * from './OrganisationsApi';
+import { OrganisationsApi } from './OrganisationsApi';
+export * from './SubmissionsApi';
+import { SubmissionsApi } from './SubmissionsApi';
+export * from './UsersApi';
+import { UsersApi } from './UsersApi';
+export const APIS = [ArgoApi, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi];

@@ -1,0 +1,125 @@
+# IO.Swagger.Api.AuthApi
+
+All URIs are relative to *https://localhost/v1*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**LogoutAUser**](AuthApi.md#logoutauser) | **POST** /auth/logout | 
+[**UserLogin**](AuthApi.md#userlogin) | **POST** /auth/login | 
+
+
+<a name="logoutauser"></a>
+# **LogoutAUser**
+> void LogoutAUser ()
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class LogoutAUserExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new AuthApi();
+
+            try
+            {
+                apiInstance.LogoutAUser();
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthApi.LogoutAUser: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="userlogin"></a>
+# **UserLogin**
+> void UserLogin (Login payload)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserLoginExample
+    {
+        public void main()
+        {
+            var apiInstance = new AuthApi();
+            var payload = new Login(); // Login | 
+
+            try
+            {
+                apiInstance.UserLogin(payload);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthApi.UserLogin: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Login**](Login.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
