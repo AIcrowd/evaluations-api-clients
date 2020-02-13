@@ -231,12 +231,6 @@ export interface Grader {
      */
     codeAccessMode: string;
     /**
-     * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-     * @type {string}
-     * @memberof Grader
-     */
-    codeAccessAuthKey: string;
-    /**
      * Cluster to run the grader on
      * @type {number}
      * @memberof Grader

@@ -41,14 +41,12 @@
    * @alias module:model/Grader
    * @class
    * @param codeAccessMode {String} git/http
-   * @param codeAccessAuthKey {String} SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
    * @param dockerUsername {String} Docker registry username
    * @param dockerPassword {String} Docker registry password
    * @param evaluationCode {String} S3 link to the zip file containing the code that will be used for the evaluation
    */
-  var exports = function(codeAccessMode, codeAccessAuthKey, dockerUsername, dockerPassword, evaluationCode) {
+  var exports = function(codeAccessMode, dockerUsername, dockerPassword, evaluationCode) {
     this.codeAccessMode = codeAccessMode;
-    this.codeAccessAuthKey = codeAccessAuthKey;
     this.dockerUsername = dockerUsername;
     this.dockerPassword = dockerPassword;
     this.evaluationCode = evaluationCode;
@@ -74,8 +72,6 @@
         obj.datasetUrl = ApiClient.convertToType(data['dataset_url'], 'String');
       if (data.hasOwnProperty('code_access_mode'))
         obj.codeAccessMode = ApiClient.convertToType(data['code_access_mode'], 'String');
-      if (data.hasOwnProperty('code_access_auth_key'))
-        obj.codeAccessAuthKey = ApiClient.convertToType(data['code_access_auth_key'], 'String');
       if (data.hasOwnProperty('cluster_id'))
         obj.clusterId = ApiClient.convertToType(data['cluster_id'], 'Number');
       if (data.hasOwnProperty('docker_username'))
@@ -131,12 +127,6 @@
    * @member {String} codeAccessMode
    */
   exports.prototype.codeAccessMode = undefined;
-
-  /**
-   * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-   * @member {String} codeAccessAuthKey
-   */
-  exports.prototype.codeAccessAuthKey = undefined;
 
   /**
    * Cluster to run the grader on

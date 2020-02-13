@@ -30,7 +30,6 @@ Grader::Grader()
     m_Dataset_url = utility::conversions::to_string_t("");
     m_Dataset_urlIsSet = false;
     m_Code_access_mode = utility::conversions::to_string_t("");
-    m_Code_access_auth_key = utility::conversions::to_string_t("");
     m_Cluster_id = 0;
     m_Cluster_idIsSet = false;
     m_Docker_username = utility::conversions::to_string_t("");
@@ -80,7 +79,6 @@ web::json::value Grader::toJson() const
         val[utility::conversions::to_string_t("dataset_url")] = ModelBase::toJson(m_Dataset_url);
     }
     val[utility::conversions::to_string_t("code_access_mode")] = ModelBase::toJson(m_Code_access_mode);
-    val[utility::conversions::to_string_t("code_access_auth_key")] = ModelBase::toJson(m_Code_access_auth_key);
     if(m_Cluster_idIsSet)
     {
         val[utility::conversions::to_string_t("cluster_id")] = ModelBase::toJson(m_Cluster_id);
@@ -155,7 +153,6 @@ void Grader::fromJson(web::json::value& val)
         }
     }
     setCodeAccessMode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("code_access_mode")]));
-    setCodeAccessAuthKey(ModelBase::stringFromJson(val[utility::conversions::to_string_t("code_access_auth_key")]));
     if(val.has_field(utility::conversions::to_string_t("cluster_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("cluster_id")];
@@ -257,7 +254,6 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_mode"), m_Code_access_mode));
-    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_auth_key"), m_Code_access_auth_key));
     if(m_Cluster_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cluster_id"), m_Cluster_id));
@@ -330,7 +326,6 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         setDatasetUrl(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataset_url"))));
     }
     setCodeAccessMode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_mode"))));
-    setCodeAccessAuthKey(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_auth_key"))));
     if(multipart->hasContent(utility::conversions::to_string_t("cluster_id")))
     {
         setClusterId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cluster_id"))));
@@ -471,17 +466,6 @@ utility::string_t Grader::getCodeAccessMode() const
 void Grader::setCodeAccessMode(utility::string_t value)
 {
     m_Code_access_mode = value;
-    
-}
-utility::string_t Grader::getCodeAccessAuthKey() const
-{
-    return m_Code_access_auth_key;
-}
-
-
-void Grader::setCodeAccessAuthKey(utility::string_t value)
-{
-    m_Code_access_auth_key = value;
     
 }
 int32_t Grader::getClusterId() const

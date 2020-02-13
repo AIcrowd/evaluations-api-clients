@@ -36,7 +36,6 @@ class Grader(object):
         'updated': 'datetime',
         'dataset_url': 'str',
         'code_access_mode': 'str',
-        'code_access_auth_key': 'str',
         'cluster_id': 'int',
         'docker_username': 'str',
         'docker_password': 'str',
@@ -56,7 +55,6 @@ class Grader(object):
         'updated': 'updated',
         'dataset_url': 'dataset_url',
         'code_access_mode': 'code_access_mode',
-        'code_access_auth_key': 'code_access_auth_key',
         'cluster_id': 'cluster_id',
         'docker_username': 'docker_username',
         'docker_password': 'docker_password',
@@ -70,7 +68,7 @@ class Grader(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, code_access_auth_key=None, cluster_id=None, docker_username=None, docker_password=None, docker_registry=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, docker_username=None, docker_password=None, docker_registry=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -78,7 +76,6 @@ class Grader(object):
         self._updated = None
         self._dataset_url = None
         self._code_access_mode = None
-        self._code_access_auth_key = None
         self._cluster_id = None
         self._docker_username = None
         self._docker_password = None
@@ -101,7 +98,6 @@ class Grader(object):
         if dataset_url is not None:
             self.dataset_url = dataset_url
         self.code_access_mode = code_access_mode
-        self.code_access_auth_key = code_access_auth_key
         if cluster_id is not None:
             self.cluster_id = cluster_id
         self.docker_username = docker_username
@@ -238,31 +234,6 @@ class Grader(object):
             raise ValueError("Invalid value for `code_access_mode`, must not be `None`")  # noqa: E501
 
         self._code_access_mode = code_access_mode
-
-    @property
-    def code_access_auth_key(self):
-        """Gets the code_access_auth_key of this Grader.  # noqa: E501
-
-        SSH private key if using git or HTTP Auth token if using HTTP to access the submission code  # noqa: E501
-
-        :return: The code_access_auth_key of this Grader.  # noqa: E501
-        :rtype: str
-        """
-        return self._code_access_auth_key
-
-    @code_access_auth_key.setter
-    def code_access_auth_key(self, code_access_auth_key):
-        """Sets the code_access_auth_key of this Grader.
-
-        SSH private key if using git or HTTP Auth token if using HTTP to access the submission code  # noqa: E501
-
-        :param code_access_auth_key: The code_access_auth_key of this Grader.  # noqa: E501
-        :type: str
-        """
-        if code_access_auth_key is None:
-            raise ValueError("Invalid value for `code_access_auth_key`, must not be `None`")  # noqa: E501
-
-        self._code_access_auth_key = code_access_auth_key
 
     @property
     def cluster_id(self):

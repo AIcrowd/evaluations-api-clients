@@ -79,8 +79,6 @@
             expect(data.datasetUrl).to.be("");
             expect(data.codeAccessMode).to.be.a('string');
             expect(data.codeAccessMode).to.be("");
-            expect(data.codeAccessAuthKey).to.be.a('string');
-            expect(data.codeAccessAuthKey).to.be("");
             expect(data.clusterId).to.be.a('number');
             expect(data.clusterId).to.be(0);
             expect(data.dockerUsername).to.be.a('string');
@@ -140,8 +138,6 @@
               expect(data.datasetUrl).to.be("");
               expect(data.codeAccessMode).to.be.a('string');
               expect(data.codeAccessMode).to.be("");
-              expect(data.codeAccessAuthKey).to.be.a('string');
-              expect(data.codeAccessAuthKey).to.be("");
               expect(data.clusterId).to.be.a('number');
               expect(data.clusterId).to.be(0);
               expect(data.dockerUsername).to.be.a('string');
@@ -180,7 +176,6 @@
           var payload = new EvaluationsApi.Grader();
           payload.datasetUrl = "";
           payload.codeAccessMode = "";
-          payload.codeAccessAuthKey = "";
           payload.clusterId = 0;
           payload.dockerUsername = "";
           payload.dockerPassword = "";
@@ -207,8 +202,6 @@
             expect(data.datasetUrl).to.be("");
             expect(data.codeAccessMode).to.be.a('string');
             expect(data.codeAccessMode).to.be("");
-            expect(data.codeAccessAuthKey).to.be.a('string');
-            expect(data.codeAccessAuthKey).to.be("");
             expect(data.clusterId).to.be.a('number');
             expect(data.clusterId).to.be(0);
             expect(data.dockerUsername).to.be.a('string');
@@ -247,7 +240,6 @@
           var payload = new EvaluationsApi.Grader();
           payload.datasetUrl = "";
           payload.codeAccessMode = "";
-          payload.codeAccessAuthKey = "";
           payload.clusterId = 0;
           payload.dockerUsername = "";
           payload.dockerPassword = "";
@@ -274,8 +266,6 @@
             expect(data.datasetUrl).to.be("");
             expect(data.codeAccessMode).to.be.a('string');
             expect(data.codeAccessMode).to.be("");
-            expect(data.codeAccessAuthKey).to.be.a('string');
-            expect(data.codeAccessAuthKey).to.be("");
             expect(data.clusterId).to.be.a('number');
             expect(data.clusterId).to.be(0);
             expect(data.dockerUsername).to.be.a('string');

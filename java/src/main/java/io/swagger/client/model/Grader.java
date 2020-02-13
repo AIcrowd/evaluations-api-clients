@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T13:12:27.120Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T14:09:27.783Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -44,9 +44,6 @@ public class Grader {
 
   @SerializedName("code_access_mode")
   private String codeAccessMode = null;
-
-  @SerializedName("code_access_auth_key")
-  private String codeAccessAuthKey = null;
 
   @SerializedName("cluster_id")
   private Integer clusterId = null;
@@ -142,24 +139,6 @@ public class Grader {
 
   public void setCodeAccessMode(String codeAccessMode) {
     this.codeAccessMode = codeAccessMode;
-  }
-
-  public Grader codeAccessAuthKey(String codeAccessAuthKey) {
-    this.codeAccessAuthKey = codeAccessAuthKey;
-    return this;
-  }
-
-   /**
-   * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-   * @return codeAccessAuthKey
-  **/
-  @ApiModelProperty(required = true, value = "SSH private key if using git or HTTP Auth token if using HTTP to access the submission code")
-  public String getCodeAccessAuthKey() {
-    return codeAccessAuthKey;
-  }
-
-  public void setCodeAccessAuthKey(String codeAccessAuthKey) {
-    this.codeAccessAuthKey = codeAccessAuthKey;
   }
 
   public Grader clusterId(Integer clusterId) {
@@ -330,7 +309,6 @@ public class Grader {
         Objects.equals(this.updated, grader.updated) &&
         Objects.equals(this.datasetUrl, grader.datasetUrl) &&
         Objects.equals(this.codeAccessMode, grader.codeAccessMode) &&
-        Objects.equals(this.codeAccessAuthKey, grader.codeAccessAuthKey) &&
         Objects.equals(this.clusterId, grader.clusterId) &&
         Objects.equals(this.dockerUsername, grader.dockerUsername) &&
         Objects.equals(this.dockerPassword, grader.dockerPassword) &&
@@ -346,7 +324,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, codeAccessAuthKey, clusterId, dockerUsername, dockerPassword, dockerRegistry, workflowSpec, evaluationCode, storageCapacity, meta, status, userId, organisationId);
+    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, dockerUsername, dockerPassword, dockerRegistry, workflowSpec, evaluationCode, storageCapacity, meta, status, userId, organisationId);
   }
 
 
@@ -360,7 +338,6 @@ public class Grader {
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    datasetUrl: ").append(toIndentedString(datasetUrl)).append("\n");
     sb.append("    codeAccessMode: ").append(toIndentedString(codeAccessMode)).append("\n");
-    sb.append("    codeAccessAuthKey: ").append(toIndentedString(codeAccessAuthKey)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    dockerUsername: ").append(toIndentedString(dockerUsername)).append("\n");
     sb.append("    dockerPassword: ").append(toIndentedString(dockerPassword)).append("\n");

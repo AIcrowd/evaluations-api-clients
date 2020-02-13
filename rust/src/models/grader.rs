@@ -29,9 +29,6 @@ pub struct Grader {
   /// git/http
   #[serde(rename = "code_access_mode")]
   code_access_mode: String,
-  /// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-  #[serde(rename = "code_access_auth_key")]
-  code_access_auth_key: String,
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
@@ -68,14 +65,13 @@ pub struct Grader {
 }
 
 impl Grader {
-  pub fn new(code_access_mode: String, code_access_auth_key: String, docker_username: String, docker_password: String, evaluation_code: String) -> Grader {
+  pub fn new(code_access_mode: String, docker_username: String, docker_password: String, evaluation_code: String) -> Grader {
     Grader {
       id: None,
       created: None,
       updated: None,
       dataset_url: None,
       code_access_mode: code_access_mode,
-      code_access_auth_key: code_access_auth_key,
       cluster_id: None,
       docker_username: docker_username,
       docker_password: docker_password,
@@ -169,20 +165,6 @@ impl Grader {
 
   pub fn code_access_mode(&self) -> &String {
     &self.code_access_mode
-  }
-
-
-  pub fn set_code_access_auth_key(&mut self, code_access_auth_key: String) {
-    self.code_access_auth_key = code_access_auth_key;
-  }
-
-  pub fn with_code_access_auth_key(mut self, code_access_auth_key: String) -> Grader {
-    self.code_access_auth_key = code_access_auth_key;
-    self
-  }
-
-  pub fn code_access_auth_key(&self) -> &String {
-    &self.code_access_auth_key
   }
 
 

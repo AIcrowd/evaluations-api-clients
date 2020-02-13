@@ -25,8 +25,6 @@ case class Grader (
   datasetUrl: Option[String] = None,
   // git/http
   codeAccessMode: String,
-  // SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-  codeAccessAuthKey: String,
   // Cluster to run the grader on
   clusterId: Option[Integer] = None,
   // Docker registry username

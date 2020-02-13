@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **updated** | **datetime** | Last updation time | [optional] 
 **dataset_url** | **str** | S3 link of the Dataset | [optional] 
 **code_access_mode** | **str** | git/http | 
-**code_access_auth_key** | **str** | SSH private key if using git or HTTP Auth token if using HTTP to access the submission code | 
 **cluster_id** | **int** | Cluster to run the grader on | [optional] 
 **docker_username** | **str** | Docker registry username | 
 **docker_password** | **str** | Docker registry password | 

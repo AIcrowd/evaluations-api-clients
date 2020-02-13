@@ -88,11 +88,6 @@ public:
     utility::string_t getCodeAccessMode() const;
         void setCodeAccessMode(utility::string_t value);
     /// <summary>
-    /// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-    /// </summary>
-    utility::string_t getCodeAccessAuthKey() const;
-        void setCodeAccessAuthKey(utility::string_t value);
-    /// <summary>
     /// Cluster to run the grader on
     /// </summary>
     int32_t getClusterId() const;
@@ -174,7 +169,6 @@ protected:
     utility::string_t m_Dataset_url;
     bool m_Dataset_urlIsSet;
     utility::string_t m_Code_access_mode;
-        utility::string_t m_Code_access_auth_key;
         int32_t m_Cluster_id;
     bool m_Cluster_idIsSet;
     utility::string_t m_Docker_username;

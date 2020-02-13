@@ -22,9 +22,6 @@ class Grader {
   /* git/http */
   String codeAccessMode = null
 
-  /* SSH private key if using git or HTTP Auth token if using HTTP to access the submission code */
-  String codeAccessAuthKey = null
-
   /* Cluster to run the grader on */
   Integer clusterId = null
 

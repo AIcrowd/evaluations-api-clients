@@ -29,9 +29,6 @@ module SwaggerClient
     # git/http
     attr_accessor :code_access_mode
 
-    # SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-    attr_accessor :code_access_auth_key
-
     # Cluster to run the grader on
     attr_accessor :cluster_id
 
@@ -73,7 +70,6 @@ module SwaggerClient
         :'updated' => :'updated',
         :'dataset_url' => :'dataset_url',
         :'code_access_mode' => :'code_access_mode',
-        :'code_access_auth_key' => :'code_access_auth_key',
         :'cluster_id' => :'cluster_id',
         :'docker_username' => :'docker_username',
         :'docker_password' => :'docker_password',
@@ -96,7 +92,6 @@ module SwaggerClient
         :'updated' => :'DateTime',
         :'dataset_url' => :'String',
         :'code_access_mode' => :'String',
-        :'code_access_auth_key' => :'String',
         :'cluster_id' => :'Integer',
         :'docker_username' => :'String',
         :'docker_password' => :'String',
@@ -137,10 +132,6 @@ module SwaggerClient
 
       if attributes.has_key?(:'code_access_mode')
         self.code_access_mode = attributes[:'code_access_mode']
-      end
-
-      if attributes.has_key?(:'code_access_auth_key')
-        self.code_access_auth_key = attributes[:'code_access_auth_key']
       end
 
       if attributes.has_key?(:'cluster_id')
@@ -196,10 +187,6 @@ module SwaggerClient
         invalid_properties.push('invalid value for "code_access_mode", code_access_mode cannot be nil.')
       end
 
-      if @code_access_auth_key.nil?
-        invalid_properties.push('invalid value for "code_access_auth_key", code_access_auth_key cannot be nil.')
-      end
-
       if @docker_username.nil?
         invalid_properties.push('invalid value for "docker_username", docker_username cannot be nil.')
       end
@@ -219,7 +206,6 @@ module SwaggerClient
     # @return true if the model is valid
     def valid?
       return false if @code_access_mode.nil?
-      return false if @code_access_auth_key.nil?
       return false if @docker_username.nil?
       return false if @docker_password.nil?
       return false if @evaluation_code.nil?
@@ -236,7 +222,6 @@ module SwaggerClient
           updated == o.updated &&
           dataset_url == o.dataset_url &&
           code_access_mode == o.code_access_mode &&
-          code_access_auth_key == o.code_access_auth_key &&
           cluster_id == o.cluster_id &&
           docker_username == o.docker_username &&
           docker_password == o.docker_password &&
@@ -259,7 +244,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, code_access_mode, code_access_auth_key, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, meta, status, user_id, organisation_id].hash
+      [id, created, updated, dataset_url, code_access_mode, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, meta, status, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

@@ -328,10 +328,6 @@ export class Grader {
     */
     'codeAccessMode': string;
     /**
-    * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-    */
-    'codeAccessAuthKey': string;
-    /**
     * Cluster to run the grader on
     */
     'clusterId'?: number;
@@ -402,11 +398,6 @@ export class Grader {
         {
             "name": "codeAccessMode",
             "baseName": "code_access_mode",
-            "type": "string"
-        },
-        {
-            "name": "codeAccessAuthKey",
-            "baseName": "code_access_auth_key",
             "type": "string"
         },
         {

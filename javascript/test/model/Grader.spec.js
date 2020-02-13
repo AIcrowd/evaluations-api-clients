@@ -70,12 +70,6 @@
         // expect(instance.codeAccessMode).to.be(expectedValueLiteral);
       });
 
-      it('should have the property codeAccessAuthKey (base name: "code_access_auth_key")', function() {
-        // TODO: update the code to test the property codeAccessAuthKey
-        expect(instance).to.have.property('codeAccessAuthKey');
-        // expect(instance.codeAccessAuthKey).to.be(expectedValueLiteral);
-      });
-
       it('should have the property clusterId (base name: "cluster_id")', function() {
         // TODO: update the code to test the property clusterId
         expect(instance).to.have.property('clusterId');

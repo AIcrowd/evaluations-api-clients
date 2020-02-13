@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **updated** | **string** |  | [optional] [default to null]
 **dataset_url** | **string** |  | [optional] [default to null]
 **code_access_mode** | **string** |  | [default to null]
-**code_access_auth_key** | **string** |  | [default to null]
 **cluster_id** | **integer** |  | [optional] [default to null]
 **docker_username** | **string** |  | [default to null]
 **docker_password** | **string** |  | [default to null]

@@ -40,14 +40,13 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="datasetUrl">S3 link of the Dataset.</param>
         /// <param name="codeAccessMode">git/http (required).</param>
-        /// <param name="codeAccessAuthKey">SSH private key if using git or HTTP Auth token if using HTTP to access the submission code (required).</param>
         /// <param name="clusterId">Cluster to run the grader on.</param>
         /// <param name="dockerUsername">Docker registry username (required).</param>
         /// <param name="dockerPassword">Docker registry password (required).</param>
         /// <param name="dockerRegistry">Docker registry URL. Dockerhub is used by default..</param>
         /// <param name="evaluationCode">S3 link to the zip file containing the code that will be used for the evaluation (required).</param>
         /// <param name="storageCapacity">Size of the dataset partition to request. Please provide at least 2x of the size of the dataset..</param>
-        public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), string codeAccessAuthKey = default(string), int? clusterId = default(int?), string dockerUsername = default(string), string dockerPassword = default(string), string dockerRegistry = default(string), string evaluationCode = default(string), string storageCapacity = default(string))
+        public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), int? clusterId = default(int?), string dockerUsername = default(string), string dockerPassword = default(string), string dockerRegistry = default(string), string evaluationCode = default(string), string storageCapacity = default(string))
         {
             // to ensure "codeAccessMode" is required (not null)
             if (codeAccessMode == null)
@@ -57,15 +56,6 @@ namespace IO.Swagger.Model
             else
             {
                 this.CodeAccessMode = codeAccessMode;
-            }
-            // to ensure "codeAccessAuthKey" is required (not null)
-            if (codeAccessAuthKey == null)
-            {
-                throw new InvalidDataException("codeAccessAuthKey is a required property for Grader and cannot be null");
-            }
-            else
-            {
-                this.CodeAccessAuthKey = codeAccessAuthKey;
             }
             // to ensure "dockerUsername" is required (not null)
             if (dockerUsername == null)
@@ -134,13 +124,6 @@ namespace IO.Swagger.Model
         /// <value>git/http</value>
         [DataMember(Name="code_access_mode", EmitDefaultValue=false)]
         public string CodeAccessMode { get; set; }
-
-        /// <summary>
-        /// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-        /// </summary>
-        /// <value>SSH private key if using git or HTTP Auth token if using HTTP to access the submission code</value>
-        [DataMember(Name="code_access_auth_key", EmitDefaultValue=false)]
-        public string CodeAccessAuthKey { get; set; }
 
         /// <summary>
         /// Cluster to run the grader on
@@ -232,7 +215,6 @@ namespace IO.Swagger.Model
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  DatasetUrl: ").Append(DatasetUrl).Append("\n");
             sb.Append("  CodeAccessMode: ").Append(CodeAccessMode).Append("\n");
-            sb.Append("  CodeAccessAuthKey: ").Append(CodeAccessAuthKey).Append("\n");
             sb.Append("  ClusterId: ").Append(ClusterId).Append("\n");
             sb.Append("  DockerUsername: ").Append(DockerUsername).Append("\n");
             sb.Append("  DockerPassword: ").Append(DockerPassword).Append("\n");
@@ -302,11 +284,6 @@ namespace IO.Swagger.Model
                     this.CodeAccessMode == input.CodeAccessMode ||
                     (this.CodeAccessMode != null &&
                     this.CodeAccessMode.Equals(input.CodeAccessMode))
-                ) && 
-                (
-                    this.CodeAccessAuthKey == input.CodeAccessAuthKey ||
-                    (this.CodeAccessAuthKey != null &&
-                    this.CodeAccessAuthKey.Equals(input.CodeAccessAuthKey))
                 ) && 
                 (
                     this.ClusterId == input.ClusterId ||
@@ -384,8 +361,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.DatasetUrl.GetHashCode();
                 if (this.CodeAccessMode != null)
                     hashCode = hashCode * 59 + this.CodeAccessMode.GetHashCode();
-                if (this.CodeAccessAuthKey != null)
-                    hashCode = hashCode * 59 + this.CodeAccessAuthKey.GetHashCode();
                 if (this.ClusterId != null)
                     hashCode = hashCode * 59 + this.ClusterId.GetHashCode();
                 if (this.DockerUsername != null)

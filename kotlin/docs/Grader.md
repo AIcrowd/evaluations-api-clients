@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **updated** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Last updation time |  [optional]
 **dataset_url** | **kotlin.String** | S3 link of the Dataset |  [optional]
 **code_access_mode** | **kotlin.String** | git/http | 
-**code_access_auth_key** | **kotlin.String** | SSH private key if using git or HTTP Auth token if using HTTP to access the submission code | 
 **cluster_id** | **kotlin.Int** | Cluster to run the grader on |  [optional]
 **docker_username** | **kotlin.String** | Docker registry username | 
 **docker_password** | **kotlin.String** | Docker registry password | 

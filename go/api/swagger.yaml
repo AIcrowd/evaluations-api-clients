@@ -931,7 +931,6 @@ definitions:
   Grader:
     type: "object"
     required:
-    - "code_access_auth_key"
     - "code_access_mode"
     - "docker_password"
     - "docker_username"
@@ -957,10 +956,6 @@ definitions:
       code_access_mode:
         type: "string"
         description: "git/http"
-      code_access_auth_key:
-        type: "string"
-        description: "SSH private key if using git or HTTP Auth token if using HTTP\
-          \ to access the submission code"
       cluster_id:
         type: "integer"
         description: "Cluster to run the grader on"
@@ -1012,7 +1007,6 @@ definitions:
       organisation_id: 5
       cluster_id: 6
       docker_password: "docker_password"
-      code_access_auth_key: "code_access_auth_key"
       user_id: 1
       meta: "{}"
       id: 0
@@ -1021,7 +1015,7 @@ definitions:
       evaluation_code: "evaluation_code"
       updated: "2000-01-23T04:56:07.000+00:00"
       status: true
-    x-mask: "{id,created,updated,dataset_url,code_access_mode,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

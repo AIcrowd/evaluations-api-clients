@@ -112,13 +112,6 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "code_access_auth_key"
-     */
-    public function testPropertyCodeAccessAuthKey()
-    {
-    }
-
-    /**
      * Test attribute "cluster_id"
      */
     public function testPropertyClusterId()

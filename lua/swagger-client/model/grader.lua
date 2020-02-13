@@ -19,14 +19,13 @@ local function cast_grader(t)
 	return setmetatable(t, grader_mt)
 end
 
-local function new_grader(id, created, updated, dataset_url, code_access_mode, code_access_auth_key, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, meta, status, user_id, organisation_id)
+local function new_grader(id, created, updated, dataset_url, code_access_mode, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, meta, status, user_id, organisation_id)
 	return cast_grader({
 		["id"] = id;
 		["created"] = created;
 		["updated"] = updated;
 		["dataset_url"] = dataset_url;
 		["code_access_mode"] = code_access_mode;
-		["code_access_auth_key"] = code_access_auth_key;
 		["cluster_id"] = cluster_id;
 		["docker_username"] = docker_username;
 		["docker_password"] = docker_password;

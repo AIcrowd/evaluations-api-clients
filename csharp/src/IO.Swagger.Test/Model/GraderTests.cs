@@ -107,14 +107,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'CodeAccessMode'
         }
         /// <summary>
-        /// Test the property 'CodeAccessAuthKey'
-        /// </summary>
-        [Test]
-        public void CodeAccessAuthKeyTest()
-        {
-            // TODO unit test for the property 'CodeAccessAuthKey'
-        }
-        /// <summary>
         /// Test the property 'ClusterId'
         /// </summary>
         [Test]

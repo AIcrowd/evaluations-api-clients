@@ -51,13 +51,6 @@ describe("grader", function()
     end)
   end)
 
-  -- unit tests for the property 'code_access_auth_key'
-  describe("property code_access_auth_key test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
   -- unit tests for the property 'cluster_id'
   describe("property cluster_id test", function()
     it("should work", function()

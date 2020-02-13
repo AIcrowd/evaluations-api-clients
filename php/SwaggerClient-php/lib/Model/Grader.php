@@ -62,7 +62,6 @@ class Grader implements ModelInterface, ArrayAccess
         'updated' => '\DateTime',
         'dataset_url' => 'string',
         'code_access_mode' => 'string',
-        'code_access_auth_key' => 'string',
         'cluster_id' => 'int',
         'docker_username' => 'string',
         'docker_password' => 'string',
@@ -87,7 +86,6 @@ class Grader implements ModelInterface, ArrayAccess
         'updated' => 'date-time',
         'dataset_url' => null,
         'code_access_mode' => null,
-        'code_access_auth_key' => null,
         'cluster_id' => null,
         'docker_username' => null,
         'docker_password' => null,
@@ -133,7 +131,6 @@ class Grader implements ModelInterface, ArrayAccess
         'updated' => 'updated',
         'dataset_url' => 'dataset_url',
         'code_access_mode' => 'code_access_mode',
-        'code_access_auth_key' => 'code_access_auth_key',
         'cluster_id' => 'cluster_id',
         'docker_username' => 'docker_username',
         'docker_password' => 'docker_password',
@@ -158,7 +155,6 @@ class Grader implements ModelInterface, ArrayAccess
         'updated' => 'setUpdated',
         'dataset_url' => 'setDatasetUrl',
         'code_access_mode' => 'setCodeAccessMode',
-        'code_access_auth_key' => 'setCodeAccessAuthKey',
         'cluster_id' => 'setClusterId',
         'docker_username' => 'setDockerUsername',
         'docker_password' => 'setDockerPassword',
@@ -183,7 +179,6 @@ class Grader implements ModelInterface, ArrayAccess
         'updated' => 'getUpdated',
         'dataset_url' => 'getDatasetUrl',
         'code_access_mode' => 'getCodeAccessMode',
-        'code_access_auth_key' => 'getCodeAccessAuthKey',
         'cluster_id' => 'getClusterId',
         'docker_username' => 'getDockerUsername',
         'docker_password' => 'getDockerPassword',
@@ -262,7 +257,6 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
         $this->container['dataset_url'] = isset($data['dataset_url']) ? $data['dataset_url'] : null;
         $this->container['code_access_mode'] = isset($data['code_access_mode']) ? $data['code_access_mode'] : null;
-        $this->container['code_access_auth_key'] = isset($data['code_access_auth_key']) ? $data['code_access_auth_key'] : null;
         $this->container['cluster_id'] = isset($data['cluster_id']) ? $data['cluster_id'] : null;
         $this->container['docker_username'] = isset($data['docker_username']) ? $data['docker_username'] : null;
         $this->container['docker_password'] = isset($data['docker_password']) ? $data['docker_password'] : null;
@@ -287,9 +281,6 @@ class Grader implements ModelInterface, ArrayAccess
 
         if ($this->container['code_access_mode'] === null) {
             $invalidProperties[] = "'code_access_mode' can't be null";
-        }
-        if ($this->container['code_access_auth_key'] === null) {
-            $invalidProperties[] = "'code_access_auth_key' can't be null";
         }
         if ($this->container['docker_username'] === null) {
             $invalidProperties[] = "'docker_username' can't be null";
@@ -431,30 +422,6 @@ class Grader implements ModelInterface, ArrayAccess
     public function setCodeAccessMode($code_access_mode)
     {
         $this->container['code_access_mode'] = $code_access_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets code_access_auth_key
-     *
-     * @return string
-     */
-    public function getCodeAccessAuthKey()
-    {
-        return $this->container['code_access_auth_key'];
-    }
-
-    /**
-     * Sets code_access_auth_key
-     *
-     * @param string $code_access_auth_key SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-     *
-     * @return $this
-     */
-    public function setCodeAccessAuthKey($code_access_auth_key)
-    {
-        $this->container['code_access_auth_key'] = $code_access_auth_key;
 
         return $this;
     }

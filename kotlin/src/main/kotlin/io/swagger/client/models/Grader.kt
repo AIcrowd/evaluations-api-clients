@@ -19,7 +19,6 @@ package io.swagger.client.models
  * @param updated Last updation time
  * @param dataset_url S3 link of the Dataset
  * @param code_access_mode git/http
- * @param code_access_auth_key SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
  * @param cluster_id Cluster to run the grader on
  * @param docker_username Docker registry username
  * @param docker_password Docker registry password
@@ -35,8 +34,6 @@ package io.swagger.client.models
 data class Grader (
     /* git/http */
     val code_access_mode: kotlin.String,
-    /* SSH private key if using git or HTTP Auth token if using HTTP to access the submission code */
-    val code_access_auth_key: kotlin.String,
     /* Docker registry username */
     val docker_username: kotlin.String,
     /* Docker registry password */

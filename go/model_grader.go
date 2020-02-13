@@ -24,8 +24,6 @@ type Grader struct {
 	DatasetUrl string `json:"dataset_url,omitempty"`
 	// git/http
 	CodeAccessMode string `json:"code_access_mode"`
-	// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-	CodeAccessAuthKey string `json:"code_access_auth_key"`
 	// Cluster to run the grader on
 	ClusterId int32 `json:"cluster_id,omitempty"`
 	// Docker registry username
