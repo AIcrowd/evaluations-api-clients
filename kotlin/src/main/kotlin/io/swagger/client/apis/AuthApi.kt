@@ -11,6 +11,8 @@
 */
 package io.swagger.client.apis
 
+import io.swagger.client.models.AuthLogout
+import io.swagger.client.models.AuthResponse
 import io.swagger.client.models.Login
 
 import io.swagger.client.infrastructure.*
@@ -20,15 +22,17 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
     /**
     * 
     * 
-    * @return void
+    * @param xFields An optional fields mask (optional)
+    * @return AuthLogout
     */
-    fun logout a user() : Unit {
+    @Suppress("UNCHECKED_CAST")
+    fun logout a user(xFields: kotlin.String) : AuthLogout {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -38,13 +42,13 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<AuthLogout>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as AuthLogout
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -57,15 +61,17 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
     * 
     * 
     * @param payload  
-    * @return void
+    * @param xFields An optional fields mask (optional)
+    * @return AuthResponse
     */
-    fun user login(payload: Login) : Unit {
+    @Suppress("UNCHECKED_CAST")
+    fun user login(payload: Login, xFields: kotlin.String) : AuthResponse {
         val localVariableBody: kotlin.Any? = payload
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -75,13 +81,13 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<AuthResponse>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as AuthResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

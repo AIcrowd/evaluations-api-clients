@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:23:23.101Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:31:39.349Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -135,7 +135,7 @@ public class Grader {
    * git/http
    * @return codeAccessMode
   **/
-  @ApiModelProperty(value = "git/http")
+  @ApiModelProperty(required = true, value = "git/http")
   public String getCodeAccessMode() {
     return codeAccessMode;
   }
@@ -153,7 +153,7 @@ public class Grader {
    * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
    * @return codeAccessAuthKey
   **/
-  @ApiModelProperty(value = "SSH private key if using git or HTTP Auth token if using HTTP to access the submission code")
+  @ApiModelProperty(required = true, value = "SSH private key if using git or HTTP Auth token if using HTTP to access the submission code")
   public String getCodeAccessAuthKey() {
     return codeAccessAuthKey;
   }
@@ -189,7 +189,7 @@ public class Grader {
    * Docker registry username
    * @return dockerUsername
   **/
-  @ApiModelProperty(value = "Docker registry username")
+  @ApiModelProperty(required = true, value = "Docker registry username")
   public String getDockerUsername() {
     return dockerUsername;
   }
@@ -207,7 +207,7 @@ public class Grader {
    * Docker registry password
    * @return dockerPassword
   **/
-  @ApiModelProperty(value = "Docker registry password")
+  @ApiModelProperty(required = true, value = "Docker registry password")
   public String getDockerPassword() {
     return dockerPassword;
   }
@@ -222,10 +222,10 @@ public class Grader {
   }
 
    /**
-   * Docker registry URL
+   * Docker registry URL. Dockerhub is used by default.
    * @return dockerRegistry
   **/
-  @ApiModelProperty(value = "Docker registry URL")
+  @ApiModelProperty(value = "Docker registry URL. Dockerhub is used by default.")
   public String getDockerRegistry() {
     return dockerRegistry;
   }
@@ -252,7 +252,7 @@ public class Grader {
    * S3 link to the zip file containing the code that will be used for the evaluation
    * @return evaluationCode
   **/
-  @ApiModelProperty(value = "S3 link to the zip file containing the code that will be used for the evaluation")
+  @ApiModelProperty(required = true, value = "S3 link to the zip file containing the code that will be used for the evaluation")
   public String getEvaluationCode() {
     return evaluationCode;
   }

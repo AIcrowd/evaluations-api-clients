@@ -77,10 +77,8 @@ class Cluster(object):
             self.created = created
         if updated is not None:
             self.updated = updated
-        if remote_address is not None:
-            self.remote_address = remote_address
-        if auth_token is not None:
-            self.auth_token = auth_token
+        self.remote_address = remote_address
+        self.auth_token = auth_token
         if storage_class is not None:
             self.storage_class = storage_class
         if status is not None:
@@ -181,6 +179,8 @@ class Cluster(object):
         :param remote_address: The remote_address of this Cluster.  # noqa: E501
         :type: str
         """
+        if remote_address is None:
+            raise ValueError("Invalid value for `remote_address`, must not be `None`")  # noqa: E501
 
         self._remote_address = remote_address
 
@@ -204,6 +204,8 @@ class Cluster(object):
         :param auth_token: The auth_token of this Cluster.  # noqa: E501
         :type: str
         """
+        if auth_token is None:
+            raise ValueError("Invalid value for `auth_token`, must not be `None`")  # noqa: E501
 
         self._auth_token = auth_token
 

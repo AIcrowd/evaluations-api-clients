@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **integer** |  | [optional] [default to null]
-**name** | **string** |  | [optional] [default to null]
-**poc_email** | **string** |  | [optional] [default to null]
+**name** | **string** |  | [default to null]
+**poc_email** | **string** |  | [default to null]
 **created_on** | **string** |  | [optional] [default to null]
 **total_quota** | **integer** |  | [optional] [default to null]
 **quota** | **integer** |  | [optional] [default to null]

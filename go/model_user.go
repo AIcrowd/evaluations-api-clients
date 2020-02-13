@@ -17,7 +17,7 @@ type User struct {
 	// ID
 	Id int32 `json:"id,omitempty"`
 	// Email
-	Email string `json:"email,omitempty"`
+	Email string `json:"email"`
 	// Admin Boolean
 	Admin bool `json:"admin,omitempty"`
 	// Creation Time
@@ -29,7 +29,7 @@ type User struct {
 	// Available evaluation quota
 	Quota int32 `json:"quota,omitempty"`
 	// Organisation identifier
-	OrganisationId int32 `json:"organisation_id,omitempty"`
+	OrganisationId int32 `json:"organisation_id"`
 	// user password
 	Password string `json:"password"`
 }

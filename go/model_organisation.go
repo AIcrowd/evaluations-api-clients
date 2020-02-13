@@ -17,9 +17,9 @@ type Organisation struct {
 	// ID
 	Id int32 `json:"id,omitempty"`
 	// Organisation Name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Point of contact email
-	PocEmail string `json:"poc_email,omitempty"`
+	PocEmail string `json:"poc_email"`
 	// Creation Time
 	CreatedOn time.Time `json:"created_on,omitempty"`
 	// Total assigned evaluation quota

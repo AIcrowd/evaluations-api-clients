@@ -40,8 +40,12 @@
    * Constructs a new <code>Organisation</code>.
    * @alias module:model/Organisation
    * @class
+   * @param name {String} Organisation Name
+   * @param pocEmail {String} Point of contact email
    */
-  var exports = function() {
+  var exports = function(name, pocEmail) {
+    this.name = name;
+    this.pocEmail = pocEmail;
   };
 
   /**

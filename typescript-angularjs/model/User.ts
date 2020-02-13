@@ -20,7 +20,7 @@ export interface User {
     /**
      * Email
      */
-    "email"?: string;
+    "email": string;
     /**
      * Admin Boolean
      */
@@ -44,7 +44,7 @@ export interface User {
     /**
      * Organisation identifier
      */
-    "organisationId"?: number;
+    "organisationId": number;
     /**
      * user password
      */

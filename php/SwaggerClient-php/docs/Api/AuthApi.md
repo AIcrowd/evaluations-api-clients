@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **logoutAUser**
-> logoutAUser()
+> \Swagger\Client\Model\AuthLogout logoutAUser($x_fields)
 
 
 
@@ -29,9 +29,11 @@ $apiInstance = new Swagger\Client\Api\AuthApi(
     new GuzzleHttp\Client(),
     $config
 );
+$x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $apiInstance->logoutAUser();
+    $result = $apiInstance->logoutAUser($x_fields);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AuthApi->logoutAUser: ', $e->getMessage(), PHP_EOL;
 }
@@ -39,11 +41,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_fields** | **string**| An optional fields mask | [optional]
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\AuthLogout**](../Model/AuthLogout.md)
 
 ### Authorization
 
@@ -57,7 +62,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userLogin**
-> userLogin($payload)
+> \Swagger\Client\Model\AuthResponse userLogin($payload, $x_fields)
 
 
 
@@ -72,9 +77,11 @@ $apiInstance = new Swagger\Client\Api\AuthApi(
     new GuzzleHttp\Client()
 );
 $payload = new \Swagger\Client\Model\Login(); // \Swagger\Client\Model\Login | 
+$x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $apiInstance->userLogin($payload);
+    $result = $apiInstance->userLogin($payload, $x_fields);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AuthApi->userLogin: ', $e->getMessage(), PHP_EOL;
 }
@@ -86,10 +93,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**\Swagger\Client\Model\Login**](../Model/Login.md)|  |
+ **x_fields** | **string**| An optional fields mask | [optional]
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\AuthResponse**](../Model/AuthResponse.md)
 
 ### Authorization
 

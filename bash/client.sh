@@ -102,7 +102,9 @@ operation_parameters_minimum_occurrences["postGraderFeedbackDao:::grader_id"]=1
 operation_parameters_minimum_occurrences["postGraderFeedbackDao:::payload"]=1
 operation_parameters_minimum_occurrences["postSubmissionFeedbackDao:::submission_id"]=1
 operation_parameters_minimum_occurrences["postSubmissionFeedbackDao:::payload"]=1
+operation_parameters_minimum_occurrences["logout a user:::X-Fields"]=0
 operation_parameters_minimum_occurrences["user login:::payload"]=1
+operation_parameters_minimum_occurrences["user login:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteClusterDao:::cluster_id"]=1
 operation_parameters_minimum_occurrences["getClusterDao:::cluster_id"]=1
 operation_parameters_minimum_occurrences["getClusterDao:::X-Fields"]=0
@@ -161,7 +163,9 @@ operation_parameters_maximum_occurrences["postGraderFeedbackDao:::grader_id"]=0
 operation_parameters_maximum_occurrences["postGraderFeedbackDao:::payload"]=0
 operation_parameters_maximum_occurrences["postSubmissionFeedbackDao:::submission_id"]=0
 operation_parameters_maximum_occurrences["postSubmissionFeedbackDao:::payload"]=0
+operation_parameters_maximum_occurrences["logout a user:::X-Fields"]=0
 operation_parameters_maximum_occurrences["user login:::payload"]=0
+operation_parameters_maximum_occurrences["user login:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteClusterDao:::cluster_id"]=0
 operation_parameters_maximum_occurrences["getClusterDao:::cluster_id"]=0
 operation_parameters_maximum_occurrences["getClusterDao:::X-Fields"]=0
@@ -217,7 +221,9 @@ operation_parameters_collection_type["postGraderFeedbackDao:::grader_id"]=""
 operation_parameters_collection_type["postGraderFeedbackDao:::payload"]=""
 operation_parameters_collection_type["postSubmissionFeedbackDao:::submission_id"]=""
 operation_parameters_collection_type["postSubmissionFeedbackDao:::payload"]=""
+operation_parameters_collection_type["logout a user:::X-Fields"]=""
 operation_parameters_collection_type["user login:::payload"]=""
+operation_parameters_collection_type["user login:::X-Fields"]=""
 operation_parameters_collection_type["deleteClusterDao:::cluster_id"]=""
 operation_parameters_collection_type["getClusterDao:::cluster_id"]=""
 operation_parameters_collection_type["getClusterDao:::X-Fields"]=""
@@ -837,6 +843,8 @@ print_logout a user_help() {
     echo ""
     echo -e "${BOLD}${WHITE}logout a user - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -852,12 +860,15 @@ print_user login_help() {
     echo -e "${BOLD}${WHITE}user login - ${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Wrong username or password${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -938,7 +949,7 @@ print_postGraderListDao_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Bad inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1126,10 +1137,12 @@ print_postOrganisationListDao_help() {
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=201
+    echo -e "${result_color_table[${code:0:1}]}  201;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=409
-    echo -e "${result_color_table[${code:0:1}]}  409;Organisation already exists.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  409;Organisation already exists${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1257,9 +1270,9 @@ print_postSubmissionListDao_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Bad inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found or ready${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Grader not found or ready${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1339,6 +1352,8 @@ print_postUserListDao_help() {
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #

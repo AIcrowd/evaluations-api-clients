@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **updated** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Last updation time |  [optional]
 **participant_id** | **kotlin.Int** | Participant identifier |  [optional]
 **round_id** | **kotlin.Int** | Round identifier |  [optional]
-**grader_id** | **kotlin.Int** | Grader identifier |  [optional]
-**submission_code** | **kotlin.String** | URL to the submission code |  [optional]
+**grader_id** | **kotlin.Int** | Grader identifier | 
+**submission_code** | **kotlin.String** | URL to the submission code | 
 **status** | **kotlin.String** | Current status of the submission |  [optional]
 **output** | **kotlin.String** | S3 link of the output (available after the evaluation) |  [optional]
 **additional_outputs** | **kotlin.String** | Array of any additional outputs |  [optional]

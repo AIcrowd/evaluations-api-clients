@@ -33,16 +33,37 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Submissions" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Submissions() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Submissions" /> class.
+        /// </summary>
         /// <param name="participantId">Participant identifier.</param>
         /// <param name="roundId">Round identifier.</param>
-        /// <param name="graderId">Grader identifier.</param>
-        /// <param name="submissionCode">URL to the submission code.</param>
+        /// <param name="graderId">Grader identifier (required).</param>
+        /// <param name="submissionCode">URL to the submission code (required).</param>
         public Submissions(int? participantId = default(int?), int? roundId = default(int?), int? graderId = default(int?), string submissionCode = default(string))
         {
+            // to ensure "graderId" is required (not null)
+            if (graderId == null)
+            {
+                throw new InvalidDataException("graderId is a required property for Submissions and cannot be null");
+            }
+            else
+            {
+                this.GraderId = graderId;
+            }
+            // to ensure "submissionCode" is required (not null)
+            if (submissionCode == null)
+            {
+                throw new InvalidDataException("submissionCode is a required property for Submissions and cannot be null");
+            }
+            else
+            {
+                this.SubmissionCode = submissionCode;
+            }
             this.ParticipantId = participantId;
             this.RoundId = roundId;
-            this.GraderId = graderId;
-            this.SubmissionCode = submissionCode;
         }
         
         /// <summary>

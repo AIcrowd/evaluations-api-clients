@@ -26,16 +26,16 @@ package io.swagger.client.models
  * @param organisation_id Organisation ID
  */
 data class Cluster (
+    /* Remote address used to connect to the cluster */
+    val remote_address: kotlin.String,
+    /* Authentication needed for the cluster */
+    val auth_token: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */
     val created: java.time.LocalDateTime? = null,
     /* Last updation time */
     val updated: java.time.LocalDateTime? = null,
-    /* Remote address used to connect to the cluster */
-    val remote_address: kotlin.String? = null,
-    /* Authentication needed for the cluster */
-    val auth_token: kotlin.String? = null,
     /* Storage class to use for datasets */
     val storage_class: kotlin.String? = null,
     /* Readiness of the cluster */

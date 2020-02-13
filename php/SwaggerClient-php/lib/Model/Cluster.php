@@ -243,6 +243,12 @@ class Cluster implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['remote_address'] === null) {
+            $invalidProperties[] = "'remote_address' can't be null";
+        }
+        if ($this->container['auth_token'] === null) {
+            $invalidProperties[] = "'auth_token' can't be null";
+        }
         return $invalidProperties;
     }
 

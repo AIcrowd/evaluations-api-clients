@@ -1,3 +1,7 @@
+mod auth_logout;
+pub use self::auth_logout::AuthLogout;
+mod auth_response;
+pub use self::auth_response::AuthResponse;
 mod cluster;
 pub use self::cluster::Cluster;
 mod generic_feedback;

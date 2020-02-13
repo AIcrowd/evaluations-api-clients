@@ -30,20 +30,15 @@ Grader::Grader()
     m_Dataset_url = utility::conversions::to_string_t("");
     m_Dataset_urlIsSet = false;
     m_Code_access_mode = utility::conversions::to_string_t("");
-    m_Code_access_modeIsSet = false;
     m_Code_access_auth_key = utility::conversions::to_string_t("");
-    m_Code_access_auth_keyIsSet = false;
     m_Cluster_id = 0;
     m_Cluster_idIsSet = false;
     m_Docker_username = utility::conversions::to_string_t("");
-    m_Docker_usernameIsSet = false;
     m_Docker_password = utility::conversions::to_string_t("");
-    m_Docker_passwordIsSet = false;
     m_Docker_registry = utility::conversions::to_string_t("");
     m_Docker_registryIsSet = false;
     m_Workflow_specIsSet = false;
     m_Evaluation_code = utility::conversions::to_string_t("");
-    m_Evaluation_codeIsSet = false;
     m_Storage_capacity = utility::conversions::to_string_t("");
     m_Storage_capacityIsSet = false;
     m_MetaIsSet = false;
@@ -84,26 +79,14 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("dataset_url")] = ModelBase::toJson(m_Dataset_url);
     }
-    if(m_Code_access_modeIsSet)
-    {
-        val[utility::conversions::to_string_t("code_access_mode")] = ModelBase::toJson(m_Code_access_mode);
-    }
-    if(m_Code_access_auth_keyIsSet)
-    {
-        val[utility::conversions::to_string_t("code_access_auth_key")] = ModelBase::toJson(m_Code_access_auth_key);
-    }
+    val[utility::conversions::to_string_t("code_access_mode")] = ModelBase::toJson(m_Code_access_mode);
+    val[utility::conversions::to_string_t("code_access_auth_key")] = ModelBase::toJson(m_Code_access_auth_key);
     if(m_Cluster_idIsSet)
     {
         val[utility::conversions::to_string_t("cluster_id")] = ModelBase::toJson(m_Cluster_id);
     }
-    if(m_Docker_usernameIsSet)
-    {
-        val[utility::conversions::to_string_t("docker_username")] = ModelBase::toJson(m_Docker_username);
-    }
-    if(m_Docker_passwordIsSet)
-    {
-        val[utility::conversions::to_string_t("docker_password")] = ModelBase::toJson(m_Docker_password);
-    }
+    val[utility::conversions::to_string_t("docker_username")] = ModelBase::toJson(m_Docker_username);
+    val[utility::conversions::to_string_t("docker_password")] = ModelBase::toJson(m_Docker_password);
     if(m_Docker_registryIsSet)
     {
         val[utility::conversions::to_string_t("docker_registry")] = ModelBase::toJson(m_Docker_registry);
@@ -112,10 +95,7 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("workflow_spec")] = ModelBase::toJson(m_Workflow_spec);
     }
-    if(m_Evaluation_codeIsSet)
-    {
-        val[utility::conversions::to_string_t("evaluation_code")] = ModelBase::toJson(m_Evaluation_code);
-    }
+    val[utility::conversions::to_string_t("evaluation_code")] = ModelBase::toJson(m_Evaluation_code);
     if(m_Storage_capacityIsSet)
     {
         val[utility::conversions::to_string_t("storage_capacity")] = ModelBase::toJson(m_Storage_capacity);
@@ -174,22 +154,8 @@ void Grader::fromJson(web::json::value& val)
             setDatasetUrl(ModelBase::stringFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("code_access_mode")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("code_access_mode")];
-        if(!fieldValue.is_null())
-        {
-            setCodeAccessMode(ModelBase::stringFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("code_access_auth_key")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("code_access_auth_key")];
-        if(!fieldValue.is_null())
-        {
-            setCodeAccessAuthKey(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setCodeAccessMode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("code_access_mode")]));
+    setCodeAccessAuthKey(ModelBase::stringFromJson(val[utility::conversions::to_string_t("code_access_auth_key")]));
     if(val.has_field(utility::conversions::to_string_t("cluster_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("cluster_id")];
@@ -198,22 +164,8 @@ void Grader::fromJson(web::json::value& val)
             setClusterId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("docker_username")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_username")];
-        if(!fieldValue.is_null())
-        {
-            setDockerUsername(ModelBase::stringFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("docker_password")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_password")];
-        if(!fieldValue.is_null())
-        {
-            setDockerPassword(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setDockerUsername(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_username")]));
+    setDockerPassword(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_password")]));
     if(val.has_field(utility::conversions::to_string_t("docker_registry")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_registry")];
@@ -232,14 +184,7 @@ void Grader::fromJson(web::json::value& val)
             setWorkflowSpec( newItem );
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("evaluation_code")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("evaluation_code")];
-        if(!fieldValue.is_null())
-        {
-            setEvaluationCode(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setEvaluationCode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("evaluation_code")]));
     if(val.has_field(utility::conversions::to_string_t("storage_capacity")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("storage_capacity")];
@@ -311,30 +256,14 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("dataset_url"), m_Dataset_url));
         
     }
-    if(m_Code_access_modeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_mode"), m_Code_access_mode));
-        
-    }
-    if(m_Code_access_auth_keyIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_auth_key"), m_Code_access_auth_key));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_mode"), m_Code_access_mode));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_auth_key"), m_Code_access_auth_key));
     if(m_Cluster_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cluster_id"), m_Cluster_id));
     }
-    if(m_Docker_usernameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_username"), m_Docker_username));
-        
-    }
-    if(m_Docker_passwordIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_password"), m_Docker_password));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_username"), m_Docker_username));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_password"), m_Docker_password));
     if(m_Docker_registryIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_registry"), m_Docker_registry));
@@ -348,11 +277,7 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         }
         
     }
-    if(m_Evaluation_codeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluation_code"), m_Evaluation_code));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluation_code"), m_Evaluation_code));
     if(m_Storage_capacityIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_capacity"), m_Storage_capacity));
@@ -404,26 +329,14 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         setDatasetUrl(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataset_url"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("code_access_mode")))
-    {
-        setCodeAccessMode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_mode"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("code_access_auth_key")))
-    {
-        setCodeAccessAuthKey(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_auth_key"))));
-    }
+    setCodeAccessMode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_mode"))));
+    setCodeAccessAuthKey(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_auth_key"))));
     if(multipart->hasContent(utility::conversions::to_string_t("cluster_id")))
     {
         setClusterId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cluster_id"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("docker_username")))
-    {
-        setDockerUsername(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_username"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("docker_password")))
-    {
-        setDockerPassword(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_password"))));
-    }
+    setDockerUsername(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_username"))));
+    setDockerPassword(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_password"))));
     if(multipart->hasContent(utility::conversions::to_string_t("docker_registry")))
     {
         setDockerRegistry(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_registry"))));
@@ -437,10 +350,7 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
             setWorkflowSpec( newItem );
         }
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("evaluation_code")))
-    {
-        setEvaluationCode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluation_code"))));
-    }
+    setEvaluationCode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluation_code"))));
     if(multipart->hasContent(utility::conversions::to_string_t("storage_capacity")))
     {
         setStorageCapacity(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_capacity"))));
@@ -561,18 +471,8 @@ utility::string_t Grader::getCodeAccessMode() const
 void Grader::setCodeAccessMode(utility::string_t value)
 {
     m_Code_access_mode = value;
-    m_Code_access_modeIsSet = true;
+    
 }
-bool Grader::codeAccessModeIsSet() const
-{
-    return m_Code_access_modeIsSet;
-}
-
-void Grader::unsetCode_access_mode()
-{
-    m_Code_access_modeIsSet = false;
-}
-
 utility::string_t Grader::getCodeAccessAuthKey() const
 {
     return m_Code_access_auth_key;
@@ -582,18 +482,8 @@ utility::string_t Grader::getCodeAccessAuthKey() const
 void Grader::setCodeAccessAuthKey(utility::string_t value)
 {
     m_Code_access_auth_key = value;
-    m_Code_access_auth_keyIsSet = true;
+    
 }
-bool Grader::codeAccessAuthKeyIsSet() const
-{
-    return m_Code_access_auth_keyIsSet;
-}
-
-void Grader::unsetCode_access_auth_key()
-{
-    m_Code_access_auth_keyIsSet = false;
-}
-
 int32_t Grader::getClusterId() const
 {
     return m_Cluster_id;
@@ -624,18 +514,8 @@ utility::string_t Grader::getDockerUsername() const
 void Grader::setDockerUsername(utility::string_t value)
 {
     m_Docker_username = value;
-    m_Docker_usernameIsSet = true;
+    
 }
-bool Grader::dockerUsernameIsSet() const
-{
-    return m_Docker_usernameIsSet;
-}
-
-void Grader::unsetDocker_username()
-{
-    m_Docker_usernameIsSet = false;
-}
-
 utility::string_t Grader::getDockerPassword() const
 {
     return m_Docker_password;
@@ -645,18 +525,8 @@ utility::string_t Grader::getDockerPassword() const
 void Grader::setDockerPassword(utility::string_t value)
 {
     m_Docker_password = value;
-    m_Docker_passwordIsSet = true;
+    
 }
-bool Grader::dockerPasswordIsSet() const
-{
-    return m_Docker_passwordIsSet;
-}
-
-void Grader::unsetDocker_password()
-{
-    m_Docker_passwordIsSet = false;
-}
-
 utility::string_t Grader::getDockerRegistry() const
 {
     return m_Docker_registry;
@@ -708,18 +578,8 @@ utility::string_t Grader::getEvaluationCode() const
 void Grader::setEvaluationCode(utility::string_t value)
 {
     m_Evaluation_code = value;
-    m_Evaluation_codeIsSet = true;
+    
 }
-bool Grader::evaluationCodeIsSet() const
-{
-    return m_Evaluation_codeIsSet;
-}
-
-void Grader::unsetEvaluation_code()
-{
-    m_Evaluation_codeIsSet = false;
-}
-
 utility::string_t Grader::getStorageCapacity() const
 {
     return m_Storage_capacity;

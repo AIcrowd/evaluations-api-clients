@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **logout_a_user**
-> logout_a_user
+> AuthLogout logout_a_user(opts)
 
 
 
@@ -27,19 +27,27 @@ end
 
 api_instance = SwaggerClient::AuthApi.new
 
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
 begin
-  api_instance.logout_a_user
+  result = api_instance.logout_a_user(opts)
+  p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling AuthApi->logout_a_user: #{e}"
 end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-nil (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -53,7 +61,7 @@ nil (empty response body)
 
 
 # **user_login**
-> user_login(payload)
+> AuthResponse user_login(payload, opts)
 
 
 
@@ -66,9 +74,13 @@ api_instance = SwaggerClient::AuthApi.new
 
 payload = SwaggerClient::Login.new # Login | 
 
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
 
 begin
-  api_instance.user_login(payload)
+  result = api_instance.user_login(payload, opts)
+  p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling AuthApi->user_login: #{e}"
 end
@@ -79,10 +91,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-nil (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

@@ -35,13 +35,13 @@ impl<C: hyper::client::Connect> AuthApiClient<C> {
 }
 
 pub trait AuthApi {
-    fn logout_a_user(&self, ) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn user_login(&self, payload: ::models::Login) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn logout_a_user(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>>;
+    fn user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
-    fn logout_a_user(&self, ) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+    fn logout_a_user(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -77,6 +77,10 @@ impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
             req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
         }
 
+        {
+            let mut headers = req.headers_mut();
+            headers.set_raw("X-Fields", x_fields);
+        }
 
         for (key, val) in auth_headers {
             req.headers_mut().set_raw(key, val);
@@ -100,11 +104,14 @@ impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
                     Err(Error::from((status, &*body)))
                 }
             })
-            .and_then(|_| futures::future::ok(()))
+            .and_then(|body| {
+                let parsed: Result<::models::AuthLogout, _> = serde_json::from_slice(&body);
+                parsed.map_err(|e| Error::from(e))
+            })
         )
     }
 
-    fn user_login(&self, payload: ::models::Login) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+    fn user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let method = hyper::Method::Post;
@@ -127,6 +134,10 @@ impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
             req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
         }
 
+        {
+            let mut headers = req.headers_mut();
+            headers.set_raw("X-Fields", x_fields);
+        }
 
 
         let serialized = serde_json::to_string(&payload).unwrap();
@@ -151,7 +162,10 @@ impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
                     Err(Error::from((status, &*body)))
                 }
             })
-            .and_then(|_| futures::future::ok(()))
+            .and_then(|body| {
+                let parsed: Result<::models::AuthResponse, _> = serde_json::from_slice(&body);
+                parsed.map_err(|e| Error::from(e))
+            })
         )
     }
 

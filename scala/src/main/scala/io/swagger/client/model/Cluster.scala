@@ -22,9 +22,9 @@ case class Cluster (
   // Last updation time
   updated: Option[Date] = None,
   // Remote address used to connect to the cluster
-  remoteAddress: Option[String] = None,
+  remoteAddress: String,
   // Authentication needed for the cluster
-  authToken: Option[String] = None,
+  authToken: String,
   // Storage class to use for datasets
   storageClass: Option[String] = None,
   // Readiness of the cluster

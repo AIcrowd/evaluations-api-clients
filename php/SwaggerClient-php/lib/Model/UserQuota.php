@@ -49,7 +49,7 @@ class UserQuota implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'userQuota';
+    protected static $swaggerModelName = 'UserQuota';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

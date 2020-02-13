@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Cluster
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:23:23.101Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:31:39.349Z")
 public class Cluster {
   @SerializedName("id")
   private Integer id = null;
@@ -96,7 +96,7 @@ public class Cluster {
    * Remote address used to connect to the cluster
    * @return remoteAddress
   **/
-  @ApiModelProperty(value = "Remote address used to connect to the cluster")
+  @ApiModelProperty(required = true, value = "Remote address used to connect to the cluster")
   public String getRemoteAddress() {
     return remoteAddress;
   }
@@ -114,7 +114,7 @@ public class Cluster {
    * Authentication needed for the cluster
    * @return authToken
   **/
-  @ApiModelProperty(value = "Authentication needed for the cluster")
+  @ApiModelProperty(required = true, value = "Authentication needed for the cluster")
   public String getAuthToken() {
     return authToken;
   }

@@ -38,12 +38,30 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="User" /> class.
         /// </summary>
-        /// <param name="email">Email.</param>
+        /// <param name="email">Email (required).</param>
         /// <param name="admin">Admin Boolean.</param>
-        /// <param name="organisationId">Organisation identifier.</param>
+        /// <param name="organisationId">Organisation identifier (required).</param>
         /// <param name="password">user password (required).</param>
         public User(string email = default(string), bool? admin = default(bool?), int? organisationId = default(int?), string password = default(string))
         {
+            // to ensure "email" is required (not null)
+            if (email == null)
+            {
+                throw new InvalidDataException("email is a required property for User and cannot be null");
+            }
+            else
+            {
+                this.Email = email;
+            }
+            // to ensure "organisationId" is required (not null)
+            if (organisationId == null)
+            {
+                throw new InvalidDataException("organisationId is a required property for User and cannot be null");
+            }
+            else
+            {
+                this.OrganisationId = organisationId;
+            }
             // to ensure "password" is required (not null)
             if (password == null)
             {
@@ -53,9 +71,7 @@ namespace IO.Swagger.Model
             {
                 this.Password = password;
             }
-            this.Email = email;
             this.Admin = admin;
-            this.OrganisationId = organisationId;
         }
         
         /// <summary>

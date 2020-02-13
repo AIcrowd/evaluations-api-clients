@@ -24,21 +24,21 @@ case class Grader (
   // S3 link of the Dataset
   datasetUrl: Option[String] = None,
   // git/http
-  codeAccessMode: Option[String] = None,
+  codeAccessMode: String,
   // SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-  codeAccessAuthKey: Option[String] = None,
+  codeAccessAuthKey: String,
   // Cluster to run the grader on
   clusterId: Option[Integer] = None,
   // Docker registry username
-  dockerUsername: Option[String] = None,
+  dockerUsername: String,
   // Docker registry password
-  dockerPassword: Option[String] = None,
-  // Docker registry URL
+  dockerPassword: String,
+  // Docker registry URL. Dockerhub is used by default.
   dockerRegistry: Option[String] = None,
   // Argo workflow template spec
   workflowSpec: Option[Any] = None,
   // S3 link to the zip file containing the code that will be used for the evaluation
-  evaluationCode: Option[String] = None,
+  evaluationCode: String,
   // Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   storageCapacity: Option[String] = None,
   // Additional meta data of the grader

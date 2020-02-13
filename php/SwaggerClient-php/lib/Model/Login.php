@@ -49,7 +49,7 @@ class Login implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'login';
+    protected static $swaggerModelName = 'Login';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

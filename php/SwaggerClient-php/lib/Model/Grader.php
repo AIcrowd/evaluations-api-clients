@@ -285,6 +285,21 @@ class Grader implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['code_access_mode'] === null) {
+            $invalidProperties[] = "'code_access_mode' can't be null";
+        }
+        if ($this->container['code_access_auth_key'] === null) {
+            $invalidProperties[] = "'code_access_auth_key' can't be null";
+        }
+        if ($this->container['docker_username'] === null) {
+            $invalidProperties[] = "'docker_username' can't be null";
+        }
+        if ($this->container['docker_password'] === null) {
+            $invalidProperties[] = "'docker_password' can't be null";
+        }
+        if ($this->container['evaluation_code'] === null) {
+            $invalidProperties[] = "'evaluation_code' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -529,7 +544,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Sets docker_registry
      *
-     * @param string $docker_registry Docker registry URL
+     * @param string $docker_registry Docker registry URL. Dockerhub is used by default.
      *
      * @return $this
      */

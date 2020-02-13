@@ -33,7 +33,8 @@ isa_ok($api, 'WWW::SwaggerClient::AuthApi');
 # logout_a_user test
 #
 {
-    my $result = $api->logout_a_user();
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->logout_a_user(x_fields => $x_fields);
 }
 
 #
@@ -41,7 +42,8 @@ isa_ok($api, 'WWW::SwaggerClient::AuthApi');
 #
 {
     my $payload = undef; # replace NULL with a proper value
-    my $result = $api->user_login(payload => $payload);
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->user_login(payload => $payload, x_fields => $x_fields);
 }
 
 

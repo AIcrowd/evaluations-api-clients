@@ -64,16 +64,12 @@ public:
     /// Organisation Name
     /// </summary>
     utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetName();
-    void setName(utility::string_t value);
+        void setName(utility::string_t value);
     /// <summary>
     /// Point of contact email
     /// </summary>
     utility::string_t getPocEmail() const;
-    bool pocEmailIsSet() const;
-    void unsetPoc_email();
-    void setPocEmail(utility::string_t value);
+        void setPocEmail(utility::string_t value);
     /// <summary>
     /// Creation Time
     /// </summary>
@@ -100,10 +96,8 @@ protected:
     int32_t m_Id;
     bool m_IdIsSet;
     utility::string_t m_Name;
-    bool m_NameIsSet;
-    utility::string_t m_Poc_email;
-    bool m_Poc_emailIsSet;
-    utility::datetime m_Created_on;
+        utility::string_t m_Poc_email;
+        utility::datetime m_Created_on;
     bool m_Created_onIsSet;
     int32_t m_Total_quota;
     bool m_Total_quotaIsSet;

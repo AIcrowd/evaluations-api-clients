@@ -163,6 +163,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [EvaluationsApi.AuthLogout](docs/AuthLogout.md)
+ - [EvaluationsApi.AuthResponse](docs/AuthResponse.md)
  - [EvaluationsApi.Cluster](docs/Cluster.md)
  - [EvaluationsApi.GenericFeedback](docs/GenericFeedback.md)
  - [EvaluationsApi.Grader](docs/Grader.md)

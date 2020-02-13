@@ -6,8 +6,8 @@
 
 -type swagger_organisation() ::
     #{ 'id' => integer(),
-       'name' => binary(),
-       'poc_email' => binary(),
+       'name' := binary(),
+       'poc_email' := binary(),
        'created_on' => swagger_date_time:swagger_date_time(),
        'total_quota' => integer(),
        'quota' => integer()

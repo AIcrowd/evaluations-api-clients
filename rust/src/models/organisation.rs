@@ -19,10 +19,10 @@ pub struct Organisation {
   id: Option<i32>,
   /// Organisation Name
   #[serde(rename = "name")]
-  name: Option<String>,
+  name: String,
   /// Point of contact email
   #[serde(rename = "poc_email")]
-  poc_email: Option<String>,
+  poc_email: String,
   /// Creation Time
   #[serde(rename = "created_on")]
   created_on: Option<String>,
@@ -35,11 +35,11 @@ pub struct Organisation {
 }
 
 impl Organisation {
-  pub fn new() -> Organisation {
+  pub fn new(name: String, poc_email: String) -> Organisation {
     Organisation {
       id: None,
-      name: None,
-      poc_email: None,
+      name: name,
+      poc_email: poc_email,
       created_on: None,
       total_quota: None,
       quota: None
@@ -64,38 +64,32 @@ impl Organisation {
   }
 
   pub fn set_name(&mut self, name: String) {
-    self.name = Some(name);
+    self.name = name;
   }
 
   pub fn with_name(mut self, name: String) -> Organisation {
-    self.name = Some(name);
+    self.name = name;
     self
   }
 
-  pub fn name(&self) -> Option<&String> {
-    self.name.as_ref()
+  pub fn name(&self) -> &String {
+    &self.name
   }
 
-  pub fn reset_name(&mut self) {
-    self.name = None;
-  }
 
   pub fn set_poc_email(&mut self, poc_email: String) {
-    self.poc_email = Some(poc_email);
+    self.poc_email = poc_email;
   }
 
   pub fn with_poc_email(mut self, poc_email: String) -> Organisation {
-    self.poc_email = Some(poc_email);
+    self.poc_email = poc_email;
     self
   }
 
-  pub fn poc_email(&self) -> Option<&String> {
-    self.poc_email.as_ref()
+  pub fn poc_email(&self) -> &String {
+    &self.poc_email
   }
 
-  pub fn reset_poc_email(&mut self) {
-    self.poc_email = None;
-  }
 
   pub fn set_created_on(&mut self, created_on: String) {
     self.created_on = Some(created_on);

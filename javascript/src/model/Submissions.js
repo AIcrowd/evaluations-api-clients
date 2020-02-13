@@ -40,8 +40,12 @@
    * Constructs a new <code>Submissions</code>.
    * @alias module:model/Submissions
    * @class
+   * @param graderId {Number} Grader identifier
+   * @param submissionCode {String} URL to the submission code
    */
-  var exports = function() {
+  var exports = function(graderId, submissionCode) {
+    this.graderId = graderId;
+    this.submissionCode = submissionCode;
   };
 
   /**

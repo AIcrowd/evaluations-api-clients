@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **created** | **datetime** | Creation time | [optional] 
 **updated** | **datetime** | Last updation time | [optional] 
 **dataset_url** | **str** | S3 link of the Dataset | [optional] 
-**code_access_mode** | **str** | git/http | [optional] 
-**code_access_auth_key** | **str** | SSH private key if using git or HTTP Auth token if using HTTP to access the submission code | [optional] 
+**code_access_mode** | **str** | git/http | 
+**code_access_auth_key** | **str** | SSH private key if using git or HTTP Auth token if using HTTP to access the submission code | 
 **cluster_id** | **int** | Cluster to run the grader on | [optional] 
-**docker_username** | **str** | Docker registry username | [optional] 
-**docker_password** | **str** | Docker registry password | [optional] 
-**docker_registry** | **str** | Docker registry URL | [optional] 
+**docker_username** | **str** | Docker registry username | 
+**docker_password** | **str** | Docker registry password | 
+**docker_registry** | **str** | Docker registry URL. Dockerhub is used by default. | [optional] 
 **workflow_spec** | **object** | Argo workflow template spec | [optional] 
-**evaluation_code** | **str** | S3 link to the zip file containing the code that will be used for the evaluation | [optional] 
+**evaluation_code** | **str** | S3 link to the zip file containing the code that will be used for the evaluation | 
 **storage_capacity** | **str** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
 **status** | **bool** | Status of the grader - True if it ready, False otherwise | [optional] 

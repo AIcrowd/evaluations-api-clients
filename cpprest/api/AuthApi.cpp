@@ -36,7 +36,7 @@ AuthApi::~AuthApi()
 {
 }
 
-pplx::task<void> AuthApi::logout_a_user()
+pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<utility::string_t> xFields)
 {
 
 
@@ -78,6 +78,10 @@ pplx::task<void> AuthApi::logout_a_user()
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;
@@ -137,10 +141,28 @@ pplx::task<void> AuthApi::logout_a_user()
     })
     .then([=](utility::string_t response)
     {
-        return void();
+        std::shared_ptr<AuthLogout> result(new AuthLogout());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling logout_a_user: unsupported response type"));
+        }
+
+        return result;
     });
 }
-pplx::task<void> AuthApi::user_login(std::shared_ptr<Login> payload)
+pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Login> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
@@ -188,6 +210,10 @@ pplx::task<void> AuthApi::user_login(std::shared_ptr<Login> payload)
     std::unordered_set<utility::string_t> consumeHttpContentTypes;
     consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
 
     std::shared_ptr<IHttpBody> httpBody;
     utility::string_t requestHttpContentType;
@@ -254,7 +280,25 @@ pplx::task<void> AuthApi::user_login(std::shared_ptr<Login> payload)
     })
     .then([=](utility::string_t response)
     {
-        return void();
+        std::shared_ptr<AuthResponse> result(new AuthResponse());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling user_login: unsupported response type"));
+        }
+
+        return result;
     });
 }
 

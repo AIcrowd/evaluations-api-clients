@@ -33,13 +33,34 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Cluster" /> class.
         /// </summary>
-        /// <param name="remoteAddress">Remote address used to connect to the cluster.</param>
-        /// <param name="authToken">Authentication needed for the cluster.</param>
+        [JsonConstructorAttribute]
+        protected Cluster() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Cluster" /> class.
+        /// </summary>
+        /// <param name="remoteAddress">Remote address used to connect to the cluster (required).</param>
+        /// <param name="authToken">Authentication needed for the cluster (required).</param>
         /// <param name="storageClass">Storage class to use for datasets.</param>
         public Cluster(string remoteAddress = default(string), string authToken = default(string), string storageClass = default(string))
         {
-            this.RemoteAddress = remoteAddress;
-            this.AuthToken = authToken;
+            // to ensure "remoteAddress" is required (not null)
+            if (remoteAddress == null)
+            {
+                throw new InvalidDataException("remoteAddress is a required property for Cluster and cannot be null");
+            }
+            else
+            {
+                this.RemoteAddress = remoteAddress;
+            }
+            // to ensure "authToken" is required (not null)
+            if (authToken == null)
+            {
+                throw new InvalidDataException("authToken is a required property for Cluster and cannot be null");
+            }
+            else
+            {
+                this.AuthToken = authToken;
+            }
             this.StorageClass = storageClass;
         }
         

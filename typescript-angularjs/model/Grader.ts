@@ -32,11 +32,11 @@ export interface Grader {
     /**
      * git/http
      */
-    "codeAccessMode"?: string;
+    "codeAccessMode": string;
     /**
      * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
      */
-    "codeAccessAuthKey"?: string;
+    "codeAccessAuthKey": string;
     /**
      * Cluster to run the grader on
      */
@@ -44,13 +44,13 @@ export interface Grader {
     /**
      * Docker registry username
      */
-    "dockerUsername"?: string;
+    "dockerUsername": string;
     /**
      * Docker registry password
      */
-    "dockerPassword"?: string;
+    "dockerPassword": string;
     /**
-     * Docker registry URL
+     * Docker registry URL. Dockerhub is used by default.
      */
     "dockerRegistry"?: string;
     /**
@@ -60,7 +60,7 @@ export interface Grader {
     /**
      * S3 link to the zip file containing the code that will be used for the evaluation
      */
-    "evaluationCode"?: string;
+    "evaluationCode": string;
     /**
      * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
      */

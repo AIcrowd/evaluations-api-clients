@@ -93,16 +93,12 @@ public:
     /// Grader identifier
     /// </summary>
     int32_t getGraderId() const;
-    bool graderIdIsSet() const;
-    void unsetGrader_id();
-    void setGraderId(int32_t value);
+        void setGraderId(int32_t value);
     /// <summary>
     /// URL to the submission code
     /// </summary>
     utility::string_t getSubmissionCode() const;
-    bool submissionCodeIsSet() const;
-    void unsetSubmission_code();
-    void setSubmissionCode(utility::string_t value);
+        void setSubmissionCode(utility::string_t value);
     /// <summary>
     /// Current status of the submission
     /// </summary>
@@ -179,10 +175,8 @@ protected:
     int32_t m_Round_id;
     bool m_Round_idIsSet;
     int32_t m_Grader_id;
-    bool m_Grader_idIsSet;
-    utility::string_t m_Submission_code;
-    bool m_Submission_codeIsSet;
-    utility::string_t m_Status;
+        utility::string_t m_Submission_code;
+        utility::string_t m_Status;
     bool m_StatusIsSet;
     utility::string_t m_Output;
     bool m_OutputIsSet;

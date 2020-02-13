@@ -40,8 +40,12 @@
    * Constructs a new <code>Cluster</code>.
    * @alias module:model/Cluster
    * @class
+   * @param remoteAddress {String} Remote address used to connect to the cluster
+   * @param authToken {String} Authentication needed for the cluster
    */
-  var exports = function() {
+  var exports = function(remoteAddress, authToken) {
+    this.remoteAddress = remoteAddress;
+    this.authToken = authToken;
   };
 
   /**

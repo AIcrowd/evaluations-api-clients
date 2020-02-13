@@ -428,7 +428,7 @@ func (a *OrganisationsApiService) PostOrganisationListDao(ctx context.Context, p
 			error: localVarHttpResponse.Status,
 		}
 		
-		if localVarHttpResponse.StatusCode == 200 {
+		if localVarHttpResponse.StatusCode == 201 {
 			var v Organisation
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {

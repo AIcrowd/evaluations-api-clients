@@ -237,6 +237,12 @@ class User implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
+        }
+        if ($this->container['organisation_id'] === null) {
+            $invalidProperties[] = "'organisation_id' can't be null";
+        }
         if ($this->container['password'] === null) {
             $invalidProperties[] = "'password' can't be null";
         }

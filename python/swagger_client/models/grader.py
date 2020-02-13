@@ -100,22 +100,17 @@ class Grader(object):
             self.updated = updated
         if dataset_url is not None:
             self.dataset_url = dataset_url
-        if code_access_mode is not None:
-            self.code_access_mode = code_access_mode
-        if code_access_auth_key is not None:
-            self.code_access_auth_key = code_access_auth_key
+        self.code_access_mode = code_access_mode
+        self.code_access_auth_key = code_access_auth_key
         if cluster_id is not None:
             self.cluster_id = cluster_id
-        if docker_username is not None:
-            self.docker_username = docker_username
-        if docker_password is not None:
-            self.docker_password = docker_password
+        self.docker_username = docker_username
+        self.docker_password = docker_password
         if docker_registry is not None:
             self.docker_registry = docker_registry
         if workflow_spec is not None:
             self.workflow_spec = workflow_spec
-        if evaluation_code is not None:
-            self.evaluation_code = evaluation_code
+        self.evaluation_code = evaluation_code
         if storage_capacity is not None:
             self.storage_capacity = storage_capacity
         if meta is not None:
@@ -239,6 +234,8 @@ class Grader(object):
         :param code_access_mode: The code_access_mode of this Grader.  # noqa: E501
         :type: str
         """
+        if code_access_mode is None:
+            raise ValueError("Invalid value for `code_access_mode`, must not be `None`")  # noqa: E501
 
         self._code_access_mode = code_access_mode
 
@@ -262,6 +259,8 @@ class Grader(object):
         :param code_access_auth_key: The code_access_auth_key of this Grader.  # noqa: E501
         :type: str
         """
+        if code_access_auth_key is None:
+            raise ValueError("Invalid value for `code_access_auth_key`, must not be `None`")  # noqa: E501
 
         self._code_access_auth_key = code_access_auth_key
 
@@ -308,6 +307,8 @@ class Grader(object):
         :param docker_username: The docker_username of this Grader.  # noqa: E501
         :type: str
         """
+        if docker_username is None:
+            raise ValueError("Invalid value for `docker_username`, must not be `None`")  # noqa: E501
 
         self._docker_username = docker_username
 
@@ -331,6 +332,8 @@ class Grader(object):
         :param docker_password: The docker_password of this Grader.  # noqa: E501
         :type: str
         """
+        if docker_password is None:
+            raise ValueError("Invalid value for `docker_password`, must not be `None`")  # noqa: E501
 
         self._docker_password = docker_password
 
@@ -338,7 +341,7 @@ class Grader(object):
     def docker_registry(self):
         """Gets the docker_registry of this Grader.  # noqa: E501
 
-        Docker registry URL  # noqa: E501
+        Docker registry URL. Dockerhub is used by default.  # noqa: E501
 
         :return: The docker_registry of this Grader.  # noqa: E501
         :rtype: str
@@ -349,7 +352,7 @@ class Grader(object):
     def docker_registry(self, docker_registry):
         """Sets the docker_registry of this Grader.
 
-        Docker registry URL  # noqa: E501
+        Docker registry URL. Dockerhub is used by default.  # noqa: E501
 
         :param docker_registry: The docker_registry of this Grader.  # noqa: E501
         :type: str
@@ -400,6 +403,8 @@ class Grader(object):
         :param evaluation_code: The evaluation_code of this Grader.  # noqa: E501
         :type: str
         """
+        if evaluation_code is None:
+            raise ValueError("Invalid value for `evaluation_code`, must not be `None`")  # noqa: E501
 
         self._evaluation_code = evaluation_code
 

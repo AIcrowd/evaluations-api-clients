@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Organisation
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:23:23.101Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T09:31:39.349Z")
 public class Organisation {
   @SerializedName("id")
   private Integer id = null;
@@ -66,7 +66,7 @@ public class Organisation {
    * Organisation Name
    * @return name
   **/
-  @ApiModelProperty(value = "Organisation Name")
+  @ApiModelProperty(required = true, value = "Organisation Name")
   public String getName() {
     return name;
   }
@@ -84,7 +84,7 @@ public class Organisation {
    * Point of contact email
    * @return pocEmail
   **/
-  @ApiModelProperty(value = "Point of contact email")
+  @ApiModelProperty(required = true, value = "Point of contact email")
   public String getPocEmail() {
     return pocEmail;
   }

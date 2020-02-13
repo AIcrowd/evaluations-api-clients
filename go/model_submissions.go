@@ -25,9 +25,9 @@ type Submissions struct {
 	// Round identifier
 	RoundId int32 `json:"round_id,omitempty"`
 	// Grader identifier
-	GraderId int32 `json:"grader_id,omitempty"`
+	GraderId int32 `json:"grader_id"`
 	// URL to the submission code
-	SubmissionCode string `json:"submission_code,omitempty"`
+	SubmissionCode string `json:"submission_code"`
 	// Current status of the submission
 	Status string `json:"status,omitempty"`
 	// S3 link of the output (available after the evaluation)

@@ -351,13 +351,15 @@ case $state in
       logout a user)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                              "X-Fields\::[HEADER] An optional fields mask"
+)
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       user login)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                              "X-Fields\::[HEADER] An optional fields mask"
+)
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       deleteClusterDao)

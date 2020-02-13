@@ -14,15 +14,18 @@ Method | HTTP request | Description
 
 ### Example
 ```bash
- logout a user
+ logout a user X-Fields:value
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type
 
-(empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -41,7 +44,7 @@ This endpoint does not need any parameter.
 
 ### Example
 ```bash
- user login
+ user login X-Fields:value
 ```
 
 ### Parameters
@@ -49,10 +52,11 @@ This endpoint does not need any parameter.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type
 
-(empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

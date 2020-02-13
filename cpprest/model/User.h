@@ -64,9 +64,7 @@ public:
     /// Email
     /// </summary>
     utility::string_t getEmail() const;
-    bool emailIsSet() const;
-    void unsetEmail();
-    void setEmail(utility::string_t value);
+        void setEmail(utility::string_t value);
     /// <summary>
     /// Admin Boolean
     /// </summary>
@@ -106,9 +104,7 @@ public:
     /// Organisation identifier
     /// </summary>
     int32_t getOrganisationId() const;
-    bool organisationIdIsSet() const;
-    void unsetOrganisation_id();
-    void setOrganisationId(int32_t value);
+        void setOrganisationId(int32_t value);
     /// <summary>
     /// user password
     /// </summary>
@@ -119,8 +115,7 @@ protected:
     int32_t m_Id;
     bool m_IdIsSet;
     utility::string_t m_Email;
-    bool m_EmailIsSet;
-    bool m_Admin;
+        bool m_Admin;
     bool m_AdminIsSet;
     utility::datetime m_Created_on;
     bool m_Created_onIsSet;
@@ -131,8 +126,7 @@ protected:
     int32_t m_Quota;
     bool m_QuotaIsSet;
     int32_t m_Organisation_id;
-    bool m_Organisation_idIsSet;
-    utility::string_t m_Password;
+        utility::string_t m_Password;
     };
 
 }

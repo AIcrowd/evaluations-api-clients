@@ -53,16 +53,22 @@ sub new {
 #
 # 
 # 
+# @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
     };
     __PACKAGE__->method_documentation->{ 'logout_a_user' } = { 
     	summary => '',
         params => $params,
-        returns => undef,
+        returns => 'AuthLogout',
         };
 }
-# @return void
+# @return AuthLogout
 #
 sub logout_a_user {
     my ($self, %args) = @_;
@@ -82,15 +88,24 @@ sub logout_a_user {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
 
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
     my $_body_data;
     # authentication setting, if any
     my $auth_settings = [qw(api_key )];
 
     # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
                                            $query_params, $form_params,
                                            $header_params, $_body_data, $auth_settings);
-    return;
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('AuthLogout', $response);
+    return $_response_object;
 }
 
 #
@@ -99,6 +114,7 @@ sub logout_a_user {
 # 
 # 
 # @param Login $payload  (required)
+# @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
     'payload' => {
@@ -106,14 +122,19 @@ sub logout_a_user {
         description => '',
         required => '1',
     },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
     };
     __PACKAGE__->method_documentation->{ 'user_login' } = { 
     	summary => '',
         params => $params,
-        returns => undef,
+        returns => 'AuthResponse',
         };
 }
-# @return void
+# @return AuthResponse
 #
 sub user_login {
     my ($self, %args) = @_;
@@ -138,6 +159,11 @@ sub user_login {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
 
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
     my $_body_data;
     # body params
     if ( exists $args{'payload'}) {
@@ -148,10 +174,14 @@ sub user_login {
     my $auth_settings = [qw()];
 
     # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
                                            $query_params, $form_params,
                                            $header_params, $_body_data, $auth_settings);
-    return;
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('AuthResponse', $response);
+    return $_response_object;
 }
 
 1;

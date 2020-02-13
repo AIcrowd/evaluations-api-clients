@@ -5,6 +5,8 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
 import io.swagger.api.ApiUtils
 
+import io.swagger.model.AuthLogout
+import io.swagger.model.AuthResponse
 import io.swagger.model.Login
 
 import java.util.*;
@@ -14,7 +16,7 @@ class AuthApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def logoutAUser ( Closure onSuccess, Closure onFailure)  {
+    def logoutAUser ( String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/auth/logout"
 
@@ -24,15 +26,16 @@ class AuthApi {
     
 
         
+        headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "POST", "",
-                    null )
+                    AuthLogout.class )
                     
     }
-    def userLogin ( Login payload, Closure onSuccess, Closure onFailure)  {
+    def userLogin ( Login payload, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/auth/login"
 
@@ -46,12 +49,13 @@ class AuthApi {
         }
 
         
+        headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "POST", "",
-                    null )
+                    AuthResponse.class )
                     
     }
 }

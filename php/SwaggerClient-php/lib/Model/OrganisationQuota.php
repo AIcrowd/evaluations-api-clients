@@ -49,7 +49,7 @@ class OrganisationQuota implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'organisationQuota';
+    protected static $swaggerModelName = 'OrganisationQuota';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

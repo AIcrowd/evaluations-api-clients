@@ -79,16 +79,12 @@ public:
     /// Remote address used to connect to the cluster
     /// </summary>
     utility::string_t getRemoteAddress() const;
-    bool remoteAddressIsSet() const;
-    void unsetRemote_address();
-    void setRemoteAddress(utility::string_t value);
+        void setRemoteAddress(utility::string_t value);
     /// <summary>
     /// Authentication needed for the cluster
     /// </summary>
     utility::string_t getAuthToken() const;
-    bool authTokenIsSet() const;
-    void unsetAuth_token();
-    void setAuthToken(utility::string_t value);
+        void setAuthToken(utility::string_t value);
     /// <summary>
     /// Storage class to use for datasets
     /// </summary>
@@ -133,10 +129,8 @@ protected:
     utility::datetime m_Updated;
     bool m_UpdatedIsSet;
     utility::string_t m_Remote_address;
-    bool m_Remote_addressIsSet;
-    utility::string_t m_Auth_token;
-    bool m_Auth_tokenIsSet;
-    utility::string_t m_Storage_class;
+        utility::string_t m_Auth_token;
+        utility::string_t m_Storage_class;
     bool m_Storage_classIsSet;
     bool m_Status;
     bool m_StatusIsSet;

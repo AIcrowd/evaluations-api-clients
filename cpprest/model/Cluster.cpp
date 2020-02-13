@@ -28,9 +28,7 @@ Cluster::Cluster()
     m_Updated = utility::datetime();
     m_UpdatedIsSet = false;
     m_Remote_address = utility::conversions::to_string_t("");
-    m_Remote_addressIsSet = false;
     m_Auth_token = utility::conversions::to_string_t("");
-    m_Auth_tokenIsSet = false;
     m_Storage_class = utility::conversions::to_string_t("");
     m_Storage_classIsSet = false;
     m_Status = false;
@@ -67,14 +65,8 @@ web::json::value Cluster::toJson() const
     {
         val[utility::conversions::to_string_t("updated")] = ModelBase::toJson(m_Updated);
     }
-    if(m_Remote_addressIsSet)
-    {
-        val[utility::conversions::to_string_t("remote_address")] = ModelBase::toJson(m_Remote_address);
-    }
-    if(m_Auth_tokenIsSet)
-    {
-        val[utility::conversions::to_string_t("auth_token")] = ModelBase::toJson(m_Auth_token);
-    }
+    val[utility::conversions::to_string_t("remote_address")] = ModelBase::toJson(m_Remote_address);
+    val[utility::conversions::to_string_t("auth_token")] = ModelBase::toJson(m_Auth_token);
     if(m_Storage_classIsSet)
     {
         val[utility::conversions::to_string_t("storage_class")] = ModelBase::toJson(m_Storage_class);
@@ -125,22 +117,8 @@ void Cluster::fromJson(web::json::value& val)
             setUpdated(ModelBase::dateFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("remote_address")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("remote_address")];
-        if(!fieldValue.is_null())
-        {
-            setRemoteAddress(ModelBase::stringFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("auth_token")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("auth_token")];
-        if(!fieldValue.is_null())
-        {
-            setAuthToken(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setRemoteAddress(ModelBase::stringFromJson(val[utility::conversions::to_string_t("remote_address")]));
+    setAuthToken(ModelBase::stringFromJson(val[utility::conversions::to_string_t("auth_token")]));
     if(val.has_field(utility::conversions::to_string_t("storage_class")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("storage_class")];
@@ -207,16 +185,8 @@ void Cluster::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("updated"), m_Updated));
         
     }
-    if(m_Remote_addressIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("remote_address"), m_Remote_address));
-        
-    }
-    if(m_Auth_tokenIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("auth_token"), m_Auth_token));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("remote_address"), m_Remote_address));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("auth_token"), m_Auth_token));
     if(m_Storage_classIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_class"), m_Storage_class));
@@ -264,14 +234,8 @@ void Cluster::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         setUpdated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("updated"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("remote_address")))
-    {
-        setRemoteAddress(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("remote_address"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("auth_token")))
-    {
-        setAuthToken(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("auth_token"))));
-    }
+    setRemoteAddress(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("remote_address"))));
+    setAuthToken(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("auth_token"))));
     if(multipart->hasContent(utility::conversions::to_string_t("storage_class")))
     {
         setStorageClass(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_class"))));
@@ -371,18 +335,8 @@ utility::string_t Cluster::getRemoteAddress() const
 void Cluster::setRemoteAddress(utility::string_t value)
 {
     m_Remote_address = value;
-    m_Remote_addressIsSet = true;
+    
 }
-bool Cluster::remoteAddressIsSet() const
-{
-    return m_Remote_addressIsSet;
-}
-
-void Cluster::unsetRemote_address()
-{
-    m_Remote_addressIsSet = false;
-}
-
 utility::string_t Cluster::getAuthToken() const
 {
     return m_Auth_token;
@@ -392,18 +346,8 @@ utility::string_t Cluster::getAuthToken() const
 void Cluster::setAuthToken(utility::string_t value)
 {
     m_Auth_token = value;
-    m_Auth_tokenIsSet = true;
+    
 }
-bool Cluster::authTokenIsSet() const
-{
-    return m_Auth_tokenIsSet;
-}
-
-void Cluster::unsetAuth_token()
-{
-    m_Auth_tokenIsSet = false;
-}
-
 utility::string_t Cluster::getStorageClass() const
 {
     return m_Storage_class;

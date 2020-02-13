@@ -16,6 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
+local swagger-client_auth_logout = require "swagger-client.model.auth_logout"
+local swagger-client_auth_response = require "swagger-client.model.auth_response"
 local swagger-client_login = require "swagger-client.model.login"
 
 local auth_api = {}
@@ -42,7 +44,7 @@ local function new_auth_api(host, basePath, schemes)
 	}, auth_api_mt)
 end
 
-function auth_api:logout_a_user()
+function auth_api:logout_a_user(x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -62,6 +64,9 @@ function auth_api:logout_a_user()
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
 	-- api key in headers 'AUTHORIZATION'
 	if self.api_key['AUTHORIZATION'] then
 		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
@@ -74,7 +79,18 @@ function auth_api:logout_a_user()
 	end
 	local http_status = headers:get(":status")
 	if http_status:sub(1,1) == "2" then
-		return nil, headers
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return swagger-client_auth_logout.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
@@ -86,7 +102,7 @@ function auth_api:logout_a_user()
 	end
 end
 
-function auth_api:user_login(payload)
+function auth_api:user_login(payload, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -106,6 +122,9 @@ function auth_api:user_login(payload)
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
 	req:set_body(dkjson.encode(payload))
 
 
@@ -116,7 +135,18 @@ function auth_api:user_login(payload)
 	end
 	local http_status = headers:get(":status")
 	if http_status:sub(1,1) == "2" then
-		return nil, headers
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return swagger-client_auth_response.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

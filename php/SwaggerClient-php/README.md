@@ -120,6 +120,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AuthLogout](docs/Model/AuthLogout.md)
+ - [AuthResponse](docs/Model/AuthResponse.md)
  - [Cluster](docs/Model/Cluster.md)
  - [GenericFeedback](docs/Model/GenericFeedback.md)
  - [Grader](docs/Model/Grader.md)

@@ -6,13 +6,13 @@
 
 -type swagger_user() ::
     #{ 'id' => integer(),
-       'email' => binary(),
+       'email' := binary(),
        'admin' => boolean(),
        'created_on' => swagger_date_time:swagger_date_time(),
        'password_hash' => binary(),
        'total_quota' => integer(),
        'quota' => integer(),
-       'organisation_id' => integer(),
+       'organisation_id' := integer(),
        'password' := binary()
      }.
 

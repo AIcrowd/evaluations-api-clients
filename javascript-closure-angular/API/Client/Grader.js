@@ -69,7 +69,7 @@ API.Client.Grader.prototype.dockerUsername;
 API.Client.Grader.prototype.dockerPassword;
 
 /**
- * Docker registry URL
+ * Docker registry URL. Dockerhub is used by default.
  * @type {!string}
  * @export
  */

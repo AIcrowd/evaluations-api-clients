@@ -71,8 +71,9 @@ namespace IO.Swagger.Test
         public void LogoutAUserTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //instance.LogoutAUser();
-            
+            //string xFields = null;
+            //var response = instance.LogoutAUser(xFields);
+            //Assert.IsInstanceOf<AuthLogout> (response, "response is AuthLogout");
         }
         
         /// <summary>
@@ -83,8 +84,9 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Login payload = null;
-            //instance.UserLogin(payload);
-            
+            //string xFields = null;
+            //var response = instance.UserLogin(payload, xFields);
+            //Assert.IsInstanceOf<AuthResponse> (response, "response is AuthResponse");
         }
         
     }

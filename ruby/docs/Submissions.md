@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **updated** | **DateTime** | Last updation time | [optional] 
 **participant_id** | **Integer** | Participant identifier | [optional] 
 **round_id** | **Integer** | Round identifier | [optional] 
-**grader_id** | **Integer** | Grader identifier | [optional] 
-**submission_code** | **String** | URL to the submission code | [optional] 
+**grader_id** | **Integer** | Grader identifier | 
+**submission_code** | **String** | URL to the submission code | 
 **status** | **String** | Current status of the submission | [optional] 
 **output** | **String** | S3 link of the output (available after the evaluation) | [optional] 
 **additional_outputs** | **String** | Array of any additional outputs | [optional] 

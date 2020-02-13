@@ -24,7 +24,6 @@ User::User()
     m_Id = 0;
     m_IdIsSet = false;
     m_Email = utility::conversions::to_string_t("");
-    m_EmailIsSet = false;
     m_Admin = false;
     m_AdminIsSet = false;
     m_Created_on = utility::datetime();
@@ -36,7 +35,6 @@ User::User()
     m_Quota = 0;
     m_QuotaIsSet = false;
     m_Organisation_id = 0;
-    m_Organisation_idIsSet = false;
     m_Password = utility::conversions::to_string_t("");
 }
 
@@ -57,10 +55,7 @@ web::json::value User::toJson() const
     {
         val[utility::conversions::to_string_t("id")] = ModelBase::toJson(m_Id);
     }
-    if(m_EmailIsSet)
-    {
-        val[utility::conversions::to_string_t("email")] = ModelBase::toJson(m_Email);
-    }
+    val[utility::conversions::to_string_t("email")] = ModelBase::toJson(m_Email);
     if(m_AdminIsSet)
     {
         val[utility::conversions::to_string_t("admin")] = ModelBase::toJson(m_Admin);
@@ -81,10 +76,7 @@ web::json::value User::toJson() const
     {
         val[utility::conversions::to_string_t("quota")] = ModelBase::toJson(m_Quota);
     }
-    if(m_Organisation_idIsSet)
-    {
-        val[utility::conversions::to_string_t("organisation_id")] = ModelBase::toJson(m_Organisation_id);
-    }
+    val[utility::conversions::to_string_t("organisation_id")] = ModelBase::toJson(m_Organisation_id);
     val[utility::conversions::to_string_t("password")] = ModelBase::toJson(m_Password);
 
     return val;
@@ -100,14 +92,7 @@ void User::fromJson(web::json::value& val)
             setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("email")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("email")];
-        if(!fieldValue.is_null())
-        {
-            setEmail(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setEmail(ModelBase::stringFromJson(val[utility::conversions::to_string_t("email")]));
     if(val.has_field(utility::conversions::to_string_t("admin")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("admin")];
@@ -148,14 +133,7 @@ void User::fromJson(web::json::value& val)
             setQuota(ModelBase::int32_tFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("organisation_id")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("organisation_id")];
-        if(!fieldValue.is_null())
-        {
-            setOrganisationId(ModelBase::int32_tFromJson(fieldValue));
-        }
-    }
+    setOrganisationId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("organisation_id")]));
     setPassword(ModelBase::stringFromJson(val[utility::conversions::to_string_t("password")]));
 }
 
@@ -171,11 +149,7 @@ void User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utili
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("id"), m_Id));
     }
-    if(m_EmailIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("email"), m_Email));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("email"), m_Email));
     if(m_AdminIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("admin"), m_Admin));
@@ -198,10 +172,7 @@ void User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utili
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("quota"), m_Quota));
     }
-    if(m_Organisation_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("organisation_id"), m_Organisation_id));
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("organisation_id"), m_Organisation_id));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("password"), m_Password));
 }
 
@@ -217,10 +188,7 @@ void User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("email")))
-    {
-        setEmail(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("email"))));
-    }
+    setEmail(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("email"))));
     if(multipart->hasContent(utility::conversions::to_string_t("admin")))
     {
         setAdmin(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("admin"))));
@@ -241,10 +209,7 @@ void User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         setQuota(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("quota"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("organisation_id")))
-    {
-        setOrganisationId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("organisation_id"))));
-    }
+    setOrganisationId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("organisation_id"))));
     setPassword(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("password"))));
 }
 
@@ -278,18 +243,8 @@ utility::string_t User::getEmail() const
 void User::setEmail(utility::string_t value)
 {
     m_Email = value;
-    m_EmailIsSet = true;
+    
 }
-bool User::emailIsSet() const
-{
-    return m_EmailIsSet;
-}
-
-void User::unsetEmail()
-{
-    m_EmailIsSet = false;
-}
-
 bool User::isAdmin() const
 {
     return m_Admin;
@@ -404,18 +359,8 @@ int32_t User::getOrganisationId() const
 void User::setOrganisationId(int32_t value)
 {
     m_Organisation_id = value;
-    m_Organisation_idIsSet = true;
+    
 }
-bool User::organisationIdIsSet() const
-{
-    return m_Organisation_idIsSet;
-}
-
-void User::unsetOrganisation_id()
-{
-    m_Organisation_idIsSet = false;
-}
-
 utility::string_t User::getPassword() const
 {
     return m_Password;

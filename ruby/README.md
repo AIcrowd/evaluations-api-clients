@@ -119,6 +119,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [SwaggerClient::AuthLogout](docs/AuthLogout.md)
+ - [SwaggerClient::AuthResponse](docs/AuthResponse.md)
  - [SwaggerClient::Cluster](docs/Cluster.md)
  - [SwaggerClient::GenericFeedback](docs/GenericFeedback.md)
  - [SwaggerClient::Grader](docs/Grader.md)

@@ -14,6 +14,8 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
+import io.swagger.client.model.AuthLogout
+import io.swagger.client.model.AuthResponse
 import io.swagger.client.model.Login
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -83,10 +85,11 @@ class AuthApi(
    * 
    * 
    *
-   * @return void
+   * @param xFields An optional fields mask (optional)
+   * @return AuthLogout
    */
-  def logout a user() = {
-    val await = Try(Await.result(logout a userAsync(), Duration.Inf))
+  def logout a user(xFields: Option[String] = None): Option[AuthLogout] = {
+    val await = Try(Await.result(logout a userAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -97,10 +100,11 @@ class AuthApi(
    *  asynchronously
    * 
    *
-   * @return Future(void)
+   * @param xFields An optional fields mask (optional)
+   * @return Future(AuthLogout)
    */
-  def logout a userAsync() = {
-      helper.logout a user()
+  def logout a userAsync(xFields: Option[String] = None): Future[AuthLogout] = {
+      helper.logout a user(xFields)
   }
 
   /**
@@ -108,10 +112,11 @@ class AuthApi(
    * 
    *
    * @param payload  
-   * @return void
+   * @param xFields An optional fields mask (optional)
+   * @return AuthResponse
    */
-  def user login(payload: Login) = {
-    val await = Try(Await.result(user loginAsync(payload), Duration.Inf))
+  def user login(payload: Login, xFields: Option[String] = None): Option[AuthResponse] = {
+    val await = Try(Await.result(user loginAsync(payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -123,17 +128,19 @@ class AuthApi(
    * 
    *
    * @param payload  
-   * @return Future(void)
+   * @param xFields An optional fields mask (optional)
+   * @return Future(AuthResponse)
    */
-  def user loginAsync(payload: Login) = {
-      helper.user login(payload)
+  def user loginAsync(payload: Login, xFields: Option[String] = None): Future[AuthResponse] = {
+      helper.user login(payload, xFields)
   }
 
 }
 
 class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def logout a user()(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def logout a user(xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[AuthLogout]): Future[AuthLogout] = {
     // create path and map variables
     val path = (addFmt("/auth/logout"))
 
@@ -141,6 +148,10 @@ class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -148,7 +159,9 @@ class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def user login(payload: Login)(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[Login]): Future[Unit] = {
+  def user login(payload: Login,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[AuthResponse], writer: RequestWriter[Login]): Future[AuthResponse] = {
     // create path and map variables
     val path = (addFmt("/auth/login"))
 
@@ -157,6 +170,10 @@ class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     val headerParams = new mutable.HashMap[String, String]
 
     if (payload == null) throw new Exception("Missing required parameter 'payload' when calling AuthApi->user login")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>

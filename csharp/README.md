@@ -136,6 +136,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.AuthLogout](docs/AuthLogout.md)
+ - [Model.AuthResponse](docs/AuthResponse.md)
  - [Model.Cluster](docs/Cluster.md)
  - [Model.GenericFeedback](docs/GenericFeedback.md)
  - [Model.Grader](docs/Grader.md)

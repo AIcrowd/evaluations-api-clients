@@ -31,8 +31,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void LogoutAUser ();
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthLogout</returns>
+        AuthLogout LogoutAUser (string xFields = null);
 
         /// <summary>
         /// 
@@ -41,8 +42,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> LogoutAUserWithHttpInfo ();
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthLogout</returns>
+        ApiResponse<AuthLogout> LogoutAUserWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -51,8 +53,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns></returns>
-        void UserLogin (Login payload);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthResponse</returns>
+        AuthResponse UserLogin (Login payload, string xFields = null);
 
         /// <summary>
         /// 
@@ -62,8 +65,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UserLoginWithHttpInfo (Login payload);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthResponse</returns>
+        ApiResponse<AuthResponse> UserLoginWithHttpInfo (Login payload, string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -73,8 +77,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task LogoutAUserAsync ();
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthLogout</returns>
+        System.Threading.Tasks.Task<AuthLogout> LogoutAUserAsync (string xFields = null);
 
         /// <summary>
         /// 
@@ -83,8 +88,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> LogoutAUserAsyncWithHttpInfo ();
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthLogout)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthLogout>> LogoutAUserAsyncWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -93,8 +99,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UserLoginAsync (Login payload);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthResponse</returns>
+        System.Threading.Tasks.Task<AuthResponse> UserLoginAsync (Login payload, string xFields = null);
 
         /// <summary>
         /// 
@@ -104,8 +111,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UserLoginAsyncWithHttpInfo (Login payload);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> UserLoginAsyncWithHttpInfo (Login payload, string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -210,18 +218,21 @@ namespace IO.Swagger.Api
         ///  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void LogoutAUser ()
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthLogout</returns>
+        public AuthLogout LogoutAUser (string xFields = null)
         {
-             LogoutAUserWithHttpInfo();
+             ApiResponse<AuthLogout> localVarResponse = LogoutAUserWithHttpInfo(xFields);
+             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> LogoutAUserWithHttpInfo ()
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthLogout</returns>
+        public ApiResponse< AuthLogout > LogoutAUserWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/auth/logout";
@@ -246,6 +257,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -266,19 +278,21 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<AuthLogout>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task LogoutAUserAsync ()
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthLogout</returns>
+        public async System.Threading.Tasks.Task<AuthLogout> LogoutAUserAsync (string xFields = null)
         {
-             await LogoutAUserAsyncWithHttpInfo();
+             ApiResponse<AuthLogout> localVarResponse = await LogoutAUserAsyncWithHttpInfo(xFields);
+             return localVarResponse.Data;
 
         }
 
@@ -286,8 +300,9 @@ namespace IO.Swagger.Api
         ///  
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> LogoutAUserAsyncWithHttpInfo ()
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthLogout)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AuthLogout>> LogoutAUserAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/auth/logout";
@@ -312,6 +327,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -332,9 +348,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<AuthLogout>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
         }
 
         /// <summary>
@@ -342,10 +358,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns></returns>
-        public void UserLogin (Login payload)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthResponse</returns>
+        public AuthResponse UserLogin (Login payload, string xFields = null)
         {
-             UserLoginWithHttpInfo(payload);
+             ApiResponse<AuthResponse> localVarResponse = UserLoginWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -353,8 +371,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> UserLoginWithHttpInfo (Login payload)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthResponse</returns>
+        public ApiResponse< AuthResponse > UserLoginWithHttpInfo (Login payload, string xFields = null)
         {
             // verify the required parameter 'payload' is set
             if (payload == null)
@@ -382,6 +401,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
             if (payload != null && payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
@@ -405,9 +425,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<AuthResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (AuthResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthResponse)));
         }
 
         /// <summary>
@@ -415,10 +435,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UserLoginAsync (Login payload)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthResponse</returns>
+        public async System.Threading.Tasks.Task<AuthResponse> UserLoginAsync (Login payload, string xFields = null)
         {
-             await UserLoginAsyncWithHttpInfo(payload);
+             ApiResponse<AuthResponse> localVarResponse = await UserLoginAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
 
         }
 
@@ -427,8 +449,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserLoginAsyncWithHttpInfo (Login payload)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AuthResponse>> UserLoginAsyncWithHttpInfo (Login payload, string xFields = null)
         {
             // verify the required parameter 'payload' is set
             if (payload == null)
@@ -456,6 +479,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
             if (payload != null && payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
@@ -479,9 +503,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<AuthResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (AuthResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthResponse)));
         }
 
     }

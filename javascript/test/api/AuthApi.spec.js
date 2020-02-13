@@ -37,14 +37,20 @@
     describe('AuthApi', function() {
       describe('logoutAUser', function() {
         it('should call logoutAUser successfully', function(done) {
-          // TODO: uncomment logoutAUser call
+          // TODO: uncomment, update parameter values for logoutAUser call and complete the assertions
           /*
+          var opts = {};
+          opts.xFields = "xFields_example";
 
-          instance.logoutAUser(function(error, data, response) {
+          instance.logoutAUser(opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
             }
+            // TODO: update response assertions
+            expect(data).to.be.a(EvaluationsApi.AuthLogout);
+            expect(data.message).to.be.a('string');
+            expect(data.message).to.be("");
 
             done();
           });
@@ -55,17 +61,23 @@
       });
       describe('userLogin', function() {
         it('should call userLogin successfully', function(done) {
-          // TODO: uncomment, update parameter values for userLogin call
+          // TODO: uncomment, update parameter values for userLogin call and complete the assertions
           /*
           var payload = new EvaluationsApi.Login();
           payload.email = "";
           payload.password = "";
+          var opts = {};
+          opts.xFields = "xFields_example";
 
-          instance.userLogin(payload, function(error, data, response) {
+          instance.userLogin(payload, opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
             }
+            // TODO: update response assertions
+            expect(data).to.be.a(EvaluationsApi.AuthResponse);
+            expect(data.authorization).to.be.a('string');
+            expect(data.authorization).to.be("");
 
             done();
           });

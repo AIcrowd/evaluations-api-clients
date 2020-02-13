@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Login'], factory);
+    define(['ApiClient', 'model/AuthLogout', 'model/AuthResponse', 'model/Login'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Login'));
+    module.exports = factory(require('../ApiClient'), require('../model/AuthLogout'), require('../model/AuthResponse'), require('../model/Login'));
   } else {
     // Browser globals (root is window)
     if (!root.EvaluationsApi) {
       root.EvaluationsApi = {};
     }
-    root.EvaluationsApi.AuthApi = factory(root.EvaluationsApi.ApiClient, root.EvaluationsApi.Login);
+    root.EvaluationsApi.AuthApi = factory(root.EvaluationsApi.ApiClient, root.EvaluationsApi.AuthLogout, root.EvaluationsApi.AuthResponse, root.EvaluationsApi.Login);
   }
-}(this, function(ApiClient, Login) {
+}(this, function(ApiClient, AuthLogout, AuthResponse, Login) {
   'use strict';
 
   /**
@@ -51,14 +51,18 @@
      * Callback function to receive the result of the logoutAUser operation.
      * @callback module:api/AuthApi~logoutAUserCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/AuthLogout} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
      * @param {module:api/AuthApi~logoutAUserCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AuthLogout}
      */
-    this.logoutAUser = function(callback) {
+    this.logoutAUser = function(opts, callback) {
+      opts = opts || {};
       var postBody = null;
 
 
@@ -69,6 +73,7 @@
       var collectionQueryParams = {
       };
       var headerParams = {
+        'X-Fields': opts['xFields']
       };
       var formParams = {
       };
@@ -76,7 +81,7 @@
       var authNames = ['api_key'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = null;
+      var returnType = AuthLogout;
 
       return this.apiClient.callApi(
         '/auth/logout', 'POST',
@@ -89,15 +94,19 @@
      * Callback function to receive the result of the userLogin operation.
      * @callback module:api/AuthApi~userLoginCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/AuthResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * @param {module:model/Login} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
      * @param {module:api/AuthApi~userLoginCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AuthResponse}
      */
-    this.userLogin = function(payload, callback) {
+    this.userLogin = function(payload, opts, callback) {
+      opts = opts || {};
       var postBody = payload;
 
       // verify the required parameter 'payload' is set
@@ -113,6 +122,7 @@
       var collectionQueryParams = {
       };
       var headerParams = {
+        'X-Fields': opts['xFields']
       };
       var formParams = {
       };
@@ -120,7 +130,7 @@
       var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = null;
+      var returnType = AuthResponse;
 
       return this.apiClient.callApi(
         '/auth/login', 'POST',

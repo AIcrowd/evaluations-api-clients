@@ -16,12 +16,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Cluster', 'model/GenericFeedback', 'model/Grader', 'model/GraderFeedback', 'model/Login', 'model/Organisation', 'model/OrganisationQuota', 'model/SubmissionFeedback', 'model/Submissions', 'model/User', 'model/UserQuota', 'api/ArgoApi', 'api/AuthApi', 'api/ClustersApi', 'api/GradersApi', 'api/OrganisationsApi', 'api/SubmissionsApi', 'api/UsersApi'], factory);
+    define(['ApiClient', 'model/AuthLogout', 'model/AuthResponse', 'model/Cluster', 'model/GenericFeedback', 'model/Grader', 'model/GraderFeedback', 'model/Login', 'model/Organisation', 'model/OrganisationQuota', 'model/SubmissionFeedback', 'model/Submissions', 'model/User', 'model/UserQuota', 'api/ArgoApi', 'api/AuthApi', 'api/ClustersApi', 'api/GradersApi', 'api/OrganisationsApi', 'api/SubmissionsApi', 'api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Cluster'), require('./model/GenericFeedback'), require('./model/Grader'), require('./model/GraderFeedback'), require('./model/Login'), require('./model/Organisation'), require('./model/OrganisationQuota'), require('./model/SubmissionFeedback'), require('./model/Submissions'), require('./model/User'), require('./model/UserQuota'), require('./api/ArgoApi'), require('./api/AuthApi'), require('./api/ClustersApi'), require('./api/GradersApi'), require('./api/OrganisationsApi'), require('./api/SubmissionsApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AuthLogout'), require('./model/AuthResponse'), require('./model/Cluster'), require('./model/GenericFeedback'), require('./model/Grader'), require('./model/GraderFeedback'), require('./model/Login'), require('./model/Organisation'), require('./model/OrganisationQuota'), require('./model/SubmissionFeedback'), require('./model/Submissions'), require('./model/User'), require('./model/UserQuota'), require('./api/ArgoApi'), require('./api/AuthApi'), require('./api/ClustersApi'), require('./api/GradersApi'), require('./api/OrganisationsApi'), require('./api/SubmissionsApi'), require('./api/UsersApi'));
   }
-}(function(ApiClient, Cluster, GenericFeedback, Grader, GraderFeedback, Login, Organisation, OrganisationQuota, SubmissionFeedback, Submissions, User, UserQuota, ArgoApi, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi) {
+}(function(ApiClient, AuthLogout, AuthResponse, Cluster, GenericFeedback, Grader, GraderFeedback, Login, Organisation, OrganisationQuota, SubmissionFeedback, Submissions, User, UserQuota, ArgoApi, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi) {
   'use strict';
 
   /**
@@ -61,6 +61,16 @@
      * @property {module:ApiClient}
      */
     ApiClient: ApiClient,
+    /**
+     * The AuthLogout model constructor.
+     * @property {module:model/AuthLogout}
+     */
+    AuthLogout: AuthLogout,
+    /**
+     * The AuthResponse model constructor.
+     * @property {module:model/AuthResponse}
+     */
+    AuthResponse: AuthResponse,
     /**
      * The Cluster model constructor.
      * @property {module:model/Cluster}

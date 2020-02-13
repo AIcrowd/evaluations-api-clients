@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **logout_a_user**
-> logout_a_user()
+> AuthLogout logout_a_user(x_fields=x_fields)
 
 
 
@@ -29,19 +29,24 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.AuthApi(swagger_client.ApiClient(configuration))
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_instance.logout_a_user()
+    api_response = api_instance.logout_a_user(x_fields=x_fields)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->logout_a_user: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -55,7 +60,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_login**
-> user_login(payload)
+> AuthResponse user_login(payload, x_fields=x_fields)
 
 
 
@@ -70,9 +75,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.AuthApi()
 payload = swagger_client.Login() # Login | 
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_instance.user_login(payload)
+    api_response = api_instance.user_login(payload, x_fields=x_fields)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->user_login: %s\n" % e)
 ```
@@ -82,10 +89,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

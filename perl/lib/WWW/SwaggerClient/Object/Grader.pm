@@ -209,7 +209,7 @@ __PACKAGE__->method_documentation({
     'docker_registry' => {
     	datatype => 'string',
     	base_name => 'docker_registry',
-    	description => 'Docker registry URL',
+    	description => 'Docker registry URL. Dockerhub is used by default.',
     	format => '',
     	read_only => '',
     		},

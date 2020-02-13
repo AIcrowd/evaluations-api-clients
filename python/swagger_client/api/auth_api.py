@@ -42,7 +42,8 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: AuthLogout
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -62,12 +63,13 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: AuthLogout
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -90,6 +92,8 @@ class AuthApi(object):
         query_params = []
 
         header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -114,7 +118,7 @@ class AuthApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='AuthLogout',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -132,7 +136,8 @@ class AuthApi(object):
 
         :param async_req bool
         :param Login payload: (required)
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: AuthResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -153,12 +158,13 @@ class AuthApi(object):
 
         :param async_req bool
         :param Login payload: (required)
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: AuthResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['payload']  # noqa: E501
+        all_params = ['payload', 'x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,6 +191,8 @@ class AuthApi(object):
         query_params = []
 
         header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -211,7 +219,7 @@ class AuthApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='AuthResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

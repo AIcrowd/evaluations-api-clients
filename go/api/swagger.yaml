@@ -117,21 +117,43 @@ paths:
         name: "payload"
         required: true
         schema:
-          $ref: "#/definitions/login"
+          $ref: "#/definitions/Login"
         x-exportParamName: "Payload"
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "Success"
+          schema:
+            $ref: "#/definitions/AuthResponse"
+        "401":
+          description: "Wrong username or password"
       security: []
   /auth/logout:
     post:
       tags:
       - "auth"
       operationId: "logout a user"
-      parameters: []
+      parameters:
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "Success"
+          schema:
+            $ref: "#/definitions/AuthLogout"
   /clusters/:
     get:
       tags:
@@ -180,7 +202,7 @@ paths:
           schema:
             $ref: "#/definitions/Cluster"
         "400":
-          description: "Bad inputs"
+          description: "Invalid inputs"
   /clusters/{cluster_id}:
     get:
       tags:
@@ -397,12 +419,14 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
-        "200":
+        "201":
           description: "Success"
           schema:
             $ref: "#/definitions/Organisation"
+        "400":
+          description: "Invalid inputs"
         "409":
-          description: "Organisation already exists."
+          description: "Organisation already exists"
   /organisations/addquota/{organisation_id}:
     put:
       tags:
@@ -420,7 +444,7 @@ paths:
         name: "payload"
         required: true
         schema:
-          $ref: "#/definitions/organisationQuota"
+          $ref: "#/definitions/OrganisationQuota"
         x-exportParamName: "Payload"
       responses:
         "200":
@@ -555,8 +579,8 @@ paths:
           schema:
             $ref: "#/definitions/Submissions"
         "400":
-          description: "Bad inputs"
-        "404":
+          description: "Invalid inputs"
+        "403":
           description: "Grader not found or ready"
   /submissions/{submission_id}:
     get:
@@ -648,6 +672,8 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/User"
+        "400":
+          description: "Invalid inputs"
   /users/addquota/{user_id}:
     put:
       tags:
@@ -665,7 +691,7 @@ paths:
         name: "payload"
         required: true
         schema:
-          $ref: "#/definitions/userQuota"
+          $ref: "#/definitions/UserQuota"
         x-exportParamName: "Payload"
       responses:
         "200":
@@ -758,7 +784,7 @@ securityDefinitions:
     name: "AUTHORIZATION"
     in: "header"
 definitions:
-  login:
+  Login:
     type: "object"
     required:
     - "email"
@@ -770,8 +796,30 @@ definitions:
       password:
         type: "string"
         description: "The user password "
+    example:
+      password: "password"
+      email: "email"
+  AuthResponse:
+    type: "object"
+    properties:
+      Authorization:
+        type: "string"
+        description: "Authorization token that should be used in the headers"
+    example:
+      Authorization: "Authorization"
+  AuthLogout:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        description: "Logout message"
+    example:
+      message: "message"
   Cluster:
     type: "object"
+    required:
+    - "auth_token"
+    - "remote_address"
     properties:
       id:
         type: "integer"
@@ -882,6 +930,12 @@ definitions:
       status: true
   Grader:
     type: "object"
+    required:
+    - "code_access_auth_key"
+    - "code_access_mode"
+    - "docker_password"
+    - "docker_username"
+    - "evaluation_code"
     properties:
       id:
         type: "integer"
@@ -918,7 +972,7 @@ definitions:
         description: "Docker registry password"
       docker_registry:
         type: "string"
-        description: "Docker registry URL"
+        description: "Docker registry URL. Dockerhub is used by default."
       workflow_spec:
         type: "object"
         description: "Argo workflow template spec"
@@ -970,6 +1024,9 @@ definitions:
     x-mask: "{id,created,updated,dataset_url,code_access_mode,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
+    required:
+    - "name"
+    - "poc_email"
     properties:
       id:
         type: "integer"
@@ -1001,7 +1058,7 @@ definitions:
       name: "name"
       id: 0
       poc_email: "poc_email"
-  organisationQuota:
+  OrganisationQuota:
     type: "object"
     required:
     - "quota"
@@ -1009,8 +1066,13 @@ definitions:
       quota:
         type: "integer"
         description: "Quota to be added or reduced"
+    example:
+      quota: 0
   Submissions:
     type: "object"
+    required:
+    - "grader_id"
+    - "submission_code"
     properties:
       id:
         type: "integer"
@@ -1098,6 +1160,8 @@ definitions:
   User:
     type: "object"
     required:
+    - "email"
+    - "organisation_id"
     - "password"
     properties:
       id:
@@ -1143,7 +1207,7 @@ definitions:
       admin: true
       id: 0
       email: "email"
-  userQuota:
+  UserQuota:
     type: "object"
     required:
     - "quota"
@@ -1151,6 +1215,8 @@ definitions:
       quota:
         type: "integer"
         description: "Quota to be added or reduced"
+    example:
+      quota: 0
 responses:
   MaskError:
     description: "When any error occurs on mask"

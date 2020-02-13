@@ -9,8 +9,8 @@ use WWW::SwaggerClient::Object::Organisation;
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | ID | [optional] 
-**name** | **string** | Organisation Name | [optional] 
-**poc_email** | **string** | Point of contact email | [optional] 
+**name** | **string** | Organisation Name | 
+**poc_email** | **string** | Point of contact email | 
 **created_on** | **DateTime** | Creation Time | [optional] 
 **total_quota** | **int** | Total assigned evaluation quota | [optional] 
 **quota** | **int** | Available evaluation quota | [optional] 

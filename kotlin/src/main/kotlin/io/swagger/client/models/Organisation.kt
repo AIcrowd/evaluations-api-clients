@@ -22,12 +22,12 @@ package io.swagger.client.models
  * @param quota Available evaluation quota
  */
 data class Organisation (
+    /* Organisation Name */
+    val name: kotlin.String,
+    /* Point of contact email */
+    val poc_email: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
-    /* Organisation Name */
-    val name: kotlin.String? = null,
-    /* Point of contact email */
-    val poc_email: kotlin.String? = null,
     /* Creation Time */
     val created_on: java.time.LocalDateTime? = null,
     /* Total assigned evaluation quota */

@@ -36,11 +36,11 @@ export interface Submissions {
     /**
      * Grader identifier
      */
-    "graderId"?: number;
+    "graderId": number;
     /**
      * URL to the submission code
      */
-    "submissionCode"?: string;
+    "submissionCode": string;
     /**
      * Current status of the submission
      */

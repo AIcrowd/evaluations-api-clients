@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **id** | **int** | ID | [optional] 
 **created** | **DateTime** | Creation time | [optional] 
 **updated** | **DateTime** | Last updation time | [optional] 
-**remote_address** | **string** | Remote address used to connect to the cluster | [optional] 
-**auth_token** | **string** | Authentication needed for the cluster | [optional] 
+**remote_address** | **string** | Remote address used to connect to the cluster | 
+**auth_token** | **string** | Authentication needed for the cluster | 
 **storage_class** | **string** | Storage class to use for datasets | [optional] 
 **status** | **boolean** | Readiness of the cluster | [optional] 
 **meta** | **object** | Additional metadata | [optional] 

@@ -4,37 +4,41 @@
 
 (defn logout-a-user-with-http-info
   ""
-  []
-  (call-api "/auth/logout" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json"]
-             :accepts       ["application/json"]
-             :auth-names    ["api_key"]}))
+  ([] (logout-a-user-with-http-info nil))
+  ([{:keys [x-fields ]}]
+   (call-api "/auth/logout" :post
+             {:path-params   {}
+              :header-params {"X-Fields" x-fields }
+              :query-params  {}
+              :form-params   {}
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
 
 (defn logout-a-user
   ""
-  []
-  (:data (logout-a-user-with-http-info)))
+  ([] (logout-a-user nil))
+  ([optional-params]
+   (:data (logout-a-user-with-http-info optional-params))))
 
 (defn user-login-with-http-info
   ""
-  [payload ]
-  (check-required-params payload)
-  (call-api "/auth/login" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :body-param    payload
-             :content-types ["application/json"]
-             :accepts       ["application/json"]
-             :auth-names    []}))
+  ([payload ] (user-login-with-http-info payload nil))
+  ([payload {:keys [x-fields ]}]
+   (check-required-params payload)
+   (call-api "/auth/login" :post
+             {:path-params   {}
+              :header-params {"X-Fields" x-fields }
+              :query-params  {}
+              :form-params   {}
+              :body-param    payload
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    []})))
 
 (defn user-login
   ""
-  [payload ]
-  (:data (user-login-with-http-info payload)))
+  ([payload ] (user-login payload nil))
+  ([payload optional-params]
+   (:data (user-login-with-http-info payload optional-params))))
 

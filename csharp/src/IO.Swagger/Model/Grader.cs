@@ -33,25 +33,70 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Grader" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Grader() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Grader" /> class.
+        /// </summary>
         /// <param name="datasetUrl">S3 link of the Dataset.</param>
-        /// <param name="codeAccessMode">git/http.</param>
-        /// <param name="codeAccessAuthKey">SSH private key if using git or HTTP Auth token if using HTTP to access the submission code.</param>
+        /// <param name="codeAccessMode">git/http (required).</param>
+        /// <param name="codeAccessAuthKey">SSH private key if using git or HTTP Auth token if using HTTP to access the submission code (required).</param>
         /// <param name="clusterId">Cluster to run the grader on.</param>
-        /// <param name="dockerUsername">Docker registry username.</param>
-        /// <param name="dockerPassword">Docker registry password.</param>
-        /// <param name="dockerRegistry">Docker registry URL.</param>
-        /// <param name="evaluationCode">S3 link to the zip file containing the code that will be used for the evaluation.</param>
+        /// <param name="dockerUsername">Docker registry username (required).</param>
+        /// <param name="dockerPassword">Docker registry password (required).</param>
+        /// <param name="dockerRegistry">Docker registry URL. Dockerhub is used by default..</param>
+        /// <param name="evaluationCode">S3 link to the zip file containing the code that will be used for the evaluation (required).</param>
         /// <param name="storageCapacity">Size of the dataset partition to request. Please provide at least 2x of the size of the dataset..</param>
         public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), string codeAccessAuthKey = default(string), int? clusterId = default(int?), string dockerUsername = default(string), string dockerPassword = default(string), string dockerRegistry = default(string), string evaluationCode = default(string), string storageCapacity = default(string))
         {
+            // to ensure "codeAccessMode" is required (not null)
+            if (codeAccessMode == null)
+            {
+                throw new InvalidDataException("codeAccessMode is a required property for Grader and cannot be null");
+            }
+            else
+            {
+                this.CodeAccessMode = codeAccessMode;
+            }
+            // to ensure "codeAccessAuthKey" is required (not null)
+            if (codeAccessAuthKey == null)
+            {
+                throw new InvalidDataException("codeAccessAuthKey is a required property for Grader and cannot be null");
+            }
+            else
+            {
+                this.CodeAccessAuthKey = codeAccessAuthKey;
+            }
+            // to ensure "dockerUsername" is required (not null)
+            if (dockerUsername == null)
+            {
+                throw new InvalidDataException("dockerUsername is a required property for Grader and cannot be null");
+            }
+            else
+            {
+                this.DockerUsername = dockerUsername;
+            }
+            // to ensure "dockerPassword" is required (not null)
+            if (dockerPassword == null)
+            {
+                throw new InvalidDataException("dockerPassword is a required property for Grader and cannot be null");
+            }
+            else
+            {
+                this.DockerPassword = dockerPassword;
+            }
+            // to ensure "evaluationCode" is required (not null)
+            if (evaluationCode == null)
+            {
+                throw new InvalidDataException("evaluationCode is a required property for Grader and cannot be null");
+            }
+            else
+            {
+                this.EvaluationCode = evaluationCode;
+            }
             this.DatasetUrl = datasetUrl;
-            this.CodeAccessMode = codeAccessMode;
-            this.CodeAccessAuthKey = codeAccessAuthKey;
             this.ClusterId = clusterId;
-            this.DockerUsername = dockerUsername;
-            this.DockerPassword = dockerPassword;
             this.DockerRegistry = dockerRegistry;
-            this.EvaluationCode = evaluationCode;
             this.StorageCapacity = storageCapacity;
         }
         
@@ -119,9 +164,9 @@ namespace IO.Swagger.Model
         public string DockerPassword { get; set; }
 
         /// <summary>
-        /// Docker registry URL
+        /// Docker registry URL. Dockerhub is used by default.
         /// </summary>
-        /// <value>Docker registry URL</value>
+        /// <value>Docker registry URL. Dockerhub is used by default.</value>
         [DataMember(Name="docker_registry", EmitDefaultValue=false)]
         public string DockerRegistry { get; set; }
 

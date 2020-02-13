@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **updated** | [**OffsetDateTime**](OffsetDateTime.md) | Last updation time |  [optional]
 **participantId** | **Integer** | Participant identifier |  [optional]
 **roundId** | **Integer** | Round identifier |  [optional]
-**graderId** | **Integer** | Grader identifier |  [optional]
-**submissionCode** | **String** | URL to the submission code |  [optional]
+**graderId** | **Integer** | Grader identifier | 
+**submissionCode** | **String** | URL to the submission code | 
 **status** | **String** | Current status of the submission |  [optional]
 **output** | **String** | S3 link of the output (available after the evaluation) |  [optional]
 **additionalOutputs** | **String** | Array of any additional outputs |  [optional]

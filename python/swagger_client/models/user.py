@@ -70,8 +70,7 @@ class User(object):
 
         if id is not None:
             self.id = id
-        if email is not None:
-            self.email = email
+        self.email = email
         if admin is not None:
             self.admin = admin
         if created_on is not None:
@@ -82,8 +81,7 @@ class User(object):
             self.total_quota = total_quota
         if quota is not None:
             self.quota = quota
-        if organisation_id is not None:
-            self.organisation_id = organisation_id
+        self.organisation_id = organisation_id
         self.password = password
 
     @property
@@ -129,6 +127,8 @@ class User(object):
         :param email: The email of this User.  # noqa: E501
         :type: str
         """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -267,6 +267,8 @@ class User(object):
         :param organisation_id: The organisation_id of this User.  # noqa: E501
         :type: int
         """
+        if organisation_id is None:
+            raise ValueError("Invalid value for `organisation_id`, must not be `None`")  # noqa: E501
 
         self._organisation_id = organisation_id
 

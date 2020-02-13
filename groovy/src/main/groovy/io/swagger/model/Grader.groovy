@@ -34,7 +34,7 @@ class Grader {
   /* Docker registry password */
   String dockerPassword = null
 
-  /* Docker registry URL */
+  /* Docker registry URL. Dockerhub is used by default. */
   String dockerRegistry = null
 
   /* Argo workflow template spec */

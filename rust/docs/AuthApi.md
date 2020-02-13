@@ -9,15 +9,26 @@ Method | HTTP request | Description
 
 
 # **logout_a_user**
-> logout_a_user(ctx, )
+> ::models::AuthLogout logout_a_user(ctx, optional)
 
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_fields** | **String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**::models::AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -31,7 +42,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_login**
-> user_login(payload)
+> ::models::AuthResponse user_login(payload, optional)
 
 
 ### Required Parameters
@@ -39,10 +50,19 @@ This endpoint does not need any parameter.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
   **payload** | [**Login**](Login.md)|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**::models::AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

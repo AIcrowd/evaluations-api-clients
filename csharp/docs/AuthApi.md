@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="logoutauser"></a>
 # **LogoutAUser**
-> void LogoutAUser ()
+> AuthLogout LogoutAUser (string xFields = null)
 
 
 
@@ -34,10 +34,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new AuthApi();
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                apiInstance.LogoutAUser();
+                AuthLogout result = apiInstance.LogoutAUser(xFields);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -49,11 +51,14 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -68,7 +73,7 @@ void (empty response body)
 
 <a name="userlogin"></a>
 # **UserLogin**
-> void UserLogin (Login payload)
+> AuthResponse UserLogin (Login payload, string xFields = null)
 
 
 
@@ -88,10 +93,12 @@ namespace Example
         {
             var apiInstance = new AuthApi();
             var payload = new Login(); // Login | 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                apiInstance.UserLogin(payload);
+                AuthResponse result = apiInstance.UserLogin(payload, xFields);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -107,10 +114,11 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  | 
+ **xFields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

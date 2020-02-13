@@ -15,6 +15,8 @@
 from __future__ import absolute_import
 
 # import models into model package
+from swagger_client.models.auth_logout import AuthLogout
+from swagger_client.models.auth_response import AuthResponse
 from swagger_client.models.cluster import Cluster
 from swagger_client.models.generic_feedback import GenericFeedback
 from swagger_client.models.grader import Grader

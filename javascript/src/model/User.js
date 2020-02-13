@@ -40,9 +40,13 @@
    * Constructs a new <code>User</code>.
    * @alias module:model/User
    * @class
+   * @param email {String} Email
+   * @param organisationId {Number} Organisation identifier
    * @param password {String} user password
    */
-  var exports = function(password) {
+  var exports = function(email, organisationId, password) {
+    this.email = email;
+    this.organisationId = organisationId;
     this.password = password;
   };
 

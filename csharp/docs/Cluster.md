@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 **Id** | **int?** | ID | [optional] 
 **Created** | **DateTime?** | Creation time | [optional] 
 **Updated** | **DateTime?** | Last updation time | [optional] 
-**RemoteAddress** | **string** | Remote address used to connect to the cluster | [optional] 
-**AuthToken** | **string** | Authentication needed for the cluster | [optional] 
+**RemoteAddress** | **string** | Remote address used to connect to the cluster | 
+**AuthToken** | **string** | Authentication needed for the cluster | 
 **StorageClass** | **string** | Storage class to use for datasets | [optional] 
 **Status** | **bool?** | Readiness of the cluster | [optional] 
 **Meta** | **Object** | Additional metadata | [optional] 

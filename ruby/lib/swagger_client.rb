@@ -17,6 +17,8 @@ require 'swagger_client/version'
 require 'swagger_client/configuration'
 
 # Models
+require 'swagger_client/models/auth_logout'
+require 'swagger_client/models/auth_response'
 require 'swagger_client/models/cluster'
 require 'swagger_client/models/generic_feedback'
 require 'swagger_client/models/grader'

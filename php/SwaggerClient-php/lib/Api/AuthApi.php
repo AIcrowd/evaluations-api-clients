@@ -90,28 +90,31 @@ class AuthApi
     /**
      * Operation logoutAUser
      *
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Swagger\Client\Model\AuthLogout
      */
-    public function logoutAUser()
+    public function logoutAUser($x_fields = null)
     {
-        $this->logoutAUserWithHttpInfo();
+        list($response) = $this->logoutAUserWithHttpInfo($x_fields);
+        return $response;
     }
 
     /**
      * Operation logoutAUserWithHttpInfo
      *
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Swagger\Client\Model\AuthLogout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function logoutAUserWithHttpInfo()
+    public function logoutAUserWithHttpInfo($x_fields = null)
     {
-        $returnType = '';
-        $request = $this->logoutAUserRequest();
+        $returnType = '\Swagger\Client\Model\AuthLogout';
+        $request = $this->logoutAUserRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -141,10 +144,32 @@ class AuthApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Swagger\Client\Model\AuthLogout',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -155,13 +180,14 @@ class AuthApi
      *
      * 
      *
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutAUserAsync()
+    public function logoutAUserAsync($x_fields = null)
     {
-        return $this->logoutAUserAsyncWithHttpInfo()
+        return $this->logoutAUserAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -174,20 +200,35 @@ class AuthApi
      *
      * 
      *
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutAUserAsyncWithHttpInfo()
+    public function logoutAUserAsyncWithHttpInfo($x_fields = null)
     {
-        $returnType = '';
-        $request = $this->logoutAUserRequest();
+        $returnType = '\Swagger\Client\Model\AuthLogout';
+        $request = $this->logoutAUserRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -209,11 +250,12 @@ class AuthApi
     /**
      * Create request for operation 'logoutAUser'
      *
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function logoutAUserRequest()
+    protected function logoutAUserRequest($x_fields = null)
     {
 
         $resourcePath = '/auth/logout';
@@ -223,6 +265,10 @@ class AuthApi
         $httpBody = '';
         $multipart = false;
 
+        // header params
+        if ($x_fields !== null) {
+            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
+        }
 
 
         // body params
@@ -305,29 +351,32 @@ class AuthApi
      * Operation userLogin
      *
      * @param  \Swagger\Client\Model\Login $payload payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Swagger\Client\Model\AuthResponse
      */
-    public function userLogin($payload)
+    public function userLogin($payload, $x_fields = null)
     {
-        $this->userLoginWithHttpInfo($payload);
+        list($response) = $this->userLoginWithHttpInfo($payload, $x_fields);
+        return $response;
     }
 
     /**
      * Operation userLoginWithHttpInfo
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Swagger\Client\Model\AuthResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function userLoginWithHttpInfo($payload)
+    public function userLoginWithHttpInfo($payload, $x_fields = null)
     {
-        $returnType = '';
-        $request = $this->userLoginRequest($payload);
+        $returnType = '\Swagger\Client\Model\AuthResponse';
+        $request = $this->userLoginRequest($payload, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -357,10 +406,32 @@ class AuthApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Swagger\Client\Model\AuthResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -372,13 +443,14 @@ class AuthApi
      * 
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function userLoginAsync($payload)
+    public function userLoginAsync($payload, $x_fields = null)
     {
-        return $this->userLoginAsyncWithHttpInfo($payload)
+        return $this->userLoginAsyncWithHttpInfo($payload, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -392,20 +464,35 @@ class AuthApi
      * 
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function userLoginAsyncWithHttpInfo($payload)
+    public function userLoginAsyncWithHttpInfo($payload, $x_fields = null)
     {
-        $returnType = '';
-        $request = $this->userLoginRequest($payload);
+        $returnType = '\Swagger\Client\Model\AuthResponse';
+        $request = $this->userLoginRequest($payload, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -428,11 +515,12 @@ class AuthApi
      * Create request for operation 'userLogin'
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function userLoginRequest($payload)
+    protected function userLoginRequest($payload, $x_fields = null)
     {
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
@@ -448,6 +536,10 @@ class AuthApi
         $httpBody = '';
         $multipart = false;
 
+        // header params
+        if ($x_fields !== null) {
+            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
+        }
 
 
         // body params

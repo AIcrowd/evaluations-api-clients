@@ -32,6 +32,10 @@ package io.swagger.client.models
  * @param organisation_id Organisation ID
  */
 data class Submissions (
+    /* Grader identifier */
+    val grader_id: kotlin.Int,
+    /* URL to the submission code */
+    val submission_code: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */
@@ -42,10 +46,6 @@ data class Submissions (
     val participant_id: kotlin.Int? = null,
     /* Round identifier */
     val round_id: kotlin.Int? = null,
-    /* Grader identifier */
-    val grader_id: kotlin.Int? = null,
-    /* URL to the submission code */
-    val submission_code: kotlin.String? = null,
     /* Current status of the submission */
     val status: kotlin.String? = null,
     /* S3 link of the output (available after the evaluation) */

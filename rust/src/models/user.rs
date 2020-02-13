@@ -19,7 +19,7 @@ pub struct User {
   id: Option<i32>,
   /// Email
   #[serde(rename = "email")]
-  email: Option<String>,
+  email: String,
   /// Admin Boolean
   #[serde(rename = "admin")]
   admin: Option<bool>,
@@ -37,23 +37,23 @@ pub struct User {
   quota: Option<i32>,
   /// Organisation identifier
   #[serde(rename = "organisation_id")]
-  organisation_id: Option<i32>,
+  organisation_id: i32,
   /// user password
   #[serde(rename = "password")]
   password: String
 }
 
 impl User {
-  pub fn new(password: String) -> User {
+  pub fn new(email: String, organisation_id: i32, password: String) -> User {
     User {
       id: None,
-      email: None,
+      email: email,
       admin: None,
       created_on: None,
       password_hash: None,
       total_quota: None,
       quota: None,
-      organisation_id: None,
+      organisation_id: organisation_id,
       password: password
     }
   }
@@ -76,21 +76,18 @@ impl User {
   }
 
   pub fn set_email(&mut self, email: String) {
-    self.email = Some(email);
+    self.email = email;
   }
 
   pub fn with_email(mut self, email: String) -> User {
-    self.email = Some(email);
+    self.email = email;
     self
   }
 
-  pub fn email(&self) -> Option<&String> {
-    self.email.as_ref()
+  pub fn email(&self) -> &String {
+    &self.email
   }
 
-  pub fn reset_email(&mut self) {
-    self.email = None;
-  }
 
   pub fn set_admin(&mut self, admin: bool) {
     self.admin = Some(admin);
@@ -178,21 +175,18 @@ impl User {
   }
 
   pub fn set_organisation_id(&mut self, organisation_id: i32) {
-    self.organisation_id = Some(organisation_id);
+    self.organisation_id = organisation_id;
   }
 
   pub fn with_organisation_id(mut self, organisation_id: i32) -> User {
-    self.organisation_id = Some(organisation_id);
+    self.organisation_id = organisation_id;
     self
   }
 
-  pub fn organisation_id(&self) -> Option<&i32> {
-    self.organisation_id.as_ref()
+  pub fn organisation_id(&self) -> &i32 {
+    &self.organisation_id
   }
 
-  pub fn reset_organisation_id(&mut self) {
-    self.organisation_id = None;
-  }
 
   pub fn set_password(&mut self, password: String) {
     self.password = password;

@@ -28,20 +28,20 @@ pub struct Grader {
   dataset_url: Option<String>,
   /// git/http
   #[serde(rename = "code_access_mode")]
-  code_access_mode: Option<String>,
+  code_access_mode: String,
   /// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
   #[serde(rename = "code_access_auth_key")]
-  code_access_auth_key: Option<String>,
+  code_access_auth_key: String,
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
   /// Docker registry username
   #[serde(rename = "docker_username")]
-  docker_username: Option<String>,
+  docker_username: String,
   /// Docker registry password
   #[serde(rename = "docker_password")]
-  docker_password: Option<String>,
-  /// Docker registry URL
+  docker_password: String,
+  /// Docker registry URL. Dockerhub is used by default.
   #[serde(rename = "docker_registry")]
   docker_registry: Option<String>,
   /// Argo workflow template spec
@@ -49,7 +49,7 @@ pub struct Grader {
   workflow_spec: Option<Value>,
   /// S3 link to the zip file containing the code that will be used for the evaluation
   #[serde(rename = "evaluation_code")]
-  evaluation_code: Option<String>,
+  evaluation_code: String,
   /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   #[serde(rename = "storage_capacity")]
   storage_capacity: Option<String>,
@@ -68,20 +68,20 @@ pub struct Grader {
 }
 
 impl Grader {
-  pub fn new() -> Grader {
+  pub fn new(code_access_mode: String, code_access_auth_key: String, docker_username: String, docker_password: String, evaluation_code: String) -> Grader {
     Grader {
       id: None,
       created: None,
       updated: None,
       dataset_url: None,
-      code_access_mode: None,
-      code_access_auth_key: None,
+      code_access_mode: code_access_mode,
+      code_access_auth_key: code_access_auth_key,
       cluster_id: None,
-      docker_username: None,
-      docker_password: None,
+      docker_username: docker_username,
+      docker_password: docker_password,
       docker_registry: None,
       workflow_spec: None,
-      evaluation_code: None,
+      evaluation_code: evaluation_code,
       storage_capacity: None,
       meta: None,
       status: None,
@@ -159,38 +159,32 @@ impl Grader {
   }
 
   pub fn set_code_access_mode(&mut self, code_access_mode: String) {
-    self.code_access_mode = Some(code_access_mode);
+    self.code_access_mode = code_access_mode;
   }
 
   pub fn with_code_access_mode(mut self, code_access_mode: String) -> Grader {
-    self.code_access_mode = Some(code_access_mode);
+    self.code_access_mode = code_access_mode;
     self
   }
 
-  pub fn code_access_mode(&self) -> Option<&String> {
-    self.code_access_mode.as_ref()
+  pub fn code_access_mode(&self) -> &String {
+    &self.code_access_mode
   }
 
-  pub fn reset_code_access_mode(&mut self) {
-    self.code_access_mode = None;
-  }
 
   pub fn set_code_access_auth_key(&mut self, code_access_auth_key: String) {
-    self.code_access_auth_key = Some(code_access_auth_key);
+    self.code_access_auth_key = code_access_auth_key;
   }
 
   pub fn with_code_access_auth_key(mut self, code_access_auth_key: String) -> Grader {
-    self.code_access_auth_key = Some(code_access_auth_key);
+    self.code_access_auth_key = code_access_auth_key;
     self
   }
 
-  pub fn code_access_auth_key(&self) -> Option<&String> {
-    self.code_access_auth_key.as_ref()
+  pub fn code_access_auth_key(&self) -> &String {
+    &self.code_access_auth_key
   }
 
-  pub fn reset_code_access_auth_key(&mut self) {
-    self.code_access_auth_key = None;
-  }
 
   pub fn set_cluster_id(&mut self, cluster_id: i32) {
     self.cluster_id = Some(cluster_id);
@@ -210,38 +204,32 @@ impl Grader {
   }
 
   pub fn set_docker_username(&mut self, docker_username: String) {
-    self.docker_username = Some(docker_username);
+    self.docker_username = docker_username;
   }
 
   pub fn with_docker_username(mut self, docker_username: String) -> Grader {
-    self.docker_username = Some(docker_username);
+    self.docker_username = docker_username;
     self
   }
 
-  pub fn docker_username(&self) -> Option<&String> {
-    self.docker_username.as_ref()
+  pub fn docker_username(&self) -> &String {
+    &self.docker_username
   }
 
-  pub fn reset_docker_username(&mut self) {
-    self.docker_username = None;
-  }
 
   pub fn set_docker_password(&mut self, docker_password: String) {
-    self.docker_password = Some(docker_password);
+    self.docker_password = docker_password;
   }
 
   pub fn with_docker_password(mut self, docker_password: String) -> Grader {
-    self.docker_password = Some(docker_password);
+    self.docker_password = docker_password;
     self
   }
 
-  pub fn docker_password(&self) -> Option<&String> {
-    self.docker_password.as_ref()
+  pub fn docker_password(&self) -> &String {
+    &self.docker_password
   }
 
-  pub fn reset_docker_password(&mut self) {
-    self.docker_password = None;
-  }
 
   pub fn set_docker_registry(&mut self, docker_registry: String) {
     self.docker_registry = Some(docker_registry);
@@ -278,21 +266,18 @@ impl Grader {
   }
 
   pub fn set_evaluation_code(&mut self, evaluation_code: String) {
-    self.evaluation_code = Some(evaluation_code);
+    self.evaluation_code = evaluation_code;
   }
 
   pub fn with_evaluation_code(mut self, evaluation_code: String) -> Grader {
-    self.evaluation_code = Some(evaluation_code);
+    self.evaluation_code = evaluation_code;
     self
   }
 
-  pub fn evaluation_code(&self) -> Option<&String> {
-    self.evaluation_code.as_ref()
+  pub fn evaluation_code(&self) -> &String {
+    &self.evaluation_code
   }
 
-  pub fn reset_evaluation_code(&mut self) {
-    self.evaluation_code = None;
-  }
 
   pub fn set_storage_capacity(&mut self, storage_capacity: String) {
     self.storage_capacity = Some(storage_capacity);

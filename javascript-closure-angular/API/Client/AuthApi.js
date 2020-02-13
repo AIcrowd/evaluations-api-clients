@@ -9,6 +9,8 @@
  */
 goog.provide('API.Client.AuthApi');
 
+goog.require('API.Client.AuthLogout');
+goog.require('API.Client.AuthResponse');
 goog.require('API.Client.Login');
 
 /**
@@ -41,10 +43,11 @@ API.Client.AuthApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 /**
  * 
  * 
+ * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise}
+ * @return {!angular.$q.Promise<!API.Client.AuthLogout>}
  */
-API.Client.AuthApi.prototype.logoutAUser = function(opt_extraHttpRequestParams) {
+API.Client.AuthApi.prototype.logoutAUser = function(opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/auth/logout';
 
@@ -53,6 +56,8 @@ API.Client.AuthApi.prototype.logoutAUser = function(opt_extraHttpRequestParams) 
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  headerParams['X-Fields'] = opt_xFields;
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
@@ -73,10 +78,11 @@ API.Client.AuthApi.prototype.logoutAUser = function(opt_extraHttpRequestParams) 
  * 
  * 
  * @param {!Login} payload 
+ * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise}
+ * @return {!angular.$q.Promise<!API.Client.AuthResponse>}
  */
-API.Client.AuthApi.prototype.userLogin = function(payload, opt_extraHttpRequestParams) {
+API.Client.AuthApi.prototype.userLogin = function(payload, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/auth/login';
 
@@ -89,6 +95,8 @@ API.Client.AuthApi.prototype.userLogin = function(payload, opt_extraHttpRequestP
   if (!payload) {
     throw new Error('Missing required parameter payload when calling userLogin');
   }
+  headerParams['X-Fields'] = opt_xFields;
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',

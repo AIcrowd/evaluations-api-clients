@@ -19,11 +19,11 @@ export interface Organisation {
     /**
      * Organisation Name
      */
-    name?: string;
+    name: string;
     /**
      * Point of contact email
      */
-    pocEmail?: string;
+    pocEmail: string;
     /**
      * Creation Time
      */

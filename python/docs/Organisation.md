@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | ID | [optional] 
-**name** | **str** | Organisation Name | [optional] 
-**poc_email** | **str** | Point of contact email | [optional] 
+**name** | **str** | Organisation Name | 
+**poc_email** | **str** | Point of contact email | 
 **created_on** | **datetime** | Creation Time | [optional] 
 **total_quota** | **int** | Total assigned evaluation quota | [optional] 
 **quota** | **int** | Available evaluation quota | [optional] 

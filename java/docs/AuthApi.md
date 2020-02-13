@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="logoutAUser"></a>
 # **logoutAUser**
-> logoutAUser()
+> AuthLogout logoutAUser(xFields)
 
 
 
@@ -32,8 +32,10 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 AuthApi apiInstance = new AuthApi();
+String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    apiInstance.logoutAUser();
+    AuthLogout result = apiInstance.logoutAUser(xFields);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AuthApi#logoutAUser");
     e.printStackTrace();
@@ -41,11 +43,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -58,7 +63,7 @@ null (empty response body)
 
 <a name="userLogin"></a>
 # **userLogin**
-> userLogin(payload)
+> AuthResponse userLogin(payload, xFields)
 
 
 
@@ -71,8 +76,10 @@ null (empty response body)
 
 AuthApi apiInstance = new AuthApi();
 Login payload = new Login(); // Login | 
+String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    apiInstance.userLogin(payload);
+    AuthResponse result = apiInstance.userLogin(payload, xFields);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AuthApi#userLogin");
     e.printStackTrace();
@@ -84,10 +91,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  |
+ **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

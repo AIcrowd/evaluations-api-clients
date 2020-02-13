@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **updated** | [**\DateTime**](\DateTime.md) | Last updation time | [optional] 
 **participant_id** | **int** | Participant identifier | [optional] 
 **round_id** | **int** | Round identifier | [optional] 
-**grader_id** | **int** | Grader identifier | [optional] 
-**submission_code** | **string** | URL to the submission code | [optional] 
+**grader_id** | **int** | Grader identifier | 
+**submission_code** | **string** | URL to the submission code | 
 **status** | **string** | Current status of the submission | [optional] 
 **output** | **string** | S3 link of the output (available after the evaluation) | [optional] 
 **additional_outputs** | **string** | Array of any additional outputs | [optional] 

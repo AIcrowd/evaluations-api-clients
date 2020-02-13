@@ -1,4 +1,4 @@
-goog.provide('API.Client.login');
+goog.provide('API.Client.Login');
 
 /**
  * @record

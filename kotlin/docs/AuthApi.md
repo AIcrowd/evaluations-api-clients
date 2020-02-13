@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="logout a user"></a>
 # **logout a user**
-> logout a user()
+> AuthLogout logout a user(xFields)
 
 
 
@@ -21,8 +21,10 @@ Method | HTTP request | Description
 //import io.swagger.client.models.*
 
 val apiInstance = AuthApi()
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    apiInstance.logout a user()
+    val result : AuthLogout = apiInstance.logout a user(xFields)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling AuthApi#logout a user")
     e.printStackTrace()
@@ -33,11 +35,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -50,7 +55,7 @@ null (empty response body)
 
 <a name="user login"></a>
 # **user login**
-> user login(payload)
+> AuthResponse user login(payload, xFields)
 
 
 
@@ -62,8 +67,10 @@ null (empty response body)
 
 val apiInstance = AuthApi()
 val payload : Login =  // Login | 
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    apiInstance.user login(payload)
+    val result : AuthResponse = apiInstance.user login(payload, xFields)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling AuthApi#user login")
     e.printStackTrace()
@@ -78,10 +85,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  |
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

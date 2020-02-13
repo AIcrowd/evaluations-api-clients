@@ -40,8 +40,18 @@
    * Constructs a new <code>Grader</code>.
    * @alias module:model/Grader
    * @class
+   * @param codeAccessMode {String} git/http
+   * @param codeAccessAuthKey {String} SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
+   * @param dockerUsername {String} Docker registry username
+   * @param dockerPassword {String} Docker registry password
+   * @param evaluationCode {String} S3 link to the zip file containing the code that will be used for the evaluation
    */
-  var exports = function() {
+  var exports = function(codeAccessMode, codeAccessAuthKey, dockerUsername, dockerPassword, evaluationCode) {
+    this.codeAccessMode = codeAccessMode;
+    this.codeAccessAuthKey = codeAccessAuthKey;
+    this.dockerUsername = dockerUsername;
+    this.dockerPassword = dockerPassword;
+    this.evaluationCode = evaluationCode;
   };
 
   /**
@@ -147,7 +157,7 @@
   exports.prototype.dockerPassword = undefined;
 
   /**
-   * Docker registry URL
+   * Docker registry URL. Dockerhub is used by default.
    * @member {String} dockerRegistry
    */
   exports.prototype.dockerRegistry = undefined;

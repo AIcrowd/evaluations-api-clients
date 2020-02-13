@@ -1,3 +1,5 @@
+export * from './authLogout';
+export * from './authResponse';
 export * from './cluster';
 export * from './genericFeedback';
 export * from './grader';

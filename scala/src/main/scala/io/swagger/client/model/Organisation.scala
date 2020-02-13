@@ -18,9 +18,9 @@ case class Organisation (
   // ID
   id: Option[Integer] = None,
   // Organisation Name
-  name: Option[String] = None,
+  name: String,
   // Point of contact email
-  pocEmail: Option[String] = None,
+  pocEmail: String,
   // Creation Time
   createdOn: Option[Date] = None,
   // Total assigned evaluation quota

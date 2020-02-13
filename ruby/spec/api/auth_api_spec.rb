@@ -34,7 +34,8 @@ describe 'AuthApi' do
 
   # unit tests for logout_a_user
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [AuthLogout]
   describe 'logout_a_user test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -44,7 +45,8 @@ describe 'AuthApi' do
   # unit tests for user_login
   # @param payload 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [AuthResponse]
   describe 'user_login test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

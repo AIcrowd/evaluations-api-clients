@@ -81,6 +81,34 @@ export class RequiredError extends Error {
 /**
  * 
  * @export
+ * @interface AuthLogout
+ */
+export interface AuthLogout {
+    /**
+     * Logout message
+     * @type {string}
+     * @memberof AuthLogout
+     */
+    message?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface AuthResponse
+ */
+export interface AuthResponse {
+    /**
+     * Authorization token that should be used in the headers
+     * @type {string}
+     * @memberof AuthResponse
+     */
+    authorization?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface Cluster
  */
 export interface Cluster {
@@ -107,13 +135,13 @@ export interface Cluster {
      * @type {string}
      * @memberof Cluster
      */
-    remoteAddress?: string;
+    remoteAddress: string;
     /**
      * Authentication needed for the cluster
      * @type {string}
      * @memberof Cluster
      */
-    authToken?: string;
+    authToken: string;
     /**
      * Storage class to use for datasets
      * @type {string}
@@ -201,13 +229,13 @@ export interface Grader {
      * @type {string}
      * @memberof Grader
      */
-    codeAccessMode?: string;
+    codeAccessMode: string;
     /**
      * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
      * @type {string}
      * @memberof Grader
      */
-    codeAccessAuthKey?: string;
+    codeAccessAuthKey: string;
     /**
      * Cluster to run the grader on
      * @type {number}
@@ -219,15 +247,15 @@ export interface Grader {
      * @type {string}
      * @memberof Grader
      */
-    dockerUsername?: string;
+    dockerUsername: string;
     /**
      * Docker registry password
      * @type {string}
      * @memberof Grader
      */
-    dockerPassword?: string;
+    dockerPassword: string;
     /**
-     * Docker registry URL
+     * Docker registry URL. Dockerhub is used by default.
      * @type {string}
      * @memberof Grader
      */
@@ -243,7 +271,7 @@ export interface Grader {
      * @type {string}
      * @memberof Grader
      */
-    evaluationCode?: string;
+    evaluationCode: string;
     /**
      * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
      * @type {string}
@@ -333,13 +361,13 @@ export interface Organisation {
      * @type {string}
      * @memberof Organisation
      */
-    name?: string;
+    name: string;
     /**
      * Point of contact email
      * @type {string}
      * @memberof Organisation
      */
-    pocEmail?: string;
+    pocEmail: string;
     /**
      * Creation Time
      * @type {Date}
@@ -447,13 +475,13 @@ export interface Submissions {
      * @type {number}
      * @memberof Submissions
      */
-    graderId?: number;
+    graderId: number;
     /**
      * URL to the submission code
      * @type {string}
      * @memberof Submissions
      */
-    submissionCode?: string;
+    submissionCode: string;
     /**
      * Current status of the submission
      * @type {string}
@@ -527,7 +555,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    email?: string;
+    email: string;
     /**
      * Admin Boolean
      * @type {boolean}
@@ -563,7 +591,7 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    organisationId?: number;
+    organisationId: number;
     /**
      * user password
      * @type {string}
@@ -898,10 +926,11 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(options: any = {}): FetchArgs {
+        logoutAUser(xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/auth/logout`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -914,6 +943,10 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -929,10 +962,11 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {Login} payload 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, options: any = {}): FetchArgs {
+        userLogin(payload: Login, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
                 throw new RequiredError('payload','Required parameter payload was null or undefined when calling userLogin.');
@@ -942,6 +976,10 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -968,15 +1006,16 @@ export const AuthApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).logoutAUser(options);
+        logoutAUser(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthLogout> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).logoutAUser(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                        return response.json();
                     } else {
                         throw response;
                     }
@@ -986,15 +1025,16 @@ export const AuthApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {Login} payload 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).userLogin(payload, options);
+        userLogin(payload: Login, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthResponse> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).userLogin(payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                        return response.json();
                     } else {
                         throw response;
                     }
@@ -1012,20 +1052,22 @@ export const AuthApiFactory = function (configuration?: Configuration, fetch?: F
     return {
         /**
          * 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(options?: any) {
-            return AuthApiFp(configuration).logoutAUser(options)(fetch, basePath);
+        logoutAUser(xFields?: string, options?: any) {
+            return AuthApiFp(configuration).logoutAUser(xFields, options)(fetch, basePath);
         },
         /**
          * 
          * @param {Login} payload 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, options?: any) {
-            return AuthApiFp(configuration).userLogin(payload, options)(fetch, basePath);
+        userLogin(payload: Login, xFields?: string, options?: any) {
+            return AuthApiFp(configuration).userLogin(payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1039,23 +1081,25 @@ export const AuthApiFactory = function (configuration?: Configuration, fetch?: F
 export class AuthApi extends BaseAPI {
     /**
      * 
+     * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public logoutAUser(options?: any) {
-        return AuthApiFp(this.configuration).logoutAUser(options)(this.fetch, this.basePath);
+    public logoutAUser(xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).logoutAUser(xFields, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
      * @param {Login} payload 
+     * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public userLogin(payload: Login, options?: any) {
-        return AuthApiFp(this.configuration).userLogin(payload, options)(this.fetch, this.basePath);
+    public userLogin(payload: Login, xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).userLogin(payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }

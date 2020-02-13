@@ -18,6 +18,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { AuthLogout } from '../model/authLogout';
+import { AuthResponse } from '../model/authResponse';
 import { Login } from '../model/login';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -59,15 +61,20 @@ export class AuthService {
     /**
      * 
      * 
+     * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public logoutAUser(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public logoutAUser(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public logoutAUser(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public logoutAUser(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public logoutAUser(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthLogout>;
+    public logoutAUser(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthLogout>>;
+    public logoutAUser(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthLogout>>;
+    public logoutAUser(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
 
         // authentication (api_key) required
         if (this.configuration.apiKeys["AUTHORIZATION"]) {
@@ -88,7 +95,7 @@ export class AuthService {
             'application/json'
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/auth/logout`,
+        return this.httpClient.post<AuthLogout>(`${this.basePath}/auth/logout`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -103,19 +110,24 @@ export class AuthService {
      * 
      * 
      * @param payload 
+     * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public userLogin(payload: Login, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public userLogin(payload: Login, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public userLogin(payload: Login, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public userLogin(payload: Login, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public userLogin(payload: Login, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthResponse>;
+    public userLogin(payload: Login, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthResponse>>;
+    public userLogin(payload: Login, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthResponse>>;
+    public userLogin(payload: Login, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
             throw new Error('Required parameter payload was null or undefined when calling userLogin.');
         }
 
+
         let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -135,7 +147,7 @@ export class AuthService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/auth/login`,
+        return this.httpClient.post<AuthResponse>(`${this.basePath}/auth/login`,
             payload,
             {
                 withCredentials: this.configuration.withCredentials,

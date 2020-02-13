@@ -21,9 +21,9 @@ type Cluster struct {
 	// Last updation time
 	Updated time.Time `json:"updated,omitempty"`
 	// Remote address used to connect to the cluster
-	RemoteAddress string `json:"remote_address,omitempty"`
+	RemoteAddress string `json:"remote_address"`
 	// Authentication needed for the cluster
-	AuthToken string `json:"auth_token,omitempty"`
+	AuthToken string `json:"auth_token"`
 	// Storage class to use for datasets
 	StorageClass string `json:"storage_class,omitempty"`
 	// Readiness of the cluster

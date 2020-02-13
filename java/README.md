@@ -2,7 +2,7 @@
 
 Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-02-13T09:23:23.101Z
+  - Build date: 2020-02-13T09:31:39.349Z
 
 API to create and evaluate custom challenges
 
@@ -146,6 +146,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AuthLogout](docs/AuthLogout.md)
+ - [AuthResponse](docs/AuthResponse.md)
  - [Cluster](docs/Cluster.md)
  - [GenericFeedback](docs/GenericFeedback.md)
  - [Grader](docs/Grader.md)

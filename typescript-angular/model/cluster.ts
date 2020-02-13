@@ -27,11 +27,11 @@ export interface Cluster {
     /**
      * Remote address used to connect to the cluster
      */
-    remoteAddress?: string;
+    remoteAddress: string;
     /**
      * Authentication needed for the cluster
      */
-    authToken?: string;
+    authToken: string;
     /**
      * Storage class to use for datasets
      */

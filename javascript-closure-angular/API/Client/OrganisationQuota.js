@@ -1,4 +1,4 @@
-goog.provide('API.Client.organisationQuota');
+goog.provide('API.Client.OrganisationQuota');
 
 /**
  * @record

@@ -18,7 +18,7 @@ case class User (
   // ID
   id: Option[Integer] = None,
   // Email
-  email: Option[String] = None,
+  email: String,
   // Admin Boolean
   admin: Option[Boolean] = None,
   // Creation Time
@@ -30,7 +30,7 @@ case class User (
   // Available evaluation quota
   quota: Option[Integer] = None,
   // Organisation identifier
-  organisationId: Option[Integer] = None,
+  organisationId: Integer,
   // user password
   password: String
 )

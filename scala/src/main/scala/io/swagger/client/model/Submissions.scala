@@ -26,9 +26,9 @@ case class Submissions (
   // Round identifier
   roundId: Option[Integer] = None,
   // Grader identifier
-  graderId: Option[Integer] = None,
+  graderId: Integer,
   // URL to the submission code
-  submissionCode: Option[String] = None,
+  submissionCode: String,
   // Current status of the submission
   status: Option[String] = None,
   // S3 link of the output (available after the evaluation)

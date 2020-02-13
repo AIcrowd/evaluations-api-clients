@@ -20,14 +20,16 @@ module SwaggerClient
       @api_client = api_client
     end
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [AuthLogout]
     def logout_a_user(opts = {})
-      logout_a_user_with_http_info(opts)
-      nil
+      data, _status_code, _headers = logout_a_user_with_http_info(opts)
+      data
     end
 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(AuthLogout, Fixnum, Hash)>] AuthLogout data, response status code and response headers
     def logout_a_user_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: AuthApi.logout_a_user ...'
@@ -44,6 +46,7 @@ module SwaggerClient
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
 
       # form parameters
       form_params = {}
@@ -56,7 +59,8 @@ module SwaggerClient
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'AuthLogout')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: AuthApi#logout_a_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -64,15 +68,17 @@ module SwaggerClient
     end
     # @param payload 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [AuthResponse]
     def user_login(payload, opts = {})
-      user_login_with_http_info(payload, opts)
-      nil
+      data, _status_code, _headers = user_login_with_http_info(payload, opts)
+      data
     end
 
     # @param payload 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(AuthResponse, Fixnum, Hash)>] AuthResponse data, response status code and response headers
     def user_login_with_http_info(payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: AuthApi.user_login ...'
@@ -93,6 +99,7 @@ module SwaggerClient
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
 
       # form parameters
       form_params = {}
@@ -105,7 +112,8 @@ module SwaggerClient
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'AuthResponse')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: AuthApi#user_login\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

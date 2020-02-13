@@ -86,16 +86,12 @@ public:
     /// git/http
     /// </summary>
     utility::string_t getCodeAccessMode() const;
-    bool codeAccessModeIsSet() const;
-    void unsetCode_access_mode();
-    void setCodeAccessMode(utility::string_t value);
+        void setCodeAccessMode(utility::string_t value);
     /// <summary>
     /// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
     /// </summary>
     utility::string_t getCodeAccessAuthKey() const;
-    bool codeAccessAuthKeyIsSet() const;
-    void unsetCode_access_auth_key();
-    void setCodeAccessAuthKey(utility::string_t value);
+        void setCodeAccessAuthKey(utility::string_t value);
     /// <summary>
     /// Cluster to run the grader on
     /// </summary>
@@ -107,18 +103,14 @@ public:
     /// Docker registry username
     /// </summary>
     utility::string_t getDockerUsername() const;
-    bool dockerUsernameIsSet() const;
-    void unsetDocker_username();
-    void setDockerUsername(utility::string_t value);
+        void setDockerUsername(utility::string_t value);
     /// <summary>
     /// Docker registry password
     /// </summary>
     utility::string_t getDockerPassword() const;
-    bool dockerPasswordIsSet() const;
-    void unsetDocker_password();
-    void setDockerPassword(utility::string_t value);
+        void setDockerPassword(utility::string_t value);
     /// <summary>
-    /// Docker registry URL
+    /// Docker registry URL. Dockerhub is used by default.
     /// </summary>
     utility::string_t getDockerRegistry() const;
     bool dockerRegistryIsSet() const;
@@ -135,9 +127,7 @@ public:
     /// S3 link to the zip file containing the code that will be used for the evaluation
     /// </summary>
     utility::string_t getEvaluationCode() const;
-    bool evaluationCodeIsSet() const;
-    void unsetEvaluation_code();
-    void setEvaluationCode(utility::string_t value);
+        void setEvaluationCode(utility::string_t value);
     /// <summary>
     /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     /// </summary>
@@ -184,22 +174,17 @@ protected:
     utility::string_t m_Dataset_url;
     bool m_Dataset_urlIsSet;
     utility::string_t m_Code_access_mode;
-    bool m_Code_access_modeIsSet;
-    utility::string_t m_Code_access_auth_key;
-    bool m_Code_access_auth_keyIsSet;
-    int32_t m_Cluster_id;
+        utility::string_t m_Code_access_auth_key;
+        int32_t m_Cluster_id;
     bool m_Cluster_idIsSet;
     utility::string_t m_Docker_username;
-    bool m_Docker_usernameIsSet;
-    utility::string_t m_Docker_password;
-    bool m_Docker_passwordIsSet;
-    utility::string_t m_Docker_registry;
+        utility::string_t m_Docker_password;
+        utility::string_t m_Docker_registry;
     bool m_Docker_registryIsSet;
     std::shared_ptr<Object> m_Workflow_spec;
     bool m_Workflow_specIsSet;
     utility::string_t m_Evaluation_code;
-    bool m_Evaluation_codeIsSet;
-    utility::string_t m_Storage_capacity;
+        utility::string_t m_Storage_capacity;
     bool m_Storage_capacityIsSet;
     std::shared_ptr<Object> m_Meta;
     bool m_MetaIsSet;

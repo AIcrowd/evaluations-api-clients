@@ -9,15 +9,26 @@ Method | HTTP request | Description
 
 
 # **LogoutAUser**
-> LogoutAUser(ctx, )
+> AuthLogout LogoutAUser(ctx, optional)
 
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***LogoutAUserOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a LogoutAUserOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -31,7 +42,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserLogin**
-> UserLogin(ctx, payload)
+> AuthResponse UserLogin(ctx, payload, optional)
 
 
 ### Required Parameters
@@ -40,10 +51,19 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Login**](Login.md)|  | 
+ **optional** | ***UserLoginOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserLoginOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

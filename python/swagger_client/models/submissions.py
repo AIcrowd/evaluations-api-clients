@@ -99,10 +99,8 @@ class Submissions(object):
             self.participant_id = participant_id
         if round_id is not None:
             self.round_id = round_id
-        if grader_id is not None:
-            self.grader_id = grader_id
-        if submission_code is not None:
-            self.submission_code = submission_code
+        self.grader_id = grader_id
+        self.submission_code = submission_code
         if status is not None:
             self.status = status
         if output is not None:
@@ -257,6 +255,8 @@ class Submissions(object):
         :param grader_id: The grader_id of this Submissions.  # noqa: E501
         :type: int
         """
+        if grader_id is None:
+            raise ValueError("Invalid value for `grader_id`, must not be `None`")  # noqa: E501
 
         self._grader_id = grader_id
 
@@ -280,6 +280,8 @@ class Submissions(object):
         :param submission_code: The submission_code of this Submissions.  # noqa: E501
         :type: str
         """
+        if submission_code is None:
+            raise ValueError("Invalid value for `submission_code`, must not be `None`")  # noqa: E501
 
         self._submission_code = submission_code
 

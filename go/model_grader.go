@@ -23,21 +23,21 @@ type Grader struct {
 	// S3 link of the Dataset
 	DatasetUrl string `json:"dataset_url,omitempty"`
 	// git/http
-	CodeAccessMode string `json:"code_access_mode,omitempty"`
+	CodeAccessMode string `json:"code_access_mode"`
 	// SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
-	CodeAccessAuthKey string `json:"code_access_auth_key,omitempty"`
+	CodeAccessAuthKey string `json:"code_access_auth_key"`
 	// Cluster to run the grader on
 	ClusterId int32 `json:"cluster_id,omitempty"`
 	// Docker registry username
-	DockerUsername string `json:"docker_username,omitempty"`
+	DockerUsername string `json:"docker_username"`
 	// Docker registry password
-	DockerPassword string `json:"docker_password,omitempty"`
-	// Docker registry URL
+	DockerPassword string `json:"docker_password"`
+	// Docker registry URL. Dockerhub is used by default.
 	DockerRegistry string `json:"docker_registry,omitempty"`
 	// Argo workflow template spec
 	WorkflowSpec *interface{} `json:"workflow_spec,omitempty"`
 	// S3 link to the zip file containing the code that will be used for the evaluation
-	EvaluationCode string `json:"evaluation_code,omitempty"`
+	EvaluationCode string `json:"evaluation_code"`
 	// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
 	StorageCapacity string `json:"storage_capacity,omitempty"`
 	// Additional meta data of the grader

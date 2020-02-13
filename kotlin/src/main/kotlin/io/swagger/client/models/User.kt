@@ -25,12 +25,14 @@ package io.swagger.client.models
  * @param password user password
  */
 data class User (
+    /* Email */
+    val email: kotlin.String,
+    /* Organisation identifier */
+    val organisation_id: kotlin.Int,
     /* user password */
     val password: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
-    /* Email */
-    val email: kotlin.String? = null,
     /* Admin Boolean */
     val admin: kotlin.Boolean? = null,
     /* Creation Time */
@@ -40,9 +42,7 @@ data class User (
     /* Total assigned evaluation quota */
     val total_quota: kotlin.Int? = null,
     /* Available evaluation quota */
-    val quota: kotlin.Int? = null,
-    /* Organisation identifier */
-    val organisation_id: kotlin.Int? = null
+    val quota: kotlin.Int? = null
 ) {
 
 }

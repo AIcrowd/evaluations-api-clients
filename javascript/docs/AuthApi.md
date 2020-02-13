@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="logoutAUser"></a>
 # **logoutAUser**
-> logoutAUser()
+> AuthLogout logoutAUser(opts)
 
 
 
@@ -27,22 +27,29 @@ api_key.apiKey = 'YOUR API KEY';
 
 var apiInstance = new EvaluationsApi.AuthApi();
 
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.logoutAUser(callback);
+apiInstance.logoutAUser(opts, callback);
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -55,7 +62,7 @@ null (empty response body)
 
 <a name="userLogin"></a>
 # **userLogin**
-> userLogin(payload)
+> AuthResponse userLogin(payload, opts)
 
 
 
@@ -67,15 +74,18 @@ var apiInstance = new EvaluationsApi.AuthApi();
 
 var payload = new EvaluationsApi.Login(); // Login | 
 
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.userLogin(payload, callback);
+apiInstance.userLogin(payload, opts, callback);
 ```
 
 ### Parameters
@@ -83,10 +93,11 @@ apiInstance.userLogin(payload, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  | 
+ **xFields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

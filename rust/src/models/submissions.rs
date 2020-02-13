@@ -31,10 +31,10 @@ pub struct Submissions {
   round_id: Option<i32>,
   /// Grader identifier
   #[serde(rename = "grader_id")]
-  grader_id: Option<i32>,
+  grader_id: i32,
   /// URL to the submission code
   #[serde(rename = "submission_code")]
-  submission_code: Option<String>,
+  submission_code: String,
   /// Current status of the submission
   #[serde(rename = "status")]
   status: Option<String>,
@@ -65,15 +65,15 @@ pub struct Submissions {
 }
 
 impl Submissions {
-  pub fn new() -> Submissions {
+  pub fn new(grader_id: i32, submission_code: String) -> Submissions {
     Submissions {
       id: None,
       created: None,
       updated: None,
       participant_id: None,
       round_id: None,
-      grader_id: None,
-      submission_code: None,
+      grader_id: grader_id,
+      submission_code: submission_code,
       status: None,
       output: None,
       additional_outputs: None,
@@ -172,38 +172,32 @@ impl Submissions {
   }
 
   pub fn set_grader_id(&mut self, grader_id: i32) {
-    self.grader_id = Some(grader_id);
+    self.grader_id = grader_id;
   }
 
   pub fn with_grader_id(mut self, grader_id: i32) -> Submissions {
-    self.grader_id = Some(grader_id);
+    self.grader_id = grader_id;
     self
   }
 
-  pub fn grader_id(&self) -> Option<&i32> {
-    self.grader_id.as_ref()
+  pub fn grader_id(&self) -> &i32 {
+    &self.grader_id
   }
 
-  pub fn reset_grader_id(&mut self) {
-    self.grader_id = None;
-  }
 
   pub fn set_submission_code(&mut self, submission_code: String) {
-    self.submission_code = Some(submission_code);
+    self.submission_code = submission_code;
   }
 
   pub fn with_submission_code(mut self, submission_code: String) -> Submissions {
-    self.submission_code = Some(submission_code);
+    self.submission_code = submission_code;
     self
   }
 
-  pub fn submission_code(&self) -> Option<&String> {
-    self.submission_code.as_ref()
+  pub fn submission_code(&self) -> &String {
+    &self.submission_code
   }
 
-  pub fn reset_submission_code(&mut self) {
-    self.submission_code = None;
-  }
 
   pub fn set_status(&mut self, status: String) {
     self.status = Some(status);

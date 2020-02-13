@@ -25,10 +25,10 @@ pub struct Cluster {
   updated: Option<String>,
   /// Remote address used to connect to the cluster
   #[serde(rename = "remote_address")]
-  remote_address: Option<String>,
+  remote_address: String,
   /// Authentication needed for the cluster
   #[serde(rename = "auth_token")]
-  auth_token: Option<String>,
+  auth_token: String,
   /// Storage class to use for datasets
   #[serde(rename = "storage_class")]
   storage_class: Option<String>,
@@ -47,13 +47,13 @@ pub struct Cluster {
 }
 
 impl Cluster {
-  pub fn new() -> Cluster {
+  pub fn new(remote_address: String, auth_token: String) -> Cluster {
     Cluster {
       id: None,
       created: None,
       updated: None,
-      remote_address: None,
-      auth_token: None,
+      remote_address: remote_address,
+      auth_token: auth_token,
       storage_class: None,
       status: None,
       meta: None,
@@ -114,38 +114,32 @@ impl Cluster {
   }
 
   pub fn set_remote_address(&mut self, remote_address: String) {
-    self.remote_address = Some(remote_address);
+    self.remote_address = remote_address;
   }
 
   pub fn with_remote_address(mut self, remote_address: String) -> Cluster {
-    self.remote_address = Some(remote_address);
+    self.remote_address = remote_address;
     self
   }
 
-  pub fn remote_address(&self) -> Option<&String> {
-    self.remote_address.as_ref()
+  pub fn remote_address(&self) -> &String {
+    &self.remote_address
   }
 
-  pub fn reset_remote_address(&mut self) {
-    self.remote_address = None;
-  }
 
   pub fn set_auth_token(&mut self, auth_token: String) {
-    self.auth_token = Some(auth_token);
+    self.auth_token = auth_token;
   }
 
   pub fn with_auth_token(mut self, auth_token: String) -> Cluster {
-    self.auth_token = Some(auth_token);
+    self.auth_token = auth_token;
     self
   }
 
-  pub fn auth_token(&self) -> Option<&String> {
-    self.auth_token.as_ref()
+  pub fn auth_token(&self) -> &String {
+    &self.auth_token
   }
 
-  pub fn reset_auth_token(&mut self) {
-    self.auth_token = None;
-  }
 
   pub fn set_storage_class(&mut self, storage_class: String) {
     self.storage_class = Some(storage_class);

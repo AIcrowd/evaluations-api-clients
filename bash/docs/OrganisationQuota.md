@@ -1,4 +1,4 @@
-# organisationQuota
+# OrganisationQuota
 
 ## Properties
 Name | Type | Description | Notes

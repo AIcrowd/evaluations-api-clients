@@ -14,6 +14,8 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
+import io.swagger.client.model.AuthLogout;
+import io.swagger.client.model.AuthResponse;
 import io.swagger.client.model.Login;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -42,7 +44,8 @@ public class AuthApiTest {
      */
     @Test
     public void logoutAUserTest() throws ApiException {
-        api.logoutAUser();
+        String xFields = null;
+        AuthLogout response = api.logoutAUser(xFields);
 
         // TODO: test validations
     }
@@ -58,7 +61,8 @@ public class AuthApiTest {
     @Test
     public void userLoginTest() throws ApiException {
         Login payload = null;
-        api.userLogin(payload);
+        String xFields = null;
+        AuthResponse response = api.userLogin(payload, xFields);
 
         // TODO: test validations
     }

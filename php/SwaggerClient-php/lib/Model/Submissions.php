@@ -279,6 +279,12 @@ class Submissions implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['grader_id'] === null) {
+            $invalidProperties[] = "'grader_id' can't be null";
+        }
+        if ($this->container['submission_code'] === null) {
+            $invalidProperties[] = "'submission_code' can't be null";
+        }
         return $invalidProperties;
     }
 

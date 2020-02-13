@@ -70,6 +70,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [io.swagger.client.models.AuthLogout](docs/AuthLogout.md)
+ - [io.swagger.client.models.AuthResponse](docs/AuthResponse.md)
  - [io.swagger.client.models.Cluster](docs/Cluster.md)
  - [io.swagger.client.models.GenericFeedback](docs/GenericFeedback.md)
  - [io.swagger.client.models.Grader](docs/Grader.md)

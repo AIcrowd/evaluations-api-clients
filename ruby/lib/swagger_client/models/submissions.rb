@@ -183,12 +183,22 @@ module SwaggerClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @grader_id.nil?
+        invalid_properties.push('invalid value for "grader_id", grader_id cannot be nil.')
+      end
+
+      if @submission_code.nil?
+        invalid_properties.push('invalid value for "submission_code", submission_code cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @grader_id.nil?
+      return false if @submission_code.nil?
       true
     end
 

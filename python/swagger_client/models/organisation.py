@@ -61,10 +61,8 @@ class Organisation(object):
 
         if id is not None:
             self.id = id
-        if name is not None:
-            self.name = name
-        if poc_email is not None:
-            self.poc_email = poc_email
+        self.name = name
+        self.poc_email = poc_email
         if created_on is not None:
             self.created_on = created_on
         if total_quota is not None:
@@ -115,6 +113,8 @@ class Organisation(object):
         :param name: The name of this Organisation.  # noqa: E501
         :type: str
         """
+        if name is None:
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -138,6 +138,8 @@ class Organisation(object):
         :param poc_email: The poc_email of this Organisation.  # noqa: E501
         :type: str
         """
+        if poc_email is None:
+            raise ValueError("Invalid value for `poc_email`, must not be `None`")  # noqa: E501
 
         self._poc_email = poc_email
 

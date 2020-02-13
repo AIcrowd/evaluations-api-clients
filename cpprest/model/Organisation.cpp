@@ -24,9 +24,7 @@ Organisation::Organisation()
     m_Id = 0;
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
-    m_NameIsSet = false;
     m_Poc_email = utility::conversions::to_string_t("");
-    m_Poc_emailIsSet = false;
     m_Created_on = utility::datetime();
     m_Created_onIsSet = false;
     m_Total_quota = 0;
@@ -52,14 +50,8 @@ web::json::value Organisation::toJson() const
     {
         val[utility::conversions::to_string_t("id")] = ModelBase::toJson(m_Id);
     }
-    if(m_NameIsSet)
-    {
-        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_Name);
-    }
-    if(m_Poc_emailIsSet)
-    {
-        val[utility::conversions::to_string_t("poc_email")] = ModelBase::toJson(m_Poc_email);
-    }
+    val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_Name);
+    val[utility::conversions::to_string_t("poc_email")] = ModelBase::toJson(m_Poc_email);
     if(m_Created_onIsSet)
     {
         val[utility::conversions::to_string_t("created_on")] = ModelBase::toJson(m_Created_on);
@@ -86,22 +78,8 @@ void Organisation::fromJson(web::json::value& val)
             setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("name")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("name")];
-        if(!fieldValue.is_null())
-        {
-            setName(ModelBase::stringFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("poc_email")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("poc_email")];
-        if(!fieldValue.is_null())
-        {
-            setPocEmail(ModelBase::stringFromJson(fieldValue));
-        }
-    }
+    setName(ModelBase::stringFromJson(val[utility::conversions::to_string_t("name")]));
+    setPocEmail(ModelBase::stringFromJson(val[utility::conversions::to_string_t("poc_email")]));
     if(val.has_field(utility::conversions::to_string_t("created_on")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("created_on")];
@@ -140,16 +118,8 @@ void Organisation::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("id"), m_Id));
     }
-    if(m_NameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_Name));
-        
-    }
-    if(m_Poc_emailIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("poc_email"), m_Poc_email));
-        
-    }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_Name));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("poc_email"), m_Poc_email));
     if(m_Created_onIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("created_on"), m_Created_on));
@@ -177,14 +147,8 @@ void Organisation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     {
         setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("name")))
-    {
-        setName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("name"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("poc_email")))
-    {
-        setPocEmail(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("poc_email"))));
-    }
+    setName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("name"))));
+    setPocEmail(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("poc_email"))));
     if(multipart->hasContent(utility::conversions::to_string_t("created_on")))
     {
         setCreatedOn(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("created_on"))));
@@ -229,18 +193,8 @@ utility::string_t Organisation::getName() const
 void Organisation::setName(utility::string_t value)
 {
     m_Name = value;
-    m_NameIsSet = true;
+    
 }
-bool Organisation::nameIsSet() const
-{
-    return m_NameIsSet;
-}
-
-void Organisation::unsetName()
-{
-    m_NameIsSet = false;
-}
-
 utility::string_t Organisation::getPocEmail() const
 {
     return m_Poc_email;
@@ -250,18 +204,8 @@ utility::string_t Organisation::getPocEmail() const
 void Organisation::setPocEmail(utility::string_t value)
 {
     m_Poc_email = value;
-    m_Poc_emailIsSet = true;
+    
 }
-bool Organisation::pocEmailIsSet() const
-{
-    return m_Poc_emailIsSet;
-}
-
-void Organisation::unsetPoc_email()
-{
-    m_Poc_emailIsSet = false;
-}
-
 utility::datetime Organisation::getCreatedOn() const
 {
     return m_Created_on;

@@ -17,20 +17,25 @@ defmodule EvaluationsAPI.Api.Auth do
 
   - connection (EvaluationsAPI.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
 
   ## Returns
 
-  {:ok, %{}} on success
+  {:ok, %EvaluationsAPI.Model.AuthLogout{}} on success
   {:error, info} on failure
   """
-  @spec logout_a_user(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def logout_a_user(connection, _opts \\ []) do
+  @spec logout_a_user(Tesla.Env.client, keyword()) :: {:ok, EvaluationsAPI.Model.AuthLogout.t} | {:error, Tesla.Env.t}
+  def logout_a_user(connection, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
     %{}
     |> method(:post)
     |> url("/auth/logout")
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> decode(%EvaluationsAPI.Model.AuthLogout{})
   end
 
   @doc """
@@ -40,20 +45,25 @@ defmodule EvaluationsAPI.Api.Auth do
   - connection (EvaluationsAPI.Connection): Connection to server
   - payload (Login): 
   - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
 
   ## Returns
 
-  {:ok, %{}} on success
+  {:ok, %EvaluationsAPI.Model.AuthResponse{}} on success
   {:error, info} on failure
   """
-  @spec user_login(Tesla.Env.client, EvaluationsAPI.Model.Login.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def user_login(connection, payload, _opts \\ []) do
+  @spec user_login(Tesla.Env.client, EvaluationsAPI.Model.Login.t, keyword()) :: {:ok, EvaluationsAPI.Model.AuthResponse.t} | {:error, Tesla.Env.t}
+  def user_login(connection, payload, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
     %{}
     |> method(:post)
     |> url("/auth/login")
     |> add_param(:body, :"payload", payload)
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> decode(%EvaluationsAPI.Model.AuthResponse{})
   end
 end

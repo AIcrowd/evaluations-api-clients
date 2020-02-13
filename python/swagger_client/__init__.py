@@ -28,6 +28,8 @@ from swagger_client.api.users_api import UsersApi
 from swagger_client.api_client import ApiClient
 from swagger_client.configuration import Configuration
 # import models into sdk package
+from swagger_client.models.auth_logout import AuthLogout
+from swagger_client.models.auth_response import AuthResponse
 from swagger_client.models.cluster import Cluster
 from swagger_client.models.generic_feedback import GenericFeedback
 from swagger_client.models.grader import Grader

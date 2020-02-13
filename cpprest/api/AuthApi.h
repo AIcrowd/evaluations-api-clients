@@ -22,7 +22,10 @@
 
 #include "../ApiClient.h"
 
+#include "AuthLogout.h"
+#include "AuthResponse.h"
 #include "Login.h"
+#include <cpprest/details/basic_types.h>
 
 #include <boost/optional.hpp>
 
@@ -44,7 +47,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    pplx::task<void> logout_a_user(
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<AuthLogout>> logout_a_user(
+        boost::optional<utility::string_t> xFields
     );
     /// <summary>
     /// 
@@ -53,8 +58,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="payload"></param>
-    pplx::task<void> user_login(
-        std::shared_ptr<Login> payload
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<AuthResponse>> user_login(
+        std::shared_ptr<Login> payload,
+        boost::optional<utility::string_t> xFields
     );
 
 protected:

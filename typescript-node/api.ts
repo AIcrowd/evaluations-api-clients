@@ -136,6 +136,46 @@ class ObjectSerializer {
     }
 }
 
+export class AuthLogout {
+    /**
+    * Logout message
+    */
+    'message'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AuthLogout.attributeTypeMap;
+    }
+}
+
+export class AuthResponse {
+    /**
+    * Authorization token that should be used in the headers
+    */
+    'authorization'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "authorization",
+            "baseName": "Authorization",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AuthResponse.attributeTypeMap;
+    }
+}
+
 export class Cluster {
     /**
     * ID
@@ -152,11 +192,11 @@ export class Cluster {
     /**
     * Remote address used to connect to the cluster
     */
-    'remoteAddress'?: string;
+    'remoteAddress': string;
     /**
     * Authentication needed for the cluster
     */
-    'authToken'?: string;
+    'authToken': string;
     /**
     * Storage class to use for datasets
     */
@@ -286,11 +326,11 @@ export class Grader {
     /**
     * git/http
     */
-    'codeAccessMode'?: string;
+    'codeAccessMode': string;
     /**
     * SSH private key if using git or HTTP Auth token if using HTTP to access the submission code
     */
-    'codeAccessAuthKey'?: string;
+    'codeAccessAuthKey': string;
     /**
     * Cluster to run the grader on
     */
@@ -298,13 +338,13 @@ export class Grader {
     /**
     * Docker registry username
     */
-    'dockerUsername'?: string;
+    'dockerUsername': string;
     /**
     * Docker registry password
     */
-    'dockerPassword'?: string;
+    'dockerPassword': string;
     /**
-    * Docker registry URL
+    * Docker registry URL. Dockerhub is used by default.
     */
     'dockerRegistry'?: string;
     /**
@@ -314,7 +354,7 @@ export class Grader {
     /**
     * S3 link to the zip file containing the code that will be used for the evaluation
     */
-    'evaluationCode'?: string;
+    'evaluationCode': string;
     /**
     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     */
@@ -496,11 +536,11 @@ export class Organisation {
     /**
     * Organisation Name
     */
-    'name'?: string;
+    'name': string;
     /**
     * Point of contact email
     */
-    'pocEmail'?: string;
+    'pocEmail': string;
     /**
     * Creation Time
     */
@@ -644,11 +684,11 @@ export class Submissions {
     /**
     * Grader identifier
     */
-    'graderId'?: number;
+    'graderId': number;
     /**
     * URL to the submission code
     */
-    'submissionCode'?: string;
+    'submissionCode': string;
     /**
     * Current status of the submission
     */
@@ -783,7 +823,7 @@ export class User {
     /**
     * Email
     */
-    'email'?: string;
+    'email': string;
     /**
     * Admin Boolean
     */
@@ -807,7 +847,7 @@ export class User {
     /**
     * Organisation identifier
     */
-    'organisationId'?: number;
+    'organisationId': number;
     /**
     * user password
     */
@@ -892,6 +932,8 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "AuthLogout": AuthLogout,
+    "AuthResponse": AuthResponse,
     "Cluster": Cluster,
     "GenericFeedback": GenericFeedback,
     "Grader": Grader,
@@ -1245,14 +1287,16 @@ export class AuthApi {
     }
     /**
      * 
+     * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public logoutAUser (options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public logoutAUser (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthLogout;  }> {
         const localVarPath = this.basePath + '/auth/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -1277,11 +1321,12 @@ export class AuthApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: AuthLogout;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "AuthLogout");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1294,9 +1339,10 @@ export class AuthApi {
     /**
      * 
      * @param payload 
+     * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public userLogin (payload: Login, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public userLogin (payload: Login, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthResponse;  }> {
         const localVarPath = this.basePath + '/auth/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1307,6 +1353,7 @@ export class AuthApi {
             throw new Error('Required parameter payload was null or undefined when calling userLogin.');
         }
 
+        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -1330,11 +1377,12 @@ export class AuthApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: AuthResponse;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "AuthResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

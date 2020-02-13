@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **logout_a_user**
-> logout_a_user()
+> AuthLogout logout_a_user(x_fields => $x_fields)
 
 
 
@@ -30,9 +30,11 @@ my $api_instance = WWW::SwaggerClient::AuthApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    $api_instance->logout_a_user();
+    my $result = $api_instance->logout_a_user(x_fields => $x_fields);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling AuthApi->logout_a_user: $@\n";
@@ -40,11 +42,14 @@ if ($@) {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthLogout**](AuthLogout.md)
 
 ### Authorization
 
@@ -58,7 +63,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_login**
-> user_login(payload => $payload)
+> AuthResponse user_login(payload => $payload, x_fields => $x_fields)
 
 
 
@@ -70,9 +75,11 @@ my $api_instance = WWW::SwaggerClient::AuthApi->new(
 );
 
 my $payload = WWW::SwaggerClient::Object::Login->new(); # Login | 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    $api_instance->user_login(payload => $payload);
+    my $result = $api_instance->user_login(payload => $payload, x_fields => $x_fields);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling AuthApi->user_login: $@\n";
@@ -84,10 +91,11 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AuthResponse**](AuthResponse.md)
 
 ### Authorization
 

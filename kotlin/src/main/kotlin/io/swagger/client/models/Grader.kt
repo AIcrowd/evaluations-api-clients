@@ -23,7 +23,7 @@ package io.swagger.client.models
  * @param cluster_id Cluster to run the grader on
  * @param docker_username Docker registry username
  * @param docker_password Docker registry password
- * @param docker_registry Docker registry URL
+ * @param docker_registry Docker registry URL. Dockerhub is used by default.
  * @param workflow_spec Argo workflow template spec
  * @param evaluation_code S3 link to the zip file containing the code that will be used for the evaluation
  * @param storage_capacity Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
@@ -33,6 +33,16 @@ package io.swagger.client.models
  * @param organisation_id Organisation ID
  */
 data class Grader (
+    /* git/http */
+    val code_access_mode: kotlin.String,
+    /* SSH private key if using git or HTTP Auth token if using HTTP to access the submission code */
+    val code_access_auth_key: kotlin.String,
+    /* Docker registry username */
+    val docker_username: kotlin.String,
+    /* Docker registry password */
+    val docker_password: kotlin.String,
+    /* S3 link to the zip file containing the code that will be used for the evaluation */
+    val evaluation_code: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */
@@ -41,22 +51,12 @@ data class Grader (
     val updated: java.time.LocalDateTime? = null,
     /* S3 link of the Dataset */
     val dataset_url: kotlin.String? = null,
-    /* git/http */
-    val code_access_mode: kotlin.String? = null,
-    /* SSH private key if using git or HTTP Auth token if using HTTP to access the submission code */
-    val code_access_auth_key: kotlin.String? = null,
     /* Cluster to run the grader on */
     val cluster_id: kotlin.Int? = null,
-    /* Docker registry username */
-    val docker_username: kotlin.String? = null,
-    /* Docker registry password */
-    val docker_password: kotlin.String? = null,
-    /* Docker registry URL */
+    /* Docker registry URL. Dockerhub is used by default. */
     val docker_registry: kotlin.String? = null,
     /* Argo workflow template spec */
     val workflow_spec: kotlin.Any? = null,
-    /* S3 link to the zip file containing the code that will be used for the evaluation */
-    val evaluation_code: kotlin.String? = null,
     /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
     val storage_capacity: kotlin.String? = null,
     /* Additional meta data of the grader */

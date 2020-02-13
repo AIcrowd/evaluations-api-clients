@@ -55,6 +55,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AuthLogout](docs/AuthLogout.md)
+ - [AuthResponse](docs/AuthResponse.md)
  - [Cluster](docs/Cluster.md)
  - [GenericFeedback](docs/GenericFeedback.md)
  - [Grader](docs/Grader.md)

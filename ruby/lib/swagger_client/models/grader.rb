@@ -41,7 +41,7 @@ module SwaggerClient
     # Docker registry password
     attr_accessor :docker_password
 
-    # Docker registry URL
+    # Docker registry URL. Dockerhub is used by default.
     attr_accessor :docker_registry
 
     # Argo workflow template spec
@@ -192,12 +192,37 @@ module SwaggerClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @code_access_mode.nil?
+        invalid_properties.push('invalid value for "code_access_mode", code_access_mode cannot be nil.')
+      end
+
+      if @code_access_auth_key.nil?
+        invalid_properties.push('invalid value for "code_access_auth_key", code_access_auth_key cannot be nil.')
+      end
+
+      if @docker_username.nil?
+        invalid_properties.push('invalid value for "docker_username", docker_username cannot be nil.')
+      end
+
+      if @docker_password.nil?
+        invalid_properties.push('invalid value for "docker_password", docker_password cannot be nil.')
+      end
+
+      if @evaluation_code.nil?
+        invalid_properties.push('invalid value for "evaluation_code", evaluation_code cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @code_access_mode.nil?
+      return false if @code_access_auth_key.nil?
+      return false if @docker_username.nil?
+      return false if @docker_password.nil?
+      return false if @evaluation_code.nil?
       true
     end
 

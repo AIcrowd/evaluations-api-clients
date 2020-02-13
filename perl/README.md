@@ -233,6 +233,8 @@ use WWW::SwaggerClient::UsersApi;
 
 To load the models:
 ```perl
+use WWW::SwaggerClient::Object::AuthLogout;
+use WWW::SwaggerClient::Object::AuthResponse;
 use WWW::SwaggerClient::Object::Cluster;
 use WWW::SwaggerClient::Object::GenericFeedback;
 use WWW::SwaggerClient::Object::Grader;
@@ -264,6 +266,8 @@ use WWW::SwaggerClient::SubmissionsApi;
 use WWW::SwaggerClient::UsersApi;
 
 # load the models
+use WWW::SwaggerClient::Object::AuthLogout;
+use WWW::SwaggerClient::Object::AuthResponse;
 use WWW::SwaggerClient::Object::Cluster;
 use WWW::SwaggerClient::Object::GenericFeedback;
 use WWW::SwaggerClient::Object::Grader;
@@ -340,6 +344,8 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
+ - [WWW::SwaggerClient::Object::AuthLogout](docs/AuthLogout.md)
+ - [WWW::SwaggerClient::Object::AuthResponse](docs/AuthResponse.md)
  - [WWW::SwaggerClient::Object::Cluster](docs/Cluster.md)
  - [WWW::SwaggerClient::Object::GenericFeedback](docs/GenericFeedback.md)
  - [WWW::SwaggerClient::Object::Grader](docs/Grader.md)

@@ -33,12 +33,33 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Organisation" /> class.
         /// </summary>
-        /// <param name="name">Organisation Name.</param>
-        /// <param name="pocEmail">Point of contact email.</param>
+        [JsonConstructorAttribute]
+        protected Organisation() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Organisation" /> class.
+        /// </summary>
+        /// <param name="name">Organisation Name (required).</param>
+        /// <param name="pocEmail">Point of contact email (required).</param>
         public Organisation(string name = default(string), string pocEmail = default(string))
         {
-            this.Name = name;
-            this.PocEmail = pocEmail;
+            // to ensure "name" is required (not null)
+            if (name == null)
+            {
+                throw new InvalidDataException("name is a required property for Organisation and cannot be null");
+            }
+            else
+            {
+                this.Name = name;
+            }
+            // to ensure "pocEmail" is required (not null)
+            if (pocEmail == null)
+            {
+                throw new InvalidDataException("pocEmail is a required property for Organisation and cannot be null");
+            }
+            else
+            {
+                this.PocEmail = pocEmail;
+            }
         }
         
         /// <summary>
