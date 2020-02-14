@@ -43,6 +43,9 @@ class Grader {
   /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
   String storageCapacity = null
 
+  /* Logs from argo workflow */
+  Object logs = null
+
   /* Additional meta data of the grader */
   Object meta = null
 

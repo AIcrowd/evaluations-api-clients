@@ -273,6 +273,12 @@ export interface Grader {
      */
     storageCapacity?: string;
     /**
+     * Logs from argo workflow
+     * @type {any}
+     * @memberof Grader
+     */
+    logs?: any;
+    /**
      * Additional meta data of the grader
      * @type {any}
      * @memberof Grader
@@ -496,10 +502,10 @@ export interface Submissions {
     additionalOutputs?: string;
     /**
      * S3 link of the STDOUT of the evaluation
-     * @type {string}
+     * @type {any}
      * @memberof Submissions
      */
-    logs?: string;
+    logs?: any;
     /**
      * Evaluation start time
      * @type {Date}

@@ -141,7 +141,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>S3 link of the STDOUT of the evaluation</value>
         [DataMember(Name="logs", EmitDefaultValue=false)]
-        public string Logs { get; private set; }
+        public Object Logs { get; private set; }
 
         /// <summary>
         /// Evaluation start time

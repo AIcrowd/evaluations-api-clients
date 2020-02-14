@@ -123,10 +123,10 @@ public:
     /// <summary>
     /// S3 link of the STDOUT of the evaluation
     /// </summary>
-    utility::string_t getLogs() const;
+    std::shared_ptr<Object> getLogs() const;
     bool logsIsSet() const;
     void unsetLogs();
-    void setLogs(utility::string_t value);
+    void setLogs(std::shared_ptr<Object> value);
     /// <summary>
     /// Evaluation start time
     /// </summary>
@@ -182,7 +182,7 @@ protected:
     bool m_OutputIsSet;
     utility::string_t m_Additional_outputs;
     bool m_Additional_outputsIsSet;
-    utility::string_t m_Logs;
+    std::shared_ptr<Object> m_Logs;
     bool m_LogsIsSet;
     utility::datetime m_Started;
     bool m_StartedIsSet;

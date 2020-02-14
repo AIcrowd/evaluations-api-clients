@@ -67,7 +67,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'status' => 'string',
         'output' => 'string',
         'additional_outputs' => 'string',
-        'logs' => 'string',
+        'logs' => 'object',
         'started' => '\DateTime',
         'ended' => '\DateTime',
         'meta' => 'object',
@@ -543,7 +543,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Gets logs
      *
-     * @return string
+     * @return object
      */
     public function getLogs()
     {
@@ -553,7 +553,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Sets logs
      *
-     * @param string $logs S3 link of the STDOUT of the evaluation
+     * @param object $logs S3 link of the STDOUT of the evaluation
      *
      * @return $this
      */

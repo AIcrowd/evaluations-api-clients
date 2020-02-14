@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **status** | **string** | Current status of the submission | [optional] 
 **output** | **string** | S3 link of the output (available after the evaluation) | [optional] 
 **additional_outputs** | **string** | Array of any additional outputs | [optional] 
-**logs** | **string** | S3 link of the STDOUT of the evaluation | [optional] 
+**logs** | **object** | S3 link of the STDOUT of the evaluation | [optional] 
 **started** | **DateTime** | Evaluation start time | [optional] 
 **ended** | **DateTime** | Evaluation end time | [optional] 
 **meta** | **object** | Additional meta-data | [optional] 

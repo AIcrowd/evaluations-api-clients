@@ -55,7 +55,7 @@ export interface Submissions {
     /**
      * S3 link of the STDOUT of the evaluation
      */
-    readonly logs?: string;
+    readonly logs?: any;
     /**
      * Evaluation start time
      */

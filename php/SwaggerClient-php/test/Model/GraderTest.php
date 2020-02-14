@@ -161,6 +161,13 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "logs"
+     */
+    public function testPropertyLogs()
+    {
+    }
+
+    /**
      * Test attribute "meta"
      */
     public function testPropertyMeta()

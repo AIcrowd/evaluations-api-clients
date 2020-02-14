@@ -38,6 +38,8 @@ type Grader struct {
 	EvaluationCode string `json:"evaluation_code"`
 	// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
 	StorageCapacity string `json:"storage_capacity,omitempty"`
+	// Logs from argo workflow
+	Logs *interface{} `json:"logs,omitempty"`
 	// Additional meta data of the grader
 	Meta *interface{} `json:"meta,omitempty"`
 	// Status of the grader - True if it ready, False otherwise

@@ -93,6 +93,8 @@
             expect(data.evaluationCode).to.be("");
             expect(data.storageCapacity).to.be.a('string');
             expect(data.storageCapacity).to.be("");
+            expect(data.logs).to.be.a(Object);
+            expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
             expect(data.status).to.be.a('boolean');
@@ -152,6 +154,8 @@
               expect(data.evaluationCode).to.be("");
               expect(data.storageCapacity).to.be.a('string');
               expect(data.storageCapacity).to.be("");
+              expect(data.logs).to.be.a(Object);
+              expect(data.logs).to.be();
               expect(data.meta).to.be.a(Object);
               expect(data.meta).to.be();
               expect(data.status).to.be.a('boolean');
@@ -216,6 +220,8 @@
             expect(data.evaluationCode).to.be("");
             expect(data.storageCapacity).to.be.a('string');
             expect(data.storageCapacity).to.be("");
+            expect(data.logs).to.be.a(Object);
+            expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
             expect(data.status).to.be.a('boolean');
@@ -280,6 +286,8 @@
             expect(data.evaluationCode).to.be("");
             expect(data.storageCapacity).to.be.a('string');
             expect(data.storageCapacity).to.be("");
+            expect(data.logs).to.be.a(Object);
+            expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
             expect(data.status).to.be.a('boolean');

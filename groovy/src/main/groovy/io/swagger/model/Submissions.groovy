@@ -38,7 +38,7 @@ class Submissions {
   String additionalOutputs = null
 
   /* S3 link of the STDOUT of the evaluation */
-  String logs = null
+  Object logs = null
 
   /* Evaluation start time */
   Date started = null

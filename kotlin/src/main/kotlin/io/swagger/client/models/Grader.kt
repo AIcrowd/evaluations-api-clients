@@ -26,6 +26,7 @@ package io.swagger.client.models
  * @param workflow_spec Argo workflow template spec
  * @param evaluation_code S3 link to the zip file containing the code that will be used for the evaluation
  * @param storage_capacity Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
+ * @param logs Logs from argo workflow
  * @param meta Additional meta data of the grader
  * @param status Status of the grader - True if it ready, False otherwise
  * @param user_id User ID
@@ -56,6 +57,8 @@ data class Grader (
     val workflow_spec: kotlin.Any? = null,
     /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
     val storage_capacity: kotlin.String? = null,
+    /* Logs from argo workflow */
+    val logs: kotlin.Any? = null,
     /* Additional meta data of the grader */
     val meta: kotlin.Any? = null,
     /* Status of the grader - True if it ready, False otherwise */

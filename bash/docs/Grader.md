@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **workflow_spec** | **map** |  | [optional] [default to null]
 **evaluation_code** | **string** |  | [default to null]
 **storage_capacity** | **string** |  | [optional] [default to null]
+**logs** | **map** |  | [optional] [default to null]
 **meta** | **map** |  | [optional] [default to null]
 **status** | **boolean** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]

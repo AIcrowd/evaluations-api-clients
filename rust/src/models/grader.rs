@@ -50,6 +50,9 @@ pub struct Grader {
   /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   #[serde(rename = "storage_capacity")]
   storage_capacity: Option<String>,
+  /// Logs from argo workflow
+  #[serde(rename = "logs")]
+  logs: Option<Value>,
   /// Additional meta data of the grader
   #[serde(rename = "meta")]
   meta: Option<Value>,
@@ -79,6 +82,7 @@ impl Grader {
       workflow_spec: None,
       evaluation_code: evaluation_code,
       storage_capacity: None,
+      logs: None,
       meta: None,
       status: None,
       user_id: None,
@@ -276,6 +280,23 @@ impl Grader {
 
   pub fn reset_storage_capacity(&mut self) {
     self.storage_capacity = None;
+  }
+
+  pub fn set_logs(&mut self, logs: Value) {
+    self.logs = Some(logs);
+  }
+
+  pub fn with_logs(mut self, logs: Value) -> Grader {
+    self.logs = Some(logs);
+    self
+  }
+
+  pub fn logs(&self) -> Option<&Value> {
+    self.logs.as_ref()
+  }
+
+  pub fn reset_logs(&mut self) {
+    self.logs = None;
   }
 
   pub fn set_meta(&mut self, meta: Value) {

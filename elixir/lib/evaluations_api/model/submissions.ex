@@ -38,7 +38,7 @@ defmodule EvaluationsAPI.Model.Submissions do
     :"status" => String.t,
     :"output" => String.t,
     :"additional_outputs" => String.t,
-    :"logs" => String.t,
+    :"logs" => Object,
     :"started" => DateTime.t,
     :"ended" => DateTime.t,
     :"meta" => Object,
@@ -51,6 +51,7 @@ defimpl Poison.Decoder, for: EvaluationsAPI.Model.Submissions do
   import EvaluationsAPI.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:"logs", :struct, EvaluationsAPI.Model.Object, options)
     |> deserialize(:"meta", :struct, EvaluationsAPI.Model.Object, options)
   end
 end

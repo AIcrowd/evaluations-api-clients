@@ -131,6 +131,13 @@ public:
     void unsetStorage_capacity();
     void setStorageCapacity(utility::string_t value);
     /// <summary>
+    /// Logs from argo workflow
+    /// </summary>
+    std::shared_ptr<Object> getLogs() const;
+    bool logsIsSet() const;
+    void unsetLogs();
+    void setLogs(std::shared_ptr<Object> value);
+    /// <summary>
     /// Additional meta data of the grader
     /// </summary>
     std::shared_ptr<Object> getMeta() const;
@@ -180,6 +187,8 @@ protected:
     utility::string_t m_Evaluation_code;
         utility::string_t m_Storage_capacity;
     bool m_Storage_capacityIsSet;
+    std::shared_ptr<Object> m_Logs;
+    bool m_LogsIsSet;
     std::shared_ptr<Object> m_Meta;
     bool m_MetaIsSet;
     bool m_Status;

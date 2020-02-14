@@ -15,7 +15,7 @@
        'status' => binary(),
        'output' => binary(),
        'additional_outputs' => binary(),
-       'logs' => binary(),
+       'logs' => maps:map(),
        'started' => swagger_date_time:swagger_date_time(),
        'ended' => swagger_date_time:swagger_date_time(),
        'meta' => maps:map(),

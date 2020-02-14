@@ -53,7 +53,7 @@ data class Submissions (
     /* Array of any additional outputs */
     val additional_outputs: kotlin.String? = null,
     /* S3 link of the STDOUT of the evaluation */
-    val logs: kotlin.String? = null,
+    val logs: kotlin.Any? = null,
     /* Evaluation start time */
     val started: java.time.LocalDateTime? = null,
     /* Evaluation end time */

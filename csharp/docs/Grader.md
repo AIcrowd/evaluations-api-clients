@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **WorkflowSpec** | **Object** | Argo workflow template spec | [optional] 
 **EvaluationCode** | **string** | S3 link to the zip file containing the code that will be used for the evaluation | 
 **StorageCapacity** | **string** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 
+**Logs** | **Object** | Logs from argo workflow | [optional] 
 **Meta** | **Object** | Additional meta data of the grader | [optional] 
 **Status** | **bool?** | Status of the grader - True if it ready, False otherwise | [optional] 
 **UserId** | **int?** | User ID | [optional] 

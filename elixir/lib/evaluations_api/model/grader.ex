@@ -21,6 +21,7 @@ defmodule EvaluationsAPI.Model.Grader do
     :"workflow_spec",
     :"evaluation_code",
     :"storage_capacity",
+    :"logs",
     :"meta",
     :"status",
     :"user_id",
@@ -40,6 +41,7 @@ defmodule EvaluationsAPI.Model.Grader do
     :"workflow_spec" => Object,
     :"evaluation_code" => String.t,
     :"storage_capacity" => String.t,
+    :"logs" => Object,
     :"meta" => Object,
     :"status" => boolean(),
     :"user_id" => integer(),
@@ -52,6 +54,7 @@ defimpl Poison.Decoder, for: EvaluationsAPI.Model.Grader do
   def decode(value, options) do
     value
     |> deserialize(:"workflow_spec", :struct, EvaluationsAPI.Model.Object, options)
+    |> deserialize(:"logs", :struct, EvaluationsAPI.Model.Object, options)
     |> deserialize(:"meta", :struct, EvaluationsAPI.Model.Object, options)
   end
 end

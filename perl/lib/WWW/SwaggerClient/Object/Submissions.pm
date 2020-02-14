@@ -214,7 +214,7 @@ __PACKAGE__->method_documentation({
     	read_only => '',
     		},
     'logs' => {
-    	datatype => 'string',
+    	datatype => 'object',
     	base_name => 'logs',
     	description => 'S3 link of the STDOUT of the evaluation',
     	format => '',
@@ -268,7 +268,7 @@ __PACKAGE__->swagger_types( {
     'status' => 'string',
     'output' => 'string',
     'additional_outputs' => 'string',
-    'logs' => 'string',
+    'logs' => 'object',
     'started' => 'DateTime',
     'ended' => 'DateTime',
     'meta' => 'object',

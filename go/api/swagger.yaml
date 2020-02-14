@@ -981,6 +981,11 @@ definitions:
         type: "string"
         description: "Size of the dataset partition to request. Please provide at\
           \ least 2x of the size of the dataset."
+      logs:
+        type: "object"
+        description: "Logs from argo workflow"
+        readOnly: true
+        properties: {}
       meta:
         type: "object"
         description: "Additional meta data of the grader"
@@ -1014,6 +1019,7 @@ definitions:
       docker_username: "docker_username"
       evaluation_code: "evaluation_code"
       updated: "2000-01-23T04:56:07.000+00:00"
+      logs: "{}"
       status: true
     x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
@@ -1107,9 +1113,10 @@ definitions:
         description: "Array of any additional outputs"
         readOnly: true
       logs:
-        type: "string"
+        type: "object"
         description: "S3 link of the STDOUT of the evaluation"
         readOnly: true
+        properties: {}
       started:
         type: "string"
         format: "date-time"
@@ -1148,7 +1155,7 @@ definitions:
       ended: "2000-01-23T04:56:07.000+00:00"
       id: 0
       updated: "2000-01-23T04:56:07.000+00:00"
-      logs: "logs"
+      logs: "{}"
       status: "status"
     x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_code,status,output,additional_outputs,logs,started,ended,deleted,user_id,organisation_id}"
   User:

@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T14:50:26.367Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-14T16:17:37.563Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -61,7 +61,7 @@ public class Submissions {
   private String additionalOutputs = null;
 
   @SerializedName("logs")
-  private String logs = null;
+  private Object logs = null;
 
   @SerializedName("started")
   private OffsetDateTime started = null;
@@ -209,7 +209,7 @@ public class Submissions {
    * @return logs
   **/
   @ApiModelProperty(value = "S3 link of the STDOUT of the evaluation")
-  public String getLogs() {
+  public Object getLogs() {
     return logs;
   }
 

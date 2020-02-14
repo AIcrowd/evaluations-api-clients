@@ -79,7 +79,7 @@
       if (data.hasOwnProperty('additional_outputs'))
         obj.additionalOutputs = ApiClient.convertToType(data['additional_outputs'], 'String');
       if (data.hasOwnProperty('logs'))
-        obj.logs = ApiClient.convertToType(data['logs'], 'String');
+        obj.logs = ApiClient.convertToType(data['logs'], Object);
       if (data.hasOwnProperty('started'))
         obj.started = ApiClient.convertToType(data['started'], 'Date');
       if (data.hasOwnProperty('ended'))
@@ -156,7 +156,7 @@
 
   /**
    * S3 link of the STDOUT of the evaluation
-   * @member {String} logs
+   * @member {Object} logs
    */
   exports.prototype.logs = undefined;
 

@@ -77,7 +77,7 @@ API.Client.Submissions.prototype.additionalOutputs;
 
 /**
  * S3 link of the STDOUT of the evaluation
- * @type {!string}
+ * @type {!API.Client.Object}
  * @export
  */
 API.Client.Submissions.prototype.logs;

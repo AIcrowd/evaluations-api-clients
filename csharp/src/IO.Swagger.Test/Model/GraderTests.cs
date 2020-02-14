@@ -163,6 +163,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'StorageCapacity'
         }
         /// <summary>
+        /// Test the property 'Logs'
+        /// </summary>
+        [Test]
+        public void LogsTest()
+        {
+            // TODO unit test for the property 'Logs'
+        }
+        /// <summary>
         /// Test the property 'Meta'
         /// </summary>
         [Test]

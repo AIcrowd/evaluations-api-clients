@@ -97,7 +97,7 @@ module SwaggerClient
         :'status' => :'String',
         :'output' => :'String',
         :'additional_outputs' => :'String',
-        :'logs' => :'String',
+        :'logs' => :'Object',
         :'started' => :'DateTime',
         :'ended' => :'DateTime',
         :'meta' => :'Object',

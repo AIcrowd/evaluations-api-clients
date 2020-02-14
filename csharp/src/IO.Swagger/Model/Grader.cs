@@ -175,6 +175,13 @@ namespace IO.Swagger.Model
         public string StorageCapacity { get; set; }
 
         /// <summary>
+        /// Logs from argo workflow
+        /// </summary>
+        /// <value>Logs from argo workflow</value>
+        [DataMember(Name="logs", EmitDefaultValue=false)]
+        public Object Logs { get; private set; }
+
+        /// <summary>
         /// Additional meta data of the grader
         /// </summary>
         /// <value>Additional meta data of the grader</value>
@@ -222,6 +229,7 @@ namespace IO.Swagger.Model
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  EvaluationCode: ").Append(EvaluationCode).Append("\n");
             sb.Append("  StorageCapacity: ").Append(StorageCapacity).Append("\n");
+            sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
@@ -321,6 +329,11 @@ namespace IO.Swagger.Model
                     this.StorageCapacity.Equals(input.StorageCapacity))
                 ) && 
                 (
+                    this.Logs == input.Logs ||
+                    (this.Logs != null &&
+                    this.Logs.Equals(input.Logs))
+                ) && 
+                (
                     this.Meta == input.Meta ||
                     (this.Meta != null &&
                     this.Meta.Equals(input.Meta))
@@ -375,6 +388,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.EvaluationCode.GetHashCode();
                 if (this.StorageCapacity != null)
                     hashCode = hashCode * 59 + this.StorageCapacity.GetHashCode();
+                if (this.Logs != null)
+                    hashCode = hashCode * 59 + this.Logs.GetHashCode();
                 if (this.Meta != null)
                     hashCode = hashCode * 59 + this.Meta.GetHashCode();
                 if (this.Status != null)

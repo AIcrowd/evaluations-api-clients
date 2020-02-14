@@ -356,6 +356,10 @@ export class Grader {
     */
     'storageCapacity'?: string;
     /**
+    * Logs from argo workflow
+    */
+    'logs'?: any;
+    /**
     * Additional meta data of the grader
     */
     'meta'?: any;
@@ -434,6 +438,11 @@ export class Grader {
             "name": "storageCapacity",
             "baseName": "storage_capacity",
             "type": "string"
+        },
+        {
+            "name": "logs",
+            "baseName": "logs",
+            "type": "any"
         },
         {
             "name": "meta",
@@ -695,7 +704,7 @@ export class Submissions {
     /**
     * S3 link of the STDOUT of the evaluation
     */
-    'logs'?: string;
+    'logs'?: any;
     /**
     * Evaluation start time
     */
@@ -773,7 +782,7 @@ export class Submissions {
         {
             "name": "logs",
             "baseName": "logs",
-            "type": "string"
+            "type": "any"
         },
         {
             "name": "started",

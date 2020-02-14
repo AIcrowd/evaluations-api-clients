@@ -50,6 +50,9 @@ module SwaggerClient
     # Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     attr_accessor :storage_capacity
 
+    # Logs from argo workflow
+    attr_accessor :logs
+
     # Additional meta data of the grader
     attr_accessor :meta
 
@@ -77,6 +80,7 @@ module SwaggerClient
         :'workflow_spec' => :'workflow_spec',
         :'evaluation_code' => :'evaluation_code',
         :'storage_capacity' => :'storage_capacity',
+        :'logs' => :'logs',
         :'meta' => :'meta',
         :'status' => :'status',
         :'user_id' => :'user_id',
@@ -99,6 +103,7 @@ module SwaggerClient
         :'workflow_spec' => :'Object',
         :'evaluation_code' => :'String',
         :'storage_capacity' => :'String',
+        :'logs' => :'Object',
         :'meta' => :'Object',
         :'status' => :'BOOLEAN',
         :'user_id' => :'Integer',
@@ -160,6 +165,10 @@ module SwaggerClient
 
       if attributes.has_key?(:'storage_capacity')
         self.storage_capacity = attributes[:'storage_capacity']
+      end
+
+      if attributes.has_key?(:'logs')
+        self.logs = attributes[:'logs']
       end
 
       if attributes.has_key?(:'meta')
@@ -229,6 +238,7 @@ module SwaggerClient
           workflow_spec == o.workflow_spec &&
           evaluation_code == o.evaluation_code &&
           storage_capacity == o.storage_capacity &&
+          logs == o.logs &&
           meta == o.meta &&
           status == o.status &&
           user_id == o.user_id &&
@@ -244,7 +254,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, code_access_mode, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, meta, status, user_id, organisation_id].hash
+      [id, created, updated, dataset_url, code_access_mode, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, logs, meta, status, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

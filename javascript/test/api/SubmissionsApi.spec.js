@@ -89,8 +89,8 @@
             expect(data.output).to.be("");
             expect(data.additionalOutputs).to.be.a('string');
             expect(data.additionalOutputs).to.be("");
-            expect(data.logs).to.be.a('string');
-            expect(data.logs).to.be("");
+            expect(data.logs).to.be.a(Object);
+            expect(data.logs).to.be();
             expect(data.started).to.be.a(Date);
             expect(data.started).to.be(new Date());
             expect(data.ended).to.be.a(Date);
@@ -148,8 +148,8 @@
               expect(data.output).to.be("");
               expect(data.additionalOutputs).to.be.a('string');
               expect(data.additionalOutputs).to.be("");
-              expect(data.logs).to.be.a('string');
-              expect(data.logs).to.be("");
+              expect(data.logs).to.be.a(Object);
+              expect(data.logs).to.be();
               expect(data.started).to.be.a(Date);
               expect(data.started).to.be(new Date());
               expect(data.ended).to.be.a(Date);
@@ -208,8 +208,8 @@
             expect(data.output).to.be("");
             expect(data.additionalOutputs).to.be.a('string');
             expect(data.additionalOutputs).to.be("");
-            expect(data.logs).to.be.a('string');
-            expect(data.logs).to.be("");
+            expect(data.logs).to.be.a(Object);
+            expect(data.logs).to.be();
             expect(data.started).to.be.a(Date);
             expect(data.started).to.be(new Date());
             expect(data.ended).to.be.a(Date);

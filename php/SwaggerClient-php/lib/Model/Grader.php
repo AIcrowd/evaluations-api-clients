@@ -69,6 +69,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'object',
         'evaluation_code' => 'string',
         'storage_capacity' => 'string',
+        'logs' => 'object',
         'meta' => 'object',
         'status' => 'bool',
         'user_id' => 'int',
@@ -93,6 +94,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => null,
         'evaluation_code' => null,
         'storage_capacity' => null,
+        'logs' => null,
         'meta' => null,
         'status' => null,
         'user_id' => null,
@@ -138,6 +140,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'workflow_spec',
         'evaluation_code' => 'evaluation_code',
         'storage_capacity' => 'storage_capacity',
+        'logs' => 'logs',
         'meta' => 'meta',
         'status' => 'status',
         'user_id' => 'user_id',
@@ -162,6 +165,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'setWorkflowSpec',
         'evaluation_code' => 'setEvaluationCode',
         'storage_capacity' => 'setStorageCapacity',
+        'logs' => 'setLogs',
         'meta' => 'setMeta',
         'status' => 'setStatus',
         'user_id' => 'setUserId',
@@ -186,6 +190,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'getWorkflowSpec',
         'evaluation_code' => 'getEvaluationCode',
         'storage_capacity' => 'getStorageCapacity',
+        'logs' => 'getLogs',
         'meta' => 'getMeta',
         'status' => 'getStatus',
         'user_id' => 'getUserId',
@@ -264,6 +269,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['evaluation_code'] = isset($data['evaluation_code']) ? $data['evaluation_code'] : null;
         $this->container['storage_capacity'] = isset($data['storage_capacity']) ? $data['storage_capacity'] : null;
+        $this->container['logs'] = isset($data['logs']) ? $data['logs'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
@@ -590,6 +596,30 @@ class Grader implements ModelInterface, ArrayAccess
     public function setStorageCapacity($storage_capacity)
     {
         $this->container['storage_capacity'] = $storage_capacity;
+
+        return $this;
+    }
+
+    /**
+     * Gets logs
+     *
+     * @return object
+     */
+    public function getLogs()
+    {
+        return $this->container['logs'];
+    }
+
+    /**
+     * Sets logs
+     *
+     * @param object $logs Logs from argo workflow
+     *
+     * @return $this
+     */
+    public function setLogs($logs)
+    {
+        $this->container['logs'] = $logs;
 
         return $this;
     }

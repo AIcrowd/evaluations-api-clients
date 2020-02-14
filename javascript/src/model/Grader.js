@@ -86,6 +86,8 @@
         obj.evaluationCode = ApiClient.convertToType(data['evaluation_code'], 'String');
       if (data.hasOwnProperty('storage_capacity'))
         obj.storageCapacity = ApiClient.convertToType(data['storage_capacity'], 'String');
+      if (data.hasOwnProperty('logs'))
+        obj.logs = ApiClient.convertToType(data['logs'], Object);
       if (data.hasOwnProperty('meta'))
         obj.meta = ApiClient.convertToType(data['meta'], Object);
       if (data.hasOwnProperty('status'))
@@ -169,6 +171,12 @@
    * @member {String} storageCapacity
    */
   exports.prototype.storageCapacity = undefined;
+
+  /**
+   * Logs from argo workflow
+   * @member {Object} logs
+   */
+  exports.prototype.logs = undefined;
 
   /**
    * Additional meta data of the grader

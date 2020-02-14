@@ -40,6 +40,7 @@ Grader::Grader()
     m_Evaluation_code = utility::conversions::to_string_t("");
     m_Storage_capacity = utility::conversions::to_string_t("");
     m_Storage_capacityIsSet = false;
+    m_LogsIsSet = false;
     m_MetaIsSet = false;
     m_Status = false;
     m_StatusIsSet = false;
@@ -97,6 +98,10 @@ web::json::value Grader::toJson() const
     if(m_Storage_capacityIsSet)
     {
         val[utility::conversions::to_string_t("storage_capacity")] = ModelBase::toJson(m_Storage_capacity);
+    }
+    if(m_LogsIsSet)
+    {
+        val[utility::conversions::to_string_t("logs")] = ModelBase::toJson(m_Logs);
     }
     if(m_MetaIsSet)
     {
@@ -190,6 +195,16 @@ void Grader::fromJson(web::json::value& val)
             setStorageCapacity(ModelBase::stringFromJson(fieldValue));
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("logs")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("logs")];
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setLogs( newItem );
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("meta")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("meta")];
@@ -279,6 +294,14 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_capacity"), m_Storage_capacity));
         
     }
+    if(m_LogsIsSet)
+    {
+        if (m_Logs.get())
+        {
+            m_Logs->toMultipart(multipart, utility::conversions::to_string_t("logs."));
+        }
+        
+    }
     if(m_MetaIsSet)
     {
         if (m_Meta.get())
@@ -349,6 +372,15 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("storage_capacity")))
     {
         setStorageCapacity(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_capacity"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("logs")))
+    {
+        if(multipart->hasContent(utility::conversions::to_string_t("logs")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("logs."));
+            setLogs( newItem );
+        }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("meta")))
     {
@@ -583,6 +615,27 @@ bool Grader::storageCapacityIsSet() const
 void Grader::unsetStorage_capacity()
 {
     m_Storage_capacityIsSet = false;
+}
+
+std::shared_ptr<Object> Grader::getLogs() const
+{
+    return m_Logs;
+}
+
+
+void Grader::setLogs(std::shared_ptr<Object> value)
+{
+    m_Logs = value;
+    m_LogsIsSet = true;
+}
+bool Grader::logsIsSet() const
+{
+    return m_LogsIsSet;
+}
+
+void Grader::unsetLogs()
+{
+    m_LogsIsSet = false;
 }
 
 std::shared_ptr<Object> Grader::getMeta() const

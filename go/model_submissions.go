@@ -35,7 +35,7 @@ type Submissions struct {
 	// Array of any additional outputs
 	AdditionalOutputs string `json:"additional_outputs,omitempty"`
 	// S3 link of the STDOUT of the evaluation
-	Logs string `json:"logs,omitempty"`
+	Logs *interface{} `json:"logs,omitempty"`
 	// Evaluation start time
 	Started time.Time `json:"started,omitempty"`
 	// Evaluation end time

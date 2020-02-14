@@ -39,6 +39,8 @@ case class Grader (
   evaluationCode: String,
   // Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   storageCapacity: Option[String] = None,
+  // Logs from argo workflow
+  logs: Option[Any] = None,
   // Additional meta data of the grader
   meta: Option[Any] = None,
   // Status of the grader - True if it ready, False otherwise

@@ -62,6 +62,10 @@ export interface Grader {
      */
     "storageCapacity"?: string;
     /**
+     * Logs from argo workflow
+     */
+    "logs"?: any;
+    /**
      * Additional meta data of the grader
      */
     "meta"?: any;

@@ -46,7 +46,7 @@ pub struct Submissions {
   additional_outputs: Option<String>,
   /// S3 link of the STDOUT of the evaluation
   #[serde(rename = "logs")]
-  logs: Option<String>,
+  logs: Option<Value>,
   /// Evaluation start time
   #[serde(rename = "started")]
   started: Option<String>,
@@ -250,16 +250,16 @@ impl Submissions {
     self.additional_outputs = None;
   }
 
-  pub fn set_logs(&mut self, logs: String) {
+  pub fn set_logs(&mut self, logs: Value) {
     self.logs = Some(logs);
   }
 
-  pub fn with_logs(mut self, logs: String) -> Submissions {
+  pub fn with_logs(mut self, logs: Value) -> Submissions {
     self.logs = Some(logs);
     self
   }
 
-  pub fn logs(&self) -> Option<&String> {
+  pub fn logs(&self) -> Option<&Value> {
     self.logs.as_ref()
   }
 

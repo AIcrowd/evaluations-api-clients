@@ -41,7 +41,7 @@ class Submissions(object):
         'status': 'str',
         'output': 'str',
         'additional_outputs': 'str',
-        'logs': 'str',
+        'logs': 'object',
         'started': 'datetime',
         'ended': 'datetime',
         'meta': 'object',
@@ -361,7 +361,7 @@ class Submissions(object):
         S3 link of the STDOUT of the evaluation  # noqa: E501
 
         :return: The logs of this Submissions.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._logs
 
@@ -372,7 +372,7 @@ class Submissions(object):
         S3 link of the STDOUT of the evaluation  # noqa: E501
 
         :param logs: The logs of this Submissions.  # noqa: E501
-        :type: str
+        :type: object
         """
 
         self._logs = logs

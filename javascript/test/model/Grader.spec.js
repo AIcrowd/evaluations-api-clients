@@ -112,6 +112,12 @@
         // expect(instance.storageCapacity).to.be(expectedValueLiteral);
       });
 
+      it('should have the property logs (base name: "logs")', function() {
+        // TODO: update the code to test the property logs
+        expect(instance).to.have.property('logs');
+        // expect(instance.logs).to.be(expectedValueLiteral);
+      });
+
       it('should have the property meta (base name: "meta")', function() {
         // TODO: update the code to test the property meta
         expect(instance).to.have.property('meta');

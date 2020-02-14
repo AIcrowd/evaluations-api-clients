@@ -100,6 +100,13 @@ describe("grader", function()
     end)
   end)
 
+  -- unit tests for the property 'logs'
+  describe("property logs test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'meta'
   describe("property meta test", function()
     it("should work", function()

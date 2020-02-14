@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-13T14:50:26.367Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-14T16:17:37.563Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -65,6 +65,9 @@ public class Grader {
 
   @SerializedName("storage_capacity")
   private String storageCapacity = null;
+
+  @SerializedName("logs")
+  private Object logs = null;
 
   @SerializedName("meta")
   private Object meta = null;
@@ -259,6 +262,15 @@ public class Grader {
   }
 
    /**
+   * Logs from argo workflow
+   * @return logs
+  **/
+  @ApiModelProperty(value = "Logs from argo workflow")
+  public Object getLogs() {
+    return logs;
+  }
+
+   /**
    * Additional meta data of the grader
    * @return meta
   **/
@@ -316,6 +328,7 @@ public class Grader {
         Objects.equals(this.workflowSpec, grader.workflowSpec) &&
         Objects.equals(this.evaluationCode, grader.evaluationCode) &&
         Objects.equals(this.storageCapacity, grader.storageCapacity) &&
+        Objects.equals(this.logs, grader.logs) &&
         Objects.equals(this.meta, grader.meta) &&
         Objects.equals(this.status, grader.status) &&
         Objects.equals(this.userId, grader.userId) &&
@@ -324,7 +337,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, dockerUsername, dockerPassword, dockerRegistry, workflowSpec, evaluationCode, storageCapacity, meta, status, userId, organisationId);
+    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, dockerUsername, dockerPassword, dockerRegistry, workflowSpec, evaluationCode, storageCapacity, logs, meta, status, userId, organisationId);
   }
 
 
@@ -345,6 +358,7 @@ public class Grader {
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    evaluationCode: ").append(toIndentedString(evaluationCode)).append("\n");
     sb.append("    storageCapacity: ").append(toIndentedString(storageCapacity)).append("\n");
+    sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");

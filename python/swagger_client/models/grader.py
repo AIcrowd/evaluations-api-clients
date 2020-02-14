@@ -43,6 +43,7 @@ class Grader(object):
         'workflow_spec': 'object',
         'evaluation_code': 'str',
         'storage_capacity': 'str',
+        'logs': 'object',
         'meta': 'object',
         'status': 'bool',
         'user_id': 'int',
@@ -62,13 +63,14 @@ class Grader(object):
         'workflow_spec': 'workflow_spec',
         'evaluation_code': 'evaluation_code',
         'storage_capacity': 'storage_capacity',
+        'logs': 'logs',
         'meta': 'meta',
         'status': 'status',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, docker_username=None, docker_password=None, docker_registry=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, docker_username=None, docker_password=None, docker_registry=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -83,6 +85,7 @@ class Grader(object):
         self._workflow_spec = None
         self._evaluation_code = None
         self._storage_capacity = None
+        self._logs = None
         self._meta = None
         self._status = None
         self._user_id = None
@@ -109,6 +112,8 @@ class Grader(object):
         self.evaluation_code = evaluation_code
         if storage_capacity is not None:
             self.storage_capacity = storage_capacity
+        if logs is not None:
+            self.logs = logs
         if meta is not None:
             self.meta = meta
         if status is not None:
@@ -401,6 +406,29 @@ class Grader(object):
         """
 
         self._storage_capacity = storage_capacity
+
+    @property
+    def logs(self):
+        """Gets the logs of this Grader.  # noqa: E501
+
+        Logs from argo workflow  # noqa: E501
+
+        :return: The logs of this Grader.  # noqa: E501
+        :rtype: object
+        """
+        return self._logs
+
+    @logs.setter
+    def logs(self, logs):
+        """Sets the logs of this Grader.
+
+        Logs from argo workflow  # noqa: E501
+
+        :param logs: The logs of this Grader.  # noqa: E501
+        :type: object
+        """
+
+        self._logs = logs
 
     @property
     def meta(self):

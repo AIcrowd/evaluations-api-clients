@@ -90,6 +90,13 @@ API.Client.Grader.prototype.evaluationCode;
 API.Client.Grader.prototype.storageCapacity;
 
 /**
+ * Logs from argo workflow
+ * @type {!API.Client.Object}
+ * @export
+ */
+API.Client.Grader.prototype.logs;
+
+/**
  * Additional meta data of the grader
  * @type {!API.Client.Object}
  * @export

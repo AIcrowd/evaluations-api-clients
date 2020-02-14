@@ -39,7 +39,6 @@ Submissions::Submissions()
     m_OutputIsSet = false;
     m_Additional_outputs = utility::conversions::to_string_t("");
     m_Additional_outputsIsSet = false;
-    m_Logs = utility::conversions::to_string_t("");
     m_LogsIsSet = false;
     m_Started = utility::datetime();
     m_StartedIsSet = false;
@@ -200,7 +199,9 @@ void Submissions::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("logs")];
         if(!fieldValue.is_null())
         {
-            setLogs(ModelBase::stringFromJson(fieldValue));
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setLogs( newItem );
         }
     }
     if(val.has_field(utility::conversions::to_string_t("started")))
@@ -296,7 +297,10 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(m_LogsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("logs"), m_Logs));
+        if (m_Logs.get())
+        {
+            m_Logs->toMultipart(multipart, utility::conversions::to_string_t("logs."));
+        }
         
     }
     if(m_StartedIsSet)
@@ -371,7 +375,12 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
-        setLogs(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("logs"))));
+        if(multipart->hasContent(utility::conversions::to_string_t("logs")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("logs."));
+            setLogs( newItem );
+        }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("started")))
     {
@@ -590,13 +599,13 @@ void Submissions::unsetAdditional_outputs()
     m_Additional_outputsIsSet = false;
 }
 
-utility::string_t Submissions::getLogs() const
+std::shared_ptr<Object> Submissions::getLogs() const
 {
     return m_Logs;
 }
 
 
-void Submissions::setLogs(utility::string_t value)
+void Submissions::setLogs(std::shared_ptr<Object> value)
 {
     m_Logs = value;
     m_LogsIsSet = true;
