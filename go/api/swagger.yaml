@@ -1157,7 +1157,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_code,status,output,additional_outputs,logs,started,ended,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_code,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
   User:
     type: "object"
     required:
