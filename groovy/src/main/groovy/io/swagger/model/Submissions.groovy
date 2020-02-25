@@ -35,7 +35,7 @@ class Submissions {
   String output = null
 
   /* Array of any additional outputs */
-  String additionalOutputs = null
+  Object additionalOutputs = null
 
   /* S3 link of the STDOUT of the evaluation */
   Object logs = null

@@ -77,7 +77,7 @@
       if (data.hasOwnProperty('output'))
         obj.output = ApiClient.convertToType(data['output'], 'String');
       if (data.hasOwnProperty('additional_outputs'))
-        obj.additionalOutputs = ApiClient.convertToType(data['additional_outputs'], 'String');
+        obj.additionalOutputs = ApiClient.convertToType(data['additional_outputs'], Object);
       if (data.hasOwnProperty('logs'))
         obj.logs = ApiClient.convertToType(data['logs'], Object);
       if (data.hasOwnProperty('started'))
@@ -150,7 +150,7 @@
 
   /**
    * Array of any additional outputs
-   * @member {String} additionalOutputs
+   * @member {Object} additionalOutputs
    */
   exports.prototype.additionalOutputs = undefined;
 

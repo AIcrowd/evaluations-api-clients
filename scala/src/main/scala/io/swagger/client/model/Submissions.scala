@@ -34,7 +34,7 @@ case class Submissions (
   // S3 link of the output (available after the evaluation)
   output: Option[String] = None,
   // Array of any additional outputs
-  additionalOutputs: Option[String] = None,
+  additionalOutputs: Option[Any] = None,
   // S3 link of the STDOUT of the evaluation
   logs: Option[Any] = None,
   // Evaluation start time

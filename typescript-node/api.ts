@@ -700,7 +700,7 @@ export class Submissions {
     /**
     * Array of any additional outputs
     */
-    'additionalOutputs'?: string;
+    'additionalOutputs'?: any;
     /**
     * S3 link of the STDOUT of the evaluation
     */
@@ -777,7 +777,7 @@ export class Submissions {
         {
             "name": "additionalOutputs",
             "baseName": "additional_outputs",
-            "type": "string"
+            "type": "any"
         },
         {
             "name": "logs",

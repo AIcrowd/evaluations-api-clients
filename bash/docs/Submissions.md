@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **submission_code** | **string** |  | [default to null]
 **status** | **string** |  | [optional] [default to null]
 **output** | **string** |  | [optional] [default to null]
-**additional_outputs** | **string** |  | [optional] [default to null]
+**additional_outputs** | **map** |  | [optional] [default to null]
 **logs** | **map** |  | [optional] [default to null]
 **started** | **string** |  | [optional] [default to null]
 **ended** | **string** |  | [optional] [default to null]

@@ -116,10 +116,10 @@ public:
     /// <summary>
     /// Array of any additional outputs
     /// </summary>
-    utility::string_t getAdditionalOutputs() const;
+    std::shared_ptr<Object> getAdditionalOutputs() const;
     bool additionalOutputsIsSet() const;
     void unsetAdditional_outputs();
-    void setAdditionalOutputs(utility::string_t value);
+    void setAdditionalOutputs(std::shared_ptr<Object> value);
     /// <summary>
     /// S3 link of the STDOUT of the evaluation
     /// </summary>
@@ -180,7 +180,7 @@ protected:
     bool m_StatusIsSet;
     utility::string_t m_Output;
     bool m_OutputIsSet;
-    utility::string_t m_Additional_outputs;
+    std::shared_ptr<Object> m_Additional_outputs;
     bool m_Additional_outputsIsSet;
     std::shared_ptr<Object> m_Logs;
     bool m_LogsIsSet;

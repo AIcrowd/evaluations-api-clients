@@ -52,7 +52,7 @@ export interface Submissions {
     /**
      * Array of any additional outputs
      */
-    "additionalOutputs"?: string;
+    "additionalOutputs"?: any;
     /**
      * S3 link of the STDOUT of the evaluation
      */

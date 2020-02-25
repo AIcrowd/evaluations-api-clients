@@ -1109,9 +1109,10 @@ definitions:
         description: "S3 link of the output (available after the evaluation)"
         readOnly: true
       additional_outputs:
-        type: "string"
+        type: "object"
         description: "Array of any additional outputs"
         readOnly: true
+        properties: {}
       logs:
         type: "object"
         description: "S3 link of the STDOUT of the evaluation"
@@ -1145,7 +1146,7 @@ definitions:
       participant_id: 6
       started: "2000-01-23T04:56:07.000+00:00"
       grader_id: 5
-      additional_outputs: "additional_outputs"
+      additional_outputs: "{}"
       submission_code: "submission_code"
       output: "output"
       round_id: 1

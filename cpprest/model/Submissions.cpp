@@ -37,7 +37,6 @@ Submissions::Submissions()
     m_StatusIsSet = false;
     m_Output = utility::conversions::to_string_t("");
     m_OutputIsSet = false;
-    m_Additional_outputs = utility::conversions::to_string_t("");
     m_Additional_outputsIsSet = false;
     m_LogsIsSet = false;
     m_Started = utility::datetime();
@@ -191,7 +190,9 @@ void Submissions::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("additional_outputs")];
         if(!fieldValue.is_null())
         {
-            setAdditionalOutputs(ModelBase::stringFromJson(fieldValue));
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setAdditionalOutputs( newItem );
         }
     }
     if(val.has_field(utility::conversions::to_string_t("logs")))
@@ -292,7 +293,10 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(m_Additional_outputsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("additional_outputs"), m_Additional_outputs));
+        if (m_Additional_outputs.get())
+        {
+            m_Additional_outputs->toMultipart(multipart, utility::conversions::to_string_t("additional_outputs."));
+        }
         
     }
     if(m_LogsIsSet)
@@ -371,7 +375,12 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("additional_outputs")))
     {
-        setAdditionalOutputs(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("additional_outputs"))));
+        if(multipart->hasContent(utility::conversions::to_string_t("additional_outputs")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("additional_outputs."));
+            setAdditionalOutputs( newItem );
+        }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
@@ -578,13 +587,13 @@ void Submissions::unsetOutput()
     m_OutputIsSet = false;
 }
 
-utility::string_t Submissions::getAdditionalOutputs() const
+std::shared_ptr<Object> Submissions::getAdditionalOutputs() const
 {
     return m_Additional_outputs;
 }
 
 
-void Submissions::setAdditionalOutputs(utility::string_t value)
+void Submissions::setAdditionalOutputs(std::shared_ptr<Object> value)
 {
     m_Additional_outputs = value;
     m_Additional_outputsIsSet = true;

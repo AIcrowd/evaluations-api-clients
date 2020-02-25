@@ -96,7 +96,7 @@ module SwaggerClient
         :'submission_code' => :'String',
         :'status' => :'String',
         :'output' => :'String',
-        :'additional_outputs' => :'String',
+        :'additional_outputs' => :'Object',
         :'logs' => :'Object',
         :'started' => :'DateTime',
         :'ended' => :'DateTime',

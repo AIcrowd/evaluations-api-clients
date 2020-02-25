@@ -14,7 +14,7 @@
        'submission_code' := binary(),
        'status' => binary(),
        'output' => binary(),
-       'additional_outputs' => binary(),
+       'additional_outputs' => maps:map(),
        'logs' => maps:map(),
        'started' => swagger_date_time:swagger_date_time(),
        'ended' => swagger_date_time:swagger_date_time(),

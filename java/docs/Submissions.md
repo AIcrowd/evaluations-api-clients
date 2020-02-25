@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **submissionCode** | **String** | URL to the submission code | 
 **status** | **String** | Current status of the submission |  [optional]
 **output** | **String** | S3 link of the output (available after the evaluation) |  [optional]
-**additionalOutputs** | **String** | Array of any additional outputs |  [optional]
+**additionalOutputs** | **Object** | Array of any additional outputs |  [optional]
 **logs** | **Object** | S3 link of the STDOUT of the evaluation |  [optional]
 **started** | [**OffsetDateTime**](OffsetDateTime.md) | Evaluation start time |  [optional]
 **ended** | [**OffsetDateTime**](OffsetDateTime.md) | Evaluation end time |  [optional]

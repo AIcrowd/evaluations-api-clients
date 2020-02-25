@@ -43,7 +43,7 @@ pub struct Submissions {
   output: Option<String>,
   /// Array of any additional outputs
   #[serde(rename = "additional_outputs")]
-  additional_outputs: Option<String>,
+  additional_outputs: Option<Value>,
   /// S3 link of the STDOUT of the evaluation
   #[serde(rename = "logs")]
   logs: Option<Value>,
@@ -233,16 +233,16 @@ impl Submissions {
     self.output = None;
   }
 
-  pub fn set_additional_outputs(&mut self, additional_outputs: String) {
+  pub fn set_additional_outputs(&mut self, additional_outputs: Value) {
     self.additional_outputs = Some(additional_outputs);
   }
 
-  pub fn with_additional_outputs(mut self, additional_outputs: String) -> Submissions {
+  pub fn with_additional_outputs(mut self, additional_outputs: Value) -> Submissions {
     self.additional_outputs = Some(additional_outputs);
     self
   }
 
-  pub fn additional_outputs(&self) -> Option<&String> {
+  pub fn additional_outputs(&self) -> Option<&Value> {
     self.additional_outputs.as_ref()
   }
 

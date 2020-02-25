@@ -40,7 +40,7 @@ class Submissions(object):
         'submission_code': 'str',
         'status': 'str',
         'output': 'str',
-        'additional_outputs': 'str',
+        'additional_outputs': 'object',
         'logs': 'object',
         'started': 'datetime',
         'ended': 'datetime',
@@ -338,7 +338,7 @@ class Submissions(object):
         Array of any additional outputs  # noqa: E501
 
         :return: The additional_outputs of this Submissions.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._additional_outputs
 
@@ -349,7 +349,7 @@ class Submissions(object):
         Array of any additional outputs  # noqa: E501
 
         :param additional_outputs: The additional_outputs of this Submissions.  # noqa: E501
-        :type: str
+        :type: object
         """
 
         self._additional_outputs = additional_outputs

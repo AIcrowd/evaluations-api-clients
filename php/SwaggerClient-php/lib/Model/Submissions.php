@@ -66,7 +66,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'submission_code' => 'string',
         'status' => 'string',
         'output' => 'string',
-        'additional_outputs' => 'string',
+        'additional_outputs' => 'object',
         'logs' => 'object',
         'started' => '\DateTime',
         'ended' => '\DateTime',
@@ -519,7 +519,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Gets additional_outputs
      *
-     * @return string
+     * @return object
      */
     public function getAdditionalOutputs()
     {
@@ -529,7 +529,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Sets additional_outputs
      *
-     * @param string $additional_outputs Array of any additional outputs
+     * @param object $additional_outputs Array of any additional outputs
      *
      * @return $this
      */

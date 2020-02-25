@@ -51,7 +51,7 @@ export interface Submissions {
     /**
      * Array of any additional outputs
      */
-    readonly additionalOutputs?: string;
+    readonly additionalOutputs?: any;
     /**
      * S3 link of the STDOUT of the evaluation
      */

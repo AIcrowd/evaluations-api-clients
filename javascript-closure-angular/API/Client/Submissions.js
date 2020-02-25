@@ -70,7 +70,7 @@ API.Client.Submissions.prototype.output;
 
 /**
  * Array of any additional outputs
- * @type {!string}
+ * @type {!API.Client.Object}
  * @export
  */
 API.Client.Submissions.prototype.additionalOutputs;

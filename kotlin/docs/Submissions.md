@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **submission_code** | **kotlin.String** | URL to the submission code | 
 **status** | **kotlin.String** | Current status of the submission |  [optional]
 **output** | **kotlin.String** | S3 link of the output (available after the evaluation) |  [optional]
-**additional_outputs** | **kotlin.String** | Array of any additional outputs |  [optional]
+**additional_outputs** | [**kotlin.Any**](kotlin.Any.md) | Array of any additional outputs |  [optional]
 **logs** | [**kotlin.Any**](kotlin.Any.md) | S3 link of the STDOUT of the evaluation |  [optional]
 **started** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Evaluation start time |  [optional]
 **ended** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Evaluation end time |  [optional]

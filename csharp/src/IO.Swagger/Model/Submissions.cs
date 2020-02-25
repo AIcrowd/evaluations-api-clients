@@ -134,7 +134,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>Array of any additional outputs</value>
         [DataMember(Name="additional_outputs", EmitDefaultValue=false)]
-        public string AdditionalOutputs { get; private set; }
+        public Object AdditionalOutputs { get; private set; }
 
         /// <summary>
         /// S3 link of the STDOUT of the evaluation

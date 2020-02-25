@@ -207,7 +207,7 @@ __PACKAGE__->method_documentation({
     	read_only => '',
     		},
     'additional_outputs' => {
-    	datatype => 'string',
+    	datatype => 'object',
     	base_name => 'additional_outputs',
     	description => 'Array of any additional outputs',
     	format => '',
@@ -267,7 +267,7 @@ __PACKAGE__->swagger_types( {
     'submission_code' => 'string',
     'status' => 'string',
     'output' => 'string',
-    'additional_outputs' => 'string',
+    'additional_outputs' => 'object',
     'logs' => 'object',
     'started' => 'DateTime',
     'ended' => 'DateTime',

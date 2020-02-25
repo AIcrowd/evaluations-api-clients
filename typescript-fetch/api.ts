@@ -496,10 +496,10 @@ export interface Submissions {
     output?: string;
     /**
      * Array of any additional outputs
-     * @type {string}
+     * @type {any}
      * @memberof Submissions
      */
-    additionalOutputs?: string;
+    additionalOutputs?: any;
     /**
      * S3 link of the STDOUT of the evaluation
      * @type {any}

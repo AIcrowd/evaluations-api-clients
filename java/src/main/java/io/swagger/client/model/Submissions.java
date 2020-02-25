@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-25T21:04:37.910Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-25T21:18:24.288Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -58,7 +58,7 @@ public class Submissions {
   private String output = null;
 
   @SerializedName("additional_outputs")
-  private String additionalOutputs = null;
+  private Object additionalOutputs = null;
 
   @SerializedName("logs")
   private Object logs = null;
@@ -200,7 +200,7 @@ public class Submissions {
    * @return additionalOutputs
   **/
   @ApiModelProperty(value = "Array of any additional outputs")
-  public String getAdditionalOutputs() {
+  public Object getAdditionalOutputs() {
     return additionalOutputs;
   }
 
