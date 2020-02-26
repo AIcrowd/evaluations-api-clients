@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **participant_id** | **integer** |  | [optional] [default to null]
 **round_id** | **integer** |  | [optional] [default to null]
 **grader_id** | **integer** |  | [default to null]
-**submission_code** | **string** |  | [default to null]
+**submission_code** | **map** |  | [default to null]
 **status** | **string** |  | [optional] [default to null]
 **output** | **string** |  | [optional] [default to null]
 **additional_outputs** | **map** |  | [optional] [default to null]

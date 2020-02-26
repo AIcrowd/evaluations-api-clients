@@ -63,7 +63,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'participant_id' => 'int',
         'round_id' => 'int',
         'grader_id' => 'int',
-        'submission_code' => 'string',
+        'submission_code' => 'object',
         'status' => 'string',
         'output' => 'string',
         'additional_outputs' => 'object',
@@ -447,7 +447,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Gets submission_code
      *
-     * @return string
+     * @return object
      */
     public function getSubmissionCode()
     {
@@ -457,7 +457,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Sets submission_code
      *
-     * @param string $submission_code URL to the submission code
+     * @param object $submission_code URL to the submission code
      *
      * @return $this
      */

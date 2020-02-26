@@ -40,7 +40,7 @@ export interface Submissions {
     /**
      * URL to the submission code
      */
-    "submissionCode": string;
+    "submissionCode": any;
     /**
      * Current status of the submission
      */

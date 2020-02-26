@@ -32,7 +32,6 @@ Submissions::Submissions()
     m_Round_id = 0;
     m_Round_idIsSet = false;
     m_Grader_id = 0;
-    m_Submission_code = utility::conversions::to_string_t("");
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Output = utility::conversions::to_string_t("");
@@ -168,7 +167,9 @@ void Submissions::fromJson(web::json::value& val)
         }
     }
     setGraderId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("grader_id")]));
-    setSubmissionCode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("submission_code")]));
+    std::shared_ptr<Object> newSubmission_code(nullptr);
+    newSubmission_code->fromJson(val[utility::conversions::to_string_t("submission_code")]);
+    setSubmissionCode( newSubmission_code );
     if(val.has_field(utility::conversions::to_string_t("status")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("status")];
@@ -280,7 +281,7 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("round_id"), m_Round_id));
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("grader_id"), m_Grader_id));
-    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("submission_code"), m_Submission_code));
+    m_Submission_code->toMultipart(multipart, utility::conversions::to_string_t("submission_code."));
     if(m_StatusIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
@@ -364,7 +365,9 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         setRoundId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("round_id"))));
     }
     setGraderId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grader_id"))));
-    setSubmissionCode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("submission_code"))));
+    std::shared_ptr<Object> newSubmission_code(nullptr);
+    newSubmission_code->fromMultiPart(multipart, utility::conversions::to_string_t("submission_code."));
+    setSubmissionCode( newSubmission_code );
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
         setStatus(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
@@ -534,13 +537,13 @@ void Submissions::setGraderId(int32_t value)
     m_Grader_id = value;
     
 }
-utility::string_t Submissions::getSubmissionCode() const
+std::shared_ptr<Object> Submissions::getSubmissionCode() const
 {
     return m_Submission_code;
 }
 
 
-void Submissions::setSubmissionCode(utility::string_t value)
+void Submissions::setSubmissionCode(std::shared_ptr<Object> value)
 {
     m_Submission_code = value;
     

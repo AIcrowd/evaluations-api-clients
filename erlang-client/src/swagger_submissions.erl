@@ -11,7 +11,7 @@
        'participant_id' => integer(),
        'round_id' => integer(),
        'grader_id' := integer(),
-       'submission_code' := binary(),
+       'submission_code' := maps:map(),
        'status' => binary(),
        'output' => binary(),
        'additional_outputs' => maps:map(),

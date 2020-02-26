@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **participant_id** | **int** | Participant identifier | [optional] 
 **round_id** | **int** | Round identifier | [optional] 
 **grader_id** | **int** | Grader identifier | 
-**submission_code** | **string** | URL to the submission code | 
+**submission_code** | **object** | URL to the submission code | 
 **status** | **string** | Current status of the submission | [optional] 
 **output** | **string** | S3 link of the output (available after the evaluation) | [optional] 
 **additional_outputs** | **object** | Array of any additional outputs | [optional] 

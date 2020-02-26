@@ -81,8 +81,8 @@
             expect(data.roundId).to.be(0);
             expect(data.graderId).to.be.a('number');
             expect(data.graderId).to.be(0);
-            expect(data.submissionCode).to.be.a('string');
-            expect(data.submissionCode).to.be("");
+            expect(data.submissionCode).to.be.a(Object);
+            expect(data.submissionCode).to.be();
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
             expect(data.output).to.be.a('string');
@@ -140,8 +140,8 @@
               expect(data.roundId).to.be(0);
               expect(data.graderId).to.be.a('number');
               expect(data.graderId).to.be(0);
-              expect(data.submissionCode).to.be.a('string');
-              expect(data.submissionCode).to.be("");
+              expect(data.submissionCode).to.be.a(Object);
+              expect(data.submissionCode).to.be();
               expect(data.status).to.be.a('string');
               expect(data.status).to.be("");
               expect(data.output).to.be.a('string');
@@ -177,7 +177,7 @@
           payload.participantId = 0;
           payload.roundId = 0;
           payload.graderId = 0;
-          payload.submissionCode = "";
+          payload.submissionCode = ;
           var opts = {};
           opts.xFields = "xFields_example";
 
@@ -200,8 +200,8 @@
             expect(data.roundId).to.be(0);
             expect(data.graderId).to.be.a('number');
             expect(data.graderId).to.be(0);
-            expect(data.submissionCode).to.be.a('string');
-            expect(data.submissionCode).to.be("");
+            expect(data.submissionCode).to.be.a(Object);
+            expect(data.submissionCode).to.be();
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
             expect(data.output).to.be.a('string');

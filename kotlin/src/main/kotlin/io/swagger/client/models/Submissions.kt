@@ -35,7 +35,7 @@ data class Submissions (
     /* Grader identifier */
     val grader_id: kotlin.Int,
     /* URL to the submission code */
-    val submission_code: kotlin.String,
+    val submission_code: kotlin.Any,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */

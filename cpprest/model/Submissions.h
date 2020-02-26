@@ -97,8 +97,8 @@ public:
     /// <summary>
     /// URL to the submission code
     /// </summary>
-    utility::string_t getSubmissionCode() const;
-        void setSubmissionCode(utility::string_t value);
+    std::shared_ptr<Object> getSubmissionCode() const;
+        void setSubmissionCode(std::shared_ptr<Object> value);
     /// <summary>
     /// Current status of the submission
     /// </summary>
@@ -175,7 +175,7 @@ protected:
     int32_t m_Round_id;
     bool m_Round_idIsSet;
     int32_t m_Grader_id;
-        utility::string_t m_Submission_code;
+        std::shared_ptr<Object> m_Submission_code;
         utility::string_t m_Status;
     bool m_StatusIsSet;
     utility::string_t m_Output;

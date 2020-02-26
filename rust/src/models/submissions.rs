@@ -34,7 +34,7 @@ pub struct Submissions {
   grader_id: i32,
   /// URL to the submission code
   #[serde(rename = "submission_code")]
-  submission_code: String,
+  submission_code: Value,
   /// Current status of the submission
   #[serde(rename = "status")]
   status: Option<String>,
@@ -65,7 +65,7 @@ pub struct Submissions {
 }
 
 impl Submissions {
-  pub fn new(grader_id: i32, submission_code: String) -> Submissions {
+  pub fn new(grader_id: i32, submission_code: Value) -> Submissions {
     Submissions {
       id: None,
       created: None,
@@ -185,16 +185,16 @@ impl Submissions {
   }
 
 
-  pub fn set_submission_code(&mut self, submission_code: String) {
+  pub fn set_submission_code(&mut self, submission_code: Value) {
     self.submission_code = submission_code;
   }
 
-  pub fn with_submission_code(mut self, submission_code: String) -> Submissions {
+  pub fn with_submission_code(mut self, submission_code: Value) -> Submissions {
     self.submission_code = submission_code;
     self
   }
 
-  pub fn submission_code(&self) -> &String {
+  pub fn submission_code(&self) -> &Value {
     &self.submission_code
   }
 

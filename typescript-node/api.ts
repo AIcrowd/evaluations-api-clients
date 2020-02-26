@@ -688,7 +688,7 @@ export class Submissions {
     /**
     * URL to the submission code
     */
-    'submissionCode': string;
+    'submissionCode': any;
     /**
     * Current status of the submission
     */
@@ -762,7 +762,7 @@ export class Submissions {
         {
             "name": "submissionCode",
             "baseName": "submission_code",
-            "type": "string"
+            "type": "any"
         },
         {
             "name": "status",

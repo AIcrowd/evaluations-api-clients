@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-25T21:18:24.288Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-26T07:08:23.152Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -49,7 +49,7 @@ public class Submissions {
   private Integer graderId = null;
 
   @SerializedName("submission_code")
-  private String submissionCode = null;
+  private Object submissionCode = null;
 
   @SerializedName("status")
   private String status = null;
@@ -159,7 +159,7 @@ public class Submissions {
     this.graderId = graderId;
   }
 
-  public Submissions submissionCode(String submissionCode) {
+  public Submissions submissionCode(Object submissionCode) {
     this.submissionCode = submissionCode;
     return this;
   }
@@ -169,11 +169,11 @@ public class Submissions {
    * @return submissionCode
   **/
   @ApiModelProperty(required = true, value = "URL to the submission code")
-  public String getSubmissionCode() {
+  public Object getSubmissionCode() {
     return submissionCode;
   }
 
-  public void setSubmissionCode(String submissionCode) {
+  public void setSubmissionCode(Object submissionCode) {
     this.submissionCode = submissionCode;
   }
 

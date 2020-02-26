@@ -26,7 +26,7 @@ class Submissions {
   Integer graderId = null
 
   /* URL to the submission code */
-  String submissionCode = null
+  Object submissionCode = null
 
   /* Current status of the submission */
   String status = null

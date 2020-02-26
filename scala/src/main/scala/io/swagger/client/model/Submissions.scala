@@ -28,7 +28,7 @@ case class Submissions (
   // Grader identifier
   graderId: Integer,
   // URL to the submission code
-  submissionCode: String,
+  submissionCode: Any,
   // Current status of the submission
   status: Option[String] = None,
   // S3 link of the output (available after the evaluation)

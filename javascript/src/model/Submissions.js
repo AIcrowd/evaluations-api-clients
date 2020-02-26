@@ -41,7 +41,7 @@
    * @alias module:model/Submissions
    * @class
    * @param graderId {Number} Grader identifier
-   * @param submissionCode {String} URL to the submission code
+   * @param submissionCode {Object} URL to the submission code
    */
   var exports = function(graderId, submissionCode) {
     this.graderId = graderId;
@@ -71,7 +71,7 @@
       if (data.hasOwnProperty('grader_id'))
         obj.graderId = ApiClient.convertToType(data['grader_id'], 'Number');
       if (data.hasOwnProperty('submission_code'))
-        obj.submissionCode = ApiClient.convertToType(data['submission_code'], 'String');
+        obj.submissionCode = ApiClient.convertToType(data['submission_code'], Object);
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'String');
       if (data.hasOwnProperty('output'))
@@ -132,7 +132,7 @@
 
   /**
    * URL to the submission code
-   * @member {String} submissionCode
+   * @member {Object} submissionCode
    */
   exports.prototype.submissionCode = undefined;
 

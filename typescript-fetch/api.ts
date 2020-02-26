@@ -478,10 +478,10 @@ export interface Submissions {
     graderId: number;
     /**
      * URL to the submission code
-     * @type {string}
+     * @type {any}
      * @memberof Submissions
      */
-    submissionCode: string;
+    submissionCode: any;
     /**
      * Current status of the submission
      * @type {string}

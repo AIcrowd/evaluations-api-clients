@@ -27,7 +27,7 @@ type Submissions struct {
 	// Grader identifier
 	GraderId int32 `json:"grader_id"`
 	// URL to the submission code
-	SubmissionCode string `json:"submission_code"`
+	SubmissionCode *interface{} `json:"submission_code"`
 	// Current status of the submission
 	Status string `json:"status,omitempty"`
 	// S3 link of the output (available after the evaluation)

@@ -37,7 +37,7 @@ class Submissions(object):
         'participant_id': 'int',
         'round_id': 'int',
         'grader_id': 'int',
-        'submission_code': 'str',
+        'submission_code': 'object',
         'status': 'str',
         'output': 'str',
         'additional_outputs': 'object',
@@ -267,7 +267,7 @@ class Submissions(object):
         URL to the submission code  # noqa: E501
 
         :return: The submission_code of this Submissions.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._submission_code
 
@@ -278,7 +278,7 @@ class Submissions(object):
         URL to the submission code  # noqa: E501
 
         :param submission_code: The submission_code of this Submissions.  # noqa: E501
-        :type: str
+        :type: object
         """
         if submission_code is None:
             raise ValueError("Invalid value for `submission_code`, must not be `None`")  # noqa: E501

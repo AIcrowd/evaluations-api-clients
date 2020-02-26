@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **participant_id** | **i32** | Participant identifier | [optional] [default to null]
 **round_id** | **i32** | Round identifier | [optional] [default to null]
 **grader_id** | **i32** | Grader identifier | [default to null]
-**submission_code** | **String** | URL to the submission code | [default to null]
+**submission_code** | [***Value**](Value.md) | URL to the submission code | [default to null]
 **status** | **String** | Current status of the submission | [optional] [default to null]
 **output** | **String** | S3 link of the output (available after the evaluation) | [optional] [default to null]
 **additional_outputs** | [***Value**](Value.md) | Array of any additional outputs | [optional] [default to null]

@@ -93,7 +93,7 @@ module SwaggerClient
         :'participant_id' => :'Integer',
         :'round_id' => :'Integer',
         :'grader_id' => :'Integer',
-        :'submission_code' => :'String',
+        :'submission_code' => :'Object',
         :'status' => :'String',
         :'output' => :'String',
         :'additional_outputs' => :'Object',

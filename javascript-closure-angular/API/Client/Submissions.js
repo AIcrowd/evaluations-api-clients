@@ -49,7 +49,7 @@ API.Client.Submissions.prototype.graderId;
 
 /**
  * URL to the submission code
- * @type {!string}
+ * @type {!API.Client.Object}
  * @export
  */
 API.Client.Submissions.prototype.submissionCode;

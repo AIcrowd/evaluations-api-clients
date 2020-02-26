@@ -1098,8 +1098,9 @@ definitions:
         type: "integer"
         description: "Grader identifier"
       submission_code:
-        type: "string"
+        type: "object"
         description: "URL to the submission code"
+        properties: {}
       status:
         type: "string"
         description: "Current status of the submission"
@@ -1147,7 +1148,7 @@ definitions:
       started: "2000-01-23T04:56:07.000+00:00"
       grader_id: 5
       additional_outputs: "{}"
-      submission_code: "submission_code"
+      submission_code: "{}"
       output: "output"
       round_id: 1
       organisation_id: 2

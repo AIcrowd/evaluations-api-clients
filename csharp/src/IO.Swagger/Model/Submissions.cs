@@ -42,7 +42,7 @@ namespace IO.Swagger.Model
         /// <param name="roundId">Round identifier.</param>
         /// <param name="graderId">Grader identifier (required).</param>
         /// <param name="submissionCode">URL to the submission code (required).</param>
-        public Submissions(int? participantId = default(int?), int? roundId = default(int?), int? graderId = default(int?), string submissionCode = default(string))
+        public Submissions(int? participantId = default(int?), int? roundId = default(int?), int? graderId = default(int?), Object submissionCode = default(Object))
         {
             // to ensure "graderId" is required (not null)
             if (graderId == null)
@@ -113,7 +113,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>URL to the submission code</value>
         [DataMember(Name="submission_code", EmitDefaultValue=false)]
-        public string SubmissionCode { get; set; }
+        public Object SubmissionCode { get; set; }
 
         /// <summary>
         /// Current status of the submission

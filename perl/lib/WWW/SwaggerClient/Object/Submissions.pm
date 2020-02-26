@@ -186,7 +186,7 @@ __PACKAGE__->method_documentation({
     	read_only => '',
     		},
     'submission_code' => {
-    	datatype => 'string',
+    	datatype => 'object',
     	base_name => 'submission_code',
     	description => 'URL to the submission code',
     	format => '',
@@ -264,7 +264,7 @@ __PACKAGE__->swagger_types( {
     'participant_id' => 'int',
     'round_id' => 'int',
     'grader_id' => 'int',
-    'submission_code' => 'string',
+    'submission_code' => 'object',
     'status' => 'string',
     'output' => 'string',
     'additional_outputs' => 'object',
