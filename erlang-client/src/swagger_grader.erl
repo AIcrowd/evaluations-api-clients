@@ -19,7 +19,7 @@
        'storage_capacity' => binary(),
        'logs' => maps:map(),
        'meta' => maps:map(),
-       'status' => boolean(),
+       'status' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.

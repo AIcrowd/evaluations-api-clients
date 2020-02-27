@@ -97,8 +97,8 @@
             expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
-            expect(data.status).to.be.a('boolean');
-            expect(data.status).to.be(false);
+            expect(data.status).to.be.a('string');
+            expect(data.status).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -158,8 +158,8 @@
               expect(data.logs).to.be();
               expect(data.meta).to.be.a(Object);
               expect(data.meta).to.be();
-              expect(data.status).to.be.a('boolean');
-              expect(data.status).to.be(false);
+              expect(data.status).to.be.a('string');
+              expect(data.status).to.be("");
               expect(data.userId).to.be.a('number');
               expect(data.userId).to.be(0);
               expect(data.organisationId).to.be.a('number');
@@ -224,8 +224,8 @@
             expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
-            expect(data.status).to.be.a('boolean');
-            expect(data.status).to.be(false);
+            expect(data.status).to.be.a('string');
+            expect(data.status).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -290,8 +290,8 @@
             expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
             expect(data.meta).to.be();
-            expect(data.status).to.be.a('boolean');
-            expect(data.status).to.be(false);
+            expect(data.status).to.be.a('string');
+            expect(data.status).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');

@@ -44,7 +44,7 @@ case class Grader (
   // Additional meta data of the grader
   meta: Option[Any] = None,
   // Status of the grader - True if it ready, False otherwise
-  status: Option[Boolean] = None,
+  status: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

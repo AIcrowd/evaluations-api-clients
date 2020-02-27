@@ -45,7 +45,7 @@ class Grader(object):
         'storage_capacity': 'str',
         'logs': 'object',
         'meta': 'object',
-        'status': 'bool',
+        'status': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -460,7 +460,7 @@ class Grader(object):
         Status of the grader - True if it ready, False otherwise  # noqa: E501
 
         :return: The status of this Grader.  # noqa: E501
-        :rtype: bool
+        :rtype: str
         """
         return self._status
 
@@ -471,7 +471,7 @@ class Grader(object):
         Status of the grader - True if it ready, False otherwise  # noqa: E501
 
         :param status: The status of this Grader.  # noqa: E501
-        :type: bool
+        :type: str
         """
 
         self._status = status

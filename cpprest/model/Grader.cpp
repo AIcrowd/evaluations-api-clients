@@ -42,7 +42,7 @@ Grader::Grader()
     m_Storage_capacityIsSet = false;
     m_LogsIsSet = false;
     m_MetaIsSet = false;
-    m_Status = false;
+    m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
@@ -220,7 +220,7 @@ void Grader::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("status")];
         if(!fieldValue.is_null())
         {
-            setStatus(ModelBase::boolFromJson(fieldValue));
+            setStatus(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
@@ -313,6 +313,7 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     if(m_StatusIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
+        
     }
     if(m_User_idIsSet)
     {
@@ -393,7 +394,7 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
-        setStatus(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
+        setStatus(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -659,13 +660,13 @@ void Grader::unsetMeta()
     m_MetaIsSet = false;
 }
 
-bool Grader::isStatus() const
+utility::string_t Grader::getStatus() const
 {
     return m_Status;
 }
 
 
-void Grader::setStatus(bool value)
+void Grader::setStatus(utility::string_t value)
 {
     m_Status = value;
     m_StatusIsSet = true;

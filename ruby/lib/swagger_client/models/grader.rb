@@ -105,7 +105,7 @@ module SwaggerClient
         :'storage_capacity' => :'String',
         :'logs' => :'Object',
         :'meta' => :'Object',
-        :'status' => :'BOOLEAN',
+        :'status' => :'String',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }

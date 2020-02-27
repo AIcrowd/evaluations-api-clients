@@ -366,7 +366,7 @@ export class Grader {
     /**
     * Status of the grader - True if it ready, False otherwise
     */
-    'status'?: boolean;
+    'status'?: string;
     /**
     * User ID
     */
@@ -452,7 +452,7 @@ export class Grader {
         {
             "name": "status",
             "baseName": "status",
-            "type": "boolean"
+            "type": "string"
         },
         {
             "name": "userId",

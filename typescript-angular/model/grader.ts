@@ -71,7 +71,7 @@ export interface Grader {
     /**
      * Status of the grader - True if it ready, False otherwise
      */
-    readonly status?: boolean;
+    readonly status?: string;
     /**
      * User ID
      */

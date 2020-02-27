@@ -242,7 +242,7 @@ __PACKAGE__->method_documentation({
     	read_only => '',
     		},
     'status' => {
-    	datatype => 'boolean',
+    	datatype => 'string',
     	base_name => 'status',
     	description => 'Status of the grader - True if it ready, False otherwise',
     	format => '',
@@ -279,7 +279,7 @@ __PACKAGE__->swagger_types( {
     'storage_capacity' => 'string',
     'logs' => 'object',
     'meta' => 'object',
-    'status' => 'boolean',
+    'status' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );

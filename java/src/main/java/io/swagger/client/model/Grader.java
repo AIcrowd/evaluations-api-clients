@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-26T07:08:23.152Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-02-27T18:46:40.548Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -73,7 +73,7 @@ public class Grader {
   private Object meta = null;
 
   @SerializedName("status")
-  private Boolean status = null;
+  private String status = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -284,7 +284,7 @@ public class Grader {
    * @return status
   **/
   @ApiModelProperty(value = "Status of the grader - True if it ready, False otherwise")
-  public Boolean isStatus() {
+  public String getStatus() {
     return status;
   }
 

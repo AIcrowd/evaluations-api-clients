@@ -71,7 +71,7 @@ class Grader implements ModelInterface, ArrayAccess
         'storage_capacity' => 'string',
         'logs' => 'object',
         'meta' => 'object',
-        'status' => 'bool',
+        'status' => 'string',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -651,7 +651,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Gets status
      *
-     * @return bool
+     * @return string
      */
     public function getStatus()
     {
@@ -661,7 +661,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Sets status
      *
-     * @param bool $status Status of the grader - True if it ready, False otherwise
+     * @param string $status Status of the grader - True if it ready, False otherwise
      *
      * @return $this
      */

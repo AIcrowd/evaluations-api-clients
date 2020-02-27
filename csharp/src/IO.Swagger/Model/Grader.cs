@@ -193,7 +193,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <value>Status of the grader - True if it ready, False otherwise</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
-        public bool? Status { get; private set; }
+        public string Status { get; private set; }
 
         /// <summary>
         /// User ID

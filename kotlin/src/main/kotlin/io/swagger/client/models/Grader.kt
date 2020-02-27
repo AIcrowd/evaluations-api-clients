@@ -62,7 +62,7 @@ data class Grader (
     /* Additional meta data of the grader */
     val meta: kotlin.Any? = null,
     /* Status of the grader - True if it ready, False otherwise */
-    val status: kotlin.Boolean? = null,
+    val status: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

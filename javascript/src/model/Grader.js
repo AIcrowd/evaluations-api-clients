@@ -91,7 +91,7 @@
       if (data.hasOwnProperty('meta'))
         obj.meta = ApiClient.convertToType(data['meta'], Object);
       if (data.hasOwnProperty('status'))
-        obj.status = ApiClient.convertToType(data['status'], 'Boolean');
+        obj.status = ApiClient.convertToType(data['status'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -186,7 +186,7 @@
 
   /**
    * Status of the grader - True if it ready, False otherwise
-   * @member {Boolean} status
+   * @member {String} status
    */
   exports.prototype.status = undefined;
 

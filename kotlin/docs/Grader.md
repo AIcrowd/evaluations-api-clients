@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **storage_capacity** | **kotlin.String** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. |  [optional]
 **logs** | [**kotlin.Any**](kotlin.Any.md) | Logs from argo workflow |  [optional]
 **meta** | [**kotlin.Any**](kotlin.Any.md) | Additional meta data of the grader |  [optional]
-**status** | **kotlin.Boolean** | Status of the grader - True if it ready, False otherwise |  [optional]
+**status** | **kotlin.String** | Status of the grader - True if it ready, False otherwise |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

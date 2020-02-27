@@ -147,10 +147,10 @@ public:
     /// <summary>
     /// Status of the grader - True if it ready, False otherwise
     /// </summary>
-    bool isStatus() const;
+    utility::string_t getStatus() const;
     bool statusIsSet() const;
     void unsetStatus();
-    void setStatus(bool value);
+    void setStatus(utility::string_t value);
     /// <summary>
     /// User ID
     /// </summary>
@@ -191,7 +191,7 @@ protected:
     bool m_LogsIsSet;
     std::shared_ptr<Object> m_Meta;
     bool m_MetaIsSet;
-    bool m_Status;
+    utility::string_t m_Status;
     bool m_StatusIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;

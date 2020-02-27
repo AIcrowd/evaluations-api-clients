@@ -72,7 +72,7 @@ export interface Grader {
     /**
      * Status of the grader - True if it ready, False otherwise
      */
-    "status"?: boolean;
+    "status"?: string;
     /**
      * User ID
      */

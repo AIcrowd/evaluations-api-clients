@@ -992,7 +992,7 @@ definitions:
         readOnly: true
         properties: {}
       status:
-        type: "boolean"
+        type: "string"
         description: "Status of the grader - True if it ready, False otherwise"
         readOnly: true
       user_id:
@@ -1020,7 +1020,7 @@ definitions:
       evaluation_code: "evaluation_code"
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
-      status: true
+      status: "status"
     x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"

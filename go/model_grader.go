@@ -43,7 +43,7 @@ type Grader struct {
 	// Additional meta data of the grader
 	Meta *interface{} `json:"meta,omitempty"`
 	// Status of the grader - True if it ready, False otherwise
-	Status bool `json:"status,omitempty"`
+	Status string `json:"status,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

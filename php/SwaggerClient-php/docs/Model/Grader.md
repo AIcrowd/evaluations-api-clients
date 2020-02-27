@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **storage_capacity** | **string** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 
 **logs** | **object** | Logs from argo workflow | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
-**status** | **bool** | Status of the grader - True if it ready, False otherwise | [optional] 
+**status** | **string** | Status of the grader - True if it ready, False otherwise | [optional] 
 **user_id** | **int** | User ID | [optional] 
 **organisation_id** | **int** | Organisation ID | [optional] 
 

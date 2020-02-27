@@ -43,7 +43,7 @@ defmodule EvaluationsAPI.Model.Grader do
     :"storage_capacity" => String.t,
     :"logs" => Object,
     :"meta" => Object,
-    :"status" => boolean(),
+    :"status" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

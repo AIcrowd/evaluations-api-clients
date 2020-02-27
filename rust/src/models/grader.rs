@@ -58,7 +58,7 @@ pub struct Grader {
   meta: Option<Value>,
   /// Status of the grader - True if it ready, False otherwise
   #[serde(rename = "status")]
-  status: Option<bool>,
+  status: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -316,16 +316,16 @@ impl Grader {
     self.meta = None;
   }
 
-  pub fn set_status(&mut self, status: bool) {
+  pub fn set_status(&mut self, status: String) {
     self.status = Some(status);
   }
 
-  pub fn with_status(mut self, status: bool) -> Grader {
+  pub fn with_status(mut self, status: String) -> Grader {
     self.status = Some(status);
     self
   }
 
-  pub fn status(&self) -> Option<&bool> {
+  pub fn status(&self) -> Option<&String> {
     self.status.as_ref()
   }
 

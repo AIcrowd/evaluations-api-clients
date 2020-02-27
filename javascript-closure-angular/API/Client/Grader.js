@@ -105,7 +105,7 @@ API.Client.Grader.prototype.meta;
 
 /**
  * Status of the grader - True if it ready, False otherwise
- * @type {!boolean}
+ * @type {!string}
  * @export
  */
 API.Client.Grader.prototype.status;

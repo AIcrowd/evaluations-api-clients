@@ -50,7 +50,7 @@ class Grader {
   Object meta = null
 
   /* Status of the grader - True if it ready, False otherwise */
-  Boolean status = null
+  String status = null
 
   /* User ID */
   Integer userId = null

@@ -286,10 +286,10 @@ export interface Grader {
     meta?: any;
     /**
      * Status of the grader - True if it ready, False otherwise
-     * @type {boolean}
+     * @type {string}
      * @memberof Grader
      */
-    status?: boolean;
+    status?: string;
     /**
      * User ID
      * @type {number}
