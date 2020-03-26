@@ -1,23 +1,25 @@
-# EvaluationsApi.AuthApi
+# AicrowdEvaluations.AuthApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logoutAUser**](AuthApi.md#logoutAUser) | **POST** /auth/logout | 
-[**userLogin**](AuthApi.md#userLogin) | **POST** /auth/login | 
+[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
 
 
-<a name="logoutAUser"></a>
-# **logoutAUser**
-> AuthLogout logoutAUser(opts)
+<a name="postLogoutApi"></a>
+# **postLogoutApi**
+> AuthLogout postLogoutApi(opts)
 
 
+
+Logout a user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -25,7 +27,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.AuthApi();
+var apiInstance = new AicrowdEvaluations.AuthApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -38,7 +40,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.logoutAUser(opts, callback);
+apiInstance.postLogoutApi(opts, callback);
 ```
 
 ### Parameters
@@ -60,19 +62,21 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="userLogin"></a>
-# **userLogin**
-> AuthResponse userLogin(payload, opts)
+<a name="postUserLogin"></a>
+# **postUserLogin**
+> AuthResponse postUserLogin(payload, opts)
 
 
+
+User login
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
+var AicrowdEvaluations = require('aicrowd-evaluations');
 
-var apiInstance = new EvaluationsApi.AuthApi();
+var apiInstance = new AicrowdEvaluations.AuthApi();
 
-var payload = new EvaluationsApi.Login(); // Login | 
+var payload = new AicrowdEvaluations.Login(); // Login | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -85,7 +89,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.userLogin(payload, opts, callback);
+apiInstance.postUserLogin(payload, opts, callback);
 ```
 
 ### Parameters

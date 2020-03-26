@@ -1,4 +1,4 @@
-# EvaluationsApi.SubmissionFeedback
+# AicrowdEvaluations.SubmissionFeedback
 
 ## Properties
 Name | Type | Description | Notes

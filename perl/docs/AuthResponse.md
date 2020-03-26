@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::AuthResponse
+# AIcrowdEvaluations::Object::AuthResponse
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::AuthResponse;
+use AIcrowdEvaluations::Object::AuthResponse;
 ```
 
 ## Properties

@@ -25,9 +25,9 @@ use strict;
 use warnings;
 
 
-use_ok('WWW::SwaggerClient::Object::Login');
+use_ok('AIcrowdEvaluations::Object::Login');
 
-my $instance = WWW::SwaggerClient::Object::Login->new();
+my $instance = AIcrowdEvaluations::Object::Login->new();
 
-isa_ok($instance, 'WWW::SwaggerClient::Object::Login');
+isa_ok($instance, 'AIcrowdEvaluations::Object::Login');
 

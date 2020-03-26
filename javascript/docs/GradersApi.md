@@ -1,4 +1,4 @@
-# EvaluationsApi.GradersApi
+# AicrowdEvaluations.GradersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -21,8 +21,8 @@ Delete a grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -30,7 +30,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
@@ -74,8 +74,8 @@ Get information of a grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -83,7 +83,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
@@ -131,8 +131,8 @@ Get all grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -140,7 +140,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -185,8 +185,8 @@ Create a new grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -194,9 +194,9 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
-var payload = new EvaluationsApi.Grader(); // Grader | 
+var payload = new AicrowdEvaluations.Grader(); // Grader | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -242,8 +242,8 @@ Update a grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -251,11 +251,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
-var payload = new EvaluationsApi.Grader(); // Grader | 
+var payload = new AicrowdEvaluations.Grader(); // Grader | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask

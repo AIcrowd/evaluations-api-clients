@@ -20,11 +20,11 @@ Update the status of an object
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ArgoApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ArgoApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -78,11 +78,11 @@ Update the grader details
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ArgoApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ArgoApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -134,11 +134,11 @@ Update the submission details
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ArgoApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ArgoApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

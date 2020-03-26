@@ -16,8 +16,8 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_SubmissionsApi_H_
-#define IO_SWAGGER_CLIENT_API_SubmissionsApi_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_SubmissionsApi_H_
+#define COM_AICROWD_EVALUATIONS_API_SubmissionsApi_H_
 
 
 #include "../ApiClient.h"
@@ -27,12 +27,12 @@
 
 #include <boost/optional.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 class  SubmissionsApi
 {
@@ -60,6 +60,16 @@ public:
     pplx::task<std::shared_ptr<Submissions>> getSubmissionDao(
         int32_t submissionId,
         boost::optional<utility::string_t> xFields
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Get the submission data
+    /// </remarks>
+    /// <param name="submissionId"></param>
+    pplx::task<void> getSubmissionDataDao(
+        int32_t submissionId
     );
     /// <summary>
     /// 
@@ -93,5 +103,5 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_API_SubmissionsApi_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_SubmissionsApi_H_ */
 

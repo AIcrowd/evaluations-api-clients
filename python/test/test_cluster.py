@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.cluster import Cluster  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.models.cluster import Cluster  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestCluster(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestCluster(unittest.TestCase):
     def testCluster(self):
         """Test Cluster"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.cluster.Cluster()  # noqa: E501
+        # model = aicrowd_evaluations.models.cluster.Cluster()  # noqa: E501
         pass
 
 

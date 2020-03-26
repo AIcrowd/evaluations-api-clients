@@ -111,7 +111,8 @@ paths:
     post:
       tags:
       - "auth"
-      operationId: "user login"
+      description: "User login"
+      operationId: "post_user_login"
       parameters:
       - in: "body"
         name: "payload"
@@ -139,7 +140,8 @@ paths:
     post:
       tags:
       - "auth"
-      operationId: "logout a user"
+      description: "Logout a user"
+      operationId: "post_logout_api"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -159,7 +161,7 @@ paths:
       tags:
       - "clusters"
       description: "Get all clusters"
-      operationId: "get_grader_list_dao"
+      operationId: "get_cluster_list_dao"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -180,7 +182,7 @@ paths:
       tags:
       - "clusters"
       description: "Add a new cluster"
-      operationId: "post_grader_list_dao"
+      operationId: "post_cluster_list_dao"
       parameters:
       - in: "body"
         name: "payload"
@@ -622,6 +624,23 @@ paths:
         x-exportParamName: "SubmissionId"
       responses:
         "201":
+          description: "Success"
+        "404":
+          description: "Submission not found"
+  /submissions/{submission_id}/data:
+    get:
+      tags:
+      - "submissions"
+      description: "Get the submission data"
+      operationId: "get_submission_data_dao"
+      parameters:
+      - name: "submission_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "SubmissionId"
+      responses:
+        "200":
           description: "Success"
         "404":
           description: "Submission not found"
@@ -1072,7 +1091,6 @@ definitions:
     type: "object"
     required:
     - "grader_id"
-    - "submission_code"
     properties:
       id:
         type: "integer"
@@ -1097,7 +1115,7 @@ definitions:
       grader_id:
         type: "integer"
         description: "Grader identifier"
-      submission_code:
+      submission_data:
         type: "object"
         description: "URL to the submission code"
         properties: {}
@@ -1147,8 +1165,8 @@ definitions:
       participant_id: 6
       started: "2000-01-23T04:56:07.000+00:00"
       grader_id: 5
+      submission_data: "{}"
       additional_outputs: "{}"
-      submission_code: "{}"
       output: "output"
       round_id: 1
       organisation_id: 2
@@ -1159,7 +1177,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_code,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_data,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
   User:
     type: "object"
     required:

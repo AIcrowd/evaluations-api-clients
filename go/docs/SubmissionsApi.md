@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteSubmissionDao**](SubmissionsApi.md#DeleteSubmissionDao) | **Delete** /submissions/{submission_id} | 
 [**GetSubmissionDao**](SubmissionsApi.md#GetSubmissionDao) | **Get** /submissions/{submission_id} | 
+[**GetSubmissionDataDao**](SubmissionsApi.md#GetSubmissionDataDao) | **Get** /submissions/{submission_id}/data | 
 [**GetSubmissionListDao**](SubmissionsApi.md#GetSubmissionListDao) | **Get** /submissions/ | 
 [**PostSubmissionListDao**](SubmissionsApi.md#PostSubmissionListDao) | **Post** /submissions/ | 
 
@@ -63,6 +64,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetSubmissionDataDao**
+> GetSubmissionDataDao(ctx, submissionId)
+
+
+Get the submission data
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

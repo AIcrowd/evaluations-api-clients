@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **participant_id** | **kotlin.Int** | Participant identifier |  [optional]
 **round_id** | **kotlin.Int** | Round identifier |  [optional]
 **grader_id** | **kotlin.Int** | Grader identifier | 
-**submission_code** | [**kotlin.Any**](kotlin.Any.md) | URL to the submission code | 
+**submission_data** | [**kotlin.Any**](kotlin.Any.md) | URL to the submission code |  [optional]
 **status** | **kotlin.String** | Current status of the submission |  [optional]
 **output** | **kotlin.String** | S3 link of the output (available after the evaluation) |  [optional]
 **additional_outputs** | [**kotlin.Any**](kotlin.Any.md) | Array of any additional outputs |  [optional]

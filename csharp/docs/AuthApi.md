@@ -1,30 +1,32 @@
-# IO.Swagger.Api.AuthApi
+# Com.AIcrowd.Evaluations.Api.AuthApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LogoutAUser**](AuthApi.md#logoutauser) | **POST** /auth/logout | 
-[**UserLogin**](AuthApi.md#userlogin) | **POST** /auth/login | 
+[**PostLogoutApi**](AuthApi.md#postlogoutapi) | **POST** /auth/logout | 
+[**PostUserLogin**](AuthApi.md#postuserlogin) | **POST** /auth/login | 
 
 
-<a name="logoutauser"></a>
-# **LogoutAUser**
-> AuthLogout LogoutAUser (string xFields = null)
+<a name="postlogoutapi"></a>
+# **PostLogoutApi**
+> AuthLogout PostLogoutApi (string xFields = null)
 
 
+
+Logout a user
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class LogoutAUserExample
+    public class PostLogoutApiExample
     {
         public void main()
         {
@@ -38,12 +40,12 @@ namespace Example
 
             try
             {
-                AuthLogout result = apiInstance.LogoutAUser(xFields);
+                AuthLogout result = apiInstance.PostLogoutApi(xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AuthApi.LogoutAUser: " + e.Message );
+                Debug.Print("Exception when calling AuthApi.PostLogoutApi: " + e.Message );
             }
         }
     }
@@ -71,23 +73,25 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="userlogin"></a>
-# **UserLogin**
-> AuthResponse UserLogin (Login payload, string xFields = null)
+<a name="postuserlogin"></a>
+# **PostUserLogin**
+> AuthResponse PostUserLogin (Login payload, string xFields = null)
 
 
+
+User login
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class UserLoginExample
+    public class PostUserLoginExample
     {
         public void main()
         {
@@ -97,12 +101,12 @@ namespace Example
 
             try
             {
-                AuthResponse result = apiInstance.UserLogin(payload, xFields);
+                AuthResponse result = apiInstance.PostUserLogin(payload, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AuthApi.UserLogin: " + e.Message );
+                Debug.Print("Exception when calling AuthApi.PostUserLogin: " + e.Message );
             }
         }
     }

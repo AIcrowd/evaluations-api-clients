@@ -1,8 +1,8 @@
-# swagger-java-client
+# evaluations
 
 Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-02-27T18:46:40.548Z
+  - Build date: 2020-03-26T12:30:56.911Z
 
 API to create and evaluate custom challenges
 
@@ -38,9 +38,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>io.swagger</groupId>
-  <artifactId>swagger-java-client</artifactId>
-  <version>1.0.0</version>
+  <groupId>com.aicrowd</groupId>
+  <artifactId>evaluations</artifactId>
+  <version>0.0.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.swagger:swagger-java-client:1.0.0"
+compile "com.aicrowd:evaluations:0.0.1"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/swagger-java-client-1.0.0.jar`
+* `target/evaluations-0.0.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -72,10 +72,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.ArgoApi;
+import com.aicrowd.evaluations.*;
+import com.aicrowd.evaluations.auth.*;
+import com.aicrowd.evaluations.models.*;
+import com.aicrowd.evaluations.api.ArgoApi;
 
 import java.io.File;
 import java.util.*;
@@ -115,12 +115,12 @@ Class | Method | HTTP request | Description
 *ArgoApi* | [**postGenericFeedbackContract**](docs/ArgoApi.md#postGenericFeedbackContract) | **POST** /argo/{model_name}/{object_id} | 
 *ArgoApi* | [**postGraderFeedbackDao**](docs/ArgoApi.md#postGraderFeedbackDao) | **POST** /argo/graders/{grader_id} | 
 *ArgoApi* | [**postSubmissionFeedbackDao**](docs/ArgoApi.md#postSubmissionFeedbackDao) | **POST** /argo/submissions/{submission_id} | 
-*AuthApi* | [**logoutAUser**](docs/AuthApi.md#logoutAUser) | **POST** /auth/logout | 
-*AuthApi* | [**userLogin**](docs/AuthApi.md#userLogin) | **POST** /auth/login | 
+*AuthApi* | [**postLogoutApi**](docs/AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+*AuthApi* | [**postUserLogin**](docs/AuthApi.md#postUserLogin) | **POST** /auth/login | 
 *ClustersApi* | [**deleteClusterDao**](docs/ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 *ClustersApi* | [**getClusterDao**](docs/ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-*ClustersApi* | [**getGraderListDao**](docs/ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-*ClustersApi* | [**postGraderListDao**](docs/ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+*ClustersApi* | [**getClusterListDao**](docs/ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+*ClustersApi* | [**postClusterListDao**](docs/ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 *GradersApi* | [**deleteGraderDao**](docs/GradersApi.md#deleteGraderDao) | **DELETE** /graders/{grader_id} | 
 *GradersApi* | [**getGraderDao**](docs/GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderListDao**](docs/GradersApi.md#getGraderListDao) | **GET** /graders/ | 
@@ -134,6 +134,7 @@ Class | Method | HTTP request | Description
 *OrganisationsApi* | [**putQuotaDao**](docs/OrganisationsApi.md#putQuotaDao) | **PUT** /organisations/addquota/{organisation_id} | 
 *SubmissionsApi* | [**deleteSubmissionDao**](docs/SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
 *SubmissionsApi* | [**getSubmissionDao**](docs/SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
+*SubmissionsApi* | [**getSubmissionDataDao**](docs/SubmissionsApi.md#getSubmissionDataDao) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionListDao**](docs/SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
 *SubmissionsApi* | [**postSubmissionListDao**](docs/SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
 *UsersApi* | [**deleteUserDao**](docs/UsersApi.md#deleteUserDao) | **DELETE** /users/{user_id} | 

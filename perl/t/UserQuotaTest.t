@@ -25,9 +25,9 @@ use strict;
 use warnings;
 
 
-use_ok('WWW::SwaggerClient::Object::UserQuota');
+use_ok('AIcrowdEvaluations::Object::UserQuota');
 
-my $instance = WWW::SwaggerClient::Object::UserQuota->new();
+my $instance = AIcrowdEvaluations::Object::UserQuota->new();
 
-isa_ok($instance, 'WWW::SwaggerClient::Object::UserQuota');
+isa_ok($instance, 'AIcrowdEvaluations::Object::UserQuota');
 

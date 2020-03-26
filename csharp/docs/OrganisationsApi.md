@@ -1,4 +1,4 @@
-# IO.Swagger.Api.OrganisationsApi
+# Com.AIcrowd.Evaluations.Api.OrganisationsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -24,9 +24,9 @@ Delete an Organisation
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -88,9 +88,9 @@ Get information of an organisation
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -155,9 +155,9 @@ Get all organisations
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -220,9 +220,9 @@ Create a new organisation
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -287,9 +287,9 @@ Update an Organisation
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -356,9 +356,9 @@ Add or subtract quota for an organisation
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {

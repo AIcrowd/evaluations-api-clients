@@ -1,9 +1,9 @@
 {
-  "name": "evaluations_api",
+  "name": "aicrowd-evaluations",
   "version": "1.0.0",
   "description": "API_to_create_and_evaluate_custom_challenges",
   "license": "Unlicense",
-  "main": "src/index.js",
+  "main": "src/AIcrowdEvaluations/index.js",
   "scripts": {
     "test": "mocha --recursive"
   },

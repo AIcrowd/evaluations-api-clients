@@ -17,7 +17,7 @@ Update the status of an object
 
 ### Example
 ```bash
- postGenericFeedbackContract model_name=value object_id=value
+aicrowd-evaluations postGenericFeedbackContract model_name=value object_id=value
 ```
 
 ### Parameters
@@ -51,7 +51,7 @@ Update the grader details
 
 ### Example
 ```bash
- postGraderFeedbackDao grader_id=value
+aicrowd-evaluations postGraderFeedbackDao grader_id=value
 ```
 
 ### Parameters
@@ -84,7 +84,7 @@ Update the submission details
 
 ### Example
 ```bash
- postSubmissionFeedbackDao submission_id=value
+aicrowd-evaluations postSubmissionFeedbackDao submission_id=value
 ```
 
 ### Parameters

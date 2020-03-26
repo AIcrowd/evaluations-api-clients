@@ -1,4 +1,4 @@
-# EvaluationsApi.Login
+# AicrowdEvaluations.Login
 
 ## Properties
 Name | Type | Description | Notes

@@ -16,8 +16,8 @@
  * This class represents a container for building a application/x-multipart-formdata requests.
  */
 
-#ifndef IO_SWAGGER_CLIENT_MODEL_MultipartFormData_H_
-#define IO_SWAGGER_CLIENT_MODEL_MultipartFormData_H_
+#ifndef COM_AICROWD_EVALUATIONS_MODELS_MultipartFormData_H_
+#define COM_AICROWD_EVALUATIONS_MODELS_MultipartFormData_H_
 
 
 #include "IHttpBody.h"
@@ -30,10 +30,10 @@
 #include <cpprest/details/basic_types.h>
 
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 class  MultipartFormData
     : public IHttpBody
@@ -60,4 +60,4 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_MODEL_MultipartFormData_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_MODELS_MultipartFormData_H_ */

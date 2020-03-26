@@ -12,9 +12,9 @@
 
 #include "ApiException.h"
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
 ApiException::ApiException( int errorCode

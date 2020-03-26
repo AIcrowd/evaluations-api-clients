@@ -72,22 +72,22 @@ class AuthApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for logoutAUser
+     * Test case for postLogoutApi
      *
      * .
      *
      */
-    public function testLogoutAUser()
+    public function testPostLogoutApi()
     {
     }
 
     /**
-     * Test case for userLogin
+     * Test case for postUserLogin
      *
      * .
      *
      */
-    public function testUserLogin()
+    public function testPostUserLogin()
     {
     }
 }

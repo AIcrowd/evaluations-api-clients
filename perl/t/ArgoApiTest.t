@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::ArgoApi');
+use_ok('AIcrowdEvaluations::ArgoApi');
 
-my $api = WWW::SwaggerClient::ArgoApi->new();
-isa_ok($api, 'WWW::SwaggerClient::ArgoApi');
+my $api = AIcrowdEvaluations::ArgoApi->new();
+isa_ok($api, 'AIcrowdEvaluations::ArgoApi');
 
 #
 # post_generic_feedback_contract test

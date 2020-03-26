@@ -1,4 +1,4 @@
-# IO.Swagger.Model.AuthResponse
+# Com.AIcrowd.Evaluations.Model.AuthResponse
 ## Properties
 
 Name | Type | Description | Notes

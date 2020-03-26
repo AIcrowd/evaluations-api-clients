@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::OrganisationsApi');
+use_ok('AIcrowdEvaluations::OrganisationsApi');
 
-my $api = WWW::SwaggerClient::OrganisationsApi->new();
-isa_ok($api, 'WWW::SwaggerClient::OrganisationsApi');
+my $api = AIcrowdEvaluations::OrganisationsApi->new();
+isa_ok($api, 'AIcrowdEvaluations::OrganisationsApi');
 
 #
 # delete_organisation_dao test

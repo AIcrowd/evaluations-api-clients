@@ -1,4 +1,4 @@
-# EvaluationsApi.Submissions
+# AicrowdEvaluations.Submissions
 
 ## Properties
 Name | Type | Description | Notes
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **participantId** | **Number** | Participant identifier | [optional] 
 **roundId** | **Number** | Round identifier | [optional] 
 **graderId** | **Number** | Grader identifier | 
-**submissionCode** | **Object** | URL to the submission code | 
+**submissionData** | **Object** | URL to the submission code | [optional] 
 **status** | **String** | Current status of the submission | [optional] 
 **output** | **String** | S3 link of the output (available after the evaluation) | [optional] 
 **additionalOutputs** | **Object** | Array of any additional outputs | [optional] 

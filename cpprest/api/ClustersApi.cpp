@@ -20,12 +20,12 @@
 
 #include <boost/algorithm/string/replace.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 ClustersApi::ClustersApi( std::shared_ptr<ApiClient> apiClient )
     : m_ApiClient(apiClient)
@@ -268,7 +268,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::getClusterDao(int32_t clusterI
         return result;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(boost::optional<utility::string_t> xFields)
+pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getClusterListDao(boost::optional<utility::string_t> xFields)
 {
 
 
@@ -302,7 +302,7 @@ pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ClustersApi->getGraderListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ClustersApi->getClusterListDao does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -330,7 +330,7 @@ pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ClustersApi->getGraderListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ClustersApi->getClusterListDao does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -353,7 +353,7 @@ pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getGraderListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling getClusterListDao: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -364,7 +364,7 @@ pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getGraderListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling getClusterListDao: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -395,19 +395,19 @@ pplx::task<std::vector<std::shared_ptr<Cluster>>> ClustersApi::getGraderListDao(
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getGraderListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getClusterListDao: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_ptr<Cluster> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<Cluster>> ClustersApi::postClusterListDao(std::shared_ptr<Cluster> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling ClustersApi->postGraderListDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling ClustersApi->postClusterListDao"));
     }
 
 
@@ -441,7 +441,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ClustersApi->postGraderListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ClustersApi->postClusterListDao does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -484,7 +484,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ClustersApi->postGraderListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ClustersApi->postClusterListDao does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -507,7 +507,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling postGraderListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling postClusterListDao: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -518,7 +518,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postGraderListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling postClusterListDao: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -542,7 +542,7 @@ pplx::task<std::shared_ptr<Cluster>> ClustersApi::postGraderListDao(std::shared_
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postGraderListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postClusterListDao: unsupported response type"));
         }
 
         return result;

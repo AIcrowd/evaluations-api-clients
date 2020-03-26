@@ -16,8 +16,8 @@
  * This class represents a single item of a multipart-formdata request.
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_ApiConfiguration_H_
-#define IO_SWAGGER_CLIENT_API_ApiConfiguration_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_ApiConfiguration_H_
+#define COM_AICROWD_EVALUATIONS_API_ApiConfiguration_H_
 
 
 
@@ -25,9 +25,9 @@
 
 #include <cpprest/details/basic_types.h>
 #include <cpprest/http_client.h>
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
 class  ApiConfiguration
@@ -62,4 +62,4 @@ protected:
 }
 }
 }
-#endif /* IO_SWAGGER_CLIENT_API_ApiConfiguration_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_ApiConfiguration_H_ */

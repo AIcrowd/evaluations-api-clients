@@ -1,4 +1,4 @@
-# SwaggerClient::SubmissionFeedback
+# AIcrowdEvaluations::SubmissionFeedback
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# SwaggerClient::AuthResponse
+# AIcrowdEvaluations::AuthResponse
 
 ## Properties
 Name | Type | Description | Notes

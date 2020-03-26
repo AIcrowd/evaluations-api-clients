@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::SubmissionsApi');
+use_ok('AIcrowdEvaluations::SubmissionsApi');
 
-my $api = WWW::SwaggerClient::SubmissionsApi->new();
-isa_ok($api, 'WWW::SwaggerClient::SubmissionsApi');
+my $api = AIcrowdEvaluations::SubmissionsApi->new();
+isa_ok($api, 'AIcrowdEvaluations::SubmissionsApi');
 
 #
 # delete_submission_dao test
@@ -44,6 +44,14 @@ isa_ok($api, 'WWW::SwaggerClient::SubmissionsApi');
     my $submission_id = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
     my $result = $api->get_submission_dao(submission_id => $submission_id, x_fields => $x_fields);
+}
+
+#
+# get_submission_data_dao test
+#
+{
+    my $submission_id = undef; # replace NULL with a proper value
+    my $result = $api->get_submission_data_dao(submission_id => $submission_id);
 }
 
 #

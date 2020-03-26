@@ -1,4 +1,4 @@
-# SwaggerClient::Cluster
+# AIcrowdEvaluations::Cluster
 
 ## Properties
 Name | Type | Description | Notes

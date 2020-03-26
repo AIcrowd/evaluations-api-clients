@@ -1,4 +1,4 @@
-# swagger_client.ArgoApi
+# aicrowd_evaluations.ArgoApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -20,21 +20,21 @@ Update the status of an object
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.ArgoApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.ArgoApi(aicrowd_evaluations.ApiClient(configuration))
 model_name = 'model_name_example' # str | 
 object_id = 56 # int | 
-payload = swagger_client.GenericFeedback() # GenericFeedback | 
+payload = aicrowd_evaluations.GenericFeedback() # GenericFeedback | 
 
 try:
     api_instance.post_generic_feedback_contract(model_name, object_id, payload)
@@ -76,20 +76,20 @@ Update the grader details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.ArgoApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.ArgoApi(aicrowd_evaluations.ApiClient(configuration))
 grader_id = 56 # int | 
-payload = swagger_client.GraderFeedback() # GraderFeedback | 
+payload = aicrowd_evaluations.GraderFeedback() # GraderFeedback | 
 
 try:
     api_instance.post_grader_feedback_dao(grader_id, payload)
@@ -130,20 +130,20 @@ Update the submission details
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.ArgoApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.ArgoApi(aicrowd_evaluations.ApiClient(configuration))
 submission_id = 56 # int | 
-payload = swagger_client.SubmissionFeedback() # SubmissionFeedback | 
+payload = aicrowd_evaluations.SubmissionFeedback() # SubmissionFeedback | 
 
 try:
     api_instance.post_submission_feedback_dao(submission_id, payload)

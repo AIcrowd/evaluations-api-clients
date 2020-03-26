@@ -92,6 +92,16 @@ class SubmissionsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getSubmissionDataDao
+     *
+     * .
+     *
+     */
+    public function testGetSubmissionDataDao()
+    {
+    }
+
+    /**
      * Test case for getSubmissionListDao
      *
      * .

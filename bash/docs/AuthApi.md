@@ -4,17 +4,19 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logout a user**](AuthApi.md#logout a user) | **POST** /auth/logout | 
-[**user login**](AuthApi.md#user login) | **POST** /auth/login | 
+[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
 
 
-## **logout a user**
+## **postLogoutApi**
 
 
+
+Logout a user
 
 ### Example
 ```bash
- logout a user X-Fields:value
+aicrowd-evaluations postLogoutApi X-Fields:value
 ```
 
 ### Parameters
@@ -38,13 +40,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **user login**
+## **postUserLogin**
 
 
+
+User login
 
 ### Example
 ```bash
- user login X-Fields:value
+aicrowd-evaluations postUserLogin X-Fields:value
 ```
 
 ### Parameters

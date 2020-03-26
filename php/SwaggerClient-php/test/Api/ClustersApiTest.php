@@ -92,22 +92,22 @@ class ClustersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for getGraderListDao
+     * Test case for getClusterListDao
      *
      * .
      *
      */
-    public function testGetGraderListDao()
+    public function testGetClusterListDao()
     {
     }
 
     /**
-     * Test case for postGraderListDao
+     * Test case for postClusterListDao
      *
      * .
      *
      */
-    public function testPostGraderListDao()
+    public function testPostClusterListDao()
     {
     }
 }

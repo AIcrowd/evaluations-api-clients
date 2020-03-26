@@ -1,4 +1,4 @@
-# EvaluationsApi.GenericFeedback
+# AicrowdEvaluations.GenericFeedback
 
 ## Properties
 Name | Type | Description | Notes

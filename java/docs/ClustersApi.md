@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 [**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 
 
 <a name="deleteClusterDao"></a>
@@ -21,11 +21,11 @@ Delete a cluster
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ClustersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ClustersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -75,11 +75,11 @@ Get information of a cluster
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ClustersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ClustersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -121,9 +121,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> List&lt;Cluster&gt; getGraderListDao(xFields)
+<a name="getClusterListDao"></a>
+# **getClusterListDao**
+> List&lt;Cluster&gt; getClusterListDao(xFields)
 
 
 
@@ -132,11 +132,11 @@ Get all clusters
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ClustersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ClustersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -149,10 +149,10 @@ api_key.setApiKey("YOUR API KEY");
 ClustersApi apiInstance = new ClustersApi();
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Cluster> result = apiInstance.getGraderListDao(xFields);
+    List<Cluster> result = apiInstance.getClusterListDao(xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ClustersApi#getGraderListDao");
+    System.err.println("Exception when calling ClustersApi#getClusterListDao");
     e.printStackTrace();
 }
 ```
@@ -176,9 +176,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Cluster postGraderListDao(payload, xFields)
+<a name="postClusterListDao"></a>
+# **postClusterListDao**
+> Cluster postClusterListDao(payload, xFields)
 
 
 
@@ -187,11 +187,11 @@ Add a new cluster
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ClustersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.ClustersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -205,10 +205,10 @@ ClustersApi apiInstance = new ClustersApi();
 Cluster payload = new Cluster(); // Cluster | 
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    Cluster result = apiInstance.postGraderListDao(payload, xFields);
+    Cluster result = apiInstance.postClusterListDao(payload, xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ClustersApi#postGraderListDao");
+    System.err.println("Exception when calling ClustersApi#postClusterListDao");
     e.printStackTrace();
 }
 ```

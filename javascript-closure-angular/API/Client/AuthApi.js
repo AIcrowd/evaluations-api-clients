@@ -42,12 +42,12 @@ API.Client.AuthApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 
 /**
  * 
- * 
+ * Logout a user
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.AuthLogout>}
  */
-API.Client.AuthApi.prototype.logoutAUser = function(opt_xFields, opt_extraHttpRequestParams) {
+API.Client.AuthApi.prototype.postLogoutApi = function(opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/auth/logout';
 
@@ -76,13 +76,13 @@ API.Client.AuthApi.prototype.logoutAUser = function(opt_xFields, opt_extraHttpRe
 
 /**
  * 
- * 
+ * User login
  * @param {!Login} payload 
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.AuthResponse>}
  */
-API.Client.AuthApi.prototype.userLogin = function(payload, opt_xFields, opt_extraHttpRequestParams) {
+API.Client.AuthApi.prototype.postUserLogin = function(payload, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/auth/login';
 
@@ -93,7 +93,7 @@ API.Client.AuthApi.prototype.userLogin = function(payload, opt_xFields, opt_extr
   var headerParams = angular.extend({}, this.defaultHeaders_);
   // verify required parameter 'payload' is set
   if (!payload) {
-    throw new Error('Missing required parameter payload when calling userLogin');
+    throw new Error('Missing required parameter payload when calling postUserLogin');
   }
   headerParams['X-Fields'] = opt_xFields;
 

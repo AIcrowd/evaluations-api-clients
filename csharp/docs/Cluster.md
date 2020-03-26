@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Cluster
+# Com.AIcrowd.Evaluations.Model.Cluster
 ## Properties
 
 Name | Type | Description | Notes

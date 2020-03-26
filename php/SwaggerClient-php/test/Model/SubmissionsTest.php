@@ -119,9 +119,9 @@ class SubmissionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "submission_code"
+     * Test attribute "submission_data"
      */
-    public function testPropertySubmissionCode()
+    public function testPropertySubmissionData()
     {
     }
 

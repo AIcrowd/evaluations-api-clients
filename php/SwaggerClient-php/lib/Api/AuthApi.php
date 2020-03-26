@@ -88,7 +88,7 @@ class AuthApi
     }
 
     /**
-     * Operation logoutAUser
+     * Operation postLogoutApi
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -96,14 +96,14 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\AuthLogout
      */
-    public function logoutAUser($x_fields = null)
+    public function postLogoutApi($x_fields = null)
     {
-        list($response) = $this->logoutAUserWithHttpInfo($x_fields);
+        list($response) = $this->postLogoutApiWithHttpInfo($x_fields);
         return $response;
     }
 
     /**
-     * Operation logoutAUserWithHttpInfo
+     * Operation postLogoutApiWithHttpInfo
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -111,10 +111,10 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\AuthLogout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function logoutAUserWithHttpInfo($x_fields = null)
+    public function postLogoutApiWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\AuthLogout';
-        $request = $this->logoutAUserRequest($x_fields);
+        $request = $this->postLogoutApiRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -176,7 +176,7 @@ class AuthApi
     }
 
     /**
-     * Operation logoutAUserAsync
+     * Operation postLogoutApiAsync
      *
      * 
      *
@@ -185,9 +185,9 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutAUserAsync($x_fields = null)
+    public function postLogoutApiAsync($x_fields = null)
     {
-        return $this->logoutAUserAsyncWithHttpInfo($x_fields)
+        return $this->postLogoutApiAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -196,7 +196,7 @@ class AuthApi
     }
 
     /**
-     * Operation logoutAUserAsyncWithHttpInfo
+     * Operation postLogoutApiAsyncWithHttpInfo
      *
      * 
      *
@@ -205,10 +205,10 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutAUserAsyncWithHttpInfo($x_fields = null)
+    public function postLogoutApiAsyncWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\AuthLogout';
-        $request = $this->logoutAUserRequest($x_fields);
+        $request = $this->postLogoutApiRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -248,14 +248,14 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'logoutAUser'
+     * Create request for operation 'postLogoutApi'
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function logoutAUserRequest($x_fields = null)
+    protected function postLogoutApiRequest($x_fields = null)
     {
 
         $resourcePath = '/auth/logout';
@@ -348,7 +348,7 @@ class AuthApi
     }
 
     /**
-     * Operation userLogin
+     * Operation postUserLogin
      *
      * @param  \Swagger\Client\Model\Login $payload payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -357,14 +357,14 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\AuthResponse
      */
-    public function userLogin($payload, $x_fields = null)
+    public function postUserLogin($payload, $x_fields = null)
     {
-        list($response) = $this->userLoginWithHttpInfo($payload, $x_fields);
+        list($response) = $this->postUserLoginWithHttpInfo($payload, $x_fields);
         return $response;
     }
 
     /**
-     * Operation userLoginWithHttpInfo
+     * Operation postUserLoginWithHttpInfo
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -373,10 +373,10 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\AuthResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function userLoginWithHttpInfo($payload, $x_fields = null)
+    public function postUserLoginWithHttpInfo($payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\AuthResponse';
-        $request = $this->userLoginRequest($payload, $x_fields);
+        $request = $this->postUserLoginRequest($payload, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -438,7 +438,7 @@ class AuthApi
     }
 
     /**
-     * Operation userLoginAsync
+     * Operation postUserLoginAsync
      *
      * 
      *
@@ -448,9 +448,9 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function userLoginAsync($payload, $x_fields = null)
+    public function postUserLoginAsync($payload, $x_fields = null)
     {
-        return $this->userLoginAsyncWithHttpInfo($payload, $x_fields)
+        return $this->postUserLoginAsyncWithHttpInfo($payload, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -459,7 +459,7 @@ class AuthApi
     }
 
     /**
-     * Operation userLoginAsyncWithHttpInfo
+     * Operation postUserLoginAsyncWithHttpInfo
      *
      * 
      *
@@ -469,10 +469,10 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function userLoginAsyncWithHttpInfo($payload, $x_fields = null)
+    public function postUserLoginAsyncWithHttpInfo($payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\AuthResponse';
-        $request = $this->userLoginRequest($payload, $x_fields);
+        $request = $this->postUserLoginRequest($payload, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -512,7 +512,7 @@ class AuthApi
     }
 
     /**
-     * Create request for operation 'userLogin'
+     * Create request for operation 'postUserLogin'
      *
      * @param  \Swagger\Client\Model\Login $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -520,12 +520,12 @@ class AuthApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function userLoginRequest($payload, $x_fields = null)
+    protected function postUserLoginRequest($payload, $x_fields = null)
     {
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling userLogin'
+                'Missing the required parameter $payload when calling postUserLogin'
             );
         }
 

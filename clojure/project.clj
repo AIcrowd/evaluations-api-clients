@@ -1,4 +1,4 @@
-(defproject evaluations-api "1.0.0"
+(defproject aicrowd-evaluations "1.0.0"
   :description "API to create and evaluate custom challenges"
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [clj-http "3.6.0"]

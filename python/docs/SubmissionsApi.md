@@ -1,4 +1,4 @@
-# swagger_client.SubmissionsApi
+# aicrowd_evaluations.SubmissionsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_submission_dao**](SubmissionsApi.md#delete_submission_dao) | **DELETE** /submissions/{submission_id} | 
 [**get_submission_dao**](SubmissionsApi.md#get_submission_dao) | **GET** /submissions/{submission_id} | 
+[**get_submission_data_dao**](SubmissionsApi.md#get_submission_data_dao) | **GET** /submissions/{submission_id}/data | 
 [**get_submission_list_dao**](SubmissionsApi.md#get_submission_list_dao) | **GET** /submissions/ | 
 [**post_submission_list_dao**](SubmissionsApi.md#post_submission_list_dao) | **POST** /submissions/ | 
 
@@ -21,18 +22,18 @@ Stop evaluation of a submission
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SubmissionsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
 submission_id = 56 # int | 
 
 try:
@@ -73,18 +74,18 @@ Get details of a submission
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SubmissionsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
 submission_id = 56 # int | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
@@ -117,6 +118,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_submission_data_dao**
+> get_submission_data_dao(submission_id)
+
+
+
+Get the submission data
+
+### Example
+```python
+from __future__ import print_function
+import time
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: api_key
+configuration = aicrowd_evaluations.Configuration()
+configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
+submission_id = 56 # int | 
+
+try:
+    api_instance.get_submission_data_dao(submission_id)
+except ApiException as e:
+    print("Exception when calling SubmissionsApi->get_submission_data_dao: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_submission_list_dao**
 > list[Submissions] get_submission_list_dao(x_fields=x_fields)
 
@@ -128,18 +181,18 @@ Get all submissions
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SubmissionsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -181,19 +234,19 @@ Make a new submission
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SubmissionsApi(swagger_client.ApiClient(configuration))
-payload = swagger_client.Submissions() # Submissions | 
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
+payload = aicrowd_evaluations.Submissions() # Submissions | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:

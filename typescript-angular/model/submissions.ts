@@ -39,7 +39,7 @@ export interface Submissions {
     /**
      * URL to the submission code
      */
-    submissionCode: any;
+    submissionData?: any;
     /**
      * Current status of the submission
      */

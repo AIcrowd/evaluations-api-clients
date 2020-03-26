@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_cluster_dao**](ClustersApi.md#delete_cluster_dao) | **Delete** /clusters/{cluster_id} | 
 [**get_cluster_dao**](ClustersApi.md#get_cluster_dao) | **Get** /clusters/{cluster_id} | 
-[**get_grader_list_dao**](ClustersApi.md#get_grader_list_dao) | **Get** /clusters/ | 
-[**post_grader_list_dao**](ClustersApi.md#post_grader_list_dao) | **Post** /clusters/ | 
+[**get_cluster_list_dao**](ClustersApi.md#get_cluster_list_dao) | **Get** /clusters/ | 
+[**post_cluster_list_dao**](ClustersApi.md#post_cluster_list_dao) | **Post** /clusters/ | 
 
 
 # **delete_cluster_dao**
@@ -75,8 +75,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_list_dao**
-> Vec<::models::Cluster> get_grader_list_dao(ctx, optional)
+# **get_cluster_list_dao**
+> Vec<::models::Cluster> get_cluster_list_dao(ctx, optional)
 
 
 Get all clusters
@@ -110,8 +110,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_grader_list_dao**
-> ::models::Cluster post_grader_list_dao(ctx, payload, optional)
+# **post_cluster_list_dao**
+> ::models::Cluster post_cluster_list_dao(ctx, payload, optional)
 
 
 Add a new cluster

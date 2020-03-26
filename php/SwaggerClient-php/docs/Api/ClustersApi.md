@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 [**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 
 
 # **deleteClusterDao**
@@ -121,8 +121,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getGraderListDao**
-> \Swagger\Client\Model\Cluster[] getGraderListDao($x_fields)
+# **getClusterListDao**
+> \Swagger\Client\Model\Cluster[] getClusterListDao($x_fields)
 
 
 
@@ -147,10 +147,10 @@ $apiInstance = new Swagger\Client\Api\ClustersApi(
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->getGraderListDao($x_fields);
+    $result = $apiInstance->getClusterListDao($x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->getGraderListDao: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClustersApi->getClusterListDao: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -176,8 +176,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **postGraderListDao**
-> \Swagger\Client\Model\Cluster postGraderListDao($payload, $x_fields)
+# **postClusterListDao**
+> \Swagger\Client\Model\Cluster postClusterListDao($payload, $x_fields)
 
 
 
@@ -203,10 +203,10 @@ $payload = new \Swagger\Client\Model\Cluster(); // \Swagger\Client\Model\Cluster
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->postGraderListDao($payload, $x_fields);
+    $result = $apiInstance->postClusterListDao($payload, $x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->postGraderListDao: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClustersApi->postClusterListDao: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

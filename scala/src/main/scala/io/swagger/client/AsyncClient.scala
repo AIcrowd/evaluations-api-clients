@@ -1,6 +1,6 @@
 package io.swagger.client
 
-import io.swagger.client.api._
+import com.aicrowd.evaluations.api._
 
 import com.wordnik.swagger.client._
 

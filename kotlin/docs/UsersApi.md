@@ -23,8 +23,8 @@ Delete a user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val userId : kotlin.Int = 56 // kotlin.Int | User identifier
@@ -69,8 +69,8 @@ Get information of a user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val userId : kotlin.Int = 56 // kotlin.Int | User identifier
@@ -118,8 +118,8 @@ Get all user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
@@ -165,8 +165,8 @@ Create a new user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val payload : User =  // User | 
@@ -214,8 +214,8 @@ Add or subtract quota for a user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val userId : kotlin.Int = 56 // kotlin.Int | User identifier
@@ -262,8 +262,8 @@ Update a user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val userId : kotlin.Int = 56 // kotlin.Int | User identifier

@@ -12,9 +12,9 @@
 
 #include "ApiConfiguration.h"
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
 ApiConfiguration::ApiConfiguration()

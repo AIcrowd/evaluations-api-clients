@@ -122,7 +122,7 @@ API.Client.ClustersApi.prototype.getClusterDao = function(clusterId, opt_xFields
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.Cluster>>}
  */
-API.Client.ClustersApi.prototype.getGraderListDao = function(opt_xFields, opt_extraHttpRequestParams) {
+API.Client.ClustersApi.prototype.getClusterListDao = function(opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/clusters/';
 
@@ -157,7 +157,7 @@ API.Client.ClustersApi.prototype.getGraderListDao = function(opt_xFields, opt_ex
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.Cluster>}
  */
-API.Client.ClustersApi.prototype.postGraderListDao = function(payload, opt_xFields, opt_extraHttpRequestParams) {
+API.Client.ClustersApi.prototype.postClusterListDao = function(payload, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/clusters/';
 
@@ -168,7 +168,7 @@ API.Client.ClustersApi.prototype.postGraderListDao = function(payload, opt_xFiel
   var headerParams = angular.extend({}, this.defaultHeaders_);
   // verify required parameter 'payload' is set
   if (!payload) {
-    throw new Error('Missing required parameter payload when calling postGraderListDao');
+    throw new Error('Missing required parameter payload when calling postClusterListDao');
   }
   headerParams['X-Fields'] = opt_xFields;
 

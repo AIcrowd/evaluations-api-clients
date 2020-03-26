@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::SubmissionFeedback
+# AIcrowdEvaluations::Object::SubmissionFeedback
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::SubmissionFeedback;
+use AIcrowdEvaluations::Object::SubmissionFeedback;
 ```
 
 ## Properties

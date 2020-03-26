@@ -16,8 +16,8 @@
  * This is the base class for all model classes
  */
 
-#ifndef IO_SWAGGER_CLIENT_MODEL_ModelBase_H_
-#define IO_SWAGGER_CLIENT_MODEL_ModelBase_H_
+#ifndef COM_AICROWD_EVALUATIONS_MODELS_ModelBase_H_
+#define COM_AICROWD_EVALUATIONS_MODELS_ModelBase_H_
 
 
 #include "HttpContent.h"
@@ -28,10 +28,10 @@
 
 #include <vector>
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 class  ModelBase
 {
@@ -118,4 +118,4 @@ std::shared_ptr<HttpContent> ModelBase::toHttpContent( const utility::string_t& 
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_MODEL_ModelBase_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_MODELS_ModelBase_H_ */

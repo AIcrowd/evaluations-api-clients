@@ -1,4 +1,4 @@
-# swagger_client.OrganisationsApi
+# aicrowd_evaluations.OrganisationsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -23,18 +23,18 @@ Delete an Organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
 organisation_id = 56 # int | Organisation identifier
 
 try:
@@ -75,18 +75,18 @@ Get information of an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
 organisation_id = 56 # int | Organisation identifier
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
@@ -130,18 +130,18 @@ Get all organisations
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -183,19 +183,19 @@ Create a new organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
-payload = swagger_client.Organisation() # Organisation | 
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
+payload = aicrowd_evaluations.Organisation() # Organisation | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -238,20 +238,20 @@ Update an Organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
 organisation_id = 56 # int | Organisation identifier
-payload = swagger_client.Organisation() # Organisation | 
+payload = aicrowd_evaluations.Organisation() # Organisation | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -295,20 +295,20 @@ Add or subtract quota for an organisation
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.OrganisationsApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.OrganisationsApi(aicrowd_evaluations.ApiClient(configuration))
 organisation_id = 56 # int | Organisation identifier
-payload = swagger_client.OrganisationQuota() # OrganisationQuota | 
+payload = aicrowd_evaluations.OrganisationQuota() # OrganisationQuota | 
 
 try:
     api_instance.put_quota_dao(organisation_id, payload)

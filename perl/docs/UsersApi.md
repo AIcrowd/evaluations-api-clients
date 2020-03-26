@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::UsersApi
+# AIcrowdEvaluations::UsersApi
 
 ## Load the API package
 ```perl
-use WWW::SwaggerClient::Object::UsersApi;
+use AIcrowdEvaluations::Object::UsersApi;
 ```
 
 All URIs are relative to *https://localhost/v1*
@@ -27,8 +27,8 @@ Delete a user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -77,8 +77,8 @@ Get information of a user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -130,8 +130,8 @@ Get all user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -181,8 +181,8 @@ Create a new user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -190,7 +190,7 @@ my $api_instance = WWW::SwaggerClient::UsersApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $payload = WWW::SwaggerClient::Object::User->new(); # User | 
+my $payload = AIcrowdEvaluations::Object::User->new(); # User | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
@@ -234,8 +234,8 @@ Add or subtract quota for a user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -244,7 +244,7 @@ my $api_instance = WWW::SwaggerClient::UsersApi->new(
 );
 
 my $user_id = 56; # int | User identifier
-my $payload = WWW::SwaggerClient::Object::UserQuota->new(); # UserQuota | 
+my $payload = AIcrowdEvaluations::Object::UserQuota->new(); # UserQuota | 
 
 eval { 
     $api_instance->put_quota_dao(user_id => $user_id, payload => $payload);
@@ -286,8 +286,8 @@ Update a user
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::UsersApi;
-my $api_instance = WWW::SwaggerClient::UsersApi->new(
+use AIcrowdEvaluations::UsersApi;
+my $api_instance = AIcrowdEvaluations::UsersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -296,7 +296,7 @@ my $api_instance = WWW::SwaggerClient::UsersApi->new(
 );
 
 my $user_id = 56; # int | User identifier
-my $payload = WWW::SwaggerClient::Object::User->new(); # User | 
+my $payload = AIcrowdEvaluations::Object::User->new(); # User | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 

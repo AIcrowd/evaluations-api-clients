@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_submission_dao**](SubmissionsApi.md#delete_submission_dao) | **Delete** /submissions/{submission_id} | 
 [**get_submission_dao**](SubmissionsApi.md#get_submission_dao) | **Get** /submissions/{submission_id} | 
+[**get_submission_data_dao**](SubmissionsApi.md#get_submission_data_dao) | **Get** /submissions/{submission_id}/data | 
 [**get_submission_list_dao**](SubmissionsApi.md#get_submission_list_dao) | **Get** /submissions/ | 
 [**post_submission_list_dao**](SubmissionsApi.md#post_submission_list_dao) | **Post** /submissions/ | 
 
@@ -63,6 +64,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**::models::Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_submission_data_dao**
+> get_submission_data_dao(ctx, submission_id)
+
+
+Get the submission data
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **submission_id** | **i32**|  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

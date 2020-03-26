@@ -20,7 +20,7 @@ Delete a user
 
 ### Example
 ```bash
- deleteUserDao user_id=value
+aicrowd-evaluations deleteUserDao user_id=value
 ```
 
 ### Parameters
@@ -52,7 +52,7 @@ Get information of a user
 
 ### Example
 ```bash
- getUserDao user_id=value X-Fields:value
+aicrowd-evaluations getUserDao user_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -85,7 +85,7 @@ Get all user
 
 ### Example
 ```bash
- getUserListDao X-Fields:value
+aicrowd-evaluations getUserListDao X-Fields:value
 ```
 
 ### Parameters
@@ -117,7 +117,7 @@ Create a new user
 
 ### Example
 ```bash
- postUserListDao X-Fields:value
+aicrowd-evaluations postUserListDao X-Fields:value
 ```
 
 ### Parameters
@@ -150,7 +150,7 @@ Add or subtract quota for a user
 
 ### Example
 ```bash
- putQuotaDao user_id=value
+aicrowd-evaluations putQuotaDao user_id=value
 ```
 
 ### Parameters
@@ -183,7 +183,7 @@ Update a user
 
 ### Example
 ```bash
- putUserDao user_id=value X-Fields:value
+aicrowd-evaluations putUserDao user_id=value X-Fields:value
 ```
 
 ### Parameters

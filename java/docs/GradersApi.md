@@ -22,11 +22,11 @@ Delete a grader
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -76,11 +76,11 @@ Get information of a grader
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -133,11 +133,11 @@ Get all grader
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -188,11 +188,11 @@ Create a new grader
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -245,11 +245,11 @@ Update a grader
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

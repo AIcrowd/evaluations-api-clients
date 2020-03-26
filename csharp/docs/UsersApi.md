@@ -1,4 +1,4 @@
-# IO.Swagger.Api.UsersApi
+# Com.AIcrowd.Evaluations.Api.UsersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -24,9 +24,9 @@ Delete a user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -88,9 +88,9 @@ Get information of a user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -155,9 +155,9 @@ Get all user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -220,9 +220,9 @@ Create a new user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -287,9 +287,9 @@ Add or subtract quota for a user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -353,9 +353,9 @@ Update a user
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Login
+# Com.AIcrowd.Evaluations.Model.Login
 ## Properties
 
 Name | Type | Description | Notes

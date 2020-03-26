@@ -16,17 +16,17 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_MODEL_UserQuota_H_
-#define IO_SWAGGER_CLIENT_MODEL_UserQuota_H_
+#ifndef COM_AICROWD_EVALUATIONS_MODELS_UserQuota_H_
+#define COM_AICROWD_EVALUATIONS_MODELS_UserQuota_H_
 
 
 #include "../ModelBase.h"
 
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 /// <summary>
 /// 
@@ -67,4 +67,4 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_MODEL_UserQuota_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_MODELS_UserQuota_H_ */

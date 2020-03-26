@@ -1,4 +1,4 @@
-# IO.Swagger.Api.ClustersApi
+# Com.AIcrowd.Evaluations.Api.ClustersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteClusterDao**](ClustersApi.md#deleteclusterdao) | **DELETE** /clusters/{cluster_id} | 
 [**GetClusterDao**](ClustersApi.md#getclusterdao) | **GET** /clusters/{cluster_id} | 
-[**GetGraderListDao**](ClustersApi.md#getgraderlistdao) | **GET** /clusters/ | 
-[**PostGraderListDao**](ClustersApi.md#postgraderlistdao) | **POST** /clusters/ | 
+[**GetClusterListDao**](ClustersApi.md#getclusterlistdao) | **GET** /clusters/ | 
+[**PostClusterListDao**](ClustersApi.md#postclusterlistdao) | **POST** /clusters/ | 
 
 
 <a name="deleteclusterdao"></a>
@@ -22,9 +22,9 @@ Delete a cluster
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -86,9 +86,9 @@ Get information of a cluster
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
@@ -141,9 +141,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getgraderlistdao"></a>
-# **GetGraderListDao**
-> List<Cluster> GetGraderListDao (string xFields = null)
+<a name="getclusterlistdao"></a>
+# **GetClusterListDao**
+> List<Cluster> GetClusterListDao (string xFields = null)
 
 
 
@@ -153,13 +153,13 @@ Get all clusters
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class GetGraderListDaoExample
+    public class GetClusterListDaoExample
     {
         public void main()
         {
@@ -173,12 +173,12 @@ namespace Example
 
             try
             {
-                List&lt;Cluster&gt; result = apiInstance.GetGraderListDao(xFields);
+                List&lt;Cluster&gt; result = apiInstance.GetClusterListDao(xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ClustersApi.GetGraderListDao: " + e.Message );
+                Debug.Print("Exception when calling ClustersApi.GetClusterListDao: " + e.Message );
             }
         }
     }
@@ -206,9 +206,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postgraderlistdao"></a>
-# **PostGraderListDao**
-> Cluster PostGraderListDao (Cluster payload, string xFields = null)
+<a name="postclusterlistdao"></a>
+# **PostClusterListDao**
+> Cluster PostClusterListDao (Cluster payload, string xFields = null)
 
 
 
@@ -218,13 +218,13 @@ Add a new cluster
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class PostGraderListDaoExample
+    public class PostClusterListDaoExample
     {
         public void main()
         {
@@ -239,12 +239,12 @@ namespace Example
 
             try
             {
-                Cluster result = apiInstance.PostGraderListDao(payload, xFields);
+                Cluster result = apiInstance.PostClusterListDao(payload, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ClustersApi.PostGraderListDao: " + e.Message );
+                Debug.Print("Exception when calling ClustersApi.PostClusterListDao: " + e.Message );
             }
         }
     }

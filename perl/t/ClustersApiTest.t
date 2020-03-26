@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::ClustersApi');
+use_ok('AIcrowdEvaluations::ClustersApi');
 
-my $api = WWW::SwaggerClient::ClustersApi->new();
-isa_ok($api, 'WWW::SwaggerClient::ClustersApi');
+my $api = AIcrowdEvaluations::ClustersApi->new();
+isa_ok($api, 'AIcrowdEvaluations::ClustersApi');
 
 #
 # delete_cluster_dao test
@@ -47,20 +47,20 @@ isa_ok($api, 'WWW::SwaggerClient::ClustersApi');
 }
 
 #
-# get_grader_list_dao test
+# get_cluster_list_dao test
 #
 {
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_list_dao(x_fields => $x_fields);
+    my $result = $api->get_cluster_list_dao(x_fields => $x_fields);
 }
 
 #
-# post_grader_list_dao test
+# post_cluster_list_dao test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->post_cluster_list_dao(payload => $payload, x_fields => $x_fields);
 }
 
 

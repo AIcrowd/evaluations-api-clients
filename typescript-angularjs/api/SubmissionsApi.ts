@@ -86,6 +86,34 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
+     * Get the submission data
+     * @param submissionId 
+     */
+    public getSubmissionDataDao (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/data'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDataDao.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * Get all submissions
      * @param xFields An optional fields mask
      */

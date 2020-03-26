@@ -688,7 +688,7 @@ export class Submissions {
     /**
     * URL to the submission code
     */
-    'submissionCode': any;
+    'submissionData'?: any;
     /**
     * Current status of the submission
     */
@@ -760,8 +760,8 @@ export class Submissions {
             "type": "number"
         },
         {
-            "name": "submissionCode",
-            "baseName": "submission_code",
+            "name": "submissionData",
+            "baseName": "submission_data",
             "type": "any"
         },
         {
@@ -1286,11 +1286,11 @@ export class AuthApi {
         (this.authentications as any)[AuthApiApiKeys[key]].apiKey = value;
     }
     /**
-     * 
+     * Logout a user
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public logoutAUser (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthLogout;  }> {
+    public postLogoutApi (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthLogout;  }> {
         const localVarPath = this.basePath + '/auth/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1337,12 +1337,12 @@ export class AuthApi {
         });
     }
     /**
-     * 
+     * User login
      * @param payload 
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public userLogin (payload: Login, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthResponse;  }> {
+    public postUserLogin (payload: Login, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AuthResponse;  }> {
         const localVarPath = this.basePath + '/auth/login';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1350,7 +1350,7 @@ export class AuthApi {
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling userLogin.');
+            throw new Error('Required parameter payload was null or undefined when calling postUserLogin.');
         }
 
         localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
@@ -1557,7 +1557,7 @@ export class ClustersApi {
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public getGraderListDao (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Cluster>;  }> {
+    public getClusterListDao (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Cluster>;  }> {
         const localVarPath = this.basePath + '/clusters/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1609,7 +1609,7 @@ export class ClustersApi {
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public postGraderListDao (payload: Cluster, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Cluster;  }> {
+    public postClusterListDao (payload: Cluster, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Cluster;  }> {
         const localVarPath = this.basePath + '/clusters/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1617,7 +1617,7 @@ export class ClustersApi {
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling postClusterListDao.');
         }
 
         localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
@@ -2542,6 +2542,61 @@ export class SubmissionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Submissions");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get the submission data
+     * @param submissionId 
+     * @param {*} [options] Override http request options.
+     */
+    public getSubmissionDataDao (submissionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/data'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDataDao.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

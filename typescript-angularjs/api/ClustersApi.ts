@@ -89,7 +89,7 @@ export class ClustersApi {
      * Get all clusters
      * @param xFields An optional fields mask
      */
-    public getGraderListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Cluster>> {
+    public getClusterListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Cluster>> {
         const localVarPath = this.basePath + '/clusters/';
 
         let queryParameters: any = {};
@@ -114,14 +114,14 @@ export class ClustersApi {
      * @param payload 
      * @param xFields An optional fields mask
      */
-    public postGraderListDao (payload: models.Cluster, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
+    public postClusterListDao (payload: models.Cluster, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
         const localVarPath = this.basePath + '/clusters/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling postClusterListDao.');
         }
 
         headerParams['X-Fields'] = xFields;

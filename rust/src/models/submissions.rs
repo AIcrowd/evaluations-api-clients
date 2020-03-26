@@ -33,8 +33,8 @@ pub struct Submissions {
   #[serde(rename = "grader_id")]
   grader_id: i32,
   /// URL to the submission code
-  #[serde(rename = "submission_code")]
-  submission_code: Value,
+  #[serde(rename = "submission_data")]
+  submission_data: Option<Value>,
   /// Current status of the submission
   #[serde(rename = "status")]
   status: Option<String>,
@@ -65,7 +65,7 @@ pub struct Submissions {
 }
 
 impl Submissions {
-  pub fn new(grader_id: i32, submission_code: Value) -> Submissions {
+  pub fn new(grader_id: i32) -> Submissions {
     Submissions {
       id: None,
       created: None,
@@ -73,7 +73,7 @@ impl Submissions {
       participant_id: None,
       round_id: None,
       grader_id: grader_id,
-      submission_code: submission_code,
+      submission_data: None,
       status: None,
       output: None,
       additional_outputs: None,
@@ -185,19 +185,22 @@ impl Submissions {
   }
 
 
-  pub fn set_submission_code(&mut self, submission_code: Value) {
-    self.submission_code = submission_code;
+  pub fn set_submission_data(&mut self, submission_data: Value) {
+    self.submission_data = Some(submission_data);
   }
 
-  pub fn with_submission_code(mut self, submission_code: Value) -> Submissions {
-    self.submission_code = submission_code;
+  pub fn with_submission_data(mut self, submission_data: Value) -> Submissions {
+    self.submission_data = Some(submission_data);
     self
   }
 
-  pub fn submission_code(&self) -> &Value {
-    &self.submission_code
+  pub fn submission_data(&self) -> Option<&Value> {
+    self.submission_data.as_ref()
   }
 
+  pub fn reset_submission_data(&mut self) {
+    self.submission_data = None;
+  }
 
   pub fn set_status(&mut self, status: String) {
     self.status = Some(status);

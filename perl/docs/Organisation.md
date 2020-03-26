@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::Organisation
+# AIcrowdEvaluations::Object::Organisation
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Organisation;
+use AIcrowdEvaluations::Object::Organisation;
 ```
 
 ## Properties

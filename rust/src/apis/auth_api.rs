@@ -35,13 +35,13 @@ impl<C: hyper::client::Connect> AuthApiClient<C> {
 }
 
 pub trait AuthApi {
-    fn logout_a_user(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>>;
-    fn user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>>;
+    fn post_logout_api(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>>;
+    fn post_user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
-    fn logout_a_user(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>> {
+    fn post_logout_api(&self, x_fields: &str) -> Box<Future<Item = ::models::AuthLogout, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -111,7 +111,7 @@ impl<C: hyper::client::Connect>AuthApi for AuthApiClient<C> {
         )
     }
 
-    fn user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>> {
+    fn post_user_login(&self, payload: ::models::Login, x_fields: &str) -> Box<Future<Item = ::models::AuthResponse, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let method = hyper::Method::Post;

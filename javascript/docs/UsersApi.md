@@ -1,4 +1,4 @@
-# EvaluationsApi.UsersApi
+# AicrowdEvaluations.UsersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -22,8 +22,8 @@ Delete a user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -31,7 +31,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
 var userId = 56; // Number | User identifier
 
@@ -75,8 +75,8 @@ Get information of a user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -84,7 +84,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
 var userId = 56; // Number | User identifier
 
@@ -132,8 +132,8 @@ Get all user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -141,7 +141,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -186,8 +186,8 @@ Create a new user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -195,9 +195,9 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
-var payload = new EvaluationsApi.User(); // User | 
+var payload = new AicrowdEvaluations.User(); // User | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -243,8 +243,8 @@ Add or subtract quota for a user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -252,11 +252,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
 var userId = 56; // Number | User identifier
 
-var payload = new EvaluationsApi.UserQuota(); // UserQuota | 
+var payload = new AicrowdEvaluations.UserQuota(); // UserQuota | 
 
 
 var callback = function(error, data, response) {
@@ -299,8 +299,8 @@ Update a user
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -308,11 +308,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.UsersApi();
+var apiInstance = new AicrowdEvaluations.UsersApi();
 
 var userId = 56; // Number | User identifier
 
-var payload = new EvaluationsApi.User(); // User | 
+var payload = new AicrowdEvaluations.User(); // User | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask

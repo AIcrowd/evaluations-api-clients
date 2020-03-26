@@ -16,8 +16,8 @@
  * This is the implementation of a JSON object.
  */
 
-#ifndef IO_SWAGGER_CLIENT_MODEL_Object_H_
-#define IO_SWAGGER_CLIENT_MODEL_Object_H_
+#ifndef COM_AICROWD_EVALUATIONS_MODELS_Object_H_
+#define COM_AICROWD_EVALUATIONS_MODELS_Object_H_
 
 
 #include "ModelBase.h"
@@ -25,10 +25,10 @@
 #include <cpprest/details/basic_types.h>
 #include <cpprest/json.h>
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 class  Object : public ModelBase
 {
@@ -60,4 +60,4 @@ private:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_MODEL_Object_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_MODELS_Object_H_ */

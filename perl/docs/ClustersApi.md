@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::ClustersApi
+# AIcrowdEvaluations::ClustersApi
 
 ## Load the API package
 ```perl
-use WWW::SwaggerClient::Object::ClustersApi;
+use AIcrowdEvaluations::Object::ClustersApi;
 ```
 
 All URIs are relative to *https://localhost/v1*
@@ -11,8 +11,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_cluster_dao**](ClustersApi.md#delete_cluster_dao) | **DELETE** /clusters/{cluster_id} | 
 [**get_cluster_dao**](ClustersApi.md#get_cluster_dao) | **GET** /clusters/{cluster_id} | 
-[**get_grader_list_dao**](ClustersApi.md#get_grader_list_dao) | **GET** /clusters/ | 
-[**post_grader_list_dao**](ClustersApi.md#post_grader_list_dao) | **POST** /clusters/ | 
+[**get_cluster_list_dao**](ClustersApi.md#get_cluster_list_dao) | **GET** /clusters/ | 
+[**post_cluster_list_dao**](ClustersApi.md#post_cluster_list_dao) | **POST** /clusters/ | 
 
 
 # **delete_cluster_dao**
@@ -25,8 +25,8 @@ Delete a cluster
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ClustersApi;
-my $api_instance = WWW::SwaggerClient::ClustersApi->new(
+use AIcrowdEvaluations::ClustersApi;
+my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -75,8 +75,8 @@ Get information of a cluster
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ClustersApi;
-my $api_instance = WWW::SwaggerClient::ClustersApi->new(
+use AIcrowdEvaluations::ClustersApi;
+my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -118,8 +118,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_list_dao**
-> ARRAY[Cluster] get_grader_list_dao(x_fields => $x_fields)
+# **get_cluster_list_dao**
+> ARRAY[Cluster] get_cluster_list_dao(x_fields => $x_fields)
 
 
 
@@ -128,8 +128,8 @@ Get all clusters
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ClustersApi;
-my $api_instance = WWW::SwaggerClient::ClustersApi->new(
+use AIcrowdEvaluations::ClustersApi;
+my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -140,11 +140,11 @@ my $api_instance = WWW::SwaggerClient::ClustersApi->new(
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_grader_list_dao(x_fields => $x_fields);
+    my $result = $api_instance->get_cluster_list_dao(x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling ClustersApi->get_grader_list_dao: $@\n";
+    warn "Exception when calling ClustersApi->get_cluster_list_dao: $@\n";
 }
 ```
 
@@ -169,8 +169,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_grader_list_dao**
-> Cluster post_grader_list_dao(payload => $payload, x_fields => $x_fields)
+# **post_cluster_list_dao**
+> Cluster post_cluster_list_dao(payload => $payload, x_fields => $x_fields)
 
 
 
@@ -179,8 +179,8 @@ Add a new cluster
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ClustersApi;
-my $api_instance = WWW::SwaggerClient::ClustersApi->new(
+use AIcrowdEvaluations::ClustersApi;
+my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -188,15 +188,15 @@ my $api_instance = WWW::SwaggerClient::ClustersApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $payload = WWW::SwaggerClient::Object::Cluster->new(); # Cluster | 
+my $payload = AIcrowdEvaluations::Object::Cluster->new(); # Cluster | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api_instance->post_cluster_list_dao(payload => $payload, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling ClustersApi->post_grader_list_dao: $@\n";
+    warn "Exception when calling ClustersApi->post_cluster_list_dao: $@\n";
 }
 ```
 

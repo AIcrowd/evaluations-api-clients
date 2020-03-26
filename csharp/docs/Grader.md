@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Grader
+# Com.AIcrowd.Evaluations.Model.Grader
 ## Properties
 
 Name | Type | Description | Notes

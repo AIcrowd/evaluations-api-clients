@@ -1,4 +1,4 @@
-# SwaggerClient::GradersApi
+# AIcrowdEvaluations::GradersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -21,23 +21,23 @@ Delete a grader
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
 
 begin
   api_instance.delete_grader_dao(grader_id)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->delete_grader_dao: #{e}"
 end
 ```
@@ -73,16 +73,16 @@ Get information of a grader
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
@@ -93,7 +93,7 @@ opts = {
 begin
   result = api_instance.get_grader_dao(grader_id, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->get_grader_dao: #{e}"
 end
 ```
@@ -130,16 +130,16 @@ Get all grader
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -148,7 +148,7 @@ opts = {
 begin
   result = api_instance.get_grader_list_dao(opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->get_grader_list_dao: #{e}"
 end
 ```
@@ -184,18 +184,18 @@ Create a new grader
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
-payload = SwaggerClient::Grader.new # Grader | 
+payload = AIcrowdEvaluations::Grader.new # Grader | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -204,7 +204,7 @@ opts = {
 begin
   result = api_instance.post_grader_list_dao(payload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->post_grader_list_dao: #{e}"
 end
 ```
@@ -241,20 +241,20 @@ Update a grader
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
-payload = SwaggerClient::Grader.new # Grader | 
+payload = AIcrowdEvaluations::Grader.new # Grader | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -263,7 +263,7 @@ opts = {
 begin
   result = api_instance.put_grader_dao(grader_idpayload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->put_grader_dao: #{e}"
 end
 ```

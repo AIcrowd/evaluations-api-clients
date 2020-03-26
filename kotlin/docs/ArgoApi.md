@@ -20,8 +20,8 @@ Update the status of an object
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ArgoApi()
 val modelName : kotlin.String = modelName_example // kotlin.String | 
@@ -70,8 +70,8 @@ Update the grader details
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ArgoApi()
 val graderId : kotlin.Int = 56 // kotlin.Int | 
@@ -118,8 +118,8 @@ Update the submission details
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ArgoApi()
 val submissionId : kotlin.Int = 56 // kotlin.Int | 

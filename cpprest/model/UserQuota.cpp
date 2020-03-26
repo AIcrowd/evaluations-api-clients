@@ -14,10 +14,10 @@
 
 #include "UserQuota.h"
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 UserQuota::UserQuota()
 {

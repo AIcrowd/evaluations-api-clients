@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 [**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 
 
 ## **deleteClusterDao**
@@ -18,7 +18,7 @@ Delete a cluster
 
 ### Example
 ```bash
- deleteClusterDao cluster_id=value
+aicrowd-evaluations deleteClusterDao cluster_id=value
 ```
 
 ### Parameters
@@ -50,7 +50,7 @@ Get information of a cluster
 
 ### Example
 ```bash
- getClusterDao cluster_id=value X-Fields:value
+aicrowd-evaluations getClusterDao cluster_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getGraderListDao**
+## **getClusterListDao**
 
 
 
@@ -83,7 +83,7 @@ Get all clusters
 
 ### Example
 ```bash
- getGraderListDao X-Fields:value
+aicrowd-evaluations getClusterListDao X-Fields:value
 ```
 
 ### Parameters
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postGraderListDao**
+## **postClusterListDao**
 
 
 
@@ -115,7 +115,7 @@ Add a new cluster
 
 ### Example
 ```bash
- postGraderListDao X-Fields:value
+aicrowd-evaluations postClusterListDao X-Fields:value
 ```
 
 ### Parameters

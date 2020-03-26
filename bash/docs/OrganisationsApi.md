@@ -20,7 +20,7 @@ Delete an Organisation
 
 ### Example
 ```bash
- deleteOrganisationDao organisation_id=value
+aicrowd-evaluations deleteOrganisationDao organisation_id=value
 ```
 
 ### Parameters
@@ -52,7 +52,7 @@ Get information of an organisation
 
 ### Example
 ```bash
- getOrganisationDao organisation_id=value X-Fields:value
+aicrowd-evaluations getOrganisationDao organisation_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -85,7 +85,7 @@ Get all organisations
 
 ### Example
 ```bash
- getOrganisationListDao X-Fields:value
+aicrowd-evaluations getOrganisationListDao X-Fields:value
 ```
 
 ### Parameters
@@ -117,7 +117,7 @@ Create a new organisation
 
 ### Example
 ```bash
- postOrganisationListDao X-Fields:value
+aicrowd-evaluations postOrganisationListDao X-Fields:value
 ```
 
 ### Parameters
@@ -150,7 +150,7 @@ Update an Organisation
 
 ### Example
 ```bash
- putOrganisationDao organisation_id=value X-Fields:value
+aicrowd-evaluations putOrganisationDao organisation_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -184,7 +184,7 @@ Add or subtract quota for an organisation
 
 ### Example
 ```bash
- putQuotaDao organisation_id=value
+aicrowd-evaluations putQuotaDao organisation_id=value
 ```
 
 ### Parameters

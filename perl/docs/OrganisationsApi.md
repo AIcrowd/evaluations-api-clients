@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::OrganisationsApi
+# AIcrowdEvaluations::OrganisationsApi
 
 ## Load the API package
 ```perl
-use WWW::SwaggerClient::Object::OrganisationsApi;
+use AIcrowdEvaluations::Object::OrganisationsApi;
 ```
 
 All URIs are relative to *https://localhost/v1*
@@ -27,8 +27,8 @@ Delete an Organisation
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -77,8 +77,8 @@ Get information of an organisation
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -130,8 +130,8 @@ Get all organisations
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -181,8 +181,8 @@ Create a new organisation
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -190,7 +190,7 @@ my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $payload = WWW::SwaggerClient::Object::Organisation->new(); # Organisation | 
+my $payload = AIcrowdEvaluations::Object::Organisation->new(); # Organisation | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
@@ -234,8 +234,8 @@ Update an Organisation
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -244,7 +244,7 @@ my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
 );
 
 my $organisation_id = 56; # int | Organisation identifier
-my $payload = WWW::SwaggerClient::Object::Organisation->new(); # Organisation | 
+my $payload = AIcrowdEvaluations::Object::Organisation->new(); # Organisation | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
@@ -289,8 +289,8 @@ Add or subtract quota for an organisation
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::OrganisationsApi;
-my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -299,7 +299,7 @@ my $api_instance = WWW::SwaggerClient::OrganisationsApi->new(
 );
 
 my $organisation_id = 56; # int | Organisation identifier
-my $payload = WWW::SwaggerClient::Object::OrganisationQuota->new(); # OrganisationQuota | 
+my $payload = AIcrowdEvaluations::Object::OrganisationQuota->new(); # OrganisationQuota | 
 
 eval { 
     $api_instance->put_quota_dao(organisation_id => $organisation_id, payload => $payload);

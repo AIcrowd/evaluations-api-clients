@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 [**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 
 
 <a name="deleteClusterDao"></a>
@@ -21,8 +21,8 @@ Delete a cluster
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ClustersApi()
 val clusterId : kotlin.Int = 56 // kotlin.Int | 
@@ -67,8 +67,8 @@ Get information of a cluster
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ClustersApi()
 val clusterId : kotlin.Int = 56 // kotlin.Int | 
@@ -105,9 +105,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> kotlin.Array&lt;Cluster&gt; getGraderListDao(xFields)
+<a name="getClusterListDao"></a>
+# **getClusterListDao**
+> kotlin.Array&lt;Cluster&gt; getClusterListDao(xFields)
 
 
 
@@ -116,19 +116,19 @@ Get all clusters
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ClustersApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Cluster> = apiInstance.getGraderListDao(xFields)
+    val result : kotlin.Array<Cluster> = apiInstance.getClusterListDao(xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling ClustersApi#getGraderListDao")
+    println("4xx response calling ClustersApi#getClusterListDao")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling ClustersApi#getGraderListDao")
+    println("5xx response calling ClustersApi#getClusterListDao")
     e.printStackTrace()
 }
 ```
@@ -152,9 +152,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Cluster postGraderListDao(payload, xFields)
+<a name="postClusterListDao"></a>
+# **postClusterListDao**
+> Cluster postClusterListDao(payload, xFields)
 
 
 
@@ -163,20 +163,20 @@ Add a new cluster
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = ClustersApi()
 val payload : Cluster =  // Cluster | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : Cluster = apiInstance.postGraderListDao(payload, xFields)
+    val result : Cluster = apiInstance.postClusterListDao(payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling ClustersApi#postGraderListDao")
+    println("4xx response calling ClustersApi#postClusterListDao")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling ClustersApi#postGraderListDao")
+    println("5xx response calling ClustersApi#postClusterListDao")
     e.printStackTrace()
 }
 ```

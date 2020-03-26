@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.grader_feedback import GraderFeedback  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.models.grader_feedback import GraderFeedback  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestGraderFeedback(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestGraderFeedback(unittest.TestCase):
     def testGraderFeedback(self):
         """Test GraderFeedback"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.grader_feedback.GraderFeedback()  # noqa: E501
+        # model = aicrowd_evaluations.models.grader_feedback.GraderFeedback()  # noqa: E501
         pass
 
 

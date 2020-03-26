@@ -1,4 +1,4 @@
-# swagger_client.UsersApi
+# aicrowd_evaluations.UsersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -23,18 +23,18 @@ Delete a user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
 user_id = 56 # int | User identifier
 
 try:
@@ -75,18 +75,18 @@ Get information of a user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
 user_id = 56 # int | User identifier
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
@@ -130,18 +130,18 @@ Get all user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -183,19 +183,19 @@ Create a new user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-payload = swagger_client.User() # User | 
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
+payload = aicrowd_evaluations.User() # User | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
@@ -238,20 +238,20 @@ Add or subtract quota for a user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
 user_id = 56 # int | User identifier
-payload = swagger_client.UserQuota() # UserQuota | 
+payload = aicrowd_evaluations.UserQuota() # UserQuota | 
 
 try:
     api_instance.put_quota_dao(user_id, payload)
@@ -292,20 +292,20 @@ Update a user
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: api_key
-configuration = swagger_client.Configuration()
+configuration = aicrowd_evaluations.Configuration()
 configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
+api_instance = aicrowd_evaluations.UsersApi(aicrowd_evaluations.ApiClient(configuration))
 user_id = 56 # int | User identifier
-payload = swagger_client.User() # User | 
+payload = aicrowd_evaluations.User() # User | 
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:

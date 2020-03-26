@@ -16,8 +16,8 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_ClustersApi_H_
-#define IO_SWAGGER_CLIENT_API_ClustersApi_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_ClustersApi_H_
+#define COM_AICROWD_EVALUATIONS_API_ClustersApi_H_
 
 
 #include "../ApiClient.h"
@@ -27,12 +27,12 @@
 
 #include <boost/optional.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 class  ClustersApi
 {
@@ -68,7 +68,7 @@ public:
     /// Get all clusters
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Cluster>>> getGraderListDao(
+    pplx::task<std::vector<std::shared_ptr<Cluster>>> getClusterListDao(
         boost::optional<utility::string_t> xFields
     );
     /// <summary>
@@ -79,7 +79,7 @@ public:
     /// </remarks>
     /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Cluster>> postGraderListDao(
+    pplx::task<std::shared_ptr<Cluster>> postClusterListDao(
         std::shared_ptr<Cluster> payload,
         boost::optional<utility::string_t> xFields
     );
@@ -93,5 +93,5 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_API_ClustersApi_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_ClustersApi_H_ */
 

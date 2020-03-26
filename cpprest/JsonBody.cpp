@@ -12,10 +12,10 @@
 
 #include "JsonBody.h"
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 JsonBody::JsonBody( const web::json::value& json)
     : m_Json(json)

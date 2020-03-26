@@ -1,4 +1,4 @@
-# SwaggerClient::GraderFeedback
+# AIcrowdEvaluations::GraderFeedback
 
 ## Properties
 Name | Type | Description | Notes

@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.clusters_api import ClustersApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.clusters_api import ClustersApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestClustersApi(unittest.TestCase):
     """ClustersApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.clusters_api.ClustersApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.clusters_api.ClustersApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -41,14 +41,14 @@ class TestClustersApi(unittest.TestCase):
         """
         pass
 
-    def test_get_grader_list_dao(self):
-        """Test case for get_grader_list_dao
+    def test_get_cluster_list_dao(self):
+        """Test case for get_cluster_list_dao
 
         """
         pass
 
-    def test_post_grader_list_dao(self):
-        """Test case for post_grader_list_dao
+    def test_post_cluster_list_dao(self):
+        """Test case for post_cluster_list_dao
 
         """
         pass

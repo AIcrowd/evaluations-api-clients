@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::ArgoApi
+# AIcrowdEvaluations::ArgoApi
 
 ## Load the API package
 ```perl
-use WWW::SwaggerClient::Object::ArgoApi;
+use AIcrowdEvaluations::Object::ArgoApi;
 ```
 
 All URIs are relative to *https://localhost/v1*
@@ -24,8 +24,8 @@ Update the status of an object
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ArgoApi;
-my $api_instance = WWW::SwaggerClient::ArgoApi->new(
+use AIcrowdEvaluations::ArgoApi;
+my $api_instance = AIcrowdEvaluations::ArgoApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -35,7 +35,7 @@ my $api_instance = WWW::SwaggerClient::ArgoApi->new(
 
 my $model_name = 'model_name_example'; # string | 
 my $object_id = 56; # int | 
-my $payload = WWW::SwaggerClient::Object::GenericFeedback->new(); # GenericFeedback | 
+my $payload = AIcrowdEvaluations::Object::GenericFeedback->new(); # GenericFeedback | 
 
 eval { 
     $api_instance->post_generic_feedback_contract(model_name => $model_name, object_id => $object_id, payload => $payload);
@@ -78,8 +78,8 @@ Update the grader details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ArgoApi;
-my $api_instance = WWW::SwaggerClient::ArgoApi->new(
+use AIcrowdEvaluations::ArgoApi;
+my $api_instance = AIcrowdEvaluations::ArgoApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -88,7 +88,7 @@ my $api_instance = WWW::SwaggerClient::ArgoApi->new(
 );
 
 my $grader_id = 56; # int | 
-my $payload = WWW::SwaggerClient::Object::GraderFeedback->new(); # GraderFeedback | 
+my $payload = AIcrowdEvaluations::Object::GraderFeedback->new(); # GraderFeedback | 
 
 eval { 
     $api_instance->post_grader_feedback_dao(grader_id => $grader_id, payload => $payload);
@@ -130,8 +130,8 @@ Update the submission details
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::ArgoApi;
-my $api_instance = WWW::SwaggerClient::ArgoApi->new(
+use AIcrowdEvaluations::ArgoApi;
+my $api_instance = AIcrowdEvaluations::ArgoApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -140,7 +140,7 @@ my $api_instance = WWW::SwaggerClient::ArgoApi->new(
 );
 
 my $submission_id = 56; # int | 
-my $payload = WWW::SwaggerClient::Object::SubmissionFeedback->new(); # SubmissionFeedback | 
+my $payload = AIcrowdEvaluations::Object::SubmissionFeedback->new(); # SubmissionFeedback | 
 
 eval { 
     $api_instance->post_submission_feedback_dao(submission_id => $submission_id, payload => $payload);

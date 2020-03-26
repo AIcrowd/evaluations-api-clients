@@ -1,4 +1,4 @@
-# EvaluationsApi.Grader
+# AicrowdEvaluations.Grader
 
 ## Properties
 Name | Type | Description | Notes

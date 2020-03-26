@@ -1,4 +1,4 @@
-# EvaluationsApi.SubmissionsApi
+# AicrowdEvaluations.SubmissionsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteSubmissionDao**](SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
 [**getSubmissionDao**](SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
+[**getSubmissionDataDao**](SubmissionsApi.md#getSubmissionDataDao) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionListDao**](SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
 [**postSubmissionListDao**](SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
 
@@ -20,8 +21,8 @@ Stop evaluation of a submission
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -29,7 +30,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.SubmissionsApi();
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var submissionId = 56; // Number | 
 
@@ -73,8 +74,8 @@ Get details of a submission
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -82,7 +83,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.SubmissionsApi();
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var submissionId = 56; // Number | 
 
@@ -120,6 +121,59 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getSubmissionDataDao"></a>
+# **getSubmissionDataDao**
+> getSubmissionDataDao(submissionId)
+
+
+
+Get the submission data
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
+
+var submissionId = 56; // Number | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.getSubmissionDataDao(submissionId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Number**|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getSubmissionListDao"></a>
 # **getSubmissionListDao**
 > [Submissions] getSubmissionListDao(opts)
@@ -130,8 +184,8 @@ Get all submissions
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -139,7 +193,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.SubmissionsApi();
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -184,8 +238,8 @@ Make a new submission
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -193,9 +247,9 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.SubmissionsApi();
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
-var payload = new EvaluationsApi.Submissions(); // Submissions | 
+var payload = new AicrowdEvaluations.Submissions(); // Submissions | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask

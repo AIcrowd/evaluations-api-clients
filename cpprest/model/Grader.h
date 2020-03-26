@@ -16,8 +16,8 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_MODEL_Grader_H_
-#define IO_SWAGGER_CLIENT_MODEL_Grader_H_
+#ifndef COM_AICROWD_EVALUATIONS_MODELS_Grader_H_
+#define COM_AICROWD_EVALUATIONS_MODELS_Grader_H_
 
 
 #include "../ModelBase.h"
@@ -25,10 +25,10 @@
 #include <cpprest/details/basic_types.h>
 #include "Object.h"
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 /// <summary>
 /// 
@@ -204,4 +204,4 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_MODEL_Grader_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_MODELS_Grader_H_ */

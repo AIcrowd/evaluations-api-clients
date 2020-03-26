@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.submissions_api import SubmissionsApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.submissions_api import SubmissionsApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestSubmissionsApi(unittest.TestCase):
     """SubmissionsApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.submissions_api.SubmissionsApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.submissions_api.SubmissionsApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -37,6 +37,12 @@ class TestSubmissionsApi(unittest.TestCase):
 
     def test_get_submission_dao(self):
         """Test case for get_submission_dao
+
+        """
+        pass
+
+    def test_get_submission_data_dao(self):
+        """Test case for get_submission_data_dao
 
         """
         pass

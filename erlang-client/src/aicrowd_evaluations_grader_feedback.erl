@@ -1,0 +1,17 @@
+-module(aicrowd_evaluations_grader_feedback).
+
+-export([encode/1]).
+
+-export_type([aicrowd_evaluations_grader_feedback/0]).
+
+-type aicrowd_evaluations_grader_feedback() ::
+    #{ 'status' := boolean(),
+       'workflow_spec' := binary()
+     }.
+
+encode(#{ 'status' := Status,
+          'workflow_spec' := WorkflowSpec
+        }) ->
+    #{ 'status' => Status,
+       'workflow_spec' => WorkflowSpec
+     }.

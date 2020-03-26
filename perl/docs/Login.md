@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::Login
+# AIcrowdEvaluations::Object::Login
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Login;
+use AIcrowdEvaluations::Object::Login;
 ```
 
 ## Properties

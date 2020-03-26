@@ -1,4 +1,4 @@
-# SwaggerClient::OrganisationsApi
+# AIcrowdEvaluations::OrganisationsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -22,23 +22,23 @@ Delete an Organisation
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
 organisation_id = 56 # Integer | Organisation identifier
 
 
 begin
   api_instance.delete_organisation_dao(organisation_id)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->delete_organisation_dao: #{e}"
 end
 ```
@@ -74,16 +74,16 @@ Get information of an organisation
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
 organisation_id = 56 # Integer | Organisation identifier
 
@@ -94,7 +94,7 @@ opts = {
 begin
   result = api_instance.get_organisation_dao(organisation_id, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->get_organisation_dao: #{e}"
 end
 ```
@@ -131,16 +131,16 @@ Get all organisations
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -149,7 +149,7 @@ opts = {
 begin
   result = api_instance.get_organisation_list_dao(opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->get_organisation_list_dao: #{e}"
 end
 ```
@@ -185,18 +185,18 @@ Create a new organisation
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
-payload = SwaggerClient::Organisation.new # Organisation | 
+payload = AIcrowdEvaluations::Organisation.new # Organisation | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -205,7 +205,7 @@ opts = {
 begin
   result = api_instance.post_organisation_list_dao(payload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->post_organisation_list_dao: #{e}"
 end
 ```
@@ -242,20 +242,20 @@ Update an Organisation
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
 organisation_id = 56 # Integer | Organisation identifier
 
-payload = SwaggerClient::Organisation.new # Organisation | 
+payload = AIcrowdEvaluations::Organisation.new # Organisation | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -264,7 +264,7 @@ opts = {
 begin
   result = api_instance.put_organisation_dao(organisation_idpayload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->put_organisation_dao: #{e}"
 end
 ```
@@ -302,25 +302,25 @@ Add or subtract quota for an organisation
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::OrganisationsApi.new
+api_instance = AIcrowdEvaluations::OrganisationsApi.new
 
 organisation_id = 56 # Integer | Organisation identifier
 
-payload = SwaggerClient::OrganisationQuota.new # OrganisationQuota | 
+payload = AIcrowdEvaluations::OrganisationQuota.new # OrganisationQuota | 
 
 
 begin
   api_instance.put_quota_dao(organisation_id, payload)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling OrganisationsApi->put_quota_dao: #{e}"
 end
 ```

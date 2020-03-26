@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::GradersApi
+# AIcrowdEvaluations::GradersApi
 
 ## Load the API package
 ```perl
-use WWW::SwaggerClient::Object::GradersApi;
+use AIcrowdEvaluations::Object::GradersApi;
 ```
 
 All URIs are relative to *https://localhost/v1*
@@ -26,8 +26,8 @@ Delete a grader
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::GradersApi;
-my $api_instance = WWW::SwaggerClient::GradersApi->new(
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -76,8 +76,8 @@ Get information of a grader
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::GradersApi;
-my $api_instance = WWW::SwaggerClient::GradersApi->new(
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -129,8 +129,8 @@ Get all grader
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::GradersApi;
-my $api_instance = WWW::SwaggerClient::GradersApi->new(
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -180,8 +180,8 @@ Create a new grader
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::GradersApi;
-my $api_instance = WWW::SwaggerClient::GradersApi->new(
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -189,7 +189,7 @@ my $api_instance = WWW::SwaggerClient::GradersApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $payload = WWW::SwaggerClient::Object::Grader->new(); # Grader | 
+my $payload = AIcrowdEvaluations::Object::Grader->new(); # Grader | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
@@ -233,8 +233,8 @@ Update a grader
 ### Example 
 ```perl
 use Data::Dumper;
-use WWW::SwaggerClient::GradersApi;
-my $api_instance = WWW::SwaggerClient::GradersApi->new(
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
 
     # Configure API key authorization: api_key
     api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
@@ -243,7 +243,7 @@ my $api_instance = WWW::SwaggerClient::GradersApi->new(
 );
 
 my $grader_id = 56; # int | 
-my $payload = WWW::SwaggerClient::Object::Grader->new(); # Grader | 
+my $payload = AIcrowdEvaluations::Object::Grader->new(); # Grader | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 

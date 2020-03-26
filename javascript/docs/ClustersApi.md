@@ -1,4 +1,4 @@
-# EvaluationsApi.ClustersApi
+# AicrowdEvaluations.ClustersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
 [**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
+[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
 
 
 <a name="deleteClusterDao"></a>
@@ -20,8 +20,8 @@ Delete a cluster
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -29,7 +29,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var clusterId = 56; // Number | 
 
@@ -73,8 +73,8 @@ Get information of a cluster
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -82,7 +82,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var clusterId = 56; // Number | 
 
@@ -120,9 +120,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> [Cluster] getGraderListDao(opts)
+<a name="getClusterListDao"></a>
+# **getClusterListDao**
+> [Cluster] getClusterListDao(opts)
 
 
 
@@ -130,8 +130,8 @@ Get all clusters
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -139,7 +139,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -152,7 +152,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getGraderListDao(opts, callback);
+apiInstance.getClusterListDao(opts, callback);
 ```
 
 ### Parameters
@@ -174,9 +174,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Cluster postGraderListDao(payload, opts)
+<a name="postClusterListDao"></a>
+# **postClusterListDao**
+> Cluster postClusterListDao(payload, opts)
 
 
 
@@ -184,8 +184,8 @@ Add a new cluster
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -193,9 +193,9 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
-var payload = new EvaluationsApi.Cluster(); // Cluster | 
+var payload = new AicrowdEvaluations.Cluster(); // Cluster | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -208,7 +208,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.postGraderListDao(payload, opts, callback);
+apiInstance.postClusterListDao(payload, opts, callback);
 ```
 
 ### Parameters

@@ -4,32 +4,34 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logout a user**](AuthApi.md#logout a user) | **POST** /auth/logout | 
-[**user login**](AuthApi.md#user login) | **POST** /auth/login | 
+[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
 
 
-<a name="logout a user"></a>
-# **logout a user**
-> AuthLogout logout a user(xFields)
+<a name="postLogoutApi"></a>
+# **postLogoutApi**
+> AuthLogout postLogoutApi(xFields)
 
 
+
+Logout a user
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = AuthApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : AuthLogout = apiInstance.logout a user(xFields)
+    val result : AuthLogout = apiInstance.postLogoutApi(xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AuthApi#logout a user")
+    println("4xx response calling AuthApi#postLogoutApi")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AuthApi#logout a user")
+    println("5xx response calling AuthApi#postLogoutApi")
     e.printStackTrace()
 }
 ```
@@ -53,29 +55,31 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="user login"></a>
-# **user login**
-> AuthResponse user login(payload, xFields)
+<a name="postUserLogin"></a>
+# **postUserLogin**
+> AuthResponse postUserLogin(payload, xFields)
 
 
+
+User login
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = AuthApi()
 val payload : Login =  // Login | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : AuthResponse = apiInstance.user login(payload, xFields)
+    val result : AuthResponse = apiInstance.postUserLogin(payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AuthApi#user login")
+    println("4xx response calling AuthApi#postUserLogin")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AuthApi#user login")
+    println("5xx response calling AuthApi#postUserLogin")
     e.printStackTrace()
 }
 ```

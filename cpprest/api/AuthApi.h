@@ -16,8 +16,8 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_AuthApi_H_
-#define IO_SWAGGER_CLIENT_API_AuthApi_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_AuthApi_H_
+#define COM_AICROWD_EVALUATIONS_API_AuthApi_H_
 
 
 #include "../ApiClient.h"
@@ -29,12 +29,12 @@
 
 #include <boost/optional.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 class  AuthApi
 {
@@ -45,21 +45,21 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// 
+    /// Logout a user
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<AuthLogout>> logout_a_user(
+    pplx::task<std::shared_ptr<AuthLogout>> postLogoutApi(
         boost::optional<utility::string_t> xFields
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// 
+    /// User login
     /// </remarks>
     /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<AuthResponse>> user_login(
+    pplx::task<std::shared_ptr<AuthResponse>> postUserLogin(
         std::shared_ptr<Login> payload,
         boost::optional<utility::string_t> xFields
     );
@@ -73,5 +73,5 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_API_AuthApi_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_AuthApi_H_ */
 

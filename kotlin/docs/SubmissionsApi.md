@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteSubmissionDao**](SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
 [**getSubmissionDao**](SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
+[**getSubmissionDataDao**](SubmissionsApi.md#getSubmissionDataDao) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionListDao**](SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
 [**postSubmissionListDao**](SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
 
@@ -21,8 +22,8 @@ Stop evaluation of a submission
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
 val submissionId : kotlin.Int = 56 // kotlin.Int | 
@@ -67,8 +68,8 @@ Get details of a submission
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
 val submissionId : kotlin.Int = 56 // kotlin.Int | 
@@ -105,6 +106,52 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getSubmissionDataDao"></a>
+# **getSubmissionDataDao**
+> getSubmissionDataDao(submissionId)
+
+
+
+Get the submission data
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = SubmissionsApi()
+val submissionId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.getSubmissionDataDao(submissionId)
+} catch (e: ClientException) {
+    println("4xx response calling SubmissionsApi#getSubmissionDataDao")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SubmissionsApi#getSubmissionDataDao")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getSubmissionListDao"></a>
 # **getSubmissionListDao**
 > kotlin.Array&lt;Submissions&gt; getSubmissionListDao(xFields)
@@ -116,8 +163,8 @@ Get all submissions
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
@@ -163,8 +210,8 @@ Make a new submission
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
 val payload : Submissions =  // Submissions | 

@@ -600,7 +600,7 @@ class ClustersApi
     }
 
     /**
-     * Operation getGraderListDao
+     * Operation getClusterListDao
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -608,14 +608,14 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Cluster[]
      */
-    public function getGraderListDao($x_fields = null)
+    public function getClusterListDao($x_fields = null)
     {
-        list($response) = $this->getGraderListDaoWithHttpInfo($x_fields);
+        list($response) = $this->getClusterListDaoWithHttpInfo($x_fields);
         return $response;
     }
 
     /**
-     * Operation getGraderListDaoWithHttpInfo
+     * Operation getClusterListDaoWithHttpInfo
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -623,10 +623,10 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Cluster[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getGraderListDaoWithHttpInfo($x_fields = null)
+    public function getClusterListDaoWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Cluster[]';
-        $request = $this->getGraderListDaoRequest($x_fields);
+        $request = $this->getClusterListDaoRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -688,7 +688,7 @@ class ClustersApi
     }
 
     /**
-     * Operation getGraderListDaoAsync
+     * Operation getClusterListDaoAsync
      *
      * 
      *
@@ -697,9 +697,9 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getGraderListDaoAsync($x_fields = null)
+    public function getClusterListDaoAsync($x_fields = null)
     {
-        return $this->getGraderListDaoAsyncWithHttpInfo($x_fields)
+        return $this->getClusterListDaoAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -708,7 +708,7 @@ class ClustersApi
     }
 
     /**
-     * Operation getGraderListDaoAsyncWithHttpInfo
+     * Operation getClusterListDaoAsyncWithHttpInfo
      *
      * 
      *
@@ -717,10 +717,10 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getGraderListDaoAsyncWithHttpInfo($x_fields = null)
+    public function getClusterListDaoAsyncWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Cluster[]';
-        $request = $this->getGraderListDaoRequest($x_fields);
+        $request = $this->getClusterListDaoRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -760,14 +760,14 @@ class ClustersApi
     }
 
     /**
-     * Create request for operation 'getGraderListDao'
+     * Create request for operation 'getClusterListDao'
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getGraderListDaoRequest($x_fields = null)
+    protected function getClusterListDaoRequest($x_fields = null)
     {
 
         $resourcePath = '/clusters/';
@@ -860,7 +860,7 @@ class ClustersApi
     }
 
     /**
-     * Operation postGraderListDao
+     * Operation postClusterListDao
      *
      * @param  \Swagger\Client\Model\Cluster $payload payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -869,14 +869,14 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Cluster
      */
-    public function postGraderListDao($payload, $x_fields = null)
+    public function postClusterListDao($payload, $x_fields = null)
     {
-        list($response) = $this->postGraderListDaoWithHttpInfo($payload, $x_fields);
+        list($response) = $this->postClusterListDaoWithHttpInfo($payload, $x_fields);
         return $response;
     }
 
     /**
-     * Operation postGraderListDaoWithHttpInfo
+     * Operation postClusterListDaoWithHttpInfo
      *
      * @param  \Swagger\Client\Model\Cluster $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -885,10 +885,10 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Cluster, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postGraderListDaoWithHttpInfo($payload, $x_fields = null)
+    public function postClusterListDaoWithHttpInfo($payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Cluster';
-        $request = $this->postGraderListDaoRequest($payload, $x_fields);
+        $request = $this->postClusterListDaoRequest($payload, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -950,7 +950,7 @@ class ClustersApi
     }
 
     /**
-     * Operation postGraderListDaoAsync
+     * Operation postClusterListDaoAsync
      *
      * 
      *
@@ -960,9 +960,9 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postGraderListDaoAsync($payload, $x_fields = null)
+    public function postClusterListDaoAsync($payload, $x_fields = null)
     {
-        return $this->postGraderListDaoAsyncWithHttpInfo($payload, $x_fields)
+        return $this->postClusterListDaoAsyncWithHttpInfo($payload, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -971,7 +971,7 @@ class ClustersApi
     }
 
     /**
-     * Operation postGraderListDaoAsyncWithHttpInfo
+     * Operation postClusterListDaoAsyncWithHttpInfo
      *
      * 
      *
@@ -981,10 +981,10 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postGraderListDaoAsyncWithHttpInfo($payload, $x_fields = null)
+    public function postClusterListDaoAsyncWithHttpInfo($payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Cluster';
-        $request = $this->postGraderListDaoRequest($payload, $x_fields);
+        $request = $this->postClusterListDaoRequest($payload, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1024,7 +1024,7 @@ class ClustersApi
     }
 
     /**
-     * Create request for operation 'postGraderListDao'
+     * Create request for operation 'postClusterListDao'
      *
      * @param  \Swagger\Client\Model\Cluster $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -1032,12 +1032,12 @@ class ClustersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postGraderListDaoRequest($payload, $x_fields = null)
+    protected function postClusterListDaoRequest($payload, $x_fields = null)
     {
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling postGraderListDao'
+                'Missing the required parameter $payload when calling postClusterListDao'
             );
         }
 

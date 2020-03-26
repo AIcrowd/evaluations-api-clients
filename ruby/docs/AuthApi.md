@@ -1,41 +1,43 @@
-# SwaggerClient::AuthApi
+# AIcrowdEvaluations::AuthApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logout_a_user**](AuthApi.md#logout_a_user) | **POST** /auth/logout | 
-[**user_login**](AuthApi.md#user_login) | **POST** /auth/login | 
+[**post_logout_api**](AuthApi.md#post_logout_api) | **POST** /auth/logout | 
+[**post_user_login**](AuthApi.md#post_user_login) | **POST** /auth/login | 
 
 
-# **logout_a_user**
-> AuthLogout logout_a_user(opts)
+# **post_logout_api**
+> AuthLogout post_logout_api(opts)
 
 
+
+Logout a user
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::AuthApi.new
+api_instance = AIcrowdEvaluations::AuthApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.logout_a_user(opts)
+  result = api_instance.post_logout_api(opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling AuthApi->logout_a_user: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling AuthApi->post_logout_api: #{e}"
 end
 ```
 
@@ -60,29 +62,31 @@ Name | Type | Description  | Notes
 
 
 
-# **user_login**
-> AuthResponse user_login(payload, opts)
+# **post_user_login**
+> AuthResponse post_user_login(payload, opts)
 
 
+
+User login
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 
-api_instance = SwaggerClient::AuthApi.new
+api_instance = AIcrowdEvaluations::AuthApi.new
 
-payload = SwaggerClient::Login.new # Login | 
+payload = AIcrowdEvaluations::Login.new # Login | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.user_login(payload, opts)
+  result = api_instance.post_user_login(payload, opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling AuthApi->user_login: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling AuthApi->post_user_login: #{e}"
 end
 ```
 

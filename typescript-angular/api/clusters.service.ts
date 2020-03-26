@@ -162,10 +162,10 @@ export class ClustersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Cluster>>;
-    public getGraderListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cluster>>>;
-    public getGraderListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Cluster>>>;
-    public getGraderListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getClusterListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Cluster>>;
+    public getClusterListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cluster>>>;
+    public getClusterListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Cluster>>>;
+    public getClusterListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -210,13 +210,13 @@ export class ClustersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postClusterListDao(payload: Cluster, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
+    public postClusterListDao(payload: Cluster, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
+    public postClusterListDao(payload: Cluster, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
+    public postClusterListDao(payload: Cluster, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling postClusterListDao.');
         }
 
 

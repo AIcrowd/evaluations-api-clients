@@ -37,8 +37,8 @@ impl<C: hyper::client::Connect> ClustersApiClient<C> {
 pub trait ClustersApi {
     fn delete_cluster_dao(&self, cluster_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_cluster_dao(&self, cluster_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Cluster, Error = Error<serde_json::Value>>>;
-    fn get_grader_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Cluster>, Error = Error<serde_json::Value>>>;
-    fn post_grader_list_dao(&self, payload: ::models::Cluster, x_fields: &str) -> Box<Future<Item = ::models::Cluster, Error = Error<serde_json::Value>>>;
+    fn get_cluster_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Cluster>, Error = Error<serde_json::Value>>>;
+    fn post_cluster_list_dao(&self, payload: ::models::Cluster, x_fields: &str) -> Box<Future<Item = ::models::Cluster, Error = Error<serde_json::Value>>>;
 }
 
 
@@ -176,7 +176,7 @@ impl<C: hyper::client::Connect>ClustersApi for ClustersApiClient<C> {
         )
     }
 
-    fn get_grader_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Cluster>, Error = Error<serde_json::Value>>> {
+    fn get_cluster_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Cluster>, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -246,7 +246,7 @@ impl<C: hyper::client::Connect>ClustersApi for ClustersApiClient<C> {
         )
     }
 
-    fn post_grader_list_dao(&self, payload: ::models::Cluster, x_fields: &str) -> Box<Future<Item = ::models::Cluster, Error = Error<serde_json::Value>>> {
+    fn post_cluster_list_dao(&self, payload: ::models::Cluster, x_fields: &str) -> Box<Future<Item = ::models::Cluster, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();

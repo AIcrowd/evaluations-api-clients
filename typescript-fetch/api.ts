@@ -481,7 +481,7 @@ export interface Submissions {
      * @type {any}
      * @memberof Submissions
      */
-    submissionCode: any;
+    submissionData?: any;
     /**
      * Current status of the submission
      * @type {string}
@@ -925,12 +925,12 @@ export class ArgoApi extends BaseAPI {
 export const AuthApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Logout a user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(xFields?: string, options: any = {}): FetchArgs {
+        postLogoutApi(xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/auth/logout`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -960,16 +960,16 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * 
+         * User login
          * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, xFields?: string, options: any = {}): FetchArgs {
+        postUserLogin(payload: Login, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling userLogin.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postUserLogin.');
             }
             const localVarPath = `/auth/login`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1005,13 +1005,13 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
 export const AuthApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 
+         * Logout a user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthLogout> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).logoutAUser(xFields, options);
+        postLogoutApi(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthLogout> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).postLogoutApi(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1023,14 +1023,14 @@ export const AuthApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * 
+         * User login
          * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthResponse> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).userLogin(payload, xFields, options);
+        postUserLogin(payload: Login, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthResponse> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).postUserLogin(payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1051,23 +1051,23 @@ export const AuthApiFp = function(configuration?: Configuration) {
 export const AuthApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
-         * 
+         * Logout a user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(xFields?: string, options?: any) {
-            return AuthApiFp(configuration).logoutAUser(xFields, options)(fetch, basePath);
+        postLogoutApi(xFields?: string, options?: any) {
+            return AuthApiFp(configuration).postLogoutApi(xFields, options)(fetch, basePath);
         },
         /**
-         * 
+         * User login
          * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, xFields?: string, options?: any) {
-            return AuthApiFp(configuration).userLogin(payload, xFields, options)(fetch, basePath);
+        postUserLogin(payload: Login, xFields?: string, options?: any) {
+            return AuthApiFp(configuration).postUserLogin(payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1080,26 +1080,26 @@ export const AuthApiFactory = function (configuration?: Configuration, fetch?: F
  */
 export class AuthApi extends BaseAPI {
     /**
-     * 
+     * Logout a user
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public logoutAUser(xFields?: string, options?: any) {
-        return AuthApiFp(this.configuration).logoutAUser(xFields, options)(this.fetch, this.basePath);
+    public postLogoutApi(xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).postLogoutApi(xFields, options)(this.fetch, this.basePath);
     }
 
     /**
-     * 
+     * User login
      * @param {Login} payload 
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public userLogin(payload: Login, xFields?: string, options?: any) {
-        return AuthApiFp(this.configuration).userLogin(payload, xFields, options)(this.fetch, this.basePath);
+    public postUserLogin(payload: Login, xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).postUserLogin(payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }
@@ -1193,7 +1193,7 @@ export const ClustersApiFetchParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderListDao(xFields?: string, options: any = {}): FetchArgs {
+        getClusterListDao(xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/clusters/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1229,10 +1229,10 @@ export const ClustersApiFetchParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postGraderListDao(payload: Cluster, xFields?: string, options: any = {}): FetchArgs {
+        postClusterListDao(payload: Cluster, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postGraderListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postClusterListDao.');
             }
             const localVarPath = `/clusters/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1318,8 +1318,8 @@ export const ClustersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Cluster>> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).getGraderListDao(xFields, options);
+        getClusterListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Cluster>> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).getClusterListDao(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1337,8 +1337,8 @@ export const ClustersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postGraderListDao(payload: Cluster, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).postGraderListDao(payload, xFields, options);
+        postClusterListDao(payload: Cluster, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).postClusterListDao(payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1383,8 +1383,8 @@ export const ClustersApiFactory = function (configuration?: Configuration, fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderListDao(xFields?: string, options?: any) {
-            return ClustersApiFp(configuration).getGraderListDao(xFields, options)(fetch, basePath);
+        getClusterListDao(xFields?: string, options?: any) {
+            return ClustersApiFp(configuration).getClusterListDao(xFields, options)(fetch, basePath);
         },
         /**
          * Add a new cluster
@@ -1393,8 +1393,8 @@ export const ClustersApiFactory = function (configuration?: Configuration, fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postGraderListDao(payload: Cluster, xFields?: string, options?: any) {
-            return ClustersApiFp(configuration).postGraderListDao(payload, xFields, options)(fetch, basePath);
+        postClusterListDao(payload: Cluster, xFields?: string, options?: any) {
+            return ClustersApiFp(configuration).postClusterListDao(payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1436,8 +1436,8 @@ export class ClustersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClustersApi
      */
-    public getGraderListDao(xFields?: string, options?: any) {
-        return ClustersApiFp(this.configuration).getGraderListDao(xFields, options)(this.fetch, this.basePath);
+    public getClusterListDao(xFields?: string, options?: any) {
+        return ClustersApiFp(this.configuration).getClusterListDao(xFields, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -1448,8 +1448,8 @@ export class ClustersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClustersApi
      */
-    public postGraderListDao(payload: Cluster, xFields?: string, options?: any) {
-        return ClustersApiFp(this.configuration).postGraderListDao(payload, xFields, options)(this.fetch, this.basePath);
+    public postClusterListDao(payload: Cluster, xFields?: string, options?: any) {
+        return ClustersApiFp(this.configuration).postClusterListDao(payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }
@@ -2512,6 +2512,42 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
             };
         },
         /**
+         * Get the submission data
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionDataDao(submissionId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmissionDataDao.');
+            }
+            const localVarPath = `/submissions/{submission_id}/data`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get all submissions
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
@@ -2637,6 +2673,24 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get the submission data
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionDataDao(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionDataDao(submissionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get all submissions
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
@@ -2702,6 +2756,15 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
             return SubmissionsApiFp(configuration).getSubmissionDao(submissionId, xFields, options)(fetch, basePath);
         },
         /**
+         * Get the submission data
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionDataDao(submissionId: number, options?: any) {
+            return SubmissionsApiFp(configuration).getSubmissionDataDao(submissionId, options)(fetch, basePath);
+        },
+        /**
          * Get all submissions
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
@@ -2751,6 +2814,17 @@ export class SubmissionsApi extends BaseAPI {
      */
     public getSubmissionDao(submissionId: number, xFields?: string, options?: any) {
         return SubmissionsApiFp(this.configuration).getSubmissionDao(submissionId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get the submission data
+     * @param {number} submissionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmissionDataDao(submissionId: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).getSubmissionDataDao(submissionId, options)(this.fetch, this.basePath);
     }
 
     /**

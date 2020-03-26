@@ -89,12 +89,12 @@ Class | Method | HTTP request | Description
 *ArgoApi* | [**postGenericFeedbackContract**](docs/Api/ArgoApi.md#postgenericfeedbackcontract) | **POST** /argo/{model_name}/{object_id} | 
 *ArgoApi* | [**postGraderFeedbackDao**](docs/Api/ArgoApi.md#postgraderfeedbackdao) | **POST** /argo/graders/{grader_id} | 
 *ArgoApi* | [**postSubmissionFeedbackDao**](docs/Api/ArgoApi.md#postsubmissionfeedbackdao) | **POST** /argo/submissions/{submission_id} | 
-*AuthApi* | [**logoutAUser**](docs/Api/AuthApi.md#logoutauser) | **POST** /auth/logout | 
-*AuthApi* | [**userLogin**](docs/Api/AuthApi.md#userlogin) | **POST** /auth/login | 
+*AuthApi* | [**postLogoutApi**](docs/Api/AuthApi.md#postlogoutapi) | **POST** /auth/logout | 
+*AuthApi* | [**postUserLogin**](docs/Api/AuthApi.md#postuserlogin) | **POST** /auth/login | 
 *ClustersApi* | [**deleteClusterDao**](docs/Api/ClustersApi.md#deleteclusterdao) | **DELETE** /clusters/{cluster_id} | 
 *ClustersApi* | [**getClusterDao**](docs/Api/ClustersApi.md#getclusterdao) | **GET** /clusters/{cluster_id} | 
-*ClustersApi* | [**getGraderListDao**](docs/Api/ClustersApi.md#getgraderlistdao) | **GET** /clusters/ | 
-*ClustersApi* | [**postGraderListDao**](docs/Api/ClustersApi.md#postgraderlistdao) | **POST** /clusters/ | 
+*ClustersApi* | [**getClusterListDao**](docs/Api/ClustersApi.md#getclusterlistdao) | **GET** /clusters/ | 
+*ClustersApi* | [**postClusterListDao**](docs/Api/ClustersApi.md#postclusterlistdao) | **POST** /clusters/ | 
 *GradersApi* | [**deleteGraderDao**](docs/Api/GradersApi.md#deletegraderdao) | **DELETE** /graders/{grader_id} | 
 *GradersApi* | [**getGraderDao**](docs/Api/GradersApi.md#getgraderdao) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderListDao**](docs/Api/GradersApi.md#getgraderlistdao) | **GET** /graders/ | 
@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *OrganisationsApi* | [**putQuotaDao**](docs/Api/OrganisationsApi.md#putquotadao) | **PUT** /organisations/addquota/{organisation_id} | 
 *SubmissionsApi* | [**deleteSubmissionDao**](docs/Api/SubmissionsApi.md#deletesubmissiondao) | **DELETE** /submissions/{submission_id} | 
 *SubmissionsApi* | [**getSubmissionDao**](docs/Api/SubmissionsApi.md#getsubmissiondao) | **GET** /submissions/{submission_id} | 
+*SubmissionsApi* | [**getSubmissionDataDao**](docs/Api/SubmissionsApi.md#getsubmissiondatadao) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionListDao**](docs/Api/SubmissionsApi.md#getsubmissionlistdao) | **GET** /submissions/ | 
 *SubmissionsApi* | [**postSubmissionListDao**](docs/Api/SubmissionsApi.md#postsubmissionlistdao) | **POST** /submissions/ | 
 *UsersApi* | [**deleteUserDao**](docs/Api/UsersApi.md#deleteuserdao) | **DELETE** /users/{user_id} | 

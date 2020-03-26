@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Organisation
+# Com.AIcrowd.Evaluations.Model.Organisation
 ## Properties
 
 Name | Type | Description | Notes

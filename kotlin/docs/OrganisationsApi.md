@@ -23,8 +23,8 @@ Delete an Organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
@@ -69,8 +69,8 @@ Get information of an organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
@@ -118,8 +118,8 @@ Get all organisations
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
@@ -165,8 +165,8 @@ Create a new organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val payload : Organisation =  // Organisation | 
@@ -214,8 +214,8 @@ Update an Organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
@@ -265,8 +265,8 @@ Add or subtract quota for an organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier

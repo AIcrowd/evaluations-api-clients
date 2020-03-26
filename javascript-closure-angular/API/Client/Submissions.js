@@ -52,7 +52,7 @@ API.Client.Submissions.prototype.graderId;
  * @type {!API.Client.Object}
  * @export
  */
-API.Client.Submissions.prototype.submissionCode;
+API.Client.Submissions.prototype.submissionData;
 
 /**
  * Current status of the submission

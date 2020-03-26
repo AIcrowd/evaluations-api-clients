@@ -22,8 +22,8 @@ Delete a grader
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
 val graderId : kotlin.Int = 56 // kotlin.Int | 
@@ -68,8 +68,8 @@ Get information of a grader
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
 val graderId : kotlin.Int = 56 // kotlin.Int | 
@@ -117,8 +117,8 @@ Get all grader
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
@@ -164,8 +164,8 @@ Create a new grader
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
 val payload : Grader =  // Grader | 
@@ -213,8 +213,8 @@ Update a grader
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
 val graderId : kotlin.Int = 56 // kotlin.Int | 

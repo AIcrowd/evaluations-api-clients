@@ -16,8 +16,8 @@
  * 
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_UsersApi_H_
-#define IO_SWAGGER_CLIENT_API_UsersApi_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_UsersApi_H_
+#define COM_AICROWD_EVALUATIONS_API_UsersApi_H_
 
 
 #include "../ApiClient.h"
@@ -28,12 +28,12 @@
 
 #include <boost/optional.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 class  UsersApi
 {
@@ -120,5 +120,5 @@ protected:
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_API_UsersApi_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_UsersApi_H_ */
 

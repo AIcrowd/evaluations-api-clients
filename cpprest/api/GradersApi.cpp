@@ -20,12 +20,12 @@
 
 #include <boost/algorithm/string/replace.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 GradersApi::GradersApi( std::shared_ptr<ApiClient> apiClient )
     : m_ApiClient(apiClient)

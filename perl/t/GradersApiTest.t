@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::GradersApi');
+use_ok('AIcrowdEvaluations::GradersApi');
 
-my $api = WWW::SwaggerClient::GradersApi->new();
-isa_ok($api, 'WWW::SwaggerClient::GradersApi');
+my $api = AIcrowdEvaluations::GradersApi->new();
+isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 
 #
 # delete_grader_dao test

@@ -1,4 +1,4 @@
-# SwaggerClient::ArgoApi
+# AIcrowdEvaluations::ArgoApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -19,27 +19,27 @@ Update the status of an object
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::ArgoApi.new
+api_instance = AIcrowdEvaluations::ArgoApi.new
 
 model_name = 'model_name_example' # String | 
 
 object_id = 56 # Integer | 
 
-payload = SwaggerClient::GenericFeedback.new # GenericFeedback | 
+payload = AIcrowdEvaluations::GenericFeedback.new # GenericFeedback | 
 
 
 begin
   api_instance.post_generic_feedback_contract(model_name, object_id, payload)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling ArgoApi->post_generic_feedback_contract: #{e}"
 end
 ```
@@ -77,25 +77,25 @@ Update the grader details
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::ArgoApi.new
+api_instance = AIcrowdEvaluations::ArgoApi.new
 
 grader_id = 56 # Integer | 
 
-payload = SwaggerClient::GraderFeedback.new # GraderFeedback | 
+payload = AIcrowdEvaluations::GraderFeedback.new # GraderFeedback | 
 
 
 begin
   api_instance.post_grader_feedback_dao(grader_id, payload)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling ArgoApi->post_grader_feedback_dao: #{e}"
 end
 ```
@@ -132,25 +132,25 @@ Update the submission details
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::ArgoApi.new
+api_instance = AIcrowdEvaluations::ArgoApi.new
 
 submission_id = 56 # Integer | 
 
-payload = SwaggerClient::SubmissionFeedback.new # SubmissionFeedback | 
+payload = AIcrowdEvaluations::SubmissionFeedback.new # SubmissionFeedback | 
 
 
 begin
   api_instance.post_submission_feedback_dao(submission_id, payload)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling ArgoApi->post_submission_feedback_dao: #{e}"
 end
 ```

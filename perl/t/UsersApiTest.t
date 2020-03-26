@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::UsersApi');
+use_ok('AIcrowdEvaluations::UsersApi');
 
-my $api = WWW::SwaggerClient::UsersApi->new();
-isa_ok($api, 'WWW::SwaggerClient::UsersApi');
+my $api = AIcrowdEvaluations::UsersApi->new();
+isa_ok($api, 'AIcrowdEvaluations::UsersApi');
 
 #
 # delete_user_dao test

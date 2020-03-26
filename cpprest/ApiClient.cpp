@@ -14,12 +14,12 @@
 #include "MultipartFormData.h"
 #include "ModelBase.h"
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 ApiClient::ApiClient(std::shared_ptr<ApiConfiguration> configuration )
     : m_Configuration(configuration)

@@ -16,8 +16,8 @@
  * This is an API client responsible for stating the HTTP calls
  */
 
-#ifndef IO_SWAGGER_CLIENT_API_ApiClient_H_
-#define IO_SWAGGER_CLIENT_API_ApiClient_H_
+#ifndef COM_AICROWD_EVALUATIONS_API_ApiClient_H_
+#define COM_AICROWD_EVALUATIONS_API_ApiClient_H_
 
 
 #include "ApiConfiguration.h"
@@ -31,12 +31,12 @@
 #include <cpprest/details/basic_types.h>
 #include <cpprest/http_client.h>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 class  ApiClient
 {
@@ -92,4 +92,4 @@ utility::string_t ApiClient::parameterToString(const std::vector<T>& value)
 }
 }
 
-#endif /* IO_SWAGGER_CLIENT_API_ApiClient_H_ */
+#endif /* COM_AICROWD_EVALUATIONS_API_ApiClient_H_ */

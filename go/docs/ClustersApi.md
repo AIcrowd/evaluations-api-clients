@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteClusterDao**](ClustersApi.md#DeleteClusterDao) | **Delete** /clusters/{cluster_id} | 
 [**GetClusterDao**](ClustersApi.md#GetClusterDao) | **Get** /clusters/{cluster_id} | 
-[**GetGraderListDao**](ClustersApi.md#GetGraderListDao) | **Get** /clusters/ | 
-[**PostGraderListDao**](ClustersApi.md#PostGraderListDao) | **Post** /clusters/ | 
+[**GetClusterListDao**](ClustersApi.md#GetClusterListDao) | **Get** /clusters/ | 
+[**PostClusterListDao**](ClustersApi.md#PostClusterListDao) | **Post** /clusters/ | 
 
 
 # **DeleteClusterDao**
@@ -75,8 +75,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetGraderListDao**
-> []Cluster GetGraderListDao(ctx, optional)
+# **GetClusterListDao**
+> []Cluster GetClusterListDao(ctx, optional)
 
 
 Get all clusters
@@ -86,10 +86,10 @@ Get all clusters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetGraderListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GetClusterListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetGraderListDaoOpts struct
+Optional parameters are passed through a pointer to a GetClusterListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -110,8 +110,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **PostGraderListDao**
-> Cluster PostGraderListDao(ctx, payload, optional)
+# **PostClusterListDao**
+> Cluster PostClusterListDao(ctx, payload, optional)
 
 
 Add a new cluster
@@ -122,10 +122,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Cluster**](Cluster.md)|  | 
- **optional** | ***PostGraderListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***PostClusterListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostGraderListDaoOpts struct
+Optional parameters are passed through a pointer to a PostClusterListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

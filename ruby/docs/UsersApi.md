@@ -1,4 +1,4 @@
-# SwaggerClient::UsersApi
+# AIcrowdEvaluations::UsersApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -22,23 +22,23 @@ Delete a user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 user_id = 56 # Integer | User identifier
 
 
 begin
   api_instance.delete_user_dao(user_id)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->delete_user_dao: #{e}"
 end
 ```
@@ -74,16 +74,16 @@ Get information of a user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 user_id = 56 # Integer | User identifier
 
@@ -94,7 +94,7 @@ opts = {
 begin
   result = api_instance.get_user_dao(user_id, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->get_user_dao: #{e}"
 end
 ```
@@ -131,16 +131,16 @@ Get all user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -149,7 +149,7 @@ opts = {
 begin
   result = api_instance.get_user_list_dao(opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->get_user_list_dao: #{e}"
 end
 ```
@@ -185,18 +185,18 @@ Create a new user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
-payload = SwaggerClient::User.new # User | 
+payload = AIcrowdEvaluations::User.new # User | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -205,7 +205,7 @@ opts = {
 begin
   result = api_instance.post_user_list_dao(payload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->post_user_list_dao: #{e}"
 end
 ```
@@ -242,25 +242,25 @@ Add or subtract quota for a user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 user_id = 56 # Integer | User identifier
 
-payload = SwaggerClient::UserQuota.new # UserQuota | 
+payload = AIcrowdEvaluations::UserQuota.new # UserQuota | 
 
 
 begin
   api_instance.put_quota_dao(user_id, payload)
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->put_quota_dao: #{e}"
 end
 ```
@@ -297,20 +297,20 @@ Update a user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 user_id = 56 # Integer | User identifier
 
-payload = SwaggerClient::User.new # User | 
+payload = AIcrowdEvaluations::User.new # User | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -319,7 +319,7 @@ opts = {
 begin
   result = api_instance.put_user_dao(user_idpayload, opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling UsersApi->put_user_dao: #{e}"
 end
 ```

@@ -14,10 +14,10 @@
 
 #include "Submissions.h"
 
-namespace io {
-namespace swagger {
-namespace client {
-namespace model {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
+namespace models {
 
 Submissions::Submissions()
 {
@@ -32,6 +32,7 @@ Submissions::Submissions()
     m_Round_id = 0;
     m_Round_idIsSet = false;
     m_Grader_id = 0;
+    m_Submission_dataIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Output = utility::conversions::to_string_t("");
@@ -83,7 +84,10 @@ web::json::value Submissions::toJson() const
         val[utility::conversions::to_string_t("round_id")] = ModelBase::toJson(m_Round_id);
     }
     val[utility::conversions::to_string_t("grader_id")] = ModelBase::toJson(m_Grader_id);
-    val[utility::conversions::to_string_t("submission_code")] = ModelBase::toJson(m_Submission_code);
+    if(m_Submission_dataIsSet)
+    {
+        val[utility::conversions::to_string_t("submission_data")] = ModelBase::toJson(m_Submission_data);
+    }
     if(m_StatusIsSet)
     {
         val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_Status);
@@ -167,9 +171,16 @@ void Submissions::fromJson(web::json::value& val)
         }
     }
     setGraderId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("grader_id")]));
-    std::shared_ptr<Object> newSubmission_code(nullptr);
-    newSubmission_code->fromJson(val[utility::conversions::to_string_t("submission_code")]);
-    setSubmissionCode( newSubmission_code );
+    if(val.has_field(utility::conversions::to_string_t("submission_data")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("submission_data")];
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setSubmissionData( newItem );
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("status")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("status")];
@@ -281,7 +292,14 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("round_id"), m_Round_id));
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("grader_id"), m_Grader_id));
-    m_Submission_code->toMultipart(multipart, utility::conversions::to_string_t("submission_code."));
+    if(m_Submission_dataIsSet)
+    {
+        if (m_Submission_data.get())
+        {
+            m_Submission_data->toMultipart(multipart, utility::conversions::to_string_t("submission_data."));
+        }
+        
+    }
     if(m_StatusIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
@@ -365,9 +383,15 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         setRoundId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("round_id"))));
     }
     setGraderId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grader_id"))));
-    std::shared_ptr<Object> newSubmission_code(nullptr);
-    newSubmission_code->fromMultiPart(multipart, utility::conversions::to_string_t("submission_code."));
-    setSubmissionCode( newSubmission_code );
+    if(multipart->hasContent(utility::conversions::to_string_t("submission_data")))
+    {
+        if(multipart->hasContent(utility::conversions::to_string_t("submission_data")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("submission_data."));
+            setSubmissionData( newItem );
+        }
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
         setStatus(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
@@ -537,17 +561,27 @@ void Submissions::setGraderId(int32_t value)
     m_Grader_id = value;
     
 }
-std::shared_ptr<Object> Submissions::getSubmissionCode() const
+std::shared_ptr<Object> Submissions::getSubmissionData() const
 {
-    return m_Submission_code;
+    return m_Submission_data;
 }
 
 
-void Submissions::setSubmissionCode(std::shared_ptr<Object> value)
+void Submissions::setSubmissionData(std::shared_ptr<Object> value)
 {
-    m_Submission_code = value;
-    
+    m_Submission_data = value;
+    m_Submission_dataIsSet = true;
 }
+bool Submissions::submissionDataIsSet() const
+{
+    return m_Submission_dataIsSet;
+}
+
+void Submissions::unsetSubmission_data()
+{
+    m_Submission_dataIsSet = false;
+}
+
 utility::string_t Submissions::getStatus() const
 {
     return m_Status;

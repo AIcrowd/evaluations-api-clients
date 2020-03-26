@@ -4,14 +4,16 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logoutAUser**](AuthApi.md#logoutAUser) | **POST** /auth/logout | 
-[**userLogin**](AuthApi.md#userLogin) | **POST** /auth/login | 
+[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
 
 
-# **logoutAUser**
-> \Swagger\Client\Model\AuthLogout logoutAUser($x_fields)
+# **postLogoutApi**
+> \Swagger\Client\Model\AuthLogout postLogoutApi($x_fields)
 
 
+
+Logout a user
 
 ### Example
 ```php
@@ -32,10 +34,10 @@ $apiInstance = new Swagger\Client\Api\AuthApi(
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->logoutAUser($x_fields);
+    $result = $apiInstance->postLogoutApi($x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthApi->logoutAUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthApi->postLogoutApi: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -61,10 +63,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **userLogin**
-> \Swagger\Client\Model\AuthResponse userLogin($payload, $x_fields)
+# **postUserLogin**
+> \Swagger\Client\Model\AuthResponse postUserLogin($payload, $x_fields)
 
 
+
+User login
 
 ### Example
 ```php
@@ -80,10 +84,10 @@ $payload = new \Swagger\Client\Model\Login(); // \Swagger\Client\Model\Login |
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->userLogin($payload, $x_fields);
+    $result = $apiInstance->postUserLogin($payload, $x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthApi->userLogin: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthApi->postUserLogin: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

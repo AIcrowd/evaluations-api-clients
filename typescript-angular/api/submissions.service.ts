@@ -157,6 +157,53 @@ export class SubmissionsService {
 
     /**
      * 
+     * Get the submission data
+     * @param submissionId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSubmissionDataDao(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getSubmissionDataDao(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getSubmissionDataDao(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getSubmissionDataDao(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDataDao.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/data`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * Get all submissions
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

@@ -1,4 +1,4 @@
-# EvaluationsApi.ArgoApi
+# AicrowdEvaluations.ArgoApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -19,8 +19,8 @@ Update the status of an object
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -28,13 +28,13 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ArgoApi();
+var apiInstance = new AicrowdEvaluations.ArgoApi();
 
 var modelName = "modelName_example"; // String | 
 
 var objectId = 56; // Number | 
 
-var payload = new EvaluationsApi.GenericFeedback(); // GenericFeedback | 
+var payload = new AicrowdEvaluations.GenericFeedback(); // GenericFeedback | 
 
 
 var callback = function(error, data, response) {
@@ -78,8 +78,8 @@ Update the grader details
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -87,11 +87,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ArgoApi();
+var apiInstance = new AicrowdEvaluations.ArgoApi();
 
 var graderId = 56; // Number | 
 
-var payload = new EvaluationsApi.GraderFeedback(); // GraderFeedback | 
+var payload = new AicrowdEvaluations.GraderFeedback(); // GraderFeedback | 
 
 
 var callback = function(error, data, response) {
@@ -134,8 +134,8 @@ Update the submission details
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -143,11 +143,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ArgoApi();
+var apiInstance = new AicrowdEvaluations.ArgoApi();
 
 var submissionId = 56; // Number | 
 
-var payload = new EvaluationsApi.SubmissionFeedback(); // SubmissionFeedback | 
+var payload = new AicrowdEvaluations.SubmissionFeedback(); // SubmissionFeedback | 
 
 
 var callback = function(error, data, response) {

@@ -1,4 +1,4 @@
-# SwaggerClient::Organisation
+# AIcrowdEvaluations::Organisation
 
 ## Properties
 Name | Type | Description | Notes

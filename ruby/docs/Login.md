@@ -1,4 +1,4 @@
-# SwaggerClient::Login
+# AIcrowdEvaluations::Login
 
 ## Properties
 Name | Type | Description | Notes

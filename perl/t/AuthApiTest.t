@@ -24,26 +24,26 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::AuthApi');
+use_ok('AIcrowdEvaluations::AuthApi');
 
-my $api = WWW::SwaggerClient::AuthApi->new();
-isa_ok($api, 'WWW::SwaggerClient::AuthApi');
+my $api = AIcrowdEvaluations::AuthApi->new();
+isa_ok($api, 'AIcrowdEvaluations::AuthApi');
 
 #
-# logout_a_user test
+# post_logout_api test
 #
 {
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->logout_a_user(x_fields => $x_fields);
+    my $result = $api->post_logout_api(x_fields => $x_fields);
 }
 
 #
-# user_login test
+# post_user_login test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->user_login(payload => $payload, x_fields => $x_fields);
+    my $result = $api->post_user_login(payload => $payload, x_fields => $x_fields);
 }
 
 

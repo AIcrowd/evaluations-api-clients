@@ -1,4 +1,4 @@
-# IO.Swagger.Model.SubmissionFeedback
+# Com.AIcrowd.Evaluations.Model.SubmissionFeedback
 ## Properties
 
 Name | Type | Description | Notes

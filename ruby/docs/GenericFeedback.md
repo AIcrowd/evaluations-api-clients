@@ -1,4 +1,4 @@
-# SwaggerClient::GenericFeedback
+# AIcrowdEvaluations::GenericFeedback
 
 ## Properties
 Name | Type | Description | Notes

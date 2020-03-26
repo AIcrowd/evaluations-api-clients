@@ -4,24 +4,26 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logoutAUser**](AuthApi.md#logoutAUser) | **POST** /auth/logout | 
-[**userLogin**](AuthApi.md#userLogin) | **POST** /auth/login | 
+[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
+[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
 
 
-<a name="logoutAUser"></a>
-# **logoutAUser**
-> AuthLogout logoutAUser(xFields)
+<a name="postLogoutApi"></a>
+# **postLogoutApi**
+> AuthLogout postLogoutApi(xFields)
 
 
+
+Logout a user
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.AuthApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.AuthApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -34,10 +36,10 @@ api_key.setApiKey("YOUR API KEY");
 AuthApi apiInstance = new AuthApi();
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    AuthLogout result = apiInstance.logoutAUser(xFields);
+    AuthLogout result = apiInstance.postLogoutApi(xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AuthApi#logoutAUser");
+    System.err.println("Exception when calling AuthApi#postLogoutApi");
     e.printStackTrace();
 }
 ```
@@ -61,27 +63,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="userLogin"></a>
-# **userLogin**
-> AuthResponse userLogin(payload, xFields)
+<a name="postUserLogin"></a>
+# **postUserLogin**
+> AuthResponse postUserLogin(payload, xFields)
 
 
+
+User login
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.AuthApi;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.api.AuthApi;
 
 
 AuthApi apiInstance = new AuthApi();
 Login payload = new Login(); // Login | 
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    AuthResponse result = apiInstance.userLogin(payload, xFields);
+    AuthResponse result = apiInstance.postUserLogin(payload, xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AuthApi#userLogin");
+    System.err.println("Exception when calling AuthApi#postUserLogin");
     e.printStackTrace();
 }
 ```

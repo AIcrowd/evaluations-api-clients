@@ -117,6 +117,43 @@ API.Client.SubmissionsApi.prototype.getSubmissionDao = function(submissionId, op
 
 /**
  * 
+ * Get the submission data
+ * @param {!number} submissionId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.SubmissionsApi.prototype.getSubmissionDataDao = function(submissionId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/submissions/{submission_id}/data'
+      .replace('{' + 'submission_id' + '}', String(submissionId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'submissionId' is set
+  if (!submissionId) {
+    throw new Error('Missing required parameter submissionId when calling getSubmissionDataDao');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * Get all submissions
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.

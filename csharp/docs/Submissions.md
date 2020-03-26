@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Submissions
+# Com.AIcrowd.Evaluations.Model.Submissions
 ## Properties
 
 Name | Type | Description | Notes
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ParticipantId** | **int?** | Participant identifier | [optional] 
 **RoundId** | **int?** | Round identifier | [optional] 
 **GraderId** | **int?** | Grader identifier | 
-**SubmissionCode** | **Object** | URL to the submission code | 
+**SubmissionData** | **Object** | URL to the submission code | [optional] 
 **Status** | **string** | Current status of the submission | [optional] 
 **Output** | **string** | S3 link of the output (available after the evaluation) | [optional] 
 **AdditionalOutputs** | **Object** | Array of any additional outputs | [optional] 

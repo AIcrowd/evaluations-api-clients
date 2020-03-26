@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::GenericFeedback
+# AIcrowdEvaluations::Object::GenericFeedback
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::GenericFeedback;
+use AIcrowdEvaluations::Object::GenericFeedback;
 ```
 
 ## Properties

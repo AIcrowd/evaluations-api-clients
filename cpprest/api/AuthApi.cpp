@@ -20,12 +20,12 @@
 
 #include <boost/algorithm/string/replace.hpp>
 
-namespace io {
-namespace swagger {
-namespace client {
+namespace com {
+namespace aicrowd {
+namespace evaluations {
 namespace api {
 
-using namespace io::swagger::client::model;
+using namespace com::aicrowd::evaluations::models;
 
 AuthApi::AuthApi( std::shared_ptr<ApiClient> apiClient )
     : m_ApiClient(apiClient)
@@ -36,7 +36,7 @@ AuthApi::~AuthApi()
 {
 }
 
-pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<AuthLogout>> AuthApi::postLogoutApi(boost::optional<utility::string_t> xFields)
 {
 
 
@@ -70,7 +70,7 @@ pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<u
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AuthApi->logout_a_user does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AuthApi->postLogoutApi does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -98,7 +98,7 @@ pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<u
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AuthApi->logout_a_user does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AuthApi->postLogoutApi does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -121,7 +121,7 @@ pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<u
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling logout_a_user: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling postLogoutApi: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -132,7 +132,7 @@ pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<u
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling logout_a_user: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling postLogoutApi: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -156,19 +156,19 @@ pplx::task<std::shared_ptr<AuthLogout>> AuthApi::logout_a_user(boost::optional<u
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling logout_a_user: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postLogoutApi: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Login> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<AuthResponse>> AuthApi::postUserLogin(std::shared_ptr<Login> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling AuthApi->user_login"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling AuthApi->postUserLogin"));
     }
 
 
@@ -202,7 +202,7 @@ pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Lo
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("AuthApi->user_login does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("AuthApi->postUserLogin does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -245,7 +245,7 @@ pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Lo
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("AuthApi->user_login does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("AuthApi->postUserLogin does not consume any supported media type"));
     }
 
 
@@ -260,7 +260,7 @@ pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Lo
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling user_login: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling postUserLogin: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -271,7 +271,7 @@ pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Lo
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling user_login: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling postUserLogin: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -295,7 +295,7 @@ pplx::task<std::shared_ptr<AuthResponse>> AuthApi::user_login(std::shared_ptr<Lo
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling user_login: unsupported response type"));
+                , utility::conversions::to_string_t("error calling postUserLogin: unsupported response type"));
         }
 
         return result;

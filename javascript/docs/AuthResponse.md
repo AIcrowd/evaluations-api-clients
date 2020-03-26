@@ -1,4 +1,4 @@
-# EvaluationsApi.AuthResponse
+# AicrowdEvaluations.AuthResponse
 
 ## Properties
 Name | Type | Description | Notes

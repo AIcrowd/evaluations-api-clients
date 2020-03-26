@@ -25,9 +25,9 @@ use strict;
 use warnings;
 
 
-use_ok('WWW::SwaggerClient::Object::SubmissionFeedback');
+use_ok('AIcrowdEvaluations::Object::SubmissionFeedback');
 
-my $instance = WWW::SwaggerClient::Object::SubmissionFeedback->new();
+my $instance = AIcrowdEvaluations::Object::SubmissionFeedback->new();
 
-isa_ok($instance, 'WWW::SwaggerClient::Object::SubmissionFeedback');
+isa_ok($instance, 'AIcrowdEvaluations::Object::SubmissionFeedback');
 

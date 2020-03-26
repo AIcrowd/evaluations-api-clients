@@ -1,4 +1,4 @@
-# IO.Swagger.Model.GenericFeedback
+# Com.AIcrowd.Evaluations.Model.GenericFeedback
 ## Properties
 
 Name | Type | Description | Notes

@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.submissions import Submissions  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.models.submissions import Submissions  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestSubmissions(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestSubmissions(unittest.TestCase):
     def testSubmissions(self):
         """Test Submissions"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.submissions.Submissions()  # noqa: E501
+        # model = aicrowd_evaluations.models.submissions.Submissions()  # noqa: E501
         pass
 
 

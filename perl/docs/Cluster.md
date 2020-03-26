@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::Cluster
+# AIcrowdEvaluations::Object::Cluster
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Cluster;
+use AIcrowdEvaluations::Object::Cluster;
 ```
 
 ## Properties

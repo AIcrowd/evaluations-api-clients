@@ -60,15 +60,15 @@ export class AuthService {
 
     /**
      * 
-     * 
+     * Logout a user
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public logoutAUser(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthLogout>;
-    public logoutAUser(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthLogout>>;
-    public logoutAUser(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthLogout>>;
-    public logoutAUser(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postLogoutApi(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthLogout>;
+    public postLogoutApi(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthLogout>>;
+    public postLogoutApi(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthLogout>>;
+    public postLogoutApi(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -108,19 +108,19 @@ export class AuthService {
 
     /**
      * 
-     * 
+     * User login
      * @param payload 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public userLogin(payload: Login, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthResponse>;
-    public userLogin(payload: Login, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthResponse>>;
-    public userLogin(payload: Login, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthResponse>>;
-    public userLogin(payload: Login, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postUserLogin(payload: Login, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthResponse>;
+    public postUserLogin(payload: Login, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthResponse>>;
+    public postUserLogin(payload: Login, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthResponse>>;
+    public postUserLogin(payload: Login, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling userLogin.');
+            throw new Error('Required parameter payload was null or undefined when calling postUserLogin.');
         }
 
 

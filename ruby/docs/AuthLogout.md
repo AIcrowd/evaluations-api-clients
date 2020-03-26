@@ -1,4 +1,4 @@
-# SwaggerClient::AuthLogout
+# AIcrowdEvaluations::AuthLogout
 
 ## Properties
 Name | Type | Description | Notes

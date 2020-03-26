@@ -19,7 +19,7 @@ Delete a grader
 
 ### Example
 ```bash
- deleteGraderDao grader_id=value
+aicrowd-evaluations deleteGraderDao grader_id=value
 ```
 
 ### Parameters
@@ -51,7 +51,7 @@ Get information of a grader
 
 ### Example
 ```bash
- getGraderDao grader_id=value X-Fields:value
+aicrowd-evaluations getGraderDao grader_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -84,7 +84,7 @@ Get all grader
 
 ### Example
 ```bash
- getGraderListDao X-Fields:value
+aicrowd-evaluations getGraderListDao X-Fields:value
 ```
 
 ### Parameters
@@ -116,7 +116,7 @@ Create a new grader
 
 ### Example
 ```bash
- postGraderListDao X-Fields:value
+aicrowd-evaluations postGraderListDao X-Fields:value
 ```
 
 ### Parameters
@@ -149,7 +149,7 @@ Update a grader
 
 ### Example
 ```bash
- putGraderDao grader_id=value X-Fields:value
+aicrowd-evaluations putGraderDao grader_id=value X-Fields:value
 ```
 
 ### Parameters

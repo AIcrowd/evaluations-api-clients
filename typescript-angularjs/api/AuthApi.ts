@@ -27,10 +27,10 @@ export class AuthApi {
     }
 
     /**
-     * 
+     * Logout a user
      * @param xFields An optional fields mask
      */
-    public logoutAUser (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthLogout> {
+    public postLogoutApi (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthLogout> {
         const localVarPath = this.basePath + '/auth/logout';
 
         let queryParameters: any = {};
@@ -51,18 +51,18 @@ export class AuthApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * 
+     * User login
      * @param payload 
      * @param xFields An optional fields mask
      */
-    public userLogin (payload: models.Login, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthResponse> {
+    public postUserLogin (payload: models.Login, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthResponse> {
         const localVarPath = this.basePath + '/auth/login';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling userLogin.');
+            throw new Error('Required parameter payload was null or undefined when calling postUserLogin.');
         }
 
         headerParams['X-Fields'] = xFields;

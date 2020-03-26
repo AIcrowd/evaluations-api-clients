@@ -4,13 +4,15 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logout_a_user**](AuthApi.md#logout_a_user) | **Post** /auth/logout | 
-[**user_login**](AuthApi.md#user_login) | **Post** /auth/login | 
+[**post_logout_api**](AuthApi.md#post_logout_api) | **Post** /auth/logout | 
+[**post_user_login**](AuthApi.md#post_user_login) | **Post** /auth/login | 
 
 
-# **logout_a_user**
-> ::models::AuthLogout logout_a_user(ctx, optional)
+# **post_logout_api**
+> ::models::AuthLogout post_logout_api(ctx, optional)
 
+
+Logout a user
 
 ### Required Parameters
 
@@ -41,9 +43,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_login**
-> ::models::AuthResponse user_login(payload, optional)
+# **post_user_login**
+> ::models::AuthResponse post_user_login(payload, optional)
 
+
+User login
 
 ### Required Parameters
 

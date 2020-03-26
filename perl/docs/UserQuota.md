@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::UserQuota
+# AIcrowdEvaluations::Object::UserQuota
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::UserQuota;
+use AIcrowdEvaluations::Object::UserQuota;
 ```
 
 ## Properties

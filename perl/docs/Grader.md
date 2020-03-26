@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::Grader
+# AIcrowdEvaluations::Object::Grader
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Grader;
+use AIcrowdEvaluations::Object::Grader;
 ```
 
 ## Properties

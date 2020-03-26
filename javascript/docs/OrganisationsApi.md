@@ -1,4 +1,4 @@
-# EvaluationsApi.OrganisationsApi
+# AicrowdEvaluations.OrganisationsApi
 
 All URIs are relative to *https://localhost/v1*
 
@@ -22,8 +22,8 @@ Delete an Organisation
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -31,7 +31,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
 var organisationId = 56; // Number | Organisation identifier
 
@@ -75,8 +75,8 @@ Get information of an organisation
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -84,7 +84,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
 var organisationId = 56; // Number | Organisation identifier
 
@@ -132,8 +132,8 @@ Get all organisations
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -141,7 +141,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -186,8 +186,8 @@ Create a new organisation
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -195,9 +195,9 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
-var payload = new EvaluationsApi.Organisation(); // Organisation | 
+var payload = new AicrowdEvaluations.Organisation(); // Organisation | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -243,8 +243,8 @@ Update an Organisation
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -252,11 +252,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
 var organisationId = 56; // Number | Organisation identifier
 
-var payload = new EvaluationsApi.Organisation(); // Organisation | 
+var payload = new AicrowdEvaluations.Organisation(); // Organisation | 
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -303,8 +303,8 @@ Add or subtract quota for an organisation
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -312,11 +312,11 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.OrganisationsApi();
+var apiInstance = new AicrowdEvaluations.OrganisationsApi();
 
 var organisationId = 56; // Number | Organisation identifier
 
-var payload = new EvaluationsApi.OrganisationQuota(); // OrganisationQuota | 
+var payload = new AicrowdEvaluations.OrganisationQuota(); // OrganisationQuota | 
 
 
 var callback = function(error, data, response) {
