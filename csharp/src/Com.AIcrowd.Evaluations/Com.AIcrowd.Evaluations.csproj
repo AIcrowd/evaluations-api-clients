@@ -12,7 +12,7 @@ OpenAPI spec version: 1.0.0
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{352A9689-9D78-47C0-983C-9321D1C06FA2}</ProjectGuid>
+    <ProjectGuid>{FD14AA2C-394E-4D8A-9101-401D05DC021C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Com.AIcrowd.Evaluations</RootNamespace>
