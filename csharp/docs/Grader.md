@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **DatasetUrl** | **string** | S3 link of the Dataset | [optional] 
 **CodeAccessMode** | **string** | git/http | 
 **ClusterId** | **int?** | Cluster to run the grader on | [optional] 
+**DockerUsername** | **string** | Docker registry username | 
+**DockerPassword** | **string** | Docker registry password | 
+**DockerRegistry** | **string** | Docker registry URL. Dockerhub is used by default. | [optional] 
 **WorkflowSpec** | **Object** | Argo workflow template spec | [optional] 
 **EvaluationCode** | **string** | S3 link to the zip file containing the code that will be used for the evaluation | 
 **StorageCapacity** | **string** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 

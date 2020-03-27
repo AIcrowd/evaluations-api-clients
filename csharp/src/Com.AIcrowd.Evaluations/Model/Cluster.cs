@@ -40,11 +40,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// </summary>
         /// <param name="remoteAddress">Remote address used to connect to the cluster (required).</param>
         /// <param name="authToken">Authentication needed for the cluster (required).</param>
-        /// <param name="dockerUsername">Docker registry username (required).</param>
-        /// <param name="dockerPassword">Docker registry password (required).</param>
-        /// <param name="dockerRegistry">Docker registry URL. Dockerhub is used by default..</param>
         /// <param name="storageClass">Storage class to use for datasets.</param>
-        public Cluster(string remoteAddress = default(string), string authToken = default(string), string dockerUsername = default(string), string dockerPassword = default(string), string dockerRegistry = default(string), string storageClass = default(string))
+        public Cluster(string remoteAddress = default(string), string authToken = default(string), string storageClass = default(string))
         {
             // to ensure "remoteAddress" is required (not null)
             if (remoteAddress == null)
@@ -64,25 +61,6 @@ namespace Com.AIcrowd.Evaluations.Model
             {
                 this.AuthToken = authToken;
             }
-            // to ensure "dockerUsername" is required (not null)
-            if (dockerUsername == null)
-            {
-                throw new InvalidDataException("dockerUsername is a required property for Cluster and cannot be null");
-            }
-            else
-            {
-                this.DockerUsername = dockerUsername;
-            }
-            // to ensure "dockerPassword" is required (not null)
-            if (dockerPassword == null)
-            {
-                throw new InvalidDataException("dockerPassword is a required property for Cluster and cannot be null");
-            }
-            else
-            {
-                this.DockerPassword = dockerPassword;
-            }
-            this.DockerRegistry = dockerRegistry;
             this.StorageClass = storageClass;
         }
         
@@ -120,27 +98,6 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>Authentication needed for the cluster</value>
         [DataMember(Name="auth_token", EmitDefaultValue=false)]
         public string AuthToken { get; set; }
-
-        /// <summary>
-        /// Docker registry username
-        /// </summary>
-        /// <value>Docker registry username</value>
-        [DataMember(Name="docker_username", EmitDefaultValue=false)]
-        public string DockerUsername { get; set; }
-
-        /// <summary>
-        /// Docker registry password
-        /// </summary>
-        /// <value>Docker registry password</value>
-        [DataMember(Name="docker_password", EmitDefaultValue=false)]
-        public string DockerPassword { get; set; }
-
-        /// <summary>
-        /// Docker registry URL. Dockerhub is used by default.
-        /// </summary>
-        /// <value>Docker registry URL. Dockerhub is used by default.</value>
-        [DataMember(Name="docker_registry", EmitDefaultValue=false)]
-        public string DockerRegistry { get; set; }
 
         /// <summary>
         /// Storage class to use for datasets
@@ -190,9 +147,6 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  RemoteAddress: ").Append(RemoteAddress).Append("\n");
             sb.Append("  AuthToken: ").Append(AuthToken).Append("\n");
-            sb.Append("  DockerUsername: ").Append(DockerUsername).Append("\n");
-            sb.Append("  DockerPassword: ").Append(DockerPassword).Append("\n");
-            sb.Append("  DockerRegistry: ").Append(DockerRegistry).Append("\n");
             sb.Append("  StorageClass: ").Append(StorageClass).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
@@ -258,21 +212,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.AuthToken.Equals(input.AuthToken))
                 ) && 
                 (
-                    this.DockerUsername == input.DockerUsername ||
-                    (this.DockerUsername != null &&
-                    this.DockerUsername.Equals(input.DockerUsername))
-                ) && 
-                (
-                    this.DockerPassword == input.DockerPassword ||
-                    (this.DockerPassword != null &&
-                    this.DockerPassword.Equals(input.DockerPassword))
-                ) && 
-                (
-                    this.DockerRegistry == input.DockerRegistry ||
-                    (this.DockerRegistry != null &&
-                    this.DockerRegistry.Equals(input.DockerRegistry))
-                ) && 
-                (
                     this.StorageClass == input.StorageClass ||
                     (this.StorageClass != null &&
                     this.StorageClass.Equals(input.StorageClass))
@@ -318,12 +257,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.RemoteAddress.GetHashCode();
                 if (this.AuthToken != null)
                     hashCode = hashCode * 59 + this.AuthToken.GetHashCode();
-                if (this.DockerUsername != null)
-                    hashCode = hashCode * 59 + this.DockerUsername.GetHashCode();
-                if (this.DockerPassword != null)
-                    hashCode = hashCode * 59 + this.DockerPassword.GetHashCode();
-                if (this.DockerRegistry != null)
-                    hashCode = hashCode * 59 + this.DockerRegistry.GetHashCode();
                 if (this.StorageClass != null)
                     hashCode = hashCode * 59 + this.StorageClass.GetHashCode();
                 if (this.Status != null)

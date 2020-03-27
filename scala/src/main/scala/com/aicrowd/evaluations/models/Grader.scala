@@ -27,6 +27,12 @@ case class Grader (
   codeAccessMode: String,
   // Cluster to run the grader on
   clusterId: Option[Integer] = None,
+  // Docker registry username
+  dockerUsername: String,
+  // Docker registry password
+  dockerPassword: String,
+  // Docker registry URL. Dockerhub is used by default.
+  dockerRegistry: Option[String] = None,
   // Argo workflow template spec
   workflowSpec: Option[Any] = None,
   // S3 link to the zip file containing the code that will be used for the evaluation

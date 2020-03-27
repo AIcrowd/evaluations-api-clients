@@ -37,6 +37,9 @@ class Grader(object):
         'dataset_url': 'str',
         'code_access_mode': 'str',
         'cluster_id': 'int',
+        'docker_username': 'str',
+        'docker_password': 'str',
+        'docker_registry': 'str',
         'workflow_spec': 'object',
         'evaluation_code': 'str',
         'storage_capacity': 'str',
@@ -54,6 +57,9 @@ class Grader(object):
         'dataset_url': 'dataset_url',
         'code_access_mode': 'code_access_mode',
         'cluster_id': 'cluster_id',
+        'docker_username': 'docker_username',
+        'docker_password': 'docker_password',
+        'docker_registry': 'docker_registry',
         'workflow_spec': 'workflow_spec',
         'evaluation_code': 'evaluation_code',
         'storage_capacity': 'storage_capacity',
@@ -64,7 +70,7 @@ class Grader(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, docker_username=None, docker_password=None, docker_registry=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -73,6 +79,9 @@ class Grader(object):
         self._dataset_url = None
         self._code_access_mode = None
         self._cluster_id = None
+        self._docker_username = None
+        self._docker_password = None
+        self._docker_registry = None
         self._workflow_spec = None
         self._evaluation_code = None
         self._storage_capacity = None
@@ -94,6 +103,10 @@ class Grader(object):
         self.code_access_mode = code_access_mode
         if cluster_id is not None:
             self.cluster_id = cluster_id
+        self.docker_username = docker_username
+        self.docker_password = docker_password
+        if docker_registry is not None:
+            self.docker_registry = docker_registry
         if workflow_spec is not None:
             self.workflow_spec = workflow_spec
         self.evaluation_code = evaluation_code
@@ -249,6 +262,79 @@ class Grader(object):
         """
 
         self._cluster_id = cluster_id
+
+    @property
+    def docker_username(self):
+        """Gets the docker_username of this Grader.  # noqa: E501
+
+        Docker registry username  # noqa: E501
+
+        :return: The docker_username of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._docker_username
+
+    @docker_username.setter
+    def docker_username(self, docker_username):
+        """Sets the docker_username of this Grader.
+
+        Docker registry username  # noqa: E501
+
+        :param docker_username: The docker_username of this Grader.  # noqa: E501
+        :type: str
+        """
+        if docker_username is None:
+            raise ValueError("Invalid value for `docker_username`, must not be `None`")  # noqa: E501
+
+        self._docker_username = docker_username
+
+    @property
+    def docker_password(self):
+        """Gets the docker_password of this Grader.  # noqa: E501
+
+        Docker registry password  # noqa: E501
+
+        :return: The docker_password of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._docker_password
+
+    @docker_password.setter
+    def docker_password(self, docker_password):
+        """Sets the docker_password of this Grader.
+
+        Docker registry password  # noqa: E501
+
+        :param docker_password: The docker_password of this Grader.  # noqa: E501
+        :type: str
+        """
+        if docker_password is None:
+            raise ValueError("Invalid value for `docker_password`, must not be `None`")  # noqa: E501
+
+        self._docker_password = docker_password
+
+    @property
+    def docker_registry(self):
+        """Gets the docker_registry of this Grader.  # noqa: E501
+
+        Docker registry URL. Dockerhub is used by default.  # noqa: E501
+
+        :return: The docker_registry of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._docker_registry
+
+    @docker_registry.setter
+    def docker_registry(self, docker_registry):
+        """Sets the docker_registry of this Grader.
+
+        Docker registry URL. Dockerhub is used by default.  # noqa: E501
+
+        :param docker_registry: The docker_registry of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._docker_registry = docker_registry
 
     @property
     def workflow_spec(self):

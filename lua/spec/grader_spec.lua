@@ -58,6 +58,27 @@ describe("grader", function()
     end)
   end)
 
+  -- unit tests for the property 'docker_username'
+  describe("property docker_username test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'docker_password'
+  describe("property docker_password test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'docker_registry'
+  describe("property docker_registry test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'workflow_spec'
   describe("property workflow_spec test", function()
     it("should work", function()

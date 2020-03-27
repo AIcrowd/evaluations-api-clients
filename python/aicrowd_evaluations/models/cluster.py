@@ -36,9 +36,6 @@ class Cluster(object):
         'updated': 'datetime',
         'remote_address': 'str',
         'auth_token': 'str',
-        'docker_username': 'str',
-        'docker_password': 'str',
-        'docker_registry': 'str',
         'storage_class': 'str',
         'status': 'bool',
         'meta': 'object',
@@ -52,9 +49,6 @@ class Cluster(object):
         'updated': 'updated',
         'remote_address': 'remote_address',
         'auth_token': 'auth_token',
-        'docker_username': 'docker_username',
-        'docker_password': 'docker_password',
-        'docker_registry': 'docker_registry',
         'storage_class': 'storage_class',
         'status': 'status',
         'meta': 'meta',
@@ -62,7 +56,7 @@ class Cluster(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_password=None, docker_registry=None, storage_class=None, status=None, meta=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, storage_class=None, status=None, meta=None, user_id=None, organisation_id=None):  # noqa: E501
         """Cluster - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -70,9 +64,6 @@ class Cluster(object):
         self._updated = None
         self._remote_address = None
         self._auth_token = None
-        self._docker_username = None
-        self._docker_password = None
-        self._docker_registry = None
         self._storage_class = None
         self._status = None
         self._meta = None
@@ -88,10 +79,6 @@ class Cluster(object):
             self.updated = updated
         self.remote_address = remote_address
         self.auth_token = auth_token
-        self.docker_username = docker_username
-        self.docker_password = docker_password
-        if docker_registry is not None:
-            self.docker_registry = docker_registry
         if storage_class is not None:
             self.storage_class = storage_class
         if status is not None:
@@ -221,79 +208,6 @@ class Cluster(object):
             raise ValueError("Invalid value for `auth_token`, must not be `None`")  # noqa: E501
 
         self._auth_token = auth_token
-
-    @property
-    def docker_username(self):
-        """Gets the docker_username of this Cluster.  # noqa: E501
-
-        Docker registry username  # noqa: E501
-
-        :return: The docker_username of this Cluster.  # noqa: E501
-        :rtype: str
-        """
-        return self._docker_username
-
-    @docker_username.setter
-    def docker_username(self, docker_username):
-        """Sets the docker_username of this Cluster.
-
-        Docker registry username  # noqa: E501
-
-        :param docker_username: The docker_username of this Cluster.  # noqa: E501
-        :type: str
-        """
-        if docker_username is None:
-            raise ValueError("Invalid value for `docker_username`, must not be `None`")  # noqa: E501
-
-        self._docker_username = docker_username
-
-    @property
-    def docker_password(self):
-        """Gets the docker_password of this Cluster.  # noqa: E501
-
-        Docker registry password  # noqa: E501
-
-        :return: The docker_password of this Cluster.  # noqa: E501
-        :rtype: str
-        """
-        return self._docker_password
-
-    @docker_password.setter
-    def docker_password(self, docker_password):
-        """Sets the docker_password of this Cluster.
-
-        Docker registry password  # noqa: E501
-
-        :param docker_password: The docker_password of this Cluster.  # noqa: E501
-        :type: str
-        """
-        if docker_password is None:
-            raise ValueError("Invalid value for `docker_password`, must not be `None`")  # noqa: E501
-
-        self._docker_password = docker_password
-
-    @property
-    def docker_registry(self):
-        """Gets the docker_registry of this Cluster.  # noqa: E501
-
-        Docker registry URL. Dockerhub is used by default.  # noqa: E501
-
-        :return: The docker_registry of this Cluster.  # noqa: E501
-        :rtype: str
-        """
-        return self._docker_registry
-
-    @docker_registry.setter
-    def docker_registry(self, docker_registry):
-        """Sets the docker_registry of this Cluster.
-
-        Docker registry URL. Dockerhub is used by default.  # noqa: E501
-
-        :param docker_registry: The docker_registry of this Cluster.  # noqa: E501
-        :type: str
-        """
-
-        self._docker_registry = docker_registry
 
     @property
     def storage_class(self):

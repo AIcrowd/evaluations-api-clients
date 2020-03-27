@@ -42,14 +42,10 @@
    * @class
    * @param remoteAddress {String} Remote address used to connect to the cluster
    * @param authToken {String} Authentication needed for the cluster
-   * @param dockerUsername {String} Docker registry username
-   * @param dockerPassword {String} Docker registry password
    */
-  var exports = function(remoteAddress, authToken, dockerUsername, dockerPassword) {
+  var exports = function(remoteAddress, authToken) {
     this.remoteAddress = remoteAddress;
     this.authToken = authToken;
-    this.dockerUsername = dockerUsername;
-    this.dockerPassword = dockerPassword;
   };
 
   /**
@@ -72,12 +68,6 @@
         obj.remoteAddress = ApiClient.convertToType(data['remote_address'], 'String');
       if (data.hasOwnProperty('auth_token'))
         obj.authToken = ApiClient.convertToType(data['auth_token'], 'String');
-      if (data.hasOwnProperty('docker_username'))
-        obj.dockerUsername = ApiClient.convertToType(data['docker_username'], 'String');
-      if (data.hasOwnProperty('docker_password'))
-        obj.dockerPassword = ApiClient.convertToType(data['docker_password'], 'String');
-      if (data.hasOwnProperty('docker_registry'))
-        obj.dockerRegistry = ApiClient.convertToType(data['docker_registry'], 'String');
       if (data.hasOwnProperty('storage_class'))
         obj.storageClass = ApiClient.convertToType(data['storage_class'], 'String');
       if (data.hasOwnProperty('status'))
@@ -121,24 +111,6 @@
    * @member {String} authToken
    */
   exports.prototype.authToken = undefined;
-
-  /**
-   * Docker registry username
-   * @member {String} dockerUsername
-   */
-  exports.prototype.dockerUsername = undefined;
-
-  /**
-   * Docker registry password
-   * @member {String} dockerPassword
-   */
-  exports.prototype.dockerPassword = undefined;
-
-  /**
-   * Docker registry URL. Dockerhub is used by default.
-   * @member {String} dockerRegistry
-   */
-  exports.prototype.dockerRegistry = undefined;
 
   /**
    * Storage class to use for datasets

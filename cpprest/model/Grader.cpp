@@ -32,6 +32,10 @@ Grader::Grader()
     m_Code_access_mode = utility::conversions::to_string_t("");
     m_Cluster_id = 0;
     m_Cluster_idIsSet = false;
+    m_Docker_username = utility::conversions::to_string_t("");
+    m_Docker_password = utility::conversions::to_string_t("");
+    m_Docker_registry = utility::conversions::to_string_t("");
+    m_Docker_registryIsSet = false;
     m_Workflow_specIsSet = false;
     m_Evaluation_code = utility::conversions::to_string_t("");
     m_Storage_capacity = utility::conversions::to_string_t("");
@@ -79,6 +83,12 @@ web::json::value Grader::toJson() const
     if(m_Cluster_idIsSet)
     {
         val[utility::conversions::to_string_t("cluster_id")] = ModelBase::toJson(m_Cluster_id);
+    }
+    val[utility::conversions::to_string_t("docker_username")] = ModelBase::toJson(m_Docker_username);
+    val[utility::conversions::to_string_t("docker_password")] = ModelBase::toJson(m_Docker_password);
+    if(m_Docker_registryIsSet)
+    {
+        val[utility::conversions::to_string_t("docker_registry")] = ModelBase::toJson(m_Docker_registry);
     }
     if(m_Workflow_specIsSet)
     {
@@ -154,6 +164,16 @@ void Grader::fromJson(web::json::value& val)
         if(!fieldValue.is_null())
         {
             setClusterId(ModelBase::int32_tFromJson(fieldValue));
+        }
+    }
+    setDockerUsername(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_username")]));
+    setDockerPassword(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_password")]));
+    if(val.has_field(utility::conversions::to_string_t("docker_registry")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_registry")];
+        if(!fieldValue.is_null())
+        {
+            setDockerRegistry(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("workflow_spec")))
@@ -253,6 +273,13 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cluster_id"), m_Cluster_id));
     }
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_username"), m_Docker_username));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_password"), m_Docker_password));
+    if(m_Docker_registryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_registry"), m_Docker_registry));
+        
+    }
     if(m_Workflow_specIsSet)
     {
         if (m_Workflow_spec.get())
@@ -326,6 +353,12 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("cluster_id")))
     {
         setClusterId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cluster_id"))));
+    }
+    setDockerUsername(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_username"))));
+    setDockerPassword(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_password"))));
+    if(multipart->hasContent(utility::conversions::to_string_t("docker_registry")))
+    {
+        setDockerRegistry(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_registry"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("workflow_spec")))
     {
@@ -487,6 +520,49 @@ bool Grader::clusterIdIsSet() const
 void Grader::unsetCluster_id()
 {
     m_Cluster_idIsSet = false;
+}
+
+utility::string_t Grader::getDockerUsername() const
+{
+    return m_Docker_username;
+}
+
+
+void Grader::setDockerUsername(utility::string_t value)
+{
+    m_Docker_username = value;
+    
+}
+utility::string_t Grader::getDockerPassword() const
+{
+    return m_Docker_password;
+}
+
+
+void Grader::setDockerPassword(utility::string_t value)
+{
+    m_Docker_password = value;
+    
+}
+utility::string_t Grader::getDockerRegistry() const
+{
+    return m_Docker_registry;
+}
+
+
+void Grader::setDockerRegistry(utility::string_t value)
+{
+    m_Docker_registry = value;
+    m_Docker_registryIsSet = true;
+}
+bool Grader::dockerRegistryIsSet() const
+{
+    return m_Docker_registryIsSet;
+}
+
+void Grader::unsetDocker_registry()
+{
+    m_Docker_registryIsSet = false;
 }
 
 std::shared_ptr<Object> Grader::getWorkflowSpec() const

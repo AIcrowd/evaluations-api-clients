@@ -41,27 +41,6 @@ API.Client.Cluster.prototype.remoteAddress;
 API.Client.Cluster.prototype.authToken;
 
 /**
- * Docker registry username
- * @type {!string}
- * @export
- */
-API.Client.Cluster.prototype.dockerUsername;
-
-/**
- * Docker registry password
- * @type {!string}
- * @export
- */
-API.Client.Cluster.prototype.dockerPassword;
-
-/**
- * Docker registry URL. Dockerhub is used by default.
- * @type {!string}
- * @export
- */
-API.Client.Cluster.prototype.dockerRegistry;
-
-/**
  * Storage class to use for datasets
  * @type {!string}
  * @export

@@ -26,6 +26,12 @@ type Grader struct {
 	CodeAccessMode string `json:"code_access_mode"`
 	// Cluster to run the grader on
 	ClusterId int32 `json:"cluster_id,omitempty"`
+	// Docker registry username
+	DockerUsername string `json:"docker_username"`
+	// Docker registry password
+	DockerPassword string `json:"docker_password"`
+	// Docker registry URL. Dockerhub is used by default.
+	DockerRegistry string `json:"docker_registry,omitempty"`
 	// Argo workflow template spec
 	WorkflowSpec *interface{} `json:"workflow_spec,omitempty"`
 	// S3 link to the zip file containing the code that will be used for the evaluation

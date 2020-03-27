@@ -35,7 +35,7 @@ setup(
     version=VERSION,
     description="Evaluations API",
     author_email="",
-    url="",
+    url="git+https://gitlab.aicrowd.com/aicrowd/evaluations-api-clients.git#egg&#x3D;version_subpkg&amp;subdirectory&#x3D;python",
     keywords=["Swagger", "Evaluations API"],
     install_requires=REQUIRES,
     packages=find_packages(),

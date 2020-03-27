@@ -48,6 +48,27 @@ API.Client.Grader.prototype.codeAccessMode;
 API.Client.Grader.prototype.clusterId;
 
 /**
+ * Docker registry username
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.dockerUsername;
+
+/**
+ * Docker registry password
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.dockerPassword;
+
+/**
+ * Docker registry URL. Dockerhub is used by default.
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.dockerRegistry;
+
+/**
  * Argo workflow template spec
  * @type {!API.Client.Object}
  * @export

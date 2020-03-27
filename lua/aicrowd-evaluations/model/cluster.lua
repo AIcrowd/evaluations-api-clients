@@ -19,16 +19,13 @@ local function cast_cluster(t)
 	return setmetatable(t, cluster_mt)
 end
 
-local function new_cluster(id, created, updated, remote_address, auth_token, docker_username, docker_password, docker_registry, storage_class, status, meta, user_id, organisation_id)
+local function new_cluster(id, created, updated, remote_address, auth_token, storage_class, status, meta, user_id, organisation_id)
 	return cast_cluster({
 		["id"] = id;
 		["created"] = created;
 		["updated"] = updated;
 		["remote_address"] = remote_address;
 		["auth_token"] = auth_token;
-		["docker_username"] = docker_username;
-		["docker_password"] = docker_password;
-		["docker_registry"] = docker_registry;
 		["storage_class"] = storage_class;
 		["status"] = status;
 		["meta"] = meta;

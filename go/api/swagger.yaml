@@ -838,8 +838,6 @@ definitions:
     type: "object"
     required:
     - "auth_token"
-    - "docker_password"
-    - "docker_username"
     - "remote_address"
     properties:
       id:
@@ -862,15 +860,6 @@ definitions:
       auth_token:
         type: "string"
         description: "Authentication needed for the cluster"
-      docker_username:
-        type: "string"
-        description: "Docker registry username"
-      docker_password:
-        type: "string"
-        description: "Docker registry password"
-      docker_registry:
-        type: "string"
-        description: "Docker registry URL. Dockerhub is used by default."
       storage_class:
         type: "string"
         description: "Storage class to use for datasets"
@@ -892,20 +881,17 @@ definitions:
         description: "Organisation ID"
         readOnly: true
     example:
-      storage_class: "storage_class"
-      created: "2000-01-23T04:56:07.000+00:00"
-      docker_registry: "docker_registry"
-      remote_address: "remote_address"
       organisation_id: 1
-      docker_password: "docker_password"
+      storage_class: "storage_class"
       user_id: 6
+      created: "2000-01-23T04:56:07.000+00:00"
       meta: "{}"
       id: 0
+      remote_address: "remote_address"
       auth_token: "auth_token"
-      docker_username: "docker_username"
       updated: "2000-01-23T04:56:07.000+00:00"
       status: true
-    x-mask: "{id,created,updated,remote_address,docker_username,storage_class,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,remote_address,storage_class,status,deleted,user_id,organisation_id}"
   GraderFeedback:
     type: "object"
     required:
@@ -965,6 +951,8 @@ definitions:
     type: "object"
     required:
     - "code_access_mode"
+    - "docker_password"
+    - "docker_username"
     - "evaluation_code"
     properties:
       id:
@@ -990,6 +978,15 @@ definitions:
       cluster_id:
         type: "integer"
         description: "Cluster to run the grader on"
+      docker_username:
+        type: "string"
+        description: "Docker registry username"
+      docker_password:
+        type: "string"
+        description: "Docker registry password"
+      docker_registry:
+        type: "string"
+        description: "Docker registry URL. Dockerhub is used by default."
       workflow_spec:
         type: "object"
         description: "Argo workflow template spec"
@@ -1028,19 +1025,22 @@ definitions:
     example:
       storage_capacity: "storage_capacity"
       created: "2000-01-23T04:56:07.000+00:00"
+      docker_registry: "docker_registry"
       workflow_spec: "{}"
       code_access_mode: "code_access_mode"
       organisation_id: 5
       cluster_id: 6
+      docker_password: "docker_password"
       user_id: 1
       meta: "{}"
       id: 0
       dataset_url: "dataset_url"
+      docker_username: "docker_username"
       evaluation_code: "evaluation_code"
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

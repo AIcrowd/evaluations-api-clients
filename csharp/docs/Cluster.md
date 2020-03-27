@@ -8,9 +8,6 @@ Name | Type | Description | Notes
 **Updated** | **DateTime?** | Last updation time | [optional] 
 **RemoteAddress** | **string** | Remote address used to connect to the cluster | 
 **AuthToken** | **string** | Authentication needed for the cluster | 
-**DockerUsername** | **string** | Docker registry username | 
-**DockerPassword** | **string** | Docker registry password | 
-**DockerRegistry** | **string** | Docker registry URL. Dockerhub is used by default. | [optional] 
 **StorageClass** | **string** | Storage class to use for datasets | [optional] 
 **Status** | **bool?** | Readiness of the cluster | [optional] 
 **Meta** | **Object** | Additional metadata | [optional] 

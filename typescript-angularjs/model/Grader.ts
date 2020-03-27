@@ -38,6 +38,18 @@ export interface Grader {
      */
     "clusterId"?: number;
     /**
+     * Docker registry username
+     */
+    "dockerUsername": string;
+    /**
+     * Docker registry password
+     */
+    "dockerPassword": string;
+    /**
+     * Docker registry URL. Dockerhub is used by default.
+     */
+    "dockerRegistry"?: string;
+    /**
      * Argo workflow template spec
      */
     "workflowSpec"?: any;

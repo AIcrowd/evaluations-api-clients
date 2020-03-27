@@ -63,6 +63,9 @@ class Grader implements ModelInterface, ArrayAccess
         'dataset_url' => 'string',
         'code_access_mode' => 'string',
         'cluster_id' => 'int',
+        'docker_username' => 'string',
+        'docker_password' => 'string',
+        'docker_registry' => 'string',
         'workflow_spec' => 'object',
         'evaluation_code' => 'string',
         'storage_capacity' => 'string',
@@ -85,6 +88,9 @@ class Grader implements ModelInterface, ArrayAccess
         'dataset_url' => null,
         'code_access_mode' => null,
         'cluster_id' => null,
+        'docker_username' => null,
+        'docker_password' => null,
+        'docker_registry' => null,
         'workflow_spec' => null,
         'evaluation_code' => null,
         'storage_capacity' => null,
@@ -128,6 +134,9 @@ class Grader implements ModelInterface, ArrayAccess
         'dataset_url' => 'dataset_url',
         'code_access_mode' => 'code_access_mode',
         'cluster_id' => 'cluster_id',
+        'docker_username' => 'docker_username',
+        'docker_password' => 'docker_password',
+        'docker_registry' => 'docker_registry',
         'workflow_spec' => 'workflow_spec',
         'evaluation_code' => 'evaluation_code',
         'storage_capacity' => 'storage_capacity',
@@ -150,6 +159,9 @@ class Grader implements ModelInterface, ArrayAccess
         'dataset_url' => 'setDatasetUrl',
         'code_access_mode' => 'setCodeAccessMode',
         'cluster_id' => 'setClusterId',
+        'docker_username' => 'setDockerUsername',
+        'docker_password' => 'setDockerPassword',
+        'docker_registry' => 'setDockerRegistry',
         'workflow_spec' => 'setWorkflowSpec',
         'evaluation_code' => 'setEvaluationCode',
         'storage_capacity' => 'setStorageCapacity',
@@ -172,6 +184,9 @@ class Grader implements ModelInterface, ArrayAccess
         'dataset_url' => 'getDatasetUrl',
         'code_access_mode' => 'getCodeAccessMode',
         'cluster_id' => 'getClusterId',
+        'docker_username' => 'getDockerUsername',
+        'docker_password' => 'getDockerPassword',
+        'docker_registry' => 'getDockerRegistry',
         'workflow_spec' => 'getWorkflowSpec',
         'evaluation_code' => 'getEvaluationCode',
         'storage_capacity' => 'getStorageCapacity',
@@ -248,6 +263,9 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['dataset_url'] = isset($data['dataset_url']) ? $data['dataset_url'] : null;
         $this->container['code_access_mode'] = isset($data['code_access_mode']) ? $data['code_access_mode'] : null;
         $this->container['cluster_id'] = isset($data['cluster_id']) ? $data['cluster_id'] : null;
+        $this->container['docker_username'] = isset($data['docker_username']) ? $data['docker_username'] : null;
+        $this->container['docker_password'] = isset($data['docker_password']) ? $data['docker_password'] : null;
+        $this->container['docker_registry'] = isset($data['docker_registry']) ? $data['docker_registry'] : null;
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['evaluation_code'] = isset($data['evaluation_code']) ? $data['evaluation_code'] : null;
         $this->container['storage_capacity'] = isset($data['storage_capacity']) ? $data['storage_capacity'] : null;
@@ -269,6 +287,12 @@ class Grader implements ModelInterface, ArrayAccess
 
         if ($this->container['code_access_mode'] === null) {
             $invalidProperties[] = "'code_access_mode' can't be null";
+        }
+        if ($this->container['docker_username'] === null) {
+            $invalidProperties[] = "'docker_username' can't be null";
+        }
+        if ($this->container['docker_password'] === null) {
+            $invalidProperties[] = "'docker_password' can't be null";
         }
         if ($this->container['evaluation_code'] === null) {
             $invalidProperties[] = "'evaluation_code' can't be null";
@@ -428,6 +452,78 @@ class Grader implements ModelInterface, ArrayAccess
     public function setClusterId($cluster_id)
     {
         $this->container['cluster_id'] = $cluster_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_username
+     *
+     * @return string
+     */
+    public function getDockerUsername()
+    {
+        return $this->container['docker_username'];
+    }
+
+    /**
+     * Sets docker_username
+     *
+     * @param string $docker_username Docker registry username
+     *
+     * @return $this
+     */
+    public function setDockerUsername($docker_username)
+    {
+        $this->container['docker_username'] = $docker_username;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_password
+     *
+     * @return string
+     */
+    public function getDockerPassword()
+    {
+        return $this->container['docker_password'];
+    }
+
+    /**
+     * Sets docker_password
+     *
+     * @param string $docker_password Docker registry password
+     *
+     * @return $this
+     */
+    public function setDockerPassword($docker_password)
+    {
+        $this->container['docker_password'] = $docker_password;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_registry
+     *
+     * @return string
+     */
+    public function getDockerRegistry()
+    {
+        return $this->container['docker_registry'];
+    }
+
+    /**
+     * Sets docker_registry
+     *
+     * @param string $docker_registry Docker registry URL. Dockerhub is used by default.
+     *
+     * @return $this
+     */
+    public function setDockerRegistry($docker_registry)
+    {
+        $this->container['docker_registry'] = $docker_registry;
 
         return $this;
     }
