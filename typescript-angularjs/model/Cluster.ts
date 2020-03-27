@@ -34,6 +34,18 @@ export interface Cluster {
      */
     "authToken": string;
     /**
+     * Docker registry username
+     */
+    "dockerUsername": string;
+    /**
+     * Docker registry password
+     */
+    "dockerPassword": string;
+    /**
+     * Docker registry URL. Dockerhub is used by default.
+     */
+    "dockerRegistry"?: string;
+    /**
      * Storage class to use for datasets
      */
     "storageClass"?: string;

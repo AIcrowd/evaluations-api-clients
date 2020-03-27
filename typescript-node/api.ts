@@ -198,6 +198,18 @@ export class Cluster {
     */
     'authToken': string;
     /**
+    * Docker registry username
+    */
+    'dockerUsername': string;
+    /**
+    * Docker registry password
+    */
+    'dockerPassword': string;
+    /**
+    * Docker registry URL. Dockerhub is used by default.
+    */
+    'dockerRegistry'?: string;
+    /**
     * Storage class to use for datasets
     */
     'storageClass'?: string;
@@ -244,6 +256,21 @@ export class Cluster {
         {
             "name": "authToken",
             "baseName": "auth_token",
+            "type": "string"
+        },
+        {
+            "name": "dockerUsername",
+            "baseName": "docker_username",
+            "type": "string"
+        },
+        {
+            "name": "dockerPassword",
+            "baseName": "docker_password",
+            "type": "string"
+        },
+        {
+            "name": "dockerRegistry",
+            "baseName": "docker_registry",
             "type": "string"
         },
         {
@@ -332,18 +359,6 @@ export class Grader {
     */
     'clusterId'?: number;
     /**
-    * Docker registry username
-    */
-    'dockerUsername': string;
-    /**
-    * Docker registry password
-    */
-    'dockerPassword': string;
-    /**
-    * Docker registry URL. Dockerhub is used by default.
-    */
-    'dockerRegistry'?: string;
-    /**
     * Argo workflow template spec
     */
     'workflowSpec'?: any;
@@ -408,21 +423,6 @@ export class Grader {
             "name": "clusterId",
             "baseName": "cluster_id",
             "type": "number"
-        },
-        {
-            "name": "dockerUsername",
-            "baseName": "docker_username",
-            "type": "string"
-        },
-        {
-            "name": "dockerPassword",
-            "baseName": "docker_password",
-            "type": "string"
-        },
-        {
-            "name": "dockerRegistry",
-            "baseName": "docker_registry",
-            "type": "string"
         },
         {
             "name": "workflowSpec",

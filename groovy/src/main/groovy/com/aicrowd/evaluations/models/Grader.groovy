@@ -25,15 +25,6 @@ class Grader {
   /* Cluster to run the grader on */
   Integer clusterId = null
 
-  /* Docker registry username */
-  String dockerUsername = null
-
-  /* Docker registry password */
-  String dockerPassword = null
-
-  /* Docker registry URL. Dockerhub is used by default. */
-  String dockerRegistry = null
-
   /* Argo workflow template spec */
   Object workflowSpec = null
 

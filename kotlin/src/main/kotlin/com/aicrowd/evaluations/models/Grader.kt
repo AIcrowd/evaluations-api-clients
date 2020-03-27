@@ -20,9 +20,6 @@ package com.aicrowd.evaluations.models
  * @param dataset_url S3 link of the Dataset
  * @param code_access_mode git/http
  * @param cluster_id Cluster to run the grader on
- * @param docker_username Docker registry username
- * @param docker_password Docker registry password
- * @param docker_registry Docker registry URL. Dockerhub is used by default.
  * @param workflow_spec Argo workflow template spec
  * @param evaluation_code S3 link to the zip file containing the code that will be used for the evaluation
  * @param storage_capacity Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
@@ -35,10 +32,6 @@ package com.aicrowd.evaluations.models
 data class Grader (
     /* git/http */
     val code_access_mode: kotlin.String,
-    /* Docker registry username */
-    val docker_username: kotlin.String,
-    /* Docker registry password */
-    val docker_password: kotlin.String,
     /* S3 link to the zip file containing the code that will be used for the evaluation */
     val evaluation_code: kotlin.String,
     /* ID */
@@ -51,8 +44,6 @@ data class Grader (
     val dataset_url: kotlin.String? = null,
     /* Cluster to run the grader on */
     val cluster_id: kotlin.Int? = null,
-    /* Docker registry URL. Dockerhub is used by default. */
-    val docker_registry: kotlin.String? = null,
     /* Argo workflow template spec */
     val workflow_spec: kotlin.Any? = null,
     /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */

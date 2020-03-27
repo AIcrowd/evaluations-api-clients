@@ -29,6 +29,15 @@ pub struct Cluster {
   /// Authentication needed for the cluster
   #[serde(rename = "auth_token")]
   auth_token: String,
+  /// Docker registry username
+  #[serde(rename = "docker_username")]
+  docker_username: String,
+  /// Docker registry password
+  #[serde(rename = "docker_password")]
+  docker_password: String,
+  /// Docker registry URL. Dockerhub is used by default.
+  #[serde(rename = "docker_registry")]
+  docker_registry: Option<String>,
   /// Storage class to use for datasets
   #[serde(rename = "storage_class")]
   storage_class: Option<String>,
@@ -47,13 +56,16 @@ pub struct Cluster {
 }
 
 impl Cluster {
-  pub fn new(remote_address: String, auth_token: String) -> Cluster {
+  pub fn new(remote_address: String, auth_token: String, docker_username: String, docker_password: String) -> Cluster {
     Cluster {
       id: None,
       created: None,
       updated: None,
       remote_address: remote_address,
       auth_token: auth_token,
+      docker_username: docker_username,
+      docker_password: docker_password,
+      docker_registry: None,
       storage_class: None,
       status: None,
       meta: None,
@@ -140,6 +152,51 @@ impl Cluster {
     &self.auth_token
   }
 
+
+  pub fn set_docker_username(&mut self, docker_username: String) {
+    self.docker_username = docker_username;
+  }
+
+  pub fn with_docker_username(mut self, docker_username: String) -> Cluster {
+    self.docker_username = docker_username;
+    self
+  }
+
+  pub fn docker_username(&self) -> &String {
+    &self.docker_username
+  }
+
+
+  pub fn set_docker_password(&mut self, docker_password: String) {
+    self.docker_password = docker_password;
+  }
+
+  pub fn with_docker_password(mut self, docker_password: String) -> Cluster {
+    self.docker_password = docker_password;
+    self
+  }
+
+  pub fn docker_password(&self) -> &String {
+    &self.docker_password
+  }
+
+
+  pub fn set_docker_registry(&mut self, docker_registry: String) {
+    self.docker_registry = Some(docker_registry);
+  }
+
+  pub fn with_docker_registry(mut self, docker_registry: String) -> Cluster {
+    self.docker_registry = Some(docker_registry);
+    self
+  }
+
+  pub fn docker_registry(&self) -> Option<&String> {
+    self.docker_registry.as_ref()
+  }
+
+  pub fn reset_docker_registry(&mut self) {
+    self.docker_registry = None;
+  }
 
   pub fn set_storage_class(&mut self, storage_class: String) {
     self.storage_class = Some(storage_class);

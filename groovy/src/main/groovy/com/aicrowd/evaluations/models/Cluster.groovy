@@ -22,6 +22,15 @@ class Cluster {
   /* Authentication needed for the cluster */
   String authToken = null
 
+  /* Docker registry username */
+  String dockerUsername = null
+
+  /* Docker registry password */
+  String dockerPassword = null
+
+  /* Docker registry URL. Dockerhub is used by default. */
+  String dockerRegistry = null
+
   /* Storage class to use for datasets */
   String storageClass = null
 

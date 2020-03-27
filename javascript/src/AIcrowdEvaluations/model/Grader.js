@@ -41,14 +41,10 @@
    * @alias module:AIcrowdEvaluations/model/Grader
    * @class
    * @param codeAccessMode {String} git/http
-   * @param dockerUsername {String} Docker registry username
-   * @param dockerPassword {String} Docker registry password
    * @param evaluationCode {String} S3 link to the zip file containing the code that will be used for the evaluation
    */
-  var exports = function(codeAccessMode, dockerUsername, dockerPassword, evaluationCode) {
+  var exports = function(codeAccessMode, evaluationCode) {
     this.codeAccessMode = codeAccessMode;
-    this.dockerUsername = dockerUsername;
-    this.dockerPassword = dockerPassword;
     this.evaluationCode = evaluationCode;
   };
 
@@ -74,12 +70,6 @@
         obj.codeAccessMode = ApiClient.convertToType(data['code_access_mode'], 'String');
       if (data.hasOwnProperty('cluster_id'))
         obj.clusterId = ApiClient.convertToType(data['cluster_id'], 'Number');
-      if (data.hasOwnProperty('docker_username'))
-        obj.dockerUsername = ApiClient.convertToType(data['docker_username'], 'String');
-      if (data.hasOwnProperty('docker_password'))
-        obj.dockerPassword = ApiClient.convertToType(data['docker_password'], 'String');
-      if (data.hasOwnProperty('docker_registry'))
-        obj.dockerRegistry = ApiClient.convertToType(data['docker_registry'], 'String');
       if (data.hasOwnProperty('workflow_spec'))
         obj.workflowSpec = ApiClient.convertToType(data['workflow_spec'], Object);
       if (data.hasOwnProperty('evaluation_code'))
@@ -135,24 +125,6 @@
    * @member {Number} clusterId
    */
   exports.prototype.clusterId = undefined;
-
-  /**
-   * Docker registry username
-   * @member {String} dockerUsername
-   */
-  exports.prototype.dockerUsername = undefined;
-
-  /**
-   * Docker registry password
-   * @member {String} dockerPassword
-   */
-  exports.prototype.dockerPassword = undefined;
-
-  /**
-   * Docker registry URL. Dockerhub is used by default.
-   * @member {String} dockerRegistry
-   */
-  exports.prototype.dockerRegistry = undefined;
 
   /**
    * Argo workflow template spec

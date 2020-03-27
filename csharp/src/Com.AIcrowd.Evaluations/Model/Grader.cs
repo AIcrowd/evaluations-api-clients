@@ -41,12 +41,9 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="datasetUrl">S3 link of the Dataset.</param>
         /// <param name="codeAccessMode">git/http (required).</param>
         /// <param name="clusterId">Cluster to run the grader on.</param>
-        /// <param name="dockerUsername">Docker registry username (required).</param>
-        /// <param name="dockerPassword">Docker registry password (required).</param>
-        /// <param name="dockerRegistry">Docker registry URL. Dockerhub is used by default..</param>
         /// <param name="evaluationCode">S3 link to the zip file containing the code that will be used for the evaluation (required).</param>
         /// <param name="storageCapacity">Size of the dataset partition to request. Please provide at least 2x of the size of the dataset..</param>
-        public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), int? clusterId = default(int?), string dockerUsername = default(string), string dockerPassword = default(string), string dockerRegistry = default(string), string evaluationCode = default(string), string storageCapacity = default(string))
+        public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), int? clusterId = default(int?), string evaluationCode = default(string), string storageCapacity = default(string))
         {
             // to ensure "codeAccessMode" is required (not null)
             if (codeAccessMode == null)
@@ -56,24 +53,6 @@ namespace Com.AIcrowd.Evaluations.Model
             else
             {
                 this.CodeAccessMode = codeAccessMode;
-            }
-            // to ensure "dockerUsername" is required (not null)
-            if (dockerUsername == null)
-            {
-                throw new InvalidDataException("dockerUsername is a required property for Grader and cannot be null");
-            }
-            else
-            {
-                this.DockerUsername = dockerUsername;
-            }
-            // to ensure "dockerPassword" is required (not null)
-            if (dockerPassword == null)
-            {
-                throw new InvalidDataException("dockerPassword is a required property for Grader and cannot be null");
-            }
-            else
-            {
-                this.DockerPassword = dockerPassword;
             }
             // to ensure "evaluationCode" is required (not null)
             if (evaluationCode == null)
@@ -86,7 +65,6 @@ namespace Com.AIcrowd.Evaluations.Model
             }
             this.DatasetUrl = datasetUrl;
             this.ClusterId = clusterId;
-            this.DockerRegistry = dockerRegistry;
             this.StorageCapacity = storageCapacity;
         }
         
@@ -131,27 +109,6 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>Cluster to run the grader on</value>
         [DataMember(Name="cluster_id", EmitDefaultValue=false)]
         public int? ClusterId { get; set; }
-
-        /// <summary>
-        /// Docker registry username
-        /// </summary>
-        /// <value>Docker registry username</value>
-        [DataMember(Name="docker_username", EmitDefaultValue=false)]
-        public string DockerUsername { get; set; }
-
-        /// <summary>
-        /// Docker registry password
-        /// </summary>
-        /// <value>Docker registry password</value>
-        [DataMember(Name="docker_password", EmitDefaultValue=false)]
-        public string DockerPassword { get; set; }
-
-        /// <summary>
-        /// Docker registry URL. Dockerhub is used by default.
-        /// </summary>
-        /// <value>Docker registry URL. Dockerhub is used by default.</value>
-        [DataMember(Name="docker_registry", EmitDefaultValue=false)]
-        public string DockerRegistry { get; set; }
 
         /// <summary>
         /// Argo workflow template spec
@@ -223,9 +180,6 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  DatasetUrl: ").Append(DatasetUrl).Append("\n");
             sb.Append("  CodeAccessMode: ").Append(CodeAccessMode).Append("\n");
             sb.Append("  ClusterId: ").Append(ClusterId).Append("\n");
-            sb.Append("  DockerUsername: ").Append(DockerUsername).Append("\n");
-            sb.Append("  DockerPassword: ").Append(DockerPassword).Append("\n");
-            sb.Append("  DockerRegistry: ").Append(DockerRegistry).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  EvaluationCode: ").Append(EvaluationCode).Append("\n");
             sb.Append("  StorageCapacity: ").Append(StorageCapacity).Append("\n");
@@ -299,21 +253,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.ClusterId.Equals(input.ClusterId))
                 ) && 
                 (
-                    this.DockerUsername == input.DockerUsername ||
-                    (this.DockerUsername != null &&
-                    this.DockerUsername.Equals(input.DockerUsername))
-                ) && 
-                (
-                    this.DockerPassword == input.DockerPassword ||
-                    (this.DockerPassword != null &&
-                    this.DockerPassword.Equals(input.DockerPassword))
-                ) && 
-                (
-                    this.DockerRegistry == input.DockerRegistry ||
-                    (this.DockerRegistry != null &&
-                    this.DockerRegistry.Equals(input.DockerRegistry))
-                ) && 
-                (
                     this.WorkflowSpec == input.WorkflowSpec ||
                     (this.WorkflowSpec != null &&
                     this.WorkflowSpec.Equals(input.WorkflowSpec))
@@ -376,12 +315,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.CodeAccessMode.GetHashCode();
                 if (this.ClusterId != null)
                     hashCode = hashCode * 59 + this.ClusterId.GetHashCode();
-                if (this.DockerUsername != null)
-                    hashCode = hashCode * 59 + this.DockerUsername.GetHashCode();
-                if (this.DockerPassword != null)
-                    hashCode = hashCode * 59 + this.DockerPassword.GetHashCode();
-                if (this.DockerRegistry != null)
-                    hashCode = hashCode * 59 + this.DockerRegistry.GetHashCode();
                 if (this.WorkflowSpec != null)
                     hashCode = hashCode * 59 + this.WorkflowSpec.GetHashCode();
                 if (this.EvaluationCode != null)

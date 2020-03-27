@@ -86,6 +86,23 @@ public:
     utility::string_t getAuthToken() const;
         void setAuthToken(utility::string_t value);
     /// <summary>
+    /// Docker registry username
+    /// </summary>
+    utility::string_t getDockerUsername() const;
+        void setDockerUsername(utility::string_t value);
+    /// <summary>
+    /// Docker registry password
+    /// </summary>
+    utility::string_t getDockerPassword() const;
+        void setDockerPassword(utility::string_t value);
+    /// <summary>
+    /// Docker registry URL. Dockerhub is used by default.
+    /// </summary>
+    utility::string_t getDockerRegistry() const;
+    bool dockerRegistryIsSet() const;
+    void unsetDocker_registry();
+    void setDockerRegistry(utility::string_t value);
+    /// <summary>
     /// Storage class to use for datasets
     /// </summary>
     utility::string_t getStorageClass() const;
@@ -130,7 +147,11 @@ protected:
     bool m_UpdatedIsSet;
     utility::string_t m_Remote_address;
         utility::string_t m_Auth_token;
-        utility::string_t m_Storage_class;
+        utility::string_t m_Docker_username;
+        utility::string_t m_Docker_password;
+        utility::string_t m_Docker_registry;
+    bool m_Docker_registryIsSet;
+    utility::string_t m_Storage_class;
     bool m_Storage_classIsSet;
     bool m_Status;
     bool m_StatusIsSet;

@@ -25,6 +25,12 @@ case class Cluster (
   remoteAddress: String,
   // Authentication needed for the cluster
   authToken: String,
+  // Docker registry username
+  dockerUsername: String,
+  // Docker registry password
+  dockerPassword: String,
+  // Docker registry URL. Dockerhub is used by default.
+  dockerRegistry: Option[String] = None,
   // Storage class to use for datasets
   storageClass: Option[String] = None,
   // Readiness of the cluster

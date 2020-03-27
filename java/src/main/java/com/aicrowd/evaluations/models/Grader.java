@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-26T12:57:15.367Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-27T14:30:50.774Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -47,15 +47,6 @@ public class Grader {
 
   @SerializedName("cluster_id")
   private Integer clusterId = null;
-
-  @SerializedName("docker_username")
-  private String dockerUsername = null;
-
-  @SerializedName("docker_password")
-  private String dockerPassword = null;
-
-  @SerializedName("docker_registry")
-  private String dockerRegistry = null;
 
   @SerializedName("workflow_spec")
   private Object workflowSpec = null;
@@ -160,60 +151,6 @@ public class Grader {
 
   public void setClusterId(Integer clusterId) {
     this.clusterId = clusterId;
-  }
-
-  public Grader dockerUsername(String dockerUsername) {
-    this.dockerUsername = dockerUsername;
-    return this;
-  }
-
-   /**
-   * Docker registry username
-   * @return dockerUsername
-  **/
-  @ApiModelProperty(required = true, value = "Docker registry username")
-  public String getDockerUsername() {
-    return dockerUsername;
-  }
-
-  public void setDockerUsername(String dockerUsername) {
-    this.dockerUsername = dockerUsername;
-  }
-
-  public Grader dockerPassword(String dockerPassword) {
-    this.dockerPassword = dockerPassword;
-    return this;
-  }
-
-   /**
-   * Docker registry password
-   * @return dockerPassword
-  **/
-  @ApiModelProperty(required = true, value = "Docker registry password")
-  public String getDockerPassword() {
-    return dockerPassword;
-  }
-
-  public void setDockerPassword(String dockerPassword) {
-    this.dockerPassword = dockerPassword;
-  }
-
-  public Grader dockerRegistry(String dockerRegistry) {
-    this.dockerRegistry = dockerRegistry;
-    return this;
-  }
-
-   /**
-   * Docker registry URL. Dockerhub is used by default.
-   * @return dockerRegistry
-  **/
-  @ApiModelProperty(value = "Docker registry URL. Dockerhub is used by default.")
-  public String getDockerRegistry() {
-    return dockerRegistry;
-  }
-
-  public void setDockerRegistry(String dockerRegistry) {
-    this.dockerRegistry = dockerRegistry;
   }
 
    /**
@@ -322,9 +259,6 @@ public class Grader {
         Objects.equals(this.datasetUrl, grader.datasetUrl) &&
         Objects.equals(this.codeAccessMode, grader.codeAccessMode) &&
         Objects.equals(this.clusterId, grader.clusterId) &&
-        Objects.equals(this.dockerUsername, grader.dockerUsername) &&
-        Objects.equals(this.dockerPassword, grader.dockerPassword) &&
-        Objects.equals(this.dockerRegistry, grader.dockerRegistry) &&
         Objects.equals(this.workflowSpec, grader.workflowSpec) &&
         Objects.equals(this.evaluationCode, grader.evaluationCode) &&
         Objects.equals(this.storageCapacity, grader.storageCapacity) &&
@@ -337,7 +271,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, dockerUsername, dockerPassword, dockerRegistry, workflowSpec, evaluationCode, storageCapacity, logs, meta, status, userId, organisationId);
+    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, workflowSpec, evaluationCode, storageCapacity, logs, meta, status, userId, organisationId);
   }
 
 
@@ -352,9 +286,6 @@ public class Grader {
     sb.append("    datasetUrl: ").append(toIndentedString(datasetUrl)).append("\n");
     sb.append("    codeAccessMode: ").append(toIndentedString(codeAccessMode)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
-    sb.append("    dockerUsername: ").append(toIndentedString(dockerUsername)).append("\n");
-    sb.append("    dockerPassword: ").append(toIndentedString(dockerPassword)).append("\n");
-    sb.append("    dockerRegistry: ").append(toIndentedString(dockerRegistry)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    evaluationCode: ").append(toIndentedString(evaluationCode)).append("\n");
     sb.append("    storageCapacity: ").append(toIndentedString(storageCapacity)).append("\n");

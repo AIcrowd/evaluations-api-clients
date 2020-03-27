@@ -29,6 +29,15 @@ module AIcrowdEvaluations
     # Authentication needed for the cluster
     attr_accessor :auth_token
 
+    # Docker registry username
+    attr_accessor :docker_username
+
+    # Docker registry password
+    attr_accessor :docker_password
+
+    # Docker registry URL. Dockerhub is used by default.
+    attr_accessor :docker_registry
+
     # Storage class to use for datasets
     attr_accessor :storage_class
 
@@ -52,6 +61,9 @@ module AIcrowdEvaluations
         :'updated' => :'updated',
         :'remote_address' => :'remote_address',
         :'auth_token' => :'auth_token',
+        :'docker_username' => :'docker_username',
+        :'docker_password' => :'docker_password',
+        :'docker_registry' => :'docker_registry',
         :'storage_class' => :'storage_class',
         :'status' => :'status',
         :'meta' => :'meta',
@@ -68,6 +80,9 @@ module AIcrowdEvaluations
         :'updated' => :'DateTime',
         :'remote_address' => :'String',
         :'auth_token' => :'String',
+        :'docker_username' => :'String',
+        :'docker_password' => :'String',
+        :'docker_registry' => :'String',
         :'storage_class' => :'String',
         :'status' => :'BOOLEAN',
         :'meta' => :'Object',
@@ -104,6 +119,18 @@ module AIcrowdEvaluations
         self.auth_token = attributes[:'auth_token']
       end
 
+      if attributes.has_key?(:'docker_username')
+        self.docker_username = attributes[:'docker_username']
+      end
+
+      if attributes.has_key?(:'docker_password')
+        self.docker_password = attributes[:'docker_password']
+      end
+
+      if attributes.has_key?(:'docker_registry')
+        self.docker_registry = attributes[:'docker_registry']
+      end
+
       if attributes.has_key?(:'storage_class')
         self.storage_class = attributes[:'storage_class']
       end
@@ -137,6 +164,14 @@ module AIcrowdEvaluations
         invalid_properties.push('invalid value for "auth_token", auth_token cannot be nil.')
       end
 
+      if @docker_username.nil?
+        invalid_properties.push('invalid value for "docker_username", docker_username cannot be nil.')
+      end
+
+      if @docker_password.nil?
+        invalid_properties.push('invalid value for "docker_password", docker_password cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -145,6 +180,8 @@ module AIcrowdEvaluations
     def valid?
       return false if @remote_address.nil?
       return false if @auth_token.nil?
+      return false if @docker_username.nil?
+      return false if @docker_password.nil?
       true
     end
 
@@ -158,6 +195,9 @@ module AIcrowdEvaluations
           updated == o.updated &&
           remote_address == o.remote_address &&
           auth_token == o.auth_token &&
+          docker_username == o.docker_username &&
+          docker_password == o.docker_password &&
+          docker_registry == o.docker_registry &&
           storage_class == o.storage_class &&
           status == o.status &&
           meta == o.meta &&
@@ -174,7 +214,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, remote_address, auth_token, storage_class, status, meta, user_id, organisation_id].hash
+      [id, created, updated, remote_address, auth_token, docker_username, docker_password, docker_registry, storage_class, status, meta, user_id, organisation_id].hash
     end
 
     # Builds the object from hash
