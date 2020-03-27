@@ -143,6 +143,24 @@ export interface Cluster {
      */
     authToken: string;
     /**
+     * Docker registry username
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerUsername: string;
+    /**
+     * Docker registry password
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerPassword: string;
+    /**
+     * Docker registry URL. Dockerhub is used by default.
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerRegistry?: string;
+    /**
      * Storage class to use for datasets
      * @type {string}
      * @memberof Cluster
@@ -236,24 +254,6 @@ export interface Grader {
      * @memberof Grader
      */
     clusterId?: number;
-    /**
-     * Docker registry username
-     * @type {string}
-     * @memberof Grader
-     */
-    dockerUsername: string;
-    /**
-     * Docker registry password
-     * @type {string}
-     * @memberof Grader
-     */
-    dockerPassword: string;
-    /**
-     * Docker registry URL. Dockerhub is used by default.
-     * @type {string}
-     * @memberof Grader
-     */
-    dockerRegistry?: string;
     /**
      * Argo workflow template spec
      * @type {any}

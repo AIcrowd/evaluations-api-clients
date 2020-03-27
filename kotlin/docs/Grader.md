@@ -10,9 +10,6 @@ Name | Type | Description | Notes
 **dataset_url** | **kotlin.String** | S3 link of the Dataset |  [optional]
 **code_access_mode** | **kotlin.String** | git/http | 
 **cluster_id** | **kotlin.Int** | Cluster to run the grader on |  [optional]
-**docker_username** | **kotlin.String** | Docker registry username | 
-**docker_password** | **kotlin.String** | Docker registry password | 
-**docker_registry** | **kotlin.String** | Docker registry URL. Dockerhub is used by default. |  [optional]
 **workflow_spec** | [**kotlin.Any**](kotlin.Any.md) | Argo workflow template spec |  [optional]
 **evaluation_code** | **kotlin.String** | S3 link to the zip file containing the code that will be used for the evaluation | 
 **storage_capacity** | **kotlin.String** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. |  [optional]

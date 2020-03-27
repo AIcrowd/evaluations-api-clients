@@ -29,6 +29,10 @@ Cluster::Cluster()
     m_UpdatedIsSet = false;
     m_Remote_address = utility::conversions::to_string_t("");
     m_Auth_token = utility::conversions::to_string_t("");
+    m_Docker_username = utility::conversions::to_string_t("");
+    m_Docker_password = utility::conversions::to_string_t("");
+    m_Docker_registry = utility::conversions::to_string_t("");
+    m_Docker_registryIsSet = false;
     m_Storage_class = utility::conversions::to_string_t("");
     m_Storage_classIsSet = false;
     m_Status = false;
@@ -67,6 +71,12 @@ web::json::value Cluster::toJson() const
     }
     val[utility::conversions::to_string_t("remote_address")] = ModelBase::toJson(m_Remote_address);
     val[utility::conversions::to_string_t("auth_token")] = ModelBase::toJson(m_Auth_token);
+    val[utility::conversions::to_string_t("docker_username")] = ModelBase::toJson(m_Docker_username);
+    val[utility::conversions::to_string_t("docker_password")] = ModelBase::toJson(m_Docker_password);
+    if(m_Docker_registryIsSet)
+    {
+        val[utility::conversions::to_string_t("docker_registry")] = ModelBase::toJson(m_Docker_registry);
+    }
     if(m_Storage_classIsSet)
     {
         val[utility::conversions::to_string_t("storage_class")] = ModelBase::toJson(m_Storage_class);
@@ -119,6 +129,16 @@ void Cluster::fromJson(web::json::value& val)
     }
     setRemoteAddress(ModelBase::stringFromJson(val[utility::conversions::to_string_t("remote_address")]));
     setAuthToken(ModelBase::stringFromJson(val[utility::conversions::to_string_t("auth_token")]));
+    setDockerUsername(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_username")]));
+    setDockerPassword(ModelBase::stringFromJson(val[utility::conversions::to_string_t("docker_password")]));
+    if(val.has_field(utility::conversions::to_string_t("docker_registry")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_registry")];
+        if(!fieldValue.is_null())
+        {
+            setDockerRegistry(ModelBase::stringFromJson(fieldValue));
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("storage_class")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("storage_class")];
@@ -187,6 +207,13 @@ void Cluster::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("remote_address"), m_Remote_address));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("auth_token"), m_Auth_token));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_username"), m_Docker_username));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_password"), m_Docker_password));
+    if(m_Docker_registryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_registry"), m_Docker_registry));
+        
+    }
     if(m_Storage_classIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_class"), m_Storage_class));
@@ -236,6 +263,12 @@ void Cluster::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
     setRemoteAddress(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("remote_address"))));
     setAuthToken(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("auth_token"))));
+    setDockerUsername(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_username"))));
+    setDockerPassword(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_password"))));
+    if(multipart->hasContent(utility::conversions::to_string_t("docker_registry")))
+    {
+        setDockerRegistry(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_registry"))));
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("storage_class")))
     {
         setStorageClass(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_class"))));
@@ -348,6 +381,49 @@ void Cluster::setAuthToken(utility::string_t value)
     m_Auth_token = value;
     
 }
+utility::string_t Cluster::getDockerUsername() const
+{
+    return m_Docker_username;
+}
+
+
+void Cluster::setDockerUsername(utility::string_t value)
+{
+    m_Docker_username = value;
+    
+}
+utility::string_t Cluster::getDockerPassword() const
+{
+    return m_Docker_password;
+}
+
+
+void Cluster::setDockerPassword(utility::string_t value)
+{
+    m_Docker_password = value;
+    
+}
+utility::string_t Cluster::getDockerRegistry() const
+{
+    return m_Docker_registry;
+}
+
+
+void Cluster::setDockerRegistry(utility::string_t value)
+{
+    m_Docker_registry = value;
+    m_Docker_registryIsSet = true;
+}
+bool Cluster::dockerRegistryIsSet() const
+{
+    return m_Docker_registryIsSet;
+}
+
+void Cluster::unsetDocker_registry()
+{
+    m_Docker_registryIsSet = false;
+}
+
 utility::string_t Cluster::getStorageClass() const
 {
     return m_Storage_class;

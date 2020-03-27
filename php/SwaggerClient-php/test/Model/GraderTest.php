@@ -119,27 +119,6 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "docker_username"
-     */
-    public function testPropertyDockerUsername()
-    {
-    }
-
-    /**
-     * Test attribute "docker_password"
-     */
-    public function testPropertyDockerPassword()
-    {
-    }
-
-    /**
-     * Test attribute "docker_registry"
-     */
-    public function testPropertyDockerRegistry()
-    {
-    }
-
-    /**
      * Test attribute "workflow_spec"
      */
     public function testPropertyWorkflowSpec()

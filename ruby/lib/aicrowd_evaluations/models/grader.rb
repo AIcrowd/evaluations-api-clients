@@ -32,15 +32,6 @@ module AIcrowdEvaluations
     # Cluster to run the grader on
     attr_accessor :cluster_id
 
-    # Docker registry username
-    attr_accessor :docker_username
-
-    # Docker registry password
-    attr_accessor :docker_password
-
-    # Docker registry URL. Dockerhub is used by default.
-    attr_accessor :docker_registry
-
     # Argo workflow template spec
     attr_accessor :workflow_spec
 
@@ -74,9 +65,6 @@ module AIcrowdEvaluations
         :'dataset_url' => :'dataset_url',
         :'code_access_mode' => :'code_access_mode',
         :'cluster_id' => :'cluster_id',
-        :'docker_username' => :'docker_username',
-        :'docker_password' => :'docker_password',
-        :'docker_registry' => :'docker_registry',
         :'workflow_spec' => :'workflow_spec',
         :'evaluation_code' => :'evaluation_code',
         :'storage_capacity' => :'storage_capacity',
@@ -97,9 +85,6 @@ module AIcrowdEvaluations
         :'dataset_url' => :'String',
         :'code_access_mode' => :'String',
         :'cluster_id' => :'Integer',
-        :'docker_username' => :'String',
-        :'docker_password' => :'String',
-        :'docker_registry' => :'String',
         :'workflow_spec' => :'Object',
         :'evaluation_code' => :'String',
         :'storage_capacity' => :'String',
@@ -143,18 +128,6 @@ module AIcrowdEvaluations
         self.cluster_id = attributes[:'cluster_id']
       end
 
-      if attributes.has_key?(:'docker_username')
-        self.docker_username = attributes[:'docker_username']
-      end
-
-      if attributes.has_key?(:'docker_password')
-        self.docker_password = attributes[:'docker_password']
-      end
-
-      if attributes.has_key?(:'docker_registry')
-        self.docker_registry = attributes[:'docker_registry']
-      end
-
       if attributes.has_key?(:'workflow_spec')
         self.workflow_spec = attributes[:'workflow_spec']
       end
@@ -196,14 +169,6 @@ module AIcrowdEvaluations
         invalid_properties.push('invalid value for "code_access_mode", code_access_mode cannot be nil.')
       end
 
-      if @docker_username.nil?
-        invalid_properties.push('invalid value for "docker_username", docker_username cannot be nil.')
-      end
-
-      if @docker_password.nil?
-        invalid_properties.push('invalid value for "docker_password", docker_password cannot be nil.')
-      end
-
       if @evaluation_code.nil?
         invalid_properties.push('invalid value for "evaluation_code", evaluation_code cannot be nil.')
       end
@@ -215,8 +180,6 @@ module AIcrowdEvaluations
     # @return true if the model is valid
     def valid?
       return false if @code_access_mode.nil?
-      return false if @docker_username.nil?
-      return false if @docker_password.nil?
       return false if @evaluation_code.nil?
       true
     end
@@ -232,9 +195,6 @@ module AIcrowdEvaluations
           dataset_url == o.dataset_url &&
           code_access_mode == o.code_access_mode &&
           cluster_id == o.cluster_id &&
-          docker_username == o.docker_username &&
-          docker_password == o.docker_password &&
-          docker_registry == o.docker_registry &&
           workflow_spec == o.workflow_spec &&
           evaluation_code == o.evaluation_code &&
           storage_capacity == o.storage_capacity &&
@@ -254,7 +214,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, code_access_mode, cluster_id, docker_username, docker_password, docker_registry, workflow_spec, evaluation_code, storage_capacity, logs, meta, status, user_id, organisation_id].hash
+      [id, created, updated, dataset_url, code_access_mode, cluster_id, workflow_spec, evaluation_code, storage_capacity, logs, meta, status, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

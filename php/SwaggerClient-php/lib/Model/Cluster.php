@@ -62,6 +62,9 @@ class Cluster implements ModelInterface, ArrayAccess
         'updated' => '\DateTime',
         'remote_address' => 'string',
         'auth_token' => 'string',
+        'docker_username' => 'string',
+        'docker_password' => 'string',
+        'docker_registry' => 'string',
         'storage_class' => 'string',
         'status' => 'bool',
         'meta' => 'object',
@@ -80,6 +83,9 @@ class Cluster implements ModelInterface, ArrayAccess
         'updated' => 'date-time',
         'remote_address' => null,
         'auth_token' => null,
+        'docker_username' => null,
+        'docker_password' => null,
+        'docker_registry' => null,
         'storage_class' => null,
         'status' => null,
         'meta' => null,
@@ -119,6 +125,9 @@ class Cluster implements ModelInterface, ArrayAccess
         'updated' => 'updated',
         'remote_address' => 'remote_address',
         'auth_token' => 'auth_token',
+        'docker_username' => 'docker_username',
+        'docker_password' => 'docker_password',
+        'docker_registry' => 'docker_registry',
         'storage_class' => 'storage_class',
         'status' => 'status',
         'meta' => 'meta',
@@ -137,6 +146,9 @@ class Cluster implements ModelInterface, ArrayAccess
         'updated' => 'setUpdated',
         'remote_address' => 'setRemoteAddress',
         'auth_token' => 'setAuthToken',
+        'docker_username' => 'setDockerUsername',
+        'docker_password' => 'setDockerPassword',
+        'docker_registry' => 'setDockerRegistry',
         'storage_class' => 'setStorageClass',
         'status' => 'setStatus',
         'meta' => 'setMeta',
@@ -155,6 +167,9 @@ class Cluster implements ModelInterface, ArrayAccess
         'updated' => 'getUpdated',
         'remote_address' => 'getRemoteAddress',
         'auth_token' => 'getAuthToken',
+        'docker_username' => 'getDockerUsername',
+        'docker_password' => 'getDockerPassword',
+        'docker_registry' => 'getDockerRegistry',
         'storage_class' => 'getStorageClass',
         'status' => 'getStatus',
         'meta' => 'getMeta',
@@ -227,6 +242,9 @@ class Cluster implements ModelInterface, ArrayAccess
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
         $this->container['remote_address'] = isset($data['remote_address']) ? $data['remote_address'] : null;
         $this->container['auth_token'] = isset($data['auth_token']) ? $data['auth_token'] : null;
+        $this->container['docker_username'] = isset($data['docker_username']) ? $data['docker_username'] : null;
+        $this->container['docker_password'] = isset($data['docker_password']) ? $data['docker_password'] : null;
+        $this->container['docker_registry'] = isset($data['docker_registry']) ? $data['docker_registry'] : null;
         $this->container['storage_class'] = isset($data['storage_class']) ? $data['storage_class'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
@@ -248,6 +266,12 @@ class Cluster implements ModelInterface, ArrayAccess
         }
         if ($this->container['auth_token'] === null) {
             $invalidProperties[] = "'auth_token' can't be null";
+        }
+        if ($this->container['docker_username'] === null) {
+            $invalidProperties[] = "'docker_username' can't be null";
+        }
+        if ($this->container['docker_password'] === null) {
+            $invalidProperties[] = "'docker_password' can't be null";
         }
         return $invalidProperties;
     }
@@ -380,6 +404,78 @@ class Cluster implements ModelInterface, ArrayAccess
     public function setAuthToken($auth_token)
     {
         $this->container['auth_token'] = $auth_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_username
+     *
+     * @return string
+     */
+    public function getDockerUsername()
+    {
+        return $this->container['docker_username'];
+    }
+
+    /**
+     * Sets docker_username
+     *
+     * @param string $docker_username Docker registry username
+     *
+     * @return $this
+     */
+    public function setDockerUsername($docker_username)
+    {
+        $this->container['docker_username'] = $docker_username;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_password
+     *
+     * @return string
+     */
+    public function getDockerPassword()
+    {
+        return $this->container['docker_password'];
+    }
+
+    /**
+     * Sets docker_password
+     *
+     * @param string $docker_password Docker registry password
+     *
+     * @return $this
+     */
+    public function setDockerPassword($docker_password)
+    {
+        $this->container['docker_password'] = $docker_password;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_registry
+     *
+     * @return string
+     */
+    public function getDockerRegistry()
+    {
+        return $this->container['docker_registry'];
+    }
+
+    /**
+     * Sets docker_registry
+     *
+     * @param string $docker_registry Docker registry URL. Dockerhub is used by default.
+     *
+     * @return $this
+     */
+    public function setDockerRegistry($docker_registry)
+    {
+        $this->container['docker_registry'] = $docker_registry;
 
         return $this;
     }

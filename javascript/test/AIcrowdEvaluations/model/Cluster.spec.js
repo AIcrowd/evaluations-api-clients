@@ -70,6 +70,24 @@
         // expect(instance.authToken).to.be(expectedValueLiteral);
       });
 
+      it('should have the property dockerUsername (base name: "docker_username")', function() {
+        // TODO: update the code to test the property dockerUsername
+        expect(instance).to.have.property('dockerUsername');
+        // expect(instance.dockerUsername).to.be(expectedValueLiteral);
+      });
+
+      it('should have the property dockerPassword (base name: "docker_password")', function() {
+        // TODO: update the code to test the property dockerPassword
+        expect(instance).to.have.property('dockerPassword');
+        // expect(instance.dockerPassword).to.be(expectedValueLiteral);
+      });
+
+      it('should have the property dockerRegistry (base name: "docker_registry")', function() {
+        // TODO: update the code to test the property dockerRegistry
+        expect(instance).to.have.property('dockerRegistry');
+        // expect(instance.dockerRegistry).to.be(expectedValueLiteral);
+      });
+
       it('should have the property storageClass (base name: "storage_class")', function() {
         // TODO: update the code to test the property storageClass
         expect(instance).to.have.property('storageClass');

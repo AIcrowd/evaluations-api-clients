@@ -115,30 +115,6 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'ClusterId'
         }
         /// <summary>
-        /// Test the property 'DockerUsername'
-        /// </summary>
-        [Test]
-        public void DockerUsernameTest()
-        {
-            // TODO unit test for the property 'DockerUsername'
-        }
-        /// <summary>
-        /// Test the property 'DockerPassword'
-        /// </summary>
-        [Test]
-        public void DockerPasswordTest()
-        {
-            // TODO unit test for the property 'DockerPassword'
-        }
-        /// <summary>
-        /// Test the property 'DockerRegistry'
-        /// </summary>
-        [Test]
-        public void DockerRegistryTest()
-        {
-            // TODO unit test for the property 'DockerRegistry'
-        }
-        /// <summary>
         /// Test the property 'WorkflowSpec'
         /// </summary>
         [Test]

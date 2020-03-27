@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **updated** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Last updation time |  [optional]
 **remote_address** | **kotlin.String** | Remote address used to connect to the cluster | 
 **auth_token** | **kotlin.String** | Authentication needed for the cluster | 
+**docker_username** | **kotlin.String** | Docker registry username | 
+**docker_password** | **kotlin.String** | Docker registry password | 
+**docker_registry** | **kotlin.String** | Docker registry URL. Dockerhub is used by default. |  [optional]
 **storage_class** | **kotlin.String** | Storage class to use for datasets |  [optional]
 **status** | **kotlin.Boolean** | Readiness of the cluster |  [optional]
 **meta** | [**kotlin.Any**](kotlin.Any.md) | Additional metadata |  [optional]

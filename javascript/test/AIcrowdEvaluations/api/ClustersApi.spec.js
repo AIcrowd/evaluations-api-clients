@@ -79,6 +79,12 @@
             expect(data.remoteAddress).to.be("");
             expect(data.authToken).to.be.a('string');
             expect(data.authToken).to.be("");
+            expect(data.dockerUsername).to.be.a('string');
+            expect(data.dockerUsername).to.be("");
+            expect(data.dockerPassword).to.be.a('string');
+            expect(data.dockerPassword).to.be("");
+            expect(data.dockerRegistry).to.be.a('string');
+            expect(data.dockerRegistry).to.be("");
             expect(data.storageClass).to.be.a('string');
             expect(data.storageClass).to.be("");
             expect(data.status).to.be.a('boolean');
@@ -126,6 +132,12 @@
               expect(data.remoteAddress).to.be("");
               expect(data.authToken).to.be.a('string');
               expect(data.authToken).to.be("");
+              expect(data.dockerUsername).to.be.a('string');
+              expect(data.dockerUsername).to.be("");
+              expect(data.dockerPassword).to.be.a('string');
+              expect(data.dockerPassword).to.be("");
+              expect(data.dockerRegistry).to.be.a('string');
+              expect(data.dockerRegistry).to.be("");
               expect(data.storageClass).to.be.a('string');
               expect(data.storageClass).to.be("");
               expect(data.status).to.be.a('boolean');
@@ -152,6 +164,9 @@
           var payload = new AicrowdEvaluations.Cluster();
           payload.remoteAddress = "";
           payload.authToken = "";
+          payload.dockerUsername = "";
+          payload.dockerPassword = "";
+          payload.dockerRegistry = "";
           payload.storageClass = "";
           var opts = {};
           opts.xFields = "xFields_example";
@@ -173,6 +188,12 @@
             expect(data.remoteAddress).to.be("");
             expect(data.authToken).to.be.a('string');
             expect(data.authToken).to.be("");
+            expect(data.dockerUsername).to.be.a('string');
+            expect(data.dockerUsername).to.be("");
+            expect(data.dockerPassword).to.be.a('string');
+            expect(data.dockerPassword).to.be("");
+            expect(data.dockerRegistry).to.be.a('string');
+            expect(data.dockerRegistry).to.be("");
             expect(data.storageClass).to.be.a('string');
             expect(data.storageClass).to.be("");
             expect(data.status).to.be.a('boolean');

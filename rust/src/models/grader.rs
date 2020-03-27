@@ -32,15 +32,6 @@ pub struct Grader {
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
-  /// Docker registry username
-  #[serde(rename = "docker_username")]
-  docker_username: String,
-  /// Docker registry password
-  #[serde(rename = "docker_password")]
-  docker_password: String,
-  /// Docker registry URL. Dockerhub is used by default.
-  #[serde(rename = "docker_registry")]
-  docker_registry: Option<String>,
   /// Argo workflow template spec
   #[serde(rename = "workflow_spec")]
   workflow_spec: Option<Value>,
@@ -68,7 +59,7 @@ pub struct Grader {
 }
 
 impl Grader {
-  pub fn new(code_access_mode: String, docker_username: String, docker_password: String, evaluation_code: String) -> Grader {
+  pub fn new(code_access_mode: String, evaluation_code: String) -> Grader {
     Grader {
       id: None,
       created: None,
@@ -76,9 +67,6 @@ impl Grader {
       dataset_url: None,
       code_access_mode: code_access_mode,
       cluster_id: None,
-      docker_username: docker_username,
-      docker_password: docker_password,
-      docker_registry: None,
       workflow_spec: None,
       evaluation_code: evaluation_code,
       storage_capacity: None,
@@ -187,51 +175,6 @@ impl Grader {
 
   pub fn reset_cluster_id(&mut self) {
     self.cluster_id = None;
-  }
-
-  pub fn set_docker_username(&mut self, docker_username: String) {
-    self.docker_username = docker_username;
-  }
-
-  pub fn with_docker_username(mut self, docker_username: String) -> Grader {
-    self.docker_username = docker_username;
-    self
-  }
-
-  pub fn docker_username(&self) -> &String {
-    &self.docker_username
-  }
-
-
-  pub fn set_docker_password(&mut self, docker_password: String) {
-    self.docker_password = docker_password;
-  }
-
-  pub fn with_docker_password(mut self, docker_password: String) -> Grader {
-    self.docker_password = docker_password;
-    self
-  }
-
-  pub fn docker_password(&self) -> &String {
-    &self.docker_password
-  }
-
-
-  pub fn set_docker_registry(&mut self, docker_registry: String) {
-    self.docker_registry = Some(docker_registry);
-  }
-
-  pub fn with_docker_registry(mut self, docker_registry: String) -> Grader {
-    self.docker_registry = Some(docker_registry);
-    self
-  }
-
-  pub fn docker_registry(&self) -> Option<&String> {
-    self.docker_registry.as_ref()
-  }
-
-  pub fn reset_docker_registry(&mut self) {
-    self.docker_registry = None;
   }
 
   pub fn set_workflow_spec(&mut self, workflow_spec: Value) {
