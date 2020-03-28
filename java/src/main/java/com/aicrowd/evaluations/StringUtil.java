@@ -13,7 +13,7 @@
 
 package com.aicrowd.evaluations;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-28T06:09:52.228Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-28T06:54:13.076Z")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).
