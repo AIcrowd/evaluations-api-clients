@@ -64,12 +64,6 @@
         // expect(instance.datasetUrl).to.be(expectedValueLiteral);
       });
 
-      it('should have the property codeAccessMode (base name: "code_access_mode")', function() {
-        // TODO: update the code to test the property codeAccessMode
-        expect(instance).to.have.property('codeAccessMode');
-        // expect(instance.codeAccessMode).to.be(expectedValueLiteral);
-      });
-
       it('should have the property clusterId (base name: "cluster_id")', function() {
         // TODO: update the code to test the property clusterId
         expect(instance).to.have.property('clusterId');
@@ -82,10 +76,16 @@
         // expect(instance.workflowSpec).to.be(expectedValueLiteral);
       });
 
-      it('should have the property evaluationCode (base name: "evaluation_code")', function() {
-        // TODO: update the code to test the property evaluationCode
-        expect(instance).to.have.property('evaluationCode');
-        // expect(instance.evaluationCode).to.be(expectedValueLiteral);
+      it('should have the property evaluatorRepo (base name: "evaluator_repo")', function() {
+        // TODO: update the code to test the property evaluatorRepo
+        expect(instance).to.have.property('evaluatorRepo');
+        // expect(instance.evaluatorRepo).to.be(expectedValueLiteral);
+      });
+
+      it('should have the property evaluatorRepoTag (base name: "evaluator_repo_tag")', function() {
+        // TODO: update the code to test the property evaluatorRepoTag
+        expect(instance).to.have.property('evaluatorRepoTag');
+        // expect(instance.evaluatorRepoTag).to.be(expectedValueLiteral);
       });
 
       it('should have the property storageCapacity (base name: "storage_capacity")', function() {

@@ -83,11 +83,6 @@ public:
     void unsetDataset_url();
     void setDatasetUrl(utility::string_t value);
     /// <summary>
-    /// git/http
-    /// </summary>
-    utility::string_t getCodeAccessMode() const;
-        void setCodeAccessMode(utility::string_t value);
-    /// <summary>
     /// Cluster to run the grader on
     /// </summary>
     int32_t getClusterId() const;
@@ -102,10 +97,17 @@ public:
     void unsetWorkflow_spec();
     void setWorkflowSpec(std::shared_ptr<Object> value);
     /// <summary>
-    /// S3 link to the zip file containing the code that will be used for the evaluation
+    /// Git URL of the repository containing the code that will be used for the evaluation
     /// </summary>
-    utility::string_t getEvaluationCode() const;
-        void setEvaluationCode(utility::string_t value);
+    utility::string_t getEvaluatorRepo() const;
+        void setEvaluatorRepo(utility::string_t value);
+    /// <summary>
+    /// Git branch/tag that should be used with the evaluator repository.
+    /// </summary>
+    utility::string_t getEvaluatorRepoTag() const;
+    bool evaluatorRepoTagIsSet() const;
+    void unsetEvaluator_repo_tag();
+    void setEvaluatorRepoTag(utility::string_t value);
     /// <summary>
     /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     /// </summary>
@@ -158,13 +160,14 @@ protected:
     bool m_UpdatedIsSet;
     utility::string_t m_Dataset_url;
     bool m_Dataset_urlIsSet;
-    utility::string_t m_Code_access_mode;
-        int32_t m_Cluster_id;
+    int32_t m_Cluster_id;
     bool m_Cluster_idIsSet;
     std::shared_ptr<Object> m_Workflow_spec;
     bool m_Workflow_specIsSet;
-    utility::string_t m_Evaluation_code;
-        utility::string_t m_Storage_capacity;
+    utility::string_t m_Evaluator_repo;
+        utility::string_t m_Evaluator_repo_tag;
+    bool m_Evaluator_repo_tagIsSet;
+    utility::string_t m_Storage_capacity;
     bool m_Storage_capacityIsSet;
     std::shared_ptr<Object> m_Logs;
     bool m_LogsIsSet;

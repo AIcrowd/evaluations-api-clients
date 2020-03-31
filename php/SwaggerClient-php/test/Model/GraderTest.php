@@ -105,13 +105,6 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "code_access_mode"
-     */
-    public function testPropertyCodeAccessMode()
-    {
-    }
-
-    /**
      * Test attribute "cluster_id"
      */
     public function testPropertyClusterId()
@@ -126,9 +119,16 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "evaluation_code"
+     * Test attribute "evaluator_repo"
      */
-    public function testPropertyEvaluationCode()
+    public function testPropertyEvaluatorRepo()
+    {
+    }
+
+    /**
+     * Test attribute "evaluator_repo_tag"
+     */
+    public function testPropertyEvaluatorRepoTag()
     {
     }
 

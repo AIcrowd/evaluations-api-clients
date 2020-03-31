@@ -39,32 +39,24 @@ namespace Com.AIcrowd.Evaluations.Model
         /// Initializes a new instance of the <see cref="Grader" /> class.
         /// </summary>
         /// <param name="datasetUrl">S3 link of the Dataset.</param>
-        /// <param name="codeAccessMode">git/http (required).</param>
         /// <param name="clusterId">Cluster to run the grader on.</param>
-        /// <param name="evaluationCode">S3 link to the zip file containing the code that will be used for the evaluation (required).</param>
+        /// <param name="evaluatorRepo">Git URL of the repository containing the code that will be used for the evaluation (required).</param>
+        /// <param name="evaluatorRepoTag">Git branch/tag that should be used with the evaluator repository..</param>
         /// <param name="storageCapacity">Size of the dataset partition to request. Please provide at least 2x of the size of the dataset..</param>
-        public Grader(string datasetUrl = default(string), string codeAccessMode = default(string), int? clusterId = default(int?), string evaluationCode = default(string), string storageCapacity = default(string))
+        public Grader(string datasetUrl = default(string), int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string storageCapacity = default(string))
         {
-            // to ensure "codeAccessMode" is required (not null)
-            if (codeAccessMode == null)
+            // to ensure "evaluatorRepo" is required (not null)
+            if (evaluatorRepo == null)
             {
-                throw new InvalidDataException("codeAccessMode is a required property for Grader and cannot be null");
+                throw new InvalidDataException("evaluatorRepo is a required property for Grader and cannot be null");
             }
             else
             {
-                this.CodeAccessMode = codeAccessMode;
-            }
-            // to ensure "evaluationCode" is required (not null)
-            if (evaluationCode == null)
-            {
-                throw new InvalidDataException("evaluationCode is a required property for Grader and cannot be null");
-            }
-            else
-            {
-                this.EvaluationCode = evaluationCode;
+                this.EvaluatorRepo = evaluatorRepo;
             }
             this.DatasetUrl = datasetUrl;
             this.ClusterId = clusterId;
+            this.EvaluatorRepoTag = evaluatorRepoTag;
             this.StorageCapacity = storageCapacity;
         }
         
@@ -97,13 +89,6 @@ namespace Com.AIcrowd.Evaluations.Model
         public string DatasetUrl { get; set; }
 
         /// <summary>
-        /// git/http
-        /// </summary>
-        /// <value>git/http</value>
-        [DataMember(Name="code_access_mode", EmitDefaultValue=false)]
-        public string CodeAccessMode { get; set; }
-
-        /// <summary>
         /// Cluster to run the grader on
         /// </summary>
         /// <value>Cluster to run the grader on</value>
@@ -118,11 +103,18 @@ namespace Com.AIcrowd.Evaluations.Model
         public Object WorkflowSpec { get; private set; }
 
         /// <summary>
-        /// S3 link to the zip file containing the code that will be used for the evaluation
+        /// Git URL of the repository containing the code that will be used for the evaluation
         /// </summary>
-        /// <value>S3 link to the zip file containing the code that will be used for the evaluation</value>
-        [DataMember(Name="evaluation_code", EmitDefaultValue=false)]
-        public string EvaluationCode { get; set; }
+        /// <value>Git URL of the repository containing the code that will be used for the evaluation</value>
+        [DataMember(Name="evaluator_repo", EmitDefaultValue=false)]
+        public string EvaluatorRepo { get; set; }
+
+        /// <summary>
+        /// Git branch/tag that should be used with the evaluator repository.
+        /// </summary>
+        /// <value>Git branch/tag that should be used with the evaluator repository.</value>
+        [DataMember(Name="evaluator_repo_tag", EmitDefaultValue=false)]
+        public string EvaluatorRepoTag { get; set; }
 
         /// <summary>
         /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
@@ -178,10 +170,10 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  DatasetUrl: ").Append(DatasetUrl).Append("\n");
-            sb.Append("  CodeAccessMode: ").Append(CodeAccessMode).Append("\n");
             sb.Append("  ClusterId: ").Append(ClusterId).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
-            sb.Append("  EvaluationCode: ").Append(EvaluationCode).Append("\n");
+            sb.Append("  EvaluatorRepo: ").Append(EvaluatorRepo).Append("\n");
+            sb.Append("  EvaluatorRepoTag: ").Append(EvaluatorRepoTag).Append("\n");
             sb.Append("  StorageCapacity: ").Append(StorageCapacity).Append("\n");
             sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
@@ -243,11 +235,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.DatasetUrl.Equals(input.DatasetUrl))
                 ) && 
                 (
-                    this.CodeAccessMode == input.CodeAccessMode ||
-                    (this.CodeAccessMode != null &&
-                    this.CodeAccessMode.Equals(input.CodeAccessMode))
-                ) && 
-                (
                     this.ClusterId == input.ClusterId ||
                     (this.ClusterId != null &&
                     this.ClusterId.Equals(input.ClusterId))
@@ -258,9 +245,14 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WorkflowSpec.Equals(input.WorkflowSpec))
                 ) && 
                 (
-                    this.EvaluationCode == input.EvaluationCode ||
-                    (this.EvaluationCode != null &&
-                    this.EvaluationCode.Equals(input.EvaluationCode))
+                    this.EvaluatorRepo == input.EvaluatorRepo ||
+                    (this.EvaluatorRepo != null &&
+                    this.EvaluatorRepo.Equals(input.EvaluatorRepo))
+                ) && 
+                (
+                    this.EvaluatorRepoTag == input.EvaluatorRepoTag ||
+                    (this.EvaluatorRepoTag != null &&
+                    this.EvaluatorRepoTag.Equals(input.EvaluatorRepoTag))
                 ) && 
                 (
                     this.StorageCapacity == input.StorageCapacity ||
@@ -311,14 +303,14 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Updated.GetHashCode();
                 if (this.DatasetUrl != null)
                     hashCode = hashCode * 59 + this.DatasetUrl.GetHashCode();
-                if (this.CodeAccessMode != null)
-                    hashCode = hashCode * 59 + this.CodeAccessMode.GetHashCode();
                 if (this.ClusterId != null)
                     hashCode = hashCode * 59 + this.ClusterId.GetHashCode();
                 if (this.WorkflowSpec != null)
                     hashCode = hashCode * 59 + this.WorkflowSpec.GetHashCode();
-                if (this.EvaluationCode != null)
-                    hashCode = hashCode * 59 + this.EvaluationCode.GetHashCode();
+                if (this.EvaluatorRepo != null)
+                    hashCode = hashCode * 59 + this.EvaluatorRepo.GetHashCode();
+                if (this.EvaluatorRepoTag != null)
+                    hashCode = hashCode * 59 + this.EvaluatorRepoTag.GetHashCode();
                 if (this.StorageCapacity != null)
                     hashCode = hashCode * 59 + this.StorageCapacity.GetHashCode();
                 if (this.Logs != null)

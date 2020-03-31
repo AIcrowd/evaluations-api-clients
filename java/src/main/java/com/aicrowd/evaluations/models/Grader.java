@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-31T12:00:11.989Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-03-31T15:35:04.292Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -42,17 +42,17 @@ public class Grader {
   @SerializedName("dataset_url")
   private String datasetUrl = null;
 
-  @SerializedName("code_access_mode")
-  private String codeAccessMode = null;
-
   @SerializedName("cluster_id")
   private Integer clusterId = null;
 
   @SerializedName("workflow_spec")
   private Object workflowSpec = null;
 
-  @SerializedName("evaluation_code")
-  private String evaluationCode = null;
+  @SerializedName("evaluator_repo")
+  private String evaluatorRepo = null;
+
+  @SerializedName("evaluator_repo_tag")
+  private String evaluatorRepoTag = null;
 
   @SerializedName("storage_capacity")
   private String storageCapacity = null;
@@ -117,24 +117,6 @@ public class Grader {
     this.datasetUrl = datasetUrl;
   }
 
-  public Grader codeAccessMode(String codeAccessMode) {
-    this.codeAccessMode = codeAccessMode;
-    return this;
-  }
-
-   /**
-   * git/http
-   * @return codeAccessMode
-  **/
-  @ApiModelProperty(required = true, value = "git/http")
-  public String getCodeAccessMode() {
-    return codeAccessMode;
-  }
-
-  public void setCodeAccessMode(String codeAccessMode) {
-    this.codeAccessMode = codeAccessMode;
-  }
-
   public Grader clusterId(Integer clusterId) {
     this.clusterId = clusterId;
     return this;
@@ -162,22 +144,40 @@ public class Grader {
     return workflowSpec;
   }
 
-  public Grader evaluationCode(String evaluationCode) {
-    this.evaluationCode = evaluationCode;
+  public Grader evaluatorRepo(String evaluatorRepo) {
+    this.evaluatorRepo = evaluatorRepo;
     return this;
   }
 
    /**
-   * S3 link to the zip file containing the code that will be used for the evaluation
-   * @return evaluationCode
+   * Git URL of the repository containing the code that will be used for the evaluation
+   * @return evaluatorRepo
   **/
-  @ApiModelProperty(required = true, value = "S3 link to the zip file containing the code that will be used for the evaluation")
-  public String getEvaluationCode() {
-    return evaluationCode;
+  @ApiModelProperty(required = true, value = "Git URL of the repository containing the code that will be used for the evaluation")
+  public String getEvaluatorRepo() {
+    return evaluatorRepo;
   }
 
-  public void setEvaluationCode(String evaluationCode) {
-    this.evaluationCode = evaluationCode;
+  public void setEvaluatorRepo(String evaluatorRepo) {
+    this.evaluatorRepo = evaluatorRepo;
+  }
+
+  public Grader evaluatorRepoTag(String evaluatorRepoTag) {
+    this.evaluatorRepoTag = evaluatorRepoTag;
+    return this;
+  }
+
+   /**
+   * Git branch/tag that should be used with the evaluator repository.
+   * @return evaluatorRepoTag
+  **/
+  @ApiModelProperty(value = "Git branch/tag that should be used with the evaluator repository.")
+  public String getEvaluatorRepoTag() {
+    return evaluatorRepoTag;
+  }
+
+  public void setEvaluatorRepoTag(String evaluatorRepoTag) {
+    this.evaluatorRepoTag = evaluatorRepoTag;
   }
 
   public Grader storageCapacity(String storageCapacity) {
@@ -257,10 +257,10 @@ public class Grader {
         Objects.equals(this.created, grader.created) &&
         Objects.equals(this.updated, grader.updated) &&
         Objects.equals(this.datasetUrl, grader.datasetUrl) &&
-        Objects.equals(this.codeAccessMode, grader.codeAccessMode) &&
         Objects.equals(this.clusterId, grader.clusterId) &&
         Objects.equals(this.workflowSpec, grader.workflowSpec) &&
-        Objects.equals(this.evaluationCode, grader.evaluationCode) &&
+        Objects.equals(this.evaluatorRepo, grader.evaluatorRepo) &&
+        Objects.equals(this.evaluatorRepoTag, grader.evaluatorRepoTag) &&
         Objects.equals(this.storageCapacity, grader.storageCapacity) &&
         Objects.equals(this.logs, grader.logs) &&
         Objects.equals(this.meta, grader.meta) &&
@@ -271,7 +271,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, codeAccessMode, clusterId, workflowSpec, evaluationCode, storageCapacity, logs, meta, status, userId, organisationId);
+    return Objects.hash(id, created, updated, datasetUrl, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, storageCapacity, logs, meta, status, userId, organisationId);
   }
 
 
@@ -284,10 +284,10 @@ public class Grader {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    datasetUrl: ").append(toIndentedString(datasetUrl)).append("\n");
-    sb.append("    codeAccessMode: ").append(toIndentedString(codeAccessMode)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
-    sb.append("    evaluationCode: ").append(toIndentedString(evaluationCode)).append("\n");
+    sb.append("    evaluatorRepo: ").append(toIndentedString(evaluatorRepo)).append("\n");
+    sb.append("    evaluatorRepoTag: ").append(toIndentedString(evaluatorRepoTag)).append("\n");
     sb.append("    storageCapacity: ").append(toIndentedString(storageCapacity)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");

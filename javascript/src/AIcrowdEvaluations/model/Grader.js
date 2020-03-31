@@ -40,12 +40,10 @@
    * Constructs a new <code>Grader</code>.
    * @alias module:AIcrowdEvaluations/model/Grader
    * @class
-   * @param codeAccessMode {String} git/http
-   * @param evaluationCode {String} S3 link to the zip file containing the code that will be used for the evaluation
+   * @param evaluatorRepo {String} Git URL of the repository containing the code that will be used for the evaluation
    */
-  var exports = function(codeAccessMode, evaluationCode) {
-    this.codeAccessMode = codeAccessMode;
-    this.evaluationCode = evaluationCode;
+  var exports = function(evaluatorRepo) {
+    this.evaluatorRepo = evaluatorRepo;
   };
 
   /**
@@ -66,14 +64,14 @@
         obj.updated = ApiClient.convertToType(data['updated'], 'Date');
       if (data.hasOwnProperty('dataset_url'))
         obj.datasetUrl = ApiClient.convertToType(data['dataset_url'], 'String');
-      if (data.hasOwnProperty('code_access_mode'))
-        obj.codeAccessMode = ApiClient.convertToType(data['code_access_mode'], 'String');
       if (data.hasOwnProperty('cluster_id'))
         obj.clusterId = ApiClient.convertToType(data['cluster_id'], 'Number');
       if (data.hasOwnProperty('workflow_spec'))
         obj.workflowSpec = ApiClient.convertToType(data['workflow_spec'], Object);
-      if (data.hasOwnProperty('evaluation_code'))
-        obj.evaluationCode = ApiClient.convertToType(data['evaluation_code'], 'String');
+      if (data.hasOwnProperty('evaluator_repo'))
+        obj.evaluatorRepo = ApiClient.convertToType(data['evaluator_repo'], 'String');
+      if (data.hasOwnProperty('evaluator_repo_tag'))
+        obj.evaluatorRepoTag = ApiClient.convertToType(data['evaluator_repo_tag'], 'String');
       if (data.hasOwnProperty('storage_capacity'))
         obj.storageCapacity = ApiClient.convertToType(data['storage_capacity'], 'String');
       if (data.hasOwnProperty('logs'))
@@ -115,12 +113,6 @@
   exports.prototype.datasetUrl = undefined;
 
   /**
-   * git/http
-   * @member {String} codeAccessMode
-   */
-  exports.prototype.codeAccessMode = undefined;
-
-  /**
    * Cluster to run the grader on
    * @member {Number} clusterId
    */
@@ -133,10 +125,16 @@
   exports.prototype.workflowSpec = undefined;
 
   /**
-   * S3 link to the zip file containing the code that will be used for the evaluation
-   * @member {String} evaluationCode
+   * Git URL of the repository containing the code that will be used for the evaluation
+   * @member {String} evaluatorRepo
    */
-  exports.prototype.evaluationCode = undefined;
+  exports.prototype.evaluatorRepo = undefined;
+
+  /**
+   * Git branch/tag that should be used with the evaluator repository.
+   * @member {String} evaluatorRepoTag
+   */
+  exports.prototype.evaluatorRepoTag = undefined;
 
   /**
    * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.

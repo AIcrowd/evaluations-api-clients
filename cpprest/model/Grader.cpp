@@ -29,11 +29,12 @@ Grader::Grader()
     m_UpdatedIsSet = false;
     m_Dataset_url = utility::conversions::to_string_t("");
     m_Dataset_urlIsSet = false;
-    m_Code_access_mode = utility::conversions::to_string_t("");
     m_Cluster_id = 0;
     m_Cluster_idIsSet = false;
     m_Workflow_specIsSet = false;
-    m_Evaluation_code = utility::conversions::to_string_t("");
+    m_Evaluator_repo = utility::conversions::to_string_t("");
+    m_Evaluator_repo_tag = utility::conversions::to_string_t("");
+    m_Evaluator_repo_tagIsSet = false;
     m_Storage_capacity = utility::conversions::to_string_t("");
     m_Storage_capacityIsSet = false;
     m_LogsIsSet = false;
@@ -75,7 +76,6 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("dataset_url")] = ModelBase::toJson(m_Dataset_url);
     }
-    val[utility::conversions::to_string_t("code_access_mode")] = ModelBase::toJson(m_Code_access_mode);
     if(m_Cluster_idIsSet)
     {
         val[utility::conversions::to_string_t("cluster_id")] = ModelBase::toJson(m_Cluster_id);
@@ -84,7 +84,11 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("workflow_spec")] = ModelBase::toJson(m_Workflow_spec);
     }
-    val[utility::conversions::to_string_t("evaluation_code")] = ModelBase::toJson(m_Evaluation_code);
+    val[utility::conversions::to_string_t("evaluator_repo")] = ModelBase::toJson(m_Evaluator_repo);
+    if(m_Evaluator_repo_tagIsSet)
+    {
+        val[utility::conversions::to_string_t("evaluator_repo_tag")] = ModelBase::toJson(m_Evaluator_repo_tag);
+    }
     if(m_Storage_capacityIsSet)
     {
         val[utility::conversions::to_string_t("storage_capacity")] = ModelBase::toJson(m_Storage_capacity);
@@ -147,7 +151,6 @@ void Grader::fromJson(web::json::value& val)
             setDatasetUrl(ModelBase::stringFromJson(fieldValue));
         }
     }
-    setCodeAccessMode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("code_access_mode")]));
     if(val.has_field(utility::conversions::to_string_t("cluster_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("cluster_id")];
@@ -166,7 +169,15 @@ void Grader::fromJson(web::json::value& val)
             setWorkflowSpec( newItem );
         }
     }
-    setEvaluationCode(ModelBase::stringFromJson(val[utility::conversions::to_string_t("evaluation_code")]));
+    setEvaluatorRepo(ModelBase::stringFromJson(val[utility::conversions::to_string_t("evaluator_repo")]));
+    if(val.has_field(utility::conversions::to_string_t("evaluator_repo_tag")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("evaluator_repo_tag")];
+        if(!fieldValue.is_null())
+        {
+            setEvaluatorRepoTag(ModelBase::stringFromJson(fieldValue));
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("storage_capacity")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("storage_capacity")];
@@ -248,7 +259,6 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("dataset_url"), m_Dataset_url));
         
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("code_access_mode"), m_Code_access_mode));
     if(m_Cluster_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cluster_id"), m_Cluster_id));
@@ -261,7 +271,12 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         }
         
     }
-    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluation_code"), m_Evaluation_code));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluator_repo"), m_Evaluator_repo));
+    if(m_Evaluator_repo_tagIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluator_repo_tag"), m_Evaluator_repo_tag));
+        
+    }
     if(m_Storage_capacityIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_capacity"), m_Storage_capacity));
@@ -322,7 +337,6 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         setDatasetUrl(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataset_url"))));
     }
-    setCodeAccessMode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("code_access_mode"))));
     if(multipart->hasContent(utility::conversions::to_string_t("cluster_id")))
     {
         setClusterId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cluster_id"))));
@@ -336,7 +350,11 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
             setWorkflowSpec( newItem );
         }
     }
-    setEvaluationCode(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluation_code"))));
+    setEvaluatorRepo(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluator_repo"))));
+    if(multipart->hasContent(utility::conversions::to_string_t("evaluator_repo_tag")))
+    {
+        setEvaluatorRepoTag(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluator_repo_tag"))));
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("storage_capacity")))
     {
         setStorageCapacity(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_capacity"))));
@@ -457,17 +475,6 @@ void Grader::unsetDataset_url()
     m_Dataset_urlIsSet = false;
 }
 
-utility::string_t Grader::getCodeAccessMode() const
-{
-    return m_Code_access_mode;
-}
-
-
-void Grader::setCodeAccessMode(utility::string_t value)
-{
-    m_Code_access_mode = value;
-    
-}
 int32_t Grader::getClusterId() const
 {
     return m_Cluster_id;
@@ -510,17 +517,38 @@ void Grader::unsetWorkflow_spec()
     m_Workflow_specIsSet = false;
 }
 
-utility::string_t Grader::getEvaluationCode() const
+utility::string_t Grader::getEvaluatorRepo() const
 {
-    return m_Evaluation_code;
+    return m_Evaluator_repo;
 }
 
 
-void Grader::setEvaluationCode(utility::string_t value)
+void Grader::setEvaluatorRepo(utility::string_t value)
 {
-    m_Evaluation_code = value;
+    m_Evaluator_repo = value;
     
 }
+utility::string_t Grader::getEvaluatorRepoTag() const
+{
+    return m_Evaluator_repo_tag;
+}
+
+
+void Grader::setEvaluatorRepoTag(utility::string_t value)
+{
+    m_Evaluator_repo_tag = value;
+    m_Evaluator_repo_tagIsSet = true;
+}
+bool Grader::evaluatorRepoTagIsSet() const
+{
+    return m_Evaluator_repo_tagIsSet;
+}
+
+void Grader::unsetEvaluator_repo_tag()
+{
+    m_Evaluator_repo_tagIsSet = false;
+}
+
 utility::string_t Grader::getStorageCapacity() const
 {
     return m_Storage_capacity;

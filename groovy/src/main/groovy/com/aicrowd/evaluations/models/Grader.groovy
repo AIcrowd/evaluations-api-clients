@@ -19,17 +19,17 @@ class Grader {
   /* S3 link of the Dataset */
   String datasetUrl = null
 
-  /* git/http */
-  String codeAccessMode = null
-
   /* Cluster to run the grader on */
   Integer clusterId = null
 
   /* Argo workflow template spec */
   Object workflowSpec = null
 
-  /* S3 link to the zip file containing the code that will be used for the evaluation */
-  String evaluationCode = null
+  /* Git URL of the repository containing the code that will be used for the evaluation */
+  String evaluatorRepo = null
+
+  /* Git branch/tag that should be used with the evaluator repository. */
+  String evaluatorRepoTag = null
 
   /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
   String storageCapacity = null

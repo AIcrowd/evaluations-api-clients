@@ -26,18 +26,18 @@ pub struct Grader {
   /// S3 link of the Dataset
   #[serde(rename = "dataset_url")]
   dataset_url: Option<String>,
-  /// git/http
-  #[serde(rename = "code_access_mode")]
-  code_access_mode: String,
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
   /// Argo workflow template spec
   #[serde(rename = "workflow_spec")]
   workflow_spec: Option<Value>,
-  /// S3 link to the zip file containing the code that will be used for the evaluation
-  #[serde(rename = "evaluation_code")]
-  evaluation_code: String,
+  /// Git URL of the repository containing the code that will be used for the evaluation
+  #[serde(rename = "evaluator_repo")]
+  evaluator_repo: String,
+  /// Git branch/tag that should be used with the evaluator repository.
+  #[serde(rename = "evaluator_repo_tag")]
+  evaluator_repo_tag: Option<String>,
   /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   #[serde(rename = "storage_capacity")]
   storage_capacity: Option<String>,
@@ -59,16 +59,16 @@ pub struct Grader {
 }
 
 impl Grader {
-  pub fn new(code_access_mode: String, evaluation_code: String) -> Grader {
+  pub fn new(evaluator_repo: String) -> Grader {
     Grader {
       id: None,
       created: None,
       updated: None,
       dataset_url: None,
-      code_access_mode: code_access_mode,
       cluster_id: None,
       workflow_spec: None,
-      evaluation_code: evaluation_code,
+      evaluator_repo: evaluator_repo,
+      evaluator_repo_tag: None,
       storage_capacity: None,
       logs: None,
       meta: None,
@@ -146,20 +146,6 @@ impl Grader {
     self.dataset_url = None;
   }
 
-  pub fn set_code_access_mode(&mut self, code_access_mode: String) {
-    self.code_access_mode = code_access_mode;
-  }
-
-  pub fn with_code_access_mode(mut self, code_access_mode: String) -> Grader {
-    self.code_access_mode = code_access_mode;
-    self
-  }
-
-  pub fn code_access_mode(&self) -> &String {
-    &self.code_access_mode
-  }
-
-
   pub fn set_cluster_id(&mut self, cluster_id: i32) {
     self.cluster_id = Some(cluster_id);
   }
@@ -194,19 +180,36 @@ impl Grader {
     self.workflow_spec = None;
   }
 
-  pub fn set_evaluation_code(&mut self, evaluation_code: String) {
-    self.evaluation_code = evaluation_code;
+  pub fn set_evaluator_repo(&mut self, evaluator_repo: String) {
+    self.evaluator_repo = evaluator_repo;
   }
 
-  pub fn with_evaluation_code(mut self, evaluation_code: String) -> Grader {
-    self.evaluation_code = evaluation_code;
+  pub fn with_evaluator_repo(mut self, evaluator_repo: String) -> Grader {
+    self.evaluator_repo = evaluator_repo;
     self
   }
 
-  pub fn evaluation_code(&self) -> &String {
-    &self.evaluation_code
+  pub fn evaluator_repo(&self) -> &String {
+    &self.evaluator_repo
   }
 
+
+  pub fn set_evaluator_repo_tag(&mut self, evaluator_repo_tag: String) {
+    self.evaluator_repo_tag = Some(evaluator_repo_tag);
+  }
+
+  pub fn with_evaluator_repo_tag(mut self, evaluator_repo_tag: String) -> Grader {
+    self.evaluator_repo_tag = Some(evaluator_repo_tag);
+    self
+  }
+
+  pub fn evaluator_repo_tag(&self) -> Option<&String> {
+    self.evaluator_repo_tag.as_ref()
+  }
+
+  pub fn reset_evaluator_repo_tag(&mut self) {
+    self.evaluator_repo_tag = None;
+  }
 
   pub fn set_storage_capacity(&mut self, storage_capacity: String) {
     self.storage_capacity = Some(storage_capacity);

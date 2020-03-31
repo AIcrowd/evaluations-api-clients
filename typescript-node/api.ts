@@ -351,10 +351,6 @@ export class Grader {
     */
     'datasetUrl'?: string;
     /**
-    * git/http
-    */
-    'codeAccessMode': string;
-    /**
     * Cluster to run the grader on
     */
     'clusterId'?: number;
@@ -363,9 +359,13 @@ export class Grader {
     */
     'workflowSpec'?: any;
     /**
-    * S3 link to the zip file containing the code that will be used for the evaluation
+    * Git URL of the repository containing the code that will be used for the evaluation
     */
-    'evaluationCode': string;
+    'evaluatorRepo': string;
+    /**
+    * Git branch/tag that should be used with the evaluator repository.
+    */
+    'evaluatorRepoTag'?: string;
     /**
     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     */
@@ -415,11 +415,6 @@ export class Grader {
             "type": "string"
         },
         {
-            "name": "codeAccessMode",
-            "baseName": "code_access_mode",
-            "type": "string"
-        },
-        {
             "name": "clusterId",
             "baseName": "cluster_id",
             "type": "number"
@@ -430,8 +425,13 @@ export class Grader {
             "type": "any"
         },
         {
-            "name": "evaluationCode",
-            "baseName": "evaluation_code",
+            "name": "evaluatorRepo",
+            "baseName": "evaluator_repo",
+            "type": "string"
+        },
+        {
+            "name": "evaluatorRepoTag",
+            "baseName": "evaluator_repo_tag",
             "type": "string"
         },
         {

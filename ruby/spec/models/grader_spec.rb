@@ -56,12 +56,6 @@ describe 'Grader' do
     end
   end
 
-  describe 'test attribute "code_access_mode"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "cluster_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -74,7 +68,13 @@ describe 'Grader' do
     end
   end
 
-  describe 'test attribute "evaluation_code"' do
+  describe 'test attribute "evaluator_repo"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "evaluator_repo_tag"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

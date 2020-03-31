@@ -964,8 +964,7 @@ definitions:
   Grader:
     type: "object"
     required:
-    - "code_access_mode"
-    - "evaluation_code"
+    - "evaluator_repo"
     properties:
       id:
         type: "integer"
@@ -984,9 +983,6 @@ definitions:
       dataset_url:
         type: "string"
         description: "S3 link of the Dataset"
-      code_access_mode:
-        type: "string"
-        description: "git/http"
       cluster_id:
         type: "integer"
         description: "Cluster to run the grader on"
@@ -995,10 +991,13 @@ definitions:
         description: "Argo workflow template spec"
         readOnly: true
         properties: {}
-      evaluation_code:
+      evaluator_repo:
         type: "string"
-        description: "S3 link to the zip file containing the code that will be used\
+        description: "Git URL of the repository containing the code that will be used\
           \ for the evaluation"
+      evaluator_repo_tag:
+        type: "string"
+        description: "Git branch/tag that should be used with the evaluator repository."
       storage_capacity:
         type: "string"
         description: "Size of the dataset partition to request. Please provide at\
@@ -1026,21 +1025,21 @@ definitions:
         description: "Organisation ID"
         readOnly: true
     example:
+      evaluator_repo: "evaluator_repo"
       storage_capacity: "storage_capacity"
+      evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
       workflow_spec: "{}"
-      code_access_mode: "code_access_mode"
       organisation_id: 5
       cluster_id: 6
       user_id: 1
       meta: "{}"
       id: 0
       dataset_url: "dataset_url"
-      evaluation_code: "evaluation_code"
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset_url,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,storage_capacity,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

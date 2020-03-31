@@ -18,10 +18,10 @@ package com.aicrowd.evaluations.models
  * @param created Creation time
  * @param updated Last updation time
  * @param dataset_url S3 link of the Dataset
- * @param code_access_mode git/http
  * @param cluster_id Cluster to run the grader on
  * @param workflow_spec Argo workflow template spec
- * @param evaluation_code S3 link to the zip file containing the code that will be used for the evaluation
+ * @param evaluator_repo Git URL of the repository containing the code that will be used for the evaluation
+ * @param evaluator_repo_tag Git branch/tag that should be used with the evaluator repository.
  * @param storage_capacity Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
  * @param logs Logs from argo workflow
  * @param meta Additional meta data of the grader
@@ -30,10 +30,8 @@ package com.aicrowd.evaluations.models
  * @param organisation_id Organisation ID
  */
 data class Grader (
-    /* git/http */
-    val code_access_mode: kotlin.String,
-    /* S3 link to the zip file containing the code that will be used for the evaluation */
-    val evaluation_code: kotlin.String,
+    /* Git URL of the repository containing the code that will be used for the evaluation */
+    val evaluator_repo: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */
@@ -46,6 +44,8 @@ data class Grader (
     val cluster_id: kotlin.Int? = null,
     /* Argo workflow template spec */
     val workflow_spec: kotlin.Any? = null,
+    /* Git branch/tag that should be used with the evaluator repository. */
+    val evaluator_repo_tag: kotlin.String? = null,
     /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
     val storage_capacity: kotlin.String? = null,
     /* Logs from argo workflow */

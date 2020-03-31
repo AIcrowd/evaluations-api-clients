@@ -61,10 +61,10 @@ class Grader implements ModelInterface, ArrayAccess
         'created' => '\DateTime',
         'updated' => '\DateTime',
         'dataset_url' => 'string',
-        'code_access_mode' => 'string',
         'cluster_id' => 'int',
         'workflow_spec' => 'object',
-        'evaluation_code' => 'string',
+        'evaluator_repo' => 'string',
+        'evaluator_repo_tag' => 'string',
         'storage_capacity' => 'string',
         'logs' => 'object',
         'meta' => 'object',
@@ -83,10 +83,10 @@ class Grader implements ModelInterface, ArrayAccess
         'created' => 'date-time',
         'updated' => 'date-time',
         'dataset_url' => null,
-        'code_access_mode' => null,
         'cluster_id' => null,
         'workflow_spec' => null,
-        'evaluation_code' => null,
+        'evaluator_repo' => null,
+        'evaluator_repo_tag' => null,
         'storage_capacity' => null,
         'logs' => null,
         'meta' => null,
@@ -126,10 +126,10 @@ class Grader implements ModelInterface, ArrayAccess
         'created' => 'created',
         'updated' => 'updated',
         'dataset_url' => 'dataset_url',
-        'code_access_mode' => 'code_access_mode',
         'cluster_id' => 'cluster_id',
         'workflow_spec' => 'workflow_spec',
-        'evaluation_code' => 'evaluation_code',
+        'evaluator_repo' => 'evaluator_repo',
+        'evaluator_repo_tag' => 'evaluator_repo_tag',
         'storage_capacity' => 'storage_capacity',
         'logs' => 'logs',
         'meta' => 'meta',
@@ -148,10 +148,10 @@ class Grader implements ModelInterface, ArrayAccess
         'created' => 'setCreated',
         'updated' => 'setUpdated',
         'dataset_url' => 'setDatasetUrl',
-        'code_access_mode' => 'setCodeAccessMode',
         'cluster_id' => 'setClusterId',
         'workflow_spec' => 'setWorkflowSpec',
-        'evaluation_code' => 'setEvaluationCode',
+        'evaluator_repo' => 'setEvaluatorRepo',
+        'evaluator_repo_tag' => 'setEvaluatorRepoTag',
         'storage_capacity' => 'setStorageCapacity',
         'logs' => 'setLogs',
         'meta' => 'setMeta',
@@ -170,10 +170,10 @@ class Grader implements ModelInterface, ArrayAccess
         'created' => 'getCreated',
         'updated' => 'getUpdated',
         'dataset_url' => 'getDatasetUrl',
-        'code_access_mode' => 'getCodeAccessMode',
         'cluster_id' => 'getClusterId',
         'workflow_spec' => 'getWorkflowSpec',
-        'evaluation_code' => 'getEvaluationCode',
+        'evaluator_repo' => 'getEvaluatorRepo',
+        'evaluator_repo_tag' => 'getEvaluatorRepoTag',
         'storage_capacity' => 'getStorageCapacity',
         'logs' => 'getLogs',
         'meta' => 'getMeta',
@@ -246,10 +246,10 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
         $this->container['dataset_url'] = isset($data['dataset_url']) ? $data['dataset_url'] : null;
-        $this->container['code_access_mode'] = isset($data['code_access_mode']) ? $data['code_access_mode'] : null;
         $this->container['cluster_id'] = isset($data['cluster_id']) ? $data['cluster_id'] : null;
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
-        $this->container['evaluation_code'] = isset($data['evaluation_code']) ? $data['evaluation_code'] : null;
+        $this->container['evaluator_repo'] = isset($data['evaluator_repo']) ? $data['evaluator_repo'] : null;
+        $this->container['evaluator_repo_tag'] = isset($data['evaluator_repo_tag']) ? $data['evaluator_repo_tag'] : null;
         $this->container['storage_capacity'] = isset($data['storage_capacity']) ? $data['storage_capacity'] : null;
         $this->container['logs'] = isset($data['logs']) ? $data['logs'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
@@ -267,11 +267,8 @@ class Grader implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['code_access_mode'] === null) {
-            $invalidProperties[] = "'code_access_mode' can't be null";
-        }
-        if ($this->container['evaluation_code'] === null) {
-            $invalidProperties[] = "'evaluation_code' can't be null";
+        if ($this->container['evaluator_repo'] === null) {
+            $invalidProperties[] = "'evaluator_repo' can't be null";
         }
         return $invalidProperties;
     }
@@ -385,30 +382,6 @@ class Grader implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets code_access_mode
-     *
-     * @return string
-     */
-    public function getCodeAccessMode()
-    {
-        return $this->container['code_access_mode'];
-    }
-
-    /**
-     * Sets code_access_mode
-     *
-     * @param string $code_access_mode git/http
-     *
-     * @return $this
-     */
-    public function setCodeAccessMode($code_access_mode)
-    {
-        $this->container['code_access_mode'] = $code_access_mode;
-
-        return $this;
-    }
-
-    /**
      * Gets cluster_id
      *
      * @return int
@@ -457,25 +430,49 @@ class Grader implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets evaluation_code
+     * Gets evaluator_repo
      *
      * @return string
      */
-    public function getEvaluationCode()
+    public function getEvaluatorRepo()
     {
-        return $this->container['evaluation_code'];
+        return $this->container['evaluator_repo'];
     }
 
     /**
-     * Sets evaluation_code
+     * Sets evaluator_repo
      *
-     * @param string $evaluation_code S3 link to the zip file containing the code that will be used for the evaluation
+     * @param string $evaluator_repo Git URL of the repository containing the code that will be used for the evaluation
      *
      * @return $this
      */
-    public function setEvaluationCode($evaluation_code)
+    public function setEvaluatorRepo($evaluator_repo)
     {
-        $this->container['evaluation_code'] = $evaluation_code;
+        $this->container['evaluator_repo'] = $evaluator_repo;
+
+        return $this;
+    }
+
+    /**
+     * Gets evaluator_repo_tag
+     *
+     * @return string
+     */
+    public function getEvaluatorRepoTag()
+    {
+        return $this->container['evaluator_repo_tag'];
+    }
+
+    /**
+     * Sets evaluator_repo_tag
+     *
+     * @param string $evaluator_repo_tag Git branch/tag that should be used with the evaluator repository.
+     *
+     * @return $this
+     */
+    public function setEvaluatorRepoTag($evaluator_repo_tag)
+    {
+        $this->container['evaluator_repo_tag'] = $evaluator_repo_tag;
 
         return $this;
     }

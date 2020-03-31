@@ -35,10 +35,10 @@ class Grader(object):
         'created': 'datetime',
         'updated': 'datetime',
         'dataset_url': 'str',
-        'code_access_mode': 'str',
         'cluster_id': 'int',
         'workflow_spec': 'object',
-        'evaluation_code': 'str',
+        'evaluator_repo': 'str',
+        'evaluator_repo_tag': 'str',
         'storage_capacity': 'str',
         'logs': 'object',
         'meta': 'object',
@@ -52,10 +52,10 @@ class Grader(object):
         'created': 'created',
         'updated': 'updated',
         'dataset_url': 'dataset_url',
-        'code_access_mode': 'code_access_mode',
         'cluster_id': 'cluster_id',
         'workflow_spec': 'workflow_spec',
-        'evaluation_code': 'evaluation_code',
+        'evaluator_repo': 'evaluator_repo',
+        'evaluator_repo_tag': 'evaluator_repo_tag',
         'storage_capacity': 'storage_capacity',
         'logs': 'logs',
         'meta': 'meta',
@@ -64,17 +64,17 @@ class Grader(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, code_access_mode=None, cluster_id=None, workflow_spec=None, evaluation_code=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset_url=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._created = None
         self._updated = None
         self._dataset_url = None
-        self._code_access_mode = None
         self._cluster_id = None
         self._workflow_spec = None
-        self._evaluation_code = None
+        self._evaluator_repo = None
+        self._evaluator_repo_tag = None
         self._storage_capacity = None
         self._logs = None
         self._meta = None
@@ -91,12 +91,13 @@ class Grader(object):
             self.updated = updated
         if dataset_url is not None:
             self.dataset_url = dataset_url
-        self.code_access_mode = code_access_mode
         if cluster_id is not None:
             self.cluster_id = cluster_id
         if workflow_spec is not None:
             self.workflow_spec = workflow_spec
-        self.evaluation_code = evaluation_code
+        self.evaluator_repo = evaluator_repo
+        if evaluator_repo_tag is not None:
+            self.evaluator_repo_tag = evaluator_repo_tag
         if storage_capacity is not None:
             self.storage_capacity = storage_capacity
         if logs is not None:
@@ -203,31 +204,6 @@ class Grader(object):
         self._dataset_url = dataset_url
 
     @property
-    def code_access_mode(self):
-        """Gets the code_access_mode of this Grader.  # noqa: E501
-
-        git/http  # noqa: E501
-
-        :return: The code_access_mode of this Grader.  # noqa: E501
-        :rtype: str
-        """
-        return self._code_access_mode
-
-    @code_access_mode.setter
-    def code_access_mode(self, code_access_mode):
-        """Sets the code_access_mode of this Grader.
-
-        git/http  # noqa: E501
-
-        :param code_access_mode: The code_access_mode of this Grader.  # noqa: E501
-        :type: str
-        """
-        if code_access_mode is None:
-            raise ValueError("Invalid value for `code_access_mode`, must not be `None`")  # noqa: E501
-
-        self._code_access_mode = code_access_mode
-
-    @property
     def cluster_id(self):
         """Gets the cluster_id of this Grader.  # noqa: E501
 
@@ -274,29 +250,52 @@ class Grader(object):
         self._workflow_spec = workflow_spec
 
     @property
-    def evaluation_code(self):
-        """Gets the evaluation_code of this Grader.  # noqa: E501
+    def evaluator_repo(self):
+        """Gets the evaluator_repo of this Grader.  # noqa: E501
 
-        S3 link to the zip file containing the code that will be used for the evaluation  # noqa: E501
+        Git URL of the repository containing the code that will be used for the evaluation  # noqa: E501
 
-        :return: The evaluation_code of this Grader.  # noqa: E501
+        :return: The evaluator_repo of this Grader.  # noqa: E501
         :rtype: str
         """
-        return self._evaluation_code
+        return self._evaluator_repo
 
-    @evaluation_code.setter
-    def evaluation_code(self, evaluation_code):
-        """Sets the evaluation_code of this Grader.
+    @evaluator_repo.setter
+    def evaluator_repo(self, evaluator_repo):
+        """Sets the evaluator_repo of this Grader.
 
-        S3 link to the zip file containing the code that will be used for the evaluation  # noqa: E501
+        Git URL of the repository containing the code that will be used for the evaluation  # noqa: E501
 
-        :param evaluation_code: The evaluation_code of this Grader.  # noqa: E501
+        :param evaluator_repo: The evaluator_repo of this Grader.  # noqa: E501
         :type: str
         """
-        if evaluation_code is None:
-            raise ValueError("Invalid value for `evaluation_code`, must not be `None`")  # noqa: E501
+        if evaluator_repo is None:
+            raise ValueError("Invalid value for `evaluator_repo`, must not be `None`")  # noqa: E501
 
-        self._evaluation_code = evaluation_code
+        self._evaluator_repo = evaluator_repo
+
+    @property
+    def evaluator_repo_tag(self):
+        """Gets the evaluator_repo_tag of this Grader.  # noqa: E501
+
+        Git branch/tag that should be used with the evaluator repository.  # noqa: E501
+
+        :return: The evaluator_repo_tag of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._evaluator_repo_tag
+
+    @evaluator_repo_tag.setter
+    def evaluator_repo_tag(self, evaluator_repo_tag):
+        """Sets the evaluator_repo_tag of this Grader.
+
+        Git branch/tag that should be used with the evaluator repository.  # noqa: E501
+
+        :param evaluator_repo_tag: The evaluator_repo_tag of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._evaluator_repo_tag = evaluator_repo_tag
 
     @property
     def storage_capacity(self):

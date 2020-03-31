@@ -44,13 +44,6 @@ describe("grader", function()
     end)
   end)
 
-  -- unit tests for the property 'code_access_mode'
-  describe("property code_access_mode test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
   -- unit tests for the property 'cluster_id'
   describe("property cluster_id test", function()
     it("should work", function()
@@ -65,8 +58,15 @@ describe("grader", function()
     end)
   end)
 
-  -- unit tests for the property 'evaluation_code'
-  describe("property evaluation_code test", function()
+  -- unit tests for the property 'evaluator_repo'
+  describe("property evaluator_repo test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'evaluator_repo_tag'
+  describe("property evaluator_repo_tag test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

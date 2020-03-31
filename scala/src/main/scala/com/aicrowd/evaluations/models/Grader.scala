@@ -23,14 +23,14 @@ case class Grader (
   updated: Option[Date] = None,
   // S3 link of the Dataset
   datasetUrl: Option[String] = None,
-  // git/http
-  codeAccessMode: String,
   // Cluster to run the grader on
   clusterId: Option[Integer] = None,
   // Argo workflow template spec
   workflowSpec: Option[Any] = None,
-  // S3 link to the zip file containing the code that will be used for the evaluation
-  evaluationCode: String,
+  // Git URL of the repository containing the code that will be used for the evaluation
+  evaluatorRepo: String,
+  // Git branch/tag that should be used with the evaluator repository.
+  evaluatorRepoTag: Option[String] = None,
   // Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
   storageCapacity: Option[String] = None,
   // Logs from argo workflow

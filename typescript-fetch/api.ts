@@ -243,12 +243,6 @@ export interface Grader {
      */
     datasetUrl?: string;
     /**
-     * git/http
-     * @type {string}
-     * @memberof Grader
-     */
-    codeAccessMode: string;
-    /**
      * Cluster to run the grader on
      * @type {number}
      * @memberof Grader
@@ -261,11 +255,17 @@ export interface Grader {
      */
     workflowSpec?: any;
     /**
-     * S3 link to the zip file containing the code that will be used for the evaluation
+     * Git URL of the repository containing the code that will be used for the evaluation
      * @type {string}
      * @memberof Grader
      */
-    evaluationCode: string;
+    evaluatorRepo: string;
+    /**
+     * Git branch/tag that should be used with the evaluator repository.
+     * @type {string}
+     * @memberof Grader
+     */
+    evaluatorRepoTag?: string;
     /**
      * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
      * @type {string}

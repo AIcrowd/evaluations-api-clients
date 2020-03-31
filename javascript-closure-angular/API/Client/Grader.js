@@ -34,13 +34,6 @@ API.Client.Grader.prototype.updated;
 API.Client.Grader.prototype.datasetUrl;
 
 /**
- * git/http
- * @type {!string}
- * @export
- */
-API.Client.Grader.prototype.codeAccessMode;
-
-/**
  * Cluster to run the grader on
  * @type {!number}
  * @export
@@ -55,11 +48,18 @@ API.Client.Grader.prototype.clusterId;
 API.Client.Grader.prototype.workflowSpec;
 
 /**
- * S3 link to the zip file containing the code that will be used for the evaluation
+ * Git URL of the repository containing the code that will be used for the evaluation
  * @type {!string}
  * @export
  */
-API.Client.Grader.prototype.evaluationCode;
+API.Client.Grader.prototype.evaluatorRepo;
+
+/**
+ * Git branch/tag that should be used with the evaluator repository.
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.evaluatorRepoTag;
 
 /**
  * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.

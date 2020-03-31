@@ -99,14 +99,6 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'DatasetUrl'
         }
         /// <summary>
-        /// Test the property 'CodeAccessMode'
-        /// </summary>
-        [Test]
-        public void CodeAccessModeTest()
-        {
-            // TODO unit test for the property 'CodeAccessMode'
-        }
-        /// <summary>
         /// Test the property 'ClusterId'
         /// </summary>
         [Test]
@@ -123,12 +115,20 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WorkflowSpec'
         }
         /// <summary>
-        /// Test the property 'EvaluationCode'
+        /// Test the property 'EvaluatorRepo'
         /// </summary>
         [Test]
-        public void EvaluationCodeTest()
+        public void EvaluatorRepoTest()
         {
-            // TODO unit test for the property 'EvaluationCode'
+            // TODO unit test for the property 'EvaluatorRepo'
+        }
+        /// <summary>
+        /// Test the property 'EvaluatorRepoTag'
+        /// </summary>
+        [Test]
+        public void EvaluatorRepoTagTest()
+        {
+            // TODO unit test for the property 'EvaluatorRepoTag'
         }
         /// <summary>
         /// Test the property 'StorageCapacity'

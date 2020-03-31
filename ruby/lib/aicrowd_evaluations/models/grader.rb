@@ -26,17 +26,17 @@ module AIcrowdEvaluations
     # S3 link of the Dataset
     attr_accessor :dataset_url
 
-    # git/http
-    attr_accessor :code_access_mode
-
     # Cluster to run the grader on
     attr_accessor :cluster_id
 
     # Argo workflow template spec
     attr_accessor :workflow_spec
 
-    # S3 link to the zip file containing the code that will be used for the evaluation
-    attr_accessor :evaluation_code
+    # Git URL of the repository containing the code that will be used for the evaluation
+    attr_accessor :evaluator_repo
+
+    # Git branch/tag that should be used with the evaluator repository.
+    attr_accessor :evaluator_repo_tag
 
     # Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
     attr_accessor :storage_capacity
@@ -63,10 +63,10 @@ module AIcrowdEvaluations
         :'created' => :'created',
         :'updated' => :'updated',
         :'dataset_url' => :'dataset_url',
-        :'code_access_mode' => :'code_access_mode',
         :'cluster_id' => :'cluster_id',
         :'workflow_spec' => :'workflow_spec',
-        :'evaluation_code' => :'evaluation_code',
+        :'evaluator_repo' => :'evaluator_repo',
+        :'evaluator_repo_tag' => :'evaluator_repo_tag',
         :'storage_capacity' => :'storage_capacity',
         :'logs' => :'logs',
         :'meta' => :'meta',
@@ -83,10 +83,10 @@ module AIcrowdEvaluations
         :'created' => :'DateTime',
         :'updated' => :'DateTime',
         :'dataset_url' => :'String',
-        :'code_access_mode' => :'String',
         :'cluster_id' => :'Integer',
         :'workflow_spec' => :'Object',
-        :'evaluation_code' => :'String',
+        :'evaluator_repo' => :'String',
+        :'evaluator_repo_tag' => :'String',
         :'storage_capacity' => :'String',
         :'logs' => :'Object',
         :'meta' => :'Object',
@@ -120,10 +120,6 @@ module AIcrowdEvaluations
         self.dataset_url = attributes[:'dataset_url']
       end
 
-      if attributes.has_key?(:'code_access_mode')
-        self.code_access_mode = attributes[:'code_access_mode']
-      end
-
       if attributes.has_key?(:'cluster_id')
         self.cluster_id = attributes[:'cluster_id']
       end
@@ -132,8 +128,12 @@ module AIcrowdEvaluations
         self.workflow_spec = attributes[:'workflow_spec']
       end
 
-      if attributes.has_key?(:'evaluation_code')
-        self.evaluation_code = attributes[:'evaluation_code']
+      if attributes.has_key?(:'evaluator_repo')
+        self.evaluator_repo = attributes[:'evaluator_repo']
+      end
+
+      if attributes.has_key?(:'evaluator_repo_tag')
+        self.evaluator_repo_tag = attributes[:'evaluator_repo_tag']
       end
 
       if attributes.has_key?(:'storage_capacity')
@@ -165,12 +165,8 @@ module AIcrowdEvaluations
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @code_access_mode.nil?
-        invalid_properties.push('invalid value for "code_access_mode", code_access_mode cannot be nil.')
-      end
-
-      if @evaluation_code.nil?
-        invalid_properties.push('invalid value for "evaluation_code", evaluation_code cannot be nil.')
+      if @evaluator_repo.nil?
+        invalid_properties.push('invalid value for "evaluator_repo", evaluator_repo cannot be nil.')
       end
 
       invalid_properties
@@ -179,8 +175,7 @@ module AIcrowdEvaluations
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @code_access_mode.nil?
-      return false if @evaluation_code.nil?
+      return false if @evaluator_repo.nil?
       true
     end
 
@@ -193,10 +188,10 @@ module AIcrowdEvaluations
           created == o.created &&
           updated == o.updated &&
           dataset_url == o.dataset_url &&
-          code_access_mode == o.code_access_mode &&
           cluster_id == o.cluster_id &&
           workflow_spec == o.workflow_spec &&
-          evaluation_code == o.evaluation_code &&
+          evaluator_repo == o.evaluator_repo &&
+          evaluator_repo_tag == o.evaluator_repo_tag &&
           storage_capacity == o.storage_capacity &&
           logs == o.logs &&
           meta == o.meta &&
@@ -214,7 +209,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, code_access_mode, cluster_id, workflow_spec, evaluation_code, storage_capacity, logs, meta, status, user_id, organisation_id].hash
+      [id, created, updated, dataset_url, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, storage_capacity, logs, meta, status, user_id, organisation_id].hash
     end
 
     # Builds the object from hash
