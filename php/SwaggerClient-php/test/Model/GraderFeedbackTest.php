@@ -91,6 +91,13 @@ class GraderFeedbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "notifications"
+     */
+    public function testPropertyNotifications()
+    {
+    }
+
+    /**
      * Test attribute "workflow_spec"
      */
     public function testPropertyWorkflowSpec()

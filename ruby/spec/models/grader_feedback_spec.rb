@@ -44,6 +44,12 @@ describe 'GraderFeedback' do
     end
   end
 
+  describe 'test attribute "notifications"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "workflow_spec"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

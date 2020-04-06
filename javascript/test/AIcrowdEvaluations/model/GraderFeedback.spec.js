@@ -52,6 +52,12 @@
         // expect(instance.status).to.be(expectedValueLiteral);
       });
 
+      it('should have the property notifications (base name: "notifications")', function() {
+        // TODO: update the code to test the property notifications
+        expect(instance).to.have.property('notifications');
+        // expect(instance.notifications).to.be(expectedValueLiteral);
+      });
+
       it('should have the property workflowSpec (base name: "workflow_spec")', function() {
         // TODO: update the code to test the property workflowSpec
         expect(instance).to.have.property('workflowSpec');

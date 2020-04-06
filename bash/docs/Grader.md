@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **workflow_spec** | **map** |  | [optional] [default to null]
 **evaluator_repo** | **string** |  | [default to null]
 **evaluator_repo_tag** | **string** |  | [optional] [default to null]
+**notifications** | **string** |  | [optional] [default to null]
 **logs** | **map** |  | [optional] [default to null]
 **meta** | **map** |  | [optional] [default to null]
 **status** | **string** |  | [optional] [default to null]

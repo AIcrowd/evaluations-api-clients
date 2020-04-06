@@ -40,9 +40,10 @@ namespace Com.AIcrowd.Evaluations.Model
         /// </summary>
         /// <param name="dataset">Serialized JSON for dataset metadata (required).</param>
         /// <param name="status">Status of the grader (required).</param>
+        /// <param name="notifications">Serialized JSON containing available notifications for the grader (required).</param>
         /// <param name="workflowSpec">Serialized YAML workflow spec (required).</param>
         /// <param name="submissionTypes">Serialized JSON of submissions accepted by the grader (required).</param>
-        public GraderFeedback(string dataset = default(string), bool? status = default(bool?), string workflowSpec = default(string), string submissionTypes = default(string))
+        public GraderFeedback(string dataset = default(string), bool? status = default(bool?), string notifications = default(string), string workflowSpec = default(string), string submissionTypes = default(string))
         {
             // to ensure "dataset" is required (not null)
             if (dataset == null)
@@ -61,6 +62,15 @@ namespace Com.AIcrowd.Evaluations.Model
             else
             {
                 this.Status = status;
+            }
+            // to ensure "notifications" is required (not null)
+            if (notifications == null)
+            {
+                throw new InvalidDataException("notifications is a required property for GraderFeedback and cannot be null");
+            }
+            else
+            {
+                this.Notifications = notifications;
             }
             // to ensure "workflowSpec" is required (not null)
             if (workflowSpec == null)
@@ -97,6 +107,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public bool? Status { get; set; }
 
         /// <summary>
+        /// Serialized JSON containing available notifications for the grader
+        /// </summary>
+        /// <value>Serialized JSON containing available notifications for the grader</value>
+        [DataMember(Name="notifications", EmitDefaultValue=false)]
+        public string Notifications { get; set; }
+
+        /// <summary>
         /// Serialized YAML workflow spec
         /// </summary>
         /// <value>Serialized YAML workflow spec</value>
@@ -120,6 +137,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("class GraderFeedback {\n");
             sb.Append("  Dataset: ").Append(Dataset).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Notifications: ").Append(Notifications).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
             sb.Append("}\n");
@@ -167,6 +185,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
+                    this.Notifications == input.Notifications ||
+                    (this.Notifications != null &&
+                    this.Notifications.Equals(input.Notifications))
+                ) && 
+                (
                     this.WorkflowSpec == input.WorkflowSpec ||
                     (this.WorkflowSpec != null &&
                     this.WorkflowSpec.Equals(input.WorkflowSpec))
@@ -191,6 +214,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Dataset.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.Notifications != null)
+                    hashCode = hashCode * 59 + this.Notifications.GetHashCode();
                 if (this.WorkflowSpec != null)
                     hashCode = hashCode * 59 + this.WorkflowSpec.GetHashCode();
                 if (this.SubmissionTypes != null)

@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Organisation
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T17:20:11.513Z")
 public class Organisation {
   @SerializedName("id")
   private Integer id = null;

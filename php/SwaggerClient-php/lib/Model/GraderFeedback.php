@@ -59,6 +59,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'dataset' => 'string',
         'status' => 'bool',
+        'notifications' => 'string',
         'workflow_spec' => 'string',
         'submission_types' => 'string'
     ];
@@ -71,6 +72,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'dataset' => null,
         'status' => null,
+        'notifications' => null,
         'workflow_spec' => null,
         'submission_types' => null
     ];
@@ -104,6 +106,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'dataset' => 'dataset',
         'status' => 'status',
+        'notifications' => 'notifications',
         'workflow_spec' => 'workflow_spec',
         'submission_types' => 'submission_types'
     ];
@@ -116,6 +119,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     protected static $setters = [
         'dataset' => 'setDataset',
         'status' => 'setStatus',
+        'notifications' => 'setNotifications',
         'workflow_spec' => 'setWorkflowSpec',
         'submission_types' => 'setSubmissionTypes'
     ];
@@ -128,6 +132,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     protected static $getters = [
         'dataset' => 'getDataset',
         'status' => 'getStatus',
+        'notifications' => 'getNotifications',
         'workflow_spec' => 'getWorkflowSpec',
         'submission_types' => 'getSubmissionTypes'
     ];
@@ -194,6 +199,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     {
         $this->container['dataset'] = isset($data['dataset']) ? $data['dataset'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['notifications'] = isset($data['notifications']) ? $data['notifications'] : null;
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['submission_types'] = isset($data['submission_types']) ? $data['submission_types'] : null;
     }
@@ -212,6 +218,9 @@ class GraderFeedback implements ModelInterface, ArrayAccess
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['notifications'] === null) {
+            $invalidProperties[] = "'notifications' can't be null";
         }
         if ($this->container['workflow_spec'] === null) {
             $invalidProperties[] = "'workflow_spec' can't be null";
@@ -278,6 +287,30 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets notifications
+     *
+     * @return string
+     */
+    public function getNotifications()
+    {
+        return $this->container['notifications'];
+    }
+
+    /**
+     * Sets notifications
+     *
+     * @param string $notifications Serialized JSON containing available notifications for the grader
+     *
+     * @return $this
+     */
+    public function setNotifications($notifications)
+    {
+        $this->container['notifications'] = $notifications;
 
         return $this;
     }

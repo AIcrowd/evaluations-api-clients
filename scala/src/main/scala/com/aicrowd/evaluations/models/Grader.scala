@@ -31,6 +31,8 @@ case class Grader (
   evaluatorRepo: String,
   // Git branch/tag that should be used with the evaluator repository.
   evaluatorRepoTag: Option[String] = None,
+  // Notifications available for the grader.
+  notifications: Option[String] = None,
   // Logs from argo workflow
   logs: Option[Any] = None,
   // Additional meta data of the grader

@@ -31,6 +31,9 @@ class Grader {
   /* Git branch/tag that should be used with the evaluator repository. */
   String evaluatorRepoTag = null
 
+  /* Notifications available for the grader. */
+  String notifications = null
+
   /* Logs from argo workflow */
   Object logs = null
 

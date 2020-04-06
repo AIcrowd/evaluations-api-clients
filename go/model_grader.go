@@ -30,6 +30,8 @@ type Grader struct {
 	EvaluatorRepo string `json:"evaluator_repo"`
 	// Git branch/tag that should be used with the evaluator repository.
 	EvaluatorRepoTag string `json:"evaluator_repo_tag,omitempty"`
+	// Notifications available for the grader.
+	Notifications string `json:"notifications,omitempty"`
 	// Logs from argo workflow
 	Logs *interface{} `json:"logs,omitempty"`
 	// Additional meta data of the grader

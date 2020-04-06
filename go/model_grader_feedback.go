@@ -14,6 +14,8 @@ type GraderFeedback struct {
 	Dataset string `json:"dataset"`
 	// Status of the grader
 	Status bool `json:"status"`
+	// Serialized JSON containing available notifications for the grader
+	Notifications string `json:"notifications"`
 	// Serialized YAML workflow spec
 	WorkflowSpec string `json:"workflow_spec"`
 	// Serialized JSON of submissions accepted by the grader

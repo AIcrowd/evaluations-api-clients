@@ -109,6 +109,13 @@ public:
     void unsetEvaluator_repo_tag();
     void setEvaluatorRepoTag(utility::string_t value);
     /// <summary>
+    /// Notifications available for the grader.
+    /// </summary>
+    utility::string_t getNotifications() const;
+    bool notificationsIsSet() const;
+    void unsetNotifications();
+    void setNotifications(utility::string_t value);
+    /// <summary>
     /// Logs from argo workflow
     /// </summary>
     std::shared_ptr<Object> getLogs() const;
@@ -167,6 +174,8 @@ protected:
     utility::string_t m_Evaluator_repo;
         utility::string_t m_Evaluator_repo_tag;
     bool m_Evaluator_repo_tagIsSet;
+    utility::string_t m_Notifications;
+    bool m_NotificationsIsSet;
     std::shared_ptr<Object> m_Logs;
     bool m_LogsIsSet;
     std::shared_ptr<Object> m_Meta;

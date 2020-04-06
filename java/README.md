@@ -2,7 +2,7 @@
 
 Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-04-06T16:48:11.098Z
+  - Build date: 2020-04-06T17:20:11.513Z
 
 API to create and evaluate custom challenges
 

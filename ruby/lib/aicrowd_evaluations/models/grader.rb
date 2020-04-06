@@ -38,6 +38,9 @@ module AIcrowdEvaluations
     # Git branch/tag that should be used with the evaluator repository.
     attr_accessor :evaluator_repo_tag
 
+    # Notifications available for the grader.
+    attr_accessor :notifications
+
     # Logs from argo workflow
     attr_accessor :logs
 
@@ -67,6 +70,7 @@ module AIcrowdEvaluations
         :'workflow_spec' => :'workflow_spec',
         :'evaluator_repo' => :'evaluator_repo',
         :'evaluator_repo_tag' => :'evaluator_repo_tag',
+        :'notifications' => :'notifications',
         :'logs' => :'logs',
         :'meta' => :'meta',
         :'status' => :'status',
@@ -87,6 +91,7 @@ module AIcrowdEvaluations
         :'workflow_spec' => :'Object',
         :'evaluator_repo' => :'String',
         :'evaluator_repo_tag' => :'String',
+        :'notifications' => :'String',
         :'logs' => :'Object',
         :'meta' => :'Object',
         :'status' => :'String',
@@ -134,6 +139,10 @@ module AIcrowdEvaluations
 
       if attributes.has_key?(:'evaluator_repo_tag')
         self.evaluator_repo_tag = attributes[:'evaluator_repo_tag']
+      end
+
+      if attributes.has_key?(:'notifications')
+        self.notifications = attributes[:'notifications']
       end
 
       if attributes.has_key?(:'logs')
@@ -192,6 +201,7 @@ module AIcrowdEvaluations
           workflow_spec == o.workflow_spec &&
           evaluator_repo == o.evaluator_repo &&
           evaluator_repo_tag == o.evaluator_repo_tag &&
+          notifications == o.notifications &&
           logs == o.logs &&
           meta == o.meta &&
           status == o.status &&
@@ -209,7 +219,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, logs, meta, status, submission_types, user_id, organisation_id].hash
+      [id, created, updated, dataset, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, notifications, logs, meta, status, submission_types, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

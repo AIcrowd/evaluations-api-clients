@@ -20,6 +20,13 @@ API.Client.GraderFeedback.prototype.dataset;
 API.Client.GraderFeedback.prototype.status;
 
 /**
+ * Serialized JSON containing available notifications for the grader
+ * @type {!string}
+ * @export
+ */
+API.Client.GraderFeedback.prototype.notifications;
+
+/**
  * Serialized YAML workflow spec
  * @type {!string}
  * @export

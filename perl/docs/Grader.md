@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **workflow_spec** | **object** | Argo workflow template spec | [optional] 
 **evaluator_repo** | **string** | Git URL of the repository containing the code that will be used for the evaluation | 
 **evaluator_repo_tag** | **string** | Git branch/tag that should be used with the evaluator repository. | [optional] 
+**notifications** | **string** | Notifications available for the grader. | [optional] 
 **logs** | **object** | Logs from argo workflow | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
 **status** | **string** | Status of the grader - True if it ready, False otherwise | [optional] 

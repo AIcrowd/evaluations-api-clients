@@ -20,6 +20,9 @@ pub struct GraderFeedback {
   /// Status of the grader
   #[serde(rename = "status")]
   status: bool,
+  /// Serialized JSON containing available notifications for the grader
+  #[serde(rename = "notifications")]
+  notifications: String,
   /// Serialized YAML workflow spec
   #[serde(rename = "workflow_spec")]
   workflow_spec: String,
@@ -29,10 +32,11 @@ pub struct GraderFeedback {
 }
 
 impl GraderFeedback {
-  pub fn new(dataset: String, status: bool, workflow_spec: String, submission_types: String) -> GraderFeedback {
+  pub fn new(dataset: String, status: bool, notifications: String, workflow_spec: String, submission_types: String) -> GraderFeedback {
     GraderFeedback {
       dataset: dataset,
       status: status,
+      notifications: notifications,
       workflow_spec: workflow_spec,
       submission_types: submission_types
     }
@@ -63,6 +67,20 @@ impl GraderFeedback {
 
   pub fn status(&self) -> &bool {
     &self.status
+  }
+
+
+  pub fn set_notifications(&mut self, notifications: String) {
+    self.notifications = notifications;
+  }
+
+  pub fn with_notifications(mut self, notifications: String) -> GraderFeedback {
+    self.notifications = notifications;
+    self
+  }
+
+  pub fn notifications(&self) -> &String {
+    &self.notifications
   }
 
 

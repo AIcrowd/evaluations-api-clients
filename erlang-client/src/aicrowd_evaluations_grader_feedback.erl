@@ -7,17 +7,20 @@
 -type aicrowd_evaluations_grader_feedback() ::
     #{ 'dataset' := binary(),
        'status' := boolean(),
+       'notifications' := binary(),
        'workflow_spec' := binary(),
        'submission_types' := binary()
      }.
 
 encode(#{ 'dataset' := Dataset,
           'status' := Status,
+          'notifications' := Notifications,
           'workflow_spec' := WorkflowSpec,
           'submission_types' := SubmissionTypes
         }) ->
     #{ 'dataset' => Dataset,
        'status' => Status,
+       'notifications' => Notifications,
        'workflow_spec' => WorkflowSpec,
        'submission_types' => SubmissionTypes
      }.

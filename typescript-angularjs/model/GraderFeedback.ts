@@ -22,6 +22,10 @@ export interface GraderFeedback {
      */
     "status": boolean;
     /**
+     * Serialized JSON containing available notifications for the grader
+     */
+    "notifications": string;
+    /**
      * Serialized YAML workflow spec
      */
     "workflowSpec": string;

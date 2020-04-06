@@ -72,6 +72,8 @@
         obj.evaluatorRepo = ApiClient.convertToType(data['evaluator_repo'], 'String');
       if (data.hasOwnProperty('evaluator_repo_tag'))
         obj.evaluatorRepoTag = ApiClient.convertToType(data['evaluator_repo_tag'], 'String');
+      if (data.hasOwnProperty('notifications'))
+        obj.notifications = ApiClient.convertToType(data['notifications'], 'String');
       if (data.hasOwnProperty('logs'))
         obj.logs = ApiClient.convertToType(data['logs'], Object);
       if (data.hasOwnProperty('meta'))
@@ -135,6 +137,12 @@
    * @member {String} evaluatorRepoTag
    */
   exports.prototype.evaluatorRepoTag = undefined;
+
+  /**
+   * Notifications available for the grader.
+   * @member {String} notifications
+   */
+  exports.prototype.notifications = undefined;
 
   /**
    * Logs from argo workflow

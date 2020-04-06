@@ -12,6 +12,9 @@ class GraderFeedback {
   /* Status of the grader */
   Boolean status = null
 
+  /* Serialized JSON containing available notifications for the grader */
+  String notifications = null
+
   /* Serialized YAML workflow spec */
   String workflowSpec = null
 

@@ -88,6 +88,12 @@
         // expect(instance.evaluatorRepoTag).to.be(expectedValueLiteral);
       });
 
+      it('should have the property notifications (base name: "notifications")', function() {
+        // TODO: update the code to test the property notifications
+        expect(instance).to.have.property('notifications');
+        // expect(instance.notifications).to.be(expectedValueLiteral);
+      });
+
       it('should have the property logs (base name: "logs")', function() {
         // TODO: update the code to test the property logs
         expect(instance).to.have.property('logs');

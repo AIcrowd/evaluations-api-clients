@@ -131,6 +131,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'EvaluatorRepoTag'
         }
         /// <summary>
+        /// Test the property 'Notifications'
+        /// </summary>
+        [Test]
+        public void NotificationsTest()
+        {
+            // TODO unit test for the property 'Notifications'
+        }
+        /// <summary>
         /// Test the property 'Logs'
         /// </summary>
         [Test]

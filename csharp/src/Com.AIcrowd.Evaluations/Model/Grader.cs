@@ -113,6 +113,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string EvaluatorRepoTag { get; set; }
 
         /// <summary>
+        /// Notifications available for the grader.
+        /// </summary>
+        /// <value>Notifications available for the grader.</value>
+        [DataMember(Name="notifications", EmitDefaultValue=false)]
+        public string Notifications { get; private set; }
+
+        /// <summary>
         /// Logs from argo workflow
         /// </summary>
         /// <value>Logs from argo workflow</value>
@@ -170,6 +177,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  EvaluatorRepo: ").Append(EvaluatorRepo).Append("\n");
             sb.Append("  EvaluatorRepoTag: ").Append(EvaluatorRepoTag).Append("\n");
+            sb.Append("  Notifications: ").Append(Notifications).Append("\n");
             sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -251,6 +259,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.EvaluatorRepoTag.Equals(input.EvaluatorRepoTag))
                 ) && 
                 (
+                    this.Notifications == input.Notifications ||
+                    (this.Notifications != null &&
+                    this.Notifications.Equals(input.Notifications))
+                ) && 
+                (
                     this.Logs == input.Logs ||
                     (this.Logs != null &&
                     this.Logs.Equals(input.Logs))
@@ -307,6 +320,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.EvaluatorRepo.GetHashCode();
                 if (this.EvaluatorRepoTag != null)
                     hashCode = hashCode * 59 + this.EvaluatorRepoTag.GetHashCode();
+                if (this.Notifications != null)
+                    hashCode = hashCode * 59 + this.Notifications.GetHashCode();
                 if (this.Logs != null)
                     hashCode = hashCode * 59 + this.Logs.GetHashCode();
                 if (this.Meta != null)

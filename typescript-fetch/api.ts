@@ -267,6 +267,12 @@ export interface Grader {
      */
     evaluatorRepoTag?: string;
     /**
+     * Notifications available for the grader.
+     * @type {string}
+     * @memberof Grader
+     */
+    notifications?: string;
+    /**
      * Logs from argo workflow
      * @type {any}
      * @memberof Grader
@@ -322,6 +328,12 @@ export interface GraderFeedback {
      * @memberof GraderFeedback
      */
     status: boolean;
+    /**
+     * Serialized JSON containing available notifications for the grader
+     * @type {string}
+     * @memberof GraderFeedback
+     */
+    notifications: string;
     /**
      * Serialized YAML workflow spec
      * @type {string}

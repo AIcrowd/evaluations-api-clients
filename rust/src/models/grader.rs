@@ -38,6 +38,9 @@ pub struct Grader {
   /// Git branch/tag that should be used with the evaluator repository.
   #[serde(rename = "evaluator_repo_tag")]
   evaluator_repo_tag: Option<String>,
+  /// Notifications available for the grader.
+  #[serde(rename = "notifications")]
+  notifications: Option<String>,
   /// Logs from argo workflow
   #[serde(rename = "logs")]
   logs: Option<Value>,
@@ -69,6 +72,7 @@ impl Grader {
       workflow_spec: None,
       evaluator_repo: evaluator_repo,
       evaluator_repo_tag: None,
+      notifications: None,
       logs: None,
       meta: None,
       status: None,
@@ -209,6 +213,23 @@ impl Grader {
 
   pub fn reset_evaluator_repo_tag(&mut self) {
     self.evaluator_repo_tag = None;
+  }
+
+  pub fn set_notifications(&mut self, notifications: String) {
+    self.notifications = Some(notifications);
+  }
+
+  pub fn with_notifications(mut self, notifications: String) -> Grader {
+    self.notifications = Some(notifications);
+    self
+  }
+
+  pub fn notifications(&self) -> Option<&String> {
+    self.notifications.as_ref()
+  }
+
+  pub fn reset_notifications(&mut self) {
+    self.notifications = None;
   }
 
   pub fn set_logs(&mut self, logs: Value) {

@@ -65,6 +65,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'object',
         'evaluator_repo' => 'string',
         'evaluator_repo_tag' => 'string',
+        'notifications' => 'string',
         'logs' => 'object',
         'meta' => 'object',
         'status' => 'string',
@@ -87,6 +88,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => null,
         'evaluator_repo' => null,
         'evaluator_repo_tag' => null,
+        'notifications' => null,
         'logs' => null,
         'meta' => null,
         'status' => null,
@@ -130,6 +132,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'workflow_spec',
         'evaluator_repo' => 'evaluator_repo',
         'evaluator_repo_tag' => 'evaluator_repo_tag',
+        'notifications' => 'notifications',
         'logs' => 'logs',
         'meta' => 'meta',
         'status' => 'status',
@@ -152,6 +155,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'setWorkflowSpec',
         'evaluator_repo' => 'setEvaluatorRepo',
         'evaluator_repo_tag' => 'setEvaluatorRepoTag',
+        'notifications' => 'setNotifications',
         'logs' => 'setLogs',
         'meta' => 'setMeta',
         'status' => 'setStatus',
@@ -174,6 +178,7 @@ class Grader implements ModelInterface, ArrayAccess
         'workflow_spec' => 'getWorkflowSpec',
         'evaluator_repo' => 'getEvaluatorRepo',
         'evaluator_repo_tag' => 'getEvaluatorRepoTag',
+        'notifications' => 'getNotifications',
         'logs' => 'getLogs',
         'meta' => 'getMeta',
         'status' => 'getStatus',
@@ -250,6 +255,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['evaluator_repo'] = isset($data['evaluator_repo']) ? $data['evaluator_repo'] : null;
         $this->container['evaluator_repo_tag'] = isset($data['evaluator_repo_tag']) ? $data['evaluator_repo_tag'] : null;
+        $this->container['notifications'] = isset($data['notifications']) ? $data['notifications'] : null;
         $this->container['logs'] = isset($data['logs']) ? $data['logs'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
@@ -473,6 +479,30 @@ class Grader implements ModelInterface, ArrayAccess
     public function setEvaluatorRepoTag($evaluator_repo_tag)
     {
         $this->container['evaluator_repo_tag'] = $evaluator_repo_tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets notifications
+     *
+     * @return string
+     */
+    public function getNotifications()
+    {
+        return $this->container['notifications'];
+    }
+
+    /**
+     * Sets notifications
+     *
+     * @param string $notifications Notifications available for the grader.
+     *
+     * @return $this
+     */
+    public function setNotifications($notifications)
+    {
+        $this->container['notifications'] = $notifications;
 
         return $this;
     }

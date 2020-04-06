@@ -42,12 +42,14 @@
    * @class
    * @param dataset {String} Serialized JSON for dataset metadata
    * @param status {Boolean} Status of the grader
+   * @param notifications {String} Serialized JSON containing available notifications for the grader
    * @param workflowSpec {String} Serialized YAML workflow spec
    * @param submissionTypes {String} Serialized JSON of submissions accepted by the grader
    */
-  var exports = function(dataset, status, workflowSpec, submissionTypes) {
+  var exports = function(dataset, status, notifications, workflowSpec, submissionTypes) {
     this.dataset = dataset;
     this.status = status;
+    this.notifications = notifications;
     this.workflowSpec = workflowSpec;
     this.submissionTypes = submissionTypes;
   };
@@ -66,6 +68,8 @@
         obj.dataset = ApiClient.convertToType(data['dataset'], 'String');
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'Boolean');
+      if (data.hasOwnProperty('notifications'))
+        obj.notifications = ApiClient.convertToType(data['notifications'], 'String');
       if (data.hasOwnProperty('workflow_spec'))
         obj.workflowSpec = ApiClient.convertToType(data['workflow_spec'], 'String');
       if (data.hasOwnProperty('submission_types'))
@@ -85,6 +89,12 @@
    * @member {Boolean} status
    */
   exports.prototype.status = undefined;
+
+  /**
+   * Serialized JSON containing available notifications for the grader
+   * @member {String} notifications
+   */
+  exports.prototype.notifications = undefined;
 
   /**
    * Serialized YAML workflow spec

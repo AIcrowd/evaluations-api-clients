@@ -64,6 +64,11 @@ public:
     bool isStatus() const;
         void setStatus(bool value);
     /// <summary>
+    /// Serialized JSON containing available notifications for the grader
+    /// </summary>
+    utility::string_t getNotifications() const;
+        void setNotifications(utility::string_t value);
+    /// <summary>
     /// Serialized YAML workflow spec
     /// </summary>
     utility::string_t getWorkflowSpec() const;
@@ -77,6 +82,7 @@ public:
 protected:
     utility::string_t m_Dataset;
         bool m_Status;
+        utility::string_t m_Notifications;
         utility::string_t m_Workflow_spec;
         utility::string_t m_Submission_types;
     };

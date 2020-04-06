@@ -18,6 +18,8 @@ case class GraderFeedback (
   dataset: String,
   // Status of the grader
   status: Boolean,
+  // Serialized JSON containing available notifications for the grader
+  notifications: String,
   // Serialized YAML workflow spec
   workflowSpec: String,
   // Serialized JSON of submissions accepted by the grader

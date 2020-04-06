@@ -39,6 +39,7 @@ class Grader(object):
         'workflow_spec': 'object',
         'evaluator_repo': 'str',
         'evaluator_repo_tag': 'str',
+        'notifications': 'str',
         'logs': 'object',
         'meta': 'object',
         'status': 'str',
@@ -56,6 +57,7 @@ class Grader(object):
         'workflow_spec': 'workflow_spec',
         'evaluator_repo': 'evaluator_repo',
         'evaluator_repo_tag': 'evaluator_repo_tag',
+        'notifications': 'notifications',
         'logs': 'logs',
         'meta': 'meta',
         'status': 'status',
@@ -64,7 +66,7 @@ class Grader(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, logs=None, meta=None, status=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, notifications=None, logs=None, meta=None, status=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -75,6 +77,7 @@ class Grader(object):
         self._workflow_spec = None
         self._evaluator_repo = None
         self._evaluator_repo_tag = None
+        self._notifications = None
         self._logs = None
         self._meta = None
         self._status = None
@@ -98,6 +101,8 @@ class Grader(object):
         self.evaluator_repo = evaluator_repo
         if evaluator_repo_tag is not None:
             self.evaluator_repo_tag = evaluator_repo_tag
+        if notifications is not None:
+            self.notifications = notifications
         if logs is not None:
             self.logs = logs
         if meta is not None:
@@ -296,6 +301,29 @@ class Grader(object):
         """
 
         self._evaluator_repo_tag = evaluator_repo_tag
+
+    @property
+    def notifications(self):
+        """Gets the notifications of this Grader.  # noqa: E501
+
+        Notifications available for the grader.  # noqa: E501
+
+        :return: The notifications of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._notifications
+
+    @notifications.setter
+    def notifications(self, notifications):
+        """Sets the notifications of this Grader.
+
+        Notifications available for the grader.  # noqa: E501
+
+        :param notifications: The notifications of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._notifications = notifications
 
     @property
     def logs(self):

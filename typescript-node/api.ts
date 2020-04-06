@@ -367,6 +367,10 @@ export class Grader {
     */
     'evaluatorRepoTag'?: string;
     /**
+    * Notifications available for the grader.
+    */
+    'notifications'?: string;
+    /**
     * Logs from argo workflow
     */
     'logs'?: any;
@@ -435,6 +439,11 @@ export class Grader {
             "type": "string"
         },
         {
+            "name": "notifications",
+            "baseName": "notifications",
+            "type": "string"
+        },
+        {
             "name": "logs",
             "baseName": "logs",
             "type": "any"
@@ -480,6 +489,10 @@ export class GraderFeedback {
     */
     'status': boolean;
     /**
+    * Serialized JSON containing available notifications for the grader
+    */
+    'notifications': string;
+    /**
     * Serialized YAML workflow spec
     */
     'workflowSpec': string;
@@ -500,6 +513,11 @@ export class GraderFeedback {
             "name": "status",
             "baseName": "status",
             "type": "boolean"
+        },
+        {
+            "name": "notifications",
+            "baseName": "notifications",
+            "type": "string"
         },
         {
             "name": "workflowSpec",

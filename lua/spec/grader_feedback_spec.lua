@@ -30,6 +30,13 @@ describe("grader_feedback", function()
     end)
   end)
 
+  -- unit tests for the property 'notifications'
+  describe("property notifications test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'workflow_spec'
   describe("property workflow_spec test", function()
     it("should work", function()

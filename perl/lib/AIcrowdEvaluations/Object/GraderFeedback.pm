@@ -157,6 +157,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'notifications' => {
+    	datatype => 'string',
+    	base_name => 'notifications',
+    	description => 'Serialized JSON containing available notifications for the grader',
+    	format => '',
+    	read_only => '',
+    		},
     'workflow_spec' => {
     	datatype => 'string',
     	base_name => 'workflow_spec',
@@ -176,6 +183,7 @@ __PACKAGE__->method_documentation({
 __PACKAGE__->swagger_types( {
     'dataset' => 'string',
     'status' => 'boolean',
+    'notifications' => 'string',
     'workflow_spec' => 'string',
     'submission_types' => 'string'
 } );
@@ -183,6 +191,7 @@ __PACKAGE__->swagger_types( {
 __PACKAGE__->attribute_map( {
     'dataset' => 'dataset',
     'status' => 'status',
+    'notifications' => 'notifications',
     'workflow_spec' => 'workflow_spec',
     'submission_types' => 'submission_types'
 } );

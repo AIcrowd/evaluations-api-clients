@@ -34,6 +34,8 @@ Grader::Grader()
     m_Evaluator_repo = utility::conversions::to_string_t("");
     m_Evaluator_repo_tag = utility::conversions::to_string_t("");
     m_Evaluator_repo_tagIsSet = false;
+    m_Notifications = utility::conversions::to_string_t("");
+    m_NotificationsIsSet = false;
     m_LogsIsSet = false;
     m_MetaIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -86,6 +88,10 @@ web::json::value Grader::toJson() const
     if(m_Evaluator_repo_tagIsSet)
     {
         val[utility::conversions::to_string_t("evaluator_repo_tag")] = ModelBase::toJson(m_Evaluator_repo_tag);
+    }
+    if(m_NotificationsIsSet)
+    {
+        val[utility::conversions::to_string_t("notifications")] = ModelBase::toJson(m_Notifications);
     }
     if(m_LogsIsSet)
     {
@@ -176,6 +182,14 @@ void Grader::fromJson(web::json::value& val)
         if(!fieldValue.is_null())
         {
             setEvaluatorRepoTag(ModelBase::stringFromJson(fieldValue));
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("notifications")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("notifications")];
+        if(!fieldValue.is_null())
+        {
+            setNotifications(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("logs")))
@@ -282,6 +296,11 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluator_repo_tag"), m_Evaluator_repo_tag));
         
     }
+    if(m_NotificationsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("notifications"), m_Notifications));
+        
+    }
     if(m_LogsIsSet)
     {
         if (m_Logs.get())
@@ -367,6 +386,10 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("evaluator_repo_tag")))
     {
         setEvaluatorRepoTag(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluator_repo_tag"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("notifications")))
+    {
+        setNotifications(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("notifications"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
@@ -565,6 +588,27 @@ bool Grader::evaluatorRepoTagIsSet() const
 void Grader::unsetEvaluator_repo_tag()
 {
     m_Evaluator_repo_tagIsSet = false;
+}
+
+utility::string_t Grader::getNotifications() const
+{
+    return m_Notifications;
+}
+
+
+void Grader::setNotifications(utility::string_t value)
+{
+    m_Notifications = value;
+    m_NotificationsIsSet = true;
+}
+bool Grader::notificationsIsSet() const
+{
+    return m_NotificationsIsSet;
+}
+
+void Grader::unsetNotifications()
+{
+    m_NotificationsIsSet = false;
 }
 
 std::shared_ptr<Object> Grader::getLogs() const

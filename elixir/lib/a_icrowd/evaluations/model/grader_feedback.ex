@@ -11,6 +11,7 @@ defmodule AIcrowd.Evaluations.Model.GraderFeedback do
   defstruct [
     :"dataset",
     :"status",
+    :"notifications",
     :"workflow_spec",
     :"submission_types"
   ]
@@ -18,6 +19,7 @@ defmodule AIcrowd.Evaluations.Model.GraderFeedback do
   @type t :: %__MODULE__{
     :"dataset" => String.t,
     :"status" => boolean(),
+    :"notifications" => String.t,
     :"workflow_spec" => String.t,
     :"submission_types" => String.t
   }

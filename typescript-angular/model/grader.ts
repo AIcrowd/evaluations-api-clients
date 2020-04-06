@@ -45,6 +45,10 @@ export interface Grader {
      */
     evaluatorRepoTag?: string;
     /**
+     * Notifications available for the grader.
+     */
+    readonly notifications?: string;
+    /**
      * Logs from argo workflow
      */
     readonly logs?: any;

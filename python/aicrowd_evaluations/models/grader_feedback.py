@@ -33,6 +33,7 @@ class GraderFeedback(object):
     swagger_types = {
         'dataset': 'str',
         'status': 'bool',
+        'notifications': 'str',
         'workflow_spec': 'str',
         'submission_types': 'str'
     }
@@ -40,21 +41,24 @@ class GraderFeedback(object):
     attribute_map = {
         'dataset': 'dataset',
         'status': 'status',
+        'notifications': 'notifications',
         'workflow_spec': 'workflow_spec',
         'submission_types': 'submission_types'
     }
 
-    def __init__(self, dataset=None, status=None, workflow_spec=None, submission_types=None):  # noqa: E501
+    def __init__(self, dataset=None, status=None, notifications=None, workflow_spec=None, submission_types=None):  # noqa: E501
         """GraderFeedback - a model defined in Swagger"""  # noqa: E501
 
         self._dataset = None
         self._status = None
+        self._notifications = None
         self._workflow_spec = None
         self._submission_types = None
         self.discriminator = None
 
         self.dataset = dataset
         self.status = status
+        self.notifications = notifications
         self.workflow_spec = workflow_spec
         self.submission_types = submission_types
 
@@ -107,6 +111,31 @@ class GraderFeedback(object):
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
+
+    @property
+    def notifications(self):
+        """Gets the notifications of this GraderFeedback.  # noqa: E501
+
+        Serialized JSON containing available notifications for the grader  # noqa: E501
+
+        :return: The notifications of this GraderFeedback.  # noqa: E501
+        :rtype: str
+        """
+        return self._notifications
+
+    @notifications.setter
+    def notifications(self, notifications):
+        """Sets the notifications of this GraderFeedback.
+
+        Serialized JSON containing available notifications for the grader  # noqa: E501
+
+        :param notifications: The notifications of this GraderFeedback.  # noqa: E501
+        :type: str
+        """
+        if notifications is None:
+            raise ValueError("Invalid value for `notifications`, must not be `None`")  # noqa: E501
+
+        self._notifications = notifications
 
     @property
     def workflow_spec(self):

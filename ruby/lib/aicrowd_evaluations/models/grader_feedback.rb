@@ -20,6 +20,9 @@ module AIcrowdEvaluations
     # Status of the grader
     attr_accessor :status
 
+    # Serialized JSON containing available notifications for the grader
+    attr_accessor :notifications
+
     # Serialized YAML workflow spec
     attr_accessor :workflow_spec
 
@@ -31,6 +34,7 @@ module AIcrowdEvaluations
       {
         :'dataset' => :'dataset',
         :'status' => :'status',
+        :'notifications' => :'notifications',
         :'workflow_spec' => :'workflow_spec',
         :'submission_types' => :'submission_types'
       }
@@ -41,6 +45,7 @@ module AIcrowdEvaluations
       {
         :'dataset' => :'String',
         :'status' => :'BOOLEAN',
+        :'notifications' => :'String',
         :'workflow_spec' => :'String',
         :'submission_types' => :'String'
       }
@@ -60,6 +65,10 @@ module AIcrowdEvaluations
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'notifications')
+        self.notifications = attributes[:'notifications']
       end
 
       if attributes.has_key?(:'workflow_spec')
@@ -83,6 +92,10 @@ module AIcrowdEvaluations
         invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
+      if @notifications.nil?
+        invalid_properties.push('invalid value for "notifications", notifications cannot be nil.')
+      end
+
       if @workflow_spec.nil?
         invalid_properties.push('invalid value for "workflow_spec", workflow_spec cannot be nil.')
       end
@@ -99,6 +112,7 @@ module AIcrowdEvaluations
     def valid?
       return false if @dataset.nil?
       return false if @status.nil?
+      return false if @notifications.nil?
       return false if @workflow_spec.nil?
       return false if @submission_types.nil?
       true
@@ -111,6 +125,7 @@ module AIcrowdEvaluations
       self.class == o.class &&
           dataset == o.dataset &&
           status == o.status &&
+          notifications == o.notifications &&
           workflow_spec == o.workflow_spec &&
           submission_types == o.submission_types
     end
@@ -124,7 +139,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [dataset, status, workflow_spec, submission_types].hash
+      [dataset, status, notifications, workflow_spec, submission_types].hash
     end
 
     # Builds the object from hash

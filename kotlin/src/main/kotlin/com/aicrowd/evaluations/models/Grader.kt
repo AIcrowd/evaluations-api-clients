@@ -22,6 +22,7 @@ package com.aicrowd.evaluations.models
  * @param workflow_spec Argo workflow template spec
  * @param evaluator_repo Git URL of the repository containing the code that will be used for the evaluation
  * @param evaluator_repo_tag Git branch/tag that should be used with the evaluator repository.
+ * @param notifications Notifications available for the grader.
  * @param logs Logs from argo workflow
  * @param meta Additional meta data of the grader
  * @param status Status of the grader - True if it ready, False otherwise
@@ -46,6 +47,8 @@ data class Grader (
     val workflow_spec: kotlin.Any? = null,
     /* Git branch/tag that should be used with the evaluator repository. */
     val evaluator_repo_tag: kotlin.String? = null,
+    /* Notifications available for the grader. */
+    val notifications: kotlin.String? = null,
     /* Logs from argo workflow */
     val logs: kotlin.Any? = null,
     /* Additional meta data of the grader */

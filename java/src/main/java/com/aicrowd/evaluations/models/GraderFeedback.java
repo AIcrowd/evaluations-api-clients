@@ -27,13 +27,16 @@ import java.io.IOException;
 /**
  * GraderFeedback
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T17:20:11.513Z")
 public class GraderFeedback {
   @SerializedName("dataset")
   private String dataset = null;
 
   @SerializedName("status")
   private Boolean status = null;
+
+  @SerializedName("notifications")
+  private String notifications = null;
 
   @SerializedName("workflow_spec")
   private String workflowSpec = null;
@@ -75,6 +78,24 @@ public class GraderFeedback {
 
   public void setStatus(Boolean status) {
     this.status = status;
+  }
+
+  public GraderFeedback notifications(String notifications) {
+    this.notifications = notifications;
+    return this;
+  }
+
+   /**
+   * Serialized JSON containing available notifications for the grader
+   * @return notifications
+  **/
+  @ApiModelProperty(required = true, value = "Serialized JSON containing available notifications for the grader")
+  public String getNotifications() {
+    return notifications;
+  }
+
+  public void setNotifications(String notifications) {
+    this.notifications = notifications;
   }
 
   public GraderFeedback workflowSpec(String workflowSpec) {
@@ -125,13 +146,14 @@ public class GraderFeedback {
     GraderFeedback graderFeedback = (GraderFeedback) o;
     return Objects.equals(this.dataset, graderFeedback.dataset) &&
         Objects.equals(this.status, graderFeedback.status) &&
+        Objects.equals(this.notifications, graderFeedback.notifications) &&
         Objects.equals(this.workflowSpec, graderFeedback.workflowSpec) &&
         Objects.equals(this.submissionTypes, graderFeedback.submissionTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataset, status, workflowSpec, submissionTypes);
+    return Objects.hash(dataset, status, notifications, workflowSpec, submissionTypes);
   }
 
 
@@ -142,6 +164,7 @@ public class GraderFeedback {
     
     sb.append("    dataset: ").append(toIndentedString(dataset)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    notifications: ").append(toIndentedString(notifications)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");
     sb.append("}");

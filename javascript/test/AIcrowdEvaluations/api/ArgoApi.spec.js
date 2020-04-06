@@ -66,6 +66,7 @@
           var payload = new AicrowdEvaluations.GraderFeedback();
           payload.dataset = "";
           payload.status = false;
+          payload.notifications = "";
           payload.workflowSpec = "";
           payload.submissionTypes = "";
 

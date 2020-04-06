@@ -133,6 +133,13 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "notifications"
+     */
+    public function testPropertyNotifications()
+    {
+    }
+
+    /**
      * Test attribute "logs"
      */
     public function testPropertyLogs()

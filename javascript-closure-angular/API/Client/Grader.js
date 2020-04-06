@@ -62,6 +62,13 @@ API.Client.Grader.prototype.evaluatorRepo;
 API.Client.Grader.prototype.evaluatorRepoTag;
 
 /**
+ * Notifications available for the grader.
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.notifications;
+
+/**
  * Logs from argo workflow
  * @type {!API.Client.Object}
  * @export

@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T17:20:11.513Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -53,6 +53,9 @@ public class Grader {
 
   @SerializedName("evaluator_repo_tag")
   private String evaluatorRepoTag = null;
+
+  @SerializedName("notifications")
+  private String notifications = null;
 
   @SerializedName("logs")
   private Object logs = null;
@@ -172,6 +175,15 @@ public class Grader {
   }
 
    /**
+   * Notifications available for the grader.
+   * @return notifications
+  **/
+  @ApiModelProperty(value = "Notifications available for the grader.")
+  public String getNotifications() {
+    return notifications;
+  }
+
+   /**
    * Logs from argo workflow
    * @return logs
   **/
@@ -243,6 +255,7 @@ public class Grader {
         Objects.equals(this.workflowSpec, grader.workflowSpec) &&
         Objects.equals(this.evaluatorRepo, grader.evaluatorRepo) &&
         Objects.equals(this.evaluatorRepoTag, grader.evaluatorRepoTag) &&
+        Objects.equals(this.notifications, grader.notifications) &&
         Objects.equals(this.logs, grader.logs) &&
         Objects.equals(this.meta, grader.meta) &&
         Objects.equals(this.status, grader.status) &&
@@ -253,7 +266,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, dataset, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, logs, meta, status, submissionTypes, userId, organisationId);
+    return Objects.hash(id, created, updated, dataset, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, notifications, logs, meta, status, submissionTypes, userId, organisationId);
   }
 
 
@@ -270,6 +283,7 @@ public class Grader {
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    evaluatorRepo: ").append(toIndentedString(evaluatorRepo)).append("\n");
     sb.append("    evaluatorRepoTag: ").append(toIndentedString(evaluatorRepoTag)).append("\n");
+    sb.append("    notifications: ").append(toIndentedString(notifications)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

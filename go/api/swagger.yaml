@@ -876,6 +876,7 @@ definitions:
     type: "object"
     required:
     - "dataset"
+    - "notifications"
     - "status"
     - "submission_types"
     - "workflow_spec"
@@ -886,6 +887,9 @@ definitions:
       status:
         type: "boolean"
         description: "Status of the grader"
+      notifications:
+        type: "string"
+        description: "Serialized JSON containing available notifications for the grader"
       workflow_spec:
         type: "string"
         description: "Serialized YAML workflow spec"
@@ -896,6 +900,7 @@ definitions:
       submission_types: "submission_types"
       workflow_spec: "workflow_spec"
       dataset: "dataset"
+      notifications: "notifications"
       status: true
   SubmissionFeedback:
     type: "object"
@@ -976,6 +981,10 @@ definitions:
       evaluator_repo_tag:
         type: "string"
         description: "Git branch/tag that should be used with the evaluator repository."
+      notifications:
+        type: "string"
+        description: "Notifications available for the grader."
+        readOnly: true
       logs:
         type: "object"
         description: "Logs from argo workflow"
@@ -1017,6 +1026,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       dataset: "{}"
       logs: "{}"
+      notifications: "notifications"
       status: "status"
     x-mask: "{id,created,updated,dataset,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,status,submission_types,deleted,user_id,organisation_id}"
   Organisation:
