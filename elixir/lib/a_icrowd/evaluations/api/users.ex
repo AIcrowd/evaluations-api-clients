@@ -12,12 +12,42 @@ defmodule AIcrowd.Evaluations.Api.Users do
 
 
   @doc """
+  Create a new user
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - payload (User): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.User{}} on success
+  {:error, info} on failure
+  """
+  @spec create_user(Tesla.Env.client, AIcrowd.Evaluations.Model.User.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
+  def create_user(connection, payload, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:post)
+    |> url("/users/")
+    |> add_param(:body, :"payload", payload)
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.User{})
+  end
+
+  @doc """
   Delete a user
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - user_id (integer()): User identifier
+  - user_id (integer()): 
   - opts (KeywordList): [optional] Optional parameters
 
   ## Returns
@@ -25,8 +55,8 @@ defmodule AIcrowd.Evaluations.Api.Users do
   {:ok, %{}} on success
   {:error, info} on failure
   """
-  @spec delete_user_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def delete_user_dao(connection, user_id, _opts \\ []) do
+  @spec delete_user(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def delete_user(connection, user_id, _opts \\ []) do
     %{}
     |> method(:delete)
     |> url("/users/#{user_id}")
@@ -41,7 +71,7 @@ defmodule AIcrowd.Evaluations.Api.Users do
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - user_id (integer()): User identifier
+  - user_id (integer()): 
   - opts (KeywordList): [optional] Optional parameters
     - :x_fields (String.t): An optional fields mask
 
@@ -50,8 +80,8 @@ defmodule AIcrowd.Evaluations.Api.Users do
   {:ok, %AIcrowd.Evaluations.Model.User{}} on success
   {:error, info} on failure
   """
-  @spec get_user_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
-  def get_user_dao(connection, user_id, opts \\ []) do
+  @spec get_user(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
+  def get_user(connection, user_id, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -78,8 +108,8 @@ defmodule AIcrowd.Evaluations.Api.Users do
   {:ok, [%User{}, ...]} on success
   {:error, info} on failure
   """
-  @spec get_user_list_dao(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.User.t)} | {:error, Tesla.Env.t}
-  def get_user_list_dao(connection, opts \\ []) do
+  @spec list_users(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.User.t)} | {:error, Tesla.Env.t}
+  def list_users(connection, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -93,11 +123,12 @@ defmodule AIcrowd.Evaluations.Api.Users do
   end
 
   @doc """
-  Create a new user
+  Update a user
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - user_id (integer()): 
   - payload (User): 
   - opts (KeywordList): [optional] Optional parameters
     - :x_fields (String.t): An optional fields mask
@@ -107,14 +138,14 @@ defmodule AIcrowd.Evaluations.Api.Users do
   {:ok, %AIcrowd.Evaluations.Model.User{}} on success
   {:error, info} on failure
   """
-  @spec post_user_list_dao(Tesla.Env.client, AIcrowd.Evaluations.Model.User.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
-  def post_user_list_dao(connection, payload, opts \\ []) do
+  @spec update_user(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.User.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
+  def update_user(connection, user_id, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
     %{}
-    |> method(:post)
-    |> url("/users/")
+    |> method(:put)
+    |> url("/users/#{user_id}")
     |> add_param(:body, :"payload", payload)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
@@ -128,7 +159,7 @@ defmodule AIcrowd.Evaluations.Api.Users do
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - user_id (integer()): User identifier
+  - user_id (integer()): 
   - payload (UserQuota): 
   - opts (KeywordList): [optional] Optional parameters
 
@@ -137,45 +168,14 @@ defmodule AIcrowd.Evaluations.Api.Users do
   {:ok, %{}} on success
   {:error, info} on failure
   """
-  @spec put_quota_dao(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.UserQuota.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def put_quota_dao(connection, user_id, payload, _opts \\ []) do
+  @spec update_user_quota(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.UserQuota.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def update_user_quota(connection, user_id, payload, _opts \\ []) do
     %{}
     |> method(:put)
-    |> url("/users/addquota/#{user_id}")
+    |> url("/users/#{user_id}/addquota")
     |> add_param(:body, :"payload", payload)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode(false)
-  end
-
-  @doc """
-  Update a user
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - user_id (integer()): User identifier
-  - payload (User): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.User{}} on success
-  {:error, info} on failure
-  """
-  @spec put_user_dao(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.User.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.User.t} | {:error, Tesla.Env.t}
-  def put_user_dao(connection, user_id, payload, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:put)
-    |> url("/users/#{user_id}")
-    |> add_param(:body, :"payload", payload)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.User{})
   end
 end

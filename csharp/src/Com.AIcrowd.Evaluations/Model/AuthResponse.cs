@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -33,16 +33,16 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthResponse" /> class.
         /// </summary>
-        /// <param name="authorization">Authorization token that should be used in the headers.</param>
+        /// <param name="authorization">API Authorization token that should be used in the headers.</param>
         public AuthResponse(string authorization = default(string))
         {
             this.Authorization = authorization;
         }
         
         /// <summary>
-        /// Authorization token that should be used in the headers
+        /// API Authorization token that should be used in the headers
         /// </summary>
-        /// <value>Authorization token that should be used in the headers</value>
+        /// <value>API Authorization token that should be used in the headers</value>
         [DataMember(Name="Authorization", EmitDefaultValue=false)]
         public string Authorization { get; set; }
 

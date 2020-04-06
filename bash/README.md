@@ -1,7 +1,7 @@
-# Evaluations API Bash client
+# AIcrowd Evaluations API Bash client
 
 ## Overview
-This is a Bash client script for accessing Evaluations API service.
+This is a Bash client script for accessing AIcrowd Evaluations API service.
 
 The script uses cURL underneath for making all REST calls.
 
@@ -97,33 +97,33 @@ Class | Method | HTTP request | Description
 *ArgoApi* | [**postGenericFeedbackContract**](docs/ArgoApi.md#postgenericfeedbackcontract) | **POST** /argo/{model_name}/{object_id} | 
 *ArgoApi* | [**postGraderFeedbackDao**](docs/ArgoApi.md#postgraderfeedbackdao) | **POST** /argo/graders/{grader_id} | 
 *ArgoApi* | [**postSubmissionFeedbackDao**](docs/ArgoApi.md#postsubmissionfeedbackdao) | **POST** /argo/submissions/{submission_id} | 
-*AuthApi* | [**postLogoutApi**](docs/AuthApi.md#postlogoutapi) | **POST** /auth/logout | 
-*AuthApi* | [**postUserLogin**](docs/AuthApi.md#postuserlogin) | **POST** /auth/login | 
-*ClustersApi* | [**deleteClusterDao**](docs/ClustersApi.md#deleteclusterdao) | **DELETE** /clusters/{cluster_id} | 
-*ClustersApi* | [**getClusterDao**](docs/ClustersApi.md#getclusterdao) | **GET** /clusters/{cluster_id} | 
-*ClustersApi* | [**getClusterListDao**](docs/ClustersApi.md#getclusterlistdao) | **GET** /clusters/ | 
-*ClustersApi* | [**postClusterListDao**](docs/ClustersApi.md#postclusterlistdao) | **POST** /clusters/ | 
-*GradersApi* | [**deleteGraderDao**](docs/GradersApi.md#deletegraderdao) | **DELETE** /graders/{grader_id} | 
-*GradersApi* | [**getGraderDao**](docs/GradersApi.md#getgraderdao) | **GET** /graders/{grader_id} | 
-*GradersApi* | [**getGraderListDao**](docs/GradersApi.md#getgraderlistdao) | **GET** /graders/ | 
-*GradersApi* | [**postGraderListDao**](docs/GradersApi.md#postgraderlistdao) | **POST** /graders/ | 
-*OrganisationsApi* | [**deleteOrganisationDao**](docs/OrganisationsApi.md#deleteorganisationdao) | **DELETE** /organisations/{organisation_id} | 
-*OrganisationsApi* | [**getOrganisationDao**](docs/OrganisationsApi.md#getorganisationdao) | **GET** /organisations/{organisation_id} | 
-*OrganisationsApi* | [**getOrganisationListDao**](docs/OrganisationsApi.md#getorganisationlistdao) | **GET** /organisations/ | 
-*OrganisationsApi* | [**postOrganisationListDao**](docs/OrganisationsApi.md#postorganisationlistdao) | **POST** /organisations/ | 
-*OrganisationsApi* | [**putOrganisationDao**](docs/OrganisationsApi.md#putorganisationdao) | **PUT** /organisations/{organisation_id} | 
-*OrganisationsApi* | [**putQuotaDao**](docs/OrganisationsApi.md#putquotadao) | **PUT** /organisations/addquota/{organisation_id} | 
-*SubmissionsApi* | [**deleteSubmissionDao**](docs/SubmissionsApi.md#deletesubmissiondao) | **DELETE** /submissions/{submission_id} | 
-*SubmissionsApi* | [**getSubmissionDao**](docs/SubmissionsApi.md#getsubmissiondao) | **GET** /submissions/{submission_id} | 
-*SubmissionsApi* | [**getSubmissionDataDao**](docs/SubmissionsApi.md#getsubmissiondatadao) | **GET** /submissions/{submission_id}/data | 
-*SubmissionsApi* | [**getSubmissionListDao**](docs/SubmissionsApi.md#getsubmissionlistdao) | **GET** /submissions/ | 
-*SubmissionsApi* | [**postSubmissionListDao**](docs/SubmissionsApi.md#postsubmissionlistdao) | **POST** /submissions/ | 
-*UsersApi* | [**deleteUserDao**](docs/UsersApi.md#deleteuserdao) | **DELETE** /users/{user_id} | 
-*UsersApi* | [**getUserDao**](docs/UsersApi.md#getuserdao) | **GET** /users/{user_id} | 
-*UsersApi* | [**getUserListDao**](docs/UsersApi.md#getuserlistdao) | **GET** /users/ | 
-*UsersApi* | [**postUserListDao**](docs/UsersApi.md#postuserlistdao) | **POST** /users/ | 
-*UsersApi* | [**putQuotaDao**](docs/UsersApi.md#putquotadao) | **PUT** /users/addquota/{user_id} | 
-*UsersApi* | [**putUserDao**](docs/UsersApi.md#putuserdao) | **PUT** /users/{user_id} | 
+*AuthApi* | [**login**](docs/AuthApi.md#login) | **POST** /auth/login | 
+*AuthApi* | [**logout**](docs/AuthApi.md#logout) | **POST** /auth/logout | 
+*ClustersApi* | [**createCluster**](docs/ClustersApi.md#createcluster) | **POST** /clusters/ | 
+*ClustersApi* | [**deleteCluster**](docs/ClustersApi.md#deletecluster) | **DELETE** /clusters/{cluster_id} | 
+*ClustersApi* | [**getCluster**](docs/ClustersApi.md#getcluster) | **GET** /clusters/{cluster_id} | 
+*ClustersApi* | [**listClusters**](docs/ClustersApi.md#listclusters) | **GET** /clusters/ | 
+*GradersApi* | [**createGrader**](docs/GradersApi.md#creategrader) | **POST** /graders/ | 
+*GradersApi* | [**deleteGrader**](docs/GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
+*GradersApi* | [**getGrader**](docs/GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
+*GradersApi* | [**listGraders**](docs/GradersApi.md#listgraders) | **GET** /graders/ | 
+*OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createorganisation) | **POST** /organisations/ | 
+*OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteorganisation) | **DELETE** /organisations/{organisation_id} | 
+*OrganisationsApi* | [**getOrganisation**](docs/OrganisationsApi.md#getorganisation) | **GET** /organisations/{organisation_id} | 
+*OrganisationsApi* | [**listOrganisations**](docs/OrganisationsApi.md#listorganisations) | **GET** /organisations/ | 
+*OrganisationsApi* | [**updateOrganisation**](docs/OrganisationsApi.md#updateorganisation) | **PUT** /organisations/{organisation_id} | 
+*OrganisationsApi* | [**updateOrganisationQuota**](docs/OrganisationsApi.md#updateorganisationquota) | **PUT** /organisations/{organisation_id}/addquota | 
+*SubmissionsApi* | [**createSubmission**](docs/SubmissionsApi.md#createsubmission) | **POST** /submissions/ | 
+*SubmissionsApi* | [**deleteSubmission**](docs/SubmissionsApi.md#deletesubmission) | **DELETE** /submissions/{submission_id} | 
+*SubmissionsApi* | [**getSubmission**](docs/SubmissionsApi.md#getsubmission) | **GET** /submissions/{submission_id} | 
+*SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getsubmissiondata) | **GET** /submissions/{submission_id}/data | 
+*SubmissionsApi* | [**listSubmissions**](docs/SubmissionsApi.md#listsubmissions) | **GET** /submissions/ | 
+*UsersApi* | [**createUser**](docs/UsersApi.md#createuser) | **POST** /users/ | 
+*UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteuser) | **DELETE** /users/{user_id} | 
+*UsersApi* | [**getUser**](docs/UsersApi.md#getuser) | **GET** /users/{user_id} | 
+*UsersApi* | [**listUsers**](docs/UsersApi.md#listusers) | **GET** /users/ | 
+*UsersApi* | [**updateUser**](docs/UsersApi.md#updateuser) | **PUT** /users/{user_id} | 
+*UsersApi* | [**updateUserQuota**](docs/UsersApi.md#updateuserquota) | **PUT** /users/{user_id}/addquota | 
 
 
 ## Documentation For Models

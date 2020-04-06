@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -35,282 +35,16 @@ impl<C: hyper::client::Connect> SubmissionsApiClient<C> {
 }
 
 pub trait SubmissionsApi {
-    fn delete_submission_dao(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn get_submission_dao(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
-    fn get_submission_data_dao(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn get_submission_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
-    fn post_submission_list_dao(&self, payload: ::models::Submissions, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
+    fn create_submission(&self, payload: ::models::Submissions, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
+    fn delete_submission(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn get_submission(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
+    fn get_submission_data(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn list_submissions(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
-    fn delete_submission_dao(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
-        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
-
-        let mut auth_headers = HashMap::<String, String>::new();
-        let mut auth_query = HashMap::<String, String>::new();
-        if let Some(ref apikey) = configuration.api_key {
-            let key = apikey.key.clone();
-            let val = match apikey.prefix {
-                Some(ref prefix) => format!("{} {}", prefix, key),
-                None => key,
-            };
-            auth_headers.insert("AUTHORIZATION".to_owned(), val);
-        };
-        let method = hyper::Method::Delete;
-
-        let query_string = {
-            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
-            for (key, val) in &auth_query {
-                query.append_pair(key, val);
-            }
-            query.finish()
-        };
-        let uri_str = format!("{}/submissions/{submission_id}?{}", configuration.base_path, query_string, submission_id=submission_id);
-
-        // TODO(farcaller): handle error
-        // if let Err(e) = uri {
-        //     return Box::new(futures::future::err(e));
-        // }
-        let mut uri: hyper::Uri = uri_str.parse().unwrap();
-
-        let mut req = hyper::Request::new(method, uri);
-
-        if let Some(ref user_agent) = configuration.user_agent {
-            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
-        }
-
-
-        for (key, val) in auth_headers {
-            req.headers_mut().set_raw(key, val);
-        }
-
-
-        // send request
-        Box::new(
-        configuration.client.request(req)
-            .map_err(|e| Error::from(e))
-            .and_then(|resp| {
-                let status = resp.status();
-                resp.body().concat2()
-                    .and_then(move |body| Ok((status, body)))
-                    .map_err(|e| Error::from(e))
-            })
-            .and_then(|(status, body)| {
-                if status.is_success() {
-                    Ok(body)
-                } else {
-                    Err(Error::from((status, &*body)))
-                }
-            })
-            .and_then(|_| futures::future::ok(()))
-        )
-    }
-
-    fn get_submission_dao(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>> {
-        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
-
-        let mut auth_headers = HashMap::<String, String>::new();
-        let mut auth_query = HashMap::<String, String>::new();
-        if let Some(ref apikey) = configuration.api_key {
-            let key = apikey.key.clone();
-            let val = match apikey.prefix {
-                Some(ref prefix) => format!("{} {}", prefix, key),
-                None => key,
-            };
-            auth_headers.insert("AUTHORIZATION".to_owned(), val);
-        };
-        let method = hyper::Method::Get;
-
-        let query_string = {
-            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
-            for (key, val) in &auth_query {
-                query.append_pair(key, val);
-            }
-            query.finish()
-        };
-        let uri_str = format!("{}/submissions/{submission_id}?{}", configuration.base_path, query_string, submission_id=submission_id);
-
-        // TODO(farcaller): handle error
-        // if let Err(e) = uri {
-        //     return Box::new(futures::future::err(e));
-        // }
-        let mut uri: hyper::Uri = uri_str.parse().unwrap();
-
-        let mut req = hyper::Request::new(method, uri);
-
-        if let Some(ref user_agent) = configuration.user_agent {
-            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
-        }
-
-        {
-            let mut headers = req.headers_mut();
-            headers.set_raw("X-Fields", x_fields);
-        }
-
-        for (key, val) in auth_headers {
-            req.headers_mut().set_raw(key, val);
-        }
-
-
-        // send request
-        Box::new(
-        configuration.client.request(req)
-            .map_err(|e| Error::from(e))
-            .and_then(|resp| {
-                let status = resp.status();
-                resp.body().concat2()
-                    .and_then(move |body| Ok((status, body)))
-                    .map_err(|e| Error::from(e))
-            })
-            .and_then(|(status, body)| {
-                if status.is_success() {
-                    Ok(body)
-                } else {
-                    Err(Error::from((status, &*body)))
-                }
-            })
-            .and_then(|body| {
-                let parsed: Result<::models::Submissions, _> = serde_json::from_slice(&body);
-                parsed.map_err(|e| Error::from(e))
-            })
-        )
-    }
-
-    fn get_submission_data_dao(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
-        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
-
-        let mut auth_headers = HashMap::<String, String>::new();
-        let mut auth_query = HashMap::<String, String>::new();
-        if let Some(ref apikey) = configuration.api_key {
-            let key = apikey.key.clone();
-            let val = match apikey.prefix {
-                Some(ref prefix) => format!("{} {}", prefix, key),
-                None => key,
-            };
-            auth_headers.insert("AUTHORIZATION".to_owned(), val);
-        };
-        let method = hyper::Method::Get;
-
-        let query_string = {
-            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
-            for (key, val) in &auth_query {
-                query.append_pair(key, val);
-            }
-            query.finish()
-        };
-        let uri_str = format!("{}/submissions/{submission_id}/data?{}", configuration.base_path, query_string, submission_id=submission_id);
-
-        // TODO(farcaller): handle error
-        // if let Err(e) = uri {
-        //     return Box::new(futures::future::err(e));
-        // }
-        let mut uri: hyper::Uri = uri_str.parse().unwrap();
-
-        let mut req = hyper::Request::new(method, uri);
-
-        if let Some(ref user_agent) = configuration.user_agent {
-            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
-        }
-
-
-        for (key, val) in auth_headers {
-            req.headers_mut().set_raw(key, val);
-        }
-
-
-        // send request
-        Box::new(
-        configuration.client.request(req)
-            .map_err(|e| Error::from(e))
-            .and_then(|resp| {
-                let status = resp.status();
-                resp.body().concat2()
-                    .and_then(move |body| Ok((status, body)))
-                    .map_err(|e| Error::from(e))
-            })
-            .and_then(|(status, body)| {
-                if status.is_success() {
-                    Ok(body)
-                } else {
-                    Err(Error::from((status, &*body)))
-                }
-            })
-            .and_then(|_| futures::future::ok(()))
-        )
-    }
-
-    fn get_submission_list_dao(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>> {
-        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
-
-        let mut auth_headers = HashMap::<String, String>::new();
-        let mut auth_query = HashMap::<String, String>::new();
-        if let Some(ref apikey) = configuration.api_key {
-            let key = apikey.key.clone();
-            let val = match apikey.prefix {
-                Some(ref prefix) => format!("{} {}", prefix, key),
-                None => key,
-            };
-            auth_headers.insert("AUTHORIZATION".to_owned(), val);
-        };
-        let method = hyper::Method::Get;
-
-        let query_string = {
-            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
-            for (key, val) in &auth_query {
-                query.append_pair(key, val);
-            }
-            query.finish()
-        };
-        let uri_str = format!("{}/submissions/?{}", configuration.base_path, query_string);
-
-        // TODO(farcaller): handle error
-        // if let Err(e) = uri {
-        //     return Box::new(futures::future::err(e));
-        // }
-        let mut uri: hyper::Uri = uri_str.parse().unwrap();
-
-        let mut req = hyper::Request::new(method, uri);
-
-        if let Some(ref user_agent) = configuration.user_agent {
-            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
-        }
-
-        {
-            let mut headers = req.headers_mut();
-            headers.set_raw("X-Fields", x_fields);
-        }
-
-        for (key, val) in auth_headers {
-            req.headers_mut().set_raw(key, val);
-        }
-
-
-        // send request
-        Box::new(
-        configuration.client.request(req)
-            .map_err(|e| Error::from(e))
-            .and_then(|resp| {
-                let status = resp.status();
-                resp.body().concat2()
-                    .and_then(move |body| Ok((status, body)))
-                    .map_err(|e| Error::from(e))
-            })
-            .and_then(|(status, body)| {
-                if status.is_success() {
-                    Ok(body)
-                } else {
-                    Err(Error::from((status, &*body)))
-                }
-            })
-            .and_then(|body| {
-                let parsed: Result<Vec<::models::Submissions>, _> = serde_json::from_slice(&body);
-                parsed.map_err(|e| Error::from(e))
-            })
-        )
-    }
-
-    fn post_submission_list_dao(&self, payload: ::models::Submissions, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>> {
+    fn create_submission(&self, payload: ::models::Submissions, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -379,6 +113,272 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
             })
             .and_then(|body| {
                 let parsed: Result<::models::Submissions, _> = serde_json::from_slice(&body);
+                parsed.map_err(|e| Error::from(e))
+            })
+        )
+    }
+
+    fn delete_submission(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Delete;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/submissions/{submission_id}?{}", configuration.base_path, query_string, submission_id=submission_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|_| futures::future::ok(()))
+        )
+    }
+
+    fn get_submission(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Get;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/submissions/{submission_id}?{}", configuration.base_path, query_string, submission_id=submission_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+        {
+            let mut headers = req.headers_mut();
+            headers.set_raw("X-Fields", x_fields);
+        }
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|body| {
+                let parsed: Result<::models::Submissions, _> = serde_json::from_slice(&body);
+                parsed.map_err(|e| Error::from(e))
+            })
+        )
+    }
+
+    fn get_submission_data(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Get;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/submissions/{submission_id}/data?{}", configuration.base_path, query_string, submission_id=submission_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|_| futures::future::ok(()))
+        )
+    }
+
+    fn list_submissions(&self, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Get;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/submissions/?{}", configuration.base_path, query_string);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+        {
+            let mut headers = req.headers_mut();
+            headers.set_raw("X-Fields", x_fields);
+        }
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|body| {
+                let parsed: Result<Vec<::models::Submissions>, _> = serde_json::from_slice(&body);
                 parsed.map_err(|e| Error::from(e))
             })
         )

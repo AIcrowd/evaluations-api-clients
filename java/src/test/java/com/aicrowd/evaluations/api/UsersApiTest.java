@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,15 +36,32 @@ public class UsersApiTest {
     /**
      * 
      *
+     * Create a new user
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createUserTest() throws ApiException {
+        User payload = null;
+        String xFields = null;
+        User response = api.createUser(payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Delete a user
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void deleteUserDaoTest() throws ApiException {
+    public void deleteUserTest() throws ApiException {
         Integer userId = null;
-        api.deleteUserDao(userId);
+        api.deleteUser(userId);
 
         // TODO: test validations
     }
@@ -58,10 +75,10 @@ public class UsersApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getUserDaoTest() throws ApiException {
+    public void getUserTest() throws ApiException {
         Integer userId = null;
         String xFields = null;
-        User response = api.getUserDao(userId, xFields);
+        User response = api.getUser(userId, xFields);
 
         // TODO: test validations
     }
@@ -75,43 +92,9 @@ public class UsersApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getUserListDaoTest() throws ApiException {
+    public void listUsersTest() throws ApiException {
         String xFields = null;
-        List<User> response = api.getUserListDao(xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Create a new user
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void postUserListDaoTest() throws ApiException {
-        User payload = null;
-        String xFields = null;
-        User response = api.postUserListDao(payload, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Add or subtract quota for a user
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void putQuotaDaoTest() throws ApiException {
-        Integer userId = null;
-        UserQuota payload = null;
-        api.putQuotaDao(userId, payload);
+        List<User> response = api.listUsers(xFields);
 
         // TODO: test validations
     }
@@ -125,11 +108,28 @@ public class UsersApiTest {
      *          if the Api call fails
      */
     @Test
-    public void putUserDaoTest() throws ApiException {
+    public void updateUserTest() throws ApiException {
         Integer userId = null;
         User payload = null;
         String xFields = null;
-        User response = api.putUserDao(userId, payload, xFields);
+        User response = api.updateUser(userId, payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Add or subtract quota for a user
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateUserQuotaTest() throws ApiException {
+        Integer userId = null;
+        UserQuota payload = null;
+        api.updateUserQuota(userId, payload);
 
         // TODO: test validations
     }

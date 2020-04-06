@@ -11,9 +11,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 

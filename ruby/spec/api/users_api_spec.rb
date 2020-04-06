@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,72 +32,72 @@ describe 'UsersApi' do
     end
   end
 
-  # unit tests for delete_user_dao
-  # Delete a user
-  # @param user_id User identifier
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_user_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_user_dao
-  # Get information of a user
-  # @param user_id User identifier
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [User]
-  describe 'get_user_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_user_list_dao
-  # Get all user
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Array<User>]
-  describe 'get_user_list_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_user_list_dao
+  # unit tests for create_user
   # Create a new user
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [User]
-  describe 'post_user_list_dao test' do
+  describe 'create_user test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for put_quota_dao
-  # Add or subtract quota for a user
-  # @param user_id User identifier
-  # @param payload 
+  # unit tests for delete_user
+  # Delete a user
+  # @param user_id 
   # @param [Hash] opts the optional parameters
   # @return [nil]
-  describe 'put_quota_dao test' do
+  describe 'delete_user test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for put_user_dao
+  # unit tests for get_user
+  # Get information of a user
+  # @param user_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [User]
+  describe 'get_user test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_users
+  # Get all user
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Array<User>]
+  describe 'list_users test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_user
   # Update a user
-  # @param user_id User identifier
+  # @param user_id 
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [User]
-  describe 'put_user_dao test' do
+  describe 'update_user test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_user_quota
+  # Add or subtract quota for a user
+  # @param user_id 
+  # @param payload 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'update_user_quota test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

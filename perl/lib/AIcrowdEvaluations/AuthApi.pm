@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -49,67 +49,7 @@ sub new {
 
 
 #
-# post_logout_api
-#
-# 
-# 
-# @param string $x_fields An optional fields mask (optional)
-{
-    my $params = {
-    'x_fields' => {
-        data_type => 'string',
-        description => 'An optional fields mask',
-        required => '0',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'post_logout_api' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'AuthLogout',
-        };
-}
-# @return AuthLogout
-#
-sub post_logout_api {
-    my ($self, %args) = @_;
-
-    # parse inputs
-    my $_resource_path = '/auth/logout';
-
-    my $_method = 'POST';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # header params
-    if ( exists $args{'x_fields'}) {
-        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('AuthLogout', $response);
-    return $_response_object;
-}
-
-#
-# post_user_login
+# login
 #
 # 
 # 
@@ -128,7 +68,7 @@ sub post_logout_api {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'post_user_login' } = { 
+    __PACKAGE__->method_documentation->{ 'login' } = { 
     	summary => '',
         params => $params,
         returns => 'AuthResponse',
@@ -136,12 +76,12 @@ sub post_logout_api {
 }
 # @return AuthResponse
 #
-sub post_user_login {
+sub login {
     my ($self, %args) = @_;
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling post_user_login");
+      croak("Missing the required parameter 'payload' when calling login");
     }
 
     # parse inputs
@@ -181,6 +121,66 @@ sub post_user_login {
         return;
     }
     my $_response_object = $self->{api_client}->deserialize('AuthResponse', $response);
+    return $_response_object;
+}
+
+#
+# logout
+#
+# 
+# 
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'logout' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'AuthLogout',
+        };
+}
+# @return AuthLogout
+#
+sub logout {
+    my ($self, %args) = @_;
+
+    # parse inputs
+    my $_resource_path = '/auth/logout';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('AuthLogout', $response);
     return $_response_object;
 }
 

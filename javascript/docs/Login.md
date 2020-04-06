@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | The email address | 
-**password** | **String** | The user password  | 
+**email** | **String** | Email address of the user | 
+**password** | **String** | Password corresponding to the Email address | 
 
 

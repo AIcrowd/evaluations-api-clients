@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -14,7 +14,7 @@ use serde_json::Value;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthResponse {
-  /// Authorization token that should be used in the headers
+  /// API Authorization token that should be used in the headers
   #[serde(rename = "Authorization")]
   authorization: Option<String>
 }

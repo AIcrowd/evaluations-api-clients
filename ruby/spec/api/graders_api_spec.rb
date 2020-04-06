@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,47 +32,47 @@ describe 'GradersApi' do
     end
   end
 
-  # unit tests for delete_grader_dao
-  # Delete a grader
-  # @param grader_id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_grader_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_grader_dao
-  # Get information of a grader
-  # @param grader_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Grader]
-  describe 'get_grader_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_grader_list_dao
-  # Get all grader
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Array<Grader>]
-  describe 'get_grader_list_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_grader_list_dao
+  # unit tests for create_grader
   # Create a new grader
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [Grader]
-  describe 'post_grader_list_dao test' do
+  describe 'create_grader test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete_grader
+  # Delete a grader by its ID
+  # @param grader_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_grader test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_grader
+  # Get details of a grader by its ID
+  # @param grader_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Grader]
+  describe 'get_grader test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_graders
+  # List all graders available
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Array<Grader>]
+  describe 'list_graders test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

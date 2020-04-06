@@ -4,16 +4,66 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**post_logout_api**](AuthApi.md#post_logout_api) | **POST** /auth/logout | 
-[**post_user_login**](AuthApi.md#post_user_login) | **POST** /auth/login | 
+[**login**](AuthApi.md#login) | **POST** /auth/login | 
+[**logout**](AuthApi.md#logout) | **POST** /auth/logout | 
 
 
-# **post_logout_api**
-> AuthLogout post_logout_api(opts)
+# **login**
+> AuthResponse login(payload, opts)
 
 
 
-Logout a user
+Log in a user with email and password.
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+
+api_instance = AIcrowdEvaluations::AuthApi.new
+
+payload = AIcrowdEvaluations::Login.new # Login | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.login(payload, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling AuthApi->login: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**AuthResponse**](AuthResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **logout**
+> AuthLogout logout(opts)
+
+
+
+Invalidate the current authorization token.
 
 ### Example
 ```ruby
@@ -34,10 +84,10 @@ opts = {
 }
 
 begin
-  result = api_instance.post_logout_api(opts)
+  result = api_instance.logout(opts)
   p result
 rescue AIcrowdEvaluations::ApiError => e
-  puts "Exception when calling AuthApi->post_logout_api: #{e}"
+  puts "Exception when calling AuthApi->logout: #{e}"
 end
 ```
 
@@ -54,56 +104,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **post_user_login**
-> AuthResponse post_user_login(payload, opts)
-
-
-
-User login
-
-### Example
-```ruby
-# load the gem
-require 'aicrowd_evaluations'
-
-api_instance = AIcrowdEvaluations::AuthApi.new
-
-payload = AIcrowdEvaluations::Login.new # Login | 
-
-opts = { 
-  x_fields: 'x_fields_example' # String | An optional fields mask
-}
-
-begin
-  result = api_instance.post_user_login(payload, opts)
-  p result
-rescue AIcrowdEvaluations::ApiError => e
-  puts "Exception when calling AuthApi->post_user_login: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Login**](Login.md)|  | 
- **x_fields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**AuthResponse**](AuthResponse.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,24 +48,74 @@
 
 
     /**
-     * Callback function to receive the result of the deleteClusterDao operation.
-     * @callback module:AIcrowdEvaluations/api/ClustersApi~deleteClusterDaoCallback
+     * Callback function to receive the result of the createCluster operation.
+     * @callback module:AIcrowdEvaluations/api/ClustersApi~createClusterCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/Cluster} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Add a new cluster to AIcrowd and install necessary dependencies
+     * @param {module:AIcrowdEvaluations/model/Cluster} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/ClustersApi~createClusterCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/Cluster}
+     */
+    this.createCluster = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling createCluster");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Cluster;
+
+      return this.apiClient.callApi(
+        '/clusters/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteCluster operation.
+     * @callback module:AIcrowdEvaluations/api/ClustersApi~deleteClusterCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Delete a cluster
+     * Delete a cluster by its ID
      * @param {Number} clusterId 
-     * @param {module:AIcrowdEvaluations/api/ClustersApi~deleteClusterDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/ClustersApi~deleteClusterCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.deleteClusterDao = function(clusterId, callback) {
+    this.deleteCluster = function(clusterId, callback) {
       var postBody = null;
 
       // verify the required parameter 'clusterId' is set
       if (clusterId === undefined || clusterId === null) {
-        throw new Error("Missing the required parameter 'clusterId' when calling deleteClusterDao");
+        throw new Error("Missing the required parameter 'clusterId' when calling deleteCluster");
       }
 
 
@@ -94,28 +144,28 @@
     }
 
     /**
-     * Callback function to receive the result of the getClusterDao operation.
-     * @callback module:AIcrowdEvaluations/api/ClustersApi~getClusterDaoCallback
+     * Callback function to receive the result of the getCluster operation.
+     * @callback module:AIcrowdEvaluations/api/ClustersApi~getClusterCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/Cluster} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get information of a cluster
+     * Get details of a cluster by its ID
      * @param {Number} clusterId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/ClustersApi~getClusterDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/ClustersApi~getClusterCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/Cluster}
      */
-    this.getClusterDao = function(clusterId, opts, callback) {
+    this.getCluster = function(clusterId, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'clusterId' is set
       if (clusterId === undefined || clusterId === null) {
-        throw new Error("Missing the required parameter 'clusterId' when calling getClusterDao");
+        throw new Error("Missing the required parameter 'clusterId' when calling getCluster");
       }
 
 
@@ -145,21 +195,21 @@
     }
 
     /**
-     * Callback function to receive the result of the getClusterListDao operation.
-     * @callback module:AIcrowdEvaluations/api/ClustersApi~getClusterListDaoCallback
+     * Callback function to receive the result of the listClusters operation.
+     * @callback module:AIcrowdEvaluations/api/ClustersApi~listClustersCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:AIcrowdEvaluations/model/Cluster>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get all clusters
+     * List all clusters available
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/ClustersApi~getClusterListDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/ClustersApi~listClustersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Cluster>}
      */
-    this.getClusterListDao = function(opts, callback) {
+    this.listClusters = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -183,56 +233,6 @@
 
       return this.apiClient.callApi(
         '/clusters/', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the postClusterListDao operation.
-     * @callback module:AIcrowdEvaluations/api/ClustersApi~postClusterListDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/Cluster} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Add a new cluster
-     * @param {module:AIcrowdEvaluations/model/Cluster} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/ClustersApi~postClusterListDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/Cluster}
-     */
-    this.postClusterListDao = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postClusterListDao");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Cluster;
-
-      return this.apiClient.callApi(
-        '/clusters/', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

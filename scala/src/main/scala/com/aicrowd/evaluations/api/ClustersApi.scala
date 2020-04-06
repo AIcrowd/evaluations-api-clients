@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -81,13 +81,41 @@ class ClustersApi(
 
   /**
    * 
-   * Delete a cluster
+   * Add a new cluster to AIcrowd and install necessary dependencies
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Cluster
+   */
+  def createCluster(payload: Cluster, xFields: Option[String] = None): Option[Cluster] = {
+    val await = Try(Await.result(createClusterAsync(payload, xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Add a new cluster to AIcrowd and install necessary dependencies
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(Cluster)
+   */
+  def createClusterAsync(payload: Cluster, xFields: Option[String] = None): Future[Cluster] = {
+      helper.createCluster(payload, xFields)
+  }
+
+  /**
+   * 
+   * Delete a cluster by its ID
    *
    * @param clusterId  
    * @return void
    */
-  def deleteClusterDao(clusterId: Integer) = {
-    val await = Try(Await.result(deleteClusterDaoAsync(clusterId), Duration.Inf))
+  def deleteCluster(clusterId: Integer) = {
+    val await = Try(Await.result(deleteClusterAsync(clusterId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -96,25 +124,25 @@ class ClustersApi(
 
   /**
    *  asynchronously
-   * Delete a cluster
+   * Delete a cluster by its ID
    *
    * @param clusterId  
    * @return Future(void)
    */
-  def deleteClusterDaoAsync(clusterId: Integer) = {
-      helper.deleteClusterDao(clusterId)
+  def deleteClusterAsync(clusterId: Integer) = {
+      helper.deleteCluster(clusterId)
   }
 
   /**
    * 
-   * Get information of a cluster
+   * Get details of a cluster by its ID
    *
    * @param clusterId  
    * @param xFields An optional fields mask (optional)
    * @return Cluster
    */
-  def getClusterDao(clusterId: Integer, xFields: Option[String] = None): Option[Cluster] = {
-    val await = Try(Await.result(getClusterDaoAsync(clusterId, xFields), Duration.Inf))
+  def getCluster(clusterId: Integer, xFields: Option[String] = None): Option[Cluster] = {
+    val await = Try(Await.result(getClusterAsync(clusterId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -123,25 +151,25 @@ class ClustersApi(
 
   /**
    *  asynchronously
-   * Get information of a cluster
+   * Get details of a cluster by its ID
    *
    * @param clusterId  
    * @param xFields An optional fields mask (optional)
    * @return Future(Cluster)
    */
-  def getClusterDaoAsync(clusterId: Integer, xFields: Option[String] = None): Future[Cluster] = {
-      helper.getClusterDao(clusterId, xFields)
+  def getClusterAsync(clusterId: Integer, xFields: Option[String] = None): Future[Cluster] = {
+      helper.getCluster(clusterId, xFields)
   }
 
   /**
    * 
-   * Get all clusters
+   * List all clusters available
    *
    * @param xFields An optional fields mask (optional)
    * @return List[Cluster]
    */
-  def getClusterListDao(xFields: Option[String] = None): Option[List[Cluster]] = {
-    val await = Try(Await.result(getClusterListDaoAsync(xFields), Duration.Inf))
+  def listClusters(xFields: Option[String] = None): Option[List[Cluster]] = {
+    val await = Try(Await.result(listClustersAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -150,48 +178,42 @@ class ClustersApi(
 
   /**
    *  asynchronously
-   * Get all clusters
+   * List all clusters available
    *
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Cluster])
    */
-  def getClusterListDaoAsync(xFields: Option[String] = None): Future[List[Cluster]] = {
-      helper.getClusterListDao(xFields)
-  }
-
-  /**
-   * 
-   * Add a new cluster
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Cluster
-   */
-  def postClusterListDao(payload: Cluster, xFields: Option[String] = None): Option[Cluster] = {
-    val await = Try(Await.result(postClusterListDaoAsync(payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Add a new cluster
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Cluster)
-   */
-  def postClusterListDaoAsync(payload: Cluster, xFields: Option[String] = None): Future[Cluster] = {
-      helper.postClusterListDao(payload, xFields)
+  def listClustersAsync(xFields: Option[String] = None): Future[List[Cluster]] = {
+      helper.listClusters(xFields)
   }
 
 }
 
 class ClustersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def deleteClusterDao(clusterId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def createCluster(payload: Cluster,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[Cluster], writer: RequestWriter[Cluster]): Future[Cluster] = {
+    // create path and map variables
+    val path = (addFmt("/clusters/"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling ClustersApi->createCluster")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def deleteCluster(clusterId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/clusters/{cluster_id}")
       replaceAll("\\{" + "cluster_id" + "\\}", clusterId.toString))
@@ -207,7 +229,7 @@ class ClustersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
     }
   }
 
-  def getClusterDao(clusterId: Integer,
+  def getCluster(clusterId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Cluster]): Future[Cluster] = {
     // create path and map variables
@@ -229,7 +251,7 @@ class ClustersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
     }
   }
 
-  def getClusterListDao(xFields: Option[String] = None
+  def listClusters(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Cluster]]): Future[List[Cluster]] = {
     // create path and map variables
     val path = (addFmt("/clusters/"))
@@ -244,28 +266,6 @@ class ClustersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def postClusterListDao(payload: Cluster,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Cluster], writer: RequestWriter[Cluster]): Future[Cluster] = {
-    // create path and map variables
-    val path = (addFmt("/clusters/"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling ClustersApi->postClusterListDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

@@ -12,35 +12,7 @@ defmodule AIcrowd.Evaluations.Api.Auth do
 
 
   @doc """
-  Logout a user
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.AuthLogout{}} on success
-  {:error, info} on failure
-  """
-  @spec post_logout_api(Tesla.Env.client, keyword()) :: {:ok, AIcrowd.Evaluations.Model.AuthLogout.t} | {:error, Tesla.Env.t}
-  def post_logout_api(connection, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:post)
-    |> url("/auth/logout")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.AuthLogout{})
-  end
-
-  @doc """
-  User login
+  Log in a user with email and password.
 
   ## Parameters
 
@@ -54,8 +26,8 @@ defmodule AIcrowd.Evaluations.Api.Auth do
   {:ok, %AIcrowd.Evaluations.Model.AuthResponse{}} on success
   {:error, info} on failure
   """
-  @spec post_user_login(Tesla.Env.client, AIcrowd.Evaluations.Model.Login.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.AuthResponse.t} | {:error, Tesla.Env.t}
-  def post_user_login(connection, payload, opts \\ []) do
+  @spec login(Tesla.Env.client, AIcrowd.Evaluations.Model.Login.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.AuthResponse.t} | {:error, Tesla.Env.t}
+  def login(connection, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -67,5 +39,33 @@ defmodule AIcrowd.Evaluations.Api.Auth do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode(%AIcrowd.Evaluations.Model.AuthResponse{})
+  end
+
+  @doc """
+  Invalidate the current authorization token.
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.AuthLogout{}} on success
+  {:error, info} on failure
+  """
+  @spec logout(Tesla.Env.client, keyword()) :: {:ok, AIcrowd.Evaluations.Model.AuthLogout.t} | {:error, Tesla.Env.t}
+  def logout(connection, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:post)
+    |> url("/auth/logout")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.AuthLogout{})
   end
 end

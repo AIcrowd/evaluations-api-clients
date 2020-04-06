@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -15,43 +15,43 @@ Please update as you see appropriate
 ]]
 describe("users_api", function()
   local aicrowd-evaluations_users_api = require "aicrowd-evaluations.api.users_api"
-  -- unit tests for delete_user_dao
-  describe("delete_user_dao test", function()
+  -- unit tests for create_user
+  describe("create_user test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_user_dao
-  describe("get_user_dao test", function()
+  -- unit tests for delete_user
+  describe("delete_user test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_user_list_dao
-  describe("get_user_list_dao test", function()
+  -- unit tests for get_user
+  describe("get_user test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for post_user_list_dao
-  describe("post_user_list_dao test", function()
+  -- unit tests for list_users
+  describe("list_users test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for put_quota_dao
-  describe("put_quota_dao test", function()
+  -- unit tests for update_user
+  describe("update_user test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for put_user_dao
-  describe("put_user_dao test", function()
+  -- unit tests for update_user_quota
+  describe("update_user_quota test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

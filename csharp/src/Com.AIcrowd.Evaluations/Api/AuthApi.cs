@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,92 +28,92 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Logout a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>AuthLogout</returns>
-        AuthLogout PostLogoutApi (string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Logout a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of AuthLogout</returns>
-        ApiResponse<AuthLogout> PostLogoutApiWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// User login
+        /// Log in a user with email and password.
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>AuthResponse</returns>
-        AuthResponse PostUserLogin (Login payload, string xFields = null);
+        AuthResponse Login (Login payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// User login
+        /// Log in a user with email and password.
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of AuthResponse</returns>
-        ApiResponse<AuthResponse> PostUserLoginWithHttpInfo (Login payload, string xFields = null);
+        ApiResponse<AuthResponse> LoginWithHttpInfo (Login payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Invalidate the current authorization token.
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthLogout</returns>
+        AuthLogout Logout (string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Invalidate the current authorization token.
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthLogout</returns>
+        ApiResponse<AuthLogout> LogoutWithHttpInfo (string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Logout a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of AuthLogout</returns>
-        System.Threading.Tasks.Task<AuthLogout> PostLogoutApiAsync (string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Logout a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (AuthLogout)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AuthLogout>> PostLogoutApiAsyncWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// User login
+        /// Log in a user with email and password.
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of AuthResponse</returns>
-        System.Threading.Tasks.Task<AuthResponse> PostUserLoginAsync (Login payload, string xFields = null);
+        System.Threading.Tasks.Task<AuthResponse> LoginAsync (Login payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// User login
+        /// Log in a user with email and password.
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> PostUserLoginAsyncWithHttpInfo (Login payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<AuthResponse>> LoginAsyncWithHttpInfo (Login payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Invalidate the current authorization token.
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthLogout</returns>
+        System.Threading.Tasks.Task<AuthLogout> LogoutAsync (string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Invalidate the current authorization token.
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthLogout)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthLogout>> LogoutAsyncWithHttpInfo (string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -215,169 +215,30 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Logout a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>AuthLogout</returns>
-        public AuthLogout PostLogoutApi (string xFields = null)
-        {
-             ApiResponse<AuthLogout> localVarResponse = PostLogoutApiWithHttpInfo(xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Logout a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of AuthLogout</returns>
-        public ApiResponse< AuthLogout > PostLogoutApiWithHttpInfo (string xFields = null)
-        {
-
-            var localVarPath = "/auth/logout";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostLogoutApi", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<AuthLogout>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
-        }
-
-        /// <summary>
-        ///  Logout a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of AuthLogout</returns>
-        public async System.Threading.Tasks.Task<AuthLogout> PostLogoutApiAsync (string xFields = null)
-        {
-             ApiResponse<AuthLogout> localVarResponse = await PostLogoutApiAsyncWithHttpInfo(xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Logout a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (AuthLogout)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AuthLogout>> PostLogoutApiAsyncWithHttpInfo (string xFields = null)
-        {
-
-            var localVarPath = "/auth/logout";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostLogoutApi", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<AuthLogout>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
-        }
-
-        /// <summary>
-        ///  User login
+        ///  Log in a user with email and password.
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>AuthResponse</returns>
-        public AuthResponse PostUserLogin (Login payload, string xFields = null)
+        public AuthResponse Login (Login payload, string xFields = null)
         {
-             ApiResponse<AuthResponse> localVarResponse = PostUserLoginWithHttpInfo(payload, xFields);
+             ApiResponse<AuthResponse> localVarResponse = LoginWithHttpInfo(payload, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  User login
+        ///  Log in a user with email and password.
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of AuthResponse</returns>
-        public ApiResponse< AuthResponse > PostUserLoginWithHttpInfo (Login payload, string xFields = null)
+        public ApiResponse< AuthResponse > LoginWithHttpInfo (Login payload, string xFields = null)
         {
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling AuthApi->PostUserLogin");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling AuthApi->Login");
 
             var localVarPath = "/auth/login";
             var localVarPathParams = new Dictionary<String, String>();
@@ -421,7 +282,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PostUserLogin", localVarResponse);
+                Exception exception = ExceptionFactory("Login", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -431,31 +292,31 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  User login
+        ///  Log in a user with email and password.
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of AuthResponse</returns>
-        public async System.Threading.Tasks.Task<AuthResponse> PostUserLoginAsync (Login payload, string xFields = null)
+        public async System.Threading.Tasks.Task<AuthResponse> LoginAsync (Login payload, string xFields = null)
         {
-             ApiResponse<AuthResponse> localVarResponse = await PostUserLoginAsyncWithHttpInfo(payload, xFields);
+             ApiResponse<AuthResponse> localVarResponse = await LoginAsyncWithHttpInfo(payload, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  User login
+        ///  Log in a user with email and password.
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (AuthResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AuthResponse>> PostUserLoginAsyncWithHttpInfo (Login payload, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AuthResponse>> LoginAsyncWithHttpInfo (Login payload, string xFields = null)
         {
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling AuthApi->PostUserLogin");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling AuthApi->Login");
 
             var localVarPath = "/auth/login";
             var localVarPathParams = new Dictionary<String, String>();
@@ -499,13 +360,152 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PostUserLogin", localVarResponse);
+                Exception exception = ExceptionFactory("Login", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<AuthResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AuthResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthResponse)));
+        }
+
+        /// <summary>
+        ///  Invalidate the current authorization token.
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>AuthLogout</returns>
+        public AuthLogout Logout (string xFields = null)
+        {
+             ApiResponse<AuthLogout> localVarResponse = LogoutWithHttpInfo(xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Invalidate the current authorization token.
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of AuthLogout</returns>
+        public ApiResponse< AuthLogout > LogoutWithHttpInfo (string xFields = null)
+        {
+
+            var localVarPath = "/auth/logout";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("Logout", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AuthLogout>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
+        }
+
+        /// <summary>
+        ///  Invalidate the current authorization token.
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of AuthLogout</returns>
+        public async System.Threading.Tasks.Task<AuthLogout> LogoutAsync (string xFields = null)
+        {
+             ApiResponse<AuthLogout> localVarResponse = await LogoutAsyncWithHttpInfo(xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Invalidate the current authorization token.
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (AuthLogout)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AuthLogout>> LogoutAsyncWithHttpInfo (string xFields = null)
+        {
+
+            var localVarPath = "/auth/logout";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("Logout", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AuthLogout>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AuthLogout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthLogout)));
         }
 
     }

@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -14,7 +14,7 @@ require 'date'
 
 module AIcrowdEvaluations
   class AuthResponse
-    # Authorization token that should be used in the headers
+    # API Authorization token that should be used in the headers
     attr_accessor :authorization
 
     # Attribute mapping from ruby-style variable name to JSON key.

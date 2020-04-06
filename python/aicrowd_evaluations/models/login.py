@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -54,7 +54,7 @@ class Login(object):
     def email(self):
         """Gets the email of this Login.  # noqa: E501
 
-        The email address  # noqa: E501
+        Email address of the user  # noqa: E501
 
         :return: The email of this Login.  # noqa: E501
         :rtype: str
@@ -65,7 +65,7 @@ class Login(object):
     def email(self, email):
         """Sets the email of this Login.
 
-        The email address  # noqa: E501
+        Email address of the user  # noqa: E501
 
         :param email: The email of this Login.  # noqa: E501
         :type: str
@@ -79,7 +79,7 @@ class Login(object):
     def password(self):
         """Gets the password of this Login.  # noqa: E501
 
-        The user password   # noqa: E501
+        Password corresponding to the Email address  # noqa: E501
 
         :return: The password of this Login.  # noqa: E501
         :rtype: str
@@ -90,7 +90,7 @@ class Login(object):
     def password(self, password):
         """Sets the password of this Login.
 
-        The user password   # noqa: E501
+        Password corresponding to the Email address  # noqa: E501
 
         :param password: The password of this Login.  # noqa: E501
         :type: str

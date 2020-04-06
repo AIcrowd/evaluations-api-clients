@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -43,7 +43,67 @@ local function new_users_api(host, basePath, schemes)
 	}, users_api_mt)
 end
 
-function users_api:delete_user_dao(user_id)
+function users_api:create_user(payload, x_fields)
+	local req = http_request.new_from_uri({
+		scheme = self.default_scheme;
+		host = self.host;
+		path = string.format("%s/users",
+			self.basePath);
+	})
+
+	-- set HTTP verb
+	req.headers:upsert(":method", "POST")
+	-- TODO: create a function to select proper accept
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_content_type = { "application/json" }
+	req.headers:upsert("accept", "application/json")
+
+	-- TODO: create a function to select proper content-type
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_accept = { "application/json" }
+	req.headers:upsert("content-type", "application/json")
+
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
+	req:set_body(dkjson.encode(payload))
+
+	-- api key in headers 'AUTHORIZATION'
+	if self.api_key['AUTHORIZATION'] then
+		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
+	end
+
+	-- make the HTTP call
+	local headers, stream, errno = req:go()
+	if not headers then
+		return nil, stream, errno
+	end
+	local http_status = headers:get(":status")
+	if http_status:sub(1,1) == "2" then
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return aicrowd-evaluations_user.cast(result), headers
+	else
+		local body, err, errno2 = stream:get_body_as_string()
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		-- return the error message (http body)
+		return nil, http_status, body
+	end
+end
+
+function users_api:delete_user(user_id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -87,7 +147,7 @@ function users_api:delete_user_dao(user_id)
 	end
 end
 
-function users_api:get_user_dao(user_id, x_fields)
+function users_api:get_user(user_id, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -145,7 +205,7 @@ function users_api:get_user_dao(user_id, x_fields)
 	end
 end
 
-function users_api:get_user_list_dao(x_fields)
+function users_api:list_users(x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -206,113 +266,7 @@ function users_api:get_user_list_dao(x_fields)
 	end
 end
 
-function users_api:post_user_list_dao(payload, x_fields)
-	local req = http_request.new_from_uri({
-		scheme = self.default_scheme;
-		host = self.host;
-		path = string.format("%s/users",
-			self.basePath);
-	})
-
-	-- set HTTP verb
-	req.headers:upsert(":method", "POST")
-	-- TODO: create a function to select proper accept
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
-
-	-- TODO: create a function to select proper content-type
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_accept = { "application/json" }
-	req.headers:upsert("content-type", "application/json")
-
-	if x_fields then
-		req.headers:upsert("X-Fields", x_fields)
-	end
-	req:set_body(dkjson.encode(payload))
-
-	-- api key in headers 'AUTHORIZATION'
-	if self.api_key['AUTHORIZATION'] then
-		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
-	end
-
-	-- make the HTTP call
-	local headers, stream, errno = req:go()
-	if not headers then
-		return nil, stream, errno
-	end
-	local http_status = headers:get(":status")
-	if http_status:sub(1,1) == "2" then
-		local body, err, errno2 = stream:get_body_as_string()
-		-- exception when getting the HTTP body
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		local result, _, err3 = dkjson.decode(body)
-		-- exception when decoding the HTTP body
-		if result == nil then
-			return nil, err3
-		end
-		return aicrowd-evaluations_user.cast(result), headers
-	else
-		local body, err, errno2 = stream:get_body_as_string()
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		-- return the error message (http body)
-		return nil, http_status, body
-	end
-end
-
-function users_api:put_quota_dao(user_id, payload)
-	local req = http_request.new_from_uri({
-		scheme = self.default_scheme;
-		host = self.host;
-		path = string.format("%s/users/addquota/%s",
-			self.basePath, user_id);
-	})
-
-	-- set HTTP verb
-	req.headers:upsert(":method", "PUT")
-	-- TODO: create a function to select proper accept
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
-
-	-- TODO: create a function to select proper content-type
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_accept = { "application/json" }
-	req.headers:upsert("content-type", "application/json")
-
-	req:set_body(dkjson.encode(payload))
-
-	-- api key in headers 'AUTHORIZATION'
-	if self.api_key['AUTHORIZATION'] then
-		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
-	end
-
-	-- make the HTTP call
-	local headers, stream, errno = req:go()
-	if not headers then
-		return nil, stream, errno
-	end
-	local http_status = headers:get(":status")
-	if http_status:sub(1,1) == "2" then
-		return nil, headers
-	else
-		local body, err, errno2 = stream:get_body_as_string()
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		-- return the error message (http body)
-		return nil, http_status, body
-	end
-end
-
-function users_api:put_user_dao(user_id, payload, x_fields)
+function users_api:update_user(user_id, payload, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -361,6 +315,52 @@ function users_api:put_user_dao(user_id, payload, x_fields)
 			return nil, err3
 		end
 		return aicrowd-evaluations_user.cast(result), headers
+	else
+		local body, err, errno2 = stream:get_body_as_string()
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		-- return the error message (http body)
+		return nil, http_status, body
+	end
+end
+
+function users_api:update_user_quota(user_id, payload)
+	local req = http_request.new_from_uri({
+		scheme = self.default_scheme;
+		host = self.host;
+		path = string.format("%s/users/%s/addquota",
+			self.basePath, user_id);
+	})
+
+	-- set HTTP verb
+	req.headers:upsert(":method", "PUT")
+	-- TODO: create a function to select proper accept
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_content_type = { "application/json" }
+	req.headers:upsert("accept", "application/json")
+
+	-- TODO: create a function to select proper content-type
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_accept = { "application/json" }
+	req.headers:upsert("content-type", "application/json")
+
+	req:set_body(dkjson.encode(payload))
+
+	-- api key in headers 'AUTHORIZATION'
+	if self.api_key['AUTHORIZATION'] then
+		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
+	end
+
+	-- make the HTTP call
+	local headers, stream, errno = req:go()
+	if not headers then
+		return nil, stream, errno
+	end
+	local http_status = headers:get(":status")
+	if http_status:sub(1,1) == "2" then
+		return nil, headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

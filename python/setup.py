@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -33,14 +33,14 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="Evaluations API",
+    description="AIcrowd Evaluations API",
     author_email="",
     url="git+https://gitlab.aicrowd.com/aicrowd/evaluations-api-clients.git#subdirectory&#x3D;python",
-    keywords=["Swagger", "Evaluations API"],
+    keywords=["Swagger", "AIcrowd Evaluations API"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
     """
 )

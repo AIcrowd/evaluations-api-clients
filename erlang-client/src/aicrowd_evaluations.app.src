@@ -1,5 +1,5 @@
 {application, aicrowd_evaluations,
- [{description, "API to create and evaluate custom challenges"},
+ [{description, "API to create and evaluate custom challenges on AIcrowd!"},
   {vsn, "0.1.0"},
   {registered, []},
   {applications,

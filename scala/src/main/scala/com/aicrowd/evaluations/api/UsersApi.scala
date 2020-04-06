@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -82,13 +82,41 @@ class UsersApi(
 
   /**
    * 
+   * Create a new user
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return User
+   */
+  def createUser(payload: User, xFields: Option[String] = None): Option[User] = {
+    val await = Try(Await.result(createUserAsync(payload, xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Create a new user
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(User)
+   */
+  def createUserAsync(payload: User, xFields: Option[String] = None): Future[User] = {
+      helper.createUser(payload, xFields)
+  }
+
+  /**
+   * 
    * Delete a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @return void
    */
-  def deleteUserDao(userId: Integer) = {
-    val await = Try(Await.result(deleteUserDaoAsync(userId), Duration.Inf))
+  def deleteUser(userId: Integer) = {
+    val await = Try(Await.result(deleteUserAsync(userId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -99,23 +127,23 @@ class UsersApi(
    *  asynchronously
    * Delete a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @return Future(void)
    */
-  def deleteUserDaoAsync(userId: Integer) = {
-      helper.deleteUserDao(userId)
+  def deleteUserAsync(userId: Integer) = {
+      helper.deleteUser(userId)
   }
 
   /**
    * 
    * Get information of a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @param xFields An optional fields mask (optional)
    * @return User
    */
-  def getUserDao(userId: Integer, xFields: Option[String] = None): Option[User] = {
-    val await = Try(Await.result(getUserDaoAsync(userId, xFields), Duration.Inf))
+  def getUser(userId: Integer, xFields: Option[String] = None): Option[User] = {
+    val await = Try(Await.result(getUserAsync(userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -126,12 +154,12 @@ class UsersApi(
    *  asynchronously
    * Get information of a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @param xFields An optional fields mask (optional)
    * @return Future(User)
    */
-  def getUserDaoAsync(userId: Integer, xFields: Option[String] = None): Future[User] = {
-      helper.getUserDao(userId, xFields)
+  def getUserAsync(userId: Integer, xFields: Option[String] = None): Future[User] = {
+      helper.getUser(userId, xFields)
   }
 
   /**
@@ -141,8 +169,8 @@ class UsersApi(
    * @param xFields An optional fields mask (optional)
    * @return List[User]
    */
-  def getUserListDao(xFields: Option[String] = None): Option[List[User]] = {
-    val await = Try(Await.result(getUserListDaoAsync(xFields), Duration.Inf))
+  def listUsers(xFields: Option[String] = None): Option[List[User]] = {
+    val await = Try(Await.result(listUsersAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -156,20 +184,21 @@ class UsersApi(
    * @param xFields An optional fields mask (optional)
    * @return Future(List[User])
    */
-  def getUserListDaoAsync(xFields: Option[String] = None): Future[List[User]] = {
-      helper.getUserListDao(xFields)
+  def listUsersAsync(xFields: Option[String] = None): Future[List[User]] = {
+      helper.listUsers(xFields)
   }
 
   /**
    * 
-   * Create a new user
+   * Update a user
    *
+   * @param userId  
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return User
    */
-  def postUserListDao(payload: User, xFields: Option[String] = None): Option[User] = {
-    val await = Try(Await.result(postUserListDaoAsync(payload, xFields), Duration.Inf))
+  def updateUser(userId: Integer, payload: User, xFields: Option[String] = None): Option[User] = {
+    val await = Try(Await.result(updateUserAsync(userId, payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -178,26 +207,27 @@ class UsersApi(
 
   /**
    *  asynchronously
-   * Create a new user
+   * Update a user
    *
+   * @param userId  
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Future(User)
    */
-  def postUserListDaoAsync(payload: User, xFields: Option[String] = None): Future[User] = {
-      helper.postUserListDao(payload, xFields)
+  def updateUserAsync(userId: Integer, payload: User, xFields: Option[String] = None): Future[User] = {
+      helper.updateUser(userId, payload, xFields)
   }
 
   /**
    * 
    * Add or subtract quota for a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @param payload  
    * @return void
    */
-  def putQuotaDao(userId: Integer, payload: UserQuota) = {
-    val await = Try(Await.result(putQuotaDaoAsync(userId, payload), Duration.Inf))
+  def updateUserQuota(userId: Integer, payload: UserQuota) = {
+    val await = Try(Await.result(updateUserQuotaAsync(userId, payload), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -208,49 +238,41 @@ class UsersApi(
    *  asynchronously
    * Add or subtract quota for a user
    *
-   * @param userId User identifier 
+   * @param userId  
    * @param payload  
    * @return Future(void)
    */
-  def putQuotaDaoAsync(userId: Integer, payload: UserQuota) = {
-      helper.putQuotaDao(userId, payload)
-  }
-
-  /**
-   * 
-   * Update a user
-   *
-   * @param userId User identifier 
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return User
-   */
-  def putUserDao(userId: Integer, payload: User, xFields: Option[String] = None): Option[User] = {
-    val await = Try(Await.result(putUserDaoAsync(userId, payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Update a user
-   *
-   * @param userId User identifier 
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(User)
-   */
-  def putUserDaoAsync(userId: Integer, payload: User, xFields: Option[String] = None): Future[User] = {
-      helper.putUserDao(userId, payload, xFields)
+  def updateUserQuotaAsync(userId: Integer, payload: UserQuota) = {
+      helper.updateUserQuota(userId, payload)
   }
 
 }
 
 class UsersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def deleteUserDao(userId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def createUser(payload: User,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[User], writer: RequestWriter[User]): Future[User] = {
+    // create path and map variables
+    val path = (addFmt("/users/"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->createUser")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def deleteUser(userId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/users/{user_id}")
       replaceAll("\\{" + "user_id" + "\\}", userId.toString))
@@ -266,7 +288,7 @@ class UsersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
   }
 
-  def getUserDao(userId: Integer,
+  def getUser(userId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[User]): Future[User] = {
     // create path and map variables
@@ -288,7 +310,7 @@ class UsersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
   }
 
-  def getUserListDao(xFields: Option[String] = None
+  def listUsers(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[User]]): Future[List[User]] = {
     // create path and map variables
     val path = (addFmt("/users/"))
@@ -308,47 +330,7 @@ class UsersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     }
   }
 
-  def postUserListDao(payload: User,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[User], writer: RequestWriter[User]): Future[User] = {
-    // create path and map variables
-    val path = (addFmt("/users/"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->postUserListDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def putQuotaDao(userId: Integer,
-    payload: UserQuota)(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[UserQuota]): Future[Unit] = {
-    // create path and map variables
-    val path = (addFmt("/users/addquota/{user_id}")
-      replaceAll("\\{" + "user_id" + "\\}", userId.toString))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->putQuotaDao")
-
-    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def putUserDao(userId: Integer,
+  def updateUser(userId: Integer,
     payload: User,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[User], writer: RequestWriter[User]): Future[User] = {
@@ -360,11 +342,29 @@ class UsersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->putUserDao")
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->updateUser")
     xFields match {
       case Some(param) => headerParams += "X-Fields" -> param.toString
       case _ => headerParams
     }
+
+    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def updateUserQuota(userId: Integer,
+    payload: UserQuota)(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[UserQuota]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/users/{user_id}/addquota")
+      replaceAll("\\{" + "user_id" + "\\}", userId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling UsersApi->updateUserQuota")
 
     val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>

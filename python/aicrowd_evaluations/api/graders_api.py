@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -33,13 +33,116 @@ class GradersApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def delete_grader_dao(self, grader_id, **kwargs):  # noqa: E501
-        """delete_grader_dao  # noqa: E501
+    def create_grader(self, payload, **kwargs):  # noqa: E501
+        """create_grader  # noqa: E501
 
-        Delete a grader  # noqa: E501
+        Create a new grader  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_grader_dao(grader_id, async_req=True)
+        >>> thread = api.create_grader(payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param Grader payload: (required)
+        :param str x_fields: An optional fields mask
+        :return: Grader
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.create_grader_with_http_info(payload, **kwargs)  # noqa: E501
+        else:
+            (data) = self.create_grader_with_http_info(payload, **kwargs)  # noqa: E501
+            return data
+
+    def create_grader_with_http_info(self, payload, **kwargs):  # noqa: E501
+        """create_grader  # noqa: E501
+
+        Create a new grader  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_grader_with_http_info(payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param Grader payload: (required)
+        :param str x_fields: An optional fields mask
+        :return: Grader
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['payload', 'x_fields']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_grader" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'payload' is set
+        if ('payload' not in params or
+                params['payload'] is None):
+            raise ValueError("Missing the required parameter `payload` when calling `create_grader`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'payload' in params:
+            body_params = params['payload']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/graders/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Grader',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def delete_grader(self, grader_id, **kwargs):  # noqa: E501
+        """delete_grader  # noqa: E501
+
+        Delete a grader by its ID  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_grader(grader_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -50,18 +153,18 @@ class GradersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_grader_dao_with_http_info(grader_id, **kwargs)  # noqa: E501
+            return self.delete_grader_with_http_info(grader_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_grader_dao_with_http_info(grader_id, **kwargs)  # noqa: E501
+            (data) = self.delete_grader_with_http_info(grader_id, **kwargs)  # noqa: E501
             return data
 
-    def delete_grader_dao_with_http_info(self, grader_id, **kwargs):  # noqa: E501
-        """delete_grader_dao  # noqa: E501
+    def delete_grader_with_http_info(self, grader_id, **kwargs):  # noqa: E501
+        """delete_grader  # noqa: E501
 
-        Delete a grader  # noqa: E501
+        Delete a grader by its ID  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_grader_dao_with_http_info(grader_id, async_req=True)
+        >>> thread = api.delete_grader_with_http_info(grader_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -82,14 +185,14 @@ class GradersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_grader_dao" % key
+                    " to method delete_grader" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'grader_id' is set
         if ('grader_id' not in params or
                 params['grader_id'] is None):
-            raise ValueError("Missing the required parameter `grader_id` when calling `delete_grader_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `grader_id` when calling `delete_grader`")  # noqa: E501
 
         collection_formats = {}
 
@@ -132,13 +235,13 @@ class GradersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_grader_dao(self, grader_id, **kwargs):  # noqa: E501
-        """get_grader_dao  # noqa: E501
+    def get_grader(self, grader_id, **kwargs):  # noqa: E501
+        """get_grader  # noqa: E501
 
-        Get information of a grader  # noqa: E501
+        Get details of a grader by its ID  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_grader_dao(grader_id, async_req=True)
+        >>> thread = api.get_grader(grader_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -150,18 +253,18 @@ class GradersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_grader_dao_with_http_info(grader_id, **kwargs)  # noqa: E501
+            return self.get_grader_with_http_info(grader_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_grader_dao_with_http_info(grader_id, **kwargs)  # noqa: E501
+            (data) = self.get_grader_with_http_info(grader_id, **kwargs)  # noqa: E501
             return data
 
-    def get_grader_dao_with_http_info(self, grader_id, **kwargs):  # noqa: E501
-        """get_grader_dao  # noqa: E501
+    def get_grader_with_http_info(self, grader_id, **kwargs):  # noqa: E501
+        """get_grader  # noqa: E501
 
-        Get information of a grader  # noqa: E501
+        Get details of a grader by its ID  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_grader_dao_with_http_info(grader_id, async_req=True)
+        >>> thread = api.get_grader_with_http_info(grader_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -183,14 +286,14 @@ class GradersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_grader_dao" % key
+                    " to method get_grader" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'grader_id' is set
         if ('grader_id' not in params or
                 params['grader_id'] is None):
-            raise ValueError("Missing the required parameter `grader_id` when calling `get_grader_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `grader_id` when calling `get_grader`")  # noqa: E501
 
         collection_formats = {}
 
@@ -235,13 +338,13 @@ class GradersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_grader_list_dao(self, **kwargs):  # noqa: E501
-        """get_grader_list_dao  # noqa: E501
+    def list_graders(self, **kwargs):  # noqa: E501
+        """list_graders  # noqa: E501
 
-        Get all grader  # noqa: E501
+        List all graders available  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_grader_list_dao(async_req=True)
+        >>> thread = api.list_graders(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -252,18 +355,18 @@ class GradersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_grader_list_dao_with_http_info(**kwargs)  # noqa: E501
+            return self.list_graders_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.get_grader_list_dao_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.list_graders_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_grader_list_dao_with_http_info(self, **kwargs):  # noqa: E501
-        """get_grader_list_dao  # noqa: E501
+    def list_graders_with_http_info(self, **kwargs):  # noqa: E501
+        """list_graders  # noqa: E501
 
-        Get all grader  # noqa: E501
+        List all graders available  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_grader_list_dao_with_http_info(async_req=True)
+        >>> thread = api.list_graders_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -284,7 +387,7 @@ class GradersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_grader_list_dao" % key
+                    " to method list_graders" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -323,109 +426,6 @@ class GradersApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='list[Grader]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def post_grader_list_dao(self, payload, **kwargs):  # noqa: E501
-        """post_grader_list_dao  # noqa: E501
-
-        Create a new grader  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_grader_list_dao(payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Grader payload: (required)
-        :param str x_fields: An optional fields mask
-        :return: Grader
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.post_grader_list_dao_with_http_info(payload, **kwargs)  # noqa: E501
-        else:
-            (data) = self.post_grader_list_dao_with_http_info(payload, **kwargs)  # noqa: E501
-            return data
-
-    def post_grader_list_dao_with_http_info(self, payload, **kwargs):  # noqa: E501
-        """post_grader_list_dao  # noqa: E501
-
-        Create a new grader  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_grader_list_dao_with_http_info(payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Grader payload: (required)
-        :param str x_fields: An optional fields mask
-        :return: Grader
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['payload', 'x_fields']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method post_grader_list_dao" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
-            raise ValueError("Missing the required parameter `payload` when calling `post_grader_list_dao`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-        if 'x_fields' in params:
-            header_params['X-Fields'] = params['x_fields']  # noqa: E501
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'payload' in params:
-            body_params = params['payload']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/graders/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Grader',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

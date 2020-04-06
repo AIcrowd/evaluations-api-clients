@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,42 +72,42 @@ class ClustersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for deleteClusterDao
+     * Test case for createCluster
      *
      * .
      *
      */
-    public function testDeleteClusterDao()
+    public function testCreateCluster()
     {
     }
 
     /**
-     * Test case for getClusterDao
+     * Test case for deleteCluster
      *
      * .
      *
      */
-    public function testGetClusterDao()
+    public function testDeleteCluster()
     {
     }
 
     /**
-     * Test case for getClusterListDao
+     * Test case for getCluster
      *
      * .
      *
      */
-    public function testGetClusterListDao()
+    public function testGetCluster()
     {
     }
 
     /**
-     * Test case for postClusterListDao
+     * Test case for listClusters
      *
      * .
      *
      */
-    public function testPostClusterListDao()
+    public function testListClusters()
     {
     }
 }

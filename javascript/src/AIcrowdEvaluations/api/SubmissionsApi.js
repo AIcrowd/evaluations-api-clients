@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,24 +48,74 @@
 
 
     /**
-     * Callback function to receive the result of the deleteSubmissionDao operation.
-     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~deleteSubmissionDaoCallback
+     * Callback function to receive the result of the createSubmission operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~createSubmissionCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/Submissions} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Make a new submission
+     * @param {module:AIcrowdEvaluations/model/Submissions} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~createSubmissionCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/Submissions}
+     */
+    this.createSubmission = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling createSubmission");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Submissions;
+
+      return this.apiClient.callApi(
+        '/submissions/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteSubmission operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~deleteSubmissionCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Stop evaluation of a submission
+     * Stop evaluation of a submission and delete it
      * @param {Number} submissionId 
-     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~deleteSubmissionDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~deleteSubmissionCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.deleteSubmissionDao = function(submissionId, callback) {
+    this.deleteSubmission = function(submissionId, callback) {
       var postBody = null;
 
       // verify the required parameter 'submissionId' is set
       if (submissionId === undefined || submissionId === null) {
-        throw new Error("Missing the required parameter 'submissionId' when calling deleteSubmissionDao");
+        throw new Error("Missing the required parameter 'submissionId' when calling deleteSubmission");
       }
 
 
@@ -94,28 +144,28 @@
     }
 
     /**
-     * Callback function to receive the result of the getSubmissionDao operation.
-     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDaoCallback
+     * Callback function to receive the result of the getSubmission operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/Submissions} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get details of a submission
+     * Get details of a submission by its ID
      * @param {Number} submissionId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/Submissions}
      */
-    this.getSubmissionDao = function(submissionId, opts, callback) {
+    this.getSubmission = function(submissionId, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'submissionId' is set
       if (submissionId === undefined || submissionId === null) {
-        throw new Error("Missing the required parameter 'submissionId' when calling getSubmissionDao");
+        throw new Error("Missing the required parameter 'submissionId' when calling getSubmission");
       }
 
 
@@ -145,24 +195,24 @@
     }
 
     /**
-     * Callback function to receive the result of the getSubmissionDataDao operation.
-     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDataDaoCallback
+     * Callback function to receive the result of the getSubmissionData operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDataCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get the submission data
+     * Get the submission data by submission ID
      * @param {Number} submissionId 
-     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDataDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionDataCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.getSubmissionDataDao = function(submissionId, callback) {
+    this.getSubmissionData = function(submissionId, callback) {
       var postBody = null;
 
       // verify the required parameter 'submissionId' is set
       if (submissionId === undefined || submissionId === null) {
-        throw new Error("Missing the required parameter 'submissionId' when calling getSubmissionDataDao");
+        throw new Error("Missing the required parameter 'submissionId' when calling getSubmissionData");
       }
 
 
@@ -191,21 +241,21 @@
     }
 
     /**
-     * Callback function to receive the result of the getSubmissionListDao operation.
-     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionListDaoCallback
+     * Callback function to receive the result of the listSubmissions operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~listSubmissionsCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:AIcrowdEvaluations/model/Submissions>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get all submissions
+     * List all submissions available
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionListDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~listSubmissionsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Submissions>}
      */
-    this.getSubmissionListDao = function(opts, callback) {
+    this.listSubmissions = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -229,56 +279,6 @@
 
       return this.apiClient.callApi(
         '/submissions/', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the postSubmissionListDao operation.
-     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~postSubmissionListDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/Submissions} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Make a new submission
-     * @param {module:AIcrowdEvaluations/model/Submissions} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~postSubmissionListDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/Submissions}
-     */
-    this.postSubmissionListDao = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postSubmissionListDao");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Submissions;
-
-      return this.apiClient.callApi(
-        '/submissions/', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

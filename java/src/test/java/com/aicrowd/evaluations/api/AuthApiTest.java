@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -37,15 +37,16 @@ public class AuthApiTest {
     /**
      * 
      *
-     * Logout a user
+     * Log in a user with email and password.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void postLogoutApiTest() throws ApiException {
+    public void loginTest() throws ApiException {
+        Login payload = null;
         String xFields = null;
-        AuthLogout response = api.postLogoutApi(xFields);
+        AuthResponse response = api.login(payload, xFields);
 
         // TODO: test validations
     }
@@ -53,16 +54,15 @@ public class AuthApiTest {
     /**
      * 
      *
-     * User login
+     * Invalidate the current authorization token.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void postUserLoginTest() throws ApiException {
-        Login payload = null;
+    public void logoutTest() throws ApiException {
         String xFields = null;
-        AuthResponse response = api.postUserLogin(payload, xFields);
+        AuthLogout response = api.logout(xFields);
 
         // TODO: test validations
     }

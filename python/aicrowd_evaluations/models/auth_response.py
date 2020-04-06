@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -51,7 +51,7 @@ class AuthResponse(object):
     def authorization(self):
         """Gets the authorization of this AuthResponse.  # noqa: E501
 
-        Authorization token that should be used in the headers  # noqa: E501
+        API Authorization token that should be used in the headers  # noqa: E501
 
         :return: The authorization of this AuthResponse.  # noqa: E501
         :rtype: str
@@ -62,7 +62,7 @@ class AuthResponse(object):
     def authorization(self, authorization):
         """Sets the authorization of this AuthResponse.
 
-        Authorization token that should be used in the headers  # noqa: E501
+        API Authorization token that should be used in the headers  # noqa: E501
 
         :param authorization: The authorization of this AuthResponse.  # noqa: E501
         :type: str

@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -15,29 +15,29 @@ Please update as you see appropriate
 ]]
 describe("clusters_api", function()
   local aicrowd-evaluations_clusters_api = require "aicrowd-evaluations.api.clusters_api"
-  -- unit tests for delete_cluster_dao
-  describe("delete_cluster_dao test", function()
+  -- unit tests for create_cluster
+  describe("create_cluster test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_cluster_dao
-  describe("get_cluster_dao test", function()
+  -- unit tests for delete_cluster
+  describe("delete_cluster test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_cluster_list_dao
-  describe("get_cluster_list_dao test", function()
+  -- unit tests for get_cluster
+  describe("get_cluster test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for post_cluster_list_dao
-  describe("post_cluster_list_dao test", function()
+  -- unit tests for list_clusters
+  describe("list_clusters test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

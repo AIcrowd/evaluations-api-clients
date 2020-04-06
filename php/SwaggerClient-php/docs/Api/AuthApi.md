@@ -4,16 +4,67 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**postLogoutApi**](AuthApi.md#postLogoutApi) | **POST** /auth/logout | 
-[**postUserLogin**](AuthApi.md#postUserLogin) | **POST** /auth/login | 
+[**login**](AuthApi.md#login) | **POST** /auth/login | 
+[**logout**](AuthApi.md#logout) | **POST** /auth/logout | 
 
 
-# **postLogoutApi**
-> \Swagger\Client\Model\AuthLogout postLogoutApi($x_fields)
+# **login**
+> \Swagger\Client\Model\AuthResponse login($payload, $x_fields)
 
 
 
-Logout a user
+Log in a user with email and password.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new Swagger\Client\Api\AuthApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$payload = new \Swagger\Client\Model\Login(); // \Swagger\Client\Model\Login | 
+$x_fields = "x_fields_example"; // string | An optional fields mask
+
+try {
+    $result = $apiInstance->login($payload, $x_fields);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthApi->login: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**\Swagger\Client\Model\Login**](../Model/Login.md)|  |
+ **x_fields** | **string**| An optional fields mask | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\AuthResponse**](../Model/AuthResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **logout**
+> \Swagger\Client\Model\AuthLogout logout($x_fields)
+
+
+
+Invalidate the current authorization token.
 
 ### Example
 ```php
@@ -34,10 +85,10 @@ $apiInstance = new Swagger\Client\Api\AuthApi(
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->postLogoutApi($x_fields);
+    $result = $apiInstance->logout($x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthApi->postLogoutApi: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthApi->logout: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -55,57 +106,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [api_key](../../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **postUserLogin**
-> \Swagger\Client\Model\AuthResponse postUserLogin($payload, $x_fields)
-
-
-
-User login
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$apiInstance = new Swagger\Client\Api\AuthApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$payload = new \Swagger\Client\Model\Login(); // \Swagger\Client\Model\Login | 
-$x_fields = "x_fields_example"; // string | An optional fields mask
-
-try {
-    $result = $apiInstance->postUserLogin($payload, $x_fields);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AuthApi->postUserLogin: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**\Swagger\Client\Model\Login**](../Model/Login.md)|  |
- **x_fields** | **string**| An optional fields mask | [optional]
-
-### Return type
-
-[**\Swagger\Client\Model\AuthResponse**](../Model/AuthResponse.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,62 +72,62 @@ class OrganisationsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for deleteOrganisationDao
+     * Test case for createOrganisation
      *
      * .
      *
      */
-    public function testDeleteOrganisationDao()
+    public function testCreateOrganisation()
     {
     }
 
     /**
-     * Test case for getOrganisationDao
+     * Test case for deleteOrganisation
      *
      * .
      *
      */
-    public function testGetOrganisationDao()
+    public function testDeleteOrganisation()
     {
     }
 
     /**
-     * Test case for getOrganisationListDao
+     * Test case for getOrganisation
      *
      * .
      *
      */
-    public function testGetOrganisationListDao()
+    public function testGetOrganisation()
     {
     }
 
     /**
-     * Test case for postOrganisationListDao
+     * Test case for listOrganisations
      *
      * .
      *
      */
-    public function testPostOrganisationListDao()
+    public function testListOrganisations()
     {
     }
 
     /**
-     * Test case for putOrganisationDao
+     * Test case for updateOrganisation
      *
      * .
      *
      */
-    public function testPutOrganisationDao()
+    public function testUpdateOrganisation()
     {
     }
 
     /**
-     * Test case for putQuotaDao
+     * Test case for updateOrganisationQuota
      *
      * .
      *
      */
-    public function testPutQuotaDao()
+    public function testUpdateOrganisationQuota()
     {
     }
 }

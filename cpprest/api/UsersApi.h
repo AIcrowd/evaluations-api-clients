@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -44,10 +44,22 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Create a new user
+    /// </remarks>
+    /// <param name="payload"></param>
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<User>> createUser(
+        std::shared_ptr<User> payload,
+        boost::optional<utility::string_t> xFields
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// Delete a user
     /// </remarks>
-    /// <param name="userId">User identifier</param>
-    pplx::task<void> deleteUserDao(
+    /// <param name="userId"></param>
+    pplx::task<void> deleteUser(
         int32_t userId
     );
     /// <summary>
@@ -56,9 +68,9 @@ public:
     /// <remarks>
     /// Get information of a user
     /// </remarks>
-    /// <param name="userId">User identifier</param>
+    /// <param name="userId"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<User>> getUserDao(
+    pplx::task<std::shared_ptr<User>> getUser(
         int32_t userId,
         boost::optional<utility::string_t> xFields
     );
@@ -69,18 +81,20 @@ public:
     /// Get all user
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<User>>> getUserListDao(
+    pplx::task<std::vector<std::shared_ptr<User>>> listUsers(
         boost::optional<utility::string_t> xFields
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// Create a new user
+    /// Update a user
     /// </remarks>
+    /// <param name="userId"></param>
     /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<User>> postUserListDao(
+    pplx::task<std::shared_ptr<User>> updateUser(
+        int32_t userId,
         std::shared_ptr<User> payload,
         boost::optional<utility::string_t> xFields
     );
@@ -90,25 +104,11 @@ public:
     /// <remarks>
     /// Add or subtract quota for a user
     /// </remarks>
-    /// <param name="userId">User identifier</param>
+    /// <param name="userId"></param>
     /// <param name="payload"></param>
-    pplx::task<void> putQuotaDao(
+    pplx::task<void> updateUserQuota(
         int32_t userId,
         std::shared_ptr<UserQuota> payload
-    );
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// Update a user
-    /// </remarks>
-    /// <param name="userId">User identifier</param>
-    /// <param name="payload"></param>
-    /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<User>> putUserDao(
-        int32_t userId,
-        std::shared_ptr<User> payload,
-        boost::optional<utility::string_t> xFields
     );
 
 protected:

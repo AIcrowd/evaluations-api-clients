@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -15,15 +15,15 @@ Please update as you see appropriate
 ]]
 describe("auth_api", function()
   local aicrowd-evaluations_auth_api = require "aicrowd-evaluations.api.auth_api"
-  -- unit tests for post_logout_api
-  describe("post_logout_api test", function()
+  -- unit tests for login
+  describe("login test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for post_user_login
-  describe("post_user_login test", function()
+  -- unit tests for logout
+  describe("logout test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

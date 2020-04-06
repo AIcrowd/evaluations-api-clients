@@ -9,18 +9,71 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_grader_dao**](GradersApi.md#delete_grader_dao) | **DELETE** /graders/{grader_id} | 
-[**get_grader_dao**](GradersApi.md#get_grader_dao) | **GET** /graders/{grader_id} | 
-[**get_grader_list_dao**](GradersApi.md#get_grader_list_dao) | **GET** /graders/ | 
-[**post_grader_list_dao**](GradersApi.md#post_grader_list_dao) | **POST** /graders/ | 
+[**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
+[**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
+[**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
+[**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
 
 
-# **delete_grader_dao**
-> delete_grader_dao(grader_id => $grader_id)
+# **create_grader**
+> Grader create_grader(payload => $payload, x_fields => $x_fields)
 
 
 
-Delete a grader
+Create a new grader
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $payload = AIcrowdEvaluations::Object::Grader->new(); # Grader | 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
+
+eval { 
+    my $result = $api_instance->create_grader(payload => $payload, x_fields => $x_fields);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling GradersApi->create_grader: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  | 
+ **x_fields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_grader**
+> delete_grader(grader_id => $grader_id)
+
+
+
+Delete a grader by its ID
 
 ### Example 
 ```perl
@@ -37,10 +90,10 @@ my $api_instance = AIcrowdEvaluations::GradersApi->new(
 my $grader_id = 56; # int | 
 
 eval { 
-    $api_instance->delete_grader_dao(grader_id => $grader_id);
+    $api_instance->delete_grader(grader_id => $grader_id);
 };
 if ($@) {
-    warn "Exception when calling GradersApi->delete_grader_dao: $@\n";
+    warn "Exception when calling GradersApi->delete_grader: $@\n";
 }
 ```
 
@@ -65,12 +118,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_dao**
-> Grader get_grader_dao(grader_id => $grader_id, x_fields => $x_fields)
+# **get_grader**
+> Grader get_grader(grader_id => $grader_id, x_fields => $x_fields)
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example 
 ```perl
@@ -88,11 +141,11 @@ my $grader_id = 56; # int |
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_grader_dao(grader_id => $grader_id, x_fields => $x_fields);
+    my $result = $api_instance->get_grader(grader_id => $grader_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling GradersApi->get_grader_dao: $@\n";
+    warn "Exception when calling GradersApi->get_grader: $@\n";
 }
 ```
 
@@ -118,12 +171,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_list_dao**
-> ARRAY[Grader] get_grader_list_dao(x_fields => $x_fields)
+# **list_graders**
+> ARRAY[Grader] list_graders(x_fields => $x_fields)
 
 
 
-Get all grader
+List all graders available
 
 ### Example 
 ```perl
@@ -140,11 +193,11 @@ my $api_instance = AIcrowdEvaluations::GradersApi->new(
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_grader_list_dao(x_fields => $x_fields);
+    my $result = $api_instance->list_graders(x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling GradersApi->get_grader_list_dao: $@\n";
+    warn "Exception when calling GradersApi->list_graders: $@\n";
 }
 ```
 
@@ -157,59 +210,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ARRAY[Grader]**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_grader_list_dao**
-> Grader post_grader_list_dao(payload => $payload, x_fields => $x_fields)
-
-
-
-Create a new grader
-
-### Example 
-```perl
-use Data::Dumper;
-use AIcrowdEvaluations::GradersApi;
-my $api_instance = AIcrowdEvaluations::GradersApi->new(
-
-    # Configure API key authorization: api_key
-    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
-);
-
-my $payload = AIcrowdEvaluations::Object::Grader->new(); # Grader | 
-my $x_fields = 'x_fields_example'; # string | An optional fields mask
-
-eval { 
-    my $result = $api_instance->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling GradersApi->post_grader_list_dao: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **x_fields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

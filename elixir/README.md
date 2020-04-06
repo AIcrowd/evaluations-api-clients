@@ -1,6 +1,6 @@
 # AIcrowd.Evaluations
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 ## Installation
 

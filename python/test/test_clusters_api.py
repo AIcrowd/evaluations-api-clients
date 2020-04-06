@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -29,26 +29,26 @@ class TestClustersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_delete_cluster_dao(self):
-        """Test case for delete_cluster_dao
+    def test_create_cluster(self):
+        """Test case for create_cluster
 
         """
         pass
 
-    def test_get_cluster_dao(self):
-        """Test case for get_cluster_dao
+    def test_delete_cluster(self):
+        """Test case for delete_cluster
 
         """
         pass
 
-    def test_get_cluster_list_dao(self):
-        """Test case for get_cluster_list_dao
+    def test_get_cluster(self):
+        """Test case for get_cluster
 
         """
         pass
 
-    def test_post_cluster_list_dao(self):
-        """Test case for post_cluster_list_dao
+    def test_list_clusters(self):
+        """Test case for list_clusters
 
         """
         pass

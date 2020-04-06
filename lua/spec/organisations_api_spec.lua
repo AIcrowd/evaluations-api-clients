@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -15,43 +15,43 @@ Please update as you see appropriate
 ]]
 describe("organisations_api", function()
   local aicrowd-evaluations_organisations_api = require "aicrowd-evaluations.api.organisations_api"
-  -- unit tests for delete_organisation_dao
-  describe("delete_organisation_dao test", function()
+  -- unit tests for create_organisation
+  describe("create_organisation test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_organisation_dao
-  describe("get_organisation_dao test", function()
+  -- unit tests for delete_organisation
+  describe("delete_organisation test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_organisation_list_dao
-  describe("get_organisation_list_dao test", function()
+  -- unit tests for get_organisation
+  describe("get_organisation test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for post_organisation_list_dao
-  describe("post_organisation_list_dao test", function()
+  -- unit tests for list_organisations
+  describe("list_organisations test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for put_organisation_dao
-  describe("put_organisation_dao test", function()
+  -- unit tests for update_organisation
+  describe("update_organisation test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for put_quota_dao
-  describe("put_quota_dao test", function()
+  -- unit tests for update_organisation_quota
+  describe("update_organisation_quota test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

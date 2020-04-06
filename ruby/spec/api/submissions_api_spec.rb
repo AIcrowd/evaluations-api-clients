@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,58 +32,58 @@ describe 'SubmissionsApi' do
     end
   end
 
-  # unit tests for delete_submission_dao
-  # Stop evaluation of a submission
-  # @param submission_id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_submission_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_submission_dao
-  # Get details of a submission
-  # @param submission_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Submissions]
-  describe 'get_submission_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_submission_data_dao
-  # Get the submission data
-  # @param submission_id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'get_submission_data_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_submission_list_dao
-  # Get all submissions
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Array<Submissions>]
-  describe 'get_submission_list_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_submission_list_dao
+  # unit tests for create_submission
   # Make a new submission
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [Submissions]
-  describe 'post_submission_list_dao test' do
+  describe 'create_submission test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete_submission
+  # Stop evaluation of a submission and delete it
+  # @param submission_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_submission test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_submission
+  # Get details of a submission by its ID
+  # @param submission_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Submissions]
+  describe 'get_submission test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_submission_data
+  # Get the submission data by submission ID
+  # @param submission_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'get_submission_data test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_submissions
+  # List all submissions available
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Array<Submissions>]
+  describe 'list_submissions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

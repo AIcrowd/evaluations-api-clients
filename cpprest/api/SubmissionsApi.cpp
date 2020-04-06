@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,483 +36,13 @@ SubmissionsApi::~SubmissionsApi()
 {
 }
 
-pplx::task<void> SubmissionsApi::deleteSubmissionDao(int32_t submissionId)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->deleteSubmissionDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->deleteSubmissionDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling deleteSubmissionDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteSubmissionDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        return void();
-    });
-}
-pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::getSubmissionDao(int32_t submissionId, boost::optional<utility::string_t> xFields)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->getSubmissionDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->getSubmissionDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getSubmissionDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getSubmissionDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::shared_ptr<Submissions> result(new Submissions());
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            result->fromJson(json);
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getSubmissionDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<void> SubmissionsApi::getSubmissionDataDao(int32_t submissionId)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}/data");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->getSubmissionDataDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->getSubmissionDataDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getSubmissionDataDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getSubmissionDataDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        return void();
-    });
-}
-pplx::task<std::vector<std::shared_ptr<Submissions>>> SubmissionsApi::getSubmissionListDao(boost::optional<utility::string_t> xFields)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/submissions/");
-    
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->getSubmissionListDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->getSubmissionListDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getSubmissionListDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getSubmissionListDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::vector<std::shared_ptr<Submissions>> result;
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            for( auto& item : json.as_array() )
-            {
-                std::shared_ptr<Submissions> itemObj(new Submissions());
-                itemObj->fromJson(item);
-                result.push_back(itemObj);
-                
-            }
-            
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getSubmissionListDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(std::shared_ptr<Submissions> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::createSubmission(std::shared_ptr<Submissions> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling SubmissionsApi->postSubmissionListDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling SubmissionsApi->createSubmission"));
     }
 
 
@@ -546,7 +76,7 @@ pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(s
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->postSubmissionListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->createSubmission does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -589,7 +119,7 @@ pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(s
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->postSubmissionListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->createSubmission does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -612,7 +142,7 @@ pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(s
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling postSubmissionListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling createSubmission: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -623,7 +153,7 @@ pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(s
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postSubmissionListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling createSubmission: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -647,7 +177,477 @@ pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::postSubmissionListDao(s
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postSubmissionListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling createSubmission: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<void> SubmissionsApi::deleteSubmission(int32_t submissionId)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->deleteSubmission does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->deleteSubmission does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling deleteSubmission: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling deleteSubmission: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
+    });
+}
+pplx::task<std::shared_ptr<Submissions>> SubmissionsApi::getSubmission(int32_t submissionId, boost::optional<utility::string_t> xFields)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->getSubmission does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->getSubmission does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling getSubmission: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getSubmission: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Submissions> result(new Submissions());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getSubmission: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<void> SubmissionsApi::getSubmissionData(int32_t submissionId)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/submissions/{submission_id}/data");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("submission_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(submissionId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->getSubmissionData does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->getSubmissionData does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling getSubmissionData: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getSubmissionData: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Submissions>>> SubmissionsApi::listSubmissions(boost::optional<utility::string_t> xFields)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/submissions/");
+    
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("SubmissionsApi->listSubmissions does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("SubmissionsApi->listSubmissions does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling listSubmissions: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling listSubmissions: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::vector<std::shared_ptr<Submissions>> result;
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            for( auto& item : json.as_array() )
+            {
+                std::shared_ptr<Submissions> itemObj(new Submissions());
+                itemObj->fromJson(item);
+                result.push_back(itemObj);
+                
+            }
+            
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling listSubmissions: unsupported response type"));
         }
 
         return result;

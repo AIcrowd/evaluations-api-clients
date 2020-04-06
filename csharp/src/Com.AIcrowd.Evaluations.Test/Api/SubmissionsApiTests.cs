@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -65,65 +65,65 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
-        /// Test DeleteSubmissionDao
+        /// Test CreateSubmission
         /// </summary>
         [Test]
-        public void DeleteSubmissionDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? submissionId = null;
-            //instance.DeleteSubmissionDao(submissionId);
-            
-        }
-        
-        /// <summary>
-        /// Test GetSubmissionDao
-        /// </summary>
-        [Test]
-        public void GetSubmissionDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? submissionId = null;
-            //string xFields = null;
-            //var response = instance.GetSubmissionDao(submissionId, xFields);
-            //Assert.IsInstanceOf<Submissions> (response, "response is Submissions");
-        }
-        
-        /// <summary>
-        /// Test GetSubmissionDataDao
-        /// </summary>
-        [Test]
-        public void GetSubmissionDataDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? submissionId = null;
-            //instance.GetSubmissionDataDao(submissionId);
-            
-        }
-        
-        /// <summary>
-        /// Test GetSubmissionListDao
-        /// </summary>
-        [Test]
-        public void GetSubmissionListDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string xFields = null;
-            //var response = instance.GetSubmissionListDao(xFields);
-            //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
-        }
-        
-        /// <summary>
-        /// Test PostSubmissionListDao
-        /// </summary>
-        [Test]
-        public void PostSubmissionListDaoTest()
+        public void CreateSubmissionTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Submissions payload = null;
             //string xFields = null;
-            //var response = instance.PostSubmissionListDao(payload, xFields);
+            //var response = instance.CreateSubmission(payload, xFields);
             //Assert.IsInstanceOf<Submissions> (response, "response is Submissions");
+        }
+        
+        /// <summary>
+        /// Test DeleteSubmission
+        /// </summary>
+        [Test]
+        public void DeleteSubmissionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? submissionId = null;
+            //instance.DeleteSubmission(submissionId);
+            
+        }
+        
+        /// <summary>
+        /// Test GetSubmission
+        /// </summary>
+        [Test]
+        public void GetSubmissionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? submissionId = null;
+            //string xFields = null;
+            //var response = instance.GetSubmission(submissionId, xFields);
+            //Assert.IsInstanceOf<Submissions> (response, "response is Submissions");
+        }
+        
+        /// <summary>
+        /// Test GetSubmissionData
+        /// </summary>
+        [Test]
+        public void GetSubmissionDataTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? submissionId = null;
+            //instance.GetSubmissionData(submissionId);
+            
+        }
+        
+        /// <summary>
+        /// Test ListSubmissions
+        /// </summary>
+        [Test]
+        public void ListSubmissionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xFields = null;
+            //var response = instance.ListSubmissions(xFields);
+            //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
         }
         
     }

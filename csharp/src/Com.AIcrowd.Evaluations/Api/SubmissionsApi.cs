@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,222 +28,222 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Stop evaluation of a submission
+        /// Make a new submission
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="submissionId"></param>
-        /// <returns></returns>
-        void DeleteSubmissionDao (int? submissionId);
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Submissions</returns>
+        Submissions CreateSubmission (Submissions payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Stop evaluation of a submission
+        /// Make a new submission
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="submissionId"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteSubmissionDaoWithHttpInfo (int? submissionId);
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Submissions</returns>
+        ApiResponse<Submissions> CreateSubmissionWithHttpInfo (Submissions payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get details of a submission
+        /// Stop evaluation of a submission and delete it
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns></returns>
+        void DeleteSubmission (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop evaluation of a submission and delete it
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteSubmissionWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Submissions</returns>
-        Submissions GetSubmissionDao (int? submissionId, string xFields = null);
+        Submissions GetSubmission (int? submissionId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get details of a submission
+        /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Submissions</returns>
-        ApiResponse<Submissions> GetSubmissionDaoWithHttpInfo (int? submissionId, string xFields = null);
+        ApiResponse<Submissions> GetSubmissionWithHttpInfo (int? submissionId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission data
+        /// Get the submission data by submission ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns></returns>
-        void GetSubmissionDataDao (int? submissionId);
+        void GetSubmissionData (int? submissionId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission data
+        /// Get the submission data by submission ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetSubmissionDataDaoWithHttpInfo (int? submissionId);
+        ApiResponse<Object> GetSubmissionDataWithHttpInfo (int? submissionId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all submissions
+        /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        List<Submissions> GetSubmissionListDao (string xFields = null);
+        List<Submissions> ListSubmissions (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all submissions
+        /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        ApiResponse<List<Submissions>> GetSubmissionListDaoWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Make a new submission
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Submissions</returns>
-        Submissions PostSubmissionListDao (Submissions payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Make a new submission
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Submissions</returns>
-        ApiResponse<Submissions> PostSubmissionListDaoWithHttpInfo (Submissions payload, string xFields = null);
+        ApiResponse<List<Submissions>> ListSubmissionsWithHttpInfo (string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Stop evaluation of a submission
+        /// Make a new submission
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="submissionId"></param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteSubmissionDaoAsync (int? submissionId);
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Submissions</returns>
+        System.Threading.Tasks.Task<Submissions> CreateSubmissionAsync (Submissions payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Stop evaluation of a submission
+        /// Make a new submission
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="submissionId"></param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteSubmissionDaoAsyncWithHttpInfo (int? submissionId);
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Submissions)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Submissions>> CreateSubmissionAsyncWithHttpInfo (Submissions payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get details of a submission
+        /// Stop evaluation of a submission and delete it
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteSubmissionAsync (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Stop evaluation of a submission and delete it
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteSubmissionAsyncWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Submissions</returns>
-        System.Threading.Tasks.Task<Submissions> GetSubmissionDaoAsync (int? submissionId, string xFields = null);
+        System.Threading.Tasks.Task<Submissions> GetSubmissionAsync (int? submissionId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get details of a submission
+        /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Submissions)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Submissions>> GetSubmissionDaoAsyncWithHttpInfo (int? submissionId, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Submissions>> GetSubmissionAsyncWithHttpInfo (int? submissionId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission data
+        /// Get the submission data by submission ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetSubmissionDataDaoAsync (int? submissionId);
+        System.Threading.Tasks.Task GetSubmissionDataAsync (int? submissionId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission data
+        /// Get the submission data by submission ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionDataDaoAsyncWithHttpInfo (int? submissionId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionDataAsyncWithHttpInfo (int? submissionId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all submissions
+        /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        System.Threading.Tasks.Task<List<Submissions>> GetSubmissionListDaoAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all submissions
+        /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> GetSubmissionListDaoAsyncWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Make a new submission
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Submissions</returns>
-        System.Threading.Tasks.Task<Submissions> PostSubmissionListDaoAsync (Submissions payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Make a new submission
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Submissions)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Submissions>> PostSubmissionListDaoAsyncWithHttpInfo (Submissions payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -345,27 +345,192 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Stop evaluation of a submission
+        ///  Make a new submission
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Submissions</returns>
+        public Submissions CreateSubmission (Submissions payload, string xFields = null)
+        {
+             ApiResponse<Submissions> localVarResponse = CreateSubmissionWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Make a new submission
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Submissions</returns>
+        public ApiResponse< Submissions > CreateSubmissionWithHttpInfo (Submissions payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling SubmissionsApi->CreateSubmission");
+
+            var localVarPath = "/submissions/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateSubmission", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Submissions>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Submissions) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Submissions)));
+        }
+
+        /// <summary>
+        ///  Make a new submission
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Submissions</returns>
+        public async System.Threading.Tasks.Task<Submissions> CreateSubmissionAsync (Submissions payload, string xFields = null)
+        {
+             ApiResponse<Submissions> localVarResponse = await CreateSubmissionAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Make a new submission
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Submissions)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Submissions>> CreateSubmissionAsyncWithHttpInfo (Submissions payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling SubmissionsApi->CreateSubmission");
+
+            var localVarPath = "/submissions/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateSubmission", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Submissions>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Submissions) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Submissions)));
+        }
+
+        /// <summary>
+        ///  Stop evaluation of a submission and delete it
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns></returns>
-        public void DeleteSubmissionDao (int? submissionId)
+        public void DeleteSubmission (int? submissionId)
         {
-             DeleteSubmissionDaoWithHttpInfo(submissionId);
+             DeleteSubmissionWithHttpInfo(submissionId);
         }
 
         /// <summary>
-        ///  Stop evaluation of a submission
+        ///  Stop evaluation of a submission and delete it
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteSubmissionDaoWithHttpInfo (int? submissionId)
+        public ApiResponse<Object> DeleteSubmissionWithHttpInfo (int? submissionId)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DeleteSubmissionDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DeleteSubmission");
 
             var localVarPath = "/submissions/{submission_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -406,7 +571,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteSubmissionDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteSubmission", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -416,28 +581,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Stop evaluation of a submission
+        ///  Stop evaluation of a submission and delete it
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteSubmissionDaoAsync (int? submissionId)
+        public async System.Threading.Tasks.Task DeleteSubmissionAsync (int? submissionId)
         {
-             await DeleteSubmissionDaoAsyncWithHttpInfo(submissionId);
+             await DeleteSubmissionAsyncWithHttpInfo(submissionId);
 
         }
 
         /// <summary>
-        ///  Stop evaluation of a submission
+        ///  Stop evaluation of a submission and delete it
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteSubmissionDaoAsyncWithHttpInfo (int? submissionId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteSubmissionAsyncWithHttpInfo (int? submissionId)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DeleteSubmissionDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DeleteSubmission");
 
             var localVarPath = "/submissions/{submission_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -478,7 +643,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteSubmissionDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteSubmission", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -488,30 +653,30 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get details of a submission
+        ///  Get details of a submission by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Submissions</returns>
-        public Submissions GetSubmissionDao (int? submissionId, string xFields = null)
+        public Submissions GetSubmission (int? submissionId, string xFields = null)
         {
-             ApiResponse<Submissions> localVarResponse = GetSubmissionDaoWithHttpInfo(submissionId, xFields);
+             ApiResponse<Submissions> localVarResponse = GetSubmissionWithHttpInfo(submissionId, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get details of a submission
+        ///  Get details of a submission by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Submissions</returns>
-        public ApiResponse< Submissions > GetSubmissionDaoWithHttpInfo (int? submissionId, string xFields = null)
+        public ApiResponse< Submissions > GetSubmissionWithHttpInfo (int? submissionId, string xFields = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmission");
 
             var localVarPath = "/submissions/{submission_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -553,7 +718,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetSubmission", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -563,31 +728,31 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get details of a submission
+        ///  Get details of a submission by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Submissions</returns>
-        public async System.Threading.Tasks.Task<Submissions> GetSubmissionDaoAsync (int? submissionId, string xFields = null)
+        public async System.Threading.Tasks.Task<Submissions> GetSubmissionAsync (int? submissionId, string xFields = null)
         {
-             ApiResponse<Submissions> localVarResponse = await GetSubmissionDaoAsyncWithHttpInfo(submissionId, xFields);
+             ApiResponse<Submissions> localVarResponse = await GetSubmissionAsyncWithHttpInfo(submissionId, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get details of a submission
+        ///  Get details of a submission by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Submissions)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Submissions>> GetSubmissionDaoAsyncWithHttpInfo (int? submissionId, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Submissions>> GetSubmissionAsyncWithHttpInfo (int? submissionId, string xFields = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmission");
 
             var localVarPath = "/submissions/{submission_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -629,7 +794,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetSubmission", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -639,27 +804,27 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the submission data
+        ///  Get the submission data by submission ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns></returns>
-        public void GetSubmissionDataDao (int? submissionId)
+        public void GetSubmissionData (int? submissionId)
         {
-             GetSubmissionDataDaoWithHttpInfo(submissionId);
+             GetSubmissionDataWithHttpInfo(submissionId);
         }
 
         /// <summary>
-        ///  Get the submission data
+        ///  Get the submission data by submission ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetSubmissionDataDaoWithHttpInfo (int? submissionId)
+        public ApiResponse<Object> GetSubmissionDataWithHttpInfo (int? submissionId)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionDataDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionData");
 
             var localVarPath = "/submissions/{submission_id}/data";
             var localVarPathParams = new Dictionary<String, String>();
@@ -700,7 +865,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionDataDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetSubmissionData", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -710,28 +875,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the submission data
+        ///  Get the submission data by submission ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetSubmissionDataDaoAsync (int? submissionId)
+        public async System.Threading.Tasks.Task GetSubmissionDataAsync (int? submissionId)
         {
-             await GetSubmissionDataDaoAsyncWithHttpInfo(submissionId);
+             await GetSubmissionDataAsyncWithHttpInfo(submissionId);
 
         }
 
         /// <summary>
-        ///  Get the submission data
+        ///  Get the submission data by submission ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionDataDaoAsyncWithHttpInfo (int? submissionId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionDataAsyncWithHttpInfo (int? submissionId)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
-                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionDataDao");
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionData");
 
             var localVarPath = "/submissions/{submission_id}/data";
             var localVarPathParams = new Dictionary<String, String>();
@@ -772,7 +937,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionDataDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetSubmissionData", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -782,24 +947,24 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all submissions
+        ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        public List<Submissions> GetSubmissionListDao (string xFields = null)
+        public List<Submissions> ListSubmissions (string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = GetSubmissionListDaoWithHttpInfo(xFields);
+             ApiResponse<List<Submissions>> localVarResponse = ListSubmissionsWithHttpInfo(xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get all submissions
+        ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        public ApiResponse< List<Submissions> > GetSubmissionListDaoWithHttpInfo (string xFields = null)
+        public ApiResponse< List<Submissions> > ListSubmissionsWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -841,7 +1006,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListSubmissions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -851,25 +1016,25 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all submissions
+        ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Submissions>> GetSubmissionListDaoAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = await GetSubmissionListDaoAsyncWithHttpInfo(xFields);
+             ApiResponse<List<Submissions>> localVarResponse = await ListSubmissionsAsyncWithHttpInfo(xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get all submissions
+        ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> GetSubmissionListDaoAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -911,178 +1076,13 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetSubmissionListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListSubmissions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<List<Submissions>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Submissions>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Submissions>)));
-        }
-
-        /// <summary>
-        ///  Make a new submission
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Submissions</returns>
-        public Submissions PostSubmissionListDao (Submissions payload, string xFields = null)
-        {
-             ApiResponse<Submissions> localVarResponse = PostSubmissionListDaoWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Make a new submission
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Submissions</returns>
-        public ApiResponse< Submissions > PostSubmissionListDaoWithHttpInfo (Submissions payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling SubmissionsApi->PostSubmissionListDao");
-
-            var localVarPath = "/submissions/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostSubmissionListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Submissions>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Submissions) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Submissions)));
-        }
-
-        /// <summary>
-        ///  Make a new submission
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Submissions</returns>
-        public async System.Threading.Tasks.Task<Submissions> PostSubmissionListDaoAsync (Submissions payload, string xFields = null)
-        {
-             ApiResponse<Submissions> localVarResponse = await PostSubmissionListDaoAsyncWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Make a new submission
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Submissions)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Submissions>> PostSubmissionListDaoAsyncWithHttpInfo (Submissions payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling SubmissionsApi->PostSubmissionListDao");
-
-            var localVarPath = "/submissions/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostSubmissionListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Submissions>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Submissions) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Submissions)));
         }
 
     }

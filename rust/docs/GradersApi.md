@@ -4,17 +4,54 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_grader_dao**](GradersApi.md#delete_grader_dao) | **Delete** /graders/{grader_id} | 
-[**get_grader_dao**](GradersApi.md#get_grader_dao) | **Get** /graders/{grader_id} | 
-[**get_grader_list_dao**](GradersApi.md#get_grader_list_dao) | **Get** /graders/ | 
-[**post_grader_list_dao**](GradersApi.md#post_grader_list_dao) | **Post** /graders/ | 
+[**create_grader**](GradersApi.md#create_grader) | **Post** /graders/ | 
+[**delete_grader**](GradersApi.md#delete_grader) | **Delete** /graders/{grader_id} | 
+[**get_grader**](GradersApi.md#get_grader) | **Get** /graders/{grader_id} | 
+[**list_graders**](GradersApi.md#list_graders) | **Get** /graders/ | 
 
 
-# **delete_grader_dao**
-> delete_grader_dao(ctx, grader_id)
+# **create_grader**
+> ::models::Grader create_grader(ctx, payload, optional)
 
 
-Delete a grader
+Create a new grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **payload** | [**Grader**](Grader.md)|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  | 
+ **x_fields** | **String**| An optional fields mask | 
+
+### Return type
+
+[**::models::Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_grader**
+> delete_grader(ctx, grader_id)
+
+
+Delete a grader by its ID
 
 ### Required Parameters
 
@@ -38,11 +75,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_dao**
-> ::models::Grader get_grader_dao(ctx, grader_id, optional)
+# **get_grader**
+> ::models::Grader get_grader(ctx, grader_id, optional)
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Required Parameters
 
@@ -75,11 +112,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_grader_list_dao**
-> Vec<::models::Grader> get_grader_list_dao(ctx, optional)
+# **list_graders**
+> Vec<::models::Grader> list_graders(ctx, optional)
 
 
-Get all grader
+List all graders available
 
 ### Required Parameters
 
@@ -98,43 +135,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vec<::models::Grader>**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_grader_list_dao**
-> ::models::Grader post_grader_list_dao(ctx, payload, optional)
-
-
-Create a new grader
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **payload** | [**Grader**](Grader.md)|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **x_fields** | **String**| An optional fields mask | 
-
-### Return type
-
-[**::models::Grader**](Grader.md)
 
 ### Authorization
 

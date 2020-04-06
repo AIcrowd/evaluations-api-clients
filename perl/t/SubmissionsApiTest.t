@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -30,45 +30,45 @@ my $api = AIcrowdEvaluations::SubmissionsApi->new();
 isa_ok($api, 'AIcrowdEvaluations::SubmissionsApi');
 
 #
-# delete_submission_dao test
-#
-{
-    my $submission_id = undef; # replace NULL with a proper value
-    my $result = $api->delete_submission_dao(submission_id => $submission_id);
-}
-
-#
-# get_submission_dao test
-#
-{
-    my $submission_id = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_submission_dao(submission_id => $submission_id, x_fields => $x_fields);
-}
-
-#
-# get_submission_data_dao test
-#
-{
-    my $submission_id = undef; # replace NULL with a proper value
-    my $result = $api->get_submission_data_dao(submission_id => $submission_id);
-}
-
-#
-# get_submission_list_dao test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_submission_list_dao(x_fields => $x_fields);
-}
-
-#
-# post_submission_list_dao test
+# create_submission test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_submission_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->create_submission(payload => $payload, x_fields => $x_fields);
+}
+
+#
+# delete_submission test
+#
+{
+    my $submission_id = undef; # replace NULL with a proper value
+    my $result = $api->delete_submission(submission_id => $submission_id);
+}
+
+#
+# get_submission test
+#
+{
+    my $submission_id = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_submission(submission_id => $submission_id, x_fields => $x_fields);
+}
+
+#
+# get_submission_data test
+#
+{
+    my $submission_id = undef; # replace NULL with a proper value
+    my $result = $api->get_submission_data(submission_id => $submission_id);
+}
+
+#
+# list_submissions test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->list_submissions(x_fields => $x_fields);
 }
 
 

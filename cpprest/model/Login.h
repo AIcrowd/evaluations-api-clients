@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -54,12 +54,12 @@ public:
     /// Login members
 
     /// <summary>
-    /// The email address
+    /// Email address of the user
     /// </summary>
     utility::string_t getEmail() const;
         void setEmail(utility::string_t value);
     /// <summary>
-    /// The user password 
+    /// Password corresponding to the Email address
     /// </summary>
     utility::string_t getPassword() const;
         void setPassword(utility::string_t value);

@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -35,65 +35,65 @@ public class GradersApiTest {
     /**
      * 
      *
-     * Delete a grader
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void deleteGraderDaoTest() throws ApiException {
-        Integer graderId = null;
-        api.deleteGraderDao(graderId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get information of a grader
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getGraderDaoTest() throws ApiException {
-        Integer graderId = null;
-        String xFields = null;
-        Grader response = api.getGraderDao(graderId, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get all grader
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getGraderListDaoTest() throws ApiException {
-        String xFields = null;
-        List<Grader> response = api.getGraderListDao(xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
      * Create a new grader
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void postGraderListDaoTest() throws ApiException {
+    public void createGraderTest() throws ApiException {
         Grader payload = null;
         String xFields = null;
-        Grader response = api.postGraderListDao(payload, xFields);
+        Grader response = api.createGrader(payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Delete a grader by its ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteGraderTest() throws ApiException {
+        Integer graderId = null;
+        api.deleteGrader(graderId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get details of a grader by its ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getGraderTest() throws ApiException {
+        Integer graderId = null;
+        String xFields = null;
+        Grader response = api.getGrader(graderId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * List all graders available
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listGradersTest() throws ApiException {
+        String xFields = null;
+        List<Grader> response = api.listGraders(xFields);
 
         // TODO: test validations
     }

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -45,22 +45,22 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Logout a user
+    /// Log in a user with email and password.
     /// </remarks>
+    /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<AuthLogout>> postLogoutApi(
+    pplx::task<std::shared_ptr<AuthResponse>> login(
+        std::shared_ptr<Login> payload,
         boost::optional<utility::string_t> xFields
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// User login
+    /// Invalidate the current authorization token.
     /// </remarks>
-    /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<AuthResponse>> postUserLogin(
-        std::shared_ptr<Login> payload,
+    pplx::task<std::shared_ptr<AuthLogout>> logout(
         boost::optional<utility::string_t> xFields
     );
 

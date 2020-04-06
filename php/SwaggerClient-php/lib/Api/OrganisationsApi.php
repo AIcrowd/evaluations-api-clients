@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -88,32 +88,306 @@ class OrganisationsApi
     }
 
     /**
-     * Operation deleteOrganisationDao
+     * Operation createOrganisation
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  \Swagger\Client\Model\Organisation $payload payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\Organisation
+     */
+    public function createOrganisation($payload, $x_fields = null)
+    {
+        list($response) = $this->createOrganisationWithHttpInfo($payload, $x_fields);
+        return $response;
+    }
+
+    /**
+     * Operation createOrganisationWithHttpInfo
+     *
+     * @param  \Swagger\Client\Model\Organisation $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\Organisation, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createOrganisationWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\Organisation';
+        $request = $this->createOrganisationRequest($payload, $x_fields);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Swagger\Client\Model\Organisation',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createOrganisationAsync
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\Organisation $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createOrganisationAsync($payload, $x_fields = null)
+    {
+        return $this->createOrganisationAsyncWithHttpInfo($payload, $x_fields)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createOrganisationAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\Organisation $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createOrganisationAsyncWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\Organisation';
+        $request = $this->createOrganisationRequest($payload, $x_fields);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createOrganisation'
+     *
+     * @param  \Swagger\Client\Model\Organisation $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createOrganisationRequest($payload, $x_fields = null)
+    {
+        // verify the required parameter 'payload' is set
+        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $payload when calling createOrganisation'
+            );
+        }
+
+        $resourcePath = '/organisations/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($x_fields !== null) {
+            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($payload)) {
+            $_tempBody = $payload;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
+        if ($apiKey !== null) {
+            $headers['AUTHORIZATION'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteOrganisation
+     *
+     * @param  int $organisation_id organisation_id (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteOrganisationDao($organisation_id)
+    public function deleteOrganisation($organisation_id)
     {
-        $this->deleteOrganisationDaoWithHttpInfo($organisation_id);
+        $this->deleteOrganisationWithHttpInfo($organisation_id);
     }
 
     /**
-     * Operation deleteOrganisationDaoWithHttpInfo
+     * Operation deleteOrganisationWithHttpInfo
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteOrganisationDaoWithHttpInfo($organisation_id)
+    public function deleteOrganisationWithHttpInfo($organisation_id)
     {
         $returnType = '';
-        $request = $this->deleteOrganisationDaoRequest($organisation_id);
+        $request = $this->deleteOrganisationRequest($organisation_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -153,18 +427,18 @@ class OrganisationsApi
     }
 
     /**
-     * Operation deleteOrganisationDaoAsync
+     * Operation deleteOrganisationAsync
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteOrganisationDaoAsync($organisation_id)
+    public function deleteOrganisationAsync($organisation_id)
     {
-        return $this->deleteOrganisationDaoAsyncWithHttpInfo($organisation_id)
+        return $this->deleteOrganisationAsyncWithHttpInfo($organisation_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -173,19 +447,19 @@ class OrganisationsApi
     }
 
     /**
-     * Operation deleteOrganisationDaoAsyncWithHttpInfo
+     * Operation deleteOrganisationAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteOrganisationDaoAsyncWithHttpInfo($organisation_id)
+    public function deleteOrganisationAsyncWithHttpInfo($organisation_id)
     {
         $returnType = '';
-        $request = $this->deleteOrganisationDaoRequest($organisation_id);
+        $request = $this->deleteOrganisationRequest($organisation_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -211,19 +485,19 @@ class OrganisationsApi
     }
 
     /**
-     * Create request for operation 'deleteOrganisationDao'
+     * Create request for operation 'deleteOrganisation'
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteOrganisationDaoRequest($organisation_id)
+    protected function deleteOrganisationRequest($organisation_id)
     {
         // verify the required parameter 'organisation_id' is set
         if ($organisation_id === null || (is_array($organisation_id) && count($organisation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organisation_id when calling deleteOrganisationDao'
+                'Missing the required parameter $organisation_id when calling deleteOrganisation'
             );
         }
 
@@ -321,35 +595,35 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationDao
+     * Operation getOrganisation
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id organisation_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Organisation
      */
-    public function getOrganisationDao($organisation_id, $x_fields = null)
+    public function getOrganisation($organisation_id, $x_fields = null)
     {
-        list($response) = $this->getOrganisationDaoWithHttpInfo($organisation_id, $x_fields);
+        list($response) = $this->getOrganisationWithHttpInfo($organisation_id, $x_fields);
         return $response;
     }
 
     /**
-     * Operation getOrganisationDaoWithHttpInfo
+     * Operation getOrganisationWithHttpInfo
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Organisation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getOrganisationDaoWithHttpInfo($organisation_id, $x_fields = null)
+    public function getOrganisationWithHttpInfo($organisation_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->getOrganisationDaoRequest($organisation_id, $x_fields);
+        $request = $this->getOrganisationRequest($organisation_id, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -411,19 +685,19 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationDaoAsync
+     * Operation getOrganisationAsync
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganisationDaoAsync($organisation_id, $x_fields = null)
+    public function getOrganisationAsync($organisation_id, $x_fields = null)
     {
-        return $this->getOrganisationDaoAsyncWithHttpInfo($organisation_id, $x_fields)
+        return $this->getOrganisationAsyncWithHttpInfo($organisation_id, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -432,20 +706,20 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationDaoAsyncWithHttpInfo
+     * Operation getOrganisationAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganisationDaoAsyncWithHttpInfo($organisation_id, $x_fields = null)
+    public function getOrganisationAsyncWithHttpInfo($organisation_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->getOrganisationDaoRequest($organisation_id, $x_fields);
+        $request = $this->getOrganisationRequest($organisation_id, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -485,20 +759,20 @@ class OrganisationsApi
     }
 
     /**
-     * Create request for operation 'getOrganisationDao'
+     * Create request for operation 'getOrganisation'
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getOrganisationDaoRequest($organisation_id, $x_fields = null)
+    protected function getOrganisationRequest($organisation_id, $x_fields = null)
     {
         // verify the required parameter 'organisation_id' is set
         if ($organisation_id === null || (is_array($organisation_id) && count($organisation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organisation_id when calling getOrganisationDao'
+                'Missing the required parameter $organisation_id when calling getOrganisation'
             );
         }
 
@@ -600,7 +874,7 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationListDao
+     * Operation listOrganisations
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -608,14 +882,14 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Organisation[]
      */
-    public function getOrganisationListDao($x_fields = null)
+    public function listOrganisations($x_fields = null)
     {
-        list($response) = $this->getOrganisationListDaoWithHttpInfo($x_fields);
+        list($response) = $this->listOrganisationsWithHttpInfo($x_fields);
         return $response;
     }
 
     /**
-     * Operation getOrganisationListDaoWithHttpInfo
+     * Operation listOrganisationsWithHttpInfo
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -623,10 +897,10 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Organisation[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getOrganisationListDaoWithHttpInfo($x_fields = null)
+    public function listOrganisationsWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation[]';
-        $request = $this->getOrganisationListDaoRequest($x_fields);
+        $request = $this->listOrganisationsRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -688,7 +962,7 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationListDaoAsync
+     * Operation listOrganisationsAsync
      *
      * 
      *
@@ -697,9 +971,9 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganisationListDaoAsync($x_fields = null)
+    public function listOrganisationsAsync($x_fields = null)
     {
-        return $this->getOrganisationListDaoAsyncWithHttpInfo($x_fields)
+        return $this->listOrganisationsAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -708,7 +982,7 @@ class OrganisationsApi
     }
 
     /**
-     * Operation getOrganisationListDaoAsyncWithHttpInfo
+     * Operation listOrganisationsAsyncWithHttpInfo
      *
      * 
      *
@@ -717,10 +991,10 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganisationListDaoAsyncWithHttpInfo($x_fields = null)
+    public function listOrganisationsAsyncWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation[]';
-        $request = $this->getOrganisationListDaoRequest($x_fields);
+        $request = $this->listOrganisationsRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -760,14 +1034,14 @@ class OrganisationsApi
     }
 
     /**
-     * Create request for operation 'getOrganisationListDao'
+     * Create request for operation 'listOrganisations'
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getOrganisationListDaoRequest($x_fields = null)
+    protected function listOrganisationsRequest($x_fields = null)
     {
 
         $resourcePath = '/organisations/';
@@ -860,8 +1134,9 @@ class OrganisationsApi
     }
 
     /**
-     * Operation postOrganisationListDao
+     * Operation updateOrganisation
      *
+     * @param  int $organisation_id organisation_id (required)
      * @param  \Swagger\Client\Model\Organisation $payload payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -869,15 +1144,16 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Organisation
      */
-    public function postOrganisationListDao($payload, $x_fields = null)
+    public function updateOrganisation($organisation_id, $payload, $x_fields = null)
     {
-        list($response) = $this->postOrganisationListDaoWithHttpInfo($payload, $x_fields);
+        list($response) = $this->updateOrganisationWithHttpInfo($organisation_id, $payload, $x_fields);
         return $response;
     }
 
     /**
-     * Operation postOrganisationListDaoWithHttpInfo
+     * Operation updateOrganisationWithHttpInfo
      *
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\Organisation $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -885,286 +1161,10 @@ class OrganisationsApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Organisation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postOrganisationListDaoWithHttpInfo($payload, $x_fields = null)
+    public function updateOrganisationWithHttpInfo($organisation_id, $payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->postOrganisationListDaoRequest($payload, $x_fields);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Swagger\Client\Model\Organisation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation postOrganisationListDaoAsync
-     *
-     * 
-     *
-     * @param  \Swagger\Client\Model\Organisation $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function postOrganisationListDaoAsync($payload, $x_fields = null)
-    {
-        return $this->postOrganisationListDaoAsyncWithHttpInfo($payload, $x_fields)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation postOrganisationListDaoAsyncWithHttpInfo
-     *
-     * 
-     *
-     * @param  \Swagger\Client\Model\Organisation $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function postOrganisationListDaoAsyncWithHttpInfo($payload, $x_fields = null)
-    {
-        $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->postOrganisationListDaoRequest($payload, $x_fields);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'postOrganisationListDao'
-     *
-     * @param  \Swagger\Client\Model\Organisation $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function postOrganisationListDaoRequest($payload, $x_fields = null)
-    {
-        // verify the required parameter 'payload' is set
-        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling postOrganisationListDao'
-            );
-        }
-
-        $resourcePath = '/organisations/';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // header params
-        if ($x_fields !== null) {
-            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
-        }
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($payload)) {
-            $_tempBody = $payload;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
-        if ($apiKey !== null) {
-            $headers['AUTHORIZATION'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation putOrganisationDao
-     *
-     * @param  int $organisation_id Organisation identifier (required)
-     * @param  \Swagger\Client\Model\Organisation $payload payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Swagger\Client\Model\Organisation
-     */
-    public function putOrganisationDao($organisation_id, $payload, $x_fields = null)
-    {
-        list($response) = $this->putOrganisationDaoWithHttpInfo($organisation_id, $payload, $x_fields);
-        return $response;
-    }
-
-    /**
-     * Operation putOrganisationDaoWithHttpInfo
-     *
-     * @param  int $organisation_id Organisation identifier (required)
-     * @param  \Swagger\Client\Model\Organisation $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Swagger\Client\Model\Organisation, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function putOrganisationDaoWithHttpInfo($organisation_id, $payload, $x_fields = null)
-    {
-        $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->putOrganisationDaoRequest($organisation_id, $payload, $x_fields);
+        $request = $this->updateOrganisationRequest($organisation_id, $payload, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1226,20 +1226,20 @@ class OrganisationsApi
     }
 
     /**
-     * Operation putOrganisationDaoAsync
+     * Operation updateOrganisationAsync
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\Organisation $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putOrganisationDaoAsync($organisation_id, $payload, $x_fields = null)
+    public function updateOrganisationAsync($organisation_id, $payload, $x_fields = null)
     {
-        return $this->putOrganisationDaoAsyncWithHttpInfo($organisation_id, $payload, $x_fields)
+        return $this->updateOrganisationAsyncWithHttpInfo($organisation_id, $payload, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1248,21 +1248,21 @@ class OrganisationsApi
     }
 
     /**
-     * Operation putOrganisationDaoAsyncWithHttpInfo
+     * Operation updateOrganisationAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\Organisation $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putOrganisationDaoAsyncWithHttpInfo($organisation_id, $payload, $x_fields = null)
+    public function updateOrganisationAsyncWithHttpInfo($organisation_id, $payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Organisation';
-        $request = $this->putOrganisationDaoRequest($organisation_id, $payload, $x_fields);
+        $request = $this->updateOrganisationRequest($organisation_id, $payload, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1302,27 +1302,27 @@ class OrganisationsApi
     }
 
     /**
-     * Create request for operation 'putOrganisationDao'
+     * Create request for operation 'updateOrganisation'
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\Organisation $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function putOrganisationDaoRequest($organisation_id, $payload, $x_fields = null)
+    protected function updateOrganisationRequest($organisation_id, $payload, $x_fields = null)
     {
         // verify the required parameter 'organisation_id' is set
         if ($organisation_id === null || (is_array($organisation_id) && count($organisation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organisation_id when calling putOrganisationDao'
+                'Missing the required parameter $organisation_id when calling updateOrganisation'
             );
         }
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling putOrganisationDao'
+                'Missing the required parameter $payload when calling updateOrganisation'
             );
         }
 
@@ -1427,34 +1427,34 @@ class OrganisationsApi
     }
 
     /**
-     * Operation putQuotaDao
+     * Operation updateOrganisationQuota
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id organisation_id (required)
      * @param  \Swagger\Client\Model\OrganisationQuota $payload payload (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function putQuotaDao($organisation_id, $payload)
+    public function updateOrganisationQuota($organisation_id, $payload)
     {
-        $this->putQuotaDaoWithHttpInfo($organisation_id, $payload);
+        $this->updateOrganisationQuotaWithHttpInfo($organisation_id, $payload);
     }
 
     /**
-     * Operation putQuotaDaoWithHttpInfo
+     * Operation updateOrganisationQuotaWithHttpInfo
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\OrganisationQuota $payload (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function putQuotaDaoWithHttpInfo($organisation_id, $payload)
+    public function updateOrganisationQuotaWithHttpInfo($organisation_id, $payload)
     {
         $returnType = '';
-        $request = $this->putQuotaDaoRequest($organisation_id, $payload);
+        $request = $this->updateOrganisationQuotaRequest($organisation_id, $payload);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1494,19 +1494,19 @@ class OrganisationsApi
     }
 
     /**
-     * Operation putQuotaDaoAsync
+     * Operation updateOrganisationQuotaAsync
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\OrganisationQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putQuotaDaoAsync($organisation_id, $payload)
+    public function updateOrganisationQuotaAsync($organisation_id, $payload)
     {
-        return $this->putQuotaDaoAsyncWithHttpInfo($organisation_id, $payload)
+        return $this->updateOrganisationQuotaAsyncWithHttpInfo($organisation_id, $payload)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1515,20 +1515,20 @@ class OrganisationsApi
     }
 
     /**
-     * Operation putQuotaDaoAsyncWithHttpInfo
+     * Operation updateOrganisationQuotaAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\OrganisationQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putQuotaDaoAsyncWithHttpInfo($organisation_id, $payload)
+    public function updateOrganisationQuotaAsyncWithHttpInfo($organisation_id, $payload)
     {
         $returnType = '';
-        $request = $this->putQuotaDaoRequest($organisation_id, $payload);
+        $request = $this->updateOrganisationQuotaRequest($organisation_id, $payload);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1554,30 +1554,30 @@ class OrganisationsApi
     }
 
     /**
-     * Create request for operation 'putQuotaDao'
+     * Create request for operation 'updateOrganisationQuota'
      *
-     * @param  int $organisation_id Organisation identifier (required)
+     * @param  int $organisation_id (required)
      * @param  \Swagger\Client\Model\OrganisationQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function putQuotaDaoRequest($organisation_id, $payload)
+    protected function updateOrganisationQuotaRequest($organisation_id, $payload)
     {
         // verify the required parameter 'organisation_id' is set
         if ($organisation_id === null || (is_array($organisation_id) && count($organisation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organisation_id when calling putQuotaDao'
+                'Missing the required parameter $organisation_id when calling updateOrganisationQuota'
             );
         }
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling putQuotaDao'
+                'Missing the required parameter $payload when calling updateOrganisationQuota'
             );
         }
 
-        $resourcePath = '/organisations/addquota/{organisation_id}';
+        $resourcePath = '/organisations/{organisation_id}/addquota';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

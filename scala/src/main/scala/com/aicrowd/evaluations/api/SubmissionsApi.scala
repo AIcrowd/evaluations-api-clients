@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -81,13 +81,14 @@ class SubmissionsApi(
 
   /**
    * 
-   * Stop evaluation of a submission
+   * Make a new submission
    *
-   * @param submissionId  
-   * @return void
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Submissions
    */
-  def deleteSubmissionDao(submissionId: Integer) = {
-    val await = Try(Await.result(deleteSubmissionDaoAsync(submissionId), Duration.Inf))
+  def createSubmission(payload: Submissions, xFields: Option[String] = None): Option[Submissions] = {
+    val await = Try(Await.result(createSubmissionAsync(payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -96,25 +97,52 @@ class SubmissionsApi(
 
   /**
    *  asynchronously
-   * Stop evaluation of a submission
+   * Make a new submission
    *
-   * @param submissionId  
-   * @return Future(void)
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(Submissions)
    */
-  def deleteSubmissionDaoAsync(submissionId: Integer) = {
-      helper.deleteSubmissionDao(submissionId)
+  def createSubmissionAsync(payload: Submissions, xFields: Option[String] = None): Future[Submissions] = {
+      helper.createSubmission(payload, xFields)
   }
 
   /**
    * 
-   * Get details of a submission
+   * Stop evaluation of a submission and delete it
+   *
+   * @param submissionId  
+   * @return void
+   */
+  def deleteSubmission(submissionId: Integer) = {
+    val await = Try(Await.result(deleteSubmissionAsync(submissionId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Stop evaluation of a submission and delete it
+   *
+   * @param submissionId  
+   * @return Future(void)
+   */
+  def deleteSubmissionAsync(submissionId: Integer) = {
+      helper.deleteSubmission(submissionId)
+  }
+
+  /**
+   * 
+   * Get details of a submission by its ID
    *
    * @param submissionId  
    * @param xFields An optional fields mask (optional)
    * @return Submissions
    */
-  def getSubmissionDao(submissionId: Integer, xFields: Option[String] = None): Option[Submissions] = {
-    val await = Try(Await.result(getSubmissionDaoAsync(submissionId, xFields), Duration.Inf))
+  def getSubmission(submissionId: Integer, xFields: Option[String] = None): Option[Submissions] = {
+    val await = Try(Await.result(getSubmissionAsync(submissionId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -123,25 +151,25 @@ class SubmissionsApi(
 
   /**
    *  asynchronously
-   * Get details of a submission
+   * Get details of a submission by its ID
    *
    * @param submissionId  
    * @param xFields An optional fields mask (optional)
    * @return Future(Submissions)
    */
-  def getSubmissionDaoAsync(submissionId: Integer, xFields: Option[String] = None): Future[Submissions] = {
-      helper.getSubmissionDao(submissionId, xFields)
+  def getSubmissionAsync(submissionId: Integer, xFields: Option[String] = None): Future[Submissions] = {
+      helper.getSubmission(submissionId, xFields)
   }
 
   /**
    * 
-   * Get the submission data
+   * Get the submission data by submission ID
    *
    * @param submissionId  
    * @return void
    */
-  def getSubmissionDataDao(submissionId: Integer) = {
-    val await = Try(Await.result(getSubmissionDataDaoAsync(submissionId), Duration.Inf))
+  def getSubmissionData(submissionId: Integer) = {
+    val await = Try(Await.result(getSubmissionDataAsync(submissionId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -150,24 +178,24 @@ class SubmissionsApi(
 
   /**
    *  asynchronously
-   * Get the submission data
+   * Get the submission data by submission ID
    *
    * @param submissionId  
    * @return Future(void)
    */
-  def getSubmissionDataDaoAsync(submissionId: Integer) = {
-      helper.getSubmissionDataDao(submissionId)
+  def getSubmissionDataAsync(submissionId: Integer) = {
+      helper.getSubmissionData(submissionId)
   }
 
   /**
    * 
-   * Get all submissions
+   * List all submissions available
    *
    * @param xFields An optional fields mask (optional)
    * @return List[Submissions]
    */
-  def getSubmissionListDao(xFields: Option[String] = None): Option[List[Submissions]] = {
-    val await = Try(Await.result(getSubmissionListDaoAsync(xFields), Duration.Inf))
+  def listSubmissions(xFields: Option[String] = None): Option[List[Submissions]] = {
+    val await = Try(Await.result(listSubmissionsAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -176,48 +204,42 @@ class SubmissionsApi(
 
   /**
    *  asynchronously
-   * Get all submissions
+   * List all submissions available
    *
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Submissions])
    */
-  def getSubmissionListDaoAsync(xFields: Option[String] = None): Future[List[Submissions]] = {
-      helper.getSubmissionListDao(xFields)
-  }
-
-  /**
-   * 
-   * Make a new submission
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Submissions
-   */
-  def postSubmissionListDao(payload: Submissions, xFields: Option[String] = None): Option[Submissions] = {
-    val await = Try(Await.result(postSubmissionListDaoAsync(payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Make a new submission
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Submissions)
-   */
-  def postSubmissionListDaoAsync(payload: Submissions, xFields: Option[String] = None): Future[Submissions] = {
-      helper.postSubmissionListDao(payload, xFields)
+  def listSubmissionsAsync(xFields: Option[String] = None): Future[List[Submissions]] = {
+      helper.listSubmissions(xFields)
   }
 
 }
 
 class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def deleteSubmissionDao(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def createSubmission(payload: Submissions,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[Submissions], writer: RequestWriter[Submissions]): Future[Submissions] = {
+    // create path and map variables
+    val path = (addFmt("/submissions/"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling SubmissionsApi->createSubmission")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def deleteSubmission(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/submissions/{submission_id}")
       replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
@@ -233,7 +255,7 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def getSubmissionDao(submissionId: Integer,
+  def getSubmission(submissionId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Submissions]): Future[Submissions] = {
     // create path and map variables
@@ -255,7 +277,7 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def getSubmissionDataDao(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def getSubmissionData(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/submissions/{submission_id}/data")
       replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
@@ -271,7 +293,7 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def getSubmissionListDao(xFields: Option[String] = None
+  def listSubmissions(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Submissions]]): Future[List[Submissions]] = {
     // create path and map variables
     val path = (addFmt("/submissions/"))
@@ -286,28 +308,6 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def postSubmissionListDao(payload: Submissions,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Submissions], writer: RequestWriter[Submissions]): Future[Submissions] = {
-    // create path and map variables
-    val path = (addFmt("/submissions/"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling SubmissionsApi->postSubmissionListDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

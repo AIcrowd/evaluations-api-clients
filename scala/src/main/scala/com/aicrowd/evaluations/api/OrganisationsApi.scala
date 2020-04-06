@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -82,40 +82,14 @@ class OrganisationsApi(
 
   /**
    * 
-   * Delete an Organisation
+   * Create a new organisation
    *
-   * @param organisationId Organisation identifier 
-   * @return void
-   */
-  def deleteOrganisationDao(organisationId: Integer) = {
-    val await = Try(Await.result(deleteOrganisationDaoAsync(organisationId), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Delete an Organisation
-   *
-   * @param organisationId Organisation identifier 
-   * @return Future(void)
-   */
-  def deleteOrganisationDaoAsync(organisationId: Integer) = {
-      helper.deleteOrganisationDao(organisationId)
-  }
-
-  /**
-   * 
-   * Get information of an organisation
-   *
-   * @param organisationId Organisation identifier 
+   * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Organisation
    */
-  def getOrganisationDao(organisationId: Integer, xFields: Option[String] = None): Option[Organisation] = {
-    val await = Try(Await.result(getOrganisationDaoAsync(organisationId, xFields), Duration.Inf))
+  def createOrganisation(payload: Organisation, xFields: Option[String] = None): Option[Organisation] = {
+    val await = Try(Await.result(createOrganisationAsync(payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -124,25 +98,79 @@ class OrganisationsApi(
 
   /**
    *  asynchronously
-   * Get information of an organisation
+   * Create a new organisation
    *
-   * @param organisationId Organisation identifier 
+   * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Future(Organisation)
    */
-  def getOrganisationDaoAsync(organisationId: Integer, xFields: Option[String] = None): Future[Organisation] = {
-      helper.getOrganisationDao(organisationId, xFields)
+  def createOrganisationAsync(payload: Organisation, xFields: Option[String] = None): Future[Organisation] = {
+      helper.createOrganisation(payload, xFields)
   }
 
   /**
    * 
-   * Get all organisations
+   * Delete an Organisation
+   *
+   * @param organisationId  
+   * @return void
+   */
+  def deleteOrganisation(organisationId: Integer) = {
+    val await = Try(Await.result(deleteOrganisationAsync(organisationId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Delete an Organisation
+   *
+   * @param organisationId  
+   * @return Future(void)
+   */
+  def deleteOrganisationAsync(organisationId: Integer) = {
+      helper.deleteOrganisation(organisationId)
+  }
+
+  /**
+   * 
+   * Get details of an organisation
+   *
+   * @param organisationId  
+   * @param xFields An optional fields mask (optional)
+   * @return Organisation
+   */
+  def getOrganisation(organisationId: Integer, xFields: Option[String] = None): Option[Organisation] = {
+    val await = Try(Await.result(getOrganisationAsync(organisationId, xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Get details of an organisation
+   *
+   * @param organisationId  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(Organisation)
+   */
+  def getOrganisationAsync(organisationId: Integer, xFields: Option[String] = None): Future[Organisation] = {
+      helper.getOrganisation(organisationId, xFields)
+  }
+
+  /**
+   * 
+   * List all organisations
    *
    * @param xFields An optional fields mask (optional)
    * @return List[Organisation]
    */
-  def getOrganisationListDao(xFields: Option[String] = None): Option[List[Organisation]] = {
-    val await = Try(Await.result(getOrganisationListDaoAsync(xFields), Duration.Inf))
+  def listOrganisations(xFields: Option[String] = None): Option[List[Organisation]] = {
+    val await = Try(Await.result(listOrganisationsAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -151,54 +179,26 @@ class OrganisationsApi(
 
   /**
    *  asynchronously
-   * Get all organisations
+   * List all organisations
    *
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Organisation])
    */
-  def getOrganisationListDaoAsync(xFields: Option[String] = None): Future[List[Organisation]] = {
-      helper.getOrganisationListDao(xFields)
-  }
-
-  /**
-   * 
-   * Create a new organisation
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Organisation
-   */
-  def postOrganisationListDao(payload: Organisation, xFields: Option[String] = None): Option[Organisation] = {
-    val await = Try(Await.result(postOrganisationListDaoAsync(payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Create a new organisation
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Organisation)
-   */
-  def postOrganisationListDaoAsync(payload: Organisation, xFields: Option[String] = None): Future[Organisation] = {
-      helper.postOrganisationListDao(payload, xFields)
+  def listOrganisationsAsync(xFields: Option[String] = None): Future[List[Organisation]] = {
+      helper.listOrganisations(xFields)
   }
 
   /**
    * 
    * Update an Organisation
    *
-   * @param organisationId Organisation identifier 
+   * @param organisationId  
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Organisation
    */
-  def putOrganisationDao(organisationId: Integer, payload: Organisation, xFields: Option[String] = None): Option[Organisation] = {
-    val await = Try(Await.result(putOrganisationDaoAsync(organisationId, payload, xFields), Duration.Inf))
+  def updateOrganisation(organisationId: Integer, payload: Organisation, xFields: Option[String] = None): Option[Organisation] = {
+    val await = Try(Await.result(updateOrganisationAsync(organisationId, payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -209,25 +209,25 @@ class OrganisationsApi(
    *  asynchronously
    * Update an Organisation
    *
-   * @param organisationId Organisation identifier 
+   * @param organisationId  
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Future(Organisation)
    */
-  def putOrganisationDaoAsync(organisationId: Integer, payload: Organisation, xFields: Option[String] = None): Future[Organisation] = {
-      helper.putOrganisationDao(organisationId, payload, xFields)
+  def updateOrganisationAsync(organisationId: Integer, payload: Organisation, xFields: Option[String] = None): Future[Organisation] = {
+      helper.updateOrganisation(organisationId, payload, xFields)
   }
 
   /**
    * 
    * Add or subtract quota for an organisation
    *
-   * @param organisationId Organisation identifier 
+   * @param organisationId  
    * @param payload  
    * @return void
    */
-  def putQuotaDao(organisationId: Integer, payload: OrganisationQuota) = {
-    val await = Try(Await.result(putQuotaDaoAsync(organisationId, payload), Duration.Inf))
+  def updateOrganisationQuota(organisationId: Integer, payload: OrganisationQuota) = {
+    val await = Try(Await.result(updateOrganisationQuotaAsync(organisationId, payload), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -238,19 +238,41 @@ class OrganisationsApi(
    *  asynchronously
    * Add or subtract quota for an organisation
    *
-   * @param organisationId Organisation identifier 
+   * @param organisationId  
    * @param payload  
    * @return Future(void)
    */
-  def putQuotaDaoAsync(organisationId: Integer, payload: OrganisationQuota) = {
-      helper.putQuotaDao(organisationId, payload)
+  def updateOrganisationQuotaAsync(organisationId: Integer, payload: OrganisationQuota) = {
+      helper.updateOrganisationQuota(organisationId, payload)
   }
 
 }
 
 class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def deleteOrganisationDao(organisationId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def createOrganisation(payload: Organisation,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[Organisation], writer: RequestWriter[Organisation]): Future[Organisation] = {
+    // create path and map variables
+    val path = (addFmt("/organisations/"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->createOrganisation")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def deleteOrganisation(organisationId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/organisations/{organisation_id}")
       replaceAll("\\{" + "organisation_id" + "\\}", organisationId.toString))
@@ -266,7 +288,7 @@ class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig
     }
   }
 
-  def getOrganisationDao(organisationId: Integer,
+  def getOrganisation(organisationId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Organisation]): Future[Organisation] = {
     // create path and map variables
@@ -288,7 +310,7 @@ class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig
     }
   }
 
-  def getOrganisationListDao(xFields: Option[String] = None
+  def listOrganisations(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Organisation]]): Future[List[Organisation]] = {
     // create path and map variables
     val path = (addFmt("/organisations/"))
@@ -308,29 +330,7 @@ class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig
     }
   }
 
-  def postOrganisationListDao(payload: Organisation,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Organisation], writer: RequestWriter[Organisation]): Future[Organisation] = {
-    // create path and map variables
-    val path = (addFmt("/organisations/"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->postOrganisationListDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def putOrganisationDao(organisationId: Integer,
+  def updateOrganisation(organisationId: Integer,
     payload: Organisation,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Organisation], writer: RequestWriter[Organisation]): Future[Organisation] = {
@@ -342,7 +342,7 @@ class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->putOrganisationDao")
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->updateOrganisation")
     xFields match {
       case Some(param) => headerParams += "X-Fields" -> param.toString
       case _ => headerParams
@@ -354,17 +354,17 @@ class OrganisationsApiAsyncHelper(client: TransportClient, config: SwaggerConfig
     }
   }
 
-  def putQuotaDao(organisationId: Integer,
+  def updateOrganisationQuota(organisationId: Integer,
     payload: OrganisationQuota)(implicit reader: ClientResponseReader[Unit], writer: RequestWriter[OrganisationQuota]): Future[Unit] = {
     // create path and map variables
-    val path = (addFmt("/organisations/addquota/{organisation_id}")
+    val path = (addFmt("/organisations/{organisation_id}/addquota")
       replaceAll("\\{" + "organisation_id" + "\\}", organisationId.toString))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->putQuotaDao")
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling OrganisationsApi->updateOrganisationQuota")
 
     val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>

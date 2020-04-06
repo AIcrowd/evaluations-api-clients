@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -83,40 +83,14 @@ class AuthApi(
 
   /**
    * 
-   * Logout a user
-   *
-   * @param xFields An optional fields mask (optional)
-   * @return AuthLogout
-   */
-  def postLogoutApi(xFields: Option[String] = None): Option[AuthLogout] = {
-    val await = Try(Await.result(postLogoutApiAsync(xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Logout a user
-   *
-   * @param xFields An optional fields mask (optional)
-   * @return Future(AuthLogout)
-   */
-  def postLogoutApiAsync(xFields: Option[String] = None): Future[AuthLogout] = {
-      helper.postLogoutApi(xFields)
-  }
-
-  /**
-   * 
-   * User login
+   * Log in a user with email and password.
    *
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return AuthResponse
    */
-  def postUserLogin(payload: Login, xFields: Option[String] = None): Option[AuthResponse] = {
-    val await = Try(Await.result(postUserLoginAsync(payload, xFields), Duration.Inf))
+  def login(payload: Login, xFields: Option[String] = None): Option[AuthResponse] = {
+    val await = Try(Await.result(loginAsync(payload, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -125,21 +99,69 @@ class AuthApi(
 
   /**
    *  asynchronously
-   * User login
+   * Log in a user with email and password.
    *
    * @param payload  
    * @param xFields An optional fields mask (optional)
    * @return Future(AuthResponse)
    */
-  def postUserLoginAsync(payload: Login, xFields: Option[String] = None): Future[AuthResponse] = {
-      helper.postUserLogin(payload, xFields)
+  def loginAsync(payload: Login, xFields: Option[String] = None): Future[AuthResponse] = {
+      helper.login(payload, xFields)
+  }
+
+  /**
+   * 
+   * Invalidate the current authorization token.
+   *
+   * @param xFields An optional fields mask (optional)
+   * @return AuthLogout
+   */
+  def logout(xFields: Option[String] = None): Option[AuthLogout] = {
+    val await = Try(Await.result(logoutAsync(xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Invalidate the current authorization token.
+   *
+   * @param xFields An optional fields mask (optional)
+   * @return Future(AuthLogout)
+   */
+  def logoutAsync(xFields: Option[String] = None): Future[AuthLogout] = {
+      helper.logout(xFields)
   }
 
 }
 
 class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def postLogoutApi(xFields: Option[String] = None
+  def login(payload: Login,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[AuthResponse], writer: RequestWriter[Login]): Future[AuthResponse] = {
+    // create path and map variables
+    val path = (addFmt("/auth/login"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling AuthApi->login")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def logout(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[AuthLogout]): Future[AuthLogout] = {
     // create path and map variables
     val path = (addFmt("/auth/logout"))
@@ -154,28 +176,6 @@ class AuthApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def postUserLogin(payload: Login,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[AuthResponse], writer: RequestWriter[Login]): Future[AuthResponse] = {
-    // create path and map variables
-    val path = (addFmt("/auth/login"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling AuthApi->postUserLogin")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

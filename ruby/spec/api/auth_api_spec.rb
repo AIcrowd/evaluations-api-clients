@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,24 +32,24 @@ describe 'AuthApi' do
     end
   end
 
-  # unit tests for post_logout_api
-  # Logout a user
+  # unit tests for login
+  # Log in a user with email and password.
+  # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
-  # @return [AuthLogout]
-  describe 'post_logout_api test' do
+  # @return [AuthResponse]
+  describe 'login test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for post_user_login
-  # User login
-  # @param payload 
+  # unit tests for logout
+  # Invalidate the current authorization token.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
-  # @return [AuthResponse]
-  describe 'post_user_login test' do
+  # @return [AuthLogout]
+  describe 'logout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

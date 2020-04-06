@@ -11,9 +11,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -229,7 +229,7 @@ class Login implements ModelInterface, ArrayAccess
     /**
      * Sets email
      *
-     * @param string $email The email address
+     * @param string $email Email address of the user
      *
      * @return $this
      */
@@ -253,7 +253,7 @@ class Login implements ModelInterface, ArrayAccess
     /**
      * Sets password
      *
-     * @param string $password The user password
+     * @param string $password Password corresponding to the Email address
      *
      * @return $this
      */

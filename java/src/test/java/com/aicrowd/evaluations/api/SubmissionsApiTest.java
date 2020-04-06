@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -35,81 +35,81 @@ public class SubmissionsApiTest {
     /**
      * 
      *
-     * Stop evaluation of a submission
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void deleteSubmissionDaoTest() throws ApiException {
-        Integer submissionId = null;
-        api.deleteSubmissionDao(submissionId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get details of a submission
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getSubmissionDaoTest() throws ApiException {
-        Integer submissionId = null;
-        String xFields = null;
-        Submissions response = api.getSubmissionDao(submissionId, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get the submission data
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getSubmissionDataDaoTest() throws ApiException {
-        Integer submissionId = null;
-        api.getSubmissionDataDao(submissionId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get all submissions
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getSubmissionListDaoTest() throws ApiException {
-        String xFields = null;
-        List<Submissions> response = api.getSubmissionListDao(xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
      * Make a new submission
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void postSubmissionListDaoTest() throws ApiException {
+    public void createSubmissionTest() throws ApiException {
         Submissions payload = null;
         String xFields = null;
-        Submissions response = api.postSubmissionListDao(payload, xFields);
+        Submissions response = api.createSubmission(payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Stop evaluation of a submission and delete it
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteSubmissionTest() throws ApiException {
+        Integer submissionId = null;
+        api.deleteSubmission(submissionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get details of a submission by its ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubmissionTest() throws ApiException {
+        Integer submissionId = null;
+        String xFields = null;
+        Submissions response = api.getSubmission(submissionId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get the submission data by submission ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubmissionDataTest() throws ApiException {
+        Integer submissionId = null;
+        api.getSubmissionData(submissionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * List all submissions available
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listSubmissionsTest() throws ApiException {
+        String xFields = null;
+        List<Submissions> response = api.listSubmissions(xFields);
 
         // TODO: test validations
     }

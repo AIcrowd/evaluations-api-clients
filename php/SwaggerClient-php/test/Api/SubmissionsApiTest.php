@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,52 +72,52 @@ class SubmissionsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for deleteSubmissionDao
+     * Test case for createSubmission
      *
      * .
      *
      */
-    public function testDeleteSubmissionDao()
+    public function testCreateSubmission()
     {
     }
 
     /**
-     * Test case for getSubmissionDao
+     * Test case for deleteSubmission
      *
      * .
      *
      */
-    public function testGetSubmissionDao()
+    public function testDeleteSubmission()
     {
     }
 
     /**
-     * Test case for getSubmissionDataDao
+     * Test case for getSubmission
      *
      * .
      *
      */
-    public function testGetSubmissionDataDao()
+    public function testGetSubmission()
     {
     }
 
     /**
-     * Test case for getSubmissionListDao
+     * Test case for getSubmissionData
      *
      * .
      *
      */
-    public function testGetSubmissionListDao()
+    public function testGetSubmissionData()
     {
     }
 
     /**
-     * Test case for postSubmissionListDao
+     * Test case for listSubmissions
      *
      * .
      *
      */
-    public function testPostSubmissionListDao()
+    public function testListSubmissions()
     {
     }
 }

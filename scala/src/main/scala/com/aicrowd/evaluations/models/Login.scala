@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -14,9 +14,9 @@ package com.aicrowd.evaluations.models
 
 
 case class Login (
-  // The email address
+  // Email address of the user
   email: String,
-  // The user password 
+  // Password corresponding to the Email address
   password: String
 )
 

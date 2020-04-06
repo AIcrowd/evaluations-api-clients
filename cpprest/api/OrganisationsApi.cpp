@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,7 +36,154 @@ OrganisationsApi::~OrganisationsApi()
 {
 }
 
-pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
+pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::createOrganisation(std::shared_ptr<Organisation> payload, boost::optional<utility::string_t> xFields)
+{
+
+    // verify the required parameter 'payload' is set
+    if (payload == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->createOrganisation"));
+    }
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/organisations/");
+    
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->createOrganisation does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(payload);
+        
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+
+        if(payload.get())
+        {
+            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->createOrganisation does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling createOrganisation: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling createOrganisation: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Organisation> result(new Organisation());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling createOrganisation: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<void> OrganisationsApi::deleteOrganisation(int32_t organisationId)
 {
 
 
@@ -71,7 +218,7 @@ pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->deleteOrganisationDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->deleteOrganisation does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -95,7 +242,7 @@ pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->deleteOrganisationDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->deleteOrganisation does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -118,7 +265,7 @@ pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling deleteOrganisationDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteOrganisation: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -129,7 +276,7 @@ pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteOrganisationDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling deleteOrganisation: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -141,7 +288,7 @@ pplx::task<void> OrganisationsApi::deleteOrganisationDao(int32_t organisationId)
         return void();
     });
 }
-pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(int32_t organisationId, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisation(int32_t organisationId, boost::optional<utility::string_t> xFields)
 {
 
 
@@ -176,7 +323,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(i
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->getOrganisationDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->getOrganisation does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -204,7 +351,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(i
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->getOrganisationDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->getOrganisation does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -227,7 +374,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(i
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getOrganisationDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling getOrganisation: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -238,7 +385,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(i
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getOrganisationDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling getOrganisation: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -262,13 +409,13 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::getOrganisationDao(i
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getOrganisationDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getOrganisation: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrganisationListDao(boost::optional<utility::string_t> xFields)
+pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::listOrganisations(boost::optional<utility::string_t> xFields)
 {
 
 
@@ -302,7 +449,7 @@ pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrga
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->getOrganisationListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->listOrganisations does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -330,7 +477,7 @@ pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrga
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->getOrganisationListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->listOrganisations does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -353,7 +500,7 @@ pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrga
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getOrganisationListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling listOrganisations: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -364,7 +511,7 @@ pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrga
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getOrganisationListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling listOrganisations: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -395,166 +542,19 @@ pplx::task<std::vector<std::shared_ptr<Organisation>>> OrganisationsApi::getOrga
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getOrganisationListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling listOrganisations: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::postOrganisationListDao(std::shared_ptr<Organisation> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::updateOrganisation(int32_t organisationId, std::shared_ptr<Organisation> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->postOrganisationListDao"));
-    }
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/organisations/");
-    
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->postOrganisationListDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value json;
-
-        json = ModelBase::toJson(payload);
-        
-
-        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
-
-        if(payload.get())
-        {
-            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
-        }
-
-        httpBody = multipart;
-        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->postOrganisationListDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling postOrganisationListDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postOrganisationListDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::shared_ptr<Organisation> result(new Organisation());
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            result->fromJson(json);
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling postOrganisationListDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(int32_t organisationId, std::shared_ptr<Organisation> payload, boost::optional<utility::string_t> xFields)
-{
-
-    // verify the required parameter 'payload' is set
-    if (payload == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->putOrganisationDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->updateOrganisation"));
     }
 
 
@@ -589,7 +589,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(i
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->putOrganisationDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->updateOrganisation does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -632,7 +632,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(i
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->putOrganisationDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->updateOrganisation does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -655,7 +655,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(i
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling putOrganisationDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling updateOrganisation: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -666,7 +666,7 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(i
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putOrganisationDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling updateOrganisation: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -690,24 +690,24 @@ pplx::task<std::shared_ptr<Organisation>> OrganisationsApi::putOrganisationDao(i
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling putOrganisationDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling updateOrganisation: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<void> OrganisationsApi::putQuotaDao(int32_t organisationId, std::shared_ptr<OrganisationQuota> payload)
+pplx::task<void> OrganisationsApi::updateOrganisationQuota(int32_t organisationId, std::shared_ptr<OrganisationQuota> payload)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->putQuotaDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling OrganisationsApi->updateOrganisationQuota"));
     }
 
 
     std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/organisations/addquota/{organisation_id}");
+    utility::string_t path = utility::conversions::to_string_t("/organisations/{organisation_id}/addquota");
     boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("organisation_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(organisationId));
 
     std::map<utility::string_t, utility::string_t> queryParams;
@@ -737,7 +737,7 @@ pplx::task<void> OrganisationsApi::putQuotaDao(int32_t organisationId, std::shar
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->putQuotaDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("OrganisationsApi->updateOrganisationQuota does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -776,7 +776,7 @@ pplx::task<void> OrganisationsApi::putQuotaDao(int32_t organisationId, std::shar
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->putQuotaDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("OrganisationsApi->updateOrganisationQuota does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -799,7 +799,7 @@ pplx::task<void> OrganisationsApi::putQuotaDao(int32_t organisationId, std::shar
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling putQuotaDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling updateOrganisationQuota: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -810,7 +810,7 @@ pplx::task<void> OrganisationsApi::putQuotaDao(int32_t organisationId, std::shar
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putQuotaDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling updateOrganisationQuota: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }

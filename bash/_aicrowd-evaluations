@@ -298,28 +298,28 @@ case $state in
     _values "Operations" \
             "postGenericFeedbackContract[]" \
             "postGraderFeedbackDao[]" \
-            "postSubmissionFeedbackDao[]"             "postLogoutApi[]" \
-            "postUserLogin[]"             "deleteClusterDao[]" \
-            "getClusterDao[]" \
-            "getClusterListDao[]" \
-            "postClusterListDao[]"             "deleteGraderDao[]" \
-            "getGraderDao[]" \
-            "getGraderListDao[]" \
-            "postGraderListDao[]"             "deleteOrganisationDao[]" \
-            "getOrganisationDao[]" \
-            "getOrganisationListDao[]" \
-            "postOrganisationListDao[]" \
-            "putOrganisationDao[]" \
-            "putQuotaDao[]"             "deleteSubmissionDao[]" \
-            "getSubmissionDao[]" \
-            "getSubmissionDataDao[]" \
-            "getSubmissionListDao[]" \
-            "postSubmissionListDao[]"             "deleteUserDao[]" \
-            "getUserDao[]" \
-            "getUserListDao[]" \
-            "postUserListDao[]" \
-            "putQuotaDao[]" \
-            "putUserDao[]" 
+            "postSubmissionFeedbackDao[]"             "login[]" \
+            "logout[]"             "createCluster[]" \
+            "deleteCluster[]" \
+            "getCluster[]" \
+            "listClusters[]"             "createGrader[]" \
+            "deleteGrader[]" \
+            "getGrader[]" \
+            "listGraders[]"             "createOrganisation[]" \
+            "deleteOrganisation[]" \
+            "getOrganisation[]" \
+            "listOrganisations[]" \
+            "updateOrganisation[]" \
+            "updateOrganisationQuota[]"             "createSubmission[]" \
+            "deleteSubmission[]" \
+            "getSubmission[]" \
+            "getSubmissionData[]" \
+            "listSubmissions[]"             "createUser[]" \
+            "deleteUser[]" \
+            "getUser[]" \
+            "listUsers[]" \
+            "updateUser[]" \
+            "updateUserQuota[]" 
     _arguments "(--help)--help[Print information about operation]"
 
     ret=0
@@ -348,28 +348,35 @@ case $state in
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postLogoutApi)
+      login)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postUserLogin)
+      logout)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      deleteClusterDao)
+      createCluster)
+        local -a _op_arguments
+        _op_arguments=(
+                              "X-Fields\::[HEADER] An optional fields mask"
+)
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      deleteCluster)
         local -a _op_arguments
         _op_arguments=(
           "cluster_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getClusterDao)
+      getCluster)
         local -a _op_arguments
         _op_arguments=(
           "cluster_id=:[PATH] "
@@ -377,28 +384,28 @@ case $state in
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getClusterListDao)
+      listClusters)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postClusterListDao)
+      createGrader)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      deleteGraderDao)
+      deleteGrader)
         local -a _op_arguments
         _op_arguments=(
           "grader_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getGraderDao)
+      getGrader)
         local -a _op_arguments
         _op_arguments=(
           "grader_id=:[PATH] "
@@ -406,72 +413,72 @@ case $state in
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getGraderListDao)
+      listGraders)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postGraderListDao)
+      createOrganisation)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      deleteOrganisationDao)
+      deleteOrganisation)
         local -a _op_arguments
         _op_arguments=(
-          "organisation_id=:[PATH] Organisation identifier"
+          "organisation_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getOrganisationDao)
+      getOrganisation)
         local -a _op_arguments
         _op_arguments=(
-          "organisation_id=:[PATH] Organisation identifier"
+          "organisation_id=:[PATH] "
                     "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getOrganisationListDao)
+      listOrganisations)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postOrganisationListDao)
+      updateOrganisation)
         local -a _op_arguments
         _op_arguments=(
-                              "X-Fields\::[HEADER] An optional fields mask"
-)
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      putOrganisationDao)
-        local -a _op_arguments
-        _op_arguments=(
-          "organisation_id=:[PATH] Organisation identifier"
+          "organisation_id=:[PATH] "
                     "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      putQuotaDao)
+      updateOrganisationQuota)
         local -a _op_arguments
         _op_arguments=(
-          "organisation_id=:[PATH] Organisation identifier"
+          "organisation_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      deleteSubmissionDao)
+      createSubmission)
+        local -a _op_arguments
+        _op_arguments=(
+                              "X-Fields\::[HEADER] An optional fields mask"
+)
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      deleteSubmission)
         local -a _op_arguments
         _op_arguments=(
           "submission_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getSubmissionDao)
+      getSubmission)
         local -a _op_arguments
         _op_arguments=(
           "submission_id=:[PATH] "
@@ -479,69 +486,62 @@ case $state in
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getSubmissionDataDao)
+      getSubmissionData)
         local -a _op_arguments
         _op_arguments=(
           "submission_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getSubmissionListDao)
+      listSubmissions)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postSubmissionListDao)
+      createUser)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      deleteUserDao)
+      deleteUser)
         local -a _op_arguments
         _op_arguments=(
-          "user_id=:[PATH] User identifier"
+          "user_id=:[PATH] "
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getUserDao)
+      getUser)
         local -a _op_arguments
         _op_arguments=(
-          "user_id=:[PATH] User identifier"
+          "user_id=:[PATH] "
                     "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      getUserListDao)
+      listUsers)
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      postUserListDao)
+      updateUser)
         local -a _op_arguments
         _op_arguments=(
-                              "X-Fields\::[HEADER] An optional fields mask"
-)
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      putQuotaDao)
-        local -a _op_arguments
-        _op_arguments=(
-          "user_id=:[PATH] User identifier"
-                    )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      putUserDao)
-        local -a _op_arguments
-        _op_arguments=(
-          "user_id=:[PATH] User identifier"
+          "user_id=:[PATH] "
                     "X-Fields\::[HEADER] An optional fields mask"
 )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      updateUserQuota)
+        local -a _op_arguments
+        _op_arguments=(
+          "user_id=:[PATH] "
+                    )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
     esac

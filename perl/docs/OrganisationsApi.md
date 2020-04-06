@@ -9,70 +9,20 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_organisation_dao**](OrganisationsApi.md#delete_organisation_dao) | **DELETE** /organisations/{organisation_id} | 
-[**get_organisation_dao**](OrganisationsApi.md#get_organisation_dao) | **GET** /organisations/{organisation_id} | 
-[**get_organisation_list_dao**](OrganisationsApi.md#get_organisation_list_dao) | **GET** /organisations/ | 
-[**post_organisation_list_dao**](OrganisationsApi.md#post_organisation_list_dao) | **POST** /organisations/ | 
-[**put_organisation_dao**](OrganisationsApi.md#put_organisation_dao) | **PUT** /organisations/{organisation_id} | 
-[**put_quota_dao**](OrganisationsApi.md#put_quota_dao) | **PUT** /organisations/addquota/{organisation_id} | 
+[**create_organisation**](OrganisationsApi.md#create_organisation) | **POST** /organisations/ | 
+[**delete_organisation**](OrganisationsApi.md#delete_organisation) | **DELETE** /organisations/{organisation_id} | 
+[**get_organisation**](OrganisationsApi.md#get_organisation) | **GET** /organisations/{organisation_id} | 
+[**list_organisations**](OrganisationsApi.md#list_organisations) | **GET** /organisations/ | 
+[**update_organisation**](OrganisationsApi.md#update_organisation) | **PUT** /organisations/{organisation_id} | 
+[**update_organisation_quota**](OrganisationsApi.md#update_organisation_quota) | **PUT** /organisations/{organisation_id}/addquota | 
 
 
-# **delete_organisation_dao**
-> delete_organisation_dao(organisation_id => $organisation_id)
-
-
-
-Delete an Organisation
-
-### Example 
-```perl
-use Data::Dumper;
-use AIcrowdEvaluations::OrganisationsApi;
-my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
-
-    # Configure API key authorization: api_key
-    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
-);
-
-my $organisation_id = 56; # int | Organisation identifier
-
-eval { 
-    $api_instance->delete_organisation_dao(organisation_id => $organisation_id);
-};
-if ($@) {
-    warn "Exception when calling OrganisationsApi->delete_organisation_dao: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organisation_id** | **int**| Organisation identifier | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_organisation_dao**
-> Organisation get_organisation_dao(organisation_id => $organisation_id, x_fields => $x_fields)
+# **create_organisation**
+> Organisation create_organisation(payload => $payload, x_fields => $x_fields)
 
 
 
-Get information of an organisation
+Create a new organisation
 
 ### Example 
 ```perl
@@ -86,15 +36,15 @@ my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $organisation_id = 56; # int | Organisation identifier
+my $payload = AIcrowdEvaluations::Object::Organisation->new(); # Organisation | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_organisation_dao(organisation_id => $organisation_id, x_fields => $x_fields);
+    my $result = $api_instance->create_organisation(payload => $payload, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling OrganisationsApi->get_organisation_dao: $@\n";
+    warn "Exception when calling OrganisationsApi->create_organisation: $@\n";
 }
 ```
 
@@ -102,7 +52,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation_id** | **int**| Organisation identifier | 
+ **payload** | [**Organisation**](Organisation.md)|  | 
  **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
@@ -120,12 +70,115 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_organisation_list_dao**
-> ARRAY[Organisation] get_organisation_list_dao(x_fields => $x_fields)
+# **delete_organisation**
+> delete_organisation(organisation_id => $organisation_id)
 
 
 
-Get all organisations
+Delete an Organisation
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $organisation_id = 56; # int | 
+
+eval { 
+    $api_instance->delete_organisation(organisation_id => $organisation_id);
+};
+if ($@) {
+    warn "Exception when calling OrganisationsApi->delete_organisation: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisation_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_organisation**
+> Organisation get_organisation(organisation_id => $organisation_id, x_fields => $x_fields)
+
+
+
+Get details of an organisation
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::OrganisationsApi;
+my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $organisation_id = 56; # int | 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
+
+eval { 
+    my $result = $api_instance->get_organisation(organisation_id => $organisation_id, x_fields => $x_fields);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling OrganisationsApi->get_organisation: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisation_id** | **int**|  | 
+ **x_fields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Organisation**](Organisation.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_organisations**
+> ARRAY[Organisation] list_organisations(x_fields => $x_fields)
+
+
+
+List all organisations
 
 ### Example 
 ```perl
@@ -142,11 +195,11 @@ my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_organisation_list_dao(x_fields => $x_fields);
+    my $result = $api_instance->list_organisations(x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling OrganisationsApi->get_organisation_list_dao: $@\n";
+    warn "Exception when calling OrganisationsApi->list_organisations: $@\n";
 }
 ```
 
@@ -171,61 +224,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_organisation_list_dao**
-> Organisation post_organisation_list_dao(payload => $payload, x_fields => $x_fields)
-
-
-
-Create a new organisation
-
-### Example 
-```perl
-use Data::Dumper;
-use AIcrowdEvaluations::OrganisationsApi;
-my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
-
-    # Configure API key authorization: api_key
-    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
-);
-
-my $payload = AIcrowdEvaluations::Object::Organisation->new(); # Organisation | 
-my $x_fields = 'x_fields_example'; # string | An optional fields mask
-
-eval { 
-    my $result = $api_instance->post_organisation_list_dao(payload => $payload, x_fields => $x_fields);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling OrganisationsApi->post_organisation_list_dao: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Organisation**](Organisation.md)|  | 
- **x_fields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Organisation**](Organisation.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **put_organisation_dao**
-> Organisation put_organisation_dao(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields)
+# **update_organisation**
+> Organisation update_organisation(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields)
 
 
 
@@ -243,16 +243,16 @@ my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $organisation_id = 56; # int | Organisation identifier
+my $organisation_id = 56; # int | 
 my $payload = AIcrowdEvaluations::Object::Organisation->new(); # Organisation | 
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->put_organisation_dao(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields);
+    my $result = $api_instance->update_organisation(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling OrganisationsApi->put_organisation_dao: $@\n";
+    warn "Exception when calling OrganisationsApi->update_organisation: $@\n";
 }
 ```
 
@@ -260,7 +260,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation_id** | **int**| Organisation identifier | 
+ **organisation_id** | **int**|  | 
  **payload** | [**Organisation**](Organisation.md)|  | 
  **x_fields** | **string**| An optional fields mask | [optional] 
 
@@ -279,8 +279,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **put_quota_dao**
-> put_quota_dao(organisation_id => $organisation_id, payload => $payload)
+# **update_organisation_quota**
+> update_organisation_quota(organisation_id => $organisation_id, payload => $payload)
 
 
 
@@ -298,14 +298,14 @@ my $api_instance = AIcrowdEvaluations::OrganisationsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $organisation_id = 56; # int | Organisation identifier
+my $organisation_id = 56; # int | 
 my $payload = AIcrowdEvaluations::Object::OrganisationQuota->new(); # OrganisationQuota | 
 
 eval { 
-    $api_instance->put_quota_dao(organisation_id => $organisation_id, payload => $payload);
+    $api_instance->update_organisation_quota(organisation_id => $organisation_id, payload => $payload);
 };
 if ($@) {
-    warn "Exception when calling OrganisationsApi->put_quota_dao: $@\n";
+    warn "Exception when calling OrganisationsApi->update_organisation_quota: $@\n";
 }
 ```
 
@@ -313,7 +313,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisation_id** | **int**| Organisation identifier | 
+ **organisation_id** | **int**|  | 
  **payload** | [**OrganisationQuota**](OrganisationQuota.md)|  | 
 
 ### Return type

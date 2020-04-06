@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -65,53 +65,53 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
-        /// Test DeleteGraderDao
+        /// Test CreateGrader
         /// </summary>
         [Test]
-        public void DeleteGraderDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? graderId = null;
-            //instance.DeleteGraderDao(graderId);
-            
-        }
-        
-        /// <summary>
-        /// Test GetGraderDao
-        /// </summary>
-        [Test]
-        public void GetGraderDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? graderId = null;
-            //string xFields = null;
-            //var response = instance.GetGraderDao(graderId, xFields);
-            //Assert.IsInstanceOf<Grader> (response, "response is Grader");
-        }
-        
-        /// <summary>
-        /// Test GetGraderListDao
-        /// </summary>
-        [Test]
-        public void GetGraderListDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string xFields = null;
-            //var response = instance.GetGraderListDao(xFields);
-            //Assert.IsInstanceOf<List<Grader>> (response, "response is List<Grader>");
-        }
-        
-        /// <summary>
-        /// Test PostGraderListDao
-        /// </summary>
-        [Test]
-        public void PostGraderListDaoTest()
+        public void CreateGraderTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Grader payload = null;
             //string xFields = null;
-            //var response = instance.PostGraderListDao(payload, xFields);
+            //var response = instance.CreateGrader(payload, xFields);
             //Assert.IsInstanceOf<Grader> (response, "response is Grader");
+        }
+        
+        /// <summary>
+        /// Test DeleteGrader
+        /// </summary>
+        [Test]
+        public void DeleteGraderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //instance.DeleteGrader(graderId);
+            
+        }
+        
+        /// <summary>
+        /// Test GetGrader
+        /// </summary>
+        [Test]
+        public void GetGraderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //string xFields = null;
+            //var response = instance.GetGrader(graderId, xFields);
+            //Assert.IsInstanceOf<Grader> (response, "response is Grader");
+        }
+        
+        /// <summary>
+        /// Test ListGraders
+        /// </summary>
+        [Test]
+        public void ListGradersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xFields = null;
+            //var response = instance.ListGraders(xFields);
+            //Assert.IsInstanceOf<List<Grader>> (response, "response is List<Grader>");
         }
         
     }

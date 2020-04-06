@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AuthResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T18:58:15.377Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T19:25:11.021Z")
 public class AuthResponse {
   @SerializedName("Authorization")
   private String authorization = null;
@@ -38,10 +38,10 @@ public class AuthResponse {
   }
 
    /**
-   * Authorization token that should be used in the headers
+   * API Authorization token that should be used in the headers
    * @return authorization
   **/
-  @ApiModelProperty(value = "Authorization token that should be used in the headers")
+  @ApiModelProperty(value = "API Authorization token that should be used in the headers")
   public String getAuthorization() {
     return authorization;
   }

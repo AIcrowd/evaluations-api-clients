@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -35,33 +35,9 @@
 
   describe('AIcrowdEvaluations', function() {
     describe('AuthApi', function() {
-      describe('postLogoutApi', function() {
-        it('should call postLogoutApi successfully', function(done) {
-          // TODO: uncomment, update parameter values for postLogoutApi call and complete the assertions
-          /*
-          var opts = {};
-          opts.xFields = "xFields_example";
-
-          instance.postLogoutApi(opts, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(AicrowdEvaluations.AuthLogout);
-            expect(data.message).to.be.a('string');
-            expect(data.message).to.be("");
-
-            done();
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('postUserLogin', function() {
-        it('should call postUserLogin successfully', function(done) {
-          // TODO: uncomment, update parameter values for postUserLogin call and complete the assertions
+      describe('login', function() {
+        it('should call login successfully', function(done) {
+          // TODO: uncomment, update parameter values for login call and complete the assertions
           /*
           var payload = new AicrowdEvaluations.Login();
           payload.email = "";
@@ -69,7 +45,7 @@
           var opts = {};
           opts.xFields = "xFields_example";
 
-          instance.postUserLogin(payload, opts, function(error, data, response) {
+          instance.login(payload, opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
@@ -78,6 +54,30 @@
             expect(data).to.be.a(AicrowdEvaluations.AuthResponse);
             expect(data.authorization).to.be.a('string');
             expect(data.authorization).to.be("");
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
+      describe('logout', function() {
+        it('should call logout successfully', function(done) {
+          // TODO: uncomment, update parameter values for logout call and complete the assertions
+          /*
+          var opts = {};
+          opts.xFields = "xFields_example";
+
+          instance.logout(opts, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            // TODO: update response assertions
+            expect(data).to.be.a(AicrowdEvaluations.AuthLogout);
+            expect(data.message).to.be.a('string');
+            expect(data.message).to.be("");
 
             done();
           });

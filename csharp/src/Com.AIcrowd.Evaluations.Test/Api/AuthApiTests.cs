@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -65,28 +65,28 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
-        /// Test PostLogoutApi
+        /// Test Login
         /// </summary>
         [Test]
-        public void PostLogoutApiTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string xFields = null;
-            //var response = instance.PostLogoutApi(xFields);
-            //Assert.IsInstanceOf<AuthLogout> (response, "response is AuthLogout");
-        }
-        
-        /// <summary>
-        /// Test PostUserLogin
-        /// </summary>
-        [Test]
-        public void PostUserLoginTest()
+        public void LoginTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Login payload = null;
             //string xFields = null;
-            //var response = instance.PostUserLogin(payload, xFields);
+            //var response = instance.Login(payload, xFields);
             //Assert.IsInstanceOf<AuthResponse> (response, "response is AuthResponse");
+        }
+        
+        /// <summary>
+        /// Test Logout
+        /// </summary>
+        [Test]
+        public void LogoutTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xFields = null;
+            //var response = instance.Logout(xFields);
+            //Assert.IsInstanceOf<AuthLogout> (response, "response is AuthLogout");
         }
         
     }

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,101 +27,18 @@ export class OrganisationsApi {
     }
 
     /**
-     * Delete an Organisation
-     * @param organisationId Organisation identifier
-     */
-    public deleteOrganisationDao (organisationId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-        const localVarPath = this.basePath + '/organisations/{organisation_id}'
-            .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'organisationId' is not null or undefined
-        if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling deleteOrganisationDao.');
-        }
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'DELETE',
-            url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Get information of an organisation
-     * @param organisationId Organisation identifier
-     * @param xFields An optional fields mask
-     */
-    public getOrganisationDao (organisationId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
-        const localVarPath = this.basePath + '/organisations/{organisation_id}'
-            .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'organisationId' is not null or undefined
-        if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling getOrganisationDao.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Get all organisations
-     * @param xFields An optional fields mask
-     */
-    public getOrganisationListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Organisation>> {
-        const localVarPath = this.basePath + '/organisations/';
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
      * Create a new organisation
      * @param payload 
      * @param xFields An optional fields mask
      */
-    public postOrganisationListDao (payload: models.Organisation, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
+    public createOrganisation (payload: models.Organisation, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
         const localVarPath = this.basePath + '/organisations/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postOrganisationListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling createOrganisation.');
         }
 
         headerParams['X-Fields'] = xFields;
@@ -141,12 +58,10 @@ export class OrganisationsApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Update an Organisation
-     * @param organisationId Organisation identifier
-     * @param payload 
-     * @param xFields An optional fields mask
+     * Delete an Organisation
+     * @param organisationId 
      */
-    public putOrganisationDao (organisationId: number, payload: models.Organisation, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
+    public deleteOrganisation (organisationId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/organisations/{organisation_id}'
             .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
 
@@ -154,12 +69,97 @@ export class OrganisationsApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'organisationId' is not null or undefined
         if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling putOrganisationDao.');
+            throw new Error('Required parameter organisationId was null or undefined when calling deleteOrganisation.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Get details of an organisation
+     * @param organisationId 
+     * @param xFields An optional fields mask
+     */
+    public getOrganisation (organisationId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
+        const localVarPath = this.basePath + '/organisations/{organisation_id}'
+            .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'organisationId' is not null or undefined
+        if (organisationId === null || organisationId === undefined) {
+            throw new Error('Required parameter organisationId was null or undefined when calling getOrganisation.');
+        }
+
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * List all organisations
+     * @param xFields An optional fields mask
+     */
+    public listOrganisations (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Organisation>> {
+        const localVarPath = this.basePath + '/organisations/';
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Update an Organisation
+     * @param organisationId 
+     * @param payload 
+     * @param xFields An optional fields mask
+     */
+    public updateOrganisation (organisationId: number, payload: models.Organisation, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Organisation> {
+        const localVarPath = this.basePath + '/organisations/{organisation_id}'
+            .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'organisationId' is not null or undefined
+        if (organisationId === null || organisationId === undefined) {
+            throw new Error('Required parameter organisationId was null or undefined when calling updateOrganisation.');
         }
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putOrganisationDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateOrganisation.');
         }
 
         headerParams['X-Fields'] = xFields;
@@ -180,23 +180,23 @@ export class OrganisationsApi {
     }
     /**
      * Add or subtract quota for an organisation
-     * @param organisationId Organisation identifier
+     * @param organisationId 
      * @param payload 
      */
-    public putQuotaDao (organisationId: number, payload: models.OrganisationQuota, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-        const localVarPath = this.basePath + '/organisations/addquota/{organisation_id}'
+    public updateOrganisationQuota (organisationId: number, payload: models.OrganisationQuota, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/organisations/{organisation_id}/addquota'
             .replace('{' + 'organisation_id' + '}', encodeURIComponent(String(organisationId)));
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'organisationId' is not null or undefined
         if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter organisationId was null or undefined when calling updateOrganisationQuota.');
         }
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateOrganisationQuota.');
         }
 
         let httpRequestParams: ng.IRequestConfig = {

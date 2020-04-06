@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -88,7 +88,281 @@ class SubmissionsApi
     }
 
     /**
-     * Operation deleteSubmissionDao
+     * Operation createSubmission
+     *
+     * @param  \Swagger\Client\Model\Submissions $payload payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\Submissions
+     */
+    public function createSubmission($payload, $x_fields = null)
+    {
+        list($response) = $this->createSubmissionWithHttpInfo($payload, $x_fields);
+        return $response;
+    }
+
+    /**
+     * Operation createSubmissionWithHttpInfo
+     *
+     * @param  \Swagger\Client\Model\Submissions $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\Submissions, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createSubmissionWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\Submissions';
+        $request = $this->createSubmissionRequest($payload, $x_fields);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Swagger\Client\Model\Submissions',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createSubmissionAsync
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\Submissions $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createSubmissionAsync($payload, $x_fields = null)
+    {
+        return $this->createSubmissionAsyncWithHttpInfo($payload, $x_fields)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createSubmissionAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\Submissions $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createSubmissionAsyncWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\Submissions';
+        $request = $this->createSubmissionRequest($payload, $x_fields);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createSubmission'
+     *
+     * @param  \Swagger\Client\Model\Submissions $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createSubmissionRequest($payload, $x_fields = null)
+    {
+        // verify the required parameter 'payload' is set
+        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $payload when calling createSubmission'
+            );
+        }
+
+        $resourcePath = '/submissions/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($x_fields !== null) {
+            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($payload)) {
+            $_tempBody = $payload;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
+        if ($apiKey !== null) {
+            $headers['AUTHORIZATION'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteSubmission
      *
      * @param  int $submission_id submission_id (required)
      *
@@ -96,13 +370,13 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteSubmissionDao($submission_id)
+    public function deleteSubmission($submission_id)
     {
-        $this->deleteSubmissionDaoWithHttpInfo($submission_id);
+        $this->deleteSubmissionWithHttpInfo($submission_id);
     }
 
     /**
-     * Operation deleteSubmissionDaoWithHttpInfo
+     * Operation deleteSubmissionWithHttpInfo
      *
      * @param  int $submission_id (required)
      *
@@ -110,10 +384,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSubmissionDaoWithHttpInfo($submission_id)
+    public function deleteSubmissionWithHttpInfo($submission_id)
     {
         $returnType = '';
-        $request = $this->deleteSubmissionDaoRequest($submission_id);
+        $request = $this->deleteSubmissionRequest($submission_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -153,7 +427,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation deleteSubmissionDaoAsync
+     * Operation deleteSubmissionAsync
      *
      * 
      *
@@ -162,9 +436,9 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSubmissionDaoAsync($submission_id)
+    public function deleteSubmissionAsync($submission_id)
     {
-        return $this->deleteSubmissionDaoAsyncWithHttpInfo($submission_id)
+        return $this->deleteSubmissionAsyncWithHttpInfo($submission_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -173,7 +447,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation deleteSubmissionDaoAsyncWithHttpInfo
+     * Operation deleteSubmissionAsyncWithHttpInfo
      *
      * 
      *
@@ -182,10 +456,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSubmissionDaoAsyncWithHttpInfo($submission_id)
+    public function deleteSubmissionAsyncWithHttpInfo($submission_id)
     {
         $returnType = '';
-        $request = $this->deleteSubmissionDaoRequest($submission_id);
+        $request = $this->deleteSubmissionRequest($submission_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -211,19 +485,19 @@ class SubmissionsApi
     }
 
     /**
-     * Create request for operation 'deleteSubmissionDao'
+     * Create request for operation 'deleteSubmission'
      *
      * @param  int $submission_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteSubmissionDaoRequest($submission_id)
+    protected function deleteSubmissionRequest($submission_id)
     {
         // verify the required parameter 'submission_id' is set
         if ($submission_id === null || (is_array($submission_id) && count($submission_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $submission_id when calling deleteSubmissionDao'
+                'Missing the required parameter $submission_id when calling deleteSubmission'
             );
         }
 
@@ -321,7 +595,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDao
+     * Operation getSubmission
      *
      * @param  int $submission_id submission_id (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -330,14 +604,14 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Submissions
      */
-    public function getSubmissionDao($submission_id, $x_fields = null)
+    public function getSubmission($submission_id, $x_fields = null)
     {
-        list($response) = $this->getSubmissionDaoWithHttpInfo($submission_id, $x_fields);
+        list($response) = $this->getSubmissionWithHttpInfo($submission_id, $x_fields);
         return $response;
     }
 
     /**
-     * Operation getSubmissionDaoWithHttpInfo
+     * Operation getSubmissionWithHttpInfo
      *
      * @param  int $submission_id (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -346,10 +620,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Submissions, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSubmissionDaoWithHttpInfo($submission_id, $x_fields = null)
+    public function getSubmissionWithHttpInfo($submission_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions';
-        $request = $this->getSubmissionDaoRequest($submission_id, $x_fields);
+        $request = $this->getSubmissionRequest($submission_id, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -411,7 +685,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDaoAsync
+     * Operation getSubmissionAsync
      *
      * 
      *
@@ -421,9 +695,9 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionDaoAsync($submission_id, $x_fields = null)
+    public function getSubmissionAsync($submission_id, $x_fields = null)
     {
-        return $this->getSubmissionDaoAsyncWithHttpInfo($submission_id, $x_fields)
+        return $this->getSubmissionAsyncWithHttpInfo($submission_id, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -432,7 +706,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDaoAsyncWithHttpInfo
+     * Operation getSubmissionAsyncWithHttpInfo
      *
      * 
      *
@@ -442,10 +716,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionDaoAsyncWithHttpInfo($submission_id, $x_fields = null)
+    public function getSubmissionAsyncWithHttpInfo($submission_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions';
-        $request = $this->getSubmissionDaoRequest($submission_id, $x_fields);
+        $request = $this->getSubmissionRequest($submission_id, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -485,7 +759,7 @@ class SubmissionsApi
     }
 
     /**
-     * Create request for operation 'getSubmissionDao'
+     * Create request for operation 'getSubmission'
      *
      * @param  int $submission_id (required)
      * @param  string $x_fields An optional fields mask (optional)
@@ -493,12 +767,12 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSubmissionDaoRequest($submission_id, $x_fields = null)
+    protected function getSubmissionRequest($submission_id, $x_fields = null)
     {
         // verify the required parameter 'submission_id' is set
         if ($submission_id === null || (is_array($submission_id) && count($submission_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $submission_id when calling getSubmissionDao'
+                'Missing the required parameter $submission_id when calling getSubmission'
             );
         }
 
@@ -600,7 +874,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDataDao
+     * Operation getSubmissionData
      *
      * @param  int $submission_id submission_id (required)
      *
@@ -608,13 +882,13 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function getSubmissionDataDao($submission_id)
+    public function getSubmissionData($submission_id)
     {
-        $this->getSubmissionDataDaoWithHttpInfo($submission_id);
+        $this->getSubmissionDataWithHttpInfo($submission_id);
     }
 
     /**
-     * Operation getSubmissionDataDaoWithHttpInfo
+     * Operation getSubmissionDataWithHttpInfo
      *
      * @param  int $submission_id (required)
      *
@@ -622,10 +896,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSubmissionDataDaoWithHttpInfo($submission_id)
+    public function getSubmissionDataWithHttpInfo($submission_id)
     {
         $returnType = '';
-        $request = $this->getSubmissionDataDaoRequest($submission_id);
+        $request = $this->getSubmissionDataRequest($submission_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -665,7 +939,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDataDaoAsync
+     * Operation getSubmissionDataAsync
      *
      * 
      *
@@ -674,9 +948,9 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionDataDaoAsync($submission_id)
+    public function getSubmissionDataAsync($submission_id)
     {
-        return $this->getSubmissionDataDaoAsyncWithHttpInfo($submission_id)
+        return $this->getSubmissionDataAsyncWithHttpInfo($submission_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -685,7 +959,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionDataDaoAsyncWithHttpInfo
+     * Operation getSubmissionDataAsyncWithHttpInfo
      *
      * 
      *
@@ -694,10 +968,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionDataDaoAsyncWithHttpInfo($submission_id)
+    public function getSubmissionDataAsyncWithHttpInfo($submission_id)
     {
         $returnType = '';
-        $request = $this->getSubmissionDataDaoRequest($submission_id);
+        $request = $this->getSubmissionDataRequest($submission_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -723,19 +997,19 @@ class SubmissionsApi
     }
 
     /**
-     * Create request for operation 'getSubmissionDataDao'
+     * Create request for operation 'getSubmissionData'
      *
      * @param  int $submission_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSubmissionDataDaoRequest($submission_id)
+    protected function getSubmissionDataRequest($submission_id)
     {
         // verify the required parameter 'submission_id' is set
         if ($submission_id === null || (is_array($submission_id) && count($submission_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $submission_id when calling getSubmissionDataDao'
+                'Missing the required parameter $submission_id when calling getSubmissionData'
             );
         }
 
@@ -833,7 +1107,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionListDao
+     * Operation listSubmissions
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -841,14 +1115,14 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Submissions[]
      */
-    public function getSubmissionListDao($x_fields = null)
+    public function listSubmissions($x_fields = null)
     {
-        list($response) = $this->getSubmissionListDaoWithHttpInfo($x_fields);
+        list($response) = $this->listSubmissionsWithHttpInfo($x_fields);
         return $response;
     }
 
     /**
-     * Operation getSubmissionListDaoWithHttpInfo
+     * Operation listSubmissionsWithHttpInfo
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -856,10 +1130,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Submissions[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSubmissionListDaoWithHttpInfo($x_fields = null)
+    public function listSubmissionsWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->getSubmissionListDaoRequest($x_fields);
+        $request = $this->listSubmissionsRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -921,7 +1195,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionListDaoAsync
+     * Operation listSubmissionsAsync
      *
      * 
      *
@@ -930,9 +1204,9 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionListDaoAsync($x_fields = null)
+    public function listSubmissionsAsync($x_fields = null)
     {
-        return $this->getSubmissionListDaoAsyncWithHttpInfo($x_fields)
+        return $this->listSubmissionsAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -941,7 +1215,7 @@ class SubmissionsApi
     }
 
     /**
-     * Operation getSubmissionListDaoAsyncWithHttpInfo
+     * Operation listSubmissionsAsyncWithHttpInfo
      *
      * 
      *
@@ -950,10 +1224,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSubmissionListDaoAsyncWithHttpInfo($x_fields = null)
+    public function listSubmissionsAsyncWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->getSubmissionListDaoRequest($x_fields);
+        $request = $this->listSubmissionsRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -993,14 +1267,14 @@ class SubmissionsApi
     }
 
     /**
-     * Create request for operation 'getSubmissionListDao'
+     * Create request for operation 'listSubmissions'
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSubmissionListDaoRequest($x_fields = null)
+    protected function listSubmissionsRequest($x_fields = null)
     {
 
         $resourcePath = '/submissions/';
@@ -1086,280 +1360,6 @@ class SubmissionsApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation postSubmissionListDao
-     *
-     * @param  \Swagger\Client\Model\Submissions $payload payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Swagger\Client\Model\Submissions
-     */
-    public function postSubmissionListDao($payload, $x_fields = null)
-    {
-        list($response) = $this->postSubmissionListDaoWithHttpInfo($payload, $x_fields);
-        return $response;
-    }
-
-    /**
-     * Operation postSubmissionListDaoWithHttpInfo
-     *
-     * @param  \Swagger\Client\Model\Submissions $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Swagger\Client\Model\Submissions, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function postSubmissionListDaoWithHttpInfo($payload, $x_fields = null)
-    {
-        $returnType = '\Swagger\Client\Model\Submissions';
-        $request = $this->postSubmissionListDaoRequest($payload, $x_fields);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Swagger\Client\Model\Submissions',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation postSubmissionListDaoAsync
-     *
-     * 
-     *
-     * @param  \Swagger\Client\Model\Submissions $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function postSubmissionListDaoAsync($payload, $x_fields = null)
-    {
-        return $this->postSubmissionListDaoAsyncWithHttpInfo($payload, $x_fields)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation postSubmissionListDaoAsyncWithHttpInfo
-     *
-     * 
-     *
-     * @param  \Swagger\Client\Model\Submissions $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function postSubmissionListDaoAsyncWithHttpInfo($payload, $x_fields = null)
-    {
-        $returnType = '\Swagger\Client\Model\Submissions';
-        $request = $this->postSubmissionListDaoRequest($payload, $x_fields);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'postSubmissionListDao'
-     *
-     * @param  \Swagger\Client\Model\Submissions $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function postSubmissionListDaoRequest($payload, $x_fields = null)
-    {
-        // verify the required parameter 'payload' is set
-        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling postSubmissionListDao'
-            );
-        }
-
-        $resourcePath = '/submissions/';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // header params
-        if ($x_fields !== null) {
-            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
-        }
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($payload)) {
-            $_tempBody = $payload;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
-        if ($apiKey !== null) {
-            $headers['AUTHORIZATION'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,10 +27,41 @@ export class SubmissionsApi {
     }
 
     /**
-     * Stop evaluation of a submission
+     * Make a new submission
+     * @param payload 
+     * @param xFields An optional fields mask
+     */
+    public createSubmission (payload: models.Submissions, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Submissions> {
+        const localVarPath = this.basePath + '/submissions/';
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createSubmission.');
+        }
+
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            data: payload,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Stop evaluation of a submission and delete it
      * @param submissionId 
      */
-    public deleteSubmissionDao (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public deleteSubmission (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/submissions/{submission_id}'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
 
@@ -38,7 +69,7 @@ export class SubmissionsApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
-            throw new Error('Required parameter submissionId was null or undefined when calling deleteSubmissionDao.');
+            throw new Error('Required parameter submissionId was null or undefined when calling deleteSubmission.');
         }
 
         let httpRequestParams: ng.IRequestConfig = {
@@ -55,11 +86,11 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get details of a submission
+     * Get details of a submission by its ID
      * @param submissionId 
      * @param xFields An optional fields mask
      */
-    public getSubmissionDao (submissionId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Submissions> {
+    public getSubmission (submissionId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Submissions> {
         const localVarPath = this.basePath + '/submissions/{submission_id}'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
 
@@ -67,7 +98,7 @@ export class SubmissionsApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
-            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDao.');
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmission.');
         }
 
         headerParams['X-Fields'] = xFields;
@@ -86,10 +117,10 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get the submission data
+     * Get the submission data by submission ID
      * @param submissionId 
      */
-    public getSubmissionDataDao (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public getSubmissionData (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/submissions/{submission_id}/data'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
 
@@ -97,7 +128,7 @@ export class SubmissionsApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
-            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDataDao.');
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionData.');
         }
 
         let httpRequestParams: ng.IRequestConfig = {
@@ -114,10 +145,10 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get all submissions
+     * List all submissions available
      * @param xFields An optional fields mask
      */
-    public getSubmissionListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
+    public listSubmissions (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
         const localVarPath = this.basePath + '/submissions/';
 
         let queryParameters: any = {};
@@ -127,37 +158,6 @@ export class SubmissionsApi {
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',
             url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Make a new submission
-     * @param payload 
-     * @param xFields An optional fields mask
-     */
-    public postSubmissionListDao (payload: models.Submissions, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Submissions> {
-        const localVarPath = this.basePath + '/submissions/';
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postSubmissionListDao.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            data: payload,
             params: queryParameters,
             headers: headerParams
         };

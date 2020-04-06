@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,65 +36,65 @@ public class OrganisationsApiTest {
     /**
      * 
      *
-     * Delete an Organisation
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void deleteOrganisationDaoTest() throws ApiException {
-        Integer organisationId = null;
-        api.deleteOrganisationDao(organisationId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get information of an organisation
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganisationDaoTest() throws ApiException {
-        Integer organisationId = null;
-        String xFields = null;
-        Organisation response = api.getOrganisationDao(organisationId, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get all organisations
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getOrganisationListDaoTest() throws ApiException {
-        String xFields = null;
-        List<Organisation> response = api.getOrganisationListDao(xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
      * Create a new organisation
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void postOrganisationListDaoTest() throws ApiException {
+    public void createOrganisationTest() throws ApiException {
         Organisation payload = null;
         String xFields = null;
-        Organisation response = api.postOrganisationListDao(payload, xFields);
+        Organisation response = api.createOrganisation(payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Delete an Organisation
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteOrganisationTest() throws ApiException {
+        Integer organisationId = null;
+        api.deleteOrganisation(organisationId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get details of an organisation
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getOrganisationTest() throws ApiException {
+        Integer organisationId = null;
+        String xFields = null;
+        Organisation response = api.getOrganisation(organisationId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * List all organisations
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listOrganisationsTest() throws ApiException {
+        String xFields = null;
+        List<Organisation> response = api.listOrganisations(xFields);
 
         // TODO: test validations
     }
@@ -108,11 +108,11 @@ public class OrganisationsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void putOrganisationDaoTest() throws ApiException {
+    public void updateOrganisationTest() throws ApiException {
         Integer organisationId = null;
         Organisation payload = null;
         String xFields = null;
-        Organisation response = api.putOrganisationDao(organisationId, payload, xFields);
+        Organisation response = api.updateOrganisation(organisationId, payload, xFields);
 
         // TODO: test validations
     }
@@ -126,10 +126,10 @@ public class OrganisationsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void putQuotaDaoTest() throws ApiException {
+    public void updateOrganisationQuotaTest() throws ApiException {
         Integer organisationId = null;
         OrganisationQuota payload = null;
-        api.putQuotaDao(organisationId, payload);
+        api.updateOrganisationQuota(organisationId, payload);
 
         // TODO: test validations
     }

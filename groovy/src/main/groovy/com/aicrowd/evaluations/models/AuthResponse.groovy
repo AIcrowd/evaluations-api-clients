@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Canonical
 class AuthResponse {
 
-  /* Authorization token that should be used in the headers */
+  /* API Authorization token that should be used in the headers */
   String authorization = null
   
 

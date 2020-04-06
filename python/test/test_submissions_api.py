@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -29,32 +29,32 @@ class TestSubmissionsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_delete_submission_dao(self):
-        """Test case for delete_submission_dao
+    def test_create_submission(self):
+        """Test case for create_submission
 
         """
         pass
 
-    def test_get_submission_dao(self):
-        """Test case for get_submission_dao
+    def test_delete_submission(self):
+        """Test case for delete_submission
 
         """
         pass
 
-    def test_get_submission_data_dao(self):
-        """Test case for get_submission_data_dao
+    def test_get_submission(self):
+        """Test case for get_submission
 
         """
         pass
 
-    def test_get_submission_list_dao(self):
-        """Test case for get_submission_list_dao
+    def test_get_submission_data(self):
+        """Test case for get_submission_data
 
         """
         pass
 
-    def test_post_submission_list_dao(self):
-        """Test case for post_submission_list_dao
+    def test_list_submissions(self):
+        """Test case for list_submissions
 
         """
         pass

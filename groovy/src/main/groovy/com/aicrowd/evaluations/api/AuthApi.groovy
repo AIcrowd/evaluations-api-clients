@@ -16,26 +16,7 @@ class AuthApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def postLogoutApi ( String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/auth/logout"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "POST", "",
-                    AuthLogout.class )
-                    
-    }
-    def postUserLogin ( Login payload, String xFields, Closure onSuccess, Closure onFailure)  {
+    def login ( Login payload, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/auth/login"
 
@@ -56,6 +37,25 @@ class AuthApi {
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "POST", "",
                     AuthResponse.class )
+                    
+    }
+    def logout ( String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/auth/logout"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    AuthLogout.class )
                     
     }
 }

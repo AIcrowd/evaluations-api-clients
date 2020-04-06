@@ -12,111 +12,6 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
 
 
   @doc """
-  Stop evaluation of a submission
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - submission_id (integer()): 
-  - opts (KeywordList): [optional] Optional parameters
-
-  ## Returns
-
-  {:ok, %{}} on success
-  {:error, info} on failure
-  """
-  @spec delete_submission_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def delete_submission_dao(connection, submission_id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/submissions/#{submission_id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(false)
-  end
-
-  @doc """
-  Get details of a submission
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - submission_id (integer()): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.Submissions{}} on success
-  {:error, info} on failure
-  """
-  @spec get_submission_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Submissions.t} | {:error, Tesla.Env.t}
-  def get_submission_dao(connection, submission_id, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/submissions/#{submission_id}")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.Submissions{})
-  end
-
-  @doc """
-  Get the submission data
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - submission_id (integer()): 
-  - opts (KeywordList): [optional] Optional parameters
-
-  ## Returns
-
-  {:ok, %{}} on success
-  {:error, info} on failure
-  """
-  @spec get_submission_data_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def get_submission_data_dao(connection, submission_id, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/submissions/#{submission_id}/data")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(false)
-  end
-
-  @doc """
-  Get all submissions
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, [%Submissions{}, ...]} on success
-  {:error, info} on failure
-  """
-  @spec get_submission_list_dao(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Submissions.t)} | {:error, Tesla.Env.t}
-  def get_submission_list_dao(connection, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/submissions/")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode([%AIcrowd.Evaluations.Model.Submissions{}])
-  end
-
-  @doc """
   Make a new submission
 
   ## Parameters
@@ -131,8 +26,8 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   {:ok, %AIcrowd.Evaluations.Model.Submissions{}} on success
   {:error, info} on failure
   """
-  @spec post_submission_list_dao(Tesla.Env.client, AIcrowd.Evaluations.Model.Submissions.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Submissions.t} | {:error, Tesla.Env.t}
-  def post_submission_list_dao(connection, payload, opts \\ []) do
+  @spec create_submission(Tesla.Env.client, AIcrowd.Evaluations.Model.Submissions.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Submissions.t} | {:error, Tesla.Env.t}
+  def create_submission(connection, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -144,5 +39,110 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode(%AIcrowd.Evaluations.Model.Submissions{})
+  end
+
+  @doc """
+  Stop evaluation of a submission and delete it
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - submission_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec delete_submission(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def delete_submission(connection, submission_id, _opts \\ []) do
+    %{}
+    |> method(:delete)
+    |> url("/submissions/#{submission_id}")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
+  Get details of a submission by its ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - submission_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.Submissions{}} on success
+  {:error, info} on failure
+  """
+  @spec get_submission(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Submissions.t} | {:error, Tesla.Env.t}
+  def get_submission(connection, submission_id, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/submissions/#{submission_id}")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.Submissions{})
+  end
+
+  @doc """
+  Get the submission data by submission ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - submission_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec get_submission_data(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def get_submission_data(connection, submission_id, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/submissions/#{submission_id}/data")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
+  List all submissions available
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, [%Submissions{}, ...]} on success
+  {:error, info} on failure
+  """
+  @spec list_submissions(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Submissions.t)} | {:error, Tesla.Env.t}
+  def list_submissions(connection, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/submissions/")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode([%AIcrowd.Evaluations.Model.Submissions{}])
   end
 end

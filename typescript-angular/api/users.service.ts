@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -59,165 +59,19 @@ export class UsersService {
 
     /**
      * 
-     * Delete a user
-     * @param userId User identifier
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteUserDao(userId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteUserDao(userId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteUserDao(userId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteUserDao(userId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling deleteUserDao.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.delete<any>(`${this.basePath}/users/${encodeURIComponent(String(userId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Get information of a user
-     * @param userId User identifier
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getUserDao(userId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
-    public getUserDao(userId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
-    public getUserDao(userId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
-    public getUserDao(userId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getUserDao.');
-        }
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<User>(`${this.basePath}/users/${encodeURIComponent(String(userId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Get all user
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getUserListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<User>>;
-    public getUserListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<User>>>;
-    public getUserListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<User>>>;
-    public getUserListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<Array<User>>(`${this.basePath}/users/`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
      * Create a new user
      * @param payload 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postUserListDao(payload: User, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
-    public postUserListDao(payload: User, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
-    public postUserListDao(payload: User, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
-    public postUserListDao(payload: User, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUser(payload: User, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
+    public createUser(payload: User, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
+    public createUser(payload: User, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public createUser(payload: User, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postUserListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling createUser.');
         }
 
 
@@ -262,23 +116,18 @@ export class UsersService {
 
     /**
      * 
-     * Add or subtract quota for a user
-     * @param userId User identifier
-     * @param payload 
+     * Delete a user
+     * @param userId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putQuotaDao(userId: number, payload: UserQuota, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public putQuotaDao(userId: number, payload: UserQuota, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public putQuotaDao(userId: number, payload: UserQuota, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public putQuotaDao(userId: number, payload: UserQuota, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteUser(userId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteUser(userId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteUser(userId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteUser(userId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling putQuotaDao.');
-        }
-
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter userId was null or undefined when calling deleteUser.');
         }
 
         let headers = this.defaultHeaders;
@@ -301,13 +150,107 @@ export class UsersService {
         const consumes: string[] = [
             'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
+
+        return this.httpClient.delete<any>(`${this.basePath}/users/${encodeURIComponent(String(userId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Get information of a user
+     * @param userId 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getUser(userId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
+    public getUser(userId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
+    public getUser(userId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public getUser(userId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUser.');
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/users/addquota/${encodeURIComponent(String(userId))}`,
-            payload,
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<User>(`${this.basePath}/users/${encodeURIComponent(String(userId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Get all user
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listUsers(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<User>>;
+    public listUsers(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<User>>>;
+    public listUsers(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<User>>>;
+    public listUsers(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<Array<User>>(`${this.basePath}/users/`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -320,23 +263,23 @@ export class UsersService {
     /**
      * 
      * Update a user
-     * @param userId User identifier
+     * @param userId 
      * @param payload 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putUserDao(userId: number, payload: User, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
-    public putUserDao(userId: number, payload: User, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
-    public putUserDao(userId: number, payload: User, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
-    public putUserDao(userId: number, payload: User, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateUser(userId: number, payload: User, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
+    public updateUser(userId: number, payload: User, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
+    public updateUser(userId: number, payload: User, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public updateUser(userId: number, payload: User, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling putUserDao.');
+            throw new Error('Required parameter userId was null or undefined when calling updateUser.');
         }
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putUserDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateUser.');
         }
 
 
@@ -369,6 +312,63 @@ export class UsersService {
         }
 
         return this.httpClient.put<User>(`${this.basePath}/users/${encodeURIComponent(String(userId))}`,
+            payload,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Add or subtract quota for a user
+     * @param userId 
+     * @param payload 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateUserQuota(userId: number, payload: UserQuota, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUserQuota(userId: number, payload: UserQuota, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUserQuota(userId: number, payload: UserQuota, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUserQuota(userId: number, payload: UserQuota, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling updateUserQuota.');
+        }
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling updateUserQuota.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<any>(`${this.basePath}/users/${encodeURIComponent(String(userId))}/addquota`,
             payload,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,7 +36,154 @@ UsersApi::~UsersApi()
 {
 }
 
-pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
+pplx::task<std::shared_ptr<User>> UsersApi::createUser(std::shared_ptr<User> payload, boost::optional<utility::string_t> xFields)
+{
+
+    // verify the required parameter 'payload' is set
+    if (payload == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->createUser"));
+    }
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/users/");
+    
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->createUser does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(payload);
+        
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+
+        if(payload.get())
+        {
+            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->createUser does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling createUser: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling createUser: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<User> result(new User());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling createUser: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<void> UsersApi::deleteUser(int32_t userId)
 {
 
 
@@ -71,7 +218,7 @@ pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->deleteUserDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->deleteUser does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -95,7 +242,7 @@ pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->deleteUserDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->deleteUser does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -118,7 +265,7 @@ pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling deleteUserDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling deleteUser: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -129,7 +276,7 @@ pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteUserDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling deleteUser: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -141,7 +288,7 @@ pplx::task<void> UsersApi::deleteUserDao(int32_t userId)
         return void();
     });
 }
-pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<User>> UsersApi::getUser(int32_t userId, boost::optional<utility::string_t> xFields)
 {
 
 
@@ -176,7 +323,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::op
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->getUserDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->getUser does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -204,7 +351,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::op
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->getUserDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->getUser does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -227,7 +374,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::op
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getUserDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling getUser: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -238,7 +385,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::op
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getUserDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling getUser: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -262,13 +409,13 @@ pplx::task<std::shared_ptr<User>> UsersApi::getUserDao(int32_t userId, boost::op
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getUserDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getUser: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::optional<utility::string_t> xFields)
+pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::listUsers(boost::optional<utility::string_t> xFields)
 {
 
 
@@ -302,7 +449,7 @@ pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::o
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->getUserListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->listUsers does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -330,7 +477,7 @@ pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::o
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->getUserListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->listUsers does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -353,7 +500,7 @@ pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::o
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getUserListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling listUsers: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -364,7 +511,7 @@ pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::o
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getUserListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling listUsers: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -395,292 +542,19 @@ pplx::task<std::vector<std::shared_ptr<User>>> UsersApi::getUserListDao(boost::o
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling getUserListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling listUsers: unsupported response type"));
         }
 
         return result;
     });
 }
-pplx::task<std::shared_ptr<User>> UsersApi::postUserListDao(std::shared_ptr<User> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<User>> UsersApi::updateUser(int32_t userId, std::shared_ptr<User> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->postUserListDao"));
-    }
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/users/");
-    
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->postUserListDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value json;
-
-        json = ModelBase::toJson(payload);
-        
-
-        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
-
-        if(payload.get())
-        {
-            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
-        }
-
-        httpBody = multipart;
-        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->postUserListDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling postUserListDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postUserListDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::shared_ptr<User> result(new User());
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            result->fromJson(json);
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling postUserListDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<void> UsersApi::putQuotaDao(int32_t userId, std::shared_ptr<UserQuota> payload)
-{
-
-    // verify the required parameter 'payload' is set
-    if (payload == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->putQuotaDao"));
-    }
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/users/addquota/{user_id}");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("user_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(userId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->putQuotaDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-        web::json::value json;
-
-        json = ModelBase::toJson(payload);
-        
-
-        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
-
-        if(payload.get())
-        {
-            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
-        }
-
-        httpBody = multipart;
-        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->putQuotaDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling putQuotaDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putQuotaDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        return void();
-    });
-}
-pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shared_ptr<User> payload, boost::optional<utility::string_t> xFields)
-{
-
-    // verify the required parameter 'payload' is set
-    if (payload == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->putUserDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->updateUser"));
     }
 
 
@@ -715,7 +589,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shar
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("UsersApi->putUserDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->updateUser does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -758,7 +632,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shar
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("UsersApi->putUserDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->updateUser does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -781,7 +655,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shar
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling putUserDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling updateUser: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -792,7 +666,7 @@ pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shar
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling putUserDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling updateUser: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -816,10 +690,136 @@ pplx::task<std::shared_ptr<User>> UsersApi::putUserDao(int32_t userId, std::shar
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling putUserDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling updateUser: unsupported response type"));
         }
 
         return result;
+    });
+}
+pplx::task<void> UsersApi::updateUserQuota(int32_t userId, std::shared_ptr<UserQuota> payload)
+{
+
+    // verify the required parameter 'payload' is set
+    if (payload == nullptr)
+    {
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling UsersApi->updateUserQuota"));
+    }
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/users/{user_id}/addquota");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("user_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(userId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("UsersApi->updateUserQuota does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+        web::json::value json;
+
+        json = ModelBase::toJson(payload);
+        
+
+        httpBody = std::shared_ptr<IHttpBody>( new JsonBody( json ) );
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+        std::shared_ptr<MultipartFormData> multipart(new MultipartFormData);
+
+        if(payload.get())
+        {
+            payload->toMultipart(multipart, utility::conversions::to_string_t("payload"));
+        }
+
+        httpBody = multipart;
+        requestHttpContentType += utility::conversions::to_string_t("; boundary=") + multipart->getBoundary();
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("UsersApi->updateUserQuota does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling updateUserQuota: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling updateUserQuota: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
     });
 }
 

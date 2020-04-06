@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -29,38 +29,38 @@ class TestUsersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_delete_user_dao(self):
-        """Test case for delete_user_dao
+    def test_create_user(self):
+        """Test case for create_user
 
         """
         pass
 
-    def test_get_user_dao(self):
-        """Test case for get_user_dao
+    def test_delete_user(self):
+        """Test case for delete_user
 
         """
         pass
 
-    def test_get_user_list_dao(self):
-        """Test case for get_user_list_dao
+    def test_get_user(self):
+        """Test case for get_user
 
         """
         pass
 
-    def test_post_user_list_dao(self):
-        """Test case for post_user_list_dao
+    def test_list_users(self):
+        """Test case for list_users
 
         """
         pass
 
-    def test_put_quota_dao(self):
-        """Test case for put_quota_dao
+    def test_update_user(self):
+        """Test case for update_user
 
         """
         pass
 
-    def test_put_user_dao(self):
-        """Test case for put_user_dao
+    def test_update_user_quota(self):
+        """Test case for update_user_quota
 
         """
         pass

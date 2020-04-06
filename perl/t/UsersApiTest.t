@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -30,56 +30,56 @@ my $api = AIcrowdEvaluations::UsersApi->new();
 isa_ok($api, 'AIcrowdEvaluations::UsersApi');
 
 #
-# delete_user_dao test
-#
-{
-    my $user_id = undef; # replace NULL with a proper value
-    my $result = $api->delete_user_dao(user_id => $user_id);
-}
-
-#
-# get_user_dao test
-#
-{
-    my $user_id = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_user_dao(user_id => $user_id, x_fields => $x_fields);
-}
-
-#
-# get_user_list_dao test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_user_list_dao(x_fields => $x_fields);
-}
-
-#
-# post_user_list_dao test
+# create_user test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_user_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->create_user(payload => $payload, x_fields => $x_fields);
 }
 
 #
-# put_quota_dao test
+# delete_user test
 #
 {
     my $user_id = undef; # replace NULL with a proper value
-    my $payload = undef; # replace NULL with a proper value
-    my $result = $api->put_quota_dao(user_id => $user_id, payload => $payload);
+    my $result = $api->delete_user(user_id => $user_id);
 }
 
 #
-# put_user_dao test
+# get_user test
+#
+{
+    my $user_id = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_user(user_id => $user_id, x_fields => $x_fields);
+}
+
+#
+# list_users test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->list_users(x_fields => $x_fields);
+}
+
+#
+# update_user test
 #
 {
     my $user_id = undef; # replace NULL with a proper value
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->put_user_dao(user_id => $user_id, payload => $payload, x_fields => $x_fields);
+    my $result = $api->update_user(user_id => $user_id, payload => $payload, x_fields => $x_fields);
+}
+
+#
+# update_user_quota test
+#
+{
+    my $user_id = undef; # replace NULL with a proper value
+    my $payload = undef; # replace NULL with a proper value
+    my $result = $api->update_user_quota(user_id => $user_id, payload => $payload);
 }
 
 

@@ -4,21 +4,54 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
-[**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getClusterListDao**](ClustersApi.md#getClusterListDao) | **GET** /clusters/ | 
-[**postClusterListDao**](ClustersApi.md#postClusterListDao) | **POST** /clusters/ | 
+[**createCluster**](ClustersApi.md#createCluster) | **POST** /clusters/ | 
+[**deleteCluster**](ClustersApi.md#deleteCluster) | **DELETE** /clusters/{cluster_id} | 
+[**getCluster**](ClustersApi.md#getCluster) | **GET** /clusters/{cluster_id} | 
+[**listClusters**](ClustersApi.md#listClusters) | **GET** /clusters/ | 
 
 
-## **deleteClusterDao**
+## **createCluster**
 
 
 
-Delete a cluster
+Add a new cluster to AIcrowd and install necessary dependencies
 
 ### Example
 ```bash
-aicrowd-evaluations deleteClusterDao cluster_id=value
+aicrowd-evaluations createCluster X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Cluster**](Cluster.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **deleteCluster**
+
+
+
+Delete a cluster by its ID
+
+### Example
+```bash
+aicrowd-evaluations deleteCluster cluster_id=value
 ```
 
 ### Parameters
@@ -42,15 +75,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getClusterDao**
+## **getCluster**
 
 
 
-Get information of a cluster
+Get details of a cluster by its ID
 
 ### Example
 ```bash
-aicrowd-evaluations getClusterDao cluster_id=value X-Fields:value
+aicrowd-evaluations getCluster cluster_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -75,15 +108,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getClusterListDao**
+## **listClusters**
 
 
 
-Get all clusters
+List all clusters available
 
 ### Example
 ```bash
-aicrowd-evaluations getClusterListDao X-Fields:value
+aicrowd-evaluations listClusters X-Fields:value
 ```
 
 ### Parameters
@@ -95,39 +128,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**array[Cluster]**](Cluster.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **postClusterListDao**
-
-
-
-Add a new cluster
-
-### Example
-```bash
-aicrowd-evaluations postClusterListDao X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Cluster**](Cluster.md) |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Cluster**](Cluster.md)
 
 ### Authorization
 

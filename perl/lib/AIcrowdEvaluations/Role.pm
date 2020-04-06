@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -54,7 +54,7 @@ has _cfg => ( is => 'ro',
 has version_info => ( is => 'ro',
                       isa => 'HashRef',
                       default => sub { {
-                          app_name => 'Evaluations API',
+                          app_name => 'AIcrowd Evaluations API',
                           app_version => '1.0.0',
                           generator_class => 'io.swagger.codegen.languages.PerlClientCodegen',
                       } },
@@ -111,9 +111,9 @@ sub _build_af {
 
 =head1 NAME
 
-AIcrowdEvaluations::Role - a Moose role for the Evaluations API
+AIcrowdEvaluations::Role - a Moose role for the AIcrowd Evaluations API
 
-=head2 Evaluations API version: 1.0.0
+=head2 AIcrowd Evaluations API version: 1.0.0
 
 =head1 VERSION
 

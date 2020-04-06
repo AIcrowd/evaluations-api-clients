@@ -12,7 +12,7 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #
-# This is a Bash client for Evaluations API.
+# This is a Bash client for AIcrowd Evaluations API.
 #
 # LICENSE:
 # 
@@ -102,50 +102,50 @@ operation_parameters_minimum_occurrences["postGraderFeedbackDao:::grader_id"]=1
 operation_parameters_minimum_occurrences["postGraderFeedbackDao:::payload"]=1
 operation_parameters_minimum_occurrences["postSubmissionFeedbackDao:::submission_id"]=1
 operation_parameters_minimum_occurrences["postSubmissionFeedbackDao:::payload"]=1
-operation_parameters_minimum_occurrences["postLogoutApi:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postUserLogin:::payload"]=1
-operation_parameters_minimum_occurrences["postUserLogin:::X-Fields"]=0
-operation_parameters_minimum_occurrences["deleteClusterDao:::cluster_id"]=1
-operation_parameters_minimum_occurrences["getClusterDao:::cluster_id"]=1
-operation_parameters_minimum_occurrences["getClusterDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["getClusterListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postClusterListDao:::payload"]=1
-operation_parameters_minimum_occurrences["postClusterListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["deleteGraderDao:::grader_id"]=1
-operation_parameters_minimum_occurrences["getGraderDao:::grader_id"]=1
-operation_parameters_minimum_occurrences["getGraderDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["getGraderListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postGraderListDao:::payload"]=1
-operation_parameters_minimum_occurrences["postGraderListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["deleteOrganisationDao:::organisation_id"]=1
-operation_parameters_minimum_occurrences["getOrganisationDao:::organisation_id"]=1
-operation_parameters_minimum_occurrences["getOrganisationDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["getOrganisationListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postOrganisationListDao:::payload"]=1
-operation_parameters_minimum_occurrences["postOrganisationListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["putOrganisationDao:::organisation_id"]=1
-operation_parameters_minimum_occurrences["putOrganisationDao:::payload"]=1
-operation_parameters_minimum_occurrences["putOrganisationDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["putQuotaDao:::organisation_id"]=1
-operation_parameters_minimum_occurrences["putQuotaDao:::payload"]=1
-operation_parameters_minimum_occurrences["deleteSubmissionDao:::submission_id"]=1
-operation_parameters_minimum_occurrences["getSubmissionDao:::submission_id"]=1
-operation_parameters_minimum_occurrences["getSubmissionDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["getSubmissionDataDao:::submission_id"]=1
-operation_parameters_minimum_occurrences["getSubmissionListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postSubmissionListDao:::payload"]=1
-operation_parameters_minimum_occurrences["postSubmissionListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["deleteUserDao:::user_id"]=1
-operation_parameters_minimum_occurrences["getUserDao:::user_id"]=1
-operation_parameters_minimum_occurrences["getUserDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["getUserListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["postUserListDao:::payload"]=1
-operation_parameters_minimum_occurrences["postUserListDao:::X-Fields"]=0
-operation_parameters_minimum_occurrences["putQuotaDao:::user_id"]=1
-operation_parameters_minimum_occurrences["putQuotaDao:::payload"]=1
-operation_parameters_minimum_occurrences["putUserDao:::user_id"]=1
-operation_parameters_minimum_occurrences["putUserDao:::payload"]=1
-operation_parameters_minimum_occurrences["putUserDao:::X-Fields"]=0
+operation_parameters_minimum_occurrences["login:::payload"]=1
+operation_parameters_minimum_occurrences["login:::X-Fields"]=0
+operation_parameters_minimum_occurrences["logout:::X-Fields"]=0
+operation_parameters_minimum_occurrences["createCluster:::payload"]=1
+operation_parameters_minimum_occurrences["createCluster:::X-Fields"]=0
+operation_parameters_minimum_occurrences["deleteCluster:::cluster_id"]=1
+operation_parameters_minimum_occurrences["getCluster:::cluster_id"]=1
+operation_parameters_minimum_occurrences["getCluster:::X-Fields"]=0
+operation_parameters_minimum_occurrences["listClusters:::X-Fields"]=0
+operation_parameters_minimum_occurrences["createGrader:::payload"]=1
+operation_parameters_minimum_occurrences["createGrader:::X-Fields"]=0
+operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
+operation_parameters_minimum_occurrences["getGrader:::grader_id"]=1
+operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
+operation_parameters_minimum_occurrences["listGraders:::X-Fields"]=0
+operation_parameters_minimum_occurrences["createOrganisation:::payload"]=1
+operation_parameters_minimum_occurrences["createOrganisation:::X-Fields"]=0
+operation_parameters_minimum_occurrences["deleteOrganisation:::organisation_id"]=1
+operation_parameters_minimum_occurrences["getOrganisation:::organisation_id"]=1
+operation_parameters_minimum_occurrences["getOrganisation:::X-Fields"]=0
+operation_parameters_minimum_occurrences["listOrganisations:::X-Fields"]=0
+operation_parameters_minimum_occurrences["updateOrganisation:::organisation_id"]=1
+operation_parameters_minimum_occurrences["updateOrganisation:::payload"]=1
+operation_parameters_minimum_occurrences["updateOrganisation:::X-Fields"]=0
+operation_parameters_minimum_occurrences["updateOrganisationQuota:::organisation_id"]=1
+operation_parameters_minimum_occurrences["updateOrganisationQuota:::payload"]=1
+operation_parameters_minimum_occurrences["createSubmission:::payload"]=1
+operation_parameters_minimum_occurrences["createSubmission:::X-Fields"]=0
+operation_parameters_minimum_occurrences["deleteSubmission:::submission_id"]=1
+operation_parameters_minimum_occurrences["getSubmission:::submission_id"]=1
+operation_parameters_minimum_occurrences["getSubmission:::X-Fields"]=0
+operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
+operation_parameters_minimum_occurrences["listSubmissions:::X-Fields"]=0
+operation_parameters_minimum_occurrences["createUser:::payload"]=1
+operation_parameters_minimum_occurrences["createUser:::X-Fields"]=0
+operation_parameters_minimum_occurrences["deleteUser:::user_id"]=1
+operation_parameters_minimum_occurrences["getUser:::user_id"]=1
+operation_parameters_minimum_occurrences["getUser:::X-Fields"]=0
+operation_parameters_minimum_occurrences["listUsers:::X-Fields"]=0
+operation_parameters_minimum_occurrences["updateUser:::user_id"]=1
+operation_parameters_minimum_occurrences["updateUser:::payload"]=1
+operation_parameters_minimum_occurrences["updateUser:::X-Fields"]=0
+operation_parameters_minimum_occurrences["updateUserQuota:::user_id"]=1
+operation_parameters_minimum_occurrences["updateUserQuota:::payload"]=1
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -161,50 +161,50 @@ operation_parameters_maximum_occurrences["postGraderFeedbackDao:::grader_id"]=0
 operation_parameters_maximum_occurrences["postGraderFeedbackDao:::payload"]=0
 operation_parameters_maximum_occurrences["postSubmissionFeedbackDao:::submission_id"]=0
 operation_parameters_maximum_occurrences["postSubmissionFeedbackDao:::payload"]=0
-operation_parameters_maximum_occurrences["postLogoutApi:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postUserLogin:::payload"]=0
-operation_parameters_maximum_occurrences["postUserLogin:::X-Fields"]=0
-operation_parameters_maximum_occurrences["deleteClusterDao:::cluster_id"]=0
-operation_parameters_maximum_occurrences["getClusterDao:::cluster_id"]=0
-operation_parameters_maximum_occurrences["getClusterDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["getClusterListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postClusterListDao:::payload"]=0
-operation_parameters_maximum_occurrences["postClusterListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["deleteGraderDao:::grader_id"]=0
-operation_parameters_maximum_occurrences["getGraderDao:::grader_id"]=0
-operation_parameters_maximum_occurrences["getGraderDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["getGraderListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postGraderListDao:::payload"]=0
-operation_parameters_maximum_occurrences["postGraderListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["deleteOrganisationDao:::organisation_id"]=0
-operation_parameters_maximum_occurrences["getOrganisationDao:::organisation_id"]=0
-operation_parameters_maximum_occurrences["getOrganisationDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["getOrganisationListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postOrganisationListDao:::payload"]=0
-operation_parameters_maximum_occurrences["postOrganisationListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["putOrganisationDao:::organisation_id"]=0
-operation_parameters_maximum_occurrences["putOrganisationDao:::payload"]=0
-operation_parameters_maximum_occurrences["putOrganisationDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["putQuotaDao:::organisation_id"]=0
-operation_parameters_maximum_occurrences["putQuotaDao:::payload"]=0
-operation_parameters_maximum_occurrences["deleteSubmissionDao:::submission_id"]=0
-operation_parameters_maximum_occurrences["getSubmissionDao:::submission_id"]=0
-operation_parameters_maximum_occurrences["getSubmissionDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["getSubmissionDataDao:::submission_id"]=0
-operation_parameters_maximum_occurrences["getSubmissionListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postSubmissionListDao:::payload"]=0
-operation_parameters_maximum_occurrences["postSubmissionListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["deleteUserDao:::user_id"]=0
-operation_parameters_maximum_occurrences["getUserDao:::user_id"]=0
-operation_parameters_maximum_occurrences["getUserDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["getUserListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["postUserListDao:::payload"]=0
-operation_parameters_maximum_occurrences["postUserListDao:::X-Fields"]=0
-operation_parameters_maximum_occurrences["putQuotaDao:::user_id"]=0
-operation_parameters_maximum_occurrences["putQuotaDao:::payload"]=0
-operation_parameters_maximum_occurrences["putUserDao:::user_id"]=0
-operation_parameters_maximum_occurrences["putUserDao:::payload"]=0
-operation_parameters_maximum_occurrences["putUserDao:::X-Fields"]=0
+operation_parameters_maximum_occurrences["login:::payload"]=0
+operation_parameters_maximum_occurrences["login:::X-Fields"]=0
+operation_parameters_maximum_occurrences["logout:::X-Fields"]=0
+operation_parameters_maximum_occurrences["createCluster:::payload"]=0
+operation_parameters_maximum_occurrences["createCluster:::X-Fields"]=0
+operation_parameters_maximum_occurrences["deleteCluster:::cluster_id"]=0
+operation_parameters_maximum_occurrences["getCluster:::cluster_id"]=0
+operation_parameters_maximum_occurrences["getCluster:::X-Fields"]=0
+operation_parameters_maximum_occurrences["listClusters:::X-Fields"]=0
+operation_parameters_maximum_occurrences["createGrader:::payload"]=0
+operation_parameters_maximum_occurrences["createGrader:::X-Fields"]=0
+operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
+operation_parameters_maximum_occurrences["getGrader:::grader_id"]=0
+operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
+operation_parameters_maximum_occurrences["listGraders:::X-Fields"]=0
+operation_parameters_maximum_occurrences["createOrganisation:::payload"]=0
+operation_parameters_maximum_occurrences["createOrganisation:::X-Fields"]=0
+operation_parameters_maximum_occurrences["deleteOrganisation:::organisation_id"]=0
+operation_parameters_maximum_occurrences["getOrganisation:::organisation_id"]=0
+operation_parameters_maximum_occurrences["getOrganisation:::X-Fields"]=0
+operation_parameters_maximum_occurrences["listOrganisations:::X-Fields"]=0
+operation_parameters_maximum_occurrences["updateOrganisation:::organisation_id"]=0
+operation_parameters_maximum_occurrences["updateOrganisation:::payload"]=0
+operation_parameters_maximum_occurrences["updateOrganisation:::X-Fields"]=0
+operation_parameters_maximum_occurrences["updateOrganisationQuota:::organisation_id"]=0
+operation_parameters_maximum_occurrences["updateOrganisationQuota:::payload"]=0
+operation_parameters_maximum_occurrences["createSubmission:::payload"]=0
+operation_parameters_maximum_occurrences["createSubmission:::X-Fields"]=0
+operation_parameters_maximum_occurrences["deleteSubmission:::submission_id"]=0
+operation_parameters_maximum_occurrences["getSubmission:::submission_id"]=0
+operation_parameters_maximum_occurrences["getSubmission:::X-Fields"]=0
+operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::X-Fields"]=0
+operation_parameters_maximum_occurrences["createUser:::payload"]=0
+operation_parameters_maximum_occurrences["createUser:::X-Fields"]=0
+operation_parameters_maximum_occurrences["deleteUser:::user_id"]=0
+operation_parameters_maximum_occurrences["getUser:::user_id"]=0
+operation_parameters_maximum_occurrences["getUser:::X-Fields"]=0
+operation_parameters_maximum_occurrences["listUsers:::X-Fields"]=0
+operation_parameters_maximum_occurrences["updateUser:::user_id"]=0
+operation_parameters_maximum_occurrences["updateUser:::payload"]=0
+operation_parameters_maximum_occurrences["updateUser:::X-Fields"]=0
+operation_parameters_maximum_occurrences["updateUserQuota:::user_id"]=0
+operation_parameters_maximum_occurrences["updateUserQuota:::payload"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
@@ -217,50 +217,50 @@ operation_parameters_collection_type["postGraderFeedbackDao:::grader_id"]=""
 operation_parameters_collection_type["postGraderFeedbackDao:::payload"]=""
 operation_parameters_collection_type["postSubmissionFeedbackDao:::submission_id"]=""
 operation_parameters_collection_type["postSubmissionFeedbackDao:::payload"]=""
-operation_parameters_collection_type["postLogoutApi:::X-Fields"]=""
-operation_parameters_collection_type["postUserLogin:::payload"]=""
-operation_parameters_collection_type["postUserLogin:::X-Fields"]=""
-operation_parameters_collection_type["deleteClusterDao:::cluster_id"]=""
-operation_parameters_collection_type["getClusterDao:::cluster_id"]=""
-operation_parameters_collection_type["getClusterDao:::X-Fields"]=""
-operation_parameters_collection_type["getClusterListDao:::X-Fields"]=""
-operation_parameters_collection_type["postClusterListDao:::payload"]=""
-operation_parameters_collection_type["postClusterListDao:::X-Fields"]=""
-operation_parameters_collection_type["deleteGraderDao:::grader_id"]=""
-operation_parameters_collection_type["getGraderDao:::grader_id"]=""
-operation_parameters_collection_type["getGraderDao:::X-Fields"]=""
-operation_parameters_collection_type["getGraderListDao:::X-Fields"]=""
-operation_parameters_collection_type["postGraderListDao:::payload"]=""
-operation_parameters_collection_type["postGraderListDao:::X-Fields"]=""
-operation_parameters_collection_type["deleteOrganisationDao:::organisation_id"]=""
-operation_parameters_collection_type["getOrganisationDao:::organisation_id"]=""
-operation_parameters_collection_type["getOrganisationDao:::X-Fields"]=""
-operation_parameters_collection_type["getOrganisationListDao:::X-Fields"]=""
-operation_parameters_collection_type["postOrganisationListDao:::payload"]=""
-operation_parameters_collection_type["postOrganisationListDao:::X-Fields"]=""
-operation_parameters_collection_type["putOrganisationDao:::organisation_id"]=""
-operation_parameters_collection_type["putOrganisationDao:::payload"]=""
-operation_parameters_collection_type["putOrganisationDao:::X-Fields"]=""
-operation_parameters_collection_type["putQuotaDao:::organisation_id"]=""
-operation_parameters_collection_type["putQuotaDao:::payload"]=""
-operation_parameters_collection_type["deleteSubmissionDao:::submission_id"]=""
-operation_parameters_collection_type["getSubmissionDao:::submission_id"]=""
-operation_parameters_collection_type["getSubmissionDao:::X-Fields"]=""
-operation_parameters_collection_type["getSubmissionDataDao:::submission_id"]=""
-operation_parameters_collection_type["getSubmissionListDao:::X-Fields"]=""
-operation_parameters_collection_type["postSubmissionListDao:::payload"]=""
-operation_parameters_collection_type["postSubmissionListDao:::X-Fields"]=""
-operation_parameters_collection_type["deleteUserDao:::user_id"]=""
-operation_parameters_collection_type["getUserDao:::user_id"]=""
-operation_parameters_collection_type["getUserDao:::X-Fields"]=""
-operation_parameters_collection_type["getUserListDao:::X-Fields"]=""
-operation_parameters_collection_type["postUserListDao:::payload"]=""
-operation_parameters_collection_type["postUserListDao:::X-Fields"]=""
-operation_parameters_collection_type["putQuotaDao:::user_id"]=""
-operation_parameters_collection_type["putQuotaDao:::payload"]=""
-operation_parameters_collection_type["putUserDao:::user_id"]=""
-operation_parameters_collection_type["putUserDao:::payload"]=""
-operation_parameters_collection_type["putUserDao:::X-Fields"]=""
+operation_parameters_collection_type["login:::payload"]=""
+operation_parameters_collection_type["login:::X-Fields"]=""
+operation_parameters_collection_type["logout:::X-Fields"]=""
+operation_parameters_collection_type["createCluster:::payload"]=""
+operation_parameters_collection_type["createCluster:::X-Fields"]=""
+operation_parameters_collection_type["deleteCluster:::cluster_id"]=""
+operation_parameters_collection_type["getCluster:::cluster_id"]=""
+operation_parameters_collection_type["getCluster:::X-Fields"]=""
+operation_parameters_collection_type["listClusters:::X-Fields"]=""
+operation_parameters_collection_type["createGrader:::payload"]=""
+operation_parameters_collection_type["createGrader:::X-Fields"]=""
+operation_parameters_collection_type["deleteGrader:::grader_id"]=""
+operation_parameters_collection_type["getGrader:::grader_id"]=""
+operation_parameters_collection_type["getGrader:::X-Fields"]=""
+operation_parameters_collection_type["listGraders:::X-Fields"]=""
+operation_parameters_collection_type["createOrganisation:::payload"]=""
+operation_parameters_collection_type["createOrganisation:::X-Fields"]=""
+operation_parameters_collection_type["deleteOrganisation:::organisation_id"]=""
+operation_parameters_collection_type["getOrganisation:::organisation_id"]=""
+operation_parameters_collection_type["getOrganisation:::X-Fields"]=""
+operation_parameters_collection_type["listOrganisations:::X-Fields"]=""
+operation_parameters_collection_type["updateOrganisation:::organisation_id"]=""
+operation_parameters_collection_type["updateOrganisation:::payload"]=""
+operation_parameters_collection_type["updateOrganisation:::X-Fields"]=""
+operation_parameters_collection_type["updateOrganisationQuota:::organisation_id"]=""
+operation_parameters_collection_type["updateOrganisationQuota:::payload"]=""
+operation_parameters_collection_type["createSubmission:::payload"]=""
+operation_parameters_collection_type["createSubmission:::X-Fields"]=""
+operation_parameters_collection_type["deleteSubmission:::submission_id"]=""
+operation_parameters_collection_type["getSubmission:::submission_id"]=""
+operation_parameters_collection_type["getSubmission:::X-Fields"]=""
+operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
+operation_parameters_collection_type["listSubmissions:::X-Fields"]=""
+operation_parameters_collection_type["createUser:::payload"]=""
+operation_parameters_collection_type["createUser:::X-Fields"]=""
+operation_parameters_collection_type["deleteUser:::user_id"]=""
+operation_parameters_collection_type["getUser:::user_id"]=""
+operation_parameters_collection_type["getUser:::X-Fields"]=""
+operation_parameters_collection_type["listUsers:::X-Fields"]=""
+operation_parameters_collection_type["updateUser:::user_id"]=""
+operation_parameters_collection_type["updateUser:::payload"]=""
+operation_parameters_collection_type["updateUser:::X-Fields"]=""
+operation_parameters_collection_type["updateUserQuota:::user_id"]=""
+operation_parameters_collection_type["updateUserQuota:::payload"]=""
 
 
 ##
@@ -606,7 +606,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Evaluations API command line client (API version 1.0.0)${OFF}
+${BOLD}${WHITE}AIcrowd Evaluations API command line client (API version 1.0.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -650,58 +650,58 @@ echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[auth]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}postLogoutApi${OFF}; (AUTH)
-  ${CYAN}postUserLogin${OFF};
+  ${CYAN}login${OFF};
+  ${CYAN}logout${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[clusters]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}deleteClusterDao${OFF}; (AUTH)
-  ${CYAN}getClusterDao${OFF}; (AUTH)
-  ${CYAN}getClusterListDao${OFF}; (AUTH)
-  ${CYAN}postClusterListDao${OFF}; (AUTH)
+  ${CYAN}createCluster${OFF}; (AUTH)
+  ${CYAN}deleteCluster${OFF}; (AUTH)
+  ${CYAN}getCluster${OFF}; (AUTH)
+  ${CYAN}listClusters${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[graders]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}deleteGraderDao${OFF}; (AUTH)
-  ${CYAN}getGraderDao${OFF}; (AUTH)
-  ${CYAN}getGraderListDao${OFF}; (AUTH)
-  ${CYAN}postGraderListDao${OFF}; (AUTH)
+  ${CYAN}createGrader${OFF}; (AUTH)
+  ${CYAN}deleteGrader${OFF}; (AUTH)
+  ${CYAN}getGrader${OFF}; (AUTH)
+  ${CYAN}listGraders${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[organisations]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}deleteOrganisationDao${OFF}; (AUTH)
-  ${CYAN}getOrganisationDao${OFF}; (AUTH)
-  ${CYAN}getOrganisationListDao${OFF}; (AUTH)
-  ${CYAN}postOrganisationListDao${OFF}; (AUTH)
-  ${CYAN}putOrganisationDao${OFF}; (AUTH)
-  ${CYAN}putQuotaDao${OFF}; (AUTH)
+  ${CYAN}createOrganisation${OFF}; (AUTH)
+  ${CYAN}deleteOrganisation${OFF}; (AUTH)
+  ${CYAN}getOrganisation${OFF}; (AUTH)
+  ${CYAN}listOrganisations${OFF}; (AUTH)
+  ${CYAN}updateOrganisation${OFF}; (AUTH)
+  ${CYAN}updateOrganisationQuota${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[submissions]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}deleteSubmissionDao${OFF}; (AUTH)
-  ${CYAN}getSubmissionDao${OFF}; (AUTH)
-  ${CYAN}getSubmissionDataDao${OFF}; (AUTH)
-  ${CYAN}getSubmissionListDao${OFF}; (AUTH)
-  ${CYAN}postSubmissionListDao${OFF}; (AUTH)
+  ${CYAN}createSubmission${OFF}; (AUTH)
+  ${CYAN}deleteSubmission${OFF}; (AUTH)
+  ${CYAN}getSubmission${OFF}; (AUTH)
+  ${CYAN}getSubmissionData${OFF}; (AUTH)
+  ${CYAN}listSubmissions${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[users]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}deleteUserDao${OFF}; (AUTH)
-  ${CYAN}getUserDao${OFF}; (AUTH)
-  ${CYAN}getUserListDao${OFF}; (AUTH)
-  ${CYAN}postUserListDao${OFF}; (AUTH)
-  ${CYAN}putQuotaDao${OFF}; (AUTH)
-  ${CYAN}putUserDao${OFF}; (AUTH)
+  ${CYAN}createUser${OFF}; (AUTH)
+  ${CYAN}deleteUser${OFF}; (AUTH)
+  ${CYAN}getUser${OFF}; (AUTH)
+  ${CYAN}listUsers${OFF}; (AUTH)
+  ${CYAN}updateUser${OFF}; (AUTH)
+  ${CYAN}updateUserQuota${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -731,14 +731,14 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://127.0.0.1:8080')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Evaluations API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}${WHITE}AIcrowd Evaluations API command line client (API version 1.0.0)${OFF}"
     echo ""
     echo -e "License: "
     echo -e "Contact: "
     echo ""
 read -r -d '' appdescription <<EOF
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 EOF
 echo "$appdescription" | paste -sd' ' | fold -sw 80
 }
@@ -751,7 +751,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Evaluations API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}AIcrowd Evaluations API command line client (API version 1.0.0)${OFF}"
     echo ""
 }
 
@@ -830,32 +830,14 @@ print_postSubmissionFeedbackDao_help() {
 }
 ##############################################################################
 #
-# Print help for postLogoutApi operation
+# Print help for login operation
 #
 ##############################################################################
-print_postLogoutApi_help() {
+print_login_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}postLogoutApi - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}login - ${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Logout a user" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for postUserLogin operation
-#
-##############################################################################
-print_postUserLogin_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}postUserLogin - ${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "User login" | paste -sd' ' | fold -sw 80
+    echo -e "Log in a user with email and password." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -870,55 +852,14 @@ print_postUserLogin_help() {
 }
 ##############################################################################
 #
-# Print help for deleteClusterDao operation
+# Print help for logout operation
 #
 ##############################################################################
-print_deleteClusterDao_help() {
+print_logout_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteClusterDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}logout - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delete a cluster" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}cluster_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: cluster_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Cluster not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getClusterDao operation
-#
-##############################################################################
-print_getClusterDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getClusterDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Get information of a cluster" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}cluster_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: cluster_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Cluster not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getClusterListDao operation
-#
-##############################################################################
-print_getClusterListDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getClusterListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Get all clusters" | paste -sd' ' | fold -sw 80
+    echo -e "Invalidate the current authorization token." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -929,14 +870,14 @@ print_getClusterListDao_help() {
 }
 ##############################################################################
 #
-# Print help for postClusterListDao operation
+# Print help for createCluster operation
 #
 ##############################################################################
-print_postClusterListDao_help() {
+print_createCluster_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}postClusterListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createCluster - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Add a new cluster" | paste -sd' ' | fold -sw 80
+    echo -e "Add a new cluster to AIcrowd and install necessary dependencies" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -951,55 +892,55 @@ print_postClusterListDao_help() {
 }
 ##############################################################################
 #
-# Print help for deleteGraderDao operation
+# Print help for deleteCluster operation
 #
 ##############################################################################
-print_deleteGraderDao_help() {
+print_deleteCluster_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteGraderDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteCluster - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delete a grader" | paste -sd' ' | fold -sw 80
+    echo -e "Delete a cluster by its ID" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}cluster_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: cluster_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Cluster not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getGraderDao operation
+# Print help for getCluster operation
 #
 ##############################################################################
-print_getGraderDao_help() {
+print_getCluster_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getGraderDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getCluster - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get information of a grader" | paste -sd' ' | fold -sw 80
+    echo -e "Get details of a cluster by its ID" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}cluster_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: cluster_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Cluster not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getGraderListDao operation
+# Print help for listClusters operation
 #
 ##############################################################################
-print_getGraderListDao_help() {
+print_listClusters_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getGraderListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}listClusters - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get all grader" | paste -sd' ' | fold -sw 80
+    echo -e "List all clusters available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -1010,12 +951,12 @@ print_getGraderListDao_help() {
 }
 ##############################################################################
 #
-# Print help for postGraderListDao operation
+# Print help for createGrader operation
 #
 ##############################################################################
-print_postGraderListDao_help() {
+print_createGrader_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}postGraderListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Create a new grader" | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -1028,7 +969,7 @@ print_postGraderListDao_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Wrong code access mode${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=403
     echo -e "${result_color_table[${code:0:1}]}  403;Cluster not ready${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
@@ -1036,55 +977,55 @@ print_postGraderListDao_help() {
 }
 ##############################################################################
 #
-# Print help for deleteOrganisationDao operation
+# Print help for deleteGrader operation
 #
 ##############################################################################
-print_deleteOrganisationDao_help() {
+print_deleteGrader_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteOrganisationDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delete an Organisation" | paste -sd' ' | fold -sw 80
+    echo -e "Delete a grader by its ID" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Organisation identifier ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Organisation not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getOrganisationDao operation
+# Print help for getGrader operation
 #
 ##############################################################################
-print_getOrganisationDao_help() {
+print_getGrader_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getOrganisationDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get information of an organisation" | paste -sd' ' | fold -sw 80
+    echo -e "Get details of a grader by its ID" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Organisation identifier ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Organisation not found.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getOrganisationListDao operation
+# Print help for listGraders operation
 #
 ##############################################################################
-print_getOrganisationListDao_help() {
+print_listGraders_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getOrganisationListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}listGraders - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get all organisations" | paste -sd' ' | fold -sw 80
+    echo -e "List all graders available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -1095,12 +1036,12 @@ print_getOrganisationListDao_help() {
 }
 ##############################################################################
 #
-# Print help for postOrganisationListDao operation
+# Print help for createOrganisation operation
 #
 ##############################################################################
-print_postOrganisationListDao_help() {
+print_createOrganisation_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}postOrganisationListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createOrganisation - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Create a new organisation" | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -1119,17 +1060,76 @@ print_postOrganisationListDao_help() {
 }
 ##############################################################################
 #
-# Print help for putOrganisationDao operation
+# Print help for deleteOrganisation operation
 #
 ##############################################################################
-print_putOrganisationDao_help() {
+print_deleteOrganisation_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}putOrganisationDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteOrganisation - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Delete an Organisation" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Organisation not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getOrganisation operation
+#
+##############################################################################
+print_getOrganisation_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getOrganisation - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get details of an organisation" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Organisation not found.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listOrganisations operation
+#
+##############################################################################
+print_listOrganisations_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listOrganisations - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "List all organisations" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for updateOrganisation operation
+#
+##############################################################################
+print_updateOrganisation_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}updateOrganisation - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Update an Organisation" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Organisation identifier ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
@@ -1144,17 +1144,17 @@ print_putOrganisationDao_help() {
 }
 ##############################################################################
 #
-# Print help for putQuotaDao operation
+# Print help for updateOrganisationQuota operation
 #
 ##############################################################################
-print_putQuotaDao_help() {
+print_updateOrganisationQuota_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}putQuotaDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}updateOrganisationQuota - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Add or subtract quota for an organisation" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Organisation identifier ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organisation_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: organisation_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
@@ -1166,91 +1166,12 @@ print_putQuotaDao_help() {
 }
 ##############################################################################
 #
-# Print help for deleteSubmissionDao operation
+# Print help for createSubmission operation
 #
 ##############################################################################
-print_deleteSubmissionDao_help() {
+print_createSubmission_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteSubmissionDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Stop evaluation of a submission" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=201
-    echo -e "${result_color_table[${code:0:1}]}  201;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getSubmissionDao operation
-#
-##############################################################################
-print_getSubmissionDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getSubmissionDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Get details of a submission" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getSubmissionDataDao operation
-#
-##############################################################################
-print_getSubmissionDataDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getSubmissionDataDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Get the submission data" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for getSubmissionListDao operation
-#
-##############################################################################
-print_getSubmissionListDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getSubmissionListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Get all submissions" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for postSubmissionListDao operation
-#
-##############################################################################
-print_postSubmissionListDao_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}postSubmissionListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createSubmission - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Make a new submission" | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -1269,55 +1190,75 @@ print_postSubmissionListDao_help() {
 }
 ##############################################################################
 #
-# Print help for deleteUserDao operation
+# Print help for deleteSubmission operation
 #
 ##############################################################################
-print_deleteUserDao_help() {
+print_deleteSubmission_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteUserDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteSubmission - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delete a user" | paste -sd' ' | fold -sw 80
+    echo -e "Stop evaluation of a submission and delete it" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - User identifier ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=201
+    echo -e "${result_color_table[${code:0:1}]}  201;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;User not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getUserDao operation
+# Print help for getSubmission operation
 #
 ##############################################################################
-print_getUserDao_help() {
+print_getSubmission_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getUserDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getSubmission - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get information of a user" | paste -sd' ' | fold -sw 80
+    echo -e "Get details of a submission by its ID" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - User identifier ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;User not found.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for getUserListDao operation
+# Print help for getSubmissionData operation
 #
 ##############################################################################
-print_getUserListDao_help() {
+print_getSubmissionData_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getUserListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getSubmissionData - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get all user" | paste -sd' ' | fold -sw 80
+    echo -e "Get the submission data by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listSubmissions operation
+#
+##############################################################################
+print_listSubmissions_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listSubmissions - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "List all submissions available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -1328,12 +1269,12 @@ print_getUserListDao_help() {
 }
 ##############################################################################
 #
-# Print help for postUserListDao operation
+# Print help for createUser operation
 #
 ##############################################################################
-print_postUserListDao_help() {
+print_createUser_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}postUserListDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}createUser - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Create a new user" | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -1350,19 +1291,17 @@ print_postUserListDao_help() {
 }
 ##############################################################################
 #
-# Print help for putQuotaDao operation
+# Print help for deleteUser operation
 #
 ##############################################################################
-print_putQuotaDao_help() {
+print_deleteUser_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}putQuotaDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteUser - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Add or subtract quota for a user" | paste -sd' ' | fold -sw 80
+    echo -e "Delete a user" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - User identifier ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1372,17 +1311,56 @@ print_putQuotaDao_help() {
 }
 ##############################################################################
 #
-# Print help for putUserDao operation
+# Print help for getUser operation
 #
 ##############################################################################
-print_putUserDao_help() {
+print_getUser_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}putUserDao - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getUser - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get information of a user" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;User not found.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for listUsers operation
+#
+##############################################################################
+print_listUsers_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}listUsers - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get all user" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for updateUser operation
+#
+##############################################################################
+print_updateUser_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}updateUser - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Update a user" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - User identifier ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
@@ -1392,6 +1370,28 @@ print_putUserDao_help() {
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
     echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;User not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for updateUserQuota operation
+#
+##############################################################################
+print_updateUserQuota_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}updateUserQuota - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Add or subtract quota for a user" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: user_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
     echo -e "${result_color_table[${code:0:1}]}  404;User not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
@@ -1633,46 +1633,10 @@ call_postSubmissionFeedbackDao() {
 
 ##############################################################################
 #
-# Call postLogoutApi operation
+# Call login operation
 #
 ##############################################################################
-call_postLogoutApi() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/v1/auth/logout" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call postUserLogin operation
-#
-##############################################################################
-call_postUserLogin() {
+call_login() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -1747,82 +1711,10 @@ call_postUserLogin() {
 
 ##############################################################################
 #
-# Call deleteClusterDao operation
+# Call logout operation
 #
 ##############################################################################
-call_deleteClusterDao() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(cluster_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/v1/clusters/{cluster_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="DELETE"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call getClusterDao operation
-#
-##############################################################################
-call_getClusterDao() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(cluster_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/v1/clusters/{cluster_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call getClusterListDao operation
-#
-##############################################################################
-call_getClusterListDao() {
+call_logout() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -1831,11 +1723,11 @@ call_getClusterListDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/clusters/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/auth/logout" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
-    local method="GET"
+    local method="POST"
     local headers_curl
     headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -1855,10 +1747,10 @@ call_getClusterListDao() {
 
 ##############################################################################
 #
-# Call postClusterListDao operation
+# Call createCluster operation
 #
 ##############################################################################
-call_postClusterListDao() {
+call_createCluster() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -1933,19 +1825,19 @@ call_postClusterListDao() {
 
 ##############################################################################
 #
-# Call deleteGraderDao operation
+# Call deleteCluster operation
 #
 ##############################################################################
-call_deleteGraderDao() {
+call_deleteCluster() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(grader_id)
+    local path_parameter_names=(cluster_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/graders/{grader_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/clusters/{cluster_id}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1969,19 +1861,19 @@ call_deleteGraderDao() {
 
 ##############################################################################
 #
-# Call getGraderDao operation
+# Call getCluster operation
 #
 ##############################################################################
-call_getGraderDao() {
+call_getCluster() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(grader_id)
+    local path_parameter_names=(cluster_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/graders/{grader_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/clusters/{cluster_id}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2005,10 +1897,10 @@ call_getGraderDao() {
 
 ##############################################################################
 #
-# Call getGraderListDao operation
+# Call listClusters operation
 #
 ##############################################################################
-call_getGraderListDao() {
+call_listClusters() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2017,7 +1909,7 @@ call_getGraderListDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/graders/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/clusters/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2041,10 +1933,10 @@ call_getGraderListDao() {
 
 ##############################################################################
 #
-# Call postGraderListDao operation
+# Call createGrader operation
 #
 ##############################################################################
-call_postGraderListDao() {
+call_createGrader() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2119,19 +2011,19 @@ call_postGraderListDao() {
 
 ##############################################################################
 #
-# Call deleteOrganisationDao operation
+# Call deleteGrader operation
 #
 ##############################################################################
-call_deleteOrganisationDao() {
+call_deleteGrader() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(organisation_id)
+    local path_parameter_names=(grader_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/organisations/{organisation_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/graders/{grader_id}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2155,19 +2047,19 @@ call_deleteOrganisationDao() {
 
 ##############################################################################
 #
-# Call getOrganisationDao operation
+# Call getGrader operation
 #
 ##############################################################################
-call_getOrganisationDao() {
+call_getGrader() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(organisation_id)
+    local path_parameter_names=(grader_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/organisations/{organisation_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/graders/{grader_id}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2191,10 +2083,10 @@ call_getOrganisationDao() {
 
 ##############################################################################
 #
-# Call getOrganisationListDao operation
+# Call listGraders operation
 #
 ##############################################################################
-call_getOrganisationListDao() {
+call_listGraders() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2203,7 +2095,7 @@ call_getOrganisationListDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/organisations/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/graders/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2227,10 +2119,10 @@ call_getOrganisationListDao() {
 
 ##############################################################################
 #
-# Call postOrganisationListDao operation
+# Call createOrganisation operation
 #
 ##############################################################################
-call_postOrganisationListDao() {
+call_createOrganisation() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2305,10 +2197,118 @@ call_postOrganisationListDao() {
 
 ##############################################################################
 #
-# Call putOrganisationDao operation
+# Call deleteOrganisation operation
 #
 ##############################################################################
-call_putOrganisationDao() {
+call_deleteOrganisation() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(organisation_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/organisations/{organisation_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getOrganisation operation
+#
+##############################################################################
+call_getOrganisation() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(organisation_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/organisations/{organisation_id}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call listOrganisations operation
+#
+##############################################################################
+call_listOrganisations() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/organisations/" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call updateOrganisation operation
+#
+##############################################################################
+call_updateOrganisation() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(organisation_id)
@@ -2383,10 +2383,10 @@ call_putOrganisationDao() {
 
 ##############################################################################
 #
-# Call putQuotaDao operation
+# Call updateOrganisationQuota operation
 #
 ##############################################################################
-call_putQuotaDao() {
+call_updateOrganisationQuota() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(organisation_id)
@@ -2395,7 +2395,7 @@ call_putQuotaDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/organisations/addquota/{organisation_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/organisations/{organisation_id}/addquota" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2461,10 +2461,88 @@ call_putQuotaDao() {
 
 ##############################################################################
 #
-# Call deleteSubmissionDao operation
+# Call createSubmission operation
 #
 ##############################################################################
-call_deleteSubmissionDao() {
+call_createSubmission() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/submissions/" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the Swagger specification
+    # if values produces and consumes are defined unambigously
+    #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call deleteSubmission operation
+#
+##############################################################################
+call_deleteSubmission() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(submission_id)
@@ -2497,10 +2575,10 @@ call_deleteSubmissionDao() {
 
 ##############################################################################
 #
-# Call getSubmissionDao operation
+# Call getSubmission operation
 #
 ##############################################################################
-call_getSubmissionDao() {
+call_getSubmission() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(submission_id)
@@ -2533,10 +2611,10 @@ call_getSubmissionDao() {
 
 ##############################################################################
 #
-# Call getSubmissionDataDao operation
+# Call getSubmissionData operation
 #
 ##############################################################################
-call_getSubmissionDataDao() {
+call_getSubmissionData() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(submission_id)
@@ -2569,10 +2647,10 @@ call_getSubmissionDataDao() {
 
 ##############################################################################
 #
-# Call getSubmissionListDao operation
+# Call listSubmissions operation
 #
 ##############################################################################
-call_getSubmissionListDao() {
+call_listSubmissions() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2605,10 +2683,10 @@ call_getSubmissionListDao() {
 
 ##############################################################################
 #
-# Call postSubmissionListDao operation
+# Call createUser operation
 #
 ##############################################################################
-call_postSubmissionListDao() {
+call_createUser() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2617,7 +2695,7 @@ call_postSubmissionListDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/submissions/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/users/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2683,10 +2761,10 @@ call_postSubmissionListDao() {
 
 ##############################################################################
 #
-# Call deleteUserDao operation
+# Call deleteUser operation
 #
 ##############################################################################
-call_deleteUserDao() {
+call_deleteUser() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(user_id)
@@ -2719,10 +2797,10 @@ call_deleteUserDao() {
 
 ##############################################################################
 #
-# Call getUserDao operation
+# Call getUser operation
 #
 ##############################################################################
-call_getUserDao() {
+call_getUser() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(user_id)
@@ -2755,10 +2833,10 @@ call_getUserDao() {
 
 ##############################################################################
 #
-# Call getUserListDao operation
+# Call listUsers operation
 #
 ##############################################################################
-call_getUserListDao() {
+call_listUsers() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -2791,88 +2869,10 @@ call_getUserListDao() {
 
 ##############################################################################
 #
-# Call postUserListDao operation
+# Call updateUser operation
 #
 ##############################################################################
-call_postUserListDao() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/v1/users/" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    local body_json_curl=""
-
-    #
-    # Check if the user provided 'Content-type' headers in the
-    # command line. If not try to set them based on the Swagger specification
-    # if values produces and consumes are defined unambigously
-    #
-    if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
-    fi
-
-
-    if [[ -z $header_content_type && "$force" = false ]]; then
-        :
-        echo "ERROR: Request's content-type not specified!!!"
-        echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
-        echo ""
-        echo "Use '--content-type' to set proper content type"
-        exit 1
-    else
-        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
-    fi
-
-
-    #
-    # If we have received some body content over pipe, pass it from the
-    # temporary file to cURL
-    #
-    if [[ -n $body_content_temp_file ]]; then
-        if [[ "$print_curl" = true ]]; then
-            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        else
-            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        fi
-        rm "${body_content_temp_file}"
-    #
-    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
-    #
-    else
-        body_json_curl=$(body_parameters_to_json)
-        if [[ "$print_curl" = true ]]; then
-            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        else
-            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        fi
-    fi
-}
-
-##############################################################################
-#
-# Call putQuotaDao operation
-#
-##############################################################################
-call_putQuotaDao() {
+call_updateUser() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(user_id)
@@ -2881,7 +2881,7 @@ call_putQuotaDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/users/addquota/{user_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/users/{user_id}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2947,10 +2947,10 @@ call_putQuotaDao() {
 
 ##############################################################################
 #
-# Call putUserDao operation
+# Call updateUserQuota operation
 #
 ##############################################################################
-call_putUserDao() {
+call_updateUserQuota() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=(user_id)
@@ -2959,7 +2959,7 @@ call_putUserDao() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/v1/users/{user_id}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/v1/users/{user_id}/addquota" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3129,86 +3129,86 @@ case $key in
     postSubmissionFeedbackDao)
     operation="postSubmissionFeedbackDao"
     ;;
-    postLogoutApi)
-    operation="postLogoutApi"
+    login)
+    operation="login"
     ;;
-    postUserLogin)
-    operation="postUserLogin"
+    logout)
+    operation="logout"
     ;;
-    deleteClusterDao)
-    operation="deleteClusterDao"
+    createCluster)
+    operation="createCluster"
     ;;
-    getClusterDao)
-    operation="getClusterDao"
+    deleteCluster)
+    operation="deleteCluster"
     ;;
-    getClusterListDao)
-    operation="getClusterListDao"
+    getCluster)
+    operation="getCluster"
     ;;
-    postClusterListDao)
-    operation="postClusterListDao"
+    listClusters)
+    operation="listClusters"
     ;;
-    deleteGraderDao)
-    operation="deleteGraderDao"
+    createGrader)
+    operation="createGrader"
     ;;
-    getGraderDao)
-    operation="getGraderDao"
+    deleteGrader)
+    operation="deleteGrader"
     ;;
-    getGraderListDao)
-    operation="getGraderListDao"
+    getGrader)
+    operation="getGrader"
     ;;
-    postGraderListDao)
-    operation="postGraderListDao"
+    listGraders)
+    operation="listGraders"
     ;;
-    deleteOrganisationDao)
-    operation="deleteOrganisationDao"
+    createOrganisation)
+    operation="createOrganisation"
     ;;
-    getOrganisationDao)
-    operation="getOrganisationDao"
+    deleteOrganisation)
+    operation="deleteOrganisation"
     ;;
-    getOrganisationListDao)
-    operation="getOrganisationListDao"
+    getOrganisation)
+    operation="getOrganisation"
     ;;
-    postOrganisationListDao)
-    operation="postOrganisationListDao"
+    listOrganisations)
+    operation="listOrganisations"
     ;;
-    putOrganisationDao)
-    operation="putOrganisationDao"
+    updateOrganisation)
+    operation="updateOrganisation"
     ;;
-    putQuotaDao)
-    operation="putQuotaDao"
+    updateOrganisationQuota)
+    operation="updateOrganisationQuota"
     ;;
-    deleteSubmissionDao)
-    operation="deleteSubmissionDao"
+    createSubmission)
+    operation="createSubmission"
     ;;
-    getSubmissionDao)
-    operation="getSubmissionDao"
+    deleteSubmission)
+    operation="deleteSubmission"
     ;;
-    getSubmissionDataDao)
-    operation="getSubmissionDataDao"
+    getSubmission)
+    operation="getSubmission"
     ;;
-    getSubmissionListDao)
-    operation="getSubmissionListDao"
+    getSubmissionData)
+    operation="getSubmissionData"
     ;;
-    postSubmissionListDao)
-    operation="postSubmissionListDao"
+    listSubmissions)
+    operation="listSubmissions"
     ;;
-    deleteUserDao)
-    operation="deleteUserDao"
+    createUser)
+    operation="createUser"
     ;;
-    getUserDao)
-    operation="getUserDao"
+    deleteUser)
+    operation="deleteUser"
     ;;
-    getUserListDao)
-    operation="getUserListDao"
+    getUser)
+    operation="getUser"
     ;;
-    postUserListDao)
-    operation="postUserListDao"
+    listUsers)
+    operation="listUsers"
     ;;
-    putQuotaDao)
-    operation="putQuotaDao"
+    updateUser)
+    operation="updateUser"
     ;;
-    putUserDao)
-    operation="putUserDao"
+    updateUserQuota)
+    operation="updateUserQuota"
     ;;
     *==*)
     # Parse body arguments and convert them into top level
@@ -3303,86 +3303,86 @@ case $operation in
     postSubmissionFeedbackDao)
     call_postSubmissionFeedbackDao
     ;;
-    postLogoutApi)
-    call_postLogoutApi
+    login)
+    call_login
     ;;
-    postUserLogin)
-    call_postUserLogin
+    logout)
+    call_logout
     ;;
-    deleteClusterDao)
-    call_deleteClusterDao
+    createCluster)
+    call_createCluster
     ;;
-    getClusterDao)
-    call_getClusterDao
+    deleteCluster)
+    call_deleteCluster
     ;;
-    getClusterListDao)
-    call_getClusterListDao
+    getCluster)
+    call_getCluster
     ;;
-    postClusterListDao)
-    call_postClusterListDao
+    listClusters)
+    call_listClusters
     ;;
-    deleteGraderDao)
-    call_deleteGraderDao
+    createGrader)
+    call_createGrader
     ;;
-    getGraderDao)
-    call_getGraderDao
+    deleteGrader)
+    call_deleteGrader
     ;;
-    getGraderListDao)
-    call_getGraderListDao
+    getGrader)
+    call_getGrader
     ;;
-    postGraderListDao)
-    call_postGraderListDao
+    listGraders)
+    call_listGraders
     ;;
-    deleteOrganisationDao)
-    call_deleteOrganisationDao
+    createOrganisation)
+    call_createOrganisation
     ;;
-    getOrganisationDao)
-    call_getOrganisationDao
+    deleteOrganisation)
+    call_deleteOrganisation
     ;;
-    getOrganisationListDao)
-    call_getOrganisationListDao
+    getOrganisation)
+    call_getOrganisation
     ;;
-    postOrganisationListDao)
-    call_postOrganisationListDao
+    listOrganisations)
+    call_listOrganisations
     ;;
-    putOrganisationDao)
-    call_putOrganisationDao
+    updateOrganisation)
+    call_updateOrganisation
     ;;
-    putQuotaDao)
-    call_putQuotaDao
+    updateOrganisationQuota)
+    call_updateOrganisationQuota
     ;;
-    deleteSubmissionDao)
-    call_deleteSubmissionDao
+    createSubmission)
+    call_createSubmission
     ;;
-    getSubmissionDao)
-    call_getSubmissionDao
+    deleteSubmission)
+    call_deleteSubmission
     ;;
-    getSubmissionDataDao)
-    call_getSubmissionDataDao
+    getSubmission)
+    call_getSubmission
     ;;
-    getSubmissionListDao)
-    call_getSubmissionListDao
+    getSubmissionData)
+    call_getSubmissionData
     ;;
-    postSubmissionListDao)
-    call_postSubmissionListDao
+    listSubmissions)
+    call_listSubmissions
     ;;
-    deleteUserDao)
-    call_deleteUserDao
+    createUser)
+    call_createUser
     ;;
-    getUserDao)
-    call_getUserDao
+    deleteUser)
+    call_deleteUser
     ;;
-    getUserListDao)
-    call_getUserListDao
+    getUser)
+    call_getUser
     ;;
-    postUserListDao)
-    call_postUserListDao
+    listUsers)
+    call_listUsers
     ;;
-    putQuotaDao)
-    call_putQuotaDao
+    updateUser)
+    call_updateUser
     ;;
-    putUserDao)
-    call_putUserDao
+    updateUserQuota)
+    call_updateUserQuota
     ;;
     *)
     ERROR_MSG="ERROR: Unknown operation: $operation"

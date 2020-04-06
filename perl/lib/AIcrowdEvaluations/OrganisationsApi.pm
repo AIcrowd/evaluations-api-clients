@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -49,208 +49,7 @@ sub new {
 
 
 #
-# delete_organisation_dao
-#
-# 
-# 
-# @param int $organisation_id Organisation identifier (required)
-{
-    my $params = {
-    'organisation_id' => {
-        data_type => 'int',
-        description => 'Organisation identifier',
-        required => '1',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'delete_organisation_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => undef,
-        };
-}
-# @return void
-#
-sub delete_organisation_dao {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'organisation_id' is set
-    unless (exists $args{'organisation_id'}) {
-      croak("Missing the required parameter 'organisation_id' when calling delete_organisation_dao");
-    }
-
-    # parse inputs
-    my $_resource_path = '/organisations/{organisation_id}';
-
-    my $_method = 'DELETE';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # path params
-    if ( exists $args{'organisation_id'}) {
-        my $_base_variable = "{" . "organisation_id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation_id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    return;
-}
-
-#
-# get_organisation_dao
-#
-# 
-# 
-# @param int $organisation_id Organisation identifier (required)
-# @param string $x_fields An optional fields mask (optional)
-{
-    my $params = {
-    'organisation_id' => {
-        data_type => 'int',
-        description => 'Organisation identifier',
-        required => '1',
-    },
-    'x_fields' => {
-        data_type => 'string',
-        description => 'An optional fields mask',
-        required => '0',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'get_organisation_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'Organisation',
-        };
-}
-# @return Organisation
-#
-sub get_organisation_dao {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'organisation_id' is set
-    unless (exists $args{'organisation_id'}) {
-      croak("Missing the required parameter 'organisation_id' when calling get_organisation_dao");
-    }
-
-    # parse inputs
-    my $_resource_path = '/organisations/{organisation_id}';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # header params
-    if ( exists $args{'x_fields'}) {
-        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
-    }
-
-    # path params
-    if ( exists $args{'organisation_id'}) {
-        my $_base_variable = "{" . "organisation_id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'organisation_id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('Organisation', $response);
-    return $_response_object;
-}
-
-#
-# get_organisation_list_dao
-#
-# 
-# 
-# @param string $x_fields An optional fields mask (optional)
-{
-    my $params = {
-    'x_fields' => {
-        data_type => 'string',
-        description => 'An optional fields mask',
-        required => '0',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'get_organisation_list_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'ARRAY[Organisation]',
-        };
-}
-# @return ARRAY[Organisation]
-#
-sub get_organisation_list_dao {
-    my ($self, %args) = @_;
-
-    # parse inputs
-    my $_resource_path = '/organisations/';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # header params
-    if ( exists $args{'x_fields'}) {
-        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('ARRAY[Organisation]', $response);
-    return $_response_object;
-}
-
-#
-# post_organisation_list_dao
+# create_organisation
 #
 # 
 # 
@@ -269,7 +68,7 @@ sub get_organisation_list_dao {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'post_organisation_list_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'create_organisation' } = { 
     	summary => '',
         params => $params,
         returns => 'Organisation',
@@ -277,12 +76,12 @@ sub get_organisation_list_dao {
 }
 # @return Organisation
 #
-sub post_organisation_list_dao {
+sub create_organisation {
     my ($self, %args) = @_;
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling post_organisation_list_dao");
+      croak("Missing the required parameter 'payload' when calling create_organisation");
     }
 
     # parse inputs
@@ -326,18 +125,219 @@ sub post_organisation_list_dao {
 }
 
 #
-# put_organisation_dao
+# delete_organisation
 #
 # 
 # 
-# @param int $organisation_id Organisation identifier (required)
+# @param int $organisation_id  (required)
+{
+    my $params = {
+    'organisation_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'delete_organisation' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub delete_organisation {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organisation_id' is set
+    unless (exists $args{'organisation_id'}) {
+      croak("Missing the required parameter 'organisation_id' when calling delete_organisation");
+    }
+
+    # parse inputs
+    my $_resource_path = '/organisations/{organisation_id}';
+
+    my $_method = 'DELETE';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'organisation_id'}) {
+        my $_base_variable = "{" . "organisation_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organisation_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
+}
+
+#
+# get_organisation
+#
+# 
+# 
+# @param int $organisation_id  (required)
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'organisation_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_organisation' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'Organisation',
+        };
+}
+# @return Organisation
+#
+sub get_organisation {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'organisation_id' is set
+    unless (exists $args{'organisation_id'}) {
+      croak("Missing the required parameter 'organisation_id' when calling get_organisation");
+    }
+
+    # parse inputs
+    my $_resource_path = '/organisations/{organisation_id}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    # path params
+    if ( exists $args{'organisation_id'}) {
+        my $_base_variable = "{" . "organisation_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'organisation_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('Organisation', $response);
+    return $_response_object;
+}
+
+#
+# list_organisations
+#
+# 
+# 
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'list_organisations' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'ARRAY[Organisation]',
+        };
+}
+# @return ARRAY[Organisation]
+#
+sub list_organisations {
+    my ($self, %args) = @_;
+
+    # parse inputs
+    my $_resource_path = '/organisations/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('ARRAY[Organisation]', $response);
+    return $_response_object;
+}
+
+#
+# update_organisation
+#
+# 
+# 
+# @param int $organisation_id  (required)
 # @param Organisation $payload  (required)
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
     'organisation_id' => {
         data_type => 'int',
-        description => 'Organisation identifier',
+        description => '',
         required => '1',
     },
     'payload' => {
@@ -351,7 +351,7 @@ sub post_organisation_list_dao {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'put_organisation_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'update_organisation' } = { 
     	summary => '',
         params => $params,
         returns => 'Organisation',
@@ -359,17 +359,17 @@ sub post_organisation_list_dao {
 }
 # @return Organisation
 #
-sub put_organisation_dao {
+sub update_organisation {
     my ($self, %args) = @_;
 
     # verify the required parameter 'organisation_id' is set
     unless (exists $args{'organisation_id'}) {
-      croak("Missing the required parameter 'organisation_id' when calling put_organisation_dao");
+      croak("Missing the required parameter 'organisation_id' when calling update_organisation");
     }
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling put_organisation_dao");
+      croak("Missing the required parameter 'payload' when calling update_organisation");
     }
 
     # parse inputs
@@ -420,17 +420,17 @@ sub put_organisation_dao {
 }
 
 #
-# put_quota_dao
+# update_organisation_quota
 #
 # 
 # 
-# @param int $organisation_id Organisation identifier (required)
+# @param int $organisation_id  (required)
 # @param OrganisationQuota $payload  (required)
 {
     my $params = {
     'organisation_id' => {
         data_type => 'int',
-        description => 'Organisation identifier',
+        description => '',
         required => '1',
     },
     'payload' => {
@@ -439,7 +439,7 @@ sub put_organisation_dao {
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'put_quota_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'update_organisation_quota' } = { 
     	summary => '',
         params => $params,
         returns => undef,
@@ -447,21 +447,21 @@ sub put_organisation_dao {
 }
 # @return void
 #
-sub put_quota_dao {
+sub update_organisation_quota {
     my ($self, %args) = @_;
 
     # verify the required parameter 'organisation_id' is set
     unless (exists $args{'organisation_id'}) {
-      croak("Missing the required parameter 'organisation_id' when calling put_quota_dao");
+      croak("Missing the required parameter 'organisation_id' when calling update_organisation_quota");
     }
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling put_quota_dao");
+      croak("Missing the required parameter 'payload' when calling update_organisation_quota");
     }
 
     # parse inputs
-    my $_resource_path = '/organisations/addquota/{organisation_id}';
+    my $_resource_path = '/organisations/{organisation_id}/addquota';
 
     my $_method = 'PUT';
     my $query_params = {};

@@ -12,88 +12,7 @@ defmodule AIcrowd.Evaluations.Api.Clusters do
 
 
   @doc """
-  Delete a cluster
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - cluster_id (integer()): 
-  - opts (KeywordList): [optional] Optional parameters
-
-  ## Returns
-
-  {:ok, %{}} on success
-  {:error, info} on failure
-  """
-  @spec delete_cluster_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def delete_cluster_dao(connection, cluster_id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/clusters/#{cluster_id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(false)
-  end
-
-  @doc """
-  Get information of a cluster
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - cluster_id (integer()): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.Cluster{}} on success
-  {:error, info} on failure
-  """
-  @spec get_cluster_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Cluster.t} | {:error, Tesla.Env.t}
-  def get_cluster_dao(connection, cluster_id, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/clusters/#{cluster_id}")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.Cluster{})
-  end
-
-  @doc """
-  Get all clusters
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, [%Cluster{}, ...]} on success
-  {:error, info} on failure
-  """
-  @spec get_cluster_list_dao(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Cluster.t)} | {:error, Tesla.Env.t}
-  def get_cluster_list_dao(connection, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/clusters/")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode([%AIcrowd.Evaluations.Model.Cluster{}])
-  end
-
-  @doc """
-  Add a new cluster
+  Add a new cluster to AIcrowd and install necessary dependencies
 
   ## Parameters
 
@@ -107,8 +26,8 @@ defmodule AIcrowd.Evaluations.Api.Clusters do
   {:ok, %AIcrowd.Evaluations.Model.Cluster{}} on success
   {:error, info} on failure
   """
-  @spec post_cluster_list_dao(Tesla.Env.client, AIcrowd.Evaluations.Model.Cluster.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Cluster.t} | {:error, Tesla.Env.t}
-  def post_cluster_list_dao(connection, payload, opts \\ []) do
+  @spec create_cluster(Tesla.Env.client, AIcrowd.Evaluations.Model.Cluster.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Cluster.t} | {:error, Tesla.Env.t}
+  def create_cluster(connection, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -120,5 +39,86 @@ defmodule AIcrowd.Evaluations.Api.Clusters do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode(%AIcrowd.Evaluations.Model.Cluster{})
+  end
+
+  @doc """
+  Delete a cluster by its ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - cluster_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec delete_cluster(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def delete_cluster(connection, cluster_id, _opts \\ []) do
+    %{}
+    |> method(:delete)
+    |> url("/clusters/#{cluster_id}")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
+  Get details of a cluster by its ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - cluster_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.Cluster{}} on success
+  {:error, info} on failure
+  """
+  @spec get_cluster(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Cluster.t} | {:error, Tesla.Env.t}
+  def get_cluster(connection, cluster_id, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/clusters/#{cluster_id}")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.Cluster{})
+  end
+
+  @doc """
+  List all clusters available
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, [%Cluster{}, ...]} on success
+  {:error, info} on failure
+  """
+  @spec list_clusters(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Cluster.t)} | {:error, Tesla.Env.t}
+  def list_clusters(connection, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/clusters/")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode([%AIcrowd.Evaluations.Model.Cluster{}])
   end
 end

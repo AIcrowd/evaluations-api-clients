@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -43,9 +43,9 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -146,14 +146,14 @@ __PACKAGE__->method_documentation({
     'email' => {
     	datatype => 'string',
     	base_name => 'email',
-    	description => 'The email address',
+    	description => 'Email address of the user',
     	format => '',
     	read_only => '',
     		},
     'password' => {
     	datatype => 'string',
     	base_name => 'password',
-    	description => 'The user password ',
+    	description => 'Password corresponding to the Email address',
     	format => '',
     	read_only => '',
     		},

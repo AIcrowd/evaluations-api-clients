@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -33,39 +33,142 @@ class UsersApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def delete_user_dao(self, user_id, **kwargs):  # noqa: E501
-        """delete_user_dao  # noqa: E501
+    def create_user(self, payload, **kwargs):  # noqa: E501
+        """create_user  # noqa: E501
+
+        Create a new user  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_user(payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param User payload: (required)
+        :param str x_fields: An optional fields mask
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.create_user_with_http_info(payload, **kwargs)  # noqa: E501
+        else:
+            (data) = self.create_user_with_http_info(payload, **kwargs)  # noqa: E501
+            return data
+
+    def create_user_with_http_info(self, payload, **kwargs):  # noqa: E501
+        """create_user  # noqa: E501
+
+        Create a new user  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_user_with_http_info(payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param User payload: (required)
+        :param str x_fields: An optional fields mask
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['payload', 'x_fields']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_user" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'payload' is set
+        if ('payload' not in params or
+                params['payload'] is None):
+            raise ValueError("Missing the required parameter `payload` when calling `create_user`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'payload' in params:
+            body_params = params['payload']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/users/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='User',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def delete_user(self, user_id, **kwargs):  # noqa: E501
+        """delete_user  # noqa: E501
 
         Delete a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_dao(user_id, async_req=True)
+        >>> thread = api.delete_user(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_user_dao_with_http_info(user_id, **kwargs)  # noqa: E501
+            return self.delete_user_with_http_info(user_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_user_dao_with_http_info(user_id, **kwargs)  # noqa: E501
+            (data) = self.delete_user_with_http_info(user_id, **kwargs)  # noqa: E501
             return data
 
-    def delete_user_dao_with_http_info(self, user_id, **kwargs):  # noqa: E501
-        """delete_user_dao  # noqa: E501
+    def delete_user_with_http_info(self, user_id, **kwargs):  # noqa: E501
+        """delete_user  # noqa: E501
 
         Delete a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_dao_with_http_info(user_id, async_req=True)
+        >>> thread = api.delete_user_with_http_info(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -82,14 +185,14 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_user_dao" % key
+                    " to method delete_user" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
         if ('user_id' not in params or
                 params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `delete_user_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `user_id` when calling `delete_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -132,17 +235,17 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_user_dao(self, user_id, **kwargs):  # noqa: E501
-        """get_user_dao  # noqa: E501
+    def get_user(self, user_id, **kwargs):  # noqa: E501
+        """get_user  # noqa: E501
 
         Get information of a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_dao(user_id, async_req=True)
+        >>> thread = api.get_user(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :param str x_fields: An optional fields mask
         :return: User
                  If the method is called asynchronously,
@@ -150,22 +253,22 @@ class UsersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_user_dao_with_http_info(user_id, **kwargs)  # noqa: E501
+            return self.get_user_with_http_info(user_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_user_dao_with_http_info(user_id, **kwargs)  # noqa: E501
+            (data) = self.get_user_with_http_info(user_id, **kwargs)  # noqa: E501
             return data
 
-    def get_user_dao_with_http_info(self, user_id, **kwargs):  # noqa: E501
-        """get_user_dao  # noqa: E501
+    def get_user_with_http_info(self, user_id, **kwargs):  # noqa: E501
+        """get_user  # noqa: E501
 
         Get information of a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_dao_with_http_info(user_id, async_req=True)
+        >>> thread = api.get_user_with_http_info(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :param str x_fields: An optional fields mask
         :return: User
                  If the method is called asynchronously,
@@ -183,14 +286,14 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_user_dao" % key
+                    " to method get_user" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
         if ('user_id' not in params or
                 params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `get_user_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `user_id` when calling `get_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -235,13 +338,13 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_user_list_dao(self, **kwargs):  # noqa: E501
-        """get_user_list_dao  # noqa: E501
+    def list_users(self, **kwargs):  # noqa: E501
+        """list_users  # noqa: E501
 
         Get all user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_list_dao(async_req=True)
+        >>> thread = api.list_users(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -252,18 +355,18 @@ class UsersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_user_list_dao_with_http_info(**kwargs)  # noqa: E501
+            return self.list_users_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.get_user_list_dao_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.list_users_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_user_list_dao_with_http_info(self, **kwargs):  # noqa: E501
-        """get_user_list_dao  # noqa: E501
+    def list_users_with_http_info(self, **kwargs):  # noqa: E501
+        """list_users  # noqa: E501
 
         Get all user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_list_dao_with_http_info(async_req=True)
+        >>> thread = api.list_users_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -284,7 +387,7 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_user_list_dao" % key
+                    " to method list_users" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -330,227 +433,17 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def post_user_list_dao(self, payload, **kwargs):  # noqa: E501
-        """post_user_list_dao  # noqa: E501
-
-        Create a new user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_user_list_dao(payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param User payload: (required)
-        :param str x_fields: An optional fields mask
-        :return: User
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.post_user_list_dao_with_http_info(payload, **kwargs)  # noqa: E501
-        else:
-            (data) = self.post_user_list_dao_with_http_info(payload, **kwargs)  # noqa: E501
-            return data
-
-    def post_user_list_dao_with_http_info(self, payload, **kwargs):  # noqa: E501
-        """post_user_list_dao  # noqa: E501
-
-        Create a new user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_user_list_dao_with_http_info(payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param User payload: (required)
-        :param str x_fields: An optional fields mask
-        :return: User
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['payload', 'x_fields']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method post_user_list_dao" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
-            raise ValueError("Missing the required parameter `payload` when calling `post_user_list_dao`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-        if 'x_fields' in params:
-            header_params['X-Fields'] = params['x_fields']  # noqa: E501
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'payload' in params:
-            body_params = params['payload']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/users/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='User',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def put_quota_dao(self, user_id, payload, **kwargs):  # noqa: E501
-        """put_quota_dao  # noqa: E501
-
-        Add or subtract quota for a user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_quota_dao(user_id, payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int user_id: User identifier (required)
-        :param UserQuota payload: (required)
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.put_quota_dao_with_http_info(user_id, payload, **kwargs)  # noqa: E501
-        else:
-            (data) = self.put_quota_dao_with_http_info(user_id, payload, **kwargs)  # noqa: E501
-            return data
-
-    def put_quota_dao_with_http_info(self, user_id, payload, **kwargs):  # noqa: E501
-        """put_quota_dao  # noqa: E501
-
-        Add or subtract quota for a user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_quota_dao_with_http_info(user_id, payload, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int user_id: User identifier (required)
-        :param UserQuota payload: (required)
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['user_id', 'payload']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method put_quota_dao" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'user_id' is set
-        if ('user_id' not in params or
-                params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `put_quota_dao`")  # noqa: E501
-        # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
-            raise ValueError("Missing the required parameter `payload` when calling `put_quota_dao`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'user_id' in params:
-            path_params['user_id'] = params['user_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'payload' in params:
-            body_params = params['payload']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['api_key']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/users/addquota/{user_id}', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type=None,  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def put_user_dao(self, user_id, payload, **kwargs):  # noqa: E501
-        """put_user_dao  # noqa: E501
+    def update_user(self, user_id, payload, **kwargs):  # noqa: E501
+        """update_user  # noqa: E501
 
         Update a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_user_dao(user_id, payload, async_req=True)
+        >>> thread = api.update_user(user_id, payload, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :param User payload: (required)
         :param str x_fields: An optional fields mask
         :return: User
@@ -559,22 +452,22 @@ class UsersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.put_user_dao_with_http_info(user_id, payload, **kwargs)  # noqa: E501
+            return self.update_user_with_http_info(user_id, payload, **kwargs)  # noqa: E501
         else:
-            (data) = self.put_user_dao_with_http_info(user_id, payload, **kwargs)  # noqa: E501
+            (data) = self.update_user_with_http_info(user_id, payload, **kwargs)  # noqa: E501
             return data
 
-    def put_user_dao_with_http_info(self, user_id, payload, **kwargs):  # noqa: E501
-        """put_user_dao  # noqa: E501
+    def update_user_with_http_info(self, user_id, payload, **kwargs):  # noqa: E501
+        """update_user  # noqa: E501
 
         Update a user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_user_dao_with_http_info(user_id, payload, async_req=True)
+        >>> thread = api.update_user_with_http_info(user_id, payload, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int user_id: User identifier (required)
+        :param int user_id: (required)
         :param User payload: (required)
         :param str x_fields: An optional fields mask
         :return: User
@@ -593,18 +486,18 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method put_user_dao" % key
+                    " to method update_user" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
         if ('user_id' not in params or
                 params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `put_user_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `user_id` when calling `update_user`")  # noqa: E501
         # verify the required parameter 'payload' is set
         if ('payload' not in params or
                 params['payload'] is None):
-            raise ValueError("Missing the required parameter `payload` when calling `put_user_dao`")  # noqa: E501
+            raise ValueError("Missing the required parameter `payload` when calling `update_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -644,6 +537,113 @@ class UsersApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='User',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def update_user_quota(self, user_id, payload, **kwargs):  # noqa: E501
+        """update_user_quota  # noqa: E501
+
+        Add or subtract quota for a user  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.update_user_quota(user_id, payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int user_id: (required)
+        :param UserQuota payload: (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.update_user_quota_with_http_info(user_id, payload, **kwargs)  # noqa: E501
+        else:
+            (data) = self.update_user_quota_with_http_info(user_id, payload, **kwargs)  # noqa: E501
+            return data
+
+    def update_user_quota_with_http_info(self, user_id, payload, **kwargs):  # noqa: E501
+        """update_user_quota  # noqa: E501
+
+        Add or subtract quota for a user  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.update_user_quota_with_http_info(user_id, payload, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int user_id: (required)
+        :param UserQuota payload: (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['user_id', 'payload']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_user_quota" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `update_user_quota`")  # noqa: E501
+        # verify the required parameter 'payload' is set
+        if ('payload' not in params or
+                params['payload'] is None):
+            raise ValueError("Missing the required parameter `payload` when calling `update_user_quota`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'payload' in params:
+            body_params = params['payload']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['api_key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/users/{user_id}/addquota', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

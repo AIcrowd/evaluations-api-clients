@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -40,8 +40,8 @@
    * Constructs a new <code>Login</code>.
    * @alias module:AIcrowdEvaluations/model/Login
    * @class
-   * @param email {String} The email address
-   * @param password {String} The user password 
+   * @param email {String} Email address of the user
+   * @param password {String} Password corresponding to the Email address
    */
   var exports = function(email, password) {
     this.email = email;
@@ -67,13 +67,13 @@
   }
 
   /**
-   * The email address
+   * Email address of the user
    * @member {String} email
    */
   exports.prototype.email = undefined;
 
   /**
-   * The user password 
+   * Password corresponding to the Email address
    * @member {String} password
    */
   exports.prototype.password = undefined;

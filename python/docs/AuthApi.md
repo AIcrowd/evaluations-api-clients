@@ -4,16 +4,65 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**post_logout_api**](AuthApi.md#post_logout_api) | **POST** /auth/logout | 
-[**post_user_login**](AuthApi.md#post_user_login) | **POST** /auth/login | 
+[**login**](AuthApi.md#login) | **POST** /auth/login | 
+[**logout**](AuthApi.md#logout) | **POST** /auth/logout | 
 
 
-# **post_logout_api**
-> AuthLogout post_logout_api(x_fields=x_fields)
+# **login**
+> AuthResponse login(payload, x_fields=x_fields)
 
 
 
-Logout a user
+Log in a user with email and password.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = aicrowd_evaluations.AuthApi()
+payload = aicrowd_evaluations.Login() # Login | 
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
+
+try:
+    api_response = api_instance.login(payload, x_fields=x_fields)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthApi->login: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Login**](Login.md)|  | 
+ **x_fields** | **str**| An optional fields mask | [optional] 
+
+### Return type
+
+[**AuthResponse**](AuthResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **logout**
+> AuthLogout logout(x_fields=x_fields)
+
+
+
+Invalidate the current authorization token.
 
 ### Example
 ```python
@@ -34,10 +83,10 @@ api_instance = aicrowd_evaluations.AuthApi(aicrowd_evaluations.ApiClient(configu
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_response = api_instance.post_logout_api(x_fields=x_fields)
+    api_response = api_instance.logout(x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling AuthApi->post_logout_api: %s\n" % e)
+    print("Exception when calling AuthApi->logout: %s\n" % e)
 ```
 
 ### Parameters
@@ -53,55 +102,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_user_login**
-> AuthResponse post_user_login(payload, x_fields=x_fields)
-
-
-
-User login
-
-### Example
-```python
-from __future__ import print_function
-import time
-import aicrowd_evaluations
-from aicrowd_evaluations.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = aicrowd_evaluations.AuthApi()
-payload = aicrowd_evaluations.Login() # Login | 
-x_fields = 'x_fields_example' # str | An optional fields mask (optional)
-
-try:
-    api_response = api_instance.post_user_login(payload, x_fields=x_fields)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->post_user_login: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Login**](Login.md)|  | 
- **x_fields** | **str**| An optional fields mask | [optional] 
-
-### Return type
-
-[**AuthResponse**](AuthResponse.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

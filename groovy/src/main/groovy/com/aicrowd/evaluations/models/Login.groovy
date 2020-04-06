@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 @Canonical
 class Login {
 
-  /* The email address */
+  /* Email address of the user */
   String email = null
 
-  /* The user password  */
+  /* Password corresponding to the Email address */
   String password = null
   
 

@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -29,14 +29,14 @@ class TestAuthApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_post_logout_api(self):
-        """Test case for post_logout_api
+    def test_login(self):
+        """Test case for login
 
         """
         pass
 
-    def test_post_user_login(self):
-        """Test case for post_user_login
+    def test_logout(self):
+        """Test case for logout
 
         """
         pass

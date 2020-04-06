@@ -1,85 +1,22 @@
 -module(aicrowd_evaluations_organisations_api).
 
--export([delete_organisation_dao/2, delete_organisation_dao/3,
-         get_organisation_dao/2, get_organisation_dao/3,
-         get_organisation_list_dao/1, get_organisation_list_dao/2,
-         post_organisation_list_dao/2, post_organisation_list_dao/3,
-         put_organisation_dao/3, put_organisation_dao/4,
-         put_quota_dao/3, put_quota_dao/4]).
+-export([create_organisation/2, create_organisation/3,
+         delete_organisation/2, delete_organisation/3,
+         get_organisation/2, get_organisation/3,
+         list_organisations/1, list_organisations/2,
+         update_organisation/3, update_organisation/4,
+         update_organisation_quota/3, update_organisation_quota/4]).
 
 -define(BASE_URL, "/v1").
 
 %% @doc 
-%% Delete an Organisation
--spec delete_organisation_dao(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-delete_organisation_dao(Ctx, OrganisationId) ->
-    delete_organisation_dao(Ctx, OrganisationId, #{}).
-
--spec delete_organisation_dao(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-delete_organisation_dao(Ctx, OrganisationId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = delete,
-    Path = ["/organisations/", OrganisationId, ""],
-    QS = [],
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc 
-%% Get information of an organisation
--spec get_organisation_dao(ctx:ctx(), integer()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-get_organisation_dao(Ctx, OrganisationId) ->
-    get_organisation_dao(Ctx, OrganisationId, #{}).
-
--spec get_organisation_dao(ctx:ctx(), integer(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-get_organisation_dao(Ctx, OrganisationId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = get,
-    Path = ["/organisations/", OrganisationId, ""],
-    QS = [],
-    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
-    Body1 = [],
-    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc 
-%% Get all organisations
--spec get_organisation_list_dao(ctx:ctx()) -> {ok, [aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-get_organisation_list_dao(Ctx) ->
-    get_organisation_list_dao(Ctx, #{}).
-
--spec get_organisation_list_dao(ctx:ctx(), maps:map()) -> {ok, [aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-get_organisation_list_dao(Ctx, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = get,
-    Path = ["/organisations/"],
-    QS = [],
-    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
-    Body1 = [],
-    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc 
 %% Create a new organisation
--spec post_organisation_list_dao(ctx:ctx(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-post_organisation_list_dao(Ctx, Payload) ->
-    post_organisation_list_dao(Ctx, Payload, #{}).
+-spec create_organisation(ctx:ctx(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+create_organisation(Ctx, Payload) ->
+    create_organisation(Ctx, Payload, #{}).
 
--spec post_organisation_list_dao(ctx:ctx(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-post_organisation_list_dao(Ctx, Payload, Optional) ->
+-spec create_organisation(ctx:ctx(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+create_organisation(Ctx, Payload, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -94,13 +31,76 @@ post_organisation_list_dao(Ctx, Payload, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
-%% Update an Organisation
--spec put_organisation_dao(ctx:ctx(), integer(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_organisation_dao(Ctx, OrganisationId, Payload) ->
-    put_organisation_dao(Ctx, OrganisationId, Payload, #{}).
+%% Delete an Organisation
+-spec delete_organisation(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+delete_organisation(Ctx, OrganisationId) ->
+    delete_organisation(Ctx, OrganisationId, #{}).
 
--spec put_organisation_dao(ctx:ctx(), integer(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_organisation_dao(Ctx, OrganisationId, Payload, Optional) ->
+-spec delete_organisation(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+delete_organisation(Ctx, OrganisationId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = delete,
+    Path = ["/organisations/", OrganisationId, ""],
+    QS = [],
+    Headers = [],
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
+%% Get details of an organisation
+-spec get_organisation(ctx:ctx(), integer()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+get_organisation(Ctx, OrganisationId) ->
+    get_organisation(Ctx, OrganisationId, #{}).
+
+-spec get_organisation(ctx:ctx(), integer(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+get_organisation(Ctx, OrganisationId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = get,
+    Path = ["/organisations/", OrganisationId, ""],
+    QS = [],
+    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
+%% List all organisations
+-spec list_organisations(ctx:ctx()) -> {ok, [aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+list_organisations(Ctx) ->
+    list_organisations(Ctx, #{}).
+
+-spec list_organisations(ctx:ctx(), maps:map()) -> {ok, [aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+list_organisations(Ctx, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = get,
+    Path = ["/organisations/"],
+    QS = [],
+    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
+%% Update an Organisation
+-spec update_organisation(ctx:ctx(), integer(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+update_organisation(Ctx, OrganisationId, Payload) ->
+    update_organisation(Ctx, OrganisationId, Payload, #{}).
+
+-spec update_organisation(ctx:ctx(), integer(), aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), maps:map()) -> {ok, aicrowd_evaluations_organisation:aicrowd_evaluations_organisation(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+update_organisation(Ctx, OrganisationId, Payload, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -116,17 +116,17 @@ put_organisation_dao(Ctx, OrganisationId, Payload, Optional) ->
 
 %% @doc 
 %% Add or subtract quota for an organisation
--spec put_quota_dao(ctx:ctx(), integer(), aicrowd_evaluations_organisation_quota:aicrowd_evaluations_organisation_quota()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_quota_dao(Ctx, OrganisationId, Payload) ->
-    put_quota_dao(Ctx, OrganisationId, Payload, #{}).
+-spec update_organisation_quota(ctx:ctx(), integer(), aicrowd_evaluations_organisation_quota:aicrowd_evaluations_organisation_quota()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+update_organisation_quota(Ctx, OrganisationId, Payload) ->
+    update_organisation_quota(Ctx, OrganisationId, Payload, #{}).
 
--spec put_quota_dao(ctx:ctx(), integer(), aicrowd_evaluations_organisation_quota:aicrowd_evaluations_organisation_quota(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_quota_dao(Ctx, OrganisationId, Payload, Optional) ->
+-spec update_organisation_quota(ctx:ctx(), integer(), aicrowd_evaluations_organisation_quota:aicrowd_evaluations_organisation_quota(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+update_organisation_quota(Ctx, OrganisationId, Payload, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = put,
-    Path = ["/organisations/addquota/", OrganisationId, ""],
+    Path = ["/organisations/", OrganisationId, "/addquota"],
     QS = [],
     Headers = [],
     Body1 = Payload,

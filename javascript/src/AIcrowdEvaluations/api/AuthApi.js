@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,21 +48,71 @@
 
 
     /**
-     * Callback function to receive the result of the postLogoutApi operation.
-     * @callback module:AIcrowdEvaluations/api/AuthApi~postLogoutApiCallback
+     * Callback function to receive the result of the login operation.
+     * @callback module:AIcrowdEvaluations/api/AuthApi~loginCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/AuthResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Log in a user with email and password.
+     * @param {module:AIcrowdEvaluations/model/Login} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/AuthApi~loginCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/AuthResponse}
+     */
+    this.login = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling login");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = AuthResponse;
+
+      return this.apiClient.callApi(
+        '/auth/login', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the logout operation.
+     * @callback module:AIcrowdEvaluations/api/AuthApi~logoutCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/AuthLogout} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Logout a user
+     * Invalidate the current authorization token.
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/AuthApi~postLogoutApiCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/AuthApi~logoutCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/AuthLogout}
      */
-    this.postLogoutApi = function(opts, callback) {
+    this.logout = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -86,56 +136,6 @@
 
       return this.apiClient.callApi(
         '/auth/logout', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the postUserLogin operation.
-     * @callback module:AIcrowdEvaluations/api/AuthApi~postUserLoginCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/AuthResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * User login
-     * @param {module:AIcrowdEvaluations/model/Login} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/AuthApi~postUserLoginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/AuthResponse}
-     */
-    this.postUserLogin = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postUserLogin");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = AuthResponse;
-
-      return this.apiClient.callApi(
-        '/auth/login', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

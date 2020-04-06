@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -88,32 +88,306 @@ class UsersApi
     }
 
     /**
-     * Operation deleteUserDao
+     * Operation createUser
      *
-     * @param  int $user_id User identifier (required)
+     * @param  \Swagger\Client\Model\User $payload payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Swagger\Client\Model\User
+     */
+    public function createUser($payload, $x_fields = null)
+    {
+        list($response) = $this->createUserWithHttpInfo($payload, $x_fields);
+        return $response;
+    }
+
+    /**
+     * Operation createUserWithHttpInfo
+     *
+     * @param  \Swagger\Client\Model\User $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Swagger\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createUserWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\User';
+        $request = $this->createUserRequest($payload, $x_fields);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Swagger\Client\Model\User',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createUserAsync
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\User $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createUserAsync($payload, $x_fields = null)
+    {
+        return $this->createUserAsyncWithHttpInfo($payload, $x_fields)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createUserAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  \Swagger\Client\Model\User $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createUserAsyncWithHttpInfo($payload, $x_fields = null)
+    {
+        $returnType = '\Swagger\Client\Model\User';
+        $request = $this->createUserRequest($payload, $x_fields);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createUser'
+     *
+     * @param  \Swagger\Client\Model\User $payload (required)
+     * @param  string $x_fields An optional fields mask (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createUserRequest($payload, $x_fields = null)
+    {
+        // verify the required parameter 'payload' is set
+        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $payload when calling createUser'
+            );
+        }
+
+        $resourcePath = '/users/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($x_fields !== null) {
+            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($payload)) {
+            $_tempBody = $payload;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
+        if ($apiKey !== null) {
+            $headers['AUTHORIZATION'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteUser
+     *
+     * @param  int $user_id user_id (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteUserDao($user_id)
+    public function deleteUser($user_id)
     {
-        $this->deleteUserDaoWithHttpInfo($user_id);
+        $this->deleteUserWithHttpInfo($user_id);
     }
 
     /**
-     * Operation deleteUserDaoWithHttpInfo
+     * Operation deleteUserWithHttpInfo
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteUserDaoWithHttpInfo($user_id)
+    public function deleteUserWithHttpInfo($user_id)
     {
         $returnType = '';
-        $request = $this->deleteUserDaoRequest($user_id);
+        $request = $this->deleteUserRequest($user_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -153,18 +427,18 @@ class UsersApi
     }
 
     /**
-     * Operation deleteUserDaoAsync
+     * Operation deleteUserAsync
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserDaoAsync($user_id)
+    public function deleteUserAsync($user_id)
     {
-        return $this->deleteUserDaoAsyncWithHttpInfo($user_id)
+        return $this->deleteUserAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -173,19 +447,19 @@ class UsersApi
     }
 
     /**
-     * Operation deleteUserDaoAsyncWithHttpInfo
+     * Operation deleteUserAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserDaoAsyncWithHttpInfo($user_id)
+    public function deleteUserAsyncWithHttpInfo($user_id)
     {
         $returnType = '';
-        $request = $this->deleteUserDaoRequest($user_id);
+        $request = $this->deleteUserRequest($user_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -211,19 +485,19 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'deleteUserDao'
+     * Create request for operation 'deleteUser'
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteUserDaoRequest($user_id)
+    protected function deleteUserRequest($user_id)
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling deleteUserDao'
+                'Missing the required parameter $user_id when calling deleteUser'
             );
         }
 
@@ -321,35 +595,35 @@ class UsersApi
     }
 
     /**
-     * Operation getUserDao
+     * Operation getUser
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id user_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\User
      */
-    public function getUserDao($user_id, $x_fields = null)
+    public function getUser($user_id, $x_fields = null)
     {
-        list($response) = $this->getUserDaoWithHttpInfo($user_id, $x_fields);
+        list($response) = $this->getUserWithHttpInfo($user_id, $x_fields);
         return $response;
     }
 
     /**
-     * Operation getUserDaoWithHttpInfo
+     * Operation getUserWithHttpInfo
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserDaoWithHttpInfo($user_id, $x_fields = null)
+    public function getUserWithHttpInfo($user_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User';
-        $request = $this->getUserDaoRequest($user_id, $x_fields);
+        $request = $this->getUserRequest($user_id, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -411,19 +685,19 @@ class UsersApi
     }
 
     /**
-     * Operation getUserDaoAsync
+     * Operation getUserAsync
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserDaoAsync($user_id, $x_fields = null)
+    public function getUserAsync($user_id, $x_fields = null)
     {
-        return $this->getUserDaoAsyncWithHttpInfo($user_id, $x_fields)
+        return $this->getUserAsyncWithHttpInfo($user_id, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -432,20 +706,20 @@ class UsersApi
     }
 
     /**
-     * Operation getUserDaoAsyncWithHttpInfo
+     * Operation getUserAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserDaoAsyncWithHttpInfo($user_id, $x_fields = null)
+    public function getUserAsyncWithHttpInfo($user_id, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User';
-        $request = $this->getUserDaoRequest($user_id, $x_fields);
+        $request = $this->getUserRequest($user_id, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -485,20 +759,20 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'getUserDao'
+     * Create request for operation 'getUser'
      *
-     * @param  int $user_id User identifier (required)
+     * @param  int $user_id (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getUserDaoRequest($user_id, $x_fields = null)
+    protected function getUserRequest($user_id, $x_fields = null)
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getUserDao'
+                'Missing the required parameter $user_id when calling getUser'
             );
         }
 
@@ -600,7 +874,7 @@ class UsersApi
     }
 
     /**
-     * Operation getUserListDao
+     * Operation listUsers
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -608,14 +882,14 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\User[]
      */
-    public function getUserListDao($x_fields = null)
+    public function listUsers($x_fields = null)
     {
-        list($response) = $this->getUserListDaoWithHttpInfo($x_fields);
+        list($response) = $this->listUsersWithHttpInfo($x_fields);
         return $response;
     }
 
     /**
-     * Operation getUserListDaoWithHttpInfo
+     * Operation listUsersWithHttpInfo
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -623,10 +897,10 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\User[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserListDaoWithHttpInfo($x_fields = null)
+    public function listUsersWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User[]';
-        $request = $this->getUserListDaoRequest($x_fields);
+        $request = $this->listUsersRequest($x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -688,7 +962,7 @@ class UsersApi
     }
 
     /**
-     * Operation getUserListDaoAsync
+     * Operation listUsersAsync
      *
      * 
      *
@@ -697,9 +971,9 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserListDaoAsync($x_fields = null)
+    public function listUsersAsync($x_fields = null)
     {
-        return $this->getUserListDaoAsyncWithHttpInfo($x_fields)
+        return $this->listUsersAsyncWithHttpInfo($x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -708,7 +982,7 @@ class UsersApi
     }
 
     /**
-     * Operation getUserListDaoAsyncWithHttpInfo
+     * Operation listUsersAsyncWithHttpInfo
      *
      * 
      *
@@ -717,10 +991,10 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserListDaoAsyncWithHttpInfo($x_fields = null)
+    public function listUsersAsyncWithHttpInfo($x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User[]';
-        $request = $this->getUserListDaoRequest($x_fields);
+        $request = $this->listUsersRequest($x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -760,14 +1034,14 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'getUserListDao'
+     * Create request for operation 'listUsers'
      *
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getUserListDaoRequest($x_fields = null)
+    protected function listUsersRequest($x_fields = null)
     {
 
         $resourcePath = '/users/';
@@ -860,8 +1134,9 @@ class UsersApi
     }
 
     /**
-     * Operation postUserListDao
+     * Operation updateUser
      *
+     * @param  int $user_id user_id (required)
      * @param  \Swagger\Client\Model\User $payload payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -869,15 +1144,16 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\User
      */
-    public function postUserListDao($payload, $x_fields = null)
+    public function updateUser($user_id, $payload, $x_fields = null)
     {
-        list($response) = $this->postUserListDaoWithHttpInfo($payload, $x_fields);
+        list($response) = $this->updateUserWithHttpInfo($user_id, $payload, $x_fields);
         return $response;
     }
 
     /**
-     * Operation postUserListDaoWithHttpInfo
+     * Operation updateUserWithHttpInfo
      *
+     * @param  int $user_id (required)
      * @param  \Swagger\Client\Model\User $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -885,10 +1161,10 @@ class UsersApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postUserListDaoWithHttpInfo($payload, $x_fields = null)
+    public function updateUserWithHttpInfo($user_id, $payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User';
-        $request = $this->postUserListDaoRequest($payload, $x_fields);
+        $request = $this->updateUserRequest($user_id, $payload, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -950,19 +1226,20 @@ class UsersApi
     }
 
     /**
-     * Operation postUserListDaoAsync
+     * Operation updateUserAsync
      *
      * 
      *
+     * @param  int $user_id (required)
      * @param  \Swagger\Client\Model\User $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postUserListDaoAsync($payload, $x_fields = null)
+    public function updateUserAsync($user_id, $payload, $x_fields = null)
     {
-        return $this->postUserListDaoAsyncWithHttpInfo($payload, $x_fields)
+        return $this->updateUserAsyncWithHttpInfo($user_id, $payload, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -971,20 +1248,21 @@ class UsersApi
     }
 
     /**
-     * Operation postUserListDaoAsyncWithHttpInfo
+     * Operation updateUserAsyncWithHttpInfo
      *
      * 
      *
+     * @param  int $user_id (required)
      * @param  \Swagger\Client\Model\User $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postUserListDaoAsyncWithHttpInfo($payload, $x_fields = null)
+    public function updateUserAsyncWithHttpInfo($user_id, $payload, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\User';
-        $request = $this->postUserListDaoRequest($payload, $x_fields);
+        $request = $this->updateUserRequest($user_id, $payload, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1024,24 +1302,31 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'postUserListDao'
+     * Create request for operation 'updateUser'
      *
+     * @param  int $user_id (required)
      * @param  \Swagger\Client\Model\User $payload (required)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postUserListDaoRequest($payload, $x_fields = null)
+    protected function updateUserRequest($user_id, $payload, $x_fields = null)
     {
+        // verify the required parameter 'user_id' is set
+        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_id when calling updateUser'
+            );
+        }
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling postUserListDao'
+                'Missing the required parameter $payload when calling updateUser'
             );
         }
 
-        $resourcePath = '/users/';
+        $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1052,245 +1337,6 @@ class UsersApi
         if ($x_fields !== null) {
             $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
         }
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($payload)) {
-            $_tempBody = $payload;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
-        if ($apiKey !== null) {
-            $headers['AUTHORIZATION'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation putQuotaDao
-     *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\UserQuota $payload payload (required)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function putQuotaDao($user_id, $payload)
-    {
-        $this->putQuotaDaoWithHttpInfo($user_id, $payload);
-    }
-
-    /**
-     * Operation putQuotaDaoWithHttpInfo
-     *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\UserQuota $payload (required)
-     *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function putQuotaDaoWithHttpInfo($user_id, $payload)
-    {
-        $returnType = '';
-        $request = $this->putQuotaDaoRequest($user_id, $payload);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation putQuotaDaoAsync
-     *
-     * 
-     *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\UserQuota $payload (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function putQuotaDaoAsync($user_id, $payload)
-    {
-        return $this->putQuotaDaoAsyncWithHttpInfo($user_id, $payload)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation putQuotaDaoAsyncWithHttpInfo
-     *
-     * 
-     *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\UserQuota $payload (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function putQuotaDaoAsyncWithHttpInfo($user_id, $payload)
-    {
-        $returnType = '';
-        $request = $this->putQuotaDaoRequest($user_id, $payload);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'putQuotaDao'
-     *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\UserQuota $payload (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function putQuotaDaoRequest($user_id, $payload)
-    {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling putQuotaDao'
-            );
-        }
-        // verify the required parameter 'payload' is set
-        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling putQuotaDao'
-            );
-        }
-
-        $resourcePath = '/users/addquota/{user_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
 
         // path params
         if ($user_id !== null) {
@@ -1381,37 +1427,34 @@ class UsersApi
     }
 
     /**
-     * Operation putUserDao
+     * Operation updateUserQuota
      *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\User $payload payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
+     * @param  int $user_id user_id (required)
+     * @param  \Swagger\Client\Model\UserQuota $payload payload (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Swagger\Client\Model\User
+     * @return void
      */
-    public function putUserDao($user_id, $payload, $x_fields = null)
+    public function updateUserQuota($user_id, $payload)
     {
-        list($response) = $this->putUserDaoWithHttpInfo($user_id, $payload, $x_fields);
-        return $response;
+        $this->updateUserQuotaWithHttpInfo($user_id, $payload);
     }
 
     /**
-     * Operation putUserDaoWithHttpInfo
+     * Operation updateUserQuotaWithHttpInfo
      *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\User $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
+     * @param  int $user_id (required)
+     * @param  \Swagger\Client\Model\UserQuota $payload (required)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Swagger\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function putUserDaoWithHttpInfo($user_id, $payload, $x_fields = null)
+    public function updateUserQuotaWithHttpInfo($user_id, $payload)
     {
-        $returnType = '\Swagger\Client\Model\User';
-        $request = $this->putUserDaoRequest($user_id, $payload, $x_fields);
+        $returnType = '';
+        $request = $this->updateUserQuotaRequest($user_id, $payload);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1441,52 +1484,29 @@ class UsersApi
                 );
             }
 
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return [null, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Swagger\Client\Model\User',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
             }
             throw $e;
         }
     }
 
     /**
-     * Operation putUserDaoAsync
+     * Operation updateUserQuotaAsync
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\User $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
+     * @param  int $user_id (required)
+     * @param  \Swagger\Client\Model\UserQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putUserDaoAsync($user_id, $payload, $x_fields = null)
+    public function updateUserQuotaAsync($user_id, $payload)
     {
-        return $this->putUserDaoAsyncWithHttpInfo($user_id, $payload, $x_fields)
+        return $this->updateUserQuotaAsyncWithHttpInfo($user_id, $payload)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1495,41 +1515,26 @@ class UsersApi
     }
 
     /**
-     * Operation putUserDaoAsyncWithHttpInfo
+     * Operation updateUserQuotaAsyncWithHttpInfo
      *
      * 
      *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\User $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
+     * @param  int $user_id (required)
+     * @param  \Swagger\Client\Model\UserQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putUserDaoAsyncWithHttpInfo($user_id, $payload, $x_fields = null)
+    public function updateUserQuotaAsyncWithHttpInfo($user_id, $payload)
     {
-        $returnType = '\Swagger\Client\Model\User';
-        $request = $this->putUserDaoRequest($user_id, $payload, $x_fields);
+        $returnType = '';
+        $request = $this->updateUserQuotaRequest($user_id, $payload);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1549,41 +1554,36 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'putUserDao'
+     * Create request for operation 'updateUserQuota'
      *
-     * @param  int $user_id User identifier (required)
-     * @param  \Swagger\Client\Model\User $payload (required)
-     * @param  string $x_fields An optional fields mask (optional)
+     * @param  int $user_id (required)
+     * @param  \Swagger\Client\Model\UserQuota $payload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function putUserDaoRequest($user_id, $payload, $x_fields = null)
+    protected function updateUserQuotaRequest($user_id, $payload)
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling putUserDao'
+                'Missing the required parameter $user_id when calling updateUserQuota'
             );
         }
         // verify the required parameter 'payload' is set
         if ($payload === null || (is_array($payload) && count($payload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling putUserDao'
+                'Missing the required parameter $payload when calling updateUserQuota'
             );
         }
 
-        $resourcePath = '/users/{user_id}';
+        $resourcePath = '/users/{user_id}/addquota';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // header params
-        if ($x_fields !== null) {
-            $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);
-        }
 
         // path params
         if ($user_id !== null) {

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -43,21 +43,33 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Delete a grader
+    /// Create a new grader
+    /// </remarks>
+    /// <param name="payload"></param>
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<Grader>> createGrader(
+        std::shared_ptr<Grader> payload,
+        boost::optional<utility::string_t> xFields
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Delete a grader by its ID
     /// </remarks>
     /// <param name="graderId"></param>
-    pplx::task<void> deleteGraderDao(
+    pplx::task<void> deleteGrader(
         int32_t graderId
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// Get information of a grader
+    /// Get details of a grader by its ID
     /// </remarks>
     /// <param name="graderId"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Grader>> getGraderDao(
+    pplx::task<std::shared_ptr<Grader>> getGrader(
         int32_t graderId,
         boost::optional<utility::string_t> xFields
     );
@@ -65,22 +77,10 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Get all grader
+    /// List all graders available
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Grader>>> getGraderListDao(
-        boost::optional<utility::string_t> xFields
-    );
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// Create a new grader
-    /// </remarks>
-    /// <param name="payload"></param>
-    /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Grader>> postGraderListDao(
-        std::shared_ptr<Grader> payload,
+    pplx::task<std::vector<std::shared_ptr<Grader>>> listGraders(
         boost::optional<utility::string_t> xFields
     );
 

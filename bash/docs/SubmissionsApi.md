@@ -4,143 +4,14 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSubmissionDao**](SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
-[**getSubmissionDao**](SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
-[**getSubmissionDataDao**](SubmissionsApi.md#getSubmissionDataDao) | **GET** /submissions/{submission_id}/data | 
-[**getSubmissionListDao**](SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
-[**postSubmissionListDao**](SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
+[**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
+[**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
+[**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
-## **deleteSubmissionDao**
-
-
-
-Stop evaluation of a submission
-
-### Example
-```bash
-aicrowd-evaluations deleteSubmissionDao submission_id=value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **submissionId** | **integer** |  |
-
-### Return type
-
-(empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **getSubmissionDao**
-
-
-
-Get details of a submission
-
-### Example
-```bash
-aicrowd-evaluations getSubmissionDao submission_id=value X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **submissionId** | **integer** |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Submissions**](Submissions.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **getSubmissionDataDao**
-
-
-
-Get the submission data
-
-### Example
-```bash
-aicrowd-evaluations getSubmissionDataDao submission_id=value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **submissionId** | **integer** |  |
-
-### Return type
-
-(empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **getSubmissionListDao**
-
-
-
-Get all submissions
-
-### Example
-```bash
-aicrowd-evaluations getSubmissionListDao X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**array[Submissions]**](Submissions.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **postSubmissionListDao**
+## **createSubmission**
 
 
 
@@ -148,7 +19,7 @@ Make a new submission
 
 ### Example
 ```bash
-aicrowd-evaluations postSubmissionListDao X-Fields:value
+aicrowd-evaluations createSubmission X-Fields:value
 ```
 
 ### Parameters
@@ -161,6 +32,135 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **deleteSubmission**
+
+
+
+Stop evaluation of a submission and delete it
+
+### Example
+```bash
+aicrowd-evaluations deleteSubmission submission_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **getSubmission**
+
+
+
+Get details of a submission by its ID
+
+### Example
+```bash
+aicrowd-evaluations getSubmission submission_id=value X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **integer** |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **getSubmissionData**
+
+
+
+Get the submission data by submission ID
+
+### Example
+```bash
+aicrowd-evaluations getSubmissionData submission_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **listSubmissions**
+
+
+
+List all submissions available
+
+### Example
+```bash
+aicrowd-evaluations listSubmissions X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**array[Submissions]**](Submissions.md)
 
 ### Authorization
 

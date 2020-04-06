@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -58,18 +58,75 @@ export class GradersService {
 
     /**
      * 
-     * Delete a grader
+     * Create a new grader
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createGrader(payload: Grader, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Grader>;
+    public createGrader(payload: Grader, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Grader>>;
+    public createGrader(payload: Grader, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Grader>>;
+    public createGrader(payload: Grader, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createGrader.');
+        }
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Grader>(`${this.basePath}/graders/`,
+            payload,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Delete a grader by its ID
      * @param graderId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteGraderDao(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteGraderDao(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteGraderDao(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteGraderDao(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteGrader(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteGrader(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteGrader(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteGrader(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling deleteGraderDao.');
+            throw new Error('Required parameter graderId was null or undefined when calling deleteGrader.');
         }
 
         let headers = this.defaultHeaders;
@@ -105,19 +162,19 @@ export class GradersService {
 
     /**
      * 
-     * Get information of a grader
+     * Get details of a grader by its ID
      * @param graderId 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderDao(graderId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Grader>;
-    public getGraderDao(graderId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Grader>>;
-    public getGraderDao(graderId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Grader>>;
-    public getGraderDao(graderId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getGrader(graderId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Grader>;
+    public getGrader(graderId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Grader>>;
+    public getGrader(graderId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Grader>>;
+    public getGrader(graderId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling getGraderDao.');
+            throw new Error('Required parameter graderId was null or undefined when calling getGrader.');
         }
 
 
@@ -157,15 +214,15 @@ export class GradersService {
 
     /**
      * 
-     * Get all grader
+     * List all graders available
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
-    public getGraderListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
-    public getGraderListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
-    public getGraderListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listGraders(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
+    public listGraders(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
+    public listGraders(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
+    public listGraders(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -193,63 +250,6 @@ export class GradersService {
         ];
 
         return this.httpClient.get<Array<Grader>>(`${this.basePath}/graders/`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Create a new grader
-     * @param payload 
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postGraderListDao(payload: Grader, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Grader>;
-    public postGraderListDao(payload: Grader, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Grader>>;
-    public postGraderListDao(payload: Grader, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Grader>>;
-    public postGraderListDao(payload: Grader, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
-        }
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Grader>(`${this.basePath}/graders/`,
-            payload,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

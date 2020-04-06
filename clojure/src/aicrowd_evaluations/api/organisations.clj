@@ -2,7 +2,30 @@
   (:require [aicrowd-evaluations.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
-(defn delete-organisation-dao-with-http-info
+(defn create-organisation-with-http-info
+  "
+  Create a new organisation"
+  ([payload ] (create-organisation-with-http-info payload nil))
+  ([payload {:keys [x-fields ]}]
+   (check-required-params payload)
+   (call-api "/organisations/" :post
+             {:path-params   {}
+              :header-params {"X-Fields" x-fields }
+              :query-params  {}
+              :form-params   {}
+              :body-param    payload
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
+
+(defn create-organisation
+  "
+  Create a new organisation"
+  ([payload ] (create-organisation payload nil))
+  ([payload optional-params]
+   (:data (create-organisation-with-http-info payload optional-params))))
+
+(defn delete-organisation-with-http-info
   "
   Delete an Organisation"
   [organisation-id ]
@@ -16,16 +39,16 @@
              :accepts       ["application/json"]
              :auth-names    ["api_key"]}))
 
-(defn delete-organisation-dao
+(defn delete-organisation
   "
   Delete an Organisation"
   [organisation-id ]
-  (:data (delete-organisation-dao-with-http-info organisation-id)))
+  (:data (delete-organisation-with-http-info organisation-id)))
 
-(defn get-organisation-dao-with-http-info
+(defn get-organisation-with-http-info
   "
-  Get information of an organisation"
-  ([organisation-id ] (get-organisation-dao-with-http-info organisation-id nil))
+  Get details of an organisation"
+  ([organisation-id ] (get-organisation-with-http-info organisation-id nil))
   ([organisation-id {:keys [x-fields ]}]
    (check-required-params organisation-id)
    (call-api "/organisations/{organisation_id}" :get
@@ -37,17 +60,17 @@
               :accepts       ["application/json"]
               :auth-names    ["api_key"]})))
 
-(defn get-organisation-dao
+(defn get-organisation
   "
-  Get information of an organisation"
-  ([organisation-id ] (get-organisation-dao organisation-id nil))
+  Get details of an organisation"
+  ([organisation-id ] (get-organisation organisation-id nil))
   ([organisation-id optional-params]
-   (:data (get-organisation-dao-with-http-info organisation-id optional-params))))
+   (:data (get-organisation-with-http-info organisation-id optional-params))))
 
-(defn get-organisation-list-dao-with-http-info
+(defn list-organisations-with-http-info
   "
-  Get all organisations"
-  ([] (get-organisation-list-dao-with-http-info nil))
+  List all organisations"
+  ([] (list-organisations-with-http-info nil))
   ([{:keys [x-fields ]}]
    (call-api "/organisations/" :get
              {:path-params   {}
@@ -58,40 +81,17 @@
               :accepts       ["application/json"]
               :auth-names    ["api_key"]})))
 
-(defn get-organisation-list-dao
+(defn list-organisations
   "
-  Get all organisations"
-  ([] (get-organisation-list-dao nil))
+  List all organisations"
+  ([] (list-organisations nil))
   ([optional-params]
-   (:data (get-organisation-list-dao-with-http-info optional-params))))
+   (:data (list-organisations-with-http-info optional-params))))
 
-(defn post-organisation-list-dao-with-http-info
-  "
-  Create a new organisation"
-  ([payload ] (post-organisation-list-dao-with-http-info payload nil))
-  ([payload {:keys [x-fields ]}]
-   (check-required-params payload)
-   (call-api "/organisations/" :post
-             {:path-params   {}
-              :header-params {"X-Fields" x-fields }
-              :query-params  {}
-              :form-params   {}
-              :body-param    payload
-              :content-types ["application/json"]
-              :accepts       ["application/json"]
-              :auth-names    ["api_key"]})))
-
-(defn post-organisation-list-dao
-  "
-  Create a new organisation"
-  ([payload ] (post-organisation-list-dao payload nil))
-  ([payload optional-params]
-   (:data (post-organisation-list-dao-with-http-info payload optional-params))))
-
-(defn put-organisation-dao-with-http-info
+(defn update-organisation-with-http-info
   "
   Update an Organisation"
-  ([organisation-id payload ] (put-organisation-dao-with-http-info organisation-id payload nil))
+  ([organisation-id payload ] (update-organisation-with-http-info organisation-id payload nil))
   ([organisation-id payload {:keys [x-fields ]}]
    (check-required-params organisation-id payload)
    (call-api "/organisations/{organisation_id}" :put
@@ -104,19 +104,19 @@
               :accepts       ["application/json"]
               :auth-names    ["api_key"]})))
 
-(defn put-organisation-dao
+(defn update-organisation
   "
   Update an Organisation"
-  ([organisation-id payload ] (put-organisation-dao organisation-id payload nil))
+  ([organisation-id payload ] (update-organisation organisation-id payload nil))
   ([organisation-id payload optional-params]
-   (:data (put-organisation-dao-with-http-info organisation-id payload optional-params))))
+   (:data (update-organisation-with-http-info organisation-id payload optional-params))))
 
-(defn put-quota-dao-with-http-info
+(defn update-organisation-quota-with-http-info
   "
   Add or subtract quota for an organisation"
   [organisation-id payload ]
   (check-required-params organisation-id payload)
-  (call-api "/organisations/addquota/{organisation_id}" :put
+  (call-api "/organisations/{organisation_id}/addquota" :put
             {:path-params   {"organisation_id" organisation-id }
              :header-params {}
              :query-params  {}
@@ -126,9 +126,9 @@
              :accepts       ["application/json"]
              :auth-names    ["api_key"]}))
 
-(defn put-quota-dao
+(defn update-organisation-quota
   "
   Add or subtract quota for an organisation"
   [organisation-id payload ]
-  (:data (put-quota-dao-with-http-info organisation-id payload)))
+  (:data (update-organisation-quota-with-http-info organisation-id payload)))
 

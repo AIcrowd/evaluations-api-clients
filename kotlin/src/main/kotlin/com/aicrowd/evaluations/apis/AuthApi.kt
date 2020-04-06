@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -21,51 +21,13 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
 
     /**
     * 
-    * Logout a user
-    * @param xFields An optional fields mask (optional)
-    * @return AuthLogout
-    */
-    @Suppress("UNCHECKED_CAST")
-    fun postLogoutApi(xFields: kotlin.String) : AuthLogout {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf()
-        
-        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
-        localVariableHeaders.putAll(contentHeaders)
-        localVariableHeaders.putAll(acceptsHeaders)
-        
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/auth/logout",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<AuthLogout>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as AuthLogout
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
-    * User login
+    * Log in a user with email and password.
     * @param payload  
     * @param xFields An optional fields mask (optional)
     * @return AuthResponse
     */
     @Suppress("UNCHECKED_CAST")
-    fun postUserLogin(payload: Login, xFields: kotlin.String) : AuthResponse {
+    fun login(payload: Login, xFields: kotlin.String) : AuthResponse {
         val localVariableBody: kotlin.Any? = payload
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -88,6 +50,44 @@ class AuthApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(base
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as AuthResponse
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Invalidate the current authorization token.
+    * @param xFields An optional fields mask (optional)
+    * @return AuthLogout
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun logout(xFields: kotlin.String) : AuthLogout {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/auth/logout",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<AuthLogout>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as AuthLogout
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

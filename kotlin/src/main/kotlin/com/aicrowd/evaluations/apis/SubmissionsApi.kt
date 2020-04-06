@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -19,11 +19,50 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
-    * Stop evaluation of a submission
+    * Make a new submission
+    * @param payload  
+    * @param xFields An optional fields mask (optional)
+    * @return Submissions
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun createSubmission(payload: Submissions, xFields: kotlin.String) : Submissions {
+        val localVariableBody: kotlin.Any? = payload
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/submissions/",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Submissions>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as Submissions
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Stop evaluation of a submission and delete it
     * @param submissionId  
     * @return void
     */
-    fun deleteSubmissionDao(submissionId: kotlin.Int) : Unit {
+    fun deleteSubmission(submissionId: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -56,13 +95,13 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
-    * Get details of a submission
+    * Get details of a submission by its ID
     * @param submissionId  
     * @param xFields An optional fields mask (optional)
     * @return Submissions
     */
     @Suppress("UNCHECKED_CAST")
-    fun getSubmissionDao(submissionId: kotlin.Int, xFields: kotlin.String) : Submissions {
+    fun getSubmission(submissionId: kotlin.Int, xFields: kotlin.String) : Submissions {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -95,11 +134,11 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
-    * Get the submission data
+    * Get the submission data by submission ID
     * @param submissionId  
     * @return void
     */
-    fun getSubmissionDataDao(submissionId: kotlin.Int) : Unit {
+    fun getSubmissionData(submissionId: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -132,12 +171,12 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
-    * Get all submissions
+    * List all submissions available
     * @param xFields An optional fields mask (optional)
     * @return kotlin.Array<Submissions>
     */
     @Suppress("UNCHECKED_CAST")
-    fun getSubmissionListDao(xFields: kotlin.String) : kotlin.Array<Submissions> {
+    fun listSubmissions(xFields: kotlin.String) : kotlin.Array<Submissions> {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -160,45 +199,6 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as kotlin.Array<Submissions>
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
-    * Make a new submission
-    * @param payload  
-    * @param xFields An optional fields mask (optional)
-    * @return Submissions
-    */
-    @Suppress("UNCHECKED_CAST")
-    fun postSubmissionListDao(payload: Submissions, xFields: kotlin.String) : Submissions {
-        val localVariableBody: kotlin.Any? = payload
-        val localVariableQuery: MultiValueMap = mapOf()
-        
-        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
-        localVariableHeaders.putAll(contentHeaders)
-        localVariableHeaders.putAll(acceptsHeaders)
-        
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/submissions/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<Submissions>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as Submissions
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

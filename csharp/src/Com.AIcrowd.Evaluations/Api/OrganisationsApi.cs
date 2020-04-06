@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,90 +28,90 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete an Organisation
+        /// Create a new organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns></returns>
-        void DeleteOrganisationDao (int? organisationId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an Organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteOrganisationDaoWithHttpInfo (int? organisationId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get information of an organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Organisation</returns>
-        Organisation GetOrganisationDao (int? organisationId, string xFields = null);
+        Organisation CreateOrganisation (Organisation payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of an organisation
+        /// Create a new organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Organisation</returns>
-        ApiResponse<Organisation> GetOrganisationDaoWithHttpInfo (int? organisationId, string xFields = null);
+        ApiResponse<Organisation> CreateOrganisationWithHttpInfo (Organisation payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all organisations
+        /// Delete an Organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns></returns>
+        void DeleteOrganisation (int? organisationId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete an Organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteOrganisationWithHttpInfo (int? organisationId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of an organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Organisation</returns>
+        Organisation GetOrganisation (int? organisationId, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of an organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Organisation</returns>
+        ApiResponse<Organisation> GetOrganisationWithHttpInfo (int? organisationId, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// List all organisations
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Organisation&gt;</returns>
-        List<Organisation> GetOrganisationListDao (string xFields = null);
+        List<Organisation> ListOrganisations (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all organisations
+        /// List all organisations
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Organisation&gt;</returns>
-        ApiResponse<List<Organisation>> GetOrganisationListDaoWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Organisation</returns>
-        Organisation PostOrganisationListDao (Organisation payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Organisation</returns>
-        ApiResponse<Organisation> PostOrganisationListDaoWithHttpInfo (Organisation payload, string xFields = null);
+        ApiResponse<List<Organisation>> ListOrganisationsWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -119,11 +119,11 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Update an Organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Organisation</returns>
-        Organisation PutOrganisationDao (int? organisationId, Organisation payload, string xFields = null);
+        Organisation UpdateOrganisation (int? organisationId, Organisation payload, string xFields = null);
 
         /// <summary>
         /// 
@@ -132,11 +132,11 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Update an Organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Organisation</returns>
-        ApiResponse<Organisation> PutOrganisationDaoWithHttpInfo (int? organisationId, Organisation payload, string xFields = null);
+        ApiResponse<Organisation> UpdateOrganisationWithHttpInfo (int? organisationId, Organisation payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -144,10 +144,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for an organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        void PutQuotaDao (int? organisationId, OrganisationQuota payload);
+        void UpdateOrganisationQuota (int? organisationId, OrganisationQuota payload);
 
         /// <summary>
         /// 
@@ -156,100 +156,100 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for an organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PutQuotaDaoWithHttpInfo (int? organisationId, OrganisationQuota payload);
+        ApiResponse<Object> UpdateOrganisationQuotaWithHttpInfo (int? organisationId, OrganisationQuota payload);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete an Organisation
+        /// Create a new organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteOrganisationDaoAsync (int? organisationId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an Organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteOrganisationDaoAsyncWithHttpInfo (int? organisationId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get information of an organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Organisation</returns>
-        System.Threading.Tasks.Task<Organisation> GetOrganisationDaoAsync (int? organisationId, string xFields = null);
+        System.Threading.Tasks.Task<Organisation> CreateOrganisationAsync (Organisation payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of an organisation
+        /// Create a new organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Organisation)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationDaoAsyncWithHttpInfo (int? organisationId, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Organisation>> CreateOrganisationAsyncWithHttpInfo (Organisation payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all organisations
+        /// Delete an Organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteOrganisationAsync (int? organisationId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete an Organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteOrganisationAsyncWithHttpInfo (int? organisationId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of an organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Organisation</returns>
+        System.Threading.Tasks.Task<Organisation> GetOrganisationAsync (int? organisationId, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get details of an organisation
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Organisation)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationAsyncWithHttpInfo (int? organisationId, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// List all organisations
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Organisation&gt;</returns>
-        System.Threading.Tasks.Task<List<Organisation>> GetOrganisationListDaoAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<Organisation>> ListOrganisationsAsync (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all organisations
+        /// List all organisations
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Organisation&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Organisation>>> GetOrganisationListDaoAsyncWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Organisation</returns>
-        System.Threading.Tasks.Task<Organisation> PostOrganisationListDaoAsync (Organisation payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new organisation
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Organisation)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Organisation>> PostOrganisationListDaoAsyncWithHttpInfo (Organisation payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Organisation>>> ListOrganisationsAsyncWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -257,11 +257,11 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Update an Organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Organisation</returns>
-        System.Threading.Tasks.Task<Organisation> PutOrganisationDaoAsync (int? organisationId, Organisation payload, string xFields = null);
+        System.Threading.Tasks.Task<Organisation> UpdateOrganisationAsync (int? organisationId, Organisation payload, string xFields = null);
 
         /// <summary>
         /// 
@@ -270,11 +270,11 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Update an Organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Organisation)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Organisation>> PutOrganisationDaoAsyncWithHttpInfo (int? organisationId, Organisation payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Organisation>> UpdateOrganisationAsyncWithHttpInfo (int? organisationId, Organisation payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -282,10 +282,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for an organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PutQuotaDaoAsync (int? organisationId, OrganisationQuota payload);
+        System.Threading.Tasks.Task UpdateOrganisationQuotaAsync (int? organisationId, OrganisationQuota payload);
 
         /// <summary>
         /// 
@@ -294,10 +294,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for an organisation
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PutQuotaDaoAsyncWithHttpInfo (int? organisationId, OrganisationQuota payload);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrganisationQuotaAsyncWithHttpInfo (int? organisationId, OrganisationQuota payload);
         #endregion Asynchronous Operations
     }
 
@@ -399,173 +399,338 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete an Organisation
+        ///  Create a new organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns></returns>
-        public void DeleteOrganisationDao (int? organisationId)
-        {
-             DeleteOrganisationDaoWithHttpInfo(organisationId);
-        }
-
-        /// <summary>
-        ///  Delete an Organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteOrganisationDaoWithHttpInfo (int? organisationId)
-        {
-            // verify the required parameter 'organisationId' is set
-            if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->DeleteOrganisationDao");
-
-            var localVarPath = "/organisations/{organisation_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (organisationId != null) localVarPathParams.Add("organisation_id", this.Configuration.ApiClient.ParameterToString(organisationId)); // path parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteOrganisationDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Delete an Organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteOrganisationDaoAsync (int? organisationId)
-        {
-             await DeleteOrganisationDaoAsyncWithHttpInfo(organisationId);
-
-        }
-
-        /// <summary>
-        ///  Delete an Organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteOrganisationDaoAsyncWithHttpInfo (int? organisationId)
-        {
-            // verify the required parameter 'organisationId' is set
-            if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->DeleteOrganisationDao");
-
-            var localVarPath = "/organisations/{organisation_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (organisationId != null) localVarPathParams.Add("organisation_id", this.Configuration.ApiClient.ParameterToString(organisationId)); // path parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteOrganisationDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Get information of an organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Organisation</returns>
-        public Organisation GetOrganisationDao (int? organisationId, string xFields = null)
+        public Organisation CreateOrganisation (Organisation payload, string xFields = null)
         {
-             ApiResponse<Organisation> localVarResponse = GetOrganisationDaoWithHttpInfo(organisationId, xFields);
+             ApiResponse<Organisation> localVarResponse = CreateOrganisationWithHttpInfo(payload, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get information of an organisation
+        ///  Create a new organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Organisation</returns>
-        public ApiResponse< Organisation > GetOrganisationDaoWithHttpInfo (int? organisationId, string xFields = null)
+        public ApiResponse< Organisation > CreateOrganisationWithHttpInfo (Organisation payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->CreateOrganisation");
+
+            var localVarPath = "/organisations/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateOrganisation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Organisation>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Organisation) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
+        }
+
+        /// <summary>
+        ///  Create a new organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Organisation</returns>
+        public async System.Threading.Tasks.Task<Organisation> CreateOrganisationAsync (Organisation payload, string xFields = null)
+        {
+             ApiResponse<Organisation> localVarResponse = await CreateOrganisationAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Create a new organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Organisation)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> CreateOrganisationAsyncWithHttpInfo (Organisation payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->CreateOrganisation");
+
+            var localVarPath = "/organisations/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateOrganisation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Organisation>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Organisation) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
+        }
+
+        /// <summary>
+        ///  Delete an Organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns></returns>
+        public void DeleteOrganisation (int? organisationId)
+        {
+             DeleteOrganisationWithHttpInfo(organisationId);
+        }
+
+        /// <summary>
+        ///  Delete an Organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteOrganisationWithHttpInfo (int? organisationId)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->GetOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->DeleteOrganisation");
+
+            var localVarPath = "/organisations/{organisation_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organisationId != null) localVarPathParams.Add("organisation_id", this.Configuration.ApiClient.ParameterToString(organisationId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteOrganisation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Delete an Organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteOrganisationAsync (int? organisationId)
+        {
+             await DeleteOrganisationAsyncWithHttpInfo(organisationId);
+
+        }
+
+        /// <summary>
+        ///  Delete an Organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteOrganisationAsyncWithHttpInfo (int? organisationId)
+        {
+            // verify the required parameter 'organisationId' is set
+            if (organisationId == null)
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->DeleteOrganisation");
+
+            var localVarPath = "/organisations/{organisation_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (organisationId != null) localVarPathParams.Add("organisation_id", this.Configuration.ApiClient.ParameterToString(organisationId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteOrganisation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Get details of an organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Organisation</returns>
+        public Organisation GetOrganisation (int? organisationId, string xFields = null)
+        {
+             ApiResponse<Organisation> localVarResponse = GetOrganisationWithHttpInfo(organisationId, xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Get details of an organisation
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="organisationId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Organisation</returns>
+        public ApiResponse< Organisation > GetOrganisationWithHttpInfo (int? organisationId, string xFields = null)
+        {
+            // verify the required parameter 'organisationId' is set
+            if (organisationId == null)
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->GetOrganisation");
 
             var localVarPath = "/organisations/{organisation_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -607,7 +772,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrganisationDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetOrganisation", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -617,31 +782,31 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get information of an organisation
+        ///  Get details of an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Organisation</returns>
-        public async System.Threading.Tasks.Task<Organisation> GetOrganisationDaoAsync (int? organisationId, string xFields = null)
+        public async System.Threading.Tasks.Task<Organisation> GetOrganisationAsync (int? organisationId, string xFields = null)
         {
-             ApiResponse<Organisation> localVarResponse = await GetOrganisationDaoAsyncWithHttpInfo(organisationId, xFields);
+             ApiResponse<Organisation> localVarResponse = await GetOrganisationAsyncWithHttpInfo(organisationId, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get information of an organisation
+        ///  Get details of an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Organisation)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationDaoAsyncWithHttpInfo (int? organisationId, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> GetOrganisationAsyncWithHttpInfo (int? organisationId, string xFields = null)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->GetOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->GetOrganisation");
 
             var localVarPath = "/organisations/{organisation_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -683,7 +848,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrganisationDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetOrganisation", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -693,24 +858,24 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all organisations
+        ///  List all organisations
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Organisation&gt;</returns>
-        public List<Organisation> GetOrganisationListDao (string xFields = null)
+        public List<Organisation> ListOrganisations (string xFields = null)
         {
-             ApiResponse<List<Organisation>> localVarResponse = GetOrganisationListDaoWithHttpInfo(xFields);
+             ApiResponse<List<Organisation>> localVarResponse = ListOrganisationsWithHttpInfo(xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get all organisations
+        ///  List all organisations
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Organisation&gt;</returns>
-        public ApiResponse< List<Organisation> > GetOrganisationListDaoWithHttpInfo (string xFields = null)
+        public ApiResponse< List<Organisation> > ListOrganisationsWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/organisations/";
@@ -752,7 +917,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrganisationListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListOrganisations", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -762,25 +927,25 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all organisations
+        ///  List all organisations
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Organisation&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Organisation>> GetOrganisationListDaoAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<Organisation>> ListOrganisationsAsync (string xFields = null)
         {
-             ApiResponse<List<Organisation>> localVarResponse = await GetOrganisationListDaoAsyncWithHttpInfo(xFields);
+             ApiResponse<List<Organisation>> localVarResponse = await ListOrganisationsAsyncWithHttpInfo(xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get all organisations
+        ///  List all organisations
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Organisation&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Organisation>>> GetOrganisationListDaoAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Organisation>>> ListOrganisationsAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/organisations/";
@@ -822,7 +987,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrganisationListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListOrganisations", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -832,181 +997,16 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Create a new organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Organisation</returns>
-        public Organisation PostOrganisationListDao (Organisation payload, string xFields = null)
-        {
-             ApiResponse<Organisation> localVarResponse = PostOrganisationListDaoWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Create a new organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Organisation</returns>
-        public ApiResponse< Organisation > PostOrganisationListDaoWithHttpInfo (Organisation payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PostOrganisationListDao");
-
-            var localVarPath = "/organisations/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostOrganisationListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Organisation>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Organisation) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
-        }
-
-        /// <summary>
-        ///  Create a new organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Organisation</returns>
-        public async System.Threading.Tasks.Task<Organisation> PostOrganisationListDaoAsync (Organisation payload, string xFields = null)
-        {
-             ApiResponse<Organisation> localVarResponse = await PostOrganisationListDaoAsyncWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Create a new organisation
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Organisation)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> PostOrganisationListDaoAsyncWithHttpInfo (Organisation payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PostOrganisationListDao");
-
-            var localVarPath = "/organisations/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostOrganisationListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Organisation>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Organisation) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Organisation)));
-        }
-
-        /// <summary>
         ///  Update an Organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Organisation</returns>
-        public Organisation PutOrganisationDao (int? organisationId, Organisation payload, string xFields = null)
+        public Organisation UpdateOrganisation (int? organisationId, Organisation payload, string xFields = null)
         {
-             ApiResponse<Organisation> localVarResponse = PutOrganisationDaoWithHttpInfo(organisationId, payload, xFields);
+             ApiResponse<Organisation> localVarResponse = UpdateOrganisationWithHttpInfo(organisationId, payload, xFields);
              return localVarResponse.Data;
         }
 
@@ -1014,18 +1014,18 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Update an Organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Organisation</returns>
-        public ApiResponse< Organisation > PutOrganisationDaoWithHttpInfo (int? organisationId, Organisation payload, string xFields = null)
+        public ApiResponse< Organisation > UpdateOrganisationWithHttpInfo (int? organisationId, Organisation payload, string xFields = null)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->PutOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->UpdateOrganisation");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PutOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->UpdateOrganisation");
 
             var localVarPath = "/organisations/{organisation_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1075,7 +1075,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutOrganisationDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateOrganisation", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1088,13 +1088,13 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Update an Organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Organisation</returns>
-        public async System.Threading.Tasks.Task<Organisation> PutOrganisationDaoAsync (int? organisationId, Organisation payload, string xFields = null)
+        public async System.Threading.Tasks.Task<Organisation> UpdateOrganisationAsync (int? organisationId, Organisation payload, string xFields = null)
         {
-             ApiResponse<Organisation> localVarResponse = await PutOrganisationDaoAsyncWithHttpInfo(organisationId, payload, xFields);
+             ApiResponse<Organisation> localVarResponse = await UpdateOrganisationAsyncWithHttpInfo(organisationId, payload, xFields);
              return localVarResponse.Data;
 
         }
@@ -1103,18 +1103,18 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Update an Organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Organisation)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> PutOrganisationDaoAsyncWithHttpInfo (int? organisationId, Organisation payload, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Organisation>> UpdateOrganisationAsyncWithHttpInfo (int? organisationId, Organisation payload, string xFields = null)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->PutOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->UpdateOrganisation");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PutOrganisationDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->UpdateOrganisation");
 
             var localVarPath = "/organisations/{organisation_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1164,7 +1164,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutOrganisationDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateOrganisation", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1177,31 +1177,31 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public void PutQuotaDao (int? organisationId, OrganisationQuota payload)
+        public void UpdateOrganisationQuota (int? organisationId, OrganisationQuota payload)
         {
-             PutQuotaDaoWithHttpInfo(organisationId, payload);
+             UpdateOrganisationQuotaWithHttpInfo(organisationId, payload);
         }
 
         /// <summary>
         ///  Add or subtract quota for an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> PutQuotaDaoWithHttpInfo (int? organisationId, OrganisationQuota payload)
+        public ApiResponse<Object> UpdateOrganisationQuotaWithHttpInfo (int? organisationId, OrganisationQuota payload)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->UpdateOrganisationQuota");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->UpdateOrganisationQuota");
 
-            var localVarPath = "/organisations/addquota/{organisation_id}";
+            var localVarPath = "/organisations/{organisation_id}/addquota";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1248,7 +1248,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutQuotaDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateOrganisationQuota", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1261,12 +1261,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PutQuotaDaoAsync (int? organisationId, OrganisationQuota payload)
+        public async System.Threading.Tasks.Task UpdateOrganisationQuotaAsync (int? organisationId, OrganisationQuota payload)
         {
-             await PutQuotaDaoAsyncWithHttpInfo(organisationId, payload);
+             await UpdateOrganisationQuotaAsyncWithHttpInfo(organisationId, payload);
 
         }
 
@@ -1274,19 +1274,19 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for an organisation
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="organisationId">Organisation identifier</param>
+        /// <param name="organisationId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> PutQuotaDaoAsyncWithHttpInfo (int? organisationId, OrganisationQuota payload)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateOrganisationQuotaAsyncWithHttpInfo (int? organisationId, OrganisationQuota payload)
         {
             // verify the required parameter 'organisationId' is set
             if (organisationId == null)
-                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'organisationId' when calling OrganisationsApi->UpdateOrganisationQuota");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling OrganisationsApi->UpdateOrganisationQuota");
 
-            var localVarPath = "/organisations/addquota/{organisation_id}";
+            var localVarPath = "/organisations/{organisation_id}/addquota";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1333,7 +1333,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutQuotaDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateOrganisationQuota", localVarResponse);
                 if (exception != null) throw exception;
             }
 

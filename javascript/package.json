@@ -1,7 +1,7 @@
 {
   "name": "aicrowd-evaluations",
   "version": "1.0.0",
-  "description": "API_to_create_and_evaluate_custom_challenges",
+  "description": "API_to_create_and_evaluate_custom_challenges_on_AIcrowd",
   "license": "Unlicense",
   "main": "src/AIcrowdEvaluations/index.js",
   "scripts": {

@@ -14,7 +14,30 @@ class GradersApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def deleteGraderDao ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+    def createGrader ( Grader payload, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (payload == null) {
+            throw new RuntimeException("missing required params payload")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    Grader.class )
+                    
+    }
+    def deleteGrader ( Integer graderId, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/{grader_id}"
 
@@ -36,7 +59,7 @@ class GradersApi {
                     null )
                     
     }
-    def getGraderDao ( Integer graderId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def getGrader ( Integer graderId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/{grader_id}"
 
@@ -59,7 +82,7 @@ class GradersApi {
                     Grader.class )
                     
     }
-    def getGraderListDao ( String xFields, Closure onSuccess, Closure onFailure)  {
+    def listGraders ( String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/"
 
@@ -75,29 +98,6 @@ class GradersApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
-                    Grader.class )
-                    
-    }
-    def postGraderListDao ( Grader payload, String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/graders/"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (payload == null) {
-            throw new RuntimeException("missing required params payload")
-        }
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "POST", "",
                     Grader.class )
                     
     }

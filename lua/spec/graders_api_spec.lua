@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -15,29 +15,29 @@ Please update as you see appropriate
 ]]
 describe("graders_api", function()
   local aicrowd-evaluations_graders_api = require "aicrowd-evaluations.api.graders_api"
-  -- unit tests for delete_grader_dao
-  describe("delete_grader_dao test", function()
+  -- unit tests for create_grader
+  describe("create_grader test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_grader_dao
-  describe("get_grader_dao test", function()
+  -- unit tests for delete_grader
+  describe("delete_grader test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for get_grader_list_dao
-  describe("get_grader_list_dao test", function()
+  -- unit tests for get_grader
+  describe("get_grader test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for post_grader_list_dao
-  describe("post_grader_list_dao test", function()
+  -- unit tests for list_graders
+  describe("list_graders test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

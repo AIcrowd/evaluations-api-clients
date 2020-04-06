@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -49,208 +49,7 @@ sub new {
 
 
 #
-# delete_user_dao
-#
-# 
-# 
-# @param int $user_id User identifier (required)
-{
-    my $params = {
-    'user_id' => {
-        data_type => 'int',
-        description => 'User identifier',
-        required => '1',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'delete_user_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => undef,
-        };
-}
-# @return void
-#
-sub delete_user_dao {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'user_id' is set
-    unless (exists $args{'user_id'}) {
-      croak("Missing the required parameter 'user_id' when calling delete_user_dao");
-    }
-
-    # parse inputs
-    my $_resource_path = '/users/{user_id}';
-
-    my $_method = 'DELETE';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # path params
-    if ( exists $args{'user_id'}) {
-        my $_base_variable = "{" . "user_id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'user_id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    return;
-}
-
-#
-# get_user_dao
-#
-# 
-# 
-# @param int $user_id User identifier (required)
-# @param string $x_fields An optional fields mask (optional)
-{
-    my $params = {
-    'user_id' => {
-        data_type => 'int',
-        description => 'User identifier',
-        required => '1',
-    },
-    'x_fields' => {
-        data_type => 'string',
-        description => 'An optional fields mask',
-        required => '0',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'get_user_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'User',
-        };
-}
-# @return User
-#
-sub get_user_dao {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'user_id' is set
-    unless (exists $args{'user_id'}) {
-      croak("Missing the required parameter 'user_id' when calling get_user_dao");
-    }
-
-    # parse inputs
-    my $_resource_path = '/users/{user_id}';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # header params
-    if ( exists $args{'x_fields'}) {
-        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
-    }
-
-    # path params
-    if ( exists $args{'user_id'}) {
-        my $_base_variable = "{" . "user_id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'user_id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('User', $response);
-    return $_response_object;
-}
-
-#
-# get_user_list_dao
-#
-# 
-# 
-# @param string $x_fields An optional fields mask (optional)
-{
-    my $params = {
-    'x_fields' => {
-        data_type => 'string',
-        description => 'An optional fields mask',
-        required => '0',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'get_user_list_dao' } = { 
-    	summary => '',
-        params => $params,
-        returns => 'ARRAY[User]',
-        };
-}
-# @return ARRAY[User]
-#
-sub get_user_list_dao {
-    my ($self, %args) = @_;
-
-    # parse inputs
-    my $_resource_path = '/users/';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
-
-    # header params
-    if ( exists $args{'x_fields'}) {
-        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(api_key )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('ARRAY[User]', $response);
-    return $_response_object;
-}
-
-#
-# post_user_list_dao
+# create_user
 #
 # 
 # 
@@ -269,7 +68,7 @@ sub get_user_list_dao {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'post_user_list_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'create_user' } = { 
     	summary => '',
         params => $params,
         returns => 'User',
@@ -277,12 +76,12 @@ sub get_user_list_dao {
 }
 # @return User
 #
-sub post_user_list_dao {
+sub create_user {
     my ($self, %args) = @_;
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling post_user_list_dao");
+      croak("Missing the required parameter 'payload' when calling create_user");
     }
 
     # parse inputs
@@ -326,26 +125,20 @@ sub post_user_list_dao {
 }
 
 #
-# put_quota_dao
+# delete_user
 #
 # 
 # 
-# @param int $user_id User identifier (required)
-# @param UserQuota $payload  (required)
+# @param int $user_id  (required)
 {
     my $params = {
     'user_id' => {
         data_type => 'int',
-        description => 'User identifier',
-        required => '1',
-    },
-    'payload' => {
-        data_type => 'UserQuota',
         description => '',
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'put_quota_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'delete_user' } = { 
     	summary => '',
         params => $params,
         returns => undef,
@@ -353,23 +146,18 @@ sub post_user_list_dao {
 }
 # @return void
 #
-sub put_quota_dao {
+sub delete_user {
     my ($self, %args) = @_;
 
     # verify the required parameter 'user_id' is set
     unless (exists $args{'user_id'}) {
-      croak("Missing the required parameter 'user_id' when calling put_quota_dao");
-    }
-
-    # verify the required parameter 'payload' is set
-    unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling put_quota_dao");
+      croak("Missing the required parameter 'user_id' when calling delete_user");
     }
 
     # parse inputs
-    my $_resource_path = '/users/addquota/{user_id}';
+    my $_resource_path = '/users/{user_id}';
 
-    my $_method = 'PUT';
+    my $_method = 'DELETE';
     my $query_params = {};
     my $header_params = {};
     my $form_params = {};
@@ -389,11 +177,6 @@ sub put_quota_dao {
     }
 
     my $_body_data;
-    # body params
-    if ( exists $args{'payload'}) {
-        $_body_data = $args{'payload'};
-    }
-
     # authentication setting, if any
     my $auth_settings = [qw(api_key )];
 
@@ -405,18 +188,156 @@ sub put_quota_dao {
 }
 
 #
-# put_user_dao
+# get_user
 #
 # 
 # 
-# @param int $user_id User identifier (required)
+# @param int $user_id  (required)
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'user_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'get_user' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'User',
+        };
+}
+# @return User
+#
+sub get_user {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'user_id' is set
+    unless (exists $args{'user_id'}) {
+      croak("Missing the required parameter 'user_id' when calling get_user");
+    }
+
+    # parse inputs
+    my $_resource_path = '/users/{user_id}';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    # path params
+    if ( exists $args{'user_id'}) {
+        my $_base_variable = "{" . "user_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'user_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('User', $response);
+    return $_response_object;
+}
+
+#
+# list_users
+#
+# 
+# 
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'list_users' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'ARRAY[User]',
+        };
+}
+# @return ARRAY[User]
+#
+sub list_users {
+    my ($self, %args) = @_;
+
+    # parse inputs
+    my $_resource_path = '/users/';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('ARRAY[User]', $response);
+    return $_response_object;
+}
+
+#
+# update_user
+#
+# 
+# 
+# @param int $user_id  (required)
 # @param User $payload  (required)
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
     'user_id' => {
         data_type => 'int',
-        description => 'User identifier',
+        description => '',
         required => '1',
     },
     'payload' => {
@@ -430,7 +351,7 @@ sub put_quota_dao {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'put_user_dao' } = { 
+    __PACKAGE__->method_documentation->{ 'update_user' } = { 
     	summary => '',
         params => $params,
         returns => 'User',
@@ -438,17 +359,17 @@ sub put_quota_dao {
 }
 # @return User
 #
-sub put_user_dao {
+sub update_user {
     my ($self, %args) = @_;
 
     # verify the required parameter 'user_id' is set
     unless (exists $args{'user_id'}) {
-      croak("Missing the required parameter 'user_id' when calling put_user_dao");
+      croak("Missing the required parameter 'user_id' when calling update_user");
     }
 
     # verify the required parameter 'payload' is set
     unless (exists $args{'payload'}) {
-      croak("Missing the required parameter 'payload' when calling put_user_dao");
+      croak("Missing the required parameter 'payload' when calling update_user");
     }
 
     # parse inputs
@@ -496,6 +417,85 @@ sub put_user_dao {
     }
     my $_response_object = $self->{api_client}->deserialize('User', $response);
     return $_response_object;
+}
+
+#
+# update_user_quota
+#
+# 
+# 
+# @param int $user_id  (required)
+# @param UserQuota $payload  (required)
+{
+    my $params = {
+    'user_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    'payload' => {
+        data_type => 'UserQuota',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'update_user_quota' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub update_user_quota {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'user_id' is set
+    unless (exists $args{'user_id'}) {
+      croak("Missing the required parameter 'user_id' when calling update_user_quota");
+    }
+
+    # verify the required parameter 'payload' is set
+    unless (exists $args{'payload'}) {
+      croak("Missing the required parameter 'payload' when calling update_user_quota");
+    }
+
+    # parse inputs
+    my $_resource_path = '/users/{user_id}/addquota';
+
+    my $_method = 'PUT';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'user_id'}) {
+        my $_base_variable = "{" . "user_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'user_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # body params
+    if ( exists $args{'payload'}) {
+        $_body_data = $args{'payload'};
+    }
+
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
 }
 
 1;

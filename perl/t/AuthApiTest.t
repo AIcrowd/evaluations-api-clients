@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -30,20 +30,20 @@ my $api = AIcrowdEvaluations::AuthApi->new();
 isa_ok($api, 'AIcrowdEvaluations::AuthApi');
 
 #
-# post_logout_api test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_logout_api(x_fields => $x_fields);
-}
-
-#
-# post_user_login test
+# login test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_user_login(payload => $payload, x_fields => $x_fields);
+    my $result = $api->login(payload => $payload, x_fields => $x_fields);
+}
+
+#
+# logout test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->logout(x_fields => $x_fields);
 }
 
 

@@ -11,9 +11,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -217,7 +217,7 @@ class AuthResponse implements ModelInterface, ArrayAccess
     /**
      * Sets authorization
      *
-     * @param string $authorization Authorization token that should be used in the headers
+     * @param string $authorization API Authorization token that should be used in the headers
      *
      * @return $this
      */

@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -25,7 +25,7 @@
   'use strict';
 
   /**
-   * API_to_create_and_evaluate_custom_challenges.<br>
+   * API_to_create_and_evaluate_custom_challenges_on_AIcrowd.<br>
    * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:

@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -19,219 +19,13 @@ module AIcrowdEvaluations
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Stop evaluation of a submission
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def delete_submission_dao(submission_id, opts = {})
-      delete_submission_dao_with_http_info(submission_id, opts)
-      nil
-    end
-
-    # Stop evaluation of a submission
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_submission_dao_with_http_info(submission_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SubmissionsApi.delete_submission_dao ...'
-      end
-      # verify the required parameter 'submission_id' is set
-      if @api_client.config.client_side_validation && submission_id.nil?
-        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.delete_submission_dao"
-      end
-      # resource path
-      local_var_path = '/submissions/{submission_id}'.sub('{' + 'submission_id' + '}', submission_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubmissionsApi#delete_submission_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Get details of a submission
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Submissions]
-    def get_submission_dao(submission_id, opts = {})
-      data, _status_code, _headers = get_submission_dao_with_http_info(submission_id, opts)
-      data
-    end
-
-    # Get details of a submission
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<(Submissions, Fixnum, Hash)>] Submissions data, response status code and response headers
-    def get_submission_dao_with_http_info(submission_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission_dao ...'
-      end
-      # verify the required parameter 'submission_id' is set
-      if @api_client.config.client_side_validation && submission_id.nil?
-        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.get_submission_dao"
-      end
-      # resource path
-      local_var_path = '/submissions/{submission_id}'.sub('{' + 'submission_id' + '}', submission_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Submissions')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Get the submission data
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def get_submission_data_dao(submission_id, opts = {})
-      get_submission_data_dao_with_http_info(submission_id, opts)
-      nil
-    end
-
-    # Get the submission data
-    # @param submission_id 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def get_submission_data_dao_with_http_info(submission_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission_data_dao ...'
-      end
-      # verify the required parameter 'submission_id' is set
-      if @api_client.config.client_side_validation && submission_id.nil?
-        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.get_submission_data_dao"
-      end
-      # resource path
-      local_var_path = '/submissions/{submission_id}/data'.sub('{' + 'submission_id' + '}', submission_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission_data_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Get all submissions
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<Submissions>]
-    def get_submission_list_dao(opts = {})
-      data, _status_code, _headers = get_submission_list_dao_with_http_info(opts)
-      data
-    end
-
-    # Get all submissions
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<(Array<Submissions>, Fixnum, Hash)>] Array<Submissions> data, response status code and response headers
-    def get_submission_list_dao_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission_list_dao ...'
-      end
-      # resource path
-      local_var_path = '/submissions/'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<Submissions>')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission_list_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
     # Make a new submission
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Submissions]
-    def post_submission_list_dao(payload, opts = {})
-      data, _status_code, _headers = post_submission_list_dao_with_http_info(payload, opts)
+    def create_submission(payload, opts = {})
+      data, _status_code, _headers = create_submission_with_http_info(payload, opts)
       data
     end
 
@@ -240,13 +34,13 @@ module AIcrowdEvaluations
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Submissions, Fixnum, Hash)>] Submissions data, response status code and response headers
-    def post_submission_list_dao_with_http_info(payload, opts = {})
+    def create_submission_with_http_info(payload, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SubmissionsApi.post_submission_list_dao ...'
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.create_submission ...'
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
-        fail ArgumentError, "Missing the required parameter 'payload' when calling SubmissionsApi.post_submission_list_dao"
+        fail ArgumentError, "Missing the required parameter 'payload' when calling SubmissionsApi.create_submission"
       end
       # resource path
       local_var_path = '/submissions/'
@@ -276,7 +70,213 @@ module AIcrowdEvaluations
         :auth_names => auth_names,
         :return_type => 'Submissions')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubmissionsApi#post_submission_list_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SubmissionsApi#create_submission\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Stop evaluation of a submission and delete it
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_submission(submission_id, opts = {})
+      delete_submission_with_http_info(submission_id, opts)
+      nil
+    end
+
+    # Stop evaluation of a submission and delete it
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def delete_submission_with_http_info(submission_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.delete_submission ...'
+      end
+      # verify the required parameter 'submission_id' is set
+      if @api_client.config.client_side_validation && submission_id.nil?
+        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.delete_submission"
+      end
+      # resource path
+      local_var_path = '/submissions/{submission_id}'.sub('{' + 'submission_id' + '}', submission_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SubmissionsApi#delete_submission\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Get details of a submission by its ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Submissions]
+    def get_submission(submission_id, opts = {})
+      data, _status_code, _headers = get_submission_with_http_info(submission_id, opts)
+      data
+    end
+
+    # Get details of a submission by its ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(Submissions, Fixnum, Hash)>] Submissions data, response status code and response headers
+    def get_submission_with_http_info(submission_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission ...'
+      end
+      # verify the required parameter 'submission_id' is set
+      if @api_client.config.client_side_validation && submission_id.nil?
+        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.get_submission"
+      end
+      # resource path
+      local_var_path = '/submissions/{submission_id}'.sub('{' + 'submission_id' + '}', submission_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Submissions')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Get the submission data by submission ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def get_submission_data(submission_id, opts = {})
+      get_submission_data_with_http_info(submission_id, opts)
+      nil
+    end
+
+    # Get the submission data by submission ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def get_submission_data_with_http_info(submission_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission_data ...'
+      end
+      # verify the required parameter 'submission_id' is set
+      if @api_client.config.client_side_validation && submission_id.nil?
+        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.get_submission_data"
+      end
+      # resource path
+      local_var_path = '/submissions/{submission_id}/data'.sub('{' + 'submission_id' + '}', submission_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission_data\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # List all submissions available
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<Submissions>]
+    def list_submissions(opts = {})
+      data, _status_code, _headers = list_submissions_with_http_info(opts)
+      data
+    end
+
+    # List all submissions available
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(Array<Submissions>, Fixnum, Hash)>] Array<Submissions> data, response status code and response headers
+    def list_submissions_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.list_submissions ...'
+      end
+      # resource path
+      local_var_path = '/submissions/'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Array<Submissions>')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SubmissionsApi#list_submissions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

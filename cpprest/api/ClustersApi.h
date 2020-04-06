@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -43,21 +43,33 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Delete a cluster
+    /// Add a new cluster to AIcrowd and install necessary dependencies
+    /// </remarks>
+    /// <param name="payload"></param>
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<Cluster>> createCluster(
+        std::shared_ptr<Cluster> payload,
+        boost::optional<utility::string_t> xFields
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Delete a cluster by its ID
     /// </remarks>
     /// <param name="clusterId"></param>
-    pplx::task<void> deleteClusterDao(
+    pplx::task<void> deleteCluster(
         int32_t clusterId
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// Get information of a cluster
+    /// Get details of a cluster by its ID
     /// </remarks>
     /// <param name="clusterId"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Cluster>> getClusterDao(
+    pplx::task<std::shared_ptr<Cluster>> getCluster(
         int32_t clusterId,
         boost::optional<utility::string_t> xFields
     );
@@ -65,22 +77,10 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Get all clusters
+    /// List all clusters available
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Cluster>>> getClusterListDao(
-        boost::optional<utility::string_t> xFields
-    );
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// Add a new cluster
-    /// </remarks>
-    /// <param name="payload"></param>
-    /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Cluster>> postClusterListDao(
-        std::shared_ptr<Cluster> payload,
+    pplx::task<std::vector<std::shared_ptr<Cluster>>> listClusters(
         boost::optional<utility::string_t> xFields
     );
 

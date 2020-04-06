@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,34 +28,57 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a user
+        /// Create a new user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <returns></returns>
-        void DeleteUserDao (int? userId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteUserDaoWithHttpInfo (int? userId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get information of a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>User</returns>
-        User GetUserDao (int? userId, string xFields = null);
+        User CreateUser (User payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Create a new user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of User</returns>
+        ApiResponse<User> CreateUserWithHttpInfo (User payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        void DeleteUser (int? userId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteUserWithHttpInfo (int? userId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get information of a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>User</returns>
+        User GetUser (int? userId, string xFields = null);
 
         /// <summary>
         /// 
@@ -64,10 +87,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Get information of a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of User</returns>
-        ApiResponse<User> GetUserDaoWithHttpInfo (int? userId, string xFields = null);
+        ApiResponse<User> GetUserWithHttpInfo (int? userId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -77,7 +100,7 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;User&gt;</returns>
-        List<User> GetUserListDao (string xFields = null);
+        List<User> ListUsers (string xFields = null);
 
         /// <summary>
         /// 
@@ -88,30 +111,32 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;User&gt;</returns>
-        ApiResponse<List<User>> GetUserListDaoWithHttpInfo (string xFields = null);
+        ApiResponse<List<User>> ListUsersWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Create a new user
+        /// Update a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>User</returns>
-        User PostUserListDao (User payload, string xFields = null);
+        User UpdateUser (int? userId, User payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Create a new user
+        /// Update a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of User</returns>
-        ApiResponse<User> PostUserListDaoWithHttpInfo (User payload, string xFields = null);
+        ApiResponse<User> UpdateUserWithHttpInfo (int? userId, User payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -119,10 +144,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        void PutQuotaDao (int? userId, UserQuota payload);
+        void UpdateUserQuota (int? userId, UserQuota payload);
 
         /// <summary>
         /// 
@@ -131,69 +156,67 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PutQuotaDaoWithHttpInfo (int? userId, UserQuota payload);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>User</returns>
-        User PutUserDao (int? userId, User payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of User</returns>
-        ApiResponse<User> PutUserDaoWithHttpInfo (int? userId, User payload, string xFields = null);
+        ApiResponse<Object> UpdateUserQuotaWithHttpInfo (int? userId, UserQuota payload);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a user
+        /// Create a new user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteUserDaoAsync (int? userId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserDaoAsyncWithHttpInfo (int? userId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get information of a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of User</returns>
-        System.Threading.Tasks.Task<User> GetUserDaoAsync (int? userId, string xFields = null);
+        System.Threading.Tasks.Task<User> CreateUserAsync (User payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Create a new user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        System.Threading.Tasks.Task<ApiResponse<User>> CreateUserAsyncWithHttpInfo (User payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteUserAsync (int? userId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (int? userId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get information of a user
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of User</returns>
+        System.Threading.Tasks.Task<User> GetUserAsync (int? userId, string xFields = null);
 
         /// <summary>
         /// 
@@ -202,10 +225,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Get information of a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        System.Threading.Tasks.Task<ApiResponse<User>> GetUserDaoAsyncWithHttpInfo (int? userId, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<User>> GetUserAsyncWithHttpInfo (int? userId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -215,7 +238,7 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;User&gt;</returns>
-        System.Threading.Tasks.Task<List<User>> GetUserListDaoAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<User>> ListUsersAsync (string xFields = null);
 
         /// <summary>
         /// 
@@ -226,30 +249,32 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;User&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<User>>> GetUserListDaoAsyncWithHttpInfo (string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<User>>> ListUsersAsyncWithHttpInfo (string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Create a new user
+        /// Update a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of User</returns>
-        System.Threading.Tasks.Task<User> PostUserListDaoAsync (User payload, string xFields = null);
+        System.Threading.Tasks.Task<User> UpdateUserAsync (int? userId, User payload, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Create a new user
+        /// Update a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        System.Threading.Tasks.Task<ApiResponse<User>> PostUserListDaoAsyncWithHttpInfo (User payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<User>> UpdateUserAsyncWithHttpInfo (int? userId, User payload, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -257,10 +282,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PutQuotaDaoAsync (int? userId, UserQuota payload);
+        System.Threading.Tasks.Task UpdateUserQuotaAsync (int? userId, UserQuota payload);
 
         /// <summary>
         /// 
@@ -269,35 +294,10 @@ namespace Com.AIcrowd.Evaluations.Api
         /// Add or subtract quota for a user
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PutQuotaDaoAsyncWithHttpInfo (int? userId, UserQuota payload);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of User</returns>
-        System.Threading.Tasks.Task<User> PutUserDaoAsync (int? userId, User payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update a user
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (User)</returns>
-        System.Threading.Tasks.Task<ApiResponse<User>> PutUserDaoAsyncWithHttpInfo (int? userId, User payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateUserQuotaAsyncWithHttpInfo (int? userId, UserQuota payload);
         #endregion Asynchronous Operations
     }
 
@@ -399,27 +399,192 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete a user
+        ///  Create a new user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <returns></returns>
-        public void DeleteUserDao (int? userId)
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>User</returns>
+        public User CreateUser (User payload, string xFields = null)
         {
-             DeleteUserDaoWithHttpInfo(userId);
+             ApiResponse<User> localVarResponse = CreateUserWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Create a new user
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of User</returns>
+        public ApiResponse< User > CreateUserWithHttpInfo (User payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->CreateUser");
+
+            var localVarPath = "/users/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<User>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (User) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
+        }
+
+        /// <summary>
+        ///  Create a new user
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of User</returns>
+        public async System.Threading.Tasks.Task<User> CreateUserAsync (User payload, string xFields = null)
+        {
+             ApiResponse<User> localVarResponse = await CreateUserAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Create a new user
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<User>> CreateUserAsyncWithHttpInfo (User payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->CreateUser");
+
+            var localVarPath = "/users/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<User>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (User) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
         /// <summary>
         ///  Delete a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public void DeleteUser (int? userId)
+        {
+             DeleteUserWithHttpInfo(userId);
+        }
+
+        /// <summary>
+        ///  Delete a user
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteUserDaoWithHttpInfo (int? userId)
+        public ApiResponse<Object> DeleteUserWithHttpInfo (int? userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->DeleteUserDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->DeleteUser");
 
             var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -460,7 +625,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteUserDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -473,11 +638,11 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Delete a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteUserDaoAsync (int? userId)
+        public async System.Threading.Tasks.Task DeleteUserAsync (int? userId)
         {
-             await DeleteUserDaoAsyncWithHttpInfo(userId);
+             await DeleteUserAsyncWithHttpInfo(userId);
 
         }
 
@@ -485,13 +650,13 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Delete a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserDaoAsyncWithHttpInfo (int? userId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (int? userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->DeleteUserDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->DeleteUser");
 
             var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -532,7 +697,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteUserDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -545,12 +710,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Get information of a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>User</returns>
-        public User GetUserDao (int? userId, string xFields = null)
+        public User GetUser (int? userId, string xFields = null)
         {
-             ApiResponse<User> localVarResponse = GetUserDaoWithHttpInfo(userId, xFields);
+             ApiResponse<User> localVarResponse = GetUserWithHttpInfo(userId, xFields);
              return localVarResponse.Data;
         }
 
@@ -558,14 +723,14 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Get information of a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of User</returns>
-        public ApiResponse< User > GetUserDaoWithHttpInfo (int? userId, string xFields = null)
+        public ApiResponse< User > GetUserWithHttpInfo (int? userId, string xFields = null)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUser");
 
             var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -607,7 +772,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -620,12 +785,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Get information of a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of User</returns>
-        public async System.Threading.Tasks.Task<User> GetUserDaoAsync (int? userId, string xFields = null)
+        public async System.Threading.Tasks.Task<User> GetUserAsync (int? userId, string xFields = null)
         {
-             ApiResponse<User> localVarResponse = await GetUserDaoAsyncWithHttpInfo(userId, xFields);
+             ApiResponse<User> localVarResponse = await GetUserAsyncWithHttpInfo(userId, xFields);
              return localVarResponse.Data;
 
         }
@@ -634,14 +799,14 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Get information of a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<User>> GetUserDaoAsyncWithHttpInfo (int? userId, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<User>> GetUserAsyncWithHttpInfo (int? userId, string xFields = null)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUser");
 
             var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -683,7 +848,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -698,9 +863,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;User&gt;</returns>
-        public List<User> GetUserListDao (string xFields = null)
+        public List<User> ListUsers (string xFields = null)
         {
-             ApiResponse<List<User>> localVarResponse = GetUserListDaoWithHttpInfo(xFields);
+             ApiResponse<List<User>> localVarResponse = ListUsersWithHttpInfo(xFields);
              return localVarResponse.Data;
         }
 
@@ -710,7 +875,7 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;User&gt;</returns>
-        public ApiResponse< List<User> > GetUserListDaoWithHttpInfo (string xFields = null)
+        public ApiResponse< List<User> > ListUsersWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/users/";
@@ -752,7 +917,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListUsers", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -767,9 +932,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;User&gt;</returns>
-        public async System.Threading.Tasks.Task<List<User>> GetUserListDaoAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<User>> ListUsersAsync (string xFields = null)
         {
-             ApiResponse<List<User>> localVarResponse = await GetUserListDaoAsyncWithHttpInfo(xFields);
+             ApiResponse<List<User>> localVarResponse = await ListUsersAsyncWithHttpInfo(xFields);
              return localVarResponse.Data;
 
         }
@@ -780,7 +945,7 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;User&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<User>>> GetUserListDaoAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<User>>> ListUsersAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/users/";
@@ -822,7 +987,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListUsers", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -832,32 +997,37 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Create a new user
+        ///  Update a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>User</returns>
-        public User PostUserListDao (User payload, string xFields = null)
+        public User UpdateUser (int? userId, User payload, string xFields = null)
         {
-             ApiResponse<User> localVarResponse = PostUserListDaoWithHttpInfo(payload, xFields);
+             ApiResponse<User> localVarResponse = UpdateUserWithHttpInfo(userId, payload, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Create a new user
+        ///  Update a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of User</returns>
-        public ApiResponse< User > PostUserListDaoWithHttpInfo (User payload, string xFields = null)
+        public ApiResponse< User > UpdateUserWithHttpInfo (int? userId, User payload, string xFields = null)
         {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUser");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PostUserListDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->UpdateUser");
 
-            var localVarPath = "/users/";
+            var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -879,6 +1049,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
             if (payload != null && payload.GetType() != typeof(byte[]))
             {
@@ -897,14 +1068,14 @@ namespace Com.AIcrowd.Evaluations.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PostUserListDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -914,33 +1085,38 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Create a new user
+        ///  Update a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of User</returns>
-        public async System.Threading.Tasks.Task<User> PostUserListDaoAsync (User payload, string xFields = null)
+        public async System.Threading.Tasks.Task<User> UpdateUserAsync (int? userId, User payload, string xFields = null)
         {
-             ApiResponse<User> localVarResponse = await PostUserListDaoAsyncWithHttpInfo(payload, xFields);
+             ApiResponse<User> localVarResponse = await UpdateUserAsyncWithHttpInfo(userId, payload, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Create a new user
+        ///  Update a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<User>> PostUserListDaoAsyncWithHttpInfo (User payload, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<User>> UpdateUserAsyncWithHttpInfo (int? userId, User payload, string xFields = null)
         {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUser");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PostUserListDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->UpdateUser");
 
-            var localVarPath = "/users/";
+            var localVarPath = "/users/{user_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -962,6 +1138,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
             if (payload != null && payload.GetType() != typeof(byte[]))
             {
@@ -980,14 +1157,14 @@ namespace Com.AIcrowd.Evaluations.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PostUserListDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateUser", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1000,31 +1177,31 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public void PutQuotaDao (int? userId, UserQuota payload)
+        public void UpdateUserQuota (int? userId, UserQuota payload)
         {
-             PutQuotaDaoWithHttpInfo(userId, payload);
+             UpdateUserQuotaWithHttpInfo(userId, payload);
         }
 
         /// <summary>
         ///  Add or subtract quota for a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> PutQuotaDaoWithHttpInfo (int? userId, UserQuota payload)
+        public ApiResponse<Object> UpdateUserQuotaWithHttpInfo (int? userId, UserQuota payload)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserQuota");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->UpdateUserQuota");
 
-            var localVarPath = "/users/addquota/{user_id}";
+            var localVarPath = "/users/{user_id}/addquota";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1071,7 +1248,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutQuotaDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateUserQuota", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1084,12 +1261,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PutQuotaDaoAsync (int? userId, UserQuota payload)
+        public async System.Threading.Tasks.Task UpdateUserQuotaAsync (int? userId, UserQuota payload)
         {
-             await PutQuotaDaoAsyncWithHttpInfo(userId, payload);
+             await UpdateUserQuotaAsyncWithHttpInfo(userId, payload);
 
         }
 
@@ -1097,19 +1274,19 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  Add or subtract quota for a user
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
+        /// <param name="userId"></param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> PutQuotaDaoAsyncWithHttpInfo (int? userId, UserQuota payload)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateUserQuotaAsyncWithHttpInfo (int? userId, UserQuota payload)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserQuota");
             // verify the required parameter 'payload' is set
             if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PutQuotaDao");
+                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->UpdateUserQuota");
 
-            var localVarPath = "/users/addquota/{user_id}";
+            var localVarPath = "/users/{user_id}/addquota";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1156,190 +1333,13 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("PutQuotaDao", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateUserQuota", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
-        }
-
-        /// <summary>
-        ///  Update a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>User</returns>
-        public User PutUserDao (int? userId, User payload, string xFields = null)
-        {
-             ApiResponse<User> localVarResponse = PutUserDaoWithHttpInfo(userId, payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Update a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of User</returns>
-        public ApiResponse< User > PutUserDaoWithHttpInfo (int? userId, User payload, string xFields = null)
-        {
-            // verify the required parameter 'userId' is set
-            if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->PutUserDao");
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PutUserDao");
-
-            var localVarPath = "/users/{user_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PutUserDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<User>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (User) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
-        }
-
-        /// <summary>
-        ///  Update a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of User</returns>
-        public async System.Threading.Tasks.Task<User> PutUserDaoAsync (int? userId, User payload, string xFields = null)
-        {
-             ApiResponse<User> localVarResponse = await PutUserDaoAsyncWithHttpInfo(userId, payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Update a user
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId">User identifier</param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<User>> PutUserDaoAsyncWithHttpInfo (int? userId, User payload, string xFields = null)
-        {
-            // verify the required parameter 'userId' is set
-            if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->PutUserDao");
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling UsersApi->PutUserDao");
-
-            var localVarPath = "/users/{user_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PutUserDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<User>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (User) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
         }
 
     }

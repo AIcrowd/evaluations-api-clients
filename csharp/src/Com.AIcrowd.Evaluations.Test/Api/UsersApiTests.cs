@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -65,80 +65,80 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
-        /// Test DeleteUserDao
+        /// Test CreateUser
         /// </summary>
         [Test]
-        public void DeleteUserDaoTest()
+        public void CreateUserTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //int? userId = null;
-            //instance.DeleteUserDao(userId);
-            
-        }
-        
-        /// <summary>
-        /// Test GetUserDao
-        /// </summary>
-        [Test]
-        public void GetUserDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? userId = null;
+            //User payload = null;
             //string xFields = null;
-            //var response = instance.GetUserDao(userId, xFields);
+            //var response = instance.CreateUser(payload, xFields);
             //Assert.IsInstanceOf<User> (response, "response is User");
         }
         
         /// <summary>
-        /// Test GetUserListDao
+        /// Test DeleteUser
         /// </summary>
         [Test]
-        public void GetUserListDaoTest()
+        public void DeleteUserTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? userId = null;
+            //instance.DeleteUser(userId);
+            
+        }
+        
+        /// <summary>
+        /// Test GetUser
+        /// </summary>
+        [Test]
+        public void GetUserTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? userId = null;
+            //string xFields = null;
+            //var response = instance.GetUser(userId, xFields);
+            //Assert.IsInstanceOf<User> (response, "response is User");
+        }
+        
+        /// <summary>
+        /// Test ListUsers
+        /// </summary>
+        [Test]
+        public void ListUsersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xFields = null;
-            //var response = instance.GetUserListDao(xFields);
+            //var response = instance.ListUsers(xFields);
             //Assert.IsInstanceOf<List<User>> (response, "response is List<User>");
         }
         
         /// <summary>
-        /// Test PostUserListDao
+        /// Test UpdateUser
         /// </summary>
         [Test]
-        public void PostUserListDaoTest()
+        public void UpdateUserTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //int? userId = null;
             //User payload = null;
             //string xFields = null;
-            //var response = instance.PostUserListDao(payload, xFields);
+            //var response = instance.UpdateUser(userId, payload, xFields);
             //Assert.IsInstanceOf<User> (response, "response is User");
         }
         
         /// <summary>
-        /// Test PutQuotaDao
+        /// Test UpdateUserQuota
         /// </summary>
         [Test]
-        public void PutQuotaDaoTest()
+        public void UpdateUserQuotaTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? userId = null;
             //UserQuota payload = null;
-            //instance.PutQuotaDao(userId, payload);
+            //instance.UpdateUserQuota(userId, payload);
             
-        }
-        
-        /// <summary>
-        /// Test PutUserDao
-        /// </summary>
-        [Test]
-        public void PutUserDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? userId = null;
-            //User payload = null;
-            //string xFields = null;
-            //var response = instance.PutUserDao(userId, payload, xFields);
-            //Assert.IsInstanceOf<User> (response, "response is User");
         }
         
     }

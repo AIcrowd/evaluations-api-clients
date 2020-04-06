@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -56,374 +56,7 @@ public class UsersApi {
     }
 
     /**
-     * Build call for deleteUserDao
-     * @param userId User identifier (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call deleteUserDaoCall(Integer userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/users/{user_id}"
-            .replaceAll("\\{" + "user_id" + "\\}", apiClient.escapeString(userId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "api_key" };
-        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteUserDaoValidateBeforeCall(Integer userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling deleteUserDao(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = deleteUserDaoCall(userId, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Delete a user
-     * @param userId User identifier (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public void deleteUserDao(Integer userId) throws ApiException {
-        deleteUserDaoWithHttpInfo(userId);
-    }
-
-    /**
-     * 
-     * Delete a user
-     * @param userId User identifier (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Void> deleteUserDaoWithHttpInfo(Integer userId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteUserDaoValidateBeforeCall(userId, null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     *  (asynchronously)
-     * Delete a user
-     * @param userId User identifier (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call deleteUserDaoAsync(Integer userId, final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = deleteUserDaoValidateBeforeCall(userId, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
-        return call;
-    }
-    /**
-     * Build call for getUserDao
-     * @param userId User identifier (required)
-     * @param xFields An optional fields mask (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call getUserDaoCall(Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/users/{user_id}"
-            .replaceAll("\\{" + "user_id" + "\\}", apiClient.escapeString(userId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xFields != null)
-        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "api_key" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserDaoValidateBeforeCall(Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling getUserDao(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = getUserDaoCall(userId, xFields, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Get information of a user
-     * @param userId User identifier (required)
-     * @param xFields An optional fields mask (optional)
-     * @return User
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public User getUserDao(Integer userId, String xFields) throws ApiException {
-        ApiResponse<User> resp = getUserDaoWithHttpInfo(userId, xFields);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Get information of a user
-     * @param userId User identifier (required)
-     * @param xFields An optional fields mask (optional)
-     * @return ApiResponse&lt;User&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<User> getUserDaoWithHttpInfo(Integer userId, String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = getUserDaoValidateBeforeCall(userId, xFields, null, null);
-        Type localVarReturnType = new TypeToken<User>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get information of a user
-     * @param userId User identifier (required)
-     * @param xFields An optional fields mask (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getUserDaoAsync(Integer userId, String xFields, final ApiCallback<User> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getUserDaoValidateBeforeCall(userId, xFields, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<User>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getUserListDao
-     * @param xFields An optional fields mask (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call getUserListDaoCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/users/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xFields != null)
-        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "api_key" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserListDaoValidateBeforeCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = getUserListDaoCall(xFields, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Get all user
-     * @param xFields An optional fields mask (optional)
-     * @return List&lt;User&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public List<User> getUserListDao(String xFields) throws ApiException {
-        ApiResponse<List<User>> resp = getUserListDaoWithHttpInfo(xFields);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Get all user
-     * @param xFields An optional fields mask (optional)
-     * @return ApiResponse&lt;List&lt;User&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<List<User>> getUserListDaoWithHttpInfo(String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = getUserListDaoValidateBeforeCall(xFields, null, null);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get all user
-     * @param xFields An optional fields mask (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getUserListDaoAsync(String xFields, final ApiCallback<List<User>> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getUserListDaoValidateBeforeCall(xFields, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for postUserListDao
+     * Build call for createUser
      * @param payload  (required)
      * @param xFields An optional fields mask (optional)
      * @param progressListener Progress listener
@@ -431,7 +64,7 @@ public class UsersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call postUserListDaoCall(User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createUserCall(User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = payload;
 
         // create path and map variables
@@ -475,15 +108,15 @@ public class UsersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call postUserListDaoValidateBeforeCall(User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createUserValidateBeforeCall(User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'payload' is set
         if (payload == null) {
-            throw new ApiException("Missing the required parameter 'payload' when calling postUserListDao(Async)");
+            throw new ApiException("Missing the required parameter 'payload' when calling createUser(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = postUserListDaoCall(payload, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createUserCall(payload, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -496,8 +129,8 @@ public class UsersApi {
      * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public User postUserListDao(User payload, String xFields) throws ApiException {
-        ApiResponse<User> resp = postUserListDaoWithHttpInfo(payload, xFields);
+    public User createUser(User payload, String xFields) throws ApiException {
+        ApiResponse<User> resp = createUserWithHttpInfo(payload, xFields);
         return resp.getData();
     }
 
@@ -509,8 +142,8 @@ public class UsersApi {
      * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<User> postUserListDaoWithHttpInfo(User payload, String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = postUserListDaoValidateBeforeCall(payload, xFields, null, null);
+    public ApiResponse<User> createUserWithHttpInfo(User payload, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = createUserValidateBeforeCall(payload, xFields, null, null);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -524,7 +157,7 @@ public class UsersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call postUserListDaoAsync(User payload, String xFields, final ApiCallback<User> callback) throws ApiException {
+    public com.squareup.okhttp.Call createUserAsync(User payload, String xFields, final ApiCallback<User> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -545,25 +178,24 @@ public class UsersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = postUserListDaoValidateBeforeCall(payload, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createUserValidateBeforeCall(payload, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for putQuotaDao
-     * @param userId User identifier (required)
-     * @param payload  (required)
+     * Build call for deleteUser
+     * @param userId  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call putQuotaDaoCall(Integer userId, UserQuota payload, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = payload;
+    public com.squareup.okhttp.Call deleteUserCall(Integer userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/users/addquota/{user_id}"
+        String localVarPath = "/users/{user_id}"
             .replaceAll("\\{" + "user_id" + "\\}", apiClient.escapeString(userId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -598,62 +230,54 @@ public class UsersApi {
         }
 
         String[] localVarAuthNames = new String[] { "api_key" };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call putQuotaDaoValidateBeforeCall(Integer userId, UserQuota payload, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteUserValidateBeforeCall(Integer userId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'userId' is set
         if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling putQuotaDao(Async)");
-        }
-        
-        // verify the required parameter 'payload' is set
-        if (payload == null) {
-            throw new ApiException("Missing the required parameter 'payload' when calling putQuotaDao(Async)");
+            throw new ApiException("Missing the required parameter 'userId' when calling deleteUser(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = putQuotaDaoCall(userId, payload, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteUserCall(userId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Add or subtract quota for a user
-     * @param userId User identifier (required)
-     * @param payload  (required)
+     * Delete a user
+     * @param userId  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void putQuotaDao(Integer userId, UserQuota payload) throws ApiException {
-        putQuotaDaoWithHttpInfo(userId, payload);
+    public void deleteUser(Integer userId) throws ApiException {
+        deleteUserWithHttpInfo(userId);
     }
 
     /**
      * 
-     * Add or subtract quota for a user
-     * @param userId User identifier (required)
-     * @param payload  (required)
+     * Delete a user
+     * @param userId  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> putQuotaDaoWithHttpInfo(Integer userId, UserQuota payload) throws ApiException {
-        com.squareup.okhttp.Call call = putQuotaDaoValidateBeforeCall(userId, payload, null, null);
+    public ApiResponse<Void> deleteUserWithHttpInfo(Integer userId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteUserValidateBeforeCall(userId, null, null);
         return apiClient.execute(call);
     }
 
     /**
      *  (asynchronously)
-     * Add or subtract quota for a user
-     * @param userId User identifier (required)
-     * @param payload  (required)
+     * Delete a user
+     * @param userId  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call putQuotaDaoAsync(Integer userId, UserQuota payload, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteUserAsync(Integer userId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -674,13 +298,261 @@ public class UsersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = putQuotaDaoValidateBeforeCall(userId, payload, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteUserValidateBeforeCall(userId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for putUserDao
-     * @param userId User identifier (required)
+     * Build call for getUser
+     * @param userId  (required)
+     * @param xFields An optional fields mask (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getUserCall(Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users/{user_id}"
+            .replaceAll("\\{" + "user_id" + "\\}", apiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xFields != null)
+        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "api_key" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getUserValidateBeforeCall(Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling getUser(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getUserCall(userId, xFields, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Get information of a user
+     * @param userId  (required)
+     * @param xFields An optional fields mask (optional)
+     * @return User
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public User getUser(Integer userId, String xFields) throws ApiException {
+        ApiResponse<User> resp = getUserWithHttpInfo(userId, xFields);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Get information of a user
+     * @param userId  (required)
+     * @param xFields An optional fields mask (optional)
+     * @return ApiResponse&lt;User&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<User> getUserWithHttpInfo(Integer userId, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = getUserValidateBeforeCall(userId, xFields, null, null);
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get information of a user
+     * @param userId  (required)
+     * @param xFields An optional fields mask (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getUserAsync(Integer userId, String xFields, final ApiCallback<User> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getUserValidateBeforeCall(userId, xFields, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<User>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for listUsers
+     * @param xFields An optional fields mask (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call listUsersCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users/";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xFields != null)
+        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "api_key" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call listUsersValidateBeforeCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = listUsersCall(xFields, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Get all user
+     * @param xFields An optional fields mask (optional)
+     * @return List&lt;User&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<User> listUsers(String xFields) throws ApiException {
+        ApiResponse<List<User>> resp = listUsersWithHttpInfo(xFields);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Get all user
+     * @param xFields An optional fields mask (optional)
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<User>> listUsersWithHttpInfo(String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = listUsersValidateBeforeCall(xFields, null, null);
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get all user
+     * @param xFields An optional fields mask (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call listUsersAsync(String xFields, final ApiCallback<List<User>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = listUsersValidateBeforeCall(xFields, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateUser
+     * @param userId  (required)
      * @param payload  (required)
      * @param xFields An optional fields mask (optional)
      * @param progressListener Progress listener
@@ -688,7 +560,7 @@ public class UsersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call putUserDaoCall(Integer userId, User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateUserCall(Integer userId, User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = payload;
 
         // create path and map variables
@@ -733,20 +605,20 @@ public class UsersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call putUserDaoValidateBeforeCall(Integer userId, User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateUserValidateBeforeCall(Integer userId, User payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'userId' is set
         if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling putUserDao(Async)");
+            throw new ApiException("Missing the required parameter 'userId' when calling updateUser(Async)");
         }
         
         // verify the required parameter 'payload' is set
         if (payload == null) {
-            throw new ApiException("Missing the required parameter 'payload' when calling putUserDao(Async)");
+            throw new ApiException("Missing the required parameter 'payload' when calling updateUser(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = putUserDaoCall(userId, payload, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateUserCall(userId, payload, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -754,28 +626,28 @@ public class UsersApi {
     /**
      * 
      * Update a user
-     * @param userId User identifier (required)
+     * @param userId  (required)
      * @param payload  (required)
      * @param xFields An optional fields mask (optional)
      * @return User
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public User putUserDao(Integer userId, User payload, String xFields) throws ApiException {
-        ApiResponse<User> resp = putUserDaoWithHttpInfo(userId, payload, xFields);
+    public User updateUser(Integer userId, User payload, String xFields) throws ApiException {
+        ApiResponse<User> resp = updateUserWithHttpInfo(userId, payload, xFields);
         return resp.getData();
     }
 
     /**
      * 
      * Update a user
-     * @param userId User identifier (required)
+     * @param userId  (required)
      * @param payload  (required)
      * @param xFields An optional fields mask (optional)
      * @return ApiResponse&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<User> putUserDaoWithHttpInfo(Integer userId, User payload, String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = putUserDaoValidateBeforeCall(userId, payload, xFields, null, null);
+    public ApiResponse<User> updateUserWithHttpInfo(Integer userId, User payload, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = updateUserValidateBeforeCall(userId, payload, xFields, null, null);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -783,14 +655,14 @@ public class UsersApi {
     /**
      *  (asynchronously)
      * Update a user
-     * @param userId User identifier (required)
+     * @param userId  (required)
      * @param payload  (required)
      * @param xFields An optional fields mask (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call putUserDaoAsync(Integer userId, User payload, String xFields, final ApiCallback<User> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateUserAsync(Integer userId, User payload, String xFields, final ApiCallback<User> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -811,9 +683,137 @@ public class UsersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = putUserDaoValidateBeforeCall(userId, payload, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateUserValidateBeforeCall(userId, payload, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateUserQuota
+     * @param userId  (required)
+     * @param payload  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateUserQuotaCall(Integer userId, UserQuota payload, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = payload;
+
+        // create path and map variables
+        String localVarPath = "/users/{user_id}/addquota"
+            .replaceAll("\\{" + "user_id" + "\\}", apiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "api_key" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateUserQuotaValidateBeforeCall(Integer userId, UserQuota payload, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling updateUserQuota(Async)");
+        }
+        
+        // verify the required parameter 'payload' is set
+        if (payload == null) {
+            throw new ApiException("Missing the required parameter 'payload' when calling updateUserQuota(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = updateUserQuotaCall(userId, payload, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Add or subtract quota for a user
+     * @param userId  (required)
+     * @param payload  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void updateUserQuota(Integer userId, UserQuota payload) throws ApiException {
+        updateUserQuotaWithHttpInfo(userId, payload);
+    }
+
+    /**
+     * 
+     * Add or subtract quota for a user
+     * @param userId  (required)
+     * @param payload  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> updateUserQuotaWithHttpInfo(Integer userId, UserQuota payload) throws ApiException {
+        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(userId, payload, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     *  (asynchronously)
+     * Add or subtract quota for a user
+     * @param userId  (required)
+     * @param payload  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateUserQuotaAsync(Integer userId, UserQuota payload, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateUserQuotaValidateBeforeCall(userId, payload, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
         return call;
     }
 }

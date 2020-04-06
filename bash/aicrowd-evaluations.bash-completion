@@ -71,33 +71,33 @@ _aicrowd-evaluations()
     operations["postGenericFeedbackContract"]=1
     operations["postGraderFeedbackDao"]=1
     operations["postSubmissionFeedbackDao"]=1
-    operations["postLogoutApi"]=1
-    operations["postUserLogin"]=1
-    operations["deleteClusterDao"]=1
-    operations["getClusterDao"]=1
-    operations["getClusterListDao"]=1
-    operations["postClusterListDao"]=1
-    operations["deleteGraderDao"]=1
-    operations["getGraderDao"]=1
-    operations["getGraderListDao"]=1
-    operations["postGraderListDao"]=1
-    operations["deleteOrganisationDao"]=1
-    operations["getOrganisationDao"]=1
-    operations["getOrganisationListDao"]=1
-    operations["postOrganisationListDao"]=1
-    operations["putOrganisationDao"]=1
-    operations["putQuotaDao"]=1
-    operations["deleteSubmissionDao"]=1
-    operations["getSubmissionDao"]=1
-    operations["getSubmissionDataDao"]=1
-    operations["getSubmissionListDao"]=1
-    operations["postSubmissionListDao"]=1
-    operations["deleteUserDao"]=1
-    operations["getUserDao"]=1
-    operations["getUserListDao"]=1
-    operations["postUserListDao"]=1
-    operations["putQuotaDao"]=1
-    operations["putUserDao"]=1
+    operations["login"]=1
+    operations["logout"]=1
+    operations["createCluster"]=1
+    operations["deleteCluster"]=1
+    operations["getCluster"]=1
+    operations["listClusters"]=1
+    operations["createGrader"]=1
+    operations["deleteGrader"]=1
+    operations["getGrader"]=1
+    operations["listGraders"]=1
+    operations["createOrganisation"]=1
+    operations["deleteOrganisation"]=1
+    operations["getOrganisation"]=1
+    operations["listOrganisations"]=1
+    operations["updateOrganisation"]=1
+    operations["updateOrganisationQuota"]=1
+    operations["createSubmission"]=1
+    operations["deleteSubmission"]=1
+    operations["getSubmission"]=1
+    operations["getSubmissionData"]=1
+    operations["listSubmissions"]=1
+    operations["createUser"]=1
+    operations["deleteUser"]=1
+    operations["getUser"]=1
+    operations["listUsers"]=1
+    operations["updateUser"]=1
+    operations["updateUserQuota"]=1
 
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
@@ -105,33 +105,33 @@ _aicrowd-evaluations()
     operation_parameters["postGenericFeedbackContract"]="model_name= object_id= "
     operation_parameters["postGraderFeedbackDao"]="grader_id= "
     operation_parameters["postSubmissionFeedbackDao"]="submission_id= "
-    operation_parameters["postLogoutApi"]="X-Fields: "
-    operation_parameters["postUserLogin"]="X-Fields: "
-    operation_parameters["deleteClusterDao"]="cluster_id= "
-    operation_parameters["getClusterDao"]="cluster_id= X-Fields: "
-    operation_parameters["getClusterListDao"]="X-Fields: "
-    operation_parameters["postClusterListDao"]="X-Fields: "
-    operation_parameters["deleteGraderDao"]="grader_id= "
-    operation_parameters["getGraderDao"]="grader_id= X-Fields: "
-    operation_parameters["getGraderListDao"]="X-Fields: "
-    operation_parameters["postGraderListDao"]="X-Fields: "
-    operation_parameters["deleteOrganisationDao"]="organisation_id= "
-    operation_parameters["getOrganisationDao"]="organisation_id= X-Fields: "
-    operation_parameters["getOrganisationListDao"]="X-Fields: "
-    operation_parameters["postOrganisationListDao"]="X-Fields: "
-    operation_parameters["putOrganisationDao"]="organisation_id= X-Fields: "
-    operation_parameters["putQuotaDao"]="organisation_id= "
-    operation_parameters["deleteSubmissionDao"]="submission_id= "
-    operation_parameters["getSubmissionDao"]="submission_id= X-Fields: "
-    operation_parameters["getSubmissionDataDao"]="submission_id= "
-    operation_parameters["getSubmissionListDao"]="X-Fields: "
-    operation_parameters["postSubmissionListDao"]="X-Fields: "
-    operation_parameters["deleteUserDao"]="user_id= "
-    operation_parameters["getUserDao"]="user_id= X-Fields: "
-    operation_parameters["getUserListDao"]="X-Fields: "
-    operation_parameters["postUserListDao"]="X-Fields: "
-    operation_parameters["putQuotaDao"]="user_id= "
-    operation_parameters["putUserDao"]="user_id= X-Fields: "
+    operation_parameters["login"]="X-Fields: "
+    operation_parameters["logout"]="X-Fields: "
+    operation_parameters["createCluster"]="X-Fields: "
+    operation_parameters["deleteCluster"]="cluster_id= "
+    operation_parameters["getCluster"]="cluster_id= X-Fields: "
+    operation_parameters["listClusters"]="X-Fields: "
+    operation_parameters["createGrader"]="X-Fields: "
+    operation_parameters["deleteGrader"]="grader_id= "
+    operation_parameters["getGrader"]="grader_id= X-Fields: "
+    operation_parameters["listGraders"]="X-Fields: "
+    operation_parameters["createOrganisation"]="X-Fields: "
+    operation_parameters["deleteOrganisation"]="organisation_id= "
+    operation_parameters["getOrganisation"]="organisation_id= X-Fields: "
+    operation_parameters["listOrganisations"]="X-Fields: "
+    operation_parameters["updateOrganisation"]="organisation_id= X-Fields: "
+    operation_parameters["updateOrganisationQuota"]="organisation_id= "
+    operation_parameters["createSubmission"]="X-Fields: "
+    operation_parameters["deleteSubmission"]="submission_id= "
+    operation_parameters["getSubmission"]="submission_id= X-Fields: "
+    operation_parameters["getSubmissionData"]="submission_id= "
+    operation_parameters["listSubmissions"]="X-Fields: "
+    operation_parameters["createUser"]="X-Fields: "
+    operation_parameters["deleteUser"]="user_id= "
+    operation_parameters["getUser"]="user_id= X-Fields: "
+    operation_parameters["listUsers"]="X-Fields: "
+    operation_parameters["updateUser"]="user_id= X-Fields: "
+    operation_parameters["updateUserQuota"]="user_id= "
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values

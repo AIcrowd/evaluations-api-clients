@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,8 +48,58 @@
 
 
     /**
-     * Callback function to receive the result of the deleteUserDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~deleteUserDaoCallback
+     * Callback function to receive the result of the createUser operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~createUserCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/User} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Create a new user
+     * @param {module:AIcrowdEvaluations/model/User} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/UsersApi~createUserCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/User}
+     */
+    this.createUser = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling createUser");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = User;
+
+      return this.apiClient.callApi(
+        '/users/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteUser operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~deleteUserCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -57,15 +107,15 @@
 
     /**
      * Delete a user
-     * @param {Number} userId User identifier
-     * @param {module:AIcrowdEvaluations/api/UsersApi~deleteUserDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {Number} userId 
+     * @param {module:AIcrowdEvaluations/api/UsersApi~deleteUserCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.deleteUserDao = function(userId, callback) {
+    this.deleteUser = function(userId, callback) {
       var postBody = null;
 
       // verify the required parameter 'userId' is set
       if (userId === undefined || userId === null) {
-        throw new Error("Missing the required parameter 'userId' when calling deleteUserDao");
+        throw new Error("Missing the required parameter 'userId' when calling deleteUser");
       }
 
 
@@ -94,8 +144,8 @@
     }
 
     /**
-     * Callback function to receive the result of the getUserDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~getUserDaoCallback
+     * Callback function to receive the result of the getUser operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~getUserCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/User} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -103,19 +153,19 @@
 
     /**
      * Get information of a user
-     * @param {Number} userId User identifier
+     * @param {Number} userId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/UsersApi~getUserDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/UsersApi~getUserCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/User}
      */
-    this.getUserDao = function(userId, opts, callback) {
+    this.getUser = function(userId, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'userId' is set
       if (userId === undefined || userId === null) {
-        throw new Error("Missing the required parameter 'userId' when calling getUserDao");
+        throw new Error("Missing the required parameter 'userId' when calling getUser");
       }
 
 
@@ -145,8 +195,8 @@
     }
 
     /**
-     * Callback function to receive the result of the getUserListDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~getUserListDaoCallback
+     * Callback function to receive the result of the listUsers operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~listUsersCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:AIcrowdEvaluations/model/User>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -156,10 +206,10 @@
      * Get all user
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/UsersApi~getUserListDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/UsersApi~listUsersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/User>}
      */
-    this.getUserListDao = function(opts, callback) {
+    this.listUsers = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -189,110 +239,8 @@
     }
 
     /**
-     * Callback function to receive the result of the postUserListDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~postUserListDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/User} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Create a new user
-     * @param {module:AIcrowdEvaluations/model/User} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/UsersApi~postUserListDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/User}
-     */
-    this.postUserListDao = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postUserListDao");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = User;
-
-      return this.apiClient.callApi(
-        '/users/', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the putQuotaDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~putQuotaDaoCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Add or subtract quota for a user
-     * @param {Number} userId User identifier
-     * @param {module:AIcrowdEvaluations/model/UserQuota} payload 
-     * @param {module:AIcrowdEvaluations/api/UsersApi~putQuotaDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.putQuotaDao = function(userId, payload, callback) {
-      var postBody = payload;
-
-      // verify the required parameter 'userId' is set
-      if (userId === undefined || userId === null) {
-        throw new Error("Missing the required parameter 'userId' when calling putQuotaDao");
-      }
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling putQuotaDao");
-      }
-
-
-      var pathParams = {
-        'user_id': userId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/users/addquota/{user_id}', 'PUT',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the putUserDao operation.
-     * @callback module:AIcrowdEvaluations/api/UsersApi~putUserDaoCallback
+     * Callback function to receive the result of the updateUser operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~updateUserCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/User} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -300,25 +248,25 @@
 
     /**
      * Update a user
-     * @param {Number} userId User identifier
+     * @param {Number} userId 
      * @param {module:AIcrowdEvaluations/model/User} payload 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/UsersApi~putUserDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/UsersApi~updateUserCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/User}
      */
-    this.putUserDao = function(userId, payload, opts, callback) {
+    this.updateUser = function(userId, payload, opts, callback) {
       opts = opts || {};
       var postBody = payload;
 
       // verify the required parameter 'userId' is set
       if (userId === undefined || userId === null) {
-        throw new Error("Missing the required parameter 'userId' when calling putUserDao");
+        throw new Error("Missing the required parameter 'userId' when calling updateUser");
       }
 
       // verify the required parameter 'payload' is set
       if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling putUserDao");
+        throw new Error("Missing the required parameter 'payload' when calling updateUser");
       }
 
 
@@ -342,6 +290,58 @@
 
       return this.apiClient.callApi(
         '/users/{user_id}', 'PUT',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateUserQuota operation.
+     * @callback module:AIcrowdEvaluations/api/UsersApi~updateUserQuotaCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Add or subtract quota for a user
+     * @param {Number} userId 
+     * @param {module:AIcrowdEvaluations/model/UserQuota} payload 
+     * @param {module:AIcrowdEvaluations/api/UsersApi~updateUserQuotaCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.updateUserQuota = function(userId, payload, callback) {
+      var postBody = payload;
+
+      // verify the required parameter 'userId' is set
+      if (userId === undefined || userId === null) {
+        throw new Error("Missing the required parameter 'userId' when calling updateUserQuota");
+      }
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling updateUserQuota");
+      }
+
+
+      var pathParams = {
+        'user_id': userId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/users/{user_id}/addquota', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

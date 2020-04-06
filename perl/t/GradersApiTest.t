@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -30,37 +30,37 @@ my $api = AIcrowdEvaluations::GradersApi->new();
 isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 
 #
-# delete_grader_dao test
-#
-{
-    my $grader_id = undef; # replace NULL with a proper value
-    my $result = $api->delete_grader_dao(grader_id => $grader_id);
-}
-
-#
-# get_grader_dao test
-#
-{
-    my $grader_id = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_dao(grader_id => $grader_id, x_fields => $x_fields);
-}
-
-#
-# get_grader_list_dao test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_list_dao(x_fields => $x_fields);
-}
-
-#
-# post_grader_list_dao test
+# create_grader test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->create_grader(payload => $payload, x_fields => $x_fields);
+}
+
+#
+# delete_grader test
+#
+{
+    my $grader_id = undef; # replace NULL with a proper value
+    my $result = $api->delete_grader(grader_id => $grader_id);
+}
+
+#
+# get_grader test
+#
+{
+    my $grader_id = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_grader(grader_id => $grader_id, x_fields => $x_fields);
+}
+
+#
+# list_graders test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->list_graders(x_fields => $x_fields);
 }
 
 

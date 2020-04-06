@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,8 +48,58 @@
 
 
     /**
-     * Callback function to receive the result of the deleteOrganisationDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~deleteOrganisationDaoCallback
+     * Callback function to receive the result of the createOrganisation operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~createOrganisationCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/Organisation} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Create a new organisation
+     * @param {module:AIcrowdEvaluations/model/Organisation} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~createOrganisationCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/Organisation}
+     */
+    this.createOrganisation = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling createOrganisation");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Organisation;
+
+      return this.apiClient.callApi(
+        '/organisations/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteOrganisation operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~deleteOrganisationCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -57,15 +107,15 @@
 
     /**
      * Delete an Organisation
-     * @param {Number} organisationId Organisation identifier
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~deleteOrganisationDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {Number} organisationId 
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~deleteOrganisationCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.deleteOrganisationDao = function(organisationId, callback) {
+    this.deleteOrganisation = function(organisationId, callback) {
       var postBody = null;
 
       // verify the required parameter 'organisationId' is set
       if (organisationId === undefined || organisationId === null) {
-        throw new Error("Missing the required parameter 'organisationId' when calling deleteOrganisationDao");
+        throw new Error("Missing the required parameter 'organisationId' when calling deleteOrganisation");
       }
 
 
@@ -94,28 +144,28 @@
     }
 
     /**
-     * Callback function to receive the result of the getOrganisationDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationDaoCallback
+     * Callback function to receive the result of the getOrganisation operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/Organisation} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get information of an organisation
-     * @param {Number} organisationId Organisation identifier
+     * Get details of an organisation
+     * @param {Number} organisationId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/Organisation}
      */
-    this.getOrganisationDao = function(organisationId, opts, callback) {
+    this.getOrganisation = function(organisationId, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'organisationId' is set
       if (organisationId === undefined || organisationId === null) {
-        throw new Error("Missing the required parameter 'organisationId' when calling getOrganisationDao");
+        throw new Error("Missing the required parameter 'organisationId' when calling getOrganisation");
       }
 
 
@@ -145,21 +195,21 @@
     }
 
     /**
-     * Callback function to receive the result of the getOrganisationListDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationListDaoCallback
+     * Callback function to receive the result of the listOrganisations operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~listOrganisationsCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:AIcrowdEvaluations/model/Organisation>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get all organisations
+     * List all organisations
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~getOrganisationListDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~listOrganisationsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Organisation>}
      */
-    this.getOrganisationListDao = function(opts, callback) {
+    this.listOrganisations = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -189,58 +239,8 @@
     }
 
     /**
-     * Callback function to receive the result of the postOrganisationListDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~postOrganisationListDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/Organisation} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Create a new organisation
-     * @param {module:AIcrowdEvaluations/model/Organisation} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~postOrganisationListDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/Organisation}
-     */
-    this.postOrganisationListDao = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postOrganisationListDao");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Organisation;
-
-      return this.apiClient.callApi(
-        '/organisations/', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the putOrganisationDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~putOrganisationDaoCallback
+     * Callback function to receive the result of the updateOrganisation operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~updateOrganisationCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/Organisation} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -248,25 +248,25 @@
 
     /**
      * Update an Organisation
-     * @param {Number} organisationId Organisation identifier
+     * @param {Number} organisationId 
      * @param {module:AIcrowdEvaluations/model/Organisation} payload 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~putOrganisationDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~updateOrganisationCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/Organisation}
      */
-    this.putOrganisationDao = function(organisationId, payload, opts, callback) {
+    this.updateOrganisation = function(organisationId, payload, opts, callback) {
       opts = opts || {};
       var postBody = payload;
 
       // verify the required parameter 'organisationId' is set
       if (organisationId === undefined || organisationId === null) {
-        throw new Error("Missing the required parameter 'organisationId' when calling putOrganisationDao");
+        throw new Error("Missing the required parameter 'organisationId' when calling updateOrganisation");
       }
 
       // verify the required parameter 'payload' is set
       if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling putOrganisationDao");
+        throw new Error("Missing the required parameter 'payload' when calling updateOrganisation");
       }
 
 
@@ -296,8 +296,8 @@
     }
 
     /**
-     * Callback function to receive the result of the putQuotaDao operation.
-     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~putQuotaDaoCallback
+     * Callback function to receive the result of the updateOrganisationQuota operation.
+     * @callback module:AIcrowdEvaluations/api/OrganisationsApi~updateOrganisationQuotaCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -305,21 +305,21 @@
 
     /**
      * Add or subtract quota for an organisation
-     * @param {Number} organisationId Organisation identifier
+     * @param {Number} organisationId 
      * @param {module:AIcrowdEvaluations/model/OrganisationQuota} payload 
-     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~putQuotaDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/OrganisationsApi~updateOrganisationQuotaCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.putQuotaDao = function(organisationId, payload, callback) {
+    this.updateOrganisationQuota = function(organisationId, payload, callback) {
       var postBody = payload;
 
       // verify the required parameter 'organisationId' is set
       if (organisationId === undefined || organisationId === null) {
-        throw new Error("Missing the required parameter 'organisationId' when calling putQuotaDao");
+        throw new Error("Missing the required parameter 'organisationId' when calling updateOrganisationQuota");
       }
 
       // verify the required parameter 'payload' is set
       if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling putQuotaDao");
+        throw new Error("Missing the required parameter 'payload' when calling updateOrganisationQuota");
       }
 
 
@@ -341,7 +341,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/organisations/addquota/{organisation_id}', 'PUT',
+        '/organisations/{organisation_id}/addquota', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

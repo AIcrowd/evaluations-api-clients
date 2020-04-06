@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -14,10 +14,10 @@ require 'date'
 
 module AIcrowdEvaluations
   class Login
-    # The email address
+    # Email address of the user
     attr_accessor :email
 
-    # The user password 
+    # Password corresponding to the Email address
     attr_accessor :password
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -15,71 +15,7 @@ class OrganisationsApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def deleteOrganisationDao ( Integer organisationId, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/organisations/{organisation_id}"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (organisationId == null) {
-            throw new RuntimeException("missing required params organisationId")
-        }
-
-        
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "DELETE", "",
-                    null )
-                    
-    }
-    def getOrganisationDao ( Integer organisationId, String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/organisations/{organisation_id}"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (organisationId == null) {
-            throw new RuntimeException("missing required params organisationId")
-        }
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    Organisation.class )
-                    
-    }
-    def getOrganisationListDao ( String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/organisations/"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "array",
-                    Organisation.class )
-                    
-    }
-    def postOrganisationListDao ( Organisation payload, String xFields, Closure onSuccess, Closure onFailure)  {
+    def createOrganisation ( Organisation payload, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/organisations/"
 
@@ -102,7 +38,71 @@ class OrganisationsApi {
                     Organisation.class )
                     
     }
-    def putOrganisationDao ( Integer organisationId, Organisation payload, String xFields, Closure onSuccess, Closure onFailure)  {
+    def deleteOrganisation ( Integer organisationId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/organisations/{organisation_id}"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (organisationId == null) {
+            throw new RuntimeException("missing required params organisationId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "DELETE", "",
+                    null )
+                    
+    }
+    def getOrganisation ( Integer organisationId, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/organisations/{organisation_id}"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (organisationId == null) {
+            throw new RuntimeException("missing required params organisationId")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    Organisation.class )
+                    
+    }
+    def listOrganisations ( String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/organisations/"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "array",
+                    Organisation.class )
+                    
+    }
+    def updateOrganisation ( Integer organisationId, Organisation payload, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/organisations/{organisation_id}"
 
@@ -129,9 +129,9 @@ class OrganisationsApi {
                     Organisation.class )
                     
     }
-    def putQuotaDao ( Integer organisationId, OrganisationQuota payload, Closure onSuccess, Closure onFailure)  {
+    def updateOrganisationQuota ( Integer organisationId, OrganisationQuota payload, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
-        String resourcePath = "/organisations/addquota/{organisation_id}"
+        String resourcePath = "/organisations/{organisation_id}/addquota"
 
         // query params
         def queryParams = [:]

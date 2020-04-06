@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -38,8 +38,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Login" /> class.
         /// </summary>
-        /// <param name="email">The email address (required).</param>
-        /// <param name="password">The user password  (required).</param>
+        /// <param name="email">Email address of the user (required).</param>
+        /// <param name="password">Password corresponding to the Email address (required).</param>
         public Login(string email = default(string), string password = default(string))
         {
             // to ensure "email" is required (not null)
@@ -63,16 +63,16 @@ namespace Com.AIcrowd.Evaluations.Model
         }
         
         /// <summary>
-        /// The email address
+        /// Email address of the user
         /// </summary>
-        /// <value>The email address</value>
+        /// <value>Email address of the user</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
 
         /// <summary>
-        /// The user password 
+        /// Password corresponding to the Email address
         /// </summary>
-        /// <value>The user password </value>
+        /// <value>Password corresponding to the Email address</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
 

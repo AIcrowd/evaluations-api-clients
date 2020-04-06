@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,42 +72,42 @@ class GradersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for deleteGraderDao
+     * Test case for createGrader
      *
      * .
      *
      */
-    public function testDeleteGraderDao()
+    public function testCreateGrader()
     {
     }
 
     /**
-     * Test case for getGraderDao
+     * Test case for deleteGrader
      *
      * .
      *
      */
-    public function testGetGraderDao()
+    public function testDeleteGrader()
     {
     }
 
     /**
-     * Test case for getGraderListDao
+     * Test case for getGrader
      *
      * .
      *
      */
-    public function testGetGraderListDao()
+    public function testGetGrader()
     {
     }
 
     /**
-     * Test case for postGraderListDao
+     * Test case for listGraders
      *
      * .
      *
      */
-    public function testPostGraderListDao()
+    public function testListGraders()
     {
     }
 }

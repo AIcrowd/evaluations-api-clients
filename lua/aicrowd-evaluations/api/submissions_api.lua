@@ -1,7 +1,7 @@
 --[[
-  Evaluations API
+  AIcrowd Evaluations API
  
-  API to create and evaluate custom challenges
+  API to create and evaluate custom challenges on AIcrowd!
  
   OpenAPI spec version: 1.0.0
   
@@ -42,7 +42,67 @@ local function new_submissions_api(host, basePath, schemes)
 	}, submissions_api_mt)
 end
 
-function submissions_api:delete_submission_dao(submission_id)
+function submissions_api:create_submission(payload, x_fields)
+	local req = http_request.new_from_uri({
+		scheme = self.default_scheme;
+		host = self.host;
+		path = string.format("%s/submissions",
+			self.basePath);
+	})
+
+	-- set HTTP verb
+	req.headers:upsert(":method", "POST")
+	-- TODO: create a function to select proper accept
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_content_type = { "application/json" }
+	req.headers:upsert("accept", "application/json")
+
+	-- TODO: create a function to select proper content-type
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_accept = { "application/json" }
+	req.headers:upsert("content-type", "application/json")
+
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
+	req:set_body(dkjson.encode(payload))
+
+	-- api key in headers 'AUTHORIZATION'
+	if self.api_key['AUTHORIZATION'] then
+		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
+	end
+
+	-- make the HTTP call
+	local headers, stream, errno = req:go()
+	if not headers then
+		return nil, stream, errno
+	end
+	local http_status = headers:get(":status")
+	if http_status:sub(1,1) == "2" then
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return aicrowd-evaluations_submissions.cast(result), headers
+	else
+		local body, err, errno2 = stream:get_body_as_string()
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		-- return the error message (http body)
+		return nil, http_status, body
+	end
+end
+
+function submissions_api:delete_submission(submission_id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -86,7 +146,7 @@ function submissions_api:delete_submission_dao(submission_id)
 	end
 end
 
-function submissions_api:get_submission_dao(submission_id, x_fields)
+function submissions_api:get_submission(submission_id, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -144,7 +204,7 @@ function submissions_api:get_submission_dao(submission_id, x_fields)
 	end
 end
 
-function submissions_api:get_submission_data_dao(submission_id)
+function submissions_api:get_submission_data(submission_id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -188,7 +248,7 @@ function submissions_api:get_submission_data_dao(submission_id)
 	end
 end
 
-function submissions_api:get_submission_list_dao(x_fields)
+function submissions_api:list_submissions(x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -238,66 +298,6 @@ function submissions_api:get_submission_list_dao(x_fields)
 			aicrowd-evaluations_submissions.cast(ob)
 		end
 		return result, headers
-	else
-		local body, err, errno2 = stream:get_body_as_string()
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		-- return the error message (http body)
-		return nil, http_status, body
-	end
-end
-
-function submissions_api:post_submission_list_dao(payload, x_fields)
-	local req = http_request.new_from_uri({
-		scheme = self.default_scheme;
-		host = self.host;
-		path = string.format("%s/submissions",
-			self.basePath);
-	})
-
-	-- set HTTP verb
-	req.headers:upsert(":method", "POST")
-	-- TODO: create a function to select proper accept
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
-
-	-- TODO: create a function to select proper content-type
-	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
-	--local var_accept = { "application/json" }
-	req.headers:upsert("content-type", "application/json")
-
-	if x_fields then
-		req.headers:upsert("X-Fields", x_fields)
-	end
-	req:set_body(dkjson.encode(payload))
-
-	-- api key in headers 'AUTHORIZATION'
-	if self.api_key['AUTHORIZATION'] then
-		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
-	end
-
-	-- make the HTTP call
-	local headers, stream, errno = req:go()
-	if not headers then
-		return nil, stream, errno
-	end
-	local http_status = headers:get(":status")
-	if http_status:sub(1,1) == "2" then
-		local body, err, errno2 = stream:get_body_as_string()
-		-- exception when getting the HTTP body
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		local result, _, err3 = dkjson.decode(body)
-		-- exception when decoding the HTTP body
-		if result == nil then
-			return nil, err3
-		end
-		return aicrowd-evaluations_submissions.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

@@ -6,7 +6,7 @@ goog.provide('API.Client.AuthResponse');
 API.Client.AuthResponse = function() {}
 
 /**
- * Authorization token that should be used in the headers
+ * API Authorization token that should be used in the headers
  * @type {!string}
  * @export
  */

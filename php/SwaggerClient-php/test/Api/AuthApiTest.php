@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,22 +72,22 @@ class AuthApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for postLogoutApi
+     * Test case for login
      *
      * .
      *
      */
-    public function testPostLogoutApi()
+    public function testLogin()
     {
     }
 
     /**
-     * Test case for postUserLogin
+     * Test case for logout
      *
      * .
      *
      */
-    public function testPostUserLogin()
+    public function testLogout()
     {
     }
 }

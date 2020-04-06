@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -81,13 +81,41 @@ class GradersApi(
 
   /**
    * 
-   * Delete a grader
+   * Create a new grader
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Grader
+   */
+  def createGrader(payload: Grader, xFields: Option[String] = None): Option[Grader] = {
+    val await = Try(Await.result(createGraderAsync(payload, xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Create a new grader
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(Grader)
+   */
+  def createGraderAsync(payload: Grader, xFields: Option[String] = None): Future[Grader] = {
+      helper.createGrader(payload, xFields)
+  }
+
+  /**
+   * 
+   * Delete a grader by its ID
    *
    * @param graderId  
    * @return void
    */
-  def deleteGraderDao(graderId: Integer) = {
-    val await = Try(Await.result(deleteGraderDaoAsync(graderId), Duration.Inf))
+  def deleteGrader(graderId: Integer) = {
+    val await = Try(Await.result(deleteGraderAsync(graderId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -96,25 +124,25 @@ class GradersApi(
 
   /**
    *  asynchronously
-   * Delete a grader
+   * Delete a grader by its ID
    *
    * @param graderId  
    * @return Future(void)
    */
-  def deleteGraderDaoAsync(graderId: Integer) = {
-      helper.deleteGraderDao(graderId)
+  def deleteGraderAsync(graderId: Integer) = {
+      helper.deleteGrader(graderId)
   }
 
   /**
    * 
-   * Get information of a grader
+   * Get details of a grader by its ID
    *
    * @param graderId  
    * @param xFields An optional fields mask (optional)
    * @return Grader
    */
-  def getGraderDao(graderId: Integer, xFields: Option[String] = None): Option[Grader] = {
-    val await = Try(Await.result(getGraderDaoAsync(graderId, xFields), Duration.Inf))
+  def getGrader(graderId: Integer, xFields: Option[String] = None): Option[Grader] = {
+    val await = Try(Await.result(getGraderAsync(graderId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -123,25 +151,25 @@ class GradersApi(
 
   /**
    *  asynchronously
-   * Get information of a grader
+   * Get details of a grader by its ID
    *
    * @param graderId  
    * @param xFields An optional fields mask (optional)
    * @return Future(Grader)
    */
-  def getGraderDaoAsync(graderId: Integer, xFields: Option[String] = None): Future[Grader] = {
-      helper.getGraderDao(graderId, xFields)
+  def getGraderAsync(graderId: Integer, xFields: Option[String] = None): Future[Grader] = {
+      helper.getGrader(graderId, xFields)
   }
 
   /**
    * 
-   * Get all grader
+   * List all graders available
    *
    * @param xFields An optional fields mask (optional)
    * @return List[Grader]
    */
-  def getGraderListDao(xFields: Option[String] = None): Option[List[Grader]] = {
-    val await = Try(Await.result(getGraderListDaoAsync(xFields), Duration.Inf))
+  def listGraders(xFields: Option[String] = None): Option[List[Grader]] = {
+    val await = Try(Await.result(listGradersAsync(xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -150,48 +178,42 @@ class GradersApi(
 
   /**
    *  asynchronously
-   * Get all grader
+   * List all graders available
    *
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Grader])
    */
-  def getGraderListDaoAsync(xFields: Option[String] = None): Future[List[Grader]] = {
-      helper.getGraderListDao(xFields)
-  }
-
-  /**
-   * 
-   * Create a new grader
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Grader
-   */
-  def postGraderListDao(payload: Grader, xFields: Option[String] = None): Option[Grader] = {
-    val await = Try(Await.result(postGraderListDaoAsync(payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Create a new grader
-   *
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Grader)
-   */
-  def postGraderListDaoAsync(payload: Grader, xFields: Option[String] = None): Future[Grader] = {
-      helper.postGraderListDao(payload, xFields)
+  def listGradersAsync(xFields: Option[String] = None): Future[List[Grader]] = {
+      helper.listGraders(xFields)
   }
 
 }
 
 class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def deleteGraderDao(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def createGrader(payload: Grader,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[Grader], writer: RequestWriter[Grader]): Future[Grader] = {
+    // create path and map variables
+    val path = (addFmt("/graders/"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling GradersApi->createGrader")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def deleteGrader(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/graders/{grader_id}")
       replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
@@ -207,7 +229,7 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def getGraderDao(graderId: Integer,
+  def getGrader(graderId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Grader]): Future[Grader] = {
     // create path and map variables
@@ -229,7 +251,7 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def getGraderListDao(xFields: Option[String] = None
+  def listGraders(xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Grader]]): Future[List[Grader]] = {
     // create path and map variables
     val path = (addFmt("/graders/"))
@@ -244,28 +266,6 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def postGraderListDao(payload: Grader,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Grader], writer: RequestWriter[Grader]): Future[Grader] = {
-    // create path and map variables
-    val path = (addFmt("/graders/"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling GradersApi->postGraderListDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,47 +32,47 @@ describe 'ClustersApi' do
     end
   end
 
-  # unit tests for delete_cluster_dao
-  # Delete a cluster
-  # @param cluster_id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_cluster_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_cluster_dao
-  # Get information of a cluster
-  # @param cluster_id 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Cluster]
-  describe 'get_cluster_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_cluster_list_dao
-  # Get all clusters
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Array<Cluster>]
-  describe 'get_cluster_list_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_cluster_list_dao
-  # Add a new cluster
+  # unit tests for create_cluster
+  # Add a new cluster to AIcrowd and install necessary dependencies
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [Cluster]
-  describe 'post_cluster_list_dao test' do
+  describe 'create_cluster test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete_cluster
+  # Delete a cluster by its ID
+  # @param cluster_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_cluster test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_cluster
+  # Get details of a cluster by its ID
+  # @param cluster_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Cluster]
+  describe 'get_cluster test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_clusters
+  # List all clusters available
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Array<Cluster>]
+  describe 'list_clusters test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

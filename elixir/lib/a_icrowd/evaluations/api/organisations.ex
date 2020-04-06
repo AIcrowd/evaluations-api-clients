@@ -12,87 +12,6 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
 
 
   @doc """
-  Delete an Organisation
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - organisation_id (integer()): Organisation identifier
-  - opts (KeywordList): [optional] Optional parameters
-
-  ## Returns
-
-  {:ok, %{}} on success
-  {:error, info} on failure
-  """
-  @spec delete_organisation_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def delete_organisation_dao(connection, organisation_id, _opts \\ []) do
-    %{}
-    |> method(:delete)
-    |> url("/organisations/#{organisation_id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(false)
-  end
-
-  @doc """
-  Get information of an organisation
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - organisation_id (integer()): Organisation identifier
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.Organisation{}} on success
-  {:error, info} on failure
-  """
-  @spec get_organisation_dao(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
-  def get_organisation_dao(connection, organisation_id, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/organisations/#{organisation_id}")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.Organisation{})
-  end
-
-  @doc """
-  Get all organisations
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, [%Organisation{}, ...]} on success
-  {:error, info} on failure
-  """
-  @spec get_organisation_list_dao(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Organisation.t)} | {:error, Tesla.Env.t}
-  def get_organisation_list_dao(connection, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:get)
-    |> url("/organisations/")
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode([%AIcrowd.Evaluations.Model.Organisation{}])
-  end
-
-  @doc """
   Create a new organisation
 
   ## Parameters
@@ -107,8 +26,8 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
   {:ok, %AIcrowd.Evaluations.Model.Organisation{}} on success
   {:error, info} on failure
   """
-  @spec post_organisation_list_dao(Tesla.Env.client, AIcrowd.Evaluations.Model.Organisation.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
-  def post_organisation_list_dao(connection, payload, opts \\ []) do
+  @spec create_organisation(Tesla.Env.client, AIcrowd.Evaluations.Model.Organisation.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
+  def create_organisation(connection, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -123,12 +42,93 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
   end
 
   @doc """
+  Delete an Organisation
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - organisation_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec delete_organisation(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def delete_organisation(connection, organisation_id, _opts \\ []) do
+    %{}
+    |> method(:delete)
+    |> url("/organisations/#{organisation_id}")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
+  Get details of an organisation
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - organisation_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.Organisation{}} on success
+  {:error, info} on failure
+  """
+  @spec get_organisation(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
+  def get_organisation(connection, organisation_id, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/organisations/#{organisation_id}")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.Organisation{})
+  end
+
+  @doc """
+  List all organisations
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, [%Organisation{}, ...]} on success
+  {:error, info} on failure
+  """
+  @spec list_organisations(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Organisation.t)} | {:error, Tesla.Env.t}
+  def list_organisations(connection, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:get)
+    |> url("/organisations/")
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode([%AIcrowd.Evaluations.Model.Organisation{}])
+  end
+
+  @doc """
   Update an Organisation
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - organisation_id (integer()): Organisation identifier
+  - organisation_id (integer()): 
   - payload (Organisation): 
   - opts (KeywordList): [optional] Optional parameters
     - :x_fields (String.t): An optional fields mask
@@ -138,8 +138,8 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
   {:ok, %AIcrowd.Evaluations.Model.Organisation{}} on success
   {:error, info} on failure
   """
-  @spec put_organisation_dao(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.Organisation.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
-  def put_organisation_dao(connection, organisation_id, payload, opts \\ []) do
+  @spec update_organisation(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.Organisation.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Organisation.t} | {:error, Tesla.Env.t}
+  def update_organisation(connection, organisation_id, payload, opts \\ []) do
     optional_params = %{
       :"X-Fields" => :headers
     }
@@ -159,7 +159,7 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - organisation_id (integer()): Organisation identifier
+  - organisation_id (integer()): 
   - payload (OrganisationQuota): 
   - opts (KeywordList): [optional] Optional parameters
 
@@ -168,11 +168,11 @@ defmodule AIcrowd.Evaluations.Api.Organisations do
   {:ok, %{}} on success
   {:error, info} on failure
   """
-  @spec put_quota_dao(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.OrganisationQuota.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def put_quota_dao(connection, organisation_id, payload, _opts \\ []) do
+  @spec update_organisation_quota(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.OrganisationQuota.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def update_organisation_quota(connection, organisation_id, payload, _opts \\ []) do
     %{}
     |> method(:put)
-    |> url("/organisations/addquota/#{organisation_id}")
+    |> url("/organisations/#{organisation_id}/addquota")
     |> add_param(:body, :"payload", payload)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()

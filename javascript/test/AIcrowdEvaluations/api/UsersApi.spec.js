@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -35,34 +35,19 @@
 
   describe('AIcrowdEvaluations', function() {
     describe('UsersApi', function() {
-      describe('deleteUserDao', function() {
-        it('should call deleteUserDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for deleteUserDao call
+      describe('createUser', function() {
+        it('should call createUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for createUser call and complete the assertions
           /*
-          var userId = 56;
-
-          instance.deleteUserDao(userId, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-
-            done();
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('getUserDao', function() {
-        it('should call getUserDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for getUserDao call and complete the assertions
-          /*
-          var userId = 56;
+          var payload = new AicrowdEvaluations.User();
+          payload.email = "";
+          payload.admin = false;
+          payload.organisationId = 0;
+          payload.password = "";
           var opts = {};
           opts.xFields = "xFields_example";
 
-          instance.getUserDao(userId, opts, function(error, data, response) {
+          instance.createUser(payload, opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
@@ -95,14 +80,74 @@
           done();
         });
       });
-      describe('getUserListDao', function() {
-        it('should call getUserListDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for getUserListDao call and complete the assertions
+      describe('deleteUser', function() {
+        it('should call deleteUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for deleteUser call
+          /*
+          var userId = 56;
+
+          instance.deleteUser(userId, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
+      describe('getUser', function() {
+        it('should call getUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for getUser call and complete the assertions
+          /*
+          var userId = 56;
+          var opts = {};
+          opts.xFields = "xFields_example";
+
+          instance.getUser(userId, opts, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            // TODO: update response assertions
+            expect(data).to.be.a(AicrowdEvaluations.User);
+            expect(data.id).to.be.a('number');
+            expect(data.id).to.be(0);
+            expect(data.email).to.be.a('string');
+            expect(data.email).to.be("");
+            expect(data.admin).to.be.a('boolean');
+            expect(data.admin).to.be(false);
+            expect(data.createdOn).to.be.a(Date);
+            expect(data.createdOn).to.be(new Date());
+            expect(data.passwordHash).to.be.a('string');
+            expect(data.passwordHash).to.be("");
+            expect(data.totalQuota).to.be.a('number');
+            expect(data.totalQuota).to.be(0);
+            expect(data.quota).to.be.a('number');
+            expect(data.quota).to.be(0);
+            expect(data.organisationId).to.be.a('number');
+            expect(data.organisationId).to.be(0);
+            expect(data.password).to.be.a('string');
+            expect(data.password).to.be("");
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
+      describe('listUsers', function() {
+        it('should call listUsers successfully', function(done) {
+          // TODO: uncomment, update parameter values for listUsers call and complete the assertions
           /*
           var opts = {};
           opts.xFields = "xFields_example";
 
-          instance.getUserListDao(opts, function(error, data, response) {
+          instance.listUsers(opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
@@ -141,10 +186,11 @@
           done();
         });
       });
-      describe('postUserListDao', function() {
-        it('should call postUserListDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for postUserListDao call and complete the assertions
+      describe('updateUser', function() {
+        it('should call updateUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for updateUser call and complete the assertions
           /*
+          var userId = 56;
           var payload = new AicrowdEvaluations.User();
           payload.email = "";
           payload.admin = false;
@@ -153,7 +199,7 @@
           var opts = {};
           opts.xFields = "xFields_example";
 
-          instance.postUserListDao(payload, opts, function(error, data, response) {
+          instance.updateUser(userId, payload, opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
@@ -186,65 +232,19 @@
           done();
         });
       });
-      describe('putQuotaDao', function() {
-        it('should call putQuotaDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for putQuotaDao call
+      describe('updateUserQuota', function() {
+        it('should call updateUserQuota successfully', function(done) {
+          // TODO: uncomment, update parameter values for updateUserQuota call
           /*
           var userId = 56;
           var payload = new AicrowdEvaluations.UserQuota();
           payload.quota = 0;
 
-          instance.putQuotaDao(userId, payload, function(error, data, response) {
+          instance.updateUserQuota(userId, payload, function(error, data, response) {
             if (error) {
               done(error);
               return;
             }
-
-            done();
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('putUserDao', function() {
-        it('should call putUserDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for putUserDao call and complete the assertions
-          /*
-          var userId = 56;
-          var payload = new AicrowdEvaluations.User();
-          payload.email = "";
-          payload.admin = false;
-          payload.organisationId = 0;
-          payload.password = "";
-          var opts = {};
-          opts.xFields = "xFields_example";
-
-          instance.putUserDao(userId, payload, opts, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(AicrowdEvaluations.User);
-            expect(data.id).to.be.a('number');
-            expect(data.id).to.be(0);
-            expect(data.email).to.be.a('string');
-            expect(data.email).to.be("");
-            expect(data.admin).to.be.a('boolean');
-            expect(data.admin).to.be(false);
-            expect(data.createdOn).to.be.a(Date);
-            expect(data.createdOn).to.be(new Date());
-            expect(data.passwordHash).to.be.a('string');
-            expect(data.passwordHash).to.be("");
-            expect(data.totalQuota).to.be.a('number');
-            expect(data.totalQuota).to.be(0);
-            expect(data.quota).to.be.a('number');
-            expect(data.quota).to.be(0);
-            expect(data.organisationId).to.be.a('number');
-            expect(data.organisationId).to.be(0);
-            expect(data.password).to.be.a('string');
-            expect(data.password).to.be("");
 
             done();
           });

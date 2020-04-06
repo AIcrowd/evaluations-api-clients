@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * Login
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T18:58:15.377Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T19:25:11.021Z")
 public class Login {
   @SerializedName("email")
   private String email = null;
@@ -41,10 +41,10 @@ public class Login {
   }
 
    /**
-   * The email address
+   * Email address of the user
    * @return email
   **/
-  @ApiModelProperty(required = true, value = "The email address")
+  @ApiModelProperty(required = true, value = "Email address of the user")
   public String getEmail() {
     return email;
   }
@@ -59,10 +59,10 @@ public class Login {
   }
 
    /**
-   * The user password 
+   * Password corresponding to the Email address
    * @return password
   **/
-  @ApiModelProperty(required = true, value = "The user password ")
+  @ApiModelProperty(required = true, value = "Password corresponding to the Email address")
   public String getPassword() {
     return password;
   }

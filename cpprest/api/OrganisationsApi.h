@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -44,21 +44,33 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Create a new organisation
+    /// </remarks>
+    /// <param name="payload"></param>
+    /// <param name="xFields">An optional fields mask (optional)</param>
+    pplx::task<std::shared_ptr<Organisation>> createOrganisation(
+        std::shared_ptr<Organisation> payload,
+        boost::optional<utility::string_t> xFields
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// Delete an Organisation
     /// </remarks>
-    /// <param name="organisationId">Organisation identifier</param>
-    pplx::task<void> deleteOrganisationDao(
+    /// <param name="organisationId"></param>
+    pplx::task<void> deleteOrganisation(
         int32_t organisationId
     );
     /// <summary>
     /// 
     /// </summary>
     /// <remarks>
-    /// Get information of an organisation
+    /// Get details of an organisation
     /// </remarks>
-    /// <param name="organisationId">Organisation identifier</param>
+    /// <param name="organisationId"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Organisation>> getOrganisationDao(
+    pplx::task<std::shared_ptr<Organisation>> getOrganisation(
         int32_t organisationId,
         boost::optional<utility::string_t> xFields
     );
@@ -66,22 +78,10 @@ public:
     /// 
     /// </summary>
     /// <remarks>
-    /// Get all organisations
+    /// List all organisations
     /// </remarks>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Organisation>>> getOrganisationListDao(
-        boost::optional<utility::string_t> xFields
-    );
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// Create a new organisation
-    /// </remarks>
-    /// <param name="payload"></param>
-    /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Organisation>> postOrganisationListDao(
-        std::shared_ptr<Organisation> payload,
+    pplx::task<std::vector<std::shared_ptr<Organisation>>> listOrganisations(
         boost::optional<utility::string_t> xFields
     );
     /// <summary>
@@ -90,10 +90,10 @@ public:
     /// <remarks>
     /// Update an Organisation
     /// </remarks>
-    /// <param name="organisationId">Organisation identifier</param>
+    /// <param name="organisationId"></param>
     /// <param name="payload"></param>
     /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Organisation>> putOrganisationDao(
+    pplx::task<std::shared_ptr<Organisation>> updateOrganisation(
         int32_t organisationId,
         std::shared_ptr<Organisation> payload,
         boost::optional<utility::string_t> xFields
@@ -104,9 +104,9 @@ public:
     /// <remarks>
     /// Add or subtract quota for an organisation
     /// </remarks>
-    /// <param name="organisationId">Organisation identifier</param>
+    /// <param name="organisationId"></param>
     /// <param name="payload"></param>
-    pplx::task<void> putQuotaDao(
+    pplx::task<void> updateOrganisationQuota(
         int32_t organisationId,
         std::shared_ptr<OrganisationQuota> payload
     );

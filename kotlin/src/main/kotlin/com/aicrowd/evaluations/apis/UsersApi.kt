@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -20,11 +20,50 @@ class UsersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(bas
 
     /**
     * 
+    * Create a new user
+    * @param payload  
+    * @param xFields An optional fields mask (optional)
+    * @return User
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun createUser(payload: User, xFields: kotlin.String) : User {
+        val localVariableBody: kotlin.Any? = payload
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/users/",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<User>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as User
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
     * Delete a user
-    * @param userId User identifier 
+    * @param userId  
     * @return void
     */
-    fun deleteUserDao(userId: kotlin.Int) : Unit {
+    fun deleteUser(userId: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -58,12 +97,12 @@ class UsersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(bas
     /**
     * 
     * Get information of a user
-    * @param userId User identifier 
+    * @param userId  
     * @param xFields An optional fields mask (optional)
     * @return User
     */
     @Suppress("UNCHECKED_CAST")
-    fun getUserDao(userId: kotlin.Int, xFields: kotlin.String) : User {
+    fun getUser(userId: kotlin.Int, xFields: kotlin.String) : User {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -101,7 +140,7 @@ class UsersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(bas
     * @return kotlin.Array<User>
     */
     @Suppress("UNCHECKED_CAST")
-    fun getUserListDao(xFields: kotlin.String) : kotlin.Array<User> {
+    fun listUsers(xFields: kotlin.String) : kotlin.Array<User> {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -134,91 +173,14 @@ class UsersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(bas
 
     /**
     * 
-    * Create a new user
-    * @param payload  
-    * @param xFields An optional fields mask (optional)
-    * @return User
-    */
-    @Suppress("UNCHECKED_CAST")
-    fun postUserListDao(payload: User, xFields: kotlin.String) : User {
-        val localVariableBody: kotlin.Any? = payload
-        val localVariableQuery: MultiValueMap = mapOf()
-        
-        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
-        localVariableHeaders.putAll(contentHeaders)
-        localVariableHeaders.putAll(acceptsHeaders)
-        
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/users/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<User>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as User
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
-    * Add or subtract quota for a user
-    * @param userId User identifier 
-    * @param payload  
-    * @return void
-    */
-    fun putQuotaDao(userId: kotlin.Int, payload: UserQuota) : Unit {
-        val localVariableBody: kotlin.Any? = payload
-        val localVariableQuery: MultiValueMap = mapOf()
-        
-        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
-        localVariableHeaders.putAll(contentHeaders)
-        localVariableHeaders.putAll(acceptsHeaders)
-        
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PUT,
-            "/users/addquota/{user_id}".replace("{"+"user_id"+"}", "$userId"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<Unit>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> Unit
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
     * Update a user
-    * @param userId User identifier 
+    * @param userId  
     * @param payload  
     * @param xFields An optional fields mask (optional)
     * @return User
     */
     @Suppress("UNCHECKED_CAST")
-    fun putUserDao(userId: kotlin.Int, payload: User, xFields: kotlin.String) : User {
+    fun updateUser(userId: kotlin.Int, payload: User, xFields: kotlin.String) : User {
         val localVariableBody: kotlin.Any? = payload
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -241,6 +203,44 @@ class UsersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(bas
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as User
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Add or subtract quota for a user
+    * @param userId  
+    * @param payload  
+    * @return void
+    */
+    fun updateUserQuota(userId: kotlin.Int, payload: UserQuota) : Unit {
+        val localVariableBody: kotlin.Any? = payload
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.PUT,
+            "/users/{user_id}/addquota".replace("{"+"user_id"+"}", "$userId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Unit>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> Unit
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

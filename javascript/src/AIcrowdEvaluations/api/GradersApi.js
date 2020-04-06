@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -48,24 +48,74 @@
 
 
     /**
-     * Callback function to receive the result of the deleteGraderDao operation.
-     * @callback module:AIcrowdEvaluations/api/GradersApi~deleteGraderDaoCallback
+     * Callback function to receive the result of the createGrader operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~createGraderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/Grader} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Create a new grader
+     * @param {module:AIcrowdEvaluations/model/Grader} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/GradersApi~createGraderCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/Grader}
+     */
+    this.createGrader = function(payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling createGrader");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Grader;
+
+      return this.apiClient.callApi(
+        '/graders/', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteGrader operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~deleteGraderCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Delete a grader
+     * Delete a grader by its ID
      * @param {Number} graderId 
-     * @param {module:AIcrowdEvaluations/api/GradersApi~deleteGraderDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/GradersApi~deleteGraderCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.deleteGraderDao = function(graderId, callback) {
+    this.deleteGrader = function(graderId, callback) {
       var postBody = null;
 
       // verify the required parameter 'graderId' is set
       if (graderId === undefined || graderId === null) {
-        throw new Error("Missing the required parameter 'graderId' when calling deleteGraderDao");
+        throw new Error("Missing the required parameter 'graderId' when calling deleteGrader");
       }
 
 
@@ -94,28 +144,28 @@
     }
 
     /**
-     * Callback function to receive the result of the getGraderDao operation.
-     * @callback module:AIcrowdEvaluations/api/GradersApi~getGraderDaoCallback
+     * Callback function to receive the result of the getGrader operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~getGraderCallback
      * @param {String} error Error message, if any.
      * @param {module:AIcrowdEvaluations/model/Grader} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get information of a grader
+     * Get details of a grader by its ID
      * @param {Number} graderId 
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/GradersApi~getGraderDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/GradersApi~getGraderCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:AIcrowdEvaluations/model/Grader}
      */
-    this.getGraderDao = function(graderId, opts, callback) {
+    this.getGrader = function(graderId, opts, callback) {
       opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'graderId' is set
       if (graderId === undefined || graderId === null) {
-        throw new Error("Missing the required parameter 'graderId' when calling getGraderDao");
+        throw new Error("Missing the required parameter 'graderId' when calling getGrader");
       }
 
 
@@ -145,21 +195,21 @@
     }
 
     /**
-     * Callback function to receive the result of the getGraderListDao operation.
-     * @callback module:AIcrowdEvaluations/api/GradersApi~getGraderListDaoCallback
+     * Callback function to receive the result of the listGraders operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~listGradersCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:AIcrowdEvaluations/model/Grader>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get all grader
+     * List all graders available
      * @param {Object} opts Optional parameters
      * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/GradersApi~getGraderListDaoCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:AIcrowdEvaluations/api/GradersApi~listGradersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Grader>}
      */
-    this.getGraderListDao = function(opts, callback) {
+    this.listGraders = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -183,56 +233,6 @@
 
       return this.apiClient.callApi(
         '/graders/', 'GET',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the postGraderListDao operation.
-     * @callback module:AIcrowdEvaluations/api/GradersApi~postGraderListDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/Grader} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Create a new grader
-     * @param {module:AIcrowdEvaluations/model/Grader} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/GradersApi~postGraderListDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/Grader}
-     */
-    this.postGraderListDao = function(payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling postGraderListDao");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Grader;
-
-      return this.apiClient.callApi(
-        '/graders/', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

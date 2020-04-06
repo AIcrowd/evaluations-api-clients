@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -14,10 +14,10 @@ package com.aicrowd.evaluations.models
 
 /**
  * 
- * @param Authorization Authorization token that should be used in the headers
+ * @param Authorization API Authorization token that should be used in the headers
  */
 data class AuthResponse (
-    /* Authorization token that should be used in the headers */
+    /* API Authorization token that should be used in the headers */
     val Authorization: kotlin.String? = null
 ) {
 

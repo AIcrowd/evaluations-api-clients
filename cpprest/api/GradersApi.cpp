@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -36,378 +36,13 @@ GradersApi::~GradersApi()
 {
 }
 
-pplx::task<void> GradersApi::deleteGraderDao(int32_t graderId)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/graders/{grader_id}");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("grader_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(graderId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("GradersApi->deleteGraderDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("GradersApi->deleteGraderDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling deleteGraderDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling deleteGraderDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        return void();
-    });
-}
-pplx::task<std::shared_ptr<Grader>> GradersApi::getGraderDao(int32_t graderId, boost::optional<utility::string_t> xFields)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/graders/{grader_id}");
-    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("grader_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(graderId));
-
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("GradersApi->getGraderDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("GradersApi->getGraderDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getGraderDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getGraderDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::shared_ptr<Grader> result(new Grader());
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            result->fromJson(json);
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getGraderDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<std::vector<std::shared_ptr<Grader>>> GradersApi::getGraderListDao(boost::optional<utility::string_t> xFields)
-{
-
-
-    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t path = utility::conversions::to_string_t("/graders/");
-    
-    std::map<utility::string_t, utility::string_t> queryParams;
-    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> formParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
-
-    std::unordered_set<utility::string_t> responseHttpContentTypes;
-    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t responseHttpContentType;
-
-    // use JSON if possible
-    if ( responseHttpContentTypes.size() == 0 )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
-    {
-        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("GradersApi->getGraderListDao does not produce any supported media type"));
-    }
-
-    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
-
-    std::unordered_set<utility::string_t> consumeHttpContentTypes;
-    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    if (xFields)
-    {
-        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
-    }
-
-    std::shared_ptr<IHttpBody> httpBody;
-    utility::string_t requestHttpContentType;
-
-    // use JSON if possible
-    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
-    {
-        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("GradersApi->getGraderListDao does not consume any supported media type"));
-    }
-
-    // authentication (api_key) required
-    {
-        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
-        if ( apiKey.size() > 0 )
-        {
-            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
-        }
-    }
-
-    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
-    .then([=](web::http::http_response response)
-    {
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (response.status_code() >= 400)
-        {
-            throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling getGraderListDao: ") + response.reason_phrase()
-                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( contentType.find(responseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling getGraderListDao: unexpected response type: ") + contentType
-                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
-            }
-        }
-
-        return response.extract_string();
-    })
-    .then([=](utility::string_t response)
-    {
-        std::vector<std::shared_ptr<Grader>> result;
-
-        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value json = web::json::value::parse(response);
-
-            for( auto& item : json.as_array() )
-            {
-                std::shared_ptr<Grader> itemObj(new Grader());
-                itemObj->fromJson(item);
-                result.push_back(itemObj);
-                
-            }
-            
-        }
-        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling getGraderListDao: unsupported response type"));
-        }
-
-        return result;
-    });
-}
-pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_ptr<Grader> payload, boost::optional<utility::string_t> xFields)
+pplx::task<std::shared_ptr<Grader>> GradersApi::createGrader(std::shared_ptr<Grader> payload, boost::optional<utility::string_t> xFields)
 {
 
     // verify the required parameter 'payload' is set
     if (payload == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling GradersApi->postGraderListDao"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'payload' when calling GradersApi->createGrader"));
     }
 
 
@@ -441,7 +76,7 @@ pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_pt
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("GradersApi->postGraderListDao does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("GradersApi->createGrader does not produce any supported media type"));
     }
 
     headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
@@ -484,7 +119,7 @@ pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_pt
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("GradersApi->postGraderListDao does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("GradersApi->createGrader does not consume any supported media type"));
     }
 
     // authentication (api_key) required
@@ -507,7 +142,7 @@ pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_pt
         if (response.status_code() >= 400)
         {
             throw ApiException(response.status_code()
-                , utility::conversions::to_string_t("error calling postGraderListDao: ") + response.reason_phrase()
+                , utility::conversions::to_string_t("error calling createGrader: ") + response.reason_phrase()
                 , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
         }
 
@@ -518,7 +153,7 @@ pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_pt
             if( contentType.find(responseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling postGraderListDao: unexpected response type: ") + contentType
+                    , utility::conversions::to_string_t("error calling createGrader: unexpected response type: ") + contentType
                     , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
             }
         }
@@ -542,7 +177,372 @@ pplx::task<std::shared_ptr<Grader>> GradersApi::postGraderListDao(std::shared_pt
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling postGraderListDao: unsupported response type"));
+                , utility::conversions::to_string_t("error calling createGrader: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<void> GradersApi::deleteGrader(int32_t graderId)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/graders/{grader_id}");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("grader_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(graderId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("GradersApi->deleteGrader does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("GradersApi->deleteGrader does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling deleteGrader: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling deleteGrader: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        return void();
+    });
+}
+pplx::task<std::shared_ptr<Grader>> GradersApi::getGrader(int32_t graderId, boost::optional<utility::string_t> xFields)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/graders/{grader_id}");
+    boost::replace_all(path, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("grader_id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(graderId));
+
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("GradersApi->getGrader does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("GradersApi->getGrader does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling getGrader: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getGrader: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::shared_ptr<Grader> result(new Grader());
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            result->fromJson(json);
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getGrader: unsupported response type"));
+        }
+
+        return result;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Grader>>> GradersApi::listGraders(boost::optional<utility::string_t> xFields)
+{
+
+
+    std::shared_ptr<ApiConfiguration> apiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t path = utility::conversions::to_string_t("/graders/");
+    
+    std::map<utility::string_t, utility::string_t> queryParams;
+    std::map<utility::string_t, utility::string_t> headerParams( apiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> formParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> fileParams;
+
+    std::unordered_set<utility::string_t> responseHttpContentTypes;
+    responseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t responseHttpContentType;
+
+    // use JSON if possible
+    if ( responseHttpContentTypes.size() == 0 )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( responseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( responseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != responseHttpContentTypes.end() )
+    {
+        responseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("GradersApi->listGraders does not produce any supported media type"));
+    }
+
+    headerParams[utility::conversions::to_string_t("Accept")] = responseHttpContentType;
+
+    std::unordered_set<utility::string_t> consumeHttpContentTypes;
+    consumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    if (xFields)
+    {
+        headerParams[utility::conversions::to_string_t("X-Fields")] = ApiClient::parameterToString(*xFields);
+    }
+
+    std::shared_ptr<IHttpBody> httpBody;
+    utility::string_t requestHttpContentType;
+
+    // use JSON if possible
+    if ( consumeHttpContentTypes.size() == 0 || consumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( consumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != consumeHttpContentTypes.end() )
+    {
+        requestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("GradersApi->listGraders does not consume any supported media type"));
+    }
+
+    // authentication (api_key) required
+    {
+        utility::string_t apiKey = apiConfiguration->getApiKey(utility::conversions::to_string_t("AUTHORIZATION"));
+        if ( apiKey.size() > 0 )
+        {
+            headerParams[utility::conversions::to_string_t("AUTHORIZATION")] = apiKey;
+        }
+    }
+
+    return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody, headerParams, formParams, fileParams, requestHttpContentType)
+    .then([=](web::http::http_response response)
+    {
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (response.status_code() >= 400)
+        {
+            throw ApiException(response.status_code()
+                , utility::conversions::to_string_t("error calling listGraders: ") + response.reason_phrase()
+                , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(response.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t contentType = response.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( contentType.find(responseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling listGraders: unexpected response type: ") + contentType
+                    , std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+            }
+        }
+
+        return response.extract_string();
+    })
+    .then([=](utility::string_t response)
+    {
+        std::vector<std::shared_ptr<Grader>> result;
+
+        if(responseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value json = web::json::value::parse(response);
+
+            for( auto& item : json.as_array() )
+            {
+                std::shared_ptr<Grader> itemObj(new Grader());
+                itemObj->fromJson(item);
+                result.push_back(itemObj);
+                
+            }
+            
+        }
+        // else if(responseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling listGraders: unsupported response type"));
         }
 
         return result;

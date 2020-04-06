@@ -7,7 +7,7 @@ source = {
 description = {
 	summary = "API client genreated by Swagger Codegen",
 	detailed = [[
-API to create and evaluate custom challenges]],
+API to create and evaluate custom challenges on AIcrowd!]],
 	homepage = "https://github.com/swagger-api/swagger-codegen",
 	license = "Unlicense",
 	maintainer = "Swagger Codegen contributors",

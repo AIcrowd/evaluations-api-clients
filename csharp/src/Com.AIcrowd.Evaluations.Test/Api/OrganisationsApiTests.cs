@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -65,79 +65,79 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
-        /// Test DeleteOrganisationDao
+        /// Test CreateOrganisation
         /// </summary>
         [Test]
-        public void DeleteOrganisationDaoTest()
+        public void CreateOrganisationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //Organisation payload = null;
+            //string xFields = null;
+            //var response = instance.CreateOrganisation(payload, xFields);
+            //Assert.IsInstanceOf<Organisation> (response, "response is Organisation");
+        }
+        
+        /// <summary>
+        /// Test DeleteOrganisation
+        /// </summary>
+        [Test]
+        public void DeleteOrganisationTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? organisationId = null;
-            //instance.DeleteOrganisationDao(organisationId);
+            //instance.DeleteOrganisation(organisationId);
             
         }
         
         /// <summary>
-        /// Test GetOrganisationDao
+        /// Test GetOrganisation
         /// </summary>
         [Test]
-        public void GetOrganisationDaoTest()
+        public void GetOrganisationTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? organisationId = null;
             //string xFields = null;
-            //var response = instance.GetOrganisationDao(organisationId, xFields);
+            //var response = instance.GetOrganisation(organisationId, xFields);
             //Assert.IsInstanceOf<Organisation> (response, "response is Organisation");
         }
         
         /// <summary>
-        /// Test GetOrganisationListDao
+        /// Test ListOrganisations
         /// </summary>
         [Test]
-        public void GetOrganisationListDaoTest()
+        public void ListOrganisationsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xFields = null;
-            //var response = instance.GetOrganisationListDao(xFields);
+            //var response = instance.ListOrganisations(xFields);
             //Assert.IsInstanceOf<List<Organisation>> (response, "response is List<Organisation>");
         }
         
         /// <summary>
-        /// Test PostOrganisationListDao
+        /// Test UpdateOrganisation
         /// </summary>
         [Test]
-        public void PostOrganisationListDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //Organisation payload = null;
-            //string xFields = null;
-            //var response = instance.PostOrganisationListDao(payload, xFields);
-            //Assert.IsInstanceOf<Organisation> (response, "response is Organisation");
-        }
-        
-        /// <summary>
-        /// Test PutOrganisationDao
-        /// </summary>
-        [Test]
-        public void PutOrganisationDaoTest()
+        public void UpdateOrganisationTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? organisationId = null;
             //Organisation payload = null;
             //string xFields = null;
-            //var response = instance.PutOrganisationDao(organisationId, payload, xFields);
+            //var response = instance.UpdateOrganisation(organisationId, payload, xFields);
             //Assert.IsInstanceOf<Organisation> (response, "response is Organisation");
         }
         
         /// <summary>
-        /// Test PutQuotaDao
+        /// Test UpdateOrganisationQuota
         /// </summary>
         [Test]
-        public void PutQuotaDaoTest()
+        public void UpdateOrganisationQuotaTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? organisationId = null;
             //OrganisationQuota payload = null;
-            //instance.PutQuotaDao(organisationId, payload);
+            //instance.UpdateOrganisationQuota(organisationId, payload);
             
         }
         

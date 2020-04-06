@@ -4,17 +4,54 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteClusterDao**](ClustersApi.md#DeleteClusterDao) | **Delete** /clusters/{cluster_id} | 
-[**GetClusterDao**](ClustersApi.md#GetClusterDao) | **Get** /clusters/{cluster_id} | 
-[**GetClusterListDao**](ClustersApi.md#GetClusterListDao) | **Get** /clusters/ | 
-[**PostClusterListDao**](ClustersApi.md#PostClusterListDao) | **Post** /clusters/ | 
+[**CreateCluster**](ClustersApi.md#CreateCluster) | **Post** /clusters/ | 
+[**DeleteCluster**](ClustersApi.md#DeleteCluster) | **Delete** /clusters/{cluster_id} | 
+[**GetCluster**](ClustersApi.md#GetCluster) | **Get** /clusters/{cluster_id} | 
+[**ListClusters**](ClustersApi.md#ListClusters) | **Get** /clusters/ | 
 
 
-# **DeleteClusterDao**
-> DeleteClusterDao(ctx, clusterId)
+# **CreateCluster**
+> Cluster CreateCluster(ctx, payload, optional)
 
 
-Delete a cluster
+Add a new cluster to AIcrowd and install necessary dependencies
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**Cluster**](Cluster.md)|  | 
+ **optional** | ***ClustersApiCreateClusterOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ClustersApiCreateClusterOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **DeleteCluster**
+> DeleteCluster(ctx, clusterId)
+
+
+Delete a cluster by its ID
 
 ### Required Parameters
 
@@ -38,11 +75,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetClusterDao**
-> Cluster GetClusterDao(ctx, clusterId, optional)
+# **GetCluster**
+> Cluster GetCluster(ctx, clusterId, optional)
 
 
-Get information of a cluster
+Get details of a cluster by its ID
 
 ### Required Parameters
 
@@ -50,10 +87,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **clusterId** | **int32**|  | 
- **optional** | ***ClustersApiGetClusterDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***ClustersApiGetClusterOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ClustersApiGetClusterDaoOpts struct
+Optional parameters are passed through a pointer to a ClustersApiGetClusterOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -75,21 +112,21 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetClusterListDao**
-> []Cluster GetClusterListDao(ctx, optional)
+# **ListClusters**
+> []Cluster ListClusters(ctx, optional)
 
 
-Get all clusters
+List all clusters available
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ClustersApiGetClusterListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***ClustersApiListClustersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ClustersApiGetClusterListDaoOpts struct
+Optional parameters are passed through a pointer to a ClustersApiListClustersOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -98,43 +135,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Cluster**](Cluster.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PostClusterListDao**
-> Cluster PostClusterListDao(ctx, payload, optional)
-
-
-Add a new cluster
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **payload** | [**Cluster**](Cluster.md)|  | 
- **optional** | ***ClustersApiPostClusterListDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a ClustersApiPostClusterListDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Cluster**](Cluster.md)
 
 ### Authorization
 

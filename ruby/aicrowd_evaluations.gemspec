@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.authors     = ["AIcrowd"]
   s.email       = ["devops@aicrowd.com"]
   s.homepage    = "https://aicrowd.com"
-  s.summary     = "Evaluations API Ruby Gem"
-  s.description = "API to create and evaluate custom challenges"
+  s.summary     = "AIcrowd Evaluations API Ruby Gem"
+  s.description = "API to create and evaluate custom challenges on AIcrowd!"
   s.license     = "Unlicense"
   s.required_ruby_version = ">= 1.9"
 

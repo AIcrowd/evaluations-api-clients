@@ -14,7 +14,30 @@ class SubmissionsApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def deleteSubmissionDao ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
+    def createSubmission ( Submissions payload, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/submissions/"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (payload == null) {
+            throw new RuntimeException("missing required params payload")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    Submissions.class )
+                    
+    }
+    def deleteSubmission ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}"
 
@@ -36,7 +59,7 @@ class SubmissionsApi {
                     null )
                     
     }
-    def getSubmissionDao ( Integer submissionId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def getSubmission ( Integer submissionId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}"
 
@@ -59,7 +82,7 @@ class SubmissionsApi {
                     Submissions.class )
                     
     }
-    def getSubmissionDataDao ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
+    def getSubmissionData ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}/data"
 
@@ -81,7 +104,7 @@ class SubmissionsApi {
                     null )
                     
     }
-    def getSubmissionListDao ( String xFields, Closure onSuccess, Closure onFailure)  {
+    def listSubmissions ( String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/"
 
@@ -97,29 +120,6 @@ class SubmissionsApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
-                    Submissions.class )
-                    
-    }
-    def postSubmissionListDao ( Submissions payload, String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/submissions/"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (payload == null) {
-            throw new RuntimeException("missing required params payload")
-        }
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "POST", "",
                     Submissions.class )
                     
     }

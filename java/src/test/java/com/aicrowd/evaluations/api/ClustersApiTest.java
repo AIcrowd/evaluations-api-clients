@@ -1,6 +1,6 @@
 /*
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -35,65 +35,65 @@ public class ClustersApiTest {
     /**
      * 
      *
-     * Delete a cluster
+     * Add a new cluster to AIcrowd and install necessary dependencies
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void deleteClusterDaoTest() throws ApiException {
-        Integer clusterId = null;
-        api.deleteClusterDao(clusterId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get information of a cluster
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getClusterDaoTest() throws ApiException {
-        Integer clusterId = null;
-        String xFields = null;
-        Cluster response = api.getClusterDao(clusterId, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Get all clusters
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getClusterListDaoTest() throws ApiException {
-        String xFields = null;
-        List<Cluster> response = api.getClusterListDao(xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Add a new cluster
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void postClusterListDaoTest() throws ApiException {
+    public void createClusterTest() throws ApiException {
         Cluster payload = null;
         String xFields = null;
-        Cluster response = api.postClusterListDao(payload, xFields);
+        Cluster response = api.createCluster(payload, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Delete a cluster by its ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteClusterTest() throws ApiException {
+        Integer clusterId = null;
+        api.deleteCluster(clusterId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Get details of a cluster by its ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getClusterTest() throws ApiException {
+        Integer clusterId = null;
+        String xFields = null;
+        Cluster response = api.getCluster(clusterId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * List all clusters available
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listClustersTest() throws ApiException {
+        String xFields = null;
+        List<Cluster> response = api.listClusters(xFields);
 
         // TODO: test validations
     }

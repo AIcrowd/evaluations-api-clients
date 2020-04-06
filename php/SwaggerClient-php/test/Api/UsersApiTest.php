@@ -10,9 +10,9 @@
  */
 
 /**
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -72,62 +72,62 @@ class UsersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for deleteUserDao
+     * Test case for createUser
      *
      * .
      *
      */
-    public function testDeleteUserDao()
+    public function testCreateUser()
     {
     }
 
     /**
-     * Test case for getUserDao
+     * Test case for deleteUser
      *
      * .
      *
      */
-    public function testGetUserDao()
+    public function testDeleteUser()
     {
     }
 
     /**
-     * Test case for getUserListDao
+     * Test case for getUser
      *
      * .
      *
      */
-    public function testGetUserListDao()
+    public function testGetUser()
     {
     }
 
     /**
-     * Test case for postUserListDao
+     * Test case for listUsers
      *
      * .
      *
      */
-    public function testPostUserListDao()
+    public function testListUsers()
     {
     }
 
     /**
-     * Test case for putQuotaDao
+     * Test case for updateUser
      *
      * .
      *
      */
-    public function testPutQuotaDao()
+    public function testUpdateUser()
     {
     }
 
     /**
-     * Test case for putUserDao
+     * Test case for updateUserQuota
      *
      * .
      *
      */
-    public function testPutUserDao()
+    public function testUpdateUserQuota()
     {
     }
 }

@@ -14,7 +14,30 @@ class ClustersApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
-    def deleteClusterDao ( Integer clusterId, Closure onSuccess, Closure onFailure)  {
+    def createCluster ( Cluster payload, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/clusters/"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (payload == null) {
+            throw new RuntimeException("missing required params payload")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    Cluster.class )
+                    
+    }
+    def deleteCluster ( Integer clusterId, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/clusters/{cluster_id}"
 
@@ -36,7 +59,7 @@ class ClustersApi {
                     null )
                     
     }
-    def getClusterDao ( Integer clusterId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def getCluster ( Integer clusterId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/clusters/{cluster_id}"
 
@@ -59,7 +82,7 @@ class ClustersApi {
                     Cluster.class )
                     
     }
-    def getClusterListDao ( String xFields, Closure onSuccess, Closure onFailure)  {
+    def listClusters ( String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/clusters/"
 
@@ -75,29 +98,6 @@ class ClustersApi {
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
-                    Cluster.class )
-                    
-    }
-    def postClusterListDao ( Cluster payload, String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/clusters/"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (payload == null) {
-            throw new RuntimeException("missing required params payload")
-        }
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "POST", "",
                     Cluster.class )
                     
     }

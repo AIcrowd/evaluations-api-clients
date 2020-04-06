@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -19,11 +19,50 @@ class ClustersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(
 
     /**
     * 
-    * Delete a cluster
+    * Add a new cluster to AIcrowd and install necessary dependencies
+    * @param payload  
+    * @param xFields An optional fields mask (optional)
+    * @return Cluster
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun createCluster(payload: Cluster, xFields: kotlin.String) : Cluster {
+        val localVariableBody: kotlin.Any? = payload
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/clusters/",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Cluster>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as Cluster
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Delete a cluster by its ID
     * @param clusterId  
     * @return void
     */
-    fun deleteClusterDao(clusterId: kotlin.Int) : Unit {
+    fun deleteCluster(clusterId: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -56,13 +95,13 @@ class ClustersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(
 
     /**
     * 
-    * Get information of a cluster
+    * Get details of a cluster by its ID
     * @param clusterId  
     * @param xFields An optional fields mask (optional)
     * @return Cluster
     */
     @Suppress("UNCHECKED_CAST")
-    fun getClusterDao(clusterId: kotlin.Int, xFields: kotlin.String) : Cluster {
+    fun getCluster(clusterId: kotlin.Int, xFields: kotlin.String) : Cluster {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -95,12 +134,12 @@ class ClustersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(
 
     /**
     * 
-    * Get all clusters
+    * List all clusters available
     * @param xFields An optional fields mask (optional)
     * @return kotlin.Array<Cluster>
     */
     @Suppress("UNCHECKED_CAST")
-    fun getClusterListDao(xFields: kotlin.String) : kotlin.Array<Cluster> {
+    fun listClusters(xFields: kotlin.String) : kotlin.Array<Cluster> {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -123,45 +162,6 @@ class ClustersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as kotlin.Array<Cluster>
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
-        }
-    }
-
-    /**
-    * 
-    * Add a new cluster
-    * @param payload  
-    * @param xFields An optional fields mask (optional)
-    * @return Cluster
-    */
-    @Suppress("UNCHECKED_CAST")
-    fun postClusterListDao(payload: Cluster, xFields: kotlin.String) : Cluster {
-        val localVariableBody: kotlin.Any? = payload
-        val localVariableQuery: MultiValueMap = mapOf()
-        
-        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
-        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
-        localVariableHeaders.putAll(contentHeaders)
-        localVariableHeaders.putAll(acceptsHeaders)
-        
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/clusters/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
-        val response = request<Cluster>(
-            localVariableConfig,
-            localVariableBody
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as Cluster
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

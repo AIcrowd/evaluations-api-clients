@@ -9,18 +9,71 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_cluster_dao**](ClustersApi.md#delete_cluster_dao) | **DELETE** /clusters/{cluster_id} | 
-[**get_cluster_dao**](ClustersApi.md#get_cluster_dao) | **GET** /clusters/{cluster_id} | 
-[**get_cluster_list_dao**](ClustersApi.md#get_cluster_list_dao) | **GET** /clusters/ | 
-[**post_cluster_list_dao**](ClustersApi.md#post_cluster_list_dao) | **POST** /clusters/ | 
+[**create_cluster**](ClustersApi.md#create_cluster) | **POST** /clusters/ | 
+[**delete_cluster**](ClustersApi.md#delete_cluster) | **DELETE** /clusters/{cluster_id} | 
+[**get_cluster**](ClustersApi.md#get_cluster) | **GET** /clusters/{cluster_id} | 
+[**list_clusters**](ClustersApi.md#list_clusters) | **GET** /clusters/ | 
 
 
-# **delete_cluster_dao**
-> delete_cluster_dao(cluster_id => $cluster_id)
+# **create_cluster**
+> Cluster create_cluster(payload => $payload, x_fields => $x_fields)
 
 
 
-Delete a cluster
+Add a new cluster to AIcrowd and install necessary dependencies
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::ClustersApi;
+my $api_instance = AIcrowdEvaluations::ClustersApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $payload = AIcrowdEvaluations::Object::Cluster->new(); # Cluster | 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
+
+eval { 
+    my $result = $api_instance->create_cluster(payload => $payload, x_fields => $x_fields);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ClustersApi->create_cluster: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Cluster**](Cluster.md)|  | 
+ **x_fields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_cluster**
+> delete_cluster(cluster_id => $cluster_id)
+
+
+
+Delete a cluster by its ID
 
 ### Example 
 ```perl
@@ -37,10 +90,10 @@ my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 my $cluster_id = 56; # int | 
 
 eval { 
-    $api_instance->delete_cluster_dao(cluster_id => $cluster_id);
+    $api_instance->delete_cluster(cluster_id => $cluster_id);
 };
 if ($@) {
-    warn "Exception when calling ClustersApi->delete_cluster_dao: $@\n";
+    warn "Exception when calling ClustersApi->delete_cluster: $@\n";
 }
 ```
 
@@ -65,12 +118,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_cluster_dao**
-> Cluster get_cluster_dao(cluster_id => $cluster_id, x_fields => $x_fields)
+# **get_cluster**
+> Cluster get_cluster(cluster_id => $cluster_id, x_fields => $x_fields)
 
 
 
-Get information of a cluster
+Get details of a cluster by its ID
 
 ### Example 
 ```perl
@@ -88,11 +141,11 @@ my $cluster_id = 56; # int |
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_cluster_dao(cluster_id => $cluster_id, x_fields => $x_fields);
+    my $result = $api_instance->get_cluster(cluster_id => $cluster_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling ClustersApi->get_cluster_dao: $@\n";
+    warn "Exception when calling ClustersApi->get_cluster: $@\n";
 }
 ```
 
@@ -118,12 +171,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_cluster_list_dao**
-> ARRAY[Cluster] get_cluster_list_dao(x_fields => $x_fields)
+# **list_clusters**
+> ARRAY[Cluster] list_clusters(x_fields => $x_fields)
 
 
 
-Get all clusters
+List all clusters available
 
 ### Example 
 ```perl
@@ -140,11 +193,11 @@ my $api_instance = AIcrowdEvaluations::ClustersApi->new(
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->get_cluster_list_dao(x_fields => $x_fields);
+    my $result = $api_instance->list_clusters(x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling ClustersApi->get_cluster_list_dao: $@\n";
+    warn "Exception when calling ClustersApi->list_clusters: $@\n";
 }
 ```
 
@@ -157,59 +210,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ARRAY[Cluster]**](Cluster.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_cluster_list_dao**
-> Cluster post_cluster_list_dao(payload => $payload, x_fields => $x_fields)
-
-
-
-Add a new cluster
-
-### Example 
-```perl
-use Data::Dumper;
-use AIcrowdEvaluations::ClustersApi;
-my $api_instance = AIcrowdEvaluations::ClustersApi->new(
-
-    # Configure API key authorization: api_key
-    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
-);
-
-my $payload = AIcrowdEvaluations::Object::Cluster->new(); # Cluster | 
-my $x_fields = 'x_fields_example'; # string | An optional fields mask
-
-eval { 
-    my $result = $api_instance->post_cluster_list_dao(payload => $payload, x_fields => $x_fields);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling ClustersApi->post_cluster_list_dao: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Cluster**](Cluster.md)|  | 
- **x_fields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Cluster**](Cluster.md)
 
 ### Authorization
 

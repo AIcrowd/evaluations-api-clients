@@ -4,143 +4,15 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteSubmissionDao**](SubmissionsApi.md#DeleteSubmissionDao) | **Delete** /submissions/{submission_id} | 
-[**GetSubmissionDao**](SubmissionsApi.md#GetSubmissionDao) | **Get** /submissions/{submission_id} | 
-[**GetSubmissionDataDao**](SubmissionsApi.md#GetSubmissionDataDao) | **Get** /submissions/{submission_id}/data | 
-[**GetSubmissionListDao**](SubmissionsApi.md#GetSubmissionListDao) | **Get** /submissions/ | 
-[**PostSubmissionListDao**](SubmissionsApi.md#PostSubmissionListDao) | **Post** /submissions/ | 
+[**CreateSubmission**](SubmissionsApi.md#CreateSubmission) | **Post** /submissions/ | 
+[**DeleteSubmission**](SubmissionsApi.md#DeleteSubmission) | **Delete** /submissions/{submission_id} | 
+[**GetSubmission**](SubmissionsApi.md#GetSubmission) | **Get** /submissions/{submission_id} | 
+[**GetSubmissionData**](SubmissionsApi.md#GetSubmissionData) | **Get** /submissions/{submission_id}/data | 
+[**ListSubmissions**](SubmissionsApi.md#ListSubmissions) | **Get** /submissions/ | 
 
 
-# **DeleteSubmissionDao**
-> DeleteSubmissionDao(ctx, submissionId)
-
-
-Stop evaluation of a submission
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **submissionId** | **int32**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetSubmissionDao**
-> Submissions GetSubmissionDao(ctx, submissionId, optional)
-
-
-Get details of a submission
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **submissionId** | **int32**|  | 
- **optional** | ***SubmissionsApiGetSubmissionDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Submissions**](Submissions.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetSubmissionDataDao**
-> GetSubmissionDataDao(ctx, submissionId)
-
-
-Get the submission data
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **submissionId** | **int32**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetSubmissionListDao**
-> []Submissions GetSubmissionListDao(ctx, optional)
-
-
-Get all submissions
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***SubmissionsApiGetSubmissionListDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionListDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**[]Submissions**](Submissions.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PostSubmissionListDao**
-> Submissions PostSubmissionListDao(ctx, payload, optional)
+# **CreateSubmission**
+> Submissions CreateSubmission(ctx, payload, optional)
 
 
 Make a new submission
@@ -151,10 +23,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Submissions**](Submissions.md)|  | 
- **optional** | ***SubmissionsApiPostSubmissionListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***SubmissionsApiCreateSubmissionOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a SubmissionsApiPostSubmissionListDaoOpts struct
+Optional parameters are passed through a pointer to a SubmissionsApiCreateSubmissionOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -164,6 +36,134 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **DeleteSubmission**
+> DeleteSubmission(ctx, submissionId)
+
+
+Stop evaluation of a submission and delete it
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetSubmission**
+> Submissions GetSubmission(ctx, submissionId, optional)
+
+
+Get details of a submission by its ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+ **optional** | ***SubmissionsApiGetSubmissionOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetSubmissionData**
+> GetSubmissionData(ctx, submissionId)
+
+
+Get the submission data by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListSubmissions**
+> []Submissions ListSubmissions(ctx, optional)
+
+
+List all submissions available
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***SubmissionsApiListSubmissionsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubmissionsApiListSubmissionsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**[]Submissions**](Submissions.md)
 
 ### Authorization
 

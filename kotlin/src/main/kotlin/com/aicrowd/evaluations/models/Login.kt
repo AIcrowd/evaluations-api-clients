@@ -1,6 +1,6 @@
 /**
-* Evaluations API
-* API to create and evaluate custom challenges
+* AIcrowd Evaluations API
+* API to create and evaluate custom challenges on AIcrowd!
 *
 * OpenAPI spec version: 1.0.0
 * 
@@ -14,13 +14,13 @@ package com.aicrowd.evaluations.models
 
 /**
  * 
- * @param email The email address
- * @param password The user password 
+ * @param email Email address of the user
+ * @param password Password corresponding to the Email address
  */
 data class Login (
-    /* The email address */
+    /* Email address of the user */
     val email: kotlin.String,
-    /* The user password  */
+    /* Password corresponding to the Email address */
     val password: kotlin.String
 ) {
 

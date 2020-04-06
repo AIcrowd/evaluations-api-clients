@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,180 +28,180 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a grader
+        /// Create a new grader
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Grader</returns>
+        Grader CreateGrader (Grader payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Create a new grader
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Grader</returns>
+        ApiResponse<Grader> CreateGraderWithHttpInfo (Grader payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns></returns>
-        void DeleteGraderDao (int? graderId);
+        void DeleteGrader (int? graderId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a grader
+        /// Delete a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteGraderDaoWithHttpInfo (int? graderId);
+        ApiResponse<Object> DeleteGraderWithHttpInfo (int? graderId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a grader
+        /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Grader</returns>
-        Grader GetGraderDao (int? graderId, string xFields = null);
+        Grader GetGrader (int? graderId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a grader
+        /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Grader</returns>
-        ApiResponse<Grader> GetGraderDaoWithHttpInfo (int? graderId, string xFields = null);
+        ApiResponse<Grader> GetGraderWithHttpInfo (int? graderId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all grader
+        /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        List<Grader> GetGraderListDao (string xFields = null);
+        List<Grader> ListGraders (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all grader
+        /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        ApiResponse<List<Grader>> GetGraderListDaoWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new grader
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Grader</returns>
-        Grader PostGraderListDao (Grader payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new grader
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Grader</returns>
-        ApiResponse<Grader> PostGraderListDaoWithHttpInfo (Grader payload, string xFields = null);
+        ApiResponse<List<Grader>> ListGradersWithHttpInfo (string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a grader
+        /// Create a new grader
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Grader</returns>
+        System.Threading.Tasks.Task<Grader> CreateGraderAsync (Grader payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Create a new grader
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Grader)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Grader>> CreateGraderAsyncWithHttpInfo (Grader payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteGraderDaoAsync (int? graderId);
+        System.Threading.Tasks.Task DeleteGraderAsync (int? graderId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a grader
+        /// Delete a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteGraderDaoAsyncWithHttpInfo (int? graderId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteGraderAsyncWithHttpInfo (int? graderId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a grader
+        /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Grader</returns>
-        System.Threading.Tasks.Task<Grader> GetGraderDaoAsync (int? graderId, string xFields = null);
+        System.Threading.Tasks.Task<Grader> GetGraderAsync (int? graderId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a grader
+        /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Grader)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Grader>> GetGraderDaoAsyncWithHttpInfo (int? graderId, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Grader>> GetGraderAsyncWithHttpInfo (int? graderId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all grader
+        /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        System.Threading.Tasks.Task<List<Grader>> GetGraderListDaoAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all grader
+        /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> GetGraderListDaoAsyncWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new grader
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Grader</returns>
-        System.Threading.Tasks.Task<Grader> PostGraderListDaoAsync (Grader payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create a new grader
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Grader)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Grader>> PostGraderListDaoAsyncWithHttpInfo (Grader payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -303,27 +303,192 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete a grader
+        ///  Create a new grader
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Grader</returns>
+        public Grader CreateGrader (Grader payload, string xFields = null)
+        {
+             ApiResponse<Grader> localVarResponse = CreateGraderWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Create a new grader
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Grader</returns>
+        public ApiResponse< Grader > CreateGraderWithHttpInfo (Grader payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->CreateGrader");
+
+            var localVarPath = "/graders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateGrader", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Grader>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
+        }
+
+        /// <summary>
+        ///  Create a new grader
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Grader</returns>
+        public async System.Threading.Tasks.Task<Grader> CreateGraderAsync (Grader payload, string xFields = null)
+        {
+             ApiResponse<Grader> localVarResponse = await CreateGraderAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Create a new grader
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Grader)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Grader>> CreateGraderAsyncWithHttpInfo (Grader payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->CreateGrader");
+
+            var localVarPath = "/graders/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateGrader", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Grader>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
+        }
+
+        /// <summary>
+        ///  Delete a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns></returns>
-        public void DeleteGraderDao (int? graderId)
+        public void DeleteGrader (int? graderId)
         {
-             DeleteGraderDaoWithHttpInfo(graderId);
+             DeleteGraderWithHttpInfo(graderId);
         }
 
         /// <summary>
-        ///  Delete a grader
+        ///  Delete a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteGraderDaoWithHttpInfo (int? graderId)
+        public ApiResponse<Object> DeleteGraderWithHttpInfo (int? graderId)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DeleteGraderDao");
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DeleteGrader");
 
             var localVarPath = "/graders/{grader_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -364,7 +529,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteGraderDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteGrader", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -374,28 +539,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete a grader
+        ///  Delete a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteGraderDaoAsync (int? graderId)
+        public async System.Threading.Tasks.Task DeleteGraderAsync (int? graderId)
         {
-             await DeleteGraderDaoAsyncWithHttpInfo(graderId);
+             await DeleteGraderAsyncWithHttpInfo(graderId);
 
         }
 
         /// <summary>
-        ///  Delete a grader
+        ///  Delete a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteGraderDaoAsyncWithHttpInfo (int? graderId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteGraderAsyncWithHttpInfo (int? graderId)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DeleteGraderDao");
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DeleteGrader");
 
             var localVarPath = "/graders/{grader_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -436,7 +601,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteGraderDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteGrader", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -446,30 +611,30 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get information of a grader
+        ///  Get details of a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Grader</returns>
-        public Grader GetGraderDao (int? graderId, string xFields = null)
+        public Grader GetGrader (int? graderId, string xFields = null)
         {
-             ApiResponse<Grader> localVarResponse = GetGraderDaoWithHttpInfo(graderId, xFields);
+             ApiResponse<Grader> localVarResponse = GetGraderWithHttpInfo(graderId, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get information of a grader
+        ///  Get details of a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Grader</returns>
-        public ApiResponse< Grader > GetGraderDaoWithHttpInfo (int? graderId, string xFields = null)
+        public ApiResponse< Grader > GetGraderWithHttpInfo (int? graderId, string xFields = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->GetGraderDao");
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->GetGrader");
 
             var localVarPath = "/graders/{grader_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -511,7 +676,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGraderDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetGrader", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -521,31 +686,31 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get information of a grader
+        ///  Get details of a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Grader</returns>
-        public async System.Threading.Tasks.Task<Grader> GetGraderDaoAsync (int? graderId, string xFields = null)
+        public async System.Threading.Tasks.Task<Grader> GetGraderAsync (int? graderId, string xFields = null)
         {
-             ApiResponse<Grader> localVarResponse = await GetGraderDaoAsyncWithHttpInfo(graderId, xFields);
+             ApiResponse<Grader> localVarResponse = await GetGraderAsyncWithHttpInfo(graderId, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get information of a grader
+        ///  Get details of a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Grader)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Grader>> GetGraderDaoAsyncWithHttpInfo (int? graderId, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Grader>> GetGraderAsyncWithHttpInfo (int? graderId, string xFields = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->GetGraderDao");
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->GetGrader");
 
             var localVarPath = "/graders/{grader_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -587,7 +752,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGraderDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetGrader", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -597,24 +762,24 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all grader
+        ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        public List<Grader> GetGraderListDao (string xFields = null)
+        public List<Grader> ListGraders (string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = GetGraderListDaoWithHttpInfo(xFields);
+             ApiResponse<List<Grader>> localVarResponse = ListGradersWithHttpInfo(xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get all grader
+        ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        public ApiResponse< List<Grader> > GetGraderListDaoWithHttpInfo (string xFields = null)
+        public ApiResponse< List<Grader> > ListGradersWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -656,7 +821,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGraderListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListGraders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -666,25 +831,25 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all grader
+        ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Grader>> GetGraderListDaoAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = await GetGraderListDaoAsyncWithHttpInfo(xFields);
+             ApiResponse<List<Grader>> localVarResponse = await ListGradersAsyncWithHttpInfo(xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get all grader
+        ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> GetGraderListDaoAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -726,178 +891,13 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGraderListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListGraders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<List<Grader>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Grader>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Grader>)));
-        }
-
-        /// <summary>
-        ///  Create a new grader
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Grader</returns>
-        public Grader PostGraderListDao (Grader payload, string xFields = null)
-        {
-             ApiResponse<Grader> localVarResponse = PostGraderListDaoWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Create a new grader
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Grader</returns>
-        public ApiResponse< Grader > PostGraderListDaoWithHttpInfo (Grader payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->PostGraderListDao");
-
-            var localVarPath = "/graders/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostGraderListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Grader>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
-        }
-
-        /// <summary>
-        ///  Create a new grader
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Grader</returns>
-        public async System.Threading.Tasks.Task<Grader> PostGraderListDaoAsync (Grader payload, string xFields = null)
-        {
-             ApiResponse<Grader> localVarResponse = await PostGraderListDaoAsyncWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Create a new grader
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Grader)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Grader>> PostGraderListDaoAsyncWithHttpInfo (Grader payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->PostGraderListDao");
-
-            var localVarPath = "/graders/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostGraderListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Grader>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
         }
 
     }

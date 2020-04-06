@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -32,72 +32,72 @@ describe 'OrganisationsApi' do
     end
   end
 
-  # unit tests for delete_organisation_dao
-  # Delete an Organisation
-  # @param organisation_id Organisation identifier
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_organisation_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_organisation_dao
-  # Get information of an organisation
-  # @param organisation_id Organisation identifier
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Organisation]
-  describe 'get_organisation_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_organisation_list_dao
-  # Get all organisations
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Array<Organisation>]
-  describe 'get_organisation_list_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_organisation_list_dao
+  # unit tests for create_organisation
   # Create a new organisation
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [Organisation]
-  describe 'post_organisation_list_dao test' do
+  describe 'create_organisation test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for put_organisation_dao
+  # unit tests for delete_organisation
+  # Delete an Organisation
+  # @param organisation_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_organisation test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_organisation
+  # Get details of an organisation
+  # @param organisation_id 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Organisation]
+  describe 'get_organisation test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_organisations
+  # List all organisations
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :x_fields An optional fields mask
+  # @return [Array<Organisation>]
+  describe 'list_organisations test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_organisation
   # Update an Organisation
-  # @param organisation_id Organisation identifier
+  # @param organisation_id 
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :x_fields An optional fields mask
   # @return [Organisation]
-  describe 'put_organisation_dao test' do
+  describe 'update_organisation test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for put_quota_dao
+  # unit tests for update_organisation_quota
   # Add or subtract quota for an organisation
-  # @param organisation_id Organisation identifier
+  # @param organisation_id 
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [nil]
-  describe 'put_quota_dao test' do
+  describe 'update_organisation_quota test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

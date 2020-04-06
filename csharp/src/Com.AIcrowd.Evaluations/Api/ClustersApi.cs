@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -28,180 +28,180 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a cluster
+        /// Add a new cluster to AIcrowd and install necessary dependencies
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Cluster</returns>
+        Cluster CreateCluster (Cluster payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Add a new cluster to AIcrowd and install necessary dependencies
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Cluster</returns>
+        ApiResponse<Cluster> CreateClusterWithHttpInfo (Cluster payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns></returns>
-        void DeleteClusterDao (int? clusterId);
+        void DeleteCluster (int? clusterId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a cluster
+        /// Delete a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteClusterDaoWithHttpInfo (int? clusterId);
+        ApiResponse<Object> DeleteClusterWithHttpInfo (int? clusterId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a cluster
+        /// Get details of a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Cluster</returns>
-        Cluster GetClusterDao (int? clusterId, string xFields = null);
+        Cluster GetCluster (int? clusterId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a cluster
+        /// Get details of a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Cluster</returns>
-        ApiResponse<Cluster> GetClusterDaoWithHttpInfo (int? clusterId, string xFields = null);
+        ApiResponse<Cluster> GetClusterWithHttpInfo (int? clusterId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all clusters
+        /// List all clusters available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Cluster&gt;</returns>
-        List<Cluster> GetClusterListDao (string xFields = null);
+        List<Cluster> ListClusters (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all clusters
+        /// List all clusters available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Cluster&gt;</returns>
-        ApiResponse<List<Cluster>> GetClusterListDaoWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Add a new cluster
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Cluster</returns>
-        Cluster PostClusterListDao (Cluster payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Add a new cluster
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Cluster</returns>
-        ApiResponse<Cluster> PostClusterListDaoWithHttpInfo (Cluster payload, string xFields = null);
+        ApiResponse<List<Cluster>> ListClustersWithHttpInfo (string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a cluster
+        /// Add a new cluster to AIcrowd and install necessary dependencies
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Cluster</returns>
+        System.Threading.Tasks.Task<Cluster> CreateClusterAsync (Cluster payload, string xFields = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Add a new cluster to AIcrowd and install necessary dependencies
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Cluster)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Cluster>> CreateClusterAsyncWithHttpInfo (Cluster payload, string xFields = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Delete a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteClusterDaoAsync (int? clusterId);
+        System.Threading.Tasks.Task DeleteClusterAsync (int? clusterId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete a cluster
+        /// Delete a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteClusterDaoAsyncWithHttpInfo (int? clusterId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteClusterAsyncWithHttpInfo (int? clusterId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a cluster
+        /// Get details of a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Cluster</returns>
-        System.Threading.Tasks.Task<Cluster> GetClusterDaoAsync (int? clusterId, string xFields = null);
+        System.Threading.Tasks.Task<Cluster> GetClusterAsync (int? clusterId, string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get information of a cluster
+        /// Get details of a cluster by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Cluster)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Cluster>> GetClusterDaoAsyncWithHttpInfo (int? clusterId, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<Cluster>> GetClusterAsyncWithHttpInfo (int? clusterId, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all clusters
+        /// List all clusters available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Cluster&gt;</returns>
-        System.Threading.Tasks.Task<List<Cluster>> GetClusterListDaoAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<Cluster>> ListClustersAsync (string xFields = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get all clusters
+        /// List all clusters available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Cluster&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Cluster>>> GetClusterListDaoAsyncWithHttpInfo (string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Add a new cluster
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Cluster</returns>
-        System.Threading.Tasks.Task<Cluster> PostClusterListDaoAsync (Cluster payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Add a new cluster
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Cluster)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Cluster>> PostClusterListDaoAsyncWithHttpInfo (Cluster payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Cluster>>> ListClustersAsyncWithHttpInfo (string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -303,27 +303,192 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete a cluster
+        ///  Add a new cluster to AIcrowd and install necessary dependencies
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Cluster</returns>
+        public Cluster CreateCluster (Cluster payload, string xFields = null)
+        {
+             ApiResponse<Cluster> localVarResponse = CreateClusterWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Add a new cluster to AIcrowd and install necessary dependencies
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of Cluster</returns>
+        public ApiResponse< Cluster > CreateClusterWithHttpInfo (Cluster payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling ClustersApi->CreateCluster");
+
+            var localVarPath = "/clusters/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateCluster", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Cluster>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Cluster) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Cluster)));
+        }
+
+        /// <summary>
+        ///  Add a new cluster to AIcrowd and install necessary dependencies
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of Cluster</returns>
+        public async System.Threading.Tasks.Task<Cluster> CreateClusterAsync (Cluster payload, string xFields = null)
+        {
+             ApiResponse<Cluster> localVarResponse = await CreateClusterAsyncWithHttpInfo(payload, xFields);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Add a new cluster to AIcrowd and install necessary dependencies
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (Cluster)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Cluster>> CreateClusterAsyncWithHttpInfo (Cluster payload, string xFields = null)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling ClustersApi->CreateCluster");
+
+            var localVarPath = "/clusters/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
+            if (payload != null && payload.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = payload; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateCluster", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Cluster>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Cluster) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Cluster)));
+        }
+
+        /// <summary>
+        ///  Delete a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns></returns>
-        public void DeleteClusterDao (int? clusterId)
+        public void DeleteCluster (int? clusterId)
         {
-             DeleteClusterDaoWithHttpInfo(clusterId);
+             DeleteClusterWithHttpInfo(clusterId);
         }
 
         /// <summary>
-        ///  Delete a cluster
+        ///  Delete a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteClusterDaoWithHttpInfo (int? clusterId)
+        public ApiResponse<Object> DeleteClusterWithHttpInfo (int? clusterId)
         {
             // verify the required parameter 'clusterId' is set
             if (clusterId == null)
-                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->DeleteClusterDao");
+                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->DeleteCluster");
 
             var localVarPath = "/clusters/{cluster_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -364,7 +529,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteClusterDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteCluster", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -374,28 +539,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Delete a cluster
+        ///  Delete a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteClusterDaoAsync (int? clusterId)
+        public async System.Threading.Tasks.Task DeleteClusterAsync (int? clusterId)
         {
-             await DeleteClusterDaoAsyncWithHttpInfo(clusterId);
+             await DeleteClusterAsyncWithHttpInfo(clusterId);
 
         }
 
         /// <summary>
-        ///  Delete a cluster
+        ///  Delete a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteClusterDaoAsyncWithHttpInfo (int? clusterId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteClusterAsyncWithHttpInfo (int? clusterId)
         {
             // verify the required parameter 'clusterId' is set
             if (clusterId == null)
-                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->DeleteClusterDao");
+                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->DeleteCluster");
 
             var localVarPath = "/clusters/{cluster_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -436,7 +601,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeleteClusterDao", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteCluster", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -446,30 +611,30 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get information of a cluster
+        ///  Get details of a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Cluster</returns>
-        public Cluster GetClusterDao (int? clusterId, string xFields = null)
+        public Cluster GetCluster (int? clusterId, string xFields = null)
         {
-             ApiResponse<Cluster> localVarResponse = GetClusterDaoWithHttpInfo(clusterId, xFields);
+             ApiResponse<Cluster> localVarResponse = GetClusterWithHttpInfo(clusterId, xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get information of a cluster
+        ///  Get details of a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of Cluster</returns>
-        public ApiResponse< Cluster > GetClusterDaoWithHttpInfo (int? clusterId, string xFields = null)
+        public ApiResponse< Cluster > GetClusterWithHttpInfo (int? clusterId, string xFields = null)
         {
             // verify the required parameter 'clusterId' is set
             if (clusterId == null)
-                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->GetClusterDao");
+                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->GetCluster");
 
             var localVarPath = "/clusters/{cluster_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -511,7 +676,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetClusterDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetCluster", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -521,31 +686,31 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get information of a cluster
+        ///  Get details of a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of Cluster</returns>
-        public async System.Threading.Tasks.Task<Cluster> GetClusterDaoAsync (int? clusterId, string xFields = null)
+        public async System.Threading.Tasks.Task<Cluster> GetClusterAsync (int? clusterId, string xFields = null)
         {
-             ApiResponse<Cluster> localVarResponse = await GetClusterDaoAsyncWithHttpInfo(clusterId, xFields);
+             ApiResponse<Cluster> localVarResponse = await GetClusterAsyncWithHttpInfo(clusterId, xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get information of a cluster
+        ///  Get details of a cluster by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clusterId"></param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (Cluster)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Cluster>> GetClusterDaoAsyncWithHttpInfo (int? clusterId, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Cluster>> GetClusterAsyncWithHttpInfo (int? clusterId, string xFields = null)
         {
             // verify the required parameter 'clusterId' is set
             if (clusterId == null)
-                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->GetClusterDao");
+                throw new ApiException(400, "Missing required parameter 'clusterId' when calling ClustersApi->GetCluster");
 
             var localVarPath = "/clusters/{cluster_id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -587,7 +752,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetClusterDao", localVarResponse);
+                Exception exception = ExceptionFactory("GetCluster", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -597,24 +762,24 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all clusters
+        ///  List all clusters available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Cluster&gt;</returns>
-        public List<Cluster> GetClusterListDao (string xFields = null)
+        public List<Cluster> ListClusters (string xFields = null)
         {
-             ApiResponse<List<Cluster>> localVarResponse = GetClusterListDaoWithHttpInfo(xFields);
+             ApiResponse<List<Cluster>> localVarResponse = ListClustersWithHttpInfo(xFields);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get all clusters
+        ///  List all clusters available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Cluster&gt;</returns>
-        public ApiResponse< List<Cluster> > GetClusterListDaoWithHttpInfo (string xFields = null)
+        public ApiResponse< List<Cluster> > ListClustersWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/clusters/";
@@ -656,7 +821,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetClusterListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListClusters", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -666,25 +831,25 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get all clusters
+        ///  List all clusters available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Cluster&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Cluster>> GetClusterListDaoAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<Cluster>> ListClustersAsync (string xFields = null)
         {
-             ApiResponse<List<Cluster>> localVarResponse = await GetClusterListDaoAsyncWithHttpInfo(xFields);
+             ApiResponse<List<Cluster>> localVarResponse = await ListClustersAsyncWithHttpInfo(xFields);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Get all clusters
+        ///  List all clusters available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Cluster&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Cluster>>> GetClusterListDaoAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Cluster>>> ListClustersAsyncWithHttpInfo (string xFields = null)
         {
 
             var localVarPath = "/clusters/";
@@ -726,178 +891,13 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetClusterListDao", localVarResponse);
+                Exception exception = ExceptionFactory("ListClusters", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<List<Cluster>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Cluster>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Cluster>)));
-        }
-
-        /// <summary>
-        ///  Add a new cluster
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Cluster</returns>
-        public Cluster PostClusterListDao (Cluster payload, string xFields = null)
-        {
-             ApiResponse<Cluster> localVarResponse = PostClusterListDaoWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Add a new cluster
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Cluster</returns>
-        public ApiResponse< Cluster > PostClusterListDaoWithHttpInfo (Cluster payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling ClustersApi->PostClusterListDao");
-
-            var localVarPath = "/clusters/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostClusterListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Cluster>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Cluster) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Cluster)));
-        }
-
-        /// <summary>
-        ///  Add a new cluster
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Cluster</returns>
-        public async System.Threading.Tasks.Task<Cluster> PostClusterListDaoAsync (Cluster payload, string xFields = null)
-        {
-             ApiResponse<Cluster> localVarResponse = await PostClusterListDaoAsyncWithHttpInfo(payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Add a new cluster
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Cluster)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Cluster>> PostClusterListDaoAsyncWithHttpInfo (Cluster payload, string xFields = null)
-        {
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling ClustersApi->PostClusterListDao");
-
-            var localVarPath = "/clusters/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostClusterListDao", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Cluster>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Cluster) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Cluster)));
         }
 
     }

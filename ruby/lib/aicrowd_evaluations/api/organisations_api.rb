@@ -1,7 +1,7 @@
 =begin
-#Evaluations API
+#AIcrowd Evaluations API
 
-#API to create and evaluate custom challenges
+#API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -19,168 +19,13 @@ module AIcrowdEvaluations
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Delete an Organisation
-    # @param organisation_id Organisation identifier
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def delete_organisation_dao(organisation_id, opts = {})
-      delete_organisation_dao_with_http_info(organisation_id, opts)
-      nil
-    end
-
-    # Delete an Organisation
-    # @param organisation_id Organisation identifier
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_organisation_dao_with_http_info(organisation_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.delete_organisation_dao ...'
-      end
-      # verify the required parameter 'organisation_id' is set
-      if @api_client.config.client_side_validation && organisation_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.delete_organisation_dao"
-      end
-      # resource path
-      local_var_path = '/organisations/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#delete_organisation_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Get information of an organisation
-    # @param organisation_id Organisation identifier
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Organisation]
-    def get_organisation_dao(organisation_id, opts = {})
-      data, _status_code, _headers = get_organisation_dao_with_http_info(organisation_id, opts)
-      data
-    end
-
-    # Get information of an organisation
-    # @param organisation_id Organisation identifier
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<(Organisation, Fixnum, Hash)>] Organisation data, response status code and response headers
-    def get_organisation_dao_with_http_info(organisation_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.get_organisation_dao ...'
-      end
-      # verify the required parameter 'organisation_id' is set
-      if @api_client.config.client_side_validation && organisation_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.get_organisation_dao"
-      end
-      # resource path
-      local_var_path = '/organisations/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Organisation')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#get_organisation_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Get all organisations
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<Organisation>]
-    def get_organisation_list_dao(opts = {})
-      data, _status_code, _headers = get_organisation_list_dao_with_http_info(opts)
-      data
-    end
-
-    # Get all organisations
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_fields An optional fields mask
-    # @return [Array<(Array<Organisation>, Fixnum, Hash)>] Array<Organisation> data, response status code and response headers
-    def get_organisation_list_dao_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.get_organisation_list_dao ...'
-      end
-      # resource path
-      local_var_path = '/organisations/'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['api_key']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<Organisation>')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#get_organisation_list_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
     # Create a new organisation
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Organisation]
-    def post_organisation_list_dao(payload, opts = {})
-      data, _status_code, _headers = post_organisation_list_dao_with_http_info(payload, opts)
+    def create_organisation(payload, opts = {})
+      data, _status_code, _headers = create_organisation_with_http_info(payload, opts)
       data
     end
 
@@ -189,13 +34,13 @@ module AIcrowdEvaluations
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Organisation, Fixnum, Hash)>] Organisation data, response status code and response headers
-    def post_organisation_list_dao_with_http_info(payload, opts = {})
+    def create_organisation_with_http_info(payload, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.post_organisation_list_dao ...'
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.create_organisation ...'
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
-        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.post_organisation_list_dao"
+        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.create_organisation"
       end
       # resource path
       local_var_path = '/organisations/'
@@ -225,38 +70,193 @@ module AIcrowdEvaluations
         :auth_names => auth_names,
         :return_type => 'Organisation')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#post_organisation_list_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrganisationsApi#create_organisation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Delete an Organisation
+    # @param organisation_id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_organisation(organisation_id, opts = {})
+      delete_organisation_with_http_info(organisation_id, opts)
+      nil
+    end
+
+    # Delete an Organisation
+    # @param organisation_id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def delete_organisation_with_http_info(organisation_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.delete_organisation ...'
+      end
+      # verify the required parameter 'organisation_id' is set
+      if @api_client.config.client_side_validation && organisation_id.nil?
+        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.delete_organisation"
+      end
+      # resource path
+      local_var_path = '/organisations/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrganisationsApi#delete_organisation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Get details of an organisation
+    # @param organisation_id 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Organisation]
+    def get_organisation(organisation_id, opts = {})
+      data, _status_code, _headers = get_organisation_with_http_info(organisation_id, opts)
+      data
+    end
+
+    # Get details of an organisation
+    # @param organisation_id 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(Organisation, Fixnum, Hash)>] Organisation data, response status code and response headers
+    def get_organisation_with_http_info(organisation_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.get_organisation ...'
+      end
+      # verify the required parameter 'organisation_id' is set
+      if @api_client.config.client_side_validation && organisation_id.nil?
+        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.get_organisation"
+      end
+      # resource path
+      local_var_path = '/organisations/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Organisation')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrganisationsApi#get_organisation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # List all organisations
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<Organisation>]
+    def list_organisations(opts = {})
+      data, _status_code, _headers = list_organisations_with_http_info(opts)
+      data
+    end
+
+    # List all organisations
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_fields An optional fields mask
+    # @return [Array<(Array<Organisation>, Fixnum, Hash)>] Array<Organisation> data, response status code and response headers
+    def list_organisations_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.list_organisations ...'
+      end
+      # resource path
+      local_var_path = '/organisations/'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'X-Fields'] = opts[:'x_fields'] if !opts[:'x_fields'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Array<Organisation>')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrganisationsApi#list_organisations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
     # Update an Organisation
-    # @param organisation_id Organisation identifier
+    # @param organisation_id 
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Organisation]
-    def put_organisation_dao(organisation_id, payload, opts = {})
-      data, _status_code, _headers = put_organisation_dao_with_http_info(organisation_id, payload, opts)
+    def update_organisation(organisation_id, payload, opts = {})
+      data, _status_code, _headers = update_organisation_with_http_info(organisation_id, payload, opts)
       data
     end
 
     # Update an Organisation
-    # @param organisation_id Organisation identifier
+    # @param organisation_id 
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Organisation, Fixnum, Hash)>] Organisation data, response status code and response headers
-    def put_organisation_dao_with_http_info(organisation_id, payload, opts = {})
+    def update_organisation_with_http_info(organisation_id, payload, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.put_organisation_dao ...'
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.update_organisation ...'
       end
       # verify the required parameter 'organisation_id' is set
       if @api_client.config.client_side_validation && organisation_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.put_organisation_dao"
+        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.update_organisation"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
-        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.put_organisation_dao"
+        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.update_organisation"
       end
       # resource path
       local_var_path = '/organisations/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
@@ -286,39 +286,39 @@ module AIcrowdEvaluations
         :auth_names => auth_names,
         :return_type => 'Organisation')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#put_organisation_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrganisationsApi#update_organisation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
     # Add or subtract quota for an organisation
-    # @param organisation_id Organisation identifier
+    # @param organisation_id 
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def put_quota_dao(organisation_id, payload, opts = {})
-      put_quota_dao_with_http_info(organisation_id, payload, opts)
+    def update_organisation_quota(organisation_id, payload, opts = {})
+      update_organisation_quota_with_http_info(organisation_id, payload, opts)
       nil
     end
 
     # Add or subtract quota for an organisation
-    # @param organisation_id Organisation identifier
+    # @param organisation_id 
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def put_quota_dao_with_http_info(organisation_id, payload, opts = {})
+    def update_organisation_quota_with_http_info(organisation_id, payload, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganisationsApi.put_quota_dao ...'
+        @api_client.config.logger.debug 'Calling API: OrganisationsApi.update_organisation_quota ...'
       end
       # verify the required parameter 'organisation_id' is set
       if @api_client.config.client_side_validation && organisation_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.put_quota_dao"
+        fail ArgumentError, "Missing the required parameter 'organisation_id' when calling OrganisationsApi.update_organisation_quota"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
-        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.put_quota_dao"
+        fail ArgumentError, "Missing the required parameter 'payload' when calling OrganisationsApi.update_organisation_quota"
       end
       # resource path
-      local_var_path = '/organisations/addquota/{organisation_id}'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
+      local_var_path = '/organisations/{organisation_id}/addquota'.sub('{' + 'organisation_id' + '}', organisation_id.to_s)
 
       # query parameters
       query_params = {}
@@ -343,7 +343,7 @@ module AIcrowdEvaluations
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganisationsApi#put_quota_dao\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrganisationsApi#update_organisation_quota\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
