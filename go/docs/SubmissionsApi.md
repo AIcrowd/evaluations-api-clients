@@ -51,10 +51,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **submissionId** | **int32**|  | 
- **optional** | ***GetSubmissionDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***SubmissionsApiGetSubmissionDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetSubmissionDaoOpts struct
+Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -115,10 +115,10 @@ Get all submissions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetSubmissionListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***SubmissionsApiGetSubmissionListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetSubmissionListDaoOpts struct
+Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -151,10 +151,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Submissions**](Submissions.md)|  | 
- **optional** | ***PostSubmissionListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***SubmissionsApiPostSubmissionListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostSubmissionListDaoOpts struct
+Optional parameters are passed through a pointer to a SubmissionsApiPostSubmissionListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

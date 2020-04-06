@@ -52,10 +52,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **organisationId** | **int32**| Organisation identifier | 
- **optional** | ***GetOrganisationDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***OrganisationsApiGetOrganisationDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetOrganisationDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiGetOrganisationDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -88,10 +88,10 @@ Get all organisations
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetOrganisationListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***OrganisationsApiGetOrganisationListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetOrganisationListDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiGetOrganisationListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -124,10 +124,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Organisation**](Organisation.md)|  | 
- **optional** | ***PostOrganisationListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***OrganisationsApiPostOrganisationListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostOrganisationListDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiPostOrganisationListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -162,10 +162,10 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **organisationId** | **int32**| Organisation identifier | 
   **payload** | [**Organisation**](Organisation.md)|  | 
- **optional** | ***PutOrganisationDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***OrganisationsApiPutOrganisationDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PutOrganisationDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiPutOrganisationDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

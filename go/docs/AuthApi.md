@@ -19,10 +19,10 @@ Logout a user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***PostLogoutApiOpts** | optional parameters | nil if no parameters
+ **optional** | ***AuthApiPostLogoutApiOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostLogoutApiOpts struct
+Optional parameters are passed through a pointer to a AuthApiPostLogoutApiOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -55,10 +55,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Login**](Login.md)|  | 
- **optional** | ***PostUserLoginOpts** | optional parameters | nil if no parameters
+ **optional** | ***AuthApiPostUserLoginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostUserLoginOpts struct
+Optional parameters are passed through a pointer to a AuthApiPostUserLoginOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

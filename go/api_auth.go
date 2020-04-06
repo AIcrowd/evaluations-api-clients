@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -29,17 +30,17 @@ type AuthApiService service
 AuthApiService
 Logout a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *PostLogoutApiOpts - Optional Parameters:
+ * @param optional nil or *AuthApiPostLogoutApiOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return AuthLogout
 */
 
-type PostLogoutApiOpts struct { 
+type AuthApiPostLogoutApiOpts struct { 
 	XFields optional.String
 }
 
-func (a *AuthApiService) PostLogoutApi(ctx context.Context, localVarOptionals *PostLogoutApiOpts) (AuthLogout, *http.Response, error) {
+func (a *AuthApiService) PostLogoutApi(ctx context.Context, localVarOptionals *AuthApiPostLogoutApiOpts) (AuthLogout, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -140,17 +141,17 @@ AuthApiService
 User login
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostUserLoginOpts - Optional Parameters:
+ * @param optional nil or *AuthApiPostUserLoginOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return AuthResponse
 */
 
-type PostUserLoginOpts struct { 
+type AuthApiPostUserLoginOpts struct { 
 	XFields optional.String
 }
 
-func (a *AuthApiService) PostUserLogin(ctx context.Context, payload Login, localVarOptionals *PostUserLoginOpts) (AuthResponse, *http.Response, error) {
+func (a *AuthApiService) PostUserLogin(ctx context.Context, payload Login, localVarOptionals *AuthApiPostUserLoginOpts) (AuthResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

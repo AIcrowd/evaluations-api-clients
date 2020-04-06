@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -115,17 +116,17 @@ OrganisationsApiService
 Get information of an organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param organisationId Organisation identifier
- * @param optional nil or *GetOrganisationDaoOpts - Optional Parameters:
+ * @param optional nil or *OrganisationsApiGetOrganisationDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Organisation
 */
 
-type GetOrganisationDaoOpts struct { 
+type OrganisationsApiGetOrganisationDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *OrganisationsApiService) GetOrganisationDao(ctx context.Context, organisationId int32, localVarOptionals *GetOrganisationDaoOpts) (Organisation, *http.Response, error) {
+func (a *OrganisationsApiService) GetOrganisationDao(ctx context.Context, organisationId int32, localVarOptionals *OrganisationsApiGetOrganisationDaoOpts) (Organisation, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -226,17 +227,17 @@ func (a *OrganisationsApiService) GetOrganisationDao(ctx context.Context, organi
 OrganisationsApiService
 Get all organisations
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetOrganisationListDaoOpts - Optional Parameters:
+ * @param optional nil or *OrganisationsApiGetOrganisationListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Organisation
 */
 
-type GetOrganisationListDaoOpts struct { 
+type OrganisationsApiGetOrganisationListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *OrganisationsApiService) GetOrganisationListDao(ctx context.Context, localVarOptionals *GetOrganisationListDaoOpts) ([]Organisation, *http.Response, error) {
+func (a *OrganisationsApiService) GetOrganisationListDao(ctx context.Context, localVarOptionals *OrganisationsApiGetOrganisationListDaoOpts) ([]Organisation, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -337,17 +338,17 @@ OrganisationsApiService
 Create a new organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostOrganisationListDaoOpts - Optional Parameters:
+ * @param optional nil or *OrganisationsApiPostOrganisationListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Organisation
 */
 
-type PostOrganisationListDaoOpts struct { 
+type OrganisationsApiPostOrganisationListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *OrganisationsApiService) PostOrganisationListDao(ctx context.Context, payload Organisation, localVarOptionals *PostOrganisationListDaoOpts) (Organisation, *http.Response, error) {
+func (a *OrganisationsApiService) PostOrganisationListDao(ctx context.Context, payload Organisation, localVarOptionals *OrganisationsApiPostOrganisationListDaoOpts) (Organisation, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -451,17 +452,17 @@ Update an Organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param organisationId Organisation identifier
  * @param payload
- * @param optional nil or *PutOrganisationDaoOpts - Optional Parameters:
+ * @param optional nil or *OrganisationsApiPutOrganisationDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Organisation
 */
 
-type PutOrganisationDaoOpts struct { 
+type OrganisationsApiPutOrganisationDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *OrganisationsApiService) PutOrganisationDao(ctx context.Context, organisationId int32, payload Organisation, localVarOptionals *PutOrganisationDaoOpts) (Organisation, *http.Response, error) {
+func (a *OrganisationsApiService) PutOrganisationDao(ctx context.Context, organisationId int32, payload Organisation, localVarOptionals *OrganisationsApiPutOrganisationDaoOpts) (Organisation, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}

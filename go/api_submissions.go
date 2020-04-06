@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -115,17 +116,17 @@ SubmissionsApiService
 Get details of a submission
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param submissionId
- * @param optional nil or *GetSubmissionDaoOpts - Optional Parameters:
+ * @param optional nil or *SubmissionsApiGetSubmissionDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Submissions
 */
 
-type GetSubmissionDaoOpts struct { 
+type SubmissionsApiGetSubmissionDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *SubmissionsApiService) GetSubmissionDao(ctx context.Context, submissionId int32, localVarOptionals *GetSubmissionDaoOpts) (Submissions, *http.Response, error) {
+func (a *SubmissionsApiService) GetSubmissionDao(ctx context.Context, submissionId int32, localVarOptionals *SubmissionsApiGetSubmissionDaoOpts) (Submissions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -310,17 +311,17 @@ func (a *SubmissionsApiService) GetSubmissionDataDao(ctx context.Context, submis
 SubmissionsApiService
 Get all submissions
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetSubmissionListDaoOpts - Optional Parameters:
+ * @param optional nil or *SubmissionsApiGetSubmissionListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Submissions
 */
 
-type GetSubmissionListDaoOpts struct { 
+type SubmissionsApiGetSubmissionListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *SubmissionsApiService) GetSubmissionListDao(ctx context.Context, localVarOptionals *GetSubmissionListDaoOpts) ([]Submissions, *http.Response, error) {
+func (a *SubmissionsApiService) GetSubmissionListDao(ctx context.Context, localVarOptionals *SubmissionsApiGetSubmissionListDaoOpts) ([]Submissions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -421,17 +422,17 @@ SubmissionsApiService
 Make a new submission
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostSubmissionListDaoOpts - Optional Parameters:
+ * @param optional nil or *SubmissionsApiPostSubmissionListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Submissions
 */
 
-type PostSubmissionListDaoOpts struct { 
+type SubmissionsApiPostSubmissionListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *SubmissionsApiService) PostSubmissionListDao(ctx context.Context, payload Submissions, localVarOptionals *PostSubmissionListDaoOpts) (Submissions, *http.Response, error) {
+func (a *SubmissionsApiService) PostSubmissionListDao(ctx context.Context, payload Submissions, localVarOptionals *SubmissionsApiPostSubmissionListDaoOpts) (Submissions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

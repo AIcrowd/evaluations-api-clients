@@ -51,10 +51,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **graderId** | **int32**|  | 
- **optional** | ***GetGraderDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiGetGraderDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetGraderDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiGetGraderDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -87,10 +87,10 @@ Get all grader
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetGraderListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiGetGraderListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetGraderListDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiGetGraderListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -123,10 +123,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Grader**](Grader.md)|  | 
- **optional** | ***PostGraderListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiPostGraderListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostGraderListDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiPostGraderListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -161,10 +161,10 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **graderId** | **int32**|  | 
   **payload** | [**Grader**](Grader.md)|  | 
- **optional** | ***PutGraderDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiPutGraderDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PutGraderDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiPutGraderDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

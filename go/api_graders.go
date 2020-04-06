@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -115,17 +116,17 @@ GradersApiService
 Get information of a grader
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param graderId
- * @param optional nil or *GetGraderDaoOpts - Optional Parameters:
+ * @param optional nil or *GradersApiGetGraderDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Grader
 */
 
-type GetGraderDaoOpts struct { 
+type GradersApiGetGraderDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *GradersApiService) GetGraderDao(ctx context.Context, graderId int32, localVarOptionals *GetGraderDaoOpts) (Grader, *http.Response, error) {
+func (a *GradersApiService) GetGraderDao(ctx context.Context, graderId int32, localVarOptionals *GradersApiGetGraderDaoOpts) (Grader, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -226,17 +227,17 @@ func (a *GradersApiService) GetGraderDao(ctx context.Context, graderId int32, lo
 GradersApiService
 Get all grader
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetGraderListDaoOpts - Optional Parameters:
+ * @param optional nil or *GradersApiGetGraderListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Grader
 */
 
-type GetGraderListDaoOpts struct { 
+type GradersApiGetGraderListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *GradersApiService) GetGraderListDao(ctx context.Context, localVarOptionals *GetGraderListDaoOpts) ([]Grader, *http.Response, error) {
+func (a *GradersApiService) GetGraderListDao(ctx context.Context, localVarOptionals *GradersApiGetGraderListDaoOpts) ([]Grader, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -337,17 +338,17 @@ GradersApiService
 Create a new grader
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostGraderListDaoOpts - Optional Parameters:
+ * @param optional nil or *GradersApiPostGraderListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Grader
 */
 
-type PostGraderListDaoOpts struct { 
+type GradersApiPostGraderListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *GradersApiService) PostGraderListDao(ctx context.Context, payload Grader, localVarOptionals *PostGraderListDaoOpts) (Grader, *http.Response, error) {
+func (a *GradersApiService) PostGraderListDao(ctx context.Context, payload Grader, localVarOptionals *GradersApiPostGraderListDaoOpts) (Grader, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -451,17 +452,17 @@ Update a grader
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param graderId
  * @param payload
- * @param optional nil or *PutGraderDaoOpts - Optional Parameters:
+ * @param optional nil or *GradersApiPutGraderDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Grader
 */
 
-type PutGraderDaoOpts struct { 
+type GradersApiPutGraderDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *GradersApiService) PutGraderDao(ctx context.Context, graderId int32, payload Grader, localVarOptionals *PutGraderDaoOpts) (Grader, *http.Response, error) {
+func (a *GradersApiService) PutGraderDao(ctx context.Context, graderId int32, payload Grader, localVarOptionals *GradersApiPutGraderDaoOpts) (Grader, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}

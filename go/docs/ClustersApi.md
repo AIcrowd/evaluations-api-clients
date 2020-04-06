@@ -50,10 +50,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **clusterId** | **int32**|  | 
- **optional** | ***GetClusterDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***ClustersApiGetClusterDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetClusterDaoOpts struct
+Optional parameters are passed through a pointer to a ClustersApiGetClusterDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -86,10 +86,10 @@ Get all clusters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetClusterListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***ClustersApiGetClusterListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetClusterListDaoOpts struct
+Optional parameters are passed through a pointer to a ClustersApiGetClusterListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -122,10 +122,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**Cluster**](Cluster.md)|  | 
- **optional** | ***PostClusterListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***ClustersApiPostClusterListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostClusterListDaoOpts struct
+Optional parameters are passed through a pointer to a ClustersApiPostClusterListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

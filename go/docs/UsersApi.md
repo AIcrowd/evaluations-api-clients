@@ -52,10 +52,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **userId** | **int32**| User identifier | 
- **optional** | ***GetUserDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiGetUserDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetUserDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiGetUserDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -88,10 +88,10 @@ Get all user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetUserListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiGetUserListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetUserListDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiGetUserListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -124,10 +124,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **payload** | [**User**](User.md)|  | 
- **optional** | ***PostUserListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiPostUserListDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PostUserListDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiPostUserListDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -191,10 +191,10 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **userId** | **int32**| User identifier | 
   **payload** | [**User**](User.md)|  | 
- **optional** | ***PutUserDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiPutUserDaoOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PutUserDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiPutUserDaoOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

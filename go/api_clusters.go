@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -115,17 +116,17 @@ ClustersApiService
 Get information of a cluster
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param clusterId
- * @param optional nil or *GetClusterDaoOpts - Optional Parameters:
+ * @param optional nil or *ClustersApiGetClusterDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Cluster
 */
 
-type GetClusterDaoOpts struct { 
+type ClustersApiGetClusterDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *ClustersApiService) GetClusterDao(ctx context.Context, clusterId int32, localVarOptionals *GetClusterDaoOpts) (Cluster, *http.Response, error) {
+func (a *ClustersApiService) GetClusterDao(ctx context.Context, clusterId int32, localVarOptionals *ClustersApiGetClusterDaoOpts) (Cluster, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -226,17 +227,17 @@ func (a *ClustersApiService) GetClusterDao(ctx context.Context, clusterId int32,
 ClustersApiService
 Get all clusters
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetClusterListDaoOpts - Optional Parameters:
+ * @param optional nil or *ClustersApiGetClusterListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Cluster
 */
 
-type GetClusterListDaoOpts struct { 
+type ClustersApiGetClusterListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *ClustersApiService) GetClusterListDao(ctx context.Context, localVarOptionals *GetClusterListDaoOpts) ([]Cluster, *http.Response, error) {
+func (a *ClustersApiService) GetClusterListDao(ctx context.Context, localVarOptionals *ClustersApiGetClusterListDaoOpts) ([]Cluster, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -337,17 +338,17 @@ ClustersApiService
 Add a new cluster
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostClusterListDaoOpts - Optional Parameters:
+ * @param optional nil or *ClustersApiPostClusterListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return Cluster
 */
 
-type PostClusterListDaoOpts struct { 
+type ClustersApiPostClusterListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *ClustersApiService) PostClusterListDao(ctx context.Context, payload Cluster, localVarOptionals *PostClusterListDaoOpts) (Cluster, *http.Response, error) {
+func (a *ClustersApiService) PostClusterListDao(ctx context.Context, payload Cluster, localVarOptionals *ClustersApiPostClusterListDaoOpts) (Cluster, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

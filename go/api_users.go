@@ -1,3 +1,4 @@
+
 /*
  * Evaluations API
  *
@@ -115,17 +116,17 @@ UsersApiService
 Get information of a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId User identifier
- * @param optional nil or *GetUserDaoOpts - Optional Parameters:
+ * @param optional nil or *UsersApiGetUserDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return User
 */
 
-type GetUserDaoOpts struct { 
+type UsersApiGetUserDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *UsersApiService) GetUserDao(ctx context.Context, userId int32, localVarOptionals *GetUserDaoOpts) (User, *http.Response, error) {
+func (a *UsersApiService) GetUserDao(ctx context.Context, userId int32, localVarOptionals *UsersApiGetUserDaoOpts) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -226,17 +227,17 @@ func (a *UsersApiService) GetUserDao(ctx context.Context, userId int32, localVar
 UsersApiService
 Get all user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetUserListDaoOpts - Optional Parameters:
+ * @param optional nil or *UsersApiGetUserListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []User
 */
 
-type GetUserListDaoOpts struct { 
+type UsersApiGetUserListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *UsersApiService) GetUserListDao(ctx context.Context, localVarOptionals *GetUserListDaoOpts) ([]User, *http.Response, error) {
+func (a *UsersApiService) GetUserListDao(ctx context.Context, localVarOptionals *UsersApiGetUserListDaoOpts) ([]User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -337,17 +338,17 @@ UsersApiService
 Create a new user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
- * @param optional nil or *PostUserListDaoOpts - Optional Parameters:
+ * @param optional nil or *UsersApiPostUserListDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return User
 */
 
-type PostUserListDaoOpts struct { 
+type UsersApiPostUserListDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *UsersApiService) PostUserListDao(ctx context.Context, payload User, localVarOptionals *PostUserListDaoOpts) (User, *http.Response, error) {
+func (a *UsersApiService) PostUserListDao(ctx context.Context, payload User, localVarOptionals *UsersApiPostUserListDaoOpts) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -538,17 +539,17 @@ Update a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId User identifier
  * @param payload
- * @param optional nil or *PutUserDaoOpts - Optional Parameters:
+ * @param optional nil or *UsersApiPutUserDaoOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return User
 */
 
-type PutUserDaoOpts struct { 
+type UsersApiPutUserDaoOpts struct { 
 	XFields optional.String
 }
 
-func (a *UsersApiService) PutUserDao(ctx context.Context, userId int32, payload User, localVarOptionals *PutUserDaoOpts) (User, *http.Response, error) {
+func (a *UsersApiService) PutUserDao(ctx context.Context, userId int32, payload User, localVarOptionals *UsersApiPutUserDaoOpts) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
