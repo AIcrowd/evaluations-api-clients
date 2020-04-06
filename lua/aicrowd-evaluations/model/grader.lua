@@ -19,17 +19,16 @@ local function cast_grader(t)
 	return setmetatable(t, grader_mt)
 end
 
-local function new_grader(id, created, updated, dataset_url, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, storage_capacity, logs, meta, status, submission_types, user_id, organisation_id)
+local function new_grader(id, created, updated, dataset, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, logs, meta, status, submission_types, user_id, organisation_id)
 	return cast_grader({
 		["id"] = id;
 		["created"] = created;
 		["updated"] = updated;
-		["dataset_url"] = dataset_url;
+		["dataset"] = dataset;
 		["cluster_id"] = cluster_id;
 		["workflow_spec"] = workflow_spec;
 		["evaluator_repo"] = evaluator_repo;
 		["evaluator_repo_tag"] = evaluator_repo_tag;
-		["storage_capacity"] = storage_capacity;
 		["logs"] = logs;
 		["meta"] = meta;
 		["status"] = status;

@@ -21,8 +21,8 @@ case class Grader (
   created: Option[Date] = None,
   // Last updation time
   updated: Option[Date] = None,
-  // S3 link of the Dataset
-  datasetUrl: Option[String] = None,
+  // Dataset metadata
+  dataset: Option[Any] = None,
   // Cluster to run the grader on
   clusterId: Option[Integer] = None,
   // Argo workflow template spec
@@ -31,8 +31,6 @@ case class Grader (
   evaluatorRepo: String,
   // Git branch/tag that should be used with the evaluator repository.
   evaluatorRepoTag: Option[String] = None,
-  // Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-  storageCapacity: Option[String] = None,
   // Logs from argo workflow
   logs: Option[Any] = None,
   // Additional meta data of the grader

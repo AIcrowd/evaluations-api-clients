@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 @Canonical
 class GraderFeedback {
 
+  /* Serialized JSON for dataset metadata */
+  String dataset = null
+
   /* Status of the grader */
   Boolean status = null
 

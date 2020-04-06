@@ -78,17 +78,4 @@ describe 'GradersApi' do
     end
   end
 
-  # unit tests for put_grader_dao
-  # Update a grader
-  # @param grader_id 
-  # @param payload 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Grader]
-  describe 'put_grader_dao test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

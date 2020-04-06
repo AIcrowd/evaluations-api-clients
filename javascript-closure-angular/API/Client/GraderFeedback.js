@@ -6,6 +6,13 @@ goog.provide('API.Client.GraderFeedback');
 API.Client.GraderFeedback = function() {}
 
 /**
+ * Serialized JSON for dataset metadata
+ * @type {!string}
+ * @export
+ */
+API.Client.GraderFeedback.prototype.dataset;
+
+/**
  * Status of the grader
  * @type {!boolean}
  * @export

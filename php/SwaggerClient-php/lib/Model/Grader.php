@@ -60,12 +60,11 @@ class Grader implements ModelInterface, ArrayAccess
         'id' => 'int',
         'created' => '\DateTime',
         'updated' => '\DateTime',
-        'dataset_url' => 'string',
+        'dataset' => 'object',
         'cluster_id' => 'int',
         'workflow_spec' => 'object',
         'evaluator_repo' => 'string',
         'evaluator_repo_tag' => 'string',
-        'storage_capacity' => 'string',
         'logs' => 'object',
         'meta' => 'object',
         'status' => 'string',
@@ -83,12 +82,11 @@ class Grader implements ModelInterface, ArrayAccess
         'id' => null,
         'created' => 'date-time',
         'updated' => 'date-time',
-        'dataset_url' => null,
+        'dataset' => null,
         'cluster_id' => null,
         'workflow_spec' => null,
         'evaluator_repo' => null,
         'evaluator_repo_tag' => null,
-        'storage_capacity' => null,
         'logs' => null,
         'meta' => null,
         'status' => null,
@@ -127,12 +125,11 @@ class Grader implements ModelInterface, ArrayAccess
         'id' => 'id',
         'created' => 'created',
         'updated' => 'updated',
-        'dataset_url' => 'dataset_url',
+        'dataset' => 'dataset',
         'cluster_id' => 'cluster_id',
         'workflow_spec' => 'workflow_spec',
         'evaluator_repo' => 'evaluator_repo',
         'evaluator_repo_tag' => 'evaluator_repo_tag',
-        'storage_capacity' => 'storage_capacity',
         'logs' => 'logs',
         'meta' => 'meta',
         'status' => 'status',
@@ -150,12 +147,11 @@ class Grader implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'created' => 'setCreated',
         'updated' => 'setUpdated',
-        'dataset_url' => 'setDatasetUrl',
+        'dataset' => 'setDataset',
         'cluster_id' => 'setClusterId',
         'workflow_spec' => 'setWorkflowSpec',
         'evaluator_repo' => 'setEvaluatorRepo',
         'evaluator_repo_tag' => 'setEvaluatorRepoTag',
-        'storage_capacity' => 'setStorageCapacity',
         'logs' => 'setLogs',
         'meta' => 'setMeta',
         'status' => 'setStatus',
@@ -173,12 +169,11 @@ class Grader implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'created' => 'getCreated',
         'updated' => 'getUpdated',
-        'dataset_url' => 'getDatasetUrl',
+        'dataset' => 'getDataset',
         'cluster_id' => 'getClusterId',
         'workflow_spec' => 'getWorkflowSpec',
         'evaluator_repo' => 'getEvaluatorRepo',
         'evaluator_repo_tag' => 'getEvaluatorRepoTag',
-        'storage_capacity' => 'getStorageCapacity',
         'logs' => 'getLogs',
         'meta' => 'getMeta',
         'status' => 'getStatus',
@@ -250,12 +245,11 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['dataset_url'] = isset($data['dataset_url']) ? $data['dataset_url'] : null;
+        $this->container['dataset'] = isset($data['dataset']) ? $data['dataset'] : null;
         $this->container['cluster_id'] = isset($data['cluster_id']) ? $data['cluster_id'] : null;
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['evaluator_repo'] = isset($data['evaluator_repo']) ? $data['evaluator_repo'] : null;
         $this->container['evaluator_repo_tag'] = isset($data['evaluator_repo_tag']) ? $data['evaluator_repo_tag'] : null;
-        $this->container['storage_capacity'] = isset($data['storage_capacity']) ? $data['storage_capacity'] : null;
         $this->container['logs'] = isset($data['logs']) ? $data['logs'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
@@ -364,25 +358,25 @@ class Grader implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets dataset_url
+     * Gets dataset
      *
-     * @return string
+     * @return object
      */
-    public function getDatasetUrl()
+    public function getDataset()
     {
-        return $this->container['dataset_url'];
+        return $this->container['dataset'];
     }
 
     /**
-     * Sets dataset_url
+     * Sets dataset
      *
-     * @param string $dataset_url S3 link of the Dataset
+     * @param object $dataset Dataset metadata
      *
      * @return $this
      */
-    public function setDatasetUrl($dataset_url)
+    public function setDataset($dataset)
     {
-        $this->container['dataset_url'] = $dataset_url;
+        $this->container['dataset'] = $dataset;
 
         return $this;
     }
@@ -479,30 +473,6 @@ class Grader implements ModelInterface, ArrayAccess
     public function setEvaluatorRepoTag($evaluator_repo_tag)
     {
         $this->container['evaluator_repo_tag'] = $evaluator_repo_tag;
-
-        return $this;
-    }
-
-    /**
-     * Gets storage_capacity
-     *
-     * @return string
-     */
-    public function getStorageCapacity()
-    {
-        return $this->container['storage_capacity'];
-    }
-
-    /**
-     * Sets storage_capacity
-     *
-     * @param string $storage_capacity Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-     *
-     * @return $this
-     */
-    public function setStorageCapacity($storage_capacity)
-    {
-        $this->container['storage_capacity'] = $storage_capacity;
 
         return $this;
     }

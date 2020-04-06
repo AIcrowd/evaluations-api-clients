@@ -76,12 +76,12 @@ public:
     void unsetUpdated();
     void setUpdated(utility::datetime value);
     /// <summary>
-    /// S3 link of the Dataset
+    /// Dataset metadata
     /// </summary>
-    utility::string_t getDatasetUrl() const;
-    bool datasetUrlIsSet() const;
-    void unsetDataset_url();
-    void setDatasetUrl(utility::string_t value);
+    std::shared_ptr<Object> getDataset() const;
+    bool datasetIsSet() const;
+    void unsetDataset();
+    void setDataset(std::shared_ptr<Object> value);
     /// <summary>
     /// Cluster to run the grader on
     /// </summary>
@@ -108,13 +108,6 @@ public:
     bool evaluatorRepoTagIsSet() const;
     void unsetEvaluator_repo_tag();
     void setEvaluatorRepoTag(utility::string_t value);
-    /// <summary>
-    /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-    /// </summary>
-    utility::string_t getStorageCapacity() const;
-    bool storageCapacityIsSet() const;
-    void unsetStorage_capacity();
-    void setStorageCapacity(utility::string_t value);
     /// <summary>
     /// Logs from argo workflow
     /// </summary>
@@ -165,8 +158,8 @@ protected:
     bool m_CreatedIsSet;
     utility::datetime m_Updated;
     bool m_UpdatedIsSet;
-    utility::string_t m_Dataset_url;
-    bool m_Dataset_urlIsSet;
+    std::shared_ptr<Object> m_Dataset;
+    bool m_DatasetIsSet;
     int32_t m_Cluster_id;
     bool m_Cluster_idIsSet;
     std::shared_ptr<Object> m_Workflow_spec;
@@ -174,8 +167,6 @@ protected:
     utility::string_t m_Evaluator_repo;
         utility::string_t m_Evaluator_repo_tag;
     bool m_Evaluator_repo_tagIsSet;
-    utility::string_t m_Storage_capacity;
-    bool m_Storage_capacityIsSet;
     std::shared_ptr<Object> m_Logs;
     bool m_LogsIsSet;
     std::shared_ptr<Object> m_Meta;

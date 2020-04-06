@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**dataset** | **string** |  | [default to null]
 **status** | **boolean** |  | [default to null]
 **workflow_spec** | **string** |  | [default to null]
 **submission_types** | **string** |  | [default to null]

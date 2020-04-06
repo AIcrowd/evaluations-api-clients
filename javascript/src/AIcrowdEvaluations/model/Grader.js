@@ -62,8 +62,8 @@
         obj.created = ApiClient.convertToType(data['created'], 'Date');
       if (data.hasOwnProperty('updated'))
         obj.updated = ApiClient.convertToType(data['updated'], 'Date');
-      if (data.hasOwnProperty('dataset_url'))
-        obj.datasetUrl = ApiClient.convertToType(data['dataset_url'], 'String');
+      if (data.hasOwnProperty('dataset'))
+        obj.dataset = ApiClient.convertToType(data['dataset'], Object);
       if (data.hasOwnProperty('cluster_id'))
         obj.clusterId = ApiClient.convertToType(data['cluster_id'], 'Number');
       if (data.hasOwnProperty('workflow_spec'))
@@ -72,8 +72,6 @@
         obj.evaluatorRepo = ApiClient.convertToType(data['evaluator_repo'], 'String');
       if (data.hasOwnProperty('evaluator_repo_tag'))
         obj.evaluatorRepoTag = ApiClient.convertToType(data['evaluator_repo_tag'], 'String');
-      if (data.hasOwnProperty('storage_capacity'))
-        obj.storageCapacity = ApiClient.convertToType(data['storage_capacity'], 'String');
       if (data.hasOwnProperty('logs'))
         obj.logs = ApiClient.convertToType(data['logs'], Object);
       if (data.hasOwnProperty('meta'))
@@ -109,10 +107,10 @@
   exports.prototype.updated = undefined;
 
   /**
-   * S3 link of the Dataset
-   * @member {String} datasetUrl
+   * Dataset metadata
+   * @member {Object} dataset
    */
-  exports.prototype.datasetUrl = undefined;
+  exports.prototype.dataset = undefined;
 
   /**
    * Cluster to run the grader on
@@ -137,12 +135,6 @@
    * @member {String} evaluatorRepoTag
    */
   exports.prototype.evaluatorRepoTag = undefined;
-
-  /**
-   * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-   * @member {String} storageCapacity
-   */
-  exports.prototype.storageCapacity = undefined;
 
   /**
    * Logs from argo workflow

@@ -37,8 +37,8 @@ describe("grader", function()
     end)
   end)
 
-  -- unit tests for the property 'dataset_url'
-  describe("property dataset_url test", function()
+  -- unit tests for the property 'dataset'
+  describe("property dataset test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
@@ -67,13 +67,6 @@ describe("grader", function()
 
   -- unit tests for the property 'evaluator_repo_tag'
   describe("property evaluator_repo_tag test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
-  -- unit tests for the property 'storage_capacity'
-  describe("property storage_capacity test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

@@ -91,12 +91,12 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Updated'
         }
         /// <summary>
-        /// Test the property 'DatasetUrl'
+        /// Test the property 'Dataset'
         /// </summary>
         [Test]
-        public void DatasetUrlTest()
+        public void DatasetTest()
         {
-            // TODO unit test for the property 'DatasetUrl'
+            // TODO unit test for the property 'Dataset'
         }
         /// <summary>
         /// Test the property 'ClusterId'
@@ -129,14 +129,6 @@ namespace Com.AIcrowd.Evaluations.Test
         public void EvaluatorRepoTagTest()
         {
             // TODO unit test for the property 'EvaluatorRepoTag'
-        }
-        /// <summary>
-        /// Test the property 'StorageCapacity'
-        /// </summary>
-        [Test]
-        public void StorageCapacityTest()
-        {
-            // TODO unit test for the property 'StorageCapacity'
         }
         /// <summary>
         /// Test the property 'Logs'

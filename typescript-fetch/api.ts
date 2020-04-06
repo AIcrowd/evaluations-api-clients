@@ -237,11 +237,11 @@ export interface Grader {
      */
     updated?: Date;
     /**
-     * S3 link of the Dataset
-     * @type {string}
+     * Dataset metadata
+     * @type {any}
      * @memberof Grader
      */
-    datasetUrl?: string;
+    dataset?: any;
     /**
      * Cluster to run the grader on
      * @type {number}
@@ -266,12 +266,6 @@ export interface Grader {
      * @memberof Grader
      */
     evaluatorRepoTag?: string;
-    /**
-     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-     * @type {string}
-     * @memberof Grader
-     */
-    storageCapacity?: string;
     /**
      * Logs from argo workflow
      * @type {any}
@@ -316,6 +310,12 @@ export interface Grader {
  * @interface GraderFeedback
  */
 export interface GraderFeedback {
+    /**
+     * Serialized JSON for dataset metadata
+     * @type {string}
+     * @memberof GraderFeedback
+     */
+    dataset: string;
     /**
      * Status of the grader
      * @type {boolean}
@@ -1628,56 +1628,6 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Update a grader
-         * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'graderId' is not null or undefined
-            if (graderId === null || graderId === undefined) {
-                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling putGraderDao.');
-            }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putGraderDao.');
-            }
-            const localVarPath = `/graders/{grader_id}`
-                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Grader" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -1761,26 +1711,6 @@ export const GradersApiFp = function(configuration?: Configuration) {
                 });
             };
         },
-        /**
-         * Update a grader
-         * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).putGraderDao(graderId, payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
     }
 };
 
@@ -1827,17 +1757,6 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
          */
         postGraderListDao(payload: Grader, xFields?: string, options?: any) {
             return GradersApiFp(configuration).postGraderListDao(payload, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Update a grader
-         * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).putGraderDao(graderId, payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1893,19 +1812,6 @@ export class GradersApi extends BaseAPI {
      */
     public postGraderListDao(payload: Grader, xFields?: string, options?: any) {
         return GradersApiFp(this.configuration).postGraderListDao(payload, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Update a grader
-     * @param {number} graderId 
-     * @param {Grader} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).putGraderDao(graderId, payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }

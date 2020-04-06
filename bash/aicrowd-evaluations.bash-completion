@@ -81,7 +81,6 @@ _aicrowd-evaluations()
     operations["getGraderDao"]=1
     operations["getGraderListDao"]=1
     operations["postGraderListDao"]=1
-    operations["putGraderDao"]=1
     operations["deleteOrganisationDao"]=1
     operations["getOrganisationDao"]=1
     operations["getOrganisationListDao"]=1
@@ -116,7 +115,6 @@ _aicrowd-evaluations()
     operation_parameters["getGraderDao"]="grader_id= X-Fields: "
     operation_parameters["getGraderListDao"]="X-Fields: "
     operation_parameters["postGraderListDao"]="X-Fields: "
-    operation_parameters["putGraderDao"]="grader_id= X-Fields: "
     operation_parameters["deleteOrganisationDao"]="organisation_id= "
     operation_parameters["getOrganisationDao"]="organisation_id= X-Fields: "
     operation_parameters["getOrganisationListDao"]="X-Fields: "

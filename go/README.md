@@ -34,7 +34,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**GetGraderDao**](docs/GradersApi.md#getgraderdao) | **Get** /graders/{grader_id} | 
 *GradersApi* | [**GetGraderListDao**](docs/GradersApi.md#getgraderlistdao) | **Get** /graders/ | 
 *GradersApi* | [**PostGraderListDao**](docs/GradersApi.md#postgraderlistdao) | **Post** /graders/ | 
-*GradersApi* | [**PutGraderDao**](docs/GradersApi.md#putgraderdao) | **Put** /graders/{grader_id} | 
 *OrganisationsApi* | [**DeleteOrganisationDao**](docs/OrganisationsApi.md#deleteorganisationdao) | **Delete** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**GetOrganisationDao**](docs/OrganisationsApi.md#getorganisationdao) | **Get** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**GetOrganisationListDao**](docs/OrganisationsApi.md#getorganisationlistdao) | **Get** /organisations/ | 

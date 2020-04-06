@@ -63,15 +63,5 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
     my $result = $api->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
 }
 
-#
-# put_grader_dao test
-#
-{
-    my $grader_id = undef; # replace NULL with a proper value
-    my $payload = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->put_grader_dao(grader_id => $grader_id, payload => $payload, x_fields => $x_fields);
-}
-
 
 1;

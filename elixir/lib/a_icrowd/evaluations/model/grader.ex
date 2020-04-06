@@ -12,12 +12,11 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"id",
     :"created",
     :"updated",
-    :"dataset_url",
+    :"dataset",
     :"cluster_id",
     :"workflow_spec",
     :"evaluator_repo",
     :"evaluator_repo_tag",
-    :"storage_capacity",
     :"logs",
     :"meta",
     :"status",
@@ -30,12 +29,11 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"id" => integer(),
     :"created" => DateTime.t,
     :"updated" => DateTime.t,
-    :"dataset_url" => String.t,
+    :"dataset" => Object,
     :"cluster_id" => integer(),
     :"workflow_spec" => Object,
     :"evaluator_repo" => String.t,
     :"evaluator_repo_tag" => String.t,
-    :"storage_capacity" => String.t,
     :"logs" => Object,
     :"meta" => Object,
     :"status" => String.t,
@@ -49,6 +47,7 @@ defimpl Poison.Decoder, for: AIcrowd.Evaluations.Model.Grader do
   import AIcrowd.Evaluations.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:"dataset", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"workflow_spec", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"logs", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"meta", :struct, AIcrowd.Evaluations.Model.Object, options)

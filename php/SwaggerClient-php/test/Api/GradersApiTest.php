@@ -110,14 +110,4 @@ class GradersApiTest extends \PHPUnit_Framework_TestCase
     public function testPostGraderListDao()
     {
     }
-
-    /**
-     * Test case for putGraderDao
-     *
-     * .
-     *
-     */
-    public function testPutGraderDao()
-    {
-    }
 }

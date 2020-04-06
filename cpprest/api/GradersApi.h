@@ -83,20 +83,6 @@ public:
         std::shared_ptr<Grader> payload,
         boost::optional<utility::string_t> xFields
     );
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// Update a grader
-    /// </remarks>
-    /// <param name="graderId"></param>
-    /// <param name="payload"></param>
-    /// <param name="xFields">An optional fields mask (optional)</param>
-    pplx::task<std::shared_ptr<Grader>> putGraderDao(
-        int32_t graderId,
-        std::shared_ptr<Grader> payload,
-        boost::optional<utility::string_t> xFields
-    );
 
 protected:
     std::shared_ptr<ApiClient> m_ApiClient;

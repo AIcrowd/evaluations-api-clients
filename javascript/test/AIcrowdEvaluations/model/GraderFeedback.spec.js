@@ -40,6 +40,12 @@
         expect(instance).to.be.a(AicrowdEvaluations.GraderFeedback);
       });
 
+      it('should have the property dataset (base name: "dataset")', function() {
+        // TODO: update the code to test the property dataset
+        expect(instance).to.have.property('dataset');
+        // expect(instance.dataset).to.be(expectedValueLiteral);
+      });
+
       it('should have the property status (base name: "status")', function() {
         // TODO: update the code to test the property status
         expect(instance).to.have.property('status');

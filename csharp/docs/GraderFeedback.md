@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Dataset** | **string** | Serialized JSON for dataset metadata | 
 **Status** | **bool?** | Status of the grader | 
 **WorkflowSpec** | **string** | Serialized YAML workflow spec | 
 **SubmissionTypes** | **string** | Serialized JSON of submissions accepted by the grader | 

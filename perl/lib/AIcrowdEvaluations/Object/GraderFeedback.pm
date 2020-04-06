@@ -143,6 +143,13 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
+    'dataset' => {
+    	datatype => 'string',
+    	base_name => 'dataset',
+    	description => 'Serialized JSON for dataset metadata',
+    	format => '',
+    	read_only => '',
+    		},
     'status' => {
     	datatype => 'boolean',
     	base_name => 'status',
@@ -167,12 +174,14 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->swagger_types( {
+    'dataset' => 'string',
     'status' => 'boolean',
     'workflow_spec' => 'string',
     'submission_types' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
+    'dataset' => 'dataset',
     'status' => 'status',
     'workflow_spec' => 'workflow_spec',
     'submission_types' => 'submission_types'

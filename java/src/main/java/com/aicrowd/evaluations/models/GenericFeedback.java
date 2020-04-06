@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GenericFeedback
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:23:01.585Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
 public class GenericFeedback {
   @SerializedName("status")
   private Boolean status = null;

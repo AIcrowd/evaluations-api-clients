@@ -99,7 +99,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**getGraderDao**](docs/Api/GradersApi.md#getgraderdao) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderListDao**](docs/Api/GradersApi.md#getgraderlistdao) | **GET** /graders/ | 
 *GradersApi* | [**postGraderListDao**](docs/Api/GradersApi.md#postgraderlistdao) | **POST** /graders/ | 
-*GradersApi* | [**putGraderDao**](docs/Api/GradersApi.md#putgraderdao) | **PUT** /graders/{grader_id} | 
 *OrganisationsApi* | [**deleteOrganisationDao**](docs/Api/OrganisationsApi.md#deleteorganisationdao) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisationDao**](docs/Api/OrganisationsApi.md#getorganisationdao) | **GET** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisationListDao**](docs/Api/OrganisationsApi.md#getorganisationlistdao) | **GET** /organisations/ | 

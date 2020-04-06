@@ -57,6 +57,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'dataset' => 'string',
         'status' => 'bool',
         'workflow_spec' => 'string',
         'submission_types' => 'string'
@@ -68,6 +69,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
+        'dataset' => null,
         'status' => null,
         'workflow_spec' => null,
         'submission_types' => null
@@ -100,6 +102,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'dataset' => 'dataset',
         'status' => 'status',
         'workflow_spec' => 'workflow_spec',
         'submission_types' => 'submission_types'
@@ -111,6 +114,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'dataset' => 'setDataset',
         'status' => 'setStatus',
         'workflow_spec' => 'setWorkflowSpec',
         'submission_types' => 'setSubmissionTypes'
@@ -122,6 +126,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'dataset' => 'getDataset',
         'status' => 'getStatus',
         'workflow_spec' => 'getWorkflowSpec',
         'submission_types' => 'getSubmissionTypes'
@@ -187,6 +192,7 @@ class GraderFeedback implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['dataset'] = isset($data['dataset']) ? $data['dataset'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['workflow_spec'] = isset($data['workflow_spec']) ? $data['workflow_spec'] : null;
         $this->container['submission_types'] = isset($data['submission_types']) ? $data['submission_types'] : null;
@@ -201,6 +207,9 @@ class GraderFeedback implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['dataset'] === null) {
+            $invalidProperties[] = "'dataset' can't be null";
+        }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
@@ -224,6 +233,30 @@ class GraderFeedback implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets dataset
+     *
+     * @return string
+     */
+    public function getDataset()
+    {
+        return $this->container['dataset'];
+    }
+
+    /**
+     * Sets dataset
+     *
+     * @param string $dataset Serialized JSON for dataset metadata
+     *
+     * @return $this
+     */
+    public function setDataset($dataset)
+    {
+        $this->container['dataset'] = $dataset;
+
+        return $this;
+    }
 
     /**
      * Gets status

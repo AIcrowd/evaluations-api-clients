@@ -347,9 +347,9 @@ export class Grader {
     */
     'updated'?: Date;
     /**
-    * S3 link of the Dataset
+    * Dataset metadata
     */
-    'datasetUrl'?: string;
+    'dataset'?: any;
     /**
     * Cluster to run the grader on
     */
@@ -366,10 +366,6 @@ export class Grader {
     * Git branch/tag that should be used with the evaluator repository.
     */
     'evaluatorRepoTag'?: string;
-    /**
-    * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-    */
-    'storageCapacity'?: string;
     /**
     * Logs from argo workflow
     */
@@ -414,9 +410,9 @@ export class Grader {
             "type": "Date"
         },
         {
-            "name": "datasetUrl",
-            "baseName": "dataset_url",
-            "type": "string"
+            "name": "dataset",
+            "baseName": "dataset",
+            "type": "any"
         },
         {
             "name": "clusterId",
@@ -436,11 +432,6 @@ export class Grader {
         {
             "name": "evaluatorRepoTag",
             "baseName": "evaluator_repo_tag",
-            "type": "string"
-        },
-        {
-            "name": "storageCapacity",
-            "baseName": "storage_capacity",
             "type": "string"
         },
         {
@@ -481,6 +472,10 @@ export class Grader {
 
 export class GraderFeedback {
     /**
+    * Serialized JSON for dataset metadata
+    */
+    'dataset': string;
+    /**
     * Status of the grader
     */
     'status': boolean;
@@ -496,6 +491,11 @@ export class GraderFeedback {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "dataset",
+            "baseName": "dataset",
+            "type": "string"
+        },
         {
             "name": "status",
             "baseName": "status",
@@ -1914,71 +1914,6 @@ export class GradersApi {
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(payload, "Grader")
-        };
-
-        this.authentications.api_key.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Grader;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Grader");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * Update a grader
-     * @param graderId 
-     * @param payload 
-     * @param xFields An optional fields mask
-     * @param {*} [options] Override http request options.
-     */
-    public putGraderDao (graderId: number, payload: Grader, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Grader;  }> {
-        const localVarPath = this.basePath + '/graders/{grader_id}'
-            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'graderId' is not null or undefined
-        if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling putGraderDao.');
-        }
-
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putGraderDao.');
-        }
-
-        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,

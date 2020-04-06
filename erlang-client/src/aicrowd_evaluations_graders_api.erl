@@ -3,8 +3,7 @@
 -export([delete_grader_dao/2, delete_grader_dao/3,
          get_grader_dao/2, get_grader_dao/3,
          get_grader_list_dao/1, get_grader_list_dao/2,
-         post_grader_list_dao/2, post_grader_list_dao/3,
-         put_grader_dao/3, put_grader_dao/4]).
+         post_grader_list_dao/2, post_grader_list_dao/3]).
 
 -define(BASE_URL, "/v1").
 
@@ -84,27 +83,6 @@ post_grader_list_dao(Ctx, Payload, Optional) ->
 
     Method = post,
     Path = ["/graders/"],
-    QS = [],
-    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
-    Body1 = Payload,
-    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc 
-%% Update a grader
--spec put_grader_dao(ctx:ctx(), integer(), aicrowd_evaluations_grader:aicrowd_evaluations_grader()) -> {ok, aicrowd_evaluations_grader:aicrowd_evaluations_grader(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_grader_dao(Ctx, GraderId, Payload) ->
-    put_grader_dao(Ctx, GraderId, Payload, #{}).
-
--spec put_grader_dao(ctx:ctx(), integer(), aicrowd_evaluations_grader:aicrowd_evaluations_grader(), maps:map()) -> {ok, aicrowd_evaluations_grader:aicrowd_evaluations_grader(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
-put_grader_dao(Ctx, GraderId, Payload, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = put,
-    Path = ["/graders/", GraderId, ""],
     QS = [],
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = Payload,

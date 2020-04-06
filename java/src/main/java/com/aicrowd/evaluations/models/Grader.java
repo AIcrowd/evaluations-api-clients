@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:23:01.585Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -39,8 +39,8 @@ public class Grader {
   @SerializedName("updated")
   private OffsetDateTime updated = null;
 
-  @SerializedName("dataset_url")
-  private String datasetUrl = null;
+  @SerializedName("dataset")
+  private Object dataset = null;
 
   @SerializedName("cluster_id")
   private Integer clusterId = null;
@@ -53,9 +53,6 @@ public class Grader {
 
   @SerializedName("evaluator_repo_tag")
   private String evaluatorRepoTag = null;
-
-  @SerializedName("storage_capacity")
-  private String storageCapacity = null;
 
   @SerializedName("logs")
   private Object logs = null;
@@ -102,22 +99,13 @@ public class Grader {
     return updated;
   }
 
-  public Grader datasetUrl(String datasetUrl) {
-    this.datasetUrl = datasetUrl;
-    return this;
-  }
-
    /**
-   * S3 link of the Dataset
-   * @return datasetUrl
+   * Dataset metadata
+   * @return dataset
   **/
-  @ApiModelProperty(value = "S3 link of the Dataset")
-  public String getDatasetUrl() {
-    return datasetUrl;
-  }
-
-  public void setDatasetUrl(String datasetUrl) {
-    this.datasetUrl = datasetUrl;
+  @ApiModelProperty(value = "Dataset metadata")
+  public Object getDataset() {
+    return dataset;
   }
 
   public Grader clusterId(Integer clusterId) {
@@ -181,24 +169,6 @@ public class Grader {
 
   public void setEvaluatorRepoTag(String evaluatorRepoTag) {
     this.evaluatorRepoTag = evaluatorRepoTag;
-  }
-
-  public Grader storageCapacity(String storageCapacity) {
-    this.storageCapacity = storageCapacity;
-    return this;
-  }
-
-   /**
-   * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-   * @return storageCapacity
-  **/
-  @ApiModelProperty(value = "Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.")
-  public String getStorageCapacity() {
-    return storageCapacity;
-  }
-
-  public void setStorageCapacity(String storageCapacity) {
-    this.storageCapacity = storageCapacity;
   }
 
    /**
@@ -268,12 +238,11 @@ public class Grader {
     return Objects.equals(this.id, grader.id) &&
         Objects.equals(this.created, grader.created) &&
         Objects.equals(this.updated, grader.updated) &&
-        Objects.equals(this.datasetUrl, grader.datasetUrl) &&
+        Objects.equals(this.dataset, grader.dataset) &&
         Objects.equals(this.clusterId, grader.clusterId) &&
         Objects.equals(this.workflowSpec, grader.workflowSpec) &&
         Objects.equals(this.evaluatorRepo, grader.evaluatorRepo) &&
         Objects.equals(this.evaluatorRepoTag, grader.evaluatorRepoTag) &&
-        Objects.equals(this.storageCapacity, grader.storageCapacity) &&
         Objects.equals(this.logs, grader.logs) &&
         Objects.equals(this.meta, grader.meta) &&
         Objects.equals(this.status, grader.status) &&
@@ -284,7 +253,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, storageCapacity, logs, meta, status, submissionTypes, userId, organisationId);
+    return Objects.hash(id, created, updated, dataset, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, logs, meta, status, submissionTypes, userId, organisationId);
   }
 
 
@@ -296,12 +265,11 @@ public class Grader {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("    datasetUrl: ").append(toIndentedString(datasetUrl)).append("\n");
+    sb.append("    dataset: ").append(toIndentedString(dataset)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    evaluatorRepo: ").append(toIndentedString(evaluatorRepo)).append("\n");
     sb.append("    evaluatorRepoTag: ").append(toIndentedString(evaluatorRepoTag)).append("\n");
-    sb.append("    storageCapacity: ").append(toIndentedString(storageCapacity)).append("\n");
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

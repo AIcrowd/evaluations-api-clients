@@ -27,16 +27,13 @@ Grader::Grader()
     m_CreatedIsSet = false;
     m_Updated = utility::datetime();
     m_UpdatedIsSet = false;
-    m_Dataset_url = utility::conversions::to_string_t("");
-    m_Dataset_urlIsSet = false;
+    m_DatasetIsSet = false;
     m_Cluster_id = 0;
     m_Cluster_idIsSet = false;
     m_Workflow_specIsSet = false;
     m_Evaluator_repo = utility::conversions::to_string_t("");
     m_Evaluator_repo_tag = utility::conversions::to_string_t("");
     m_Evaluator_repo_tagIsSet = false;
-    m_Storage_capacity = utility::conversions::to_string_t("");
-    m_Storage_capacityIsSet = false;
     m_LogsIsSet = false;
     m_MetaIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -73,9 +70,9 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("updated")] = ModelBase::toJson(m_Updated);
     }
-    if(m_Dataset_urlIsSet)
+    if(m_DatasetIsSet)
     {
-        val[utility::conversions::to_string_t("dataset_url")] = ModelBase::toJson(m_Dataset_url);
+        val[utility::conversions::to_string_t("dataset")] = ModelBase::toJson(m_Dataset);
     }
     if(m_Cluster_idIsSet)
     {
@@ -89,10 +86,6 @@ web::json::value Grader::toJson() const
     if(m_Evaluator_repo_tagIsSet)
     {
         val[utility::conversions::to_string_t("evaluator_repo_tag")] = ModelBase::toJson(m_Evaluator_repo_tag);
-    }
-    if(m_Storage_capacityIsSet)
-    {
-        val[utility::conversions::to_string_t("storage_capacity")] = ModelBase::toJson(m_Storage_capacity);
     }
     if(m_LogsIsSet)
     {
@@ -148,12 +141,14 @@ void Grader::fromJson(web::json::value& val)
             setUpdated(ModelBase::dateFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("dataset_url")))
+    if(val.has_field(utility::conversions::to_string_t("dataset")))
     {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("dataset_url")];
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("dataset")];
         if(!fieldValue.is_null())
         {
-            setDatasetUrl(ModelBase::stringFromJson(fieldValue));
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setDataset( newItem );
         }
     }
     if(val.has_field(utility::conversions::to_string_t("cluster_id")))
@@ -181,14 +176,6 @@ void Grader::fromJson(web::json::value& val)
         if(!fieldValue.is_null())
         {
             setEvaluatorRepoTag(ModelBase::stringFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("storage_capacity")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("storage_capacity")];
-        if(!fieldValue.is_null())
-        {
-            setStorageCapacity(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("logs")))
@@ -269,9 +256,12 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("updated"), m_Updated));
         
     }
-    if(m_Dataset_urlIsSet)
+    if(m_DatasetIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("dataset_url"), m_Dataset_url));
+        if (m_Dataset.get())
+        {
+            m_Dataset->toMultipart(multipart, utility::conversions::to_string_t("dataset."));
+        }
         
     }
     if(m_Cluster_idIsSet)
@@ -290,11 +280,6 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     if(m_Evaluator_repo_tagIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("evaluator_repo_tag"), m_Evaluator_repo_tag));
-        
-    }
-    if(m_Storage_capacityIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("storage_capacity"), m_Storage_capacity));
         
     }
     if(m_LogsIsSet)
@@ -356,9 +341,14 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         setUpdated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("updated"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("dataset_url")))
+    if(multipart->hasContent(utility::conversions::to_string_t("dataset")))
     {
-        setDatasetUrl(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataset_url"))));
+        if(multipart->hasContent(utility::conversions::to_string_t("dataset")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("dataset."));
+            setDataset( newItem );
+        }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("cluster_id")))
     {
@@ -377,10 +367,6 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("evaluator_repo_tag")))
     {
         setEvaluatorRepoTag(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("evaluator_repo_tag"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("storage_capacity")))
-    {
-        setStorageCapacity(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("storage_capacity"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
@@ -486,25 +472,25 @@ void Grader::unsetUpdated()
     m_UpdatedIsSet = false;
 }
 
-utility::string_t Grader::getDatasetUrl() const
+std::shared_ptr<Object> Grader::getDataset() const
 {
-    return m_Dataset_url;
+    return m_Dataset;
 }
 
 
-void Grader::setDatasetUrl(utility::string_t value)
+void Grader::setDataset(std::shared_ptr<Object> value)
 {
-    m_Dataset_url = value;
-    m_Dataset_urlIsSet = true;
+    m_Dataset = value;
+    m_DatasetIsSet = true;
 }
-bool Grader::datasetUrlIsSet() const
+bool Grader::datasetIsSet() const
 {
-    return m_Dataset_urlIsSet;
+    return m_DatasetIsSet;
 }
 
-void Grader::unsetDataset_url()
+void Grader::unsetDataset()
 {
-    m_Dataset_urlIsSet = false;
+    m_DatasetIsSet = false;
 }
 
 int32_t Grader::getClusterId() const
@@ -579,27 +565,6 @@ bool Grader::evaluatorRepoTagIsSet() const
 void Grader::unsetEvaluator_repo_tag()
 {
     m_Evaluator_repo_tagIsSet = false;
-}
-
-utility::string_t Grader::getStorageCapacity() const
-{
-    return m_Storage_capacity;
-}
-
-
-void Grader::setStorageCapacity(utility::string_t value)
-{
-    m_Storage_capacity = value;
-    m_Storage_capacityIsSet = true;
-}
-bool Grader::storageCapacityIsSet() const
-{
-    return m_Storage_capacityIsSet;
-}
-
-void Grader::unsetStorage_capacity()
-{
-    m_Storage_capacityIsSet = false;
 }
 
 std::shared_ptr<Object> Grader::getLogs() const

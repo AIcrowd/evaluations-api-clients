@@ -21,6 +21,7 @@ namespace models {
 
 GraderFeedback::GraderFeedback()
 {
+    m_Dataset = utility::conversions::to_string_t("");
     m_Status = false;
     m_Workflow_spec = utility::conversions::to_string_t("");
     m_Submission_types = utility::conversions::to_string_t("");
@@ -39,6 +40,7 @@ web::json::value GraderFeedback::toJson() const
 {
     web::json::value val = web::json::value::object();
 
+    val[utility::conversions::to_string_t("dataset")] = ModelBase::toJson(m_Dataset);
     val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_Status);
     val[utility::conversions::to_string_t("workflow_spec")] = ModelBase::toJson(m_Workflow_spec);
     val[utility::conversions::to_string_t("submission_types")] = ModelBase::toJson(m_Submission_types);
@@ -48,6 +50,7 @@ web::json::value GraderFeedback::toJson() const
 
 void GraderFeedback::fromJson(web::json::value& val)
 {
+    setDataset(ModelBase::stringFromJson(val[utility::conversions::to_string_t("dataset")]));
     setStatus(ModelBase::boolFromJson(val[utility::conversions::to_string_t("status")]));
     setWorkflowSpec(ModelBase::stringFromJson(val[utility::conversions::to_string_t("workflow_spec")]));
     setSubmissionTypes(ModelBase::stringFromJson(val[utility::conversions::to_string_t("submission_types")]));
@@ -61,6 +64,7 @@ void GraderFeedback::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
         namePrefix += utility::conversions::to_string_t(".");
     }
 
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("dataset"), m_Dataset));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("workflow_spec"), m_Workflow_spec));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("submission_types"), m_Submission_types));
@@ -74,11 +78,23 @@ void GraderFeedback::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         namePrefix += utility::conversions::to_string_t(".");
     }
 
+    setDataset(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataset"))));
     setStatus(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
     setWorkflowSpec(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("workflow_spec"))));
     setSubmissionTypes(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("submission_types"))));
 }
 
+utility::string_t GraderFeedback::getDataset() const
+{
+    return m_Dataset;
+}
+
+
+void GraderFeedback::setDataset(utility::string_t value)
+{
+    m_Dataset = value;
+    
+}
 bool GraderFeedback::isStatus() const
 {
     return m_Status;

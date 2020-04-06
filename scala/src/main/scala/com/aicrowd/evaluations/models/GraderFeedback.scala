@@ -14,6 +14,8 @@ package com.aicrowd.evaluations.models
 
 
 case class GraderFeedback (
+  // Serialized JSON for dataset metadata
+  dataset: String,
   // Status of the grader
   status: Boolean,
   // Serialized YAML workflow spec

@@ -23,9 +23,9 @@ pub struct Grader {
   /// Last updation time
   #[serde(rename = "updated")]
   updated: Option<String>,
-  /// S3 link of the Dataset
-  #[serde(rename = "dataset_url")]
-  dataset_url: Option<String>,
+  /// Dataset metadata
+  #[serde(rename = "dataset")]
+  dataset: Option<Value>,
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
@@ -38,9 +38,6 @@ pub struct Grader {
   /// Git branch/tag that should be used with the evaluator repository.
   #[serde(rename = "evaluator_repo_tag")]
   evaluator_repo_tag: Option<String>,
-  /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-  #[serde(rename = "storage_capacity")]
-  storage_capacity: Option<String>,
   /// Logs from argo workflow
   #[serde(rename = "logs")]
   logs: Option<Value>,
@@ -67,12 +64,11 @@ impl Grader {
       id: None,
       created: None,
       updated: None,
-      dataset_url: None,
+      dataset: None,
       cluster_id: None,
       workflow_spec: None,
       evaluator_repo: evaluator_repo,
       evaluator_repo_tag: None,
-      storage_capacity: None,
       logs: None,
       meta: None,
       status: None,
@@ -133,21 +129,21 @@ impl Grader {
     self.updated = None;
   }
 
-  pub fn set_dataset_url(&mut self, dataset_url: String) {
-    self.dataset_url = Some(dataset_url);
+  pub fn set_dataset(&mut self, dataset: Value) {
+    self.dataset = Some(dataset);
   }
 
-  pub fn with_dataset_url(mut self, dataset_url: String) -> Grader {
-    self.dataset_url = Some(dataset_url);
+  pub fn with_dataset(mut self, dataset: Value) -> Grader {
+    self.dataset = Some(dataset);
     self
   }
 
-  pub fn dataset_url(&self) -> Option<&String> {
-    self.dataset_url.as_ref()
+  pub fn dataset(&self) -> Option<&Value> {
+    self.dataset.as_ref()
   }
 
-  pub fn reset_dataset_url(&mut self) {
-    self.dataset_url = None;
+  pub fn reset_dataset(&mut self) {
+    self.dataset = None;
   }
 
   pub fn set_cluster_id(&mut self, cluster_id: i32) {
@@ -213,23 +209,6 @@ impl Grader {
 
   pub fn reset_evaluator_repo_tag(&mut self) {
     self.evaluator_repo_tag = None;
-  }
-
-  pub fn set_storage_capacity(&mut self, storage_capacity: String) {
-    self.storage_capacity = Some(storage_capacity);
-  }
-
-  pub fn with_storage_capacity(mut self, storage_capacity: String) -> Grader {
-    self.storage_capacity = Some(storage_capacity);
-    self
-  }
-
-  pub fn storage_capacity(&self) -> Option<&String> {
-    self.storage_capacity.as_ref()
-  }
-
-  pub fn reset_storage_capacity(&mut self) {
-    self.storage_capacity = None;
   }
 
   pub fn set_logs(&mut self, logs: Value) {

@@ -101,31 +101,4 @@ class GradersApi {
                     Grader.class )
                     
     }
-    def putGraderDao ( Integer graderId, Grader payload, String xFields, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/graders/{grader_id}"
-
-        // query params
-        def queryParams = [:]
-        def headerParams = [:]
-    
-        // verify required params are set
-        if (graderId == null) {
-            throw new RuntimeException("missing required params graderId")
-        }
-        // verify required params are set
-        if (payload == null) {
-            throw new RuntimeException("missing required params payload")
-        }
-
-        
-        headerParams.put("X-Fields", xFields)
-
-        // Also still TODO: form params, body param
-
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "PUT", "",
-                    Grader.class )
-                    
-    }
 }

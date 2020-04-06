@@ -40,11 +40,13 @@
    * Constructs a new <code>GraderFeedback</code>.
    * @alias module:AIcrowdEvaluations/model/GraderFeedback
    * @class
+   * @param dataset {String} Serialized JSON for dataset metadata
    * @param status {Boolean} Status of the grader
    * @param workflowSpec {String} Serialized YAML workflow spec
    * @param submissionTypes {String} Serialized JSON of submissions accepted by the grader
    */
-  var exports = function(status, workflowSpec, submissionTypes) {
+  var exports = function(dataset, status, workflowSpec, submissionTypes) {
+    this.dataset = dataset;
     this.status = status;
     this.workflowSpec = workflowSpec;
     this.submissionTypes = submissionTypes;
@@ -60,6 +62,8 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
+      if (data.hasOwnProperty('dataset'))
+        obj.dataset = ApiClient.convertToType(data['dataset'], 'String');
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'Boolean');
       if (data.hasOwnProperty('workflow_spec'))
@@ -69,6 +73,12 @@
     }
     return obj;
   }
+
+  /**
+   * Serialized JSON for dataset metadata
+   * @member {String} dataset
+   */
+  exports.prototype.dataset = undefined;
 
   /**
    * Status of the grader

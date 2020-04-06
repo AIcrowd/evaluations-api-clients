@@ -9,12 +9,14 @@ defmodule AIcrowd.Evaluations.Model.GraderFeedback do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"dataset",
     :"status",
     :"workflow_spec",
     :"submission_types"
   ]
 
   @type t :: %__MODULE__{
+    :"dataset" => String.t,
     :"status" => boolean(),
     :"workflow_spec" => String.t,
     :"submission_types" => String.t

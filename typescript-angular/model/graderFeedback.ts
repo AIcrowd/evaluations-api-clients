@@ -13,6 +13,10 @@
 
 export interface GraderFeedback { 
     /**
+     * Serialized JSON for dataset metadata
+     */
+    dataset: string;
+    /**
      * Status of the grader
      */
     status: boolean;

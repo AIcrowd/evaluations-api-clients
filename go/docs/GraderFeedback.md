@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Dataset** | **string** | Serialized JSON for dataset metadata | [default to null]
 **Status** | **bool** | Status of the grader | [default to null]
 **WorkflowSpec** | **string** | Serialized YAML workflow spec | [default to null]
 **SubmissionTypes** | **string** | Serialized JSON of submissions accepted by the grader | [default to null]

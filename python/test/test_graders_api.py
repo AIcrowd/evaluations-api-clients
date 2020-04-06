@@ -53,12 +53,6 @@ class TestGradersApi(unittest.TestCase):
         """
         pass
 
-    def test_put_grader_dao(self):
-        """Test case for put_grader_dao
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

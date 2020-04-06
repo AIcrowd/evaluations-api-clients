@@ -27,11 +27,11 @@ API.Client.Grader.prototype.created;
 API.Client.Grader.prototype.updated;
 
 /**
- * S3 link of the Dataset
- * @type {!string}
+ * Dataset metadata
+ * @type {!API.Client.Object}
  * @export
  */
-API.Client.Grader.prototype.datasetUrl;
+API.Client.Grader.prototype.dataset;
 
 /**
  * Cluster to run the grader on
@@ -60,13 +60,6 @@ API.Client.Grader.prototype.evaluatorRepo;
  * @export
  */
 API.Client.Grader.prototype.evaluatorRepoTag;
-
-/**
- * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
- * @type {!string}
- * @export
- */
-API.Client.Grader.prototype.storageCapacity;
 
 /**
  * Logs from argo workflow

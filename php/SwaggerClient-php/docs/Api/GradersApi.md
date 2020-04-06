@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 [**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 [**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 
 
 # **deleteGraderDao**
@@ -216,65 +215,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Swagger\Client\Model\Grader**](../Model/Grader.md)|  |
- **x_fields** | **string**| An optional fields mask | [optional]
-
-### Return type
-
-[**\Swagger\Client\Model\Grader**](../Model/Grader.md)
-
-### Authorization
-
-[api_key](../../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **putGraderDao**
-> \Swagger\Client\Model\Grader putGraderDao($grader_id, $payload, $x_fields)
-
-
-
-Update a grader
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: api_key
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('AUTHORIZATION', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('AUTHORIZATION', 'Bearer');
-
-$apiInstance = new Swagger\Client\Api\GradersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$grader_id = 56; // int | 
-$payload = new \Swagger\Client\Model\Grader(); // \Swagger\Client\Model\Grader | 
-$x_fields = "x_fields_example"; // string | An optional fields mask
-
-try {
-    $result = $apiInstance->putGraderDao($grader_id, $payload, $x_fields);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling GradersApi->putGraderDao: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grader_id** | **int**|  |
  **payload** | [**\Swagger\Client\Model\Grader**](../Model/Grader.md)|  |
  **x_fields** | **string**| An optional fields mask | [optional]
 

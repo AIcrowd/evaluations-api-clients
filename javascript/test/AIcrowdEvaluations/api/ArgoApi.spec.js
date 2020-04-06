@@ -64,6 +64,7 @@
           /*
           var graderId = 56;
           var payload = new AicrowdEvaluations.GraderFeedback();
+          payload.dataset = "";
           payload.status = false;
           payload.workflowSpec = "";
           payload.submissionTypes = "";

@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 [**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 [**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 
 
 <a name="deleteGraderDao"></a>
@@ -186,57 +185,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  |
- **xFields** | **kotlin.String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putGraderDao"></a>
-# **putGraderDao**
-> Grader putGraderDao(graderId, payload, xFields)
-
-
-
-Update a grader
-
-### Example
-```kotlin
-// Import classes:
-//import com.aicrowd.evaluations.infrastructure.*
-//import com.aicrowd.evaluations.models.*
-
-val apiInstance = GradersApi()
-val graderId : kotlin.Int = 56 // kotlin.Int | 
-val payload : Grader =  // Grader | 
-val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
-try {
-    val result : Grader = apiInstance.putGraderDao(graderId, payload, xFields)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling GradersApi#putGraderDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling GradersApi#putGraderDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **kotlin.Int**|  |
  **payload** | [**Grader**](Grader.md)|  |
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 

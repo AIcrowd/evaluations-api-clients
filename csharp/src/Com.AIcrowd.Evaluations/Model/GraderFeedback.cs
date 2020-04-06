@@ -38,11 +38,21 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GraderFeedback" /> class.
         /// </summary>
+        /// <param name="dataset">Serialized JSON for dataset metadata (required).</param>
         /// <param name="status">Status of the grader (required).</param>
         /// <param name="workflowSpec">Serialized YAML workflow spec (required).</param>
         /// <param name="submissionTypes">Serialized JSON of submissions accepted by the grader (required).</param>
-        public GraderFeedback(bool? status = default(bool?), string workflowSpec = default(string), string submissionTypes = default(string))
+        public GraderFeedback(string dataset = default(string), bool? status = default(bool?), string workflowSpec = default(string), string submissionTypes = default(string))
         {
+            // to ensure "dataset" is required (not null)
+            if (dataset == null)
+            {
+                throw new InvalidDataException("dataset is a required property for GraderFeedback and cannot be null");
+            }
+            else
+            {
+                this.Dataset = dataset;
+            }
             // to ensure "status" is required (not null)
             if (status == null)
             {
@@ -73,6 +83,13 @@ namespace Com.AIcrowd.Evaluations.Model
         }
         
         /// <summary>
+        /// Serialized JSON for dataset metadata
+        /// </summary>
+        /// <value>Serialized JSON for dataset metadata</value>
+        [DataMember(Name="dataset", EmitDefaultValue=false)]
+        public string Dataset { get; set; }
+
+        /// <summary>
         /// Status of the grader
         /// </summary>
         /// <value>Status of the grader</value>
@@ -101,6 +118,7 @@ namespace Com.AIcrowd.Evaluations.Model
         {
             var sb = new StringBuilder();
             sb.Append("class GraderFeedback {\n");
+            sb.Append("  Dataset: ").Append(Dataset).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
@@ -139,6 +157,11 @@ namespace Com.AIcrowd.Evaluations.Model
 
             return 
                 (
+                    this.Dataset == input.Dataset ||
+                    (this.Dataset != null &&
+                    this.Dataset.Equals(input.Dataset))
+                ) && 
+                (
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
@@ -164,6 +187,8 @@ namespace Com.AIcrowd.Evaluations.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Dataset != null)
+                    hashCode = hashCode * 59 + this.Dataset.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.WorkflowSpec != null)

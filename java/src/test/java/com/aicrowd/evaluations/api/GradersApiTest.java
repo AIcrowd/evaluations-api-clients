@@ -98,22 +98,4 @@ public class GradersApiTest {
         // TODO: test validations
     }
     
-    /**
-     * 
-     *
-     * Update a grader
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void putGraderDaoTest() throws ApiException {
-        Integer graderId = null;
-        Grader payload = null;
-        String xFields = null;
-        Grader response = api.putGraderDao(graderId, payload, xFields);
-
-        // TODO: test validations
-    }
-    
 }

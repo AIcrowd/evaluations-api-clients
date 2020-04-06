@@ -98,9 +98,9 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "dataset_url"
+     * Test attribute "dataset"
      */
-    public function testPropertyDatasetUrl()
+    public function testPropertyDataset()
     {
     }
 
@@ -129,13 +129,6 @@ class GraderTest extends \PHPUnit_Framework_TestCase
      * Test attribute "evaluator_repo_tag"
      */
     public function testPropertyEvaluatorRepoTag()
-    {
-    }
-
-    /**
-     * Test attribute "storage_capacity"
-     */
-    public function testPropertyStorageCapacity()
     {
     }
 

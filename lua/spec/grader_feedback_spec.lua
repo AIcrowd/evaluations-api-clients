@@ -16,6 +16,13 @@ Please update as you see appropriate
 describe("grader_feedback", function()
   local aicrowd-evaluations_grader_feedback = require "aicrowd-evaluations.model.grader_feedback"
 
+  -- unit tests for the property 'dataset'
+  describe("property dataset test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'status'
   describe("property status test", function()
     it("should work", function()

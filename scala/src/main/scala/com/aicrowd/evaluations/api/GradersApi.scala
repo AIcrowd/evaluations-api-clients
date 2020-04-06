@@ -187,36 +187,6 @@ class GradersApi(
       helper.postGraderListDao(payload, xFields)
   }
 
-  /**
-   * 
-   * Update a grader
-   *
-   * @param graderId  
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Grader
-   */
-  def putGraderDao(graderId: Integer, payload: Grader, xFields: Option[String] = None): Option[Grader] = {
-    val await = Try(Await.result(putGraderDaoAsync(graderId, payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Update a grader
-   *
-   * @param graderId  
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Grader)
-   */
-  def putGraderDaoAsync(graderId: Integer, payload: Grader, xFields: Option[String] = None): Future[Grader] = {
-      helper.putGraderDao(graderId, payload, xFields)
-  }
-
 }
 
 class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -296,30 +266,6 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def putGraderDao(graderId: Integer,
-    payload: Grader,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Grader], writer: RequestWriter[Grader]): Future[Grader] = {
-    // create path and map variables
-    val path = (addFmt("/graders/{grader_id}")
-      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling GradersApi->putGraderDao")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

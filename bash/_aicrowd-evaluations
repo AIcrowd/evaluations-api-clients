@@ -305,8 +305,7 @@ case $state in
             "postClusterListDao[]"             "deleteGraderDao[]" \
             "getGraderDao[]" \
             "getGraderListDao[]" \
-            "postGraderListDao[]" \
-            "putGraderDao[]"             "deleteOrganisationDao[]" \
+            "postGraderListDao[]"             "deleteOrganisationDao[]" \
             "getOrganisationDao[]" \
             "getOrganisationListDao[]" \
             "postOrganisationListDao[]" \
@@ -418,14 +417,6 @@ case $state in
         local -a _op_arguments
         _op_arguments=(
                               "X-Fields\::[HEADER] An optional fields mask"
-)
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
-      putGraderDao)
-        local -a _op_arguments
-        _op_arguments=(
-          "grader_id=:[PATH] "
-                    "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

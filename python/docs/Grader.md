@@ -6,12 +6,11 @@ Name | Type | Description | Notes
 **id** | **int** | ID | [optional] 
 **created** | **datetime** | Creation time | [optional] 
 **updated** | **datetime** | Last updation time | [optional] 
-**dataset_url** | **str** | S3 link of the Dataset | [optional] 
+**dataset** | **object** | Dataset metadata | [optional] 
 **cluster_id** | **int** | Cluster to run the grader on | [optional] 
 **workflow_spec** | **object** | Argo workflow template spec | [optional] 
 **evaluator_repo** | **str** | Git URL of the repository containing the code that will be used for the evaluation | 
 **evaluator_repo_tag** | **str** | Git branch/tag that should be used with the evaluator repository. | [optional] 
-**storage_capacity** | **str** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 
 **logs** | **object** | Logs from argo workflow | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
 **status** | **str** | Status of the grader - True if it ready, False otherwise | [optional] 

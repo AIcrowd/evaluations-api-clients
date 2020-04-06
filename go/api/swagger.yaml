@@ -328,40 +328,6 @@ paths:
             $ref: "#/definitions/Grader"
         "404":
           description: "Grader not found"
-    put:
-      tags:
-      - "graders"
-      description: "Update a grader"
-      operationId: "put_grader_dao"
-      parameters:
-      - name: "grader_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "GraderId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/Grader"
-        x-exportParamName: "Payload"
-      - name: "X-Fields"
-        in: "header"
-        description: "An optional fields mask"
-        required: false
-        type: "string"
-        format: "mask"
-        x-exportParamName: "XFields"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Grader"
-        "400":
-          description: "Invalid inputs"
-        "404":
-          description: "Grader not found"
     delete:
       tags:
       - "graders"
@@ -909,10 +875,14 @@ definitions:
   GraderFeedback:
     type: "object"
     required:
+    - "dataset"
     - "status"
     - "submission_types"
     - "workflow_spec"
     properties:
+      dataset:
+        type: "string"
+        description: "Serialized JSON for dataset metadata"
       status:
         type: "boolean"
         description: "Status of the grader"
@@ -925,6 +895,7 @@ definitions:
     example:
       submission_types: "submission_types"
       workflow_spec: "workflow_spec"
+      dataset: "dataset"
       status: true
   SubmissionFeedback:
     type: "object"
@@ -985,9 +956,11 @@ definitions:
         format: "date-time"
         description: "Last updation time"
         readOnly: true
-      dataset_url:
-        type: "string"
-        description: "S3 link of the Dataset"
+      dataset:
+        type: "object"
+        description: "Dataset metadata"
+        readOnly: true
+        properties: {}
       cluster_id:
         type: "integer"
         description: "Cluster to run the grader on"
@@ -1003,10 +976,6 @@ definitions:
       evaluator_repo_tag:
         type: "string"
         description: "Git branch/tag that should be used with the evaluator repository."
-      storage_capacity:
-        type: "string"
-        description: "Size of the dataset partition to request. Please provide at\
-          \ least 2x of the size of the dataset."
       logs:
         type: "object"
         description: "Logs from argo workflow"
@@ -1036,7 +1005,6 @@ definitions:
         readOnly: true
     example:
       evaluator_repo: "evaluator_repo"
-      storage_capacity: "storage_capacity"
       evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
       submission_types: "{}"
@@ -1046,11 +1014,11 @@ definitions:
       user_id: 1
       meta: "{}"
       id: 0
-      dataset_url: "dataset_url"
       updated: "2000-01-23T04:56:07.000+00:00"
+      dataset: "{}"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,dataset_url,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,storage_capacity,status,submission_types,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,status,submission_types,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

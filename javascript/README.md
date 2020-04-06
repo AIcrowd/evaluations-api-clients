@@ -142,7 +142,6 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.GradersApi* | [**getGraderDao**](docs/GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGraderListDao**](docs/GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 *AicrowdEvaluations.GradersApi* | [**postGraderListDao**](docs/GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-*AicrowdEvaluations.GradersApi* | [**putGraderDao**](docs/GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**deleteOrganisationDao**](docs/OrganisationsApi.md#deleteOrganisationDao) | **DELETE** /organisations/{organisation_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**getOrganisationDao**](docs/OrganisationsApi.md#getOrganisationDao) | **GET** /organisations/{organisation_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**getOrganisationListDao**](docs/OrganisationsApi.md#getOrganisationListDao) | **GET** /organisations/ | 

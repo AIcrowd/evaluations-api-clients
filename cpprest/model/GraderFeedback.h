@@ -54,6 +54,11 @@ public:
     /// GraderFeedback members
 
     /// <summary>
+    /// Serialized JSON for dataset metadata
+    /// </summary>
+    utility::string_t getDataset() const;
+        void setDataset(utility::string_t value);
+    /// <summary>
     /// Status of the grader
     /// </summary>
     bool isStatus() const;
@@ -70,7 +75,8 @@ public:
         void setSubmissionTypes(utility::string_t value);
 
 protected:
-    bool m_Status;
+    utility::string_t m_Dataset;
+        bool m_Status;
         utility::string_t m_Workflow_spec;
         utility::string_t m_Submission_types;
     };

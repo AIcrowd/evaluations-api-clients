@@ -77,6 +77,13 @@ class GraderFeedbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "dataset"
+     */
+    public function testPropertyDataset()
+    {
+    }
+
+    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()

@@ -23,8 +23,8 @@ module AIcrowdEvaluations
     # Last updation time
     attr_accessor :updated
 
-    # S3 link of the Dataset
-    attr_accessor :dataset_url
+    # Dataset metadata
+    attr_accessor :dataset
 
     # Cluster to run the grader on
     attr_accessor :cluster_id
@@ -37,9 +37,6 @@ module AIcrowdEvaluations
 
     # Git branch/tag that should be used with the evaluator repository.
     attr_accessor :evaluator_repo_tag
-
-    # Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-    attr_accessor :storage_capacity
 
     # Logs from argo workflow
     attr_accessor :logs
@@ -65,12 +62,11 @@ module AIcrowdEvaluations
         :'id' => :'id',
         :'created' => :'created',
         :'updated' => :'updated',
-        :'dataset_url' => :'dataset_url',
+        :'dataset' => :'dataset',
         :'cluster_id' => :'cluster_id',
         :'workflow_spec' => :'workflow_spec',
         :'evaluator_repo' => :'evaluator_repo',
         :'evaluator_repo_tag' => :'evaluator_repo_tag',
-        :'storage_capacity' => :'storage_capacity',
         :'logs' => :'logs',
         :'meta' => :'meta',
         :'status' => :'status',
@@ -86,12 +82,11 @@ module AIcrowdEvaluations
         :'id' => :'Integer',
         :'created' => :'DateTime',
         :'updated' => :'DateTime',
-        :'dataset_url' => :'String',
+        :'dataset' => :'Object',
         :'cluster_id' => :'Integer',
         :'workflow_spec' => :'Object',
         :'evaluator_repo' => :'String',
         :'evaluator_repo_tag' => :'String',
-        :'storage_capacity' => :'String',
         :'logs' => :'Object',
         :'meta' => :'Object',
         :'status' => :'String',
@@ -121,8 +116,8 @@ module AIcrowdEvaluations
         self.updated = attributes[:'updated']
       end
 
-      if attributes.has_key?(:'dataset_url')
-        self.dataset_url = attributes[:'dataset_url']
+      if attributes.has_key?(:'dataset')
+        self.dataset = attributes[:'dataset']
       end
 
       if attributes.has_key?(:'cluster_id')
@@ -139,10 +134,6 @@ module AIcrowdEvaluations
 
       if attributes.has_key?(:'evaluator_repo_tag')
         self.evaluator_repo_tag = attributes[:'evaluator_repo_tag']
-      end
-
-      if attributes.has_key?(:'storage_capacity')
-        self.storage_capacity = attributes[:'storage_capacity']
       end
 
       if attributes.has_key?(:'logs')
@@ -196,12 +187,11 @@ module AIcrowdEvaluations
           id == o.id &&
           created == o.created &&
           updated == o.updated &&
-          dataset_url == o.dataset_url &&
+          dataset == o.dataset &&
           cluster_id == o.cluster_id &&
           workflow_spec == o.workflow_spec &&
           evaluator_repo == o.evaluator_repo &&
           evaluator_repo_tag == o.evaluator_repo_tag &&
-          storage_capacity == o.storage_capacity &&
           logs == o.logs &&
           meta == o.meta &&
           status == o.status &&
@@ -219,7 +209,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, storage_capacity, logs, meta, status, submission_types, user_id, organisation_id].hash
+      [id, created, updated, dataset, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, logs, meta, status, submission_types, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

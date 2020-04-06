@@ -58,10 +58,10 @@
         // expect(instance.updated).to.be(expectedValueLiteral);
       });
 
-      it('should have the property datasetUrl (base name: "dataset_url")', function() {
-        // TODO: update the code to test the property datasetUrl
-        expect(instance).to.have.property('datasetUrl');
-        // expect(instance.datasetUrl).to.be(expectedValueLiteral);
+      it('should have the property dataset (base name: "dataset")', function() {
+        // TODO: update the code to test the property dataset
+        expect(instance).to.have.property('dataset');
+        // expect(instance.dataset).to.be(expectedValueLiteral);
       });
 
       it('should have the property clusterId (base name: "cluster_id")', function() {
@@ -86,12 +86,6 @@
         // TODO: update the code to test the property evaluatorRepoTag
         expect(instance).to.have.property('evaluatorRepoTag');
         // expect(instance.evaluatorRepoTag).to.be(expectedValueLiteral);
-      });
-
-      it('should have the property storageCapacity (base name: "storage_capacity")', function() {
-        // TODO: update the code to test the property storageCapacity
-        expect(instance).to.have.property('storageCapacity');
-        // expect(instance.storageCapacity).to.be(expectedValueLiteral);
       });
 
       it('should have the property logs (base name: "logs")', function() {

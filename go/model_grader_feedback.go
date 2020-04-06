@@ -10,6 +10,8 @@
 package aicrowd_evaluations
 
 type GraderFeedback struct {
+	// Serialized JSON for dataset metadata
+	Dataset string `json:"dataset"`
 	// Status of the grader
 	Status bool `json:"status"`
 	// Serialized YAML workflow spec

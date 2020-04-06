@@ -121,35 +121,4 @@ defmodule AIcrowd.Evaluations.Api.Graders do
     |> (&Connection.request(connection, &1)).()
     |> decode(%AIcrowd.Evaluations.Model.Grader{})
   end
-
-  @doc """
-  Update a grader
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - grader_id (integer()): 
-  - payload (Grader): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.Grader{}} on success
-  {:error, info} on failure
-  """
-  @spec put_grader_dao(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.Grader.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Grader.t} | {:error, Tesla.Env.t}
-  def put_grader_dao(connection, grader_id, payload, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:put)
-    |> url("/graders/#{grader_id}")
-    |> add_param(:body, :"payload", payload)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.Grader{})
-  end
 end

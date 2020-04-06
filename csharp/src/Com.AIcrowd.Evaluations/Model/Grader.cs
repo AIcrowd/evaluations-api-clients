@@ -38,12 +38,10 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Grader" /> class.
         /// </summary>
-        /// <param name="datasetUrl">S3 link of the Dataset.</param>
         /// <param name="clusterId">Cluster to run the grader on.</param>
         /// <param name="evaluatorRepo">Git URL of the repository containing the code that will be used for the evaluation (required).</param>
         /// <param name="evaluatorRepoTag">Git branch/tag that should be used with the evaluator repository..</param>
-        /// <param name="storageCapacity">Size of the dataset partition to request. Please provide at least 2x of the size of the dataset..</param>
-        public Grader(string datasetUrl = default(string), int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string storageCapacity = default(string))
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -54,10 +52,8 @@ namespace Com.AIcrowd.Evaluations.Model
             {
                 this.EvaluatorRepo = evaluatorRepo;
             }
-            this.DatasetUrl = datasetUrl;
             this.ClusterId = clusterId;
             this.EvaluatorRepoTag = evaluatorRepoTag;
-            this.StorageCapacity = storageCapacity;
         }
         
         /// <summary>
@@ -82,11 +78,11 @@ namespace Com.AIcrowd.Evaluations.Model
         public DateTime? Updated { get; private set; }
 
         /// <summary>
-        /// S3 link of the Dataset
+        /// Dataset metadata
         /// </summary>
-        /// <value>S3 link of the Dataset</value>
-        [DataMember(Name="dataset_url", EmitDefaultValue=false)]
-        public string DatasetUrl { get; set; }
+        /// <value>Dataset metadata</value>
+        [DataMember(Name="dataset", EmitDefaultValue=false)]
+        public Object Dataset { get; private set; }
 
         /// <summary>
         /// Cluster to run the grader on
@@ -115,13 +111,6 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>Git branch/tag that should be used with the evaluator repository.</value>
         [DataMember(Name="evaluator_repo_tag", EmitDefaultValue=false)]
         public string EvaluatorRepoTag { get; set; }
-
-        /// <summary>
-        /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-        /// </summary>
-        /// <value>Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.</value>
-        [DataMember(Name="storage_capacity", EmitDefaultValue=false)]
-        public string StorageCapacity { get; set; }
 
         /// <summary>
         /// Logs from argo workflow
@@ -176,12 +165,11 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
-            sb.Append("  DatasetUrl: ").Append(DatasetUrl).Append("\n");
+            sb.Append("  Dataset: ").Append(Dataset).Append("\n");
             sb.Append("  ClusterId: ").Append(ClusterId).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
             sb.Append("  EvaluatorRepo: ").Append(EvaluatorRepo).Append("\n");
             sb.Append("  EvaluatorRepoTag: ").Append(EvaluatorRepoTag).Append("\n");
-            sb.Append("  StorageCapacity: ").Append(StorageCapacity).Append("\n");
             sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -238,9 +226,9 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Updated.Equals(input.Updated))
                 ) && 
                 (
-                    this.DatasetUrl == input.DatasetUrl ||
-                    (this.DatasetUrl != null &&
-                    this.DatasetUrl.Equals(input.DatasetUrl))
+                    this.Dataset == input.Dataset ||
+                    (this.Dataset != null &&
+                    this.Dataset.Equals(input.Dataset))
                 ) && 
                 (
                     this.ClusterId == input.ClusterId ||
@@ -261,11 +249,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.EvaluatorRepoTag == input.EvaluatorRepoTag ||
                     (this.EvaluatorRepoTag != null &&
                     this.EvaluatorRepoTag.Equals(input.EvaluatorRepoTag))
-                ) && 
-                (
-                    this.StorageCapacity == input.StorageCapacity ||
-                    (this.StorageCapacity != null &&
-                    this.StorageCapacity.Equals(input.StorageCapacity))
                 ) && 
                 (
                     this.Logs == input.Logs ||
@@ -314,8 +297,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Created.GetHashCode();
                 if (this.Updated != null)
                     hashCode = hashCode * 59 + this.Updated.GetHashCode();
-                if (this.DatasetUrl != null)
-                    hashCode = hashCode * 59 + this.DatasetUrl.GetHashCode();
+                if (this.Dataset != null)
+                    hashCode = hashCode * 59 + this.Dataset.GetHashCode();
                 if (this.ClusterId != null)
                     hashCode = hashCode * 59 + this.ClusterId.GetHashCode();
                 if (this.WorkflowSpec != null)
@@ -324,8 +307,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.EvaluatorRepo.GetHashCode();
                 if (this.EvaluatorRepoTag != null)
                     hashCode = hashCode * 59 + this.EvaluatorRepoTag.GetHashCode();
-                if (this.StorageCapacity != null)
-                    hashCode = hashCode * 59 + this.StorageCapacity.GetHashCode();
                 if (this.Logs != null)
                     hashCode = hashCode * 59 + this.Logs.GetHashCode();
                 if (this.Meta != null)

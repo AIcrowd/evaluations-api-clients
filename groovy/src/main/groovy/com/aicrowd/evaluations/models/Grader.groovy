@@ -16,8 +16,8 @@ class Grader {
   /* Last updation time */
   Date updated = null
 
-  /* S3 link of the Dataset */
-  String datasetUrl = null
+  /* Dataset metadata */
+  Object dataset = null
 
   /* Cluster to run the grader on */
   Integer clusterId = null
@@ -30,9 +30,6 @@ class Grader {
 
   /* Git branch/tag that should be used with the evaluator repository. */
   String evaluatorRepoTag = null
-
-  /* Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. */
-  String storageCapacity = null
 
   /* Logs from argo workflow */
   Object logs = null

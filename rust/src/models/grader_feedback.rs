@@ -14,6 +14,9 @@ use serde_json::Value;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GraderFeedback {
+  /// Serialized JSON for dataset metadata
+  #[serde(rename = "dataset")]
+  dataset: String,
   /// Status of the grader
   #[serde(rename = "status")]
   status: bool,
@@ -26,13 +29,28 @@ pub struct GraderFeedback {
 }
 
 impl GraderFeedback {
-  pub fn new(status: bool, workflow_spec: String, submission_types: String) -> GraderFeedback {
+  pub fn new(dataset: String, status: bool, workflow_spec: String, submission_types: String) -> GraderFeedback {
     GraderFeedback {
+      dataset: dataset,
       status: status,
       workflow_spec: workflow_spec,
       submission_types: submission_types
     }
   }
+
+  pub fn set_dataset(&mut self, dataset: String) {
+    self.dataset = dataset;
+  }
+
+  pub fn with_dataset(mut self, dataset: String) -> GraderFeedback {
+    self.dataset = dataset;
+    self
+  }
+
+  pub fn dataset(&self) -> &String {
+    &self.dataset
+  }
+
 
   pub fn set_status(&mut self, status: bool) {
     self.status = status;

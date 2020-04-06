@@ -88,26 +88,3 @@
   ([payload optional-params]
    (:data (post-grader-list-dao-with-http-info payload optional-params))))
 
-(defn put-grader-dao-with-http-info
-  "
-  Update a grader"
-  ([grader-id payload ] (put-grader-dao-with-http-info grader-id payload nil))
-  ([grader-id payload {:keys [x-fields ]}]
-   (check-required-params grader-id payload)
-   (call-api "/graders/{grader_id}" :put
-             {:path-params   {"grader_id" grader-id }
-              :header-params {"X-Fields" x-fields }
-              :query-params  {}
-              :form-params   {}
-              :body-param    payload
-              :content-types ["application/json"]
-              :accepts       ["application/json"]
-              :auth-names    ["api_key"]})))
-
-(defn put-grader-dao
-  "
-  Update a grader"
-  ([grader-id payload ] (put-grader-dao grader-id payload nil))
-  ([grader-id payload optional-params]
-   (:data (put-grader-dao-with-http-info grader-id payload optional-params))))
-

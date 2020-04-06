@@ -43,11 +43,4 @@ describe("graders_api", function()
     end)
   end)
 
-  -- unit tests for put_grader_dao
-  describe("put_grader_dao test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
 end)

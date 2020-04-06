@@ -31,28 +31,57 @@ class GraderFeedback(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'dataset': 'str',
         'status': 'bool',
         'workflow_spec': 'str',
         'submission_types': 'str'
     }
 
     attribute_map = {
+        'dataset': 'dataset',
         'status': 'status',
         'workflow_spec': 'workflow_spec',
         'submission_types': 'submission_types'
     }
 
-    def __init__(self, status=None, workflow_spec=None, submission_types=None):  # noqa: E501
+    def __init__(self, dataset=None, status=None, workflow_spec=None, submission_types=None):  # noqa: E501
         """GraderFeedback - a model defined in Swagger"""  # noqa: E501
 
+        self._dataset = None
         self._status = None
         self._workflow_spec = None
         self._submission_types = None
         self.discriminator = None
 
+        self.dataset = dataset
         self.status = status
         self.workflow_spec = workflow_spec
         self.submission_types = submission_types
+
+    @property
+    def dataset(self):
+        """Gets the dataset of this GraderFeedback.  # noqa: E501
+
+        Serialized JSON for dataset metadata  # noqa: E501
+
+        :return: The dataset of this GraderFeedback.  # noqa: E501
+        :rtype: str
+        """
+        return self._dataset
+
+    @dataset.setter
+    def dataset(self, dataset):
+        """Sets the dataset of this GraderFeedback.
+
+        Serialized JSON for dataset metadata  # noqa: E501
+
+        :param dataset: The dataset of this GraderFeedback.  # noqa: E501
+        :type: str
+        """
+        if dataset is None:
+            raise ValueError("Invalid value for `dataset`, must not be `None`")  # noqa: E501
+
+        self._dataset = dataset
 
     @property
     def status(self):

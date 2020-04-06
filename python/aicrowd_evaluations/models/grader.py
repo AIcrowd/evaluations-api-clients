@@ -34,12 +34,11 @@ class Grader(object):
         'id': 'int',
         'created': 'datetime',
         'updated': 'datetime',
-        'dataset_url': 'str',
+        'dataset': 'object',
         'cluster_id': 'int',
         'workflow_spec': 'object',
         'evaluator_repo': 'str',
         'evaluator_repo_tag': 'str',
-        'storage_capacity': 'str',
         'logs': 'object',
         'meta': 'object',
         'status': 'str',
@@ -52,12 +51,11 @@ class Grader(object):
         'id': 'id',
         'created': 'created',
         'updated': 'updated',
-        'dataset_url': 'dataset_url',
+        'dataset': 'dataset',
         'cluster_id': 'cluster_id',
         'workflow_spec': 'workflow_spec',
         'evaluator_repo': 'evaluator_repo',
         'evaluator_repo_tag': 'evaluator_repo_tag',
-        'storage_capacity': 'storage_capacity',
         'logs': 'logs',
         'meta': 'meta',
         'status': 'status',
@@ -66,18 +64,17 @@ class Grader(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, storage_capacity=None, logs=None, meta=None, status=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, logs=None, meta=None, status=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._created = None
         self._updated = None
-        self._dataset_url = None
+        self._dataset = None
         self._cluster_id = None
         self._workflow_spec = None
         self._evaluator_repo = None
         self._evaluator_repo_tag = None
-        self._storage_capacity = None
         self._logs = None
         self._meta = None
         self._status = None
@@ -92,8 +89,8 @@ class Grader(object):
             self.created = created
         if updated is not None:
             self.updated = updated
-        if dataset_url is not None:
-            self.dataset_url = dataset_url
+        if dataset is not None:
+            self.dataset = dataset
         if cluster_id is not None:
             self.cluster_id = cluster_id
         if workflow_spec is not None:
@@ -101,8 +98,6 @@ class Grader(object):
         self.evaluator_repo = evaluator_repo
         if evaluator_repo_tag is not None:
             self.evaluator_repo_tag = evaluator_repo_tag
-        if storage_capacity is not None:
-            self.storage_capacity = storage_capacity
         if logs is not None:
             self.logs = logs
         if meta is not None:
@@ -186,27 +181,27 @@ class Grader(object):
         self._updated = updated
 
     @property
-    def dataset_url(self):
-        """Gets the dataset_url of this Grader.  # noqa: E501
+    def dataset(self):
+        """Gets the dataset of this Grader.  # noqa: E501
 
-        S3 link of the Dataset  # noqa: E501
+        Dataset metadata  # noqa: E501
 
-        :return: The dataset_url of this Grader.  # noqa: E501
-        :rtype: str
+        :return: The dataset of this Grader.  # noqa: E501
+        :rtype: object
         """
-        return self._dataset_url
+        return self._dataset
 
-    @dataset_url.setter
-    def dataset_url(self, dataset_url):
-        """Sets the dataset_url of this Grader.
+    @dataset.setter
+    def dataset(self, dataset):
+        """Sets the dataset of this Grader.
 
-        S3 link of the Dataset  # noqa: E501
+        Dataset metadata  # noqa: E501
 
-        :param dataset_url: The dataset_url of this Grader.  # noqa: E501
-        :type: str
+        :param dataset: The dataset of this Grader.  # noqa: E501
+        :type: object
         """
 
-        self._dataset_url = dataset_url
+        self._dataset = dataset
 
     @property
     def cluster_id(self):
@@ -301,29 +296,6 @@ class Grader(object):
         """
 
         self._evaluator_repo_tag = evaluator_repo_tag
-
-    @property
-    def storage_capacity(self):
-        """Gets the storage_capacity of this Grader.  # noqa: E501
-
-        Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.  # noqa: E501
-
-        :return: The storage_capacity of this Grader.  # noqa: E501
-        :rtype: str
-        """
-        return self._storage_capacity
-
-    @storage_capacity.setter
-    def storage_capacity(self, storage_capacity):
-        """Sets the storage_capacity of this Grader.
-
-        Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.  # noqa: E501
-
-        :param storage_capacity: The storage_capacity of this Grader.  # noqa: E501
-        :type: str
-        """
-
-        self._storage_capacity = storage_capacity
 
     @property
     def logs(self):

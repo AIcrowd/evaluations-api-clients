@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 [**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 [**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 
 
 ## **deleteGraderDao**
@@ -123,40 +122,6 @@ aicrowd-evaluations postGraderListDao X-Fields:value
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md) |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **putGraderDao**
-
-
-
-Update a grader
-
-### Example
-```bash
-aicrowd-evaluations putGraderDao grader_id=value X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **integer** |  |
  **payload** | [**Grader**](Grader.md) |  |
  **xFields** | **string** | An optional fields mask | [optional]
 

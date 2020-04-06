@@ -140,42 +140,4 @@ export class GradersApi {
 
         return this.$http(httpRequestParams);
     }
-    /**
-     * Update a grader
-     * @param graderId 
-     * @param payload 
-     * @param xFields An optional fields mask
-     */
-    public putGraderDao (graderId: number, payload: models.Grader, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Grader> {
-        const localVarPath = this.basePath + '/graders/{grader_id}'
-            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'graderId' is not null or undefined
-        if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling putGraderDao.');
-        }
-
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putGraderDao.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'PUT',
-            url: localVarPath,
-            data: payload,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
 }

@@ -13,7 +13,6 @@ Method | HTTP request | Description
 [**get_grader_dao**](GradersApi.md#get_grader_dao) | **GET** /graders/{grader_id} | 
 [**get_grader_list_dao**](GradersApi.md#get_grader_list_dao) | **GET** /graders/ | 
 [**post_grader_list_dao**](GradersApi.md#post_grader_list_dao) | **POST** /graders/ | 
-[**put_grader_dao**](GradersApi.md#put_grader_dao) | **PUT** /graders/{grader_id} | 
 
 
 # **delete_grader_dao**
@@ -205,61 +204,6 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **x_fields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **put_grader_dao**
-> Grader put_grader_dao(grader_id => $grader_id, payload => $payload, x_fields => $x_fields)
-
-
-
-Update a grader
-
-### Example 
-```perl
-use Data::Dumper;
-use AIcrowdEvaluations::GradersApi;
-my $api_instance = AIcrowdEvaluations::GradersApi->new(
-
-    # Configure API key authorization: api_key
-    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
-);
-
-my $grader_id = 56; # int | 
-my $payload = AIcrowdEvaluations::Object::Grader->new(); # Grader | 
-my $x_fields = 'x_fields_example'; # string | An optional fields mask
-
-eval { 
-    my $result = $api_instance->put_grader_dao(grader_id => $grader_id, payload => $payload, x_fields => $x_fields);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling GradersApi->put_grader_dao: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grader_id** | **int**|  | 
  **payload** | [**Grader**](Grader.md)|  | 
  **x_fields** | **string**| An optional fields mask | [optional] 
 

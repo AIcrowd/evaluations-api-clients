@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 [**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 [**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 
 
 <a name="deleteGraderDao"></a>
@@ -218,65 +217,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  |
- **xFields** | **String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putGraderDao"></a>
-# **putGraderDao**
-> Grader putGraderDao(graderId, payload, xFields)
-
-
-
-Update a grader
-
-### Example
-```java
-// Import classes:
-//import com.aicrowd.evaluations.ApiClient;
-//import com.aicrowd.evaluations.ApiException;
-//import com.aicrowd.evaluations.Configuration;
-//import com.aicrowd.evaluations.auth.*;
-//import com.aicrowd.evaluations.api.GradersApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: api_key
-ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-api_key.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.setApiKeyPrefix("Token");
-
-GradersApi apiInstance = new GradersApi();
-Integer graderId = 56; // Integer | 
-Grader payload = new Grader(); // Grader | 
-String xFields = "xFields_example"; // String | An optional fields mask
-try {
-    Grader result = apiInstance.putGraderDao(graderId, payload, xFields);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#putGraderDao");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **Integer**|  |
  **payload** | [**Grader**](Grader.md)|  |
  **xFields** | **String**| An optional fields mask | [optional]
 

@@ -114,20 +114,6 @@ namespace Com.AIcrowd.Evaluations.Test
             //Assert.IsInstanceOf<Grader> (response, "response is Grader");
         }
         
-        /// <summary>
-        /// Test PutGraderDao
-        /// </summary>
-        [Test]
-        public void PutGraderDaoTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //int? graderId = null;
-            //Grader payload = null;
-            //string xFields = null;
-            //var response = instance.PutGraderDao(graderId, payload, xFields);
-            //Assert.IsInstanceOf<Grader> (response, "response is Grader");
-        }
-        
     }
 
 }

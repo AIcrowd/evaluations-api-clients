@@ -114,7 +114,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**GetGraderDao**](docs/GradersApi.md#getgraderdao) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**GetGraderListDao**](docs/GradersApi.md#getgraderlistdao) | **GET** /graders/ | 
 *GradersApi* | [**PostGraderListDao**](docs/GradersApi.md#postgraderlistdao) | **POST** /graders/ | 
-*GradersApi* | [**PutGraderDao**](docs/GradersApi.md#putgraderdao) | **PUT** /graders/{grader_id} | 
 *OrganisationsApi* | [**DeleteOrganisationDao**](docs/OrganisationsApi.md#deleteorganisationdao) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**GetOrganisationDao**](docs/OrganisationsApi.md#getorganisationdao) | **GET** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**GetOrganisationListDao**](docs/OrganisationsApi.md#getorganisationlistdao) | **GET** /organisations/ | 

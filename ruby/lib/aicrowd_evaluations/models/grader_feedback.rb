@@ -14,6 +14,9 @@ require 'date'
 
 module AIcrowdEvaluations
   class GraderFeedback
+    # Serialized JSON for dataset metadata
+    attr_accessor :dataset
+
     # Status of the grader
     attr_accessor :status
 
@@ -26,6 +29,7 @@ module AIcrowdEvaluations
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'dataset' => :'dataset',
         :'status' => :'status',
         :'workflow_spec' => :'workflow_spec',
         :'submission_types' => :'submission_types'
@@ -35,6 +39,7 @@ module AIcrowdEvaluations
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'dataset' => :'String',
         :'status' => :'BOOLEAN',
         :'workflow_spec' => :'String',
         :'submission_types' => :'String'
@@ -48,6 +53,10 @@ module AIcrowdEvaluations
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'dataset')
+        self.dataset = attributes[:'dataset']
+      end
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
@@ -66,6 +75,10 @@ module AIcrowdEvaluations
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @dataset.nil?
+        invalid_properties.push('invalid value for "dataset", dataset cannot be nil.')
+      end
+
       if @status.nil?
         invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
@@ -84,6 +97,7 @@ module AIcrowdEvaluations
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @dataset.nil?
       return false if @status.nil?
       return false if @workflow_spec.nil?
       return false if @submission_types.nil?
@@ -95,6 +109,7 @@ module AIcrowdEvaluations
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          dataset == o.dataset &&
           status == o.status &&
           workflow_spec == o.workflow_spec &&
           submission_types == o.submission_types
@@ -109,7 +124,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status, workflow_spec, submission_types].hash
+      [dataset, status, workflow_spec, submission_types].hash
     end
 
     # Builds the object from hash

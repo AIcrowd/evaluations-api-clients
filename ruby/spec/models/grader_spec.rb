@@ -50,7 +50,7 @@ describe 'Grader' do
     end
   end
 
-  describe 'test attribute "dataset_url"' do
+  describe 'test attribute "dataset"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -75,12 +75,6 @@ describe 'Grader' do
   end
 
   describe 'test attribute "evaluator_repo_tag"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "storage_capacity"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

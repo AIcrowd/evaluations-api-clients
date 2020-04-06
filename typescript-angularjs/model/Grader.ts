@@ -26,9 +26,9 @@ export interface Grader {
      */
     "updated"?: Date;
     /**
-     * S3 link of the Dataset
+     * Dataset metadata
      */
-    "datasetUrl"?: string;
+    "dataset"?: any;
     /**
      * Cluster to run the grader on
      */
@@ -45,10 +45,6 @@ export interface Grader {
      * Git branch/tag that should be used with the evaluator repository.
      */
     "evaluatorRepoTag"?: string;
-    /**
-     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-     */
-    "storageCapacity"?: string;
     /**
      * Logs from argo workflow
      */

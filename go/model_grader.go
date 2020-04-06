@@ -20,8 +20,8 @@ type Grader struct {
 	Created time.Time `json:"created,omitempty"`
 	// Last updation time
 	Updated time.Time `json:"updated,omitempty"`
-	// S3 link of the Dataset
-	DatasetUrl string `json:"dataset_url,omitempty"`
+	// Dataset metadata
+	Dataset *interface{} `json:"dataset,omitempty"`
 	// Cluster to run the grader on
 	ClusterId int32 `json:"cluster_id,omitempty"`
 	// Argo workflow template spec
@@ -30,8 +30,6 @@ type Grader struct {
 	EvaluatorRepo string `json:"evaluator_repo"`
 	// Git branch/tag that should be used with the evaluator repository.
 	EvaluatorRepoTag string `json:"evaluator_repo_tag,omitempty"`
-	// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-	StorageCapacity string `json:"storage_capacity,omitempty"`
 	// Logs from argo workflow
 	Logs *interface{} `json:"logs,omitempty"`
 	// Additional meta data of the grader

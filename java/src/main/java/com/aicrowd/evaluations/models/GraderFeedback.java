@@ -27,8 +27,11 @@ import java.io.IOException;
 /**
  * GraderFeedback
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:23:01.585Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:48:11.098Z")
 public class GraderFeedback {
+  @SerializedName("dataset")
+  private String dataset = null;
+
   @SerializedName("status")
   private Boolean status = null;
 
@@ -37,6 +40,24 @@ public class GraderFeedback {
 
   @SerializedName("submission_types")
   private String submissionTypes = null;
+
+  public GraderFeedback dataset(String dataset) {
+    this.dataset = dataset;
+    return this;
+  }
+
+   /**
+   * Serialized JSON for dataset metadata
+   * @return dataset
+  **/
+  @ApiModelProperty(required = true, value = "Serialized JSON for dataset metadata")
+  public String getDataset() {
+    return dataset;
+  }
+
+  public void setDataset(String dataset) {
+    this.dataset = dataset;
+  }
 
   public GraderFeedback status(Boolean status) {
     this.status = status;
@@ -102,14 +123,15 @@ public class GraderFeedback {
       return false;
     }
     GraderFeedback graderFeedback = (GraderFeedback) o;
-    return Objects.equals(this.status, graderFeedback.status) &&
+    return Objects.equals(this.dataset, graderFeedback.dataset) &&
+        Objects.equals(this.status, graderFeedback.status) &&
         Objects.equals(this.workflowSpec, graderFeedback.workflowSpec) &&
         Objects.equals(this.submissionTypes, graderFeedback.submissionTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, workflowSpec, submissionTypes);
+    return Objects.hash(dataset, status, workflowSpec, submissionTypes);
   }
 
 
@@ -118,6 +140,7 @@ public class GraderFeedback {
     StringBuilder sb = new StringBuilder();
     sb.append("class GraderFeedback {\n");
     
+    sb.append("    dataset: ").append(toIndentedString(dataset)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
     sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");

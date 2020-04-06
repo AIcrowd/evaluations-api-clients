@@ -14,11 +14,14 @@ package com.aicrowd.evaluations.models
 
 /**
  * 
+ * @param dataset Serialized JSON for dataset metadata
  * @param status Status of the grader
  * @param workflow_spec Serialized YAML workflow spec
  * @param submission_types Serialized JSON of submissions accepted by the grader
  */
 data class GraderFeedback (
+    /* Serialized JSON for dataset metadata */
+    val dataset: kotlin.String,
     /* Status of the grader */
     val status: kotlin.Boolean,
     /* Serialized YAML workflow spec */

@@ -237,63 +237,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-
-    /**
-     * Callback function to receive the result of the putGraderDao operation.
-     * @callback module:AIcrowdEvaluations/api/GradersApi~putGraderDaoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:AIcrowdEvaluations/model/Grader} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Update a grader
-     * @param {Number} graderId 
-     * @param {module:AIcrowdEvaluations/model/Grader} payload 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.xFields An optional fields mask
-     * @param {module:AIcrowdEvaluations/api/GradersApi~putGraderDaoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:AIcrowdEvaluations/model/Grader}
-     */
-    this.putGraderDao = function(graderId, payload, opts, callback) {
-      opts = opts || {};
-      var postBody = payload;
-
-      // verify the required parameter 'graderId' is set
-      if (graderId === undefined || graderId === null) {
-        throw new Error("Missing the required parameter 'graderId' when calling putGraderDao");
-      }
-
-      // verify the required parameter 'payload' is set
-      if (payload === undefined || payload === null) {
-        throw new Error("Missing the required parameter 'payload' when calling putGraderDao");
-      }
-
-
-      var pathParams = {
-        'grader_id': graderId
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-        'X-Fields': opts['xFields']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Grader;
-
-      return this.apiClient.callApi(
-        '/graders/{grader_id}', 'PUT',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
   };
 
   return exports;

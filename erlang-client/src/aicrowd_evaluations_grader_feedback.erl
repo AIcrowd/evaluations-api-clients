@@ -5,16 +5,19 @@
 -export_type([aicrowd_evaluations_grader_feedback/0]).
 
 -type aicrowd_evaluations_grader_feedback() ::
-    #{ 'status' := boolean(),
+    #{ 'dataset' := binary(),
+       'status' := boolean(),
        'workflow_spec' := binary(),
        'submission_types' := binary()
      }.
 
-encode(#{ 'status' := Status,
+encode(#{ 'dataset' := Dataset,
+          'status' := Status,
           'workflow_spec' := WorkflowSpec,
           'submission_types' := SubmissionTypes
         }) ->
-    #{ 'status' => Status,
+    #{ 'dataset' => Dataset,
+       'status' => Status,
        'workflow_spec' => WorkflowSpec,
        'submission_types' => SubmissionTypes
      }.

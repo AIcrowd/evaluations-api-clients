@@ -2,7 +2,7 @@
 
 Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-04-06T16:23:01.585Z
+  - Build date: 2020-04-06T16:48:11.098Z
 
 API to create and evaluate custom challenges
 
@@ -125,7 +125,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**getGraderDao**](docs/GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderListDao**](docs/GradersApi.md#getGraderListDao) | **GET** /graders/ | 
 *GradersApi* | [**postGraderListDao**](docs/GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-*GradersApi* | [**putGraderDao**](docs/GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
 *OrganisationsApi* | [**deleteOrganisationDao**](docs/OrganisationsApi.md#deleteOrganisationDao) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisationDao**](docs/OrganisationsApi.md#getOrganisationDao) | **GET** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisationListDao**](docs/OrganisationsApi.md#getOrganisationListDao) | **GET** /organisations/ | 

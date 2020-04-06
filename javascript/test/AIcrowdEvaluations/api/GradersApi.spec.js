@@ -75,8 +75,8 @@
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);
             expect(data.updated).to.be(new Date());
-            expect(data.datasetUrl).to.be.a('string');
-            expect(data.datasetUrl).to.be("");
+            expect(data.dataset).to.be.a(Object);
+            expect(data.dataset).to.be();
             expect(data.clusterId).to.be.a('number');
             expect(data.clusterId).to.be(0);
             expect(data.workflowSpec).to.be.a(Object);
@@ -85,8 +85,6 @@
             expect(data.evaluatorRepo).to.be("");
             expect(data.evaluatorRepoTag).to.be.a('string');
             expect(data.evaluatorRepoTag).to.be("");
-            expect(data.storageCapacity).to.be.a('string');
-            expect(data.storageCapacity).to.be("");
             expect(data.logs).to.be.a(Object);
             expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
@@ -132,8 +130,8 @@
               expect(data.created).to.be(new Date());
               expect(data.updated).to.be.a(Date);
               expect(data.updated).to.be(new Date());
-              expect(data.datasetUrl).to.be.a('string');
-              expect(data.datasetUrl).to.be("");
+              expect(data.dataset).to.be.a(Object);
+              expect(data.dataset).to.be();
               expect(data.clusterId).to.be.a('number');
               expect(data.clusterId).to.be(0);
               expect(data.workflowSpec).to.be.a(Object);
@@ -142,8 +140,6 @@
               expect(data.evaluatorRepo).to.be("");
               expect(data.evaluatorRepoTag).to.be.a('string');
               expect(data.evaluatorRepoTag).to.be("");
-              expect(data.storageCapacity).to.be.a('string');
-              expect(data.storageCapacity).to.be("");
               expect(data.logs).to.be.a(Object);
               expect(data.logs).to.be();
               expect(data.meta).to.be.a(Object);
@@ -170,11 +166,9 @@
           // TODO: uncomment, update parameter values for postGraderListDao call and complete the assertions
           /*
           var payload = new AicrowdEvaluations.Grader();
-          payload.datasetUrl = "";
           payload.clusterId = 0;
           payload.evaluatorRepo = "";
           payload.evaluatorRepoTag = "";
-          payload.storageCapacity = "";
           var opts = {};
           opts.xFields = "xFields_example";
 
@@ -191,8 +185,8 @@
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);
             expect(data.updated).to.be(new Date());
-            expect(data.datasetUrl).to.be.a('string');
-            expect(data.datasetUrl).to.be("");
+            expect(data.dataset).to.be.a(Object);
+            expect(data.dataset).to.be();
             expect(data.clusterId).to.be.a('number');
             expect(data.clusterId).to.be(0);
             expect(data.workflowSpec).to.be.a(Object);
@@ -201,67 +195,6 @@
             expect(data.evaluatorRepo).to.be("");
             expect(data.evaluatorRepoTag).to.be.a('string');
             expect(data.evaluatorRepoTag).to.be("");
-            expect(data.storageCapacity).to.be.a('string');
-            expect(data.storageCapacity).to.be("");
-            expect(data.logs).to.be.a(Object);
-            expect(data.logs).to.be();
-            expect(data.meta).to.be.a(Object);
-            expect(data.meta).to.be();
-            expect(data.status).to.be.a('string');
-            expect(data.status).to.be("");
-            expect(data.submissionTypes).to.be.a(Object);
-            expect(data.submissionTypes).to.be();
-            expect(data.userId).to.be.a('number');
-            expect(data.userId).to.be(0);
-            expect(data.organisationId).to.be.a('number');
-            expect(data.organisationId).to.be(0);
-
-            done();
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('putGraderDao', function() {
-        it('should call putGraderDao successfully', function(done) {
-          // TODO: uncomment, update parameter values for putGraderDao call and complete the assertions
-          /*
-          var graderId = 56;
-          var payload = new AicrowdEvaluations.Grader();
-          payload.datasetUrl = "";
-          payload.clusterId = 0;
-          payload.evaluatorRepo = "";
-          payload.evaluatorRepoTag = "";
-          payload.storageCapacity = "";
-          var opts = {};
-          opts.xFields = "xFields_example";
-
-          instance.putGraderDao(graderId, payload, opts, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(AicrowdEvaluations.Grader);
-            expect(data.id).to.be.a('number');
-            expect(data.id).to.be(0);
-            expect(data.created).to.be.a(Date);
-            expect(data.created).to.be(new Date());
-            expect(data.updated).to.be.a(Date);
-            expect(data.updated).to.be(new Date());
-            expect(data.datasetUrl).to.be.a('string');
-            expect(data.datasetUrl).to.be("");
-            expect(data.clusterId).to.be.a('number');
-            expect(data.clusterId).to.be(0);
-            expect(data.workflowSpec).to.be.a(Object);
-            expect(data.workflowSpec).to.be();
-            expect(data.evaluatorRepo).to.be.a('string');
-            expect(data.evaluatorRepo).to.be("");
-            expect(data.evaluatorRepoTag).to.be.a('string');
-            expect(data.evaluatorRepoTag).to.be("");
-            expect(data.storageCapacity).to.be.a('string');
-            expect(data.storageCapacity).to.be("");
             expect(data.logs).to.be.a(Object);
             expect(data.logs).to.be();
             expect(data.meta).to.be.a(Object);
