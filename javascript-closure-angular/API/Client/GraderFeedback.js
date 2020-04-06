@@ -19,3 +19,10 @@ API.Client.GraderFeedback.prototype.status;
  */
 API.Client.GraderFeedback.prototype.workflowSpec;
 
+/**
+ * Serialized JSON of submissions accepted by the grader
+ * @type {!string}
+ * @export
+ */
+API.Client.GraderFeedback.prototype.submissionTypes;
+

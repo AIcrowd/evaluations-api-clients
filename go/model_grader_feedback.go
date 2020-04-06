@@ -14,4 +14,6 @@ type GraderFeedback struct {
 	Status bool `json:"status"`
 	// Serialized YAML workflow spec
 	WorkflowSpec string `json:"workflow_spec"`
+	// Serialized JSON of submissions accepted by the grader
+	SubmissionTypes string `json:"submission_types"`
 }

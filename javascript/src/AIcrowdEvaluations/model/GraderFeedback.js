@@ -42,10 +42,12 @@
    * @class
    * @param status {Boolean} Status of the grader
    * @param workflowSpec {String} Serialized YAML workflow spec
+   * @param submissionTypes {String} Serialized JSON of submissions accepted by the grader
    */
-  var exports = function(status, workflowSpec) {
+  var exports = function(status, workflowSpec, submissionTypes) {
     this.status = status;
     this.workflowSpec = workflowSpec;
+    this.submissionTypes = submissionTypes;
   };
 
   /**
@@ -62,6 +64,8 @@
         obj.status = ApiClient.convertToType(data['status'], 'Boolean');
       if (data.hasOwnProperty('workflow_spec'))
         obj.workflowSpec = ApiClient.convertToType(data['workflow_spec'], 'String');
+      if (data.hasOwnProperty('submission_types'))
+        obj.submissionTypes = ApiClient.convertToType(data['submission_types'], 'String');
     }
     return obj;
   }
@@ -77,6 +81,12 @@
    * @member {String} workflowSpec
    */
   exports.prototype.workflowSpec = undefined;
+
+  /**
+   * Serialized JSON of submissions accepted by the grader
+   * @member {String} submissionTypes
+   */
+  exports.prototype.submissionTypes = undefined;
 
   return exports;
 

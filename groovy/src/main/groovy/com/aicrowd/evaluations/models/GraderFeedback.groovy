@@ -11,6 +11,9 @@ class GraderFeedback {
 
   /* Serialized YAML workflow spec */
   String workflowSpec = null
+
+  /* Serialized JSON of submissions accepted by the grader */
+  String submissionTypes = null
   
 
 }

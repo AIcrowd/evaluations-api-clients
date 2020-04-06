@@ -40,7 +40,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// </summary>
         /// <param name="status">Status of the grader (required).</param>
         /// <param name="workflowSpec">Serialized YAML workflow spec (required).</param>
-        public GraderFeedback(bool? status = default(bool?), string workflowSpec = default(string))
+        /// <param name="submissionTypes">Serialized JSON of submissions accepted by the grader (required).</param>
+        public GraderFeedback(bool? status = default(bool?), string workflowSpec = default(string), string submissionTypes = default(string))
         {
             // to ensure "status" is required (not null)
             if (status == null)
@@ -60,6 +61,15 @@ namespace Com.AIcrowd.Evaluations.Model
             {
                 this.WorkflowSpec = workflowSpec;
             }
+            // to ensure "submissionTypes" is required (not null)
+            if (submissionTypes == null)
+            {
+                throw new InvalidDataException("submissionTypes is a required property for GraderFeedback and cannot be null");
+            }
+            else
+            {
+                this.SubmissionTypes = submissionTypes;
+            }
         }
         
         /// <summary>
@@ -77,6 +87,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string WorkflowSpec { get; set; }
 
         /// <summary>
+        /// Serialized JSON of submissions accepted by the grader
+        /// </summary>
+        /// <value>Serialized JSON of submissions accepted by the grader</value>
+        [DataMember(Name="submission_types", EmitDefaultValue=false)]
+        public string SubmissionTypes { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -86,6 +103,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("class GraderFeedback {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  WorkflowSpec: ").Append(WorkflowSpec).Append("\n");
+            sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,6 +147,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WorkflowSpec == input.WorkflowSpec ||
                     (this.WorkflowSpec != null &&
                     this.WorkflowSpec.Equals(input.WorkflowSpec))
+                ) && 
+                (
+                    this.SubmissionTypes == input.SubmissionTypes ||
+                    (this.SubmissionTypes != null &&
+                    this.SubmissionTypes.Equals(input.SubmissionTypes))
                 );
         }
 
@@ -145,6 +168,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.WorkflowSpec != null)
                     hashCode = hashCode * 59 + this.WorkflowSpec.GetHashCode();
+                if (this.SubmissionTypes != null)
+                    hashCode = hashCode * 59 + this.SubmissionTypes.GetHashCode();
                 return hashCode;
             }
         }

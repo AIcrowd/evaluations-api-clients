@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **logs** | **map** |  | [optional] [default to null]
 **meta** | **map** |  | [optional] [default to null]
 **status** | **string** |  | [optional] [default to null]
+**submission_types** | **map** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

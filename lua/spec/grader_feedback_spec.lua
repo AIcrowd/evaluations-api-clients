@@ -30,4 +30,11 @@ describe("grader_feedback", function()
     end)
   end)
 
+  -- unit tests for the property 'submission_types'
+  describe("property submission_types test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
 end)

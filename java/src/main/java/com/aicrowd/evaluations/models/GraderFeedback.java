@@ -27,13 +27,16 @@ import java.io.IOException;
 /**
  * GraderFeedback
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T14:32:31.128Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:23:01.585Z")
 public class GraderFeedback {
   @SerializedName("status")
   private Boolean status = null;
 
   @SerializedName("workflow_spec")
   private String workflowSpec = null;
+
+  @SerializedName("submission_types")
+  private String submissionTypes = null;
 
   public GraderFeedback status(Boolean status) {
     this.status = status;
@@ -71,6 +74,24 @@ public class GraderFeedback {
     this.workflowSpec = workflowSpec;
   }
 
+  public GraderFeedback submissionTypes(String submissionTypes) {
+    this.submissionTypes = submissionTypes;
+    return this;
+  }
+
+   /**
+   * Serialized JSON of submissions accepted by the grader
+   * @return submissionTypes
+  **/
+  @ApiModelProperty(required = true, value = "Serialized JSON of submissions accepted by the grader")
+  public String getSubmissionTypes() {
+    return submissionTypes;
+  }
+
+  public void setSubmissionTypes(String submissionTypes) {
+    this.submissionTypes = submissionTypes;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -82,12 +103,13 @@ public class GraderFeedback {
     }
     GraderFeedback graderFeedback = (GraderFeedback) o;
     return Objects.equals(this.status, graderFeedback.status) &&
-        Objects.equals(this.workflowSpec, graderFeedback.workflowSpec);
+        Objects.equals(this.workflowSpec, graderFeedback.workflowSpec) &&
+        Objects.equals(this.submissionTypes, graderFeedback.submissionTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, workflowSpec);
+    return Objects.hash(status, workflowSpec, submissionTypes);
   }
 
 
@@ -98,6 +120,7 @@ public class GraderFeedback {
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    workflowSpec: ").append(toIndentedString(workflowSpec)).append("\n");
+    sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

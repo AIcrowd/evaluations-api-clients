@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **logs** | **object** | Logs from argo workflow | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
 **status** | **string** | Status of the grader - True if it ready, False otherwise | [optional] 
+**submission_types** | **object** | Type of submissions allowed on the grader | [optional] 
 **user_id** | **int** | User ID | [optional] 
 **organisation_id** | **int** | Organisation ID | [optional] 
 

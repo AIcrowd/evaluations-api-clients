@@ -39,6 +39,8 @@ case class Grader (
   meta: Option[Any] = None,
   // Status of the grader - True if it ready, False otherwise
   status: Option[String] = None,
+  // Type of submissions allowed on the grader
+  submissionTypes: Option[Any] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

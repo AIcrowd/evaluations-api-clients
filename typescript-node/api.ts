@@ -383,6 +383,10 @@ export class Grader {
     */
     'status'?: string;
     /**
+    * Type of submissions allowed on the grader
+    */
+    'submissionTypes'?: any;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -455,6 +459,11 @@ export class Grader {
             "type": "string"
         },
         {
+            "name": "submissionTypes",
+            "baseName": "submission_types",
+            "type": "any"
+        },
+        {
             "name": "userId",
             "baseName": "user_id",
             "type": "number"
@@ -479,6 +488,10 @@ export class GraderFeedback {
     * Serialized YAML workflow spec
     */
     'workflowSpec': string;
+    /**
+    * Serialized JSON of submissions accepted by the grader
+    */
+    'submissionTypes': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -491,6 +504,11 @@ export class GraderFeedback {
         {
             "name": "workflowSpec",
             "baseName": "workflow_spec",
+            "type": "string"
+        },
+        {
+            "name": "submissionTypes",
+            "baseName": "submission_types",
             "type": "string"
         }    ];
 

@@ -90,6 +90,13 @@ API.Client.Grader.prototype.meta;
 API.Client.Grader.prototype.status;
 
 /**
+ * Type of submissions allowed on the grader
+ * @type {!API.Client.Object}
+ * @export
+ */
+API.Client.Grader.prototype.submissionTypes;
+
+/**
  * User ID
  * @type {!number}
  * @export

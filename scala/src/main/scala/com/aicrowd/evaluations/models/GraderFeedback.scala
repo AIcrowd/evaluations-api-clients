@@ -17,6 +17,8 @@ case class GraderFeedback (
   // Status of the grader
   status: Boolean,
   // Serialized YAML workflow spec
-  workflowSpec: String
+  workflowSpec: String,
+  // Serialized JSON of submissions accepted by the grader
+  submissionTypes: String
 )
 

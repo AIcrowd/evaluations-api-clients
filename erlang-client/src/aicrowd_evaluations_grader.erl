@@ -17,6 +17,7 @@
        'logs' => maps:map(),
        'meta' => maps:map(),
        'status' => binary(),
+       'submission_types' => maps:map(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -33,6 +34,7 @@ encode(#{ 'id' := Id,
           'logs' := Logs,
           'meta' := Meta,
           'status' := Status,
+          'submission_types' := SubmissionTypes,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -48,6 +50,7 @@ encode(#{ 'id' := Id,
        'logs' => Logs,
        'meta' => Meta,
        'status' => Status,
+       'submission_types' => SubmissionTypes,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

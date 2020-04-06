@@ -89,4 +89,11 @@ class GraderFeedbackTest extends \PHPUnit_Framework_TestCase
     public function testPropertyWorkflowSpec()
     {
     }
+
+    /**
+     * Test attribute "submission_types"
+     */
+    public function testPropertySubmissionTypes()
+    {
+    }
 }

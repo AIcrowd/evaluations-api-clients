@@ -43,6 +43,7 @@ class Grader(object):
         'logs': 'object',
         'meta': 'object',
         'status': 'str',
+        'submission_types': 'object',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -60,11 +61,12 @@ class Grader(object):
         'logs': 'logs',
         'meta': 'meta',
         'status': 'status',
+        'submission_types': 'submission_types',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset_url=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, storage_capacity=None, logs=None, meta=None, status=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset_url=None, cluster_id=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, storage_capacity=None, logs=None, meta=None, status=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -79,6 +81,7 @@ class Grader(object):
         self._logs = None
         self._meta = None
         self._status = None
+        self._submission_types = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -106,6 +109,8 @@ class Grader(object):
             self.meta = meta
         if status is not None:
             self.status = status
+        if submission_types is not None:
+            self.submission_types = submission_types
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -388,6 +393,29 @@ class Grader(object):
         """
 
         self._status = status
+
+    @property
+    def submission_types(self):
+        """Gets the submission_types of this Grader.  # noqa: E501
+
+        Type of submissions allowed on the grader  # noqa: E501
+
+        :return: The submission_types of this Grader.  # noqa: E501
+        :rtype: object
+        """
+        return self._submission_types
+
+    @submission_types.setter
+    def submission_types(self, submission_types):
+        """Sets the submission_types of this Grader.
+
+        Type of submissions allowed on the grader  # noqa: E501
+
+        :param submission_types: The submission_types of this Grader.  # noqa: E501
+        :type: object
+        """
+
+        self._submission_types = submission_types
 
     @property
     def user_id(self):

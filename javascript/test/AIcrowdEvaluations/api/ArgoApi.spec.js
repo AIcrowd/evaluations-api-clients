@@ -66,6 +66,7 @@
           var payload = new AicrowdEvaluations.GraderFeedback();
           payload.status = false;
           payload.workflowSpec = "";
+          payload.submissionTypes = "";
 
           instance.postGraderFeedbackDao(graderId, payload, function(error, data, response) {
             if (error) {

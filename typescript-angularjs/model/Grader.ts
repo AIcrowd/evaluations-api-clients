@@ -62,6 +62,10 @@ export interface Grader {
      */
     "status"?: string;
     /**
+     * Type of submissions allowed on the grader
+     */
+    "submissionTypes"?: any;
+    /**
      * User ID
      */
     "userId"?: number;

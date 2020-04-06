@@ -19,14 +19,18 @@ pub struct GraderFeedback {
   status: bool,
   /// Serialized YAML workflow spec
   #[serde(rename = "workflow_spec")]
-  workflow_spec: String
+  workflow_spec: String,
+  /// Serialized JSON of submissions accepted by the grader
+  #[serde(rename = "submission_types")]
+  submission_types: String
 }
 
 impl GraderFeedback {
-  pub fn new(status: bool, workflow_spec: String) -> GraderFeedback {
+  pub fn new(status: bool, workflow_spec: String, submission_types: String) -> GraderFeedback {
     GraderFeedback {
       status: status,
-      workflow_spec: workflow_spec
+      workflow_spec: workflow_spec,
+      submission_types: submission_types
     }
   }
 
@@ -55,6 +59,20 @@ impl GraderFeedback {
 
   pub fn workflow_spec(&self) -> &String {
     &self.workflow_spec
+  }
+
+
+  pub fn set_submission_types(&mut self, submission_types: String) {
+    self.submission_types = submission_types;
+  }
+
+  pub fn with_submission_types(mut self, submission_types: String) -> GraderFeedback {
+    self.submission_types = submission_types;
+    self
+  }
+
+  pub fn submission_types(&self) -> &String {
+    &self.submission_types
   }
 
 

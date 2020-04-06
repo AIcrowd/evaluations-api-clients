@@ -19,10 +19,11 @@ local function cast_grader_feedback(t)
 	return setmetatable(t, grader_feedback_mt)
 end
 
-local function new_grader_feedback(status, workflow_spec)
+local function new_grader_feedback(status, workflow_spec, submission_types)
 	return cast_grader_feedback({
 		["status"] = status;
 		["workflow_spec"] = workflow_spec;
+		["submission_types"] = submission_types;
 	})
 end
 

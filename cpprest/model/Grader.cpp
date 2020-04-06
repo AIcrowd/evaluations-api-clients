@@ -41,6 +41,7 @@ Grader::Grader()
     m_MetaIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
+    m_Submission_typesIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -104,6 +105,10 @@ web::json::value Grader::toJson() const
     if(m_StatusIsSet)
     {
         val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_Status);
+    }
+    if(m_Submission_typesIsSet)
+    {
+        val[utility::conversions::to_string_t("submission_types")] = ModelBase::toJson(m_Submission_types);
     }
     if(m_User_idIsSet)
     {
@@ -214,6 +219,16 @@ void Grader::fromJson(web::json::value& val)
             setStatus(ModelBase::stringFromJson(fieldValue));
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("submission_types")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("submission_types")];
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromJson(fieldValue);
+            setSubmissionTypes( newItem );
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("user_id")];
@@ -303,6 +318,14 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
         
     }
+    if(m_Submission_typesIsSet)
+    {
+        if (m_Submission_types.get())
+        {
+            m_Submission_types->toMultipart(multipart, utility::conversions::to_string_t("submission_types."));
+        }
+        
+    }
     if(m_User_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("user_id"), m_User_id));
@@ -380,6 +403,15 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
         setStatus(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("submission_types")))
+    {
+        if(multipart->hasContent(utility::conversions::to_string_t("submission_types")))
+        {
+            std::shared_ptr<Object> newItem(nullptr);
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("submission_types."));
+            setSubmissionTypes( newItem );
+        }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -631,6 +663,27 @@ bool Grader::statusIsSet() const
 void Grader::unsetStatus()
 {
     m_StatusIsSet = false;
+}
+
+std::shared_ptr<Object> Grader::getSubmissionTypes() const
+{
+    return m_Submission_types;
+}
+
+
+void Grader::setSubmissionTypes(std::shared_ptr<Object> value)
+{
+    m_Submission_types = value;
+    m_Submission_typesIsSet = true;
+}
+bool Grader::submissionTypesIsSet() const
+{
+    return m_Submission_typesIsSet;
+}
+
+void Grader::unsetSubmission_types()
+{
+    m_Submission_typesIsSet = false;
 }
 
 int32_t Grader::getUserId() const

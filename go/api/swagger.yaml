@@ -910,6 +910,7 @@ definitions:
     type: "object"
     required:
     - "status"
+    - "submission_types"
     - "workflow_spec"
     properties:
       status:
@@ -918,7 +919,11 @@ definitions:
       workflow_spec:
         type: "string"
         description: "Serialized YAML workflow spec"
+      submission_types:
+        type: "string"
+        description: "Serialized JSON of submissions accepted by the grader"
     example:
+      submission_types: "submission_types"
       workflow_spec: "workflow_spec"
       status: true
   SubmissionFeedback:
@@ -1016,6 +1021,11 @@ definitions:
         type: "string"
         description: "Status of the grader - True if it ready, False otherwise"
         readOnly: true
+      submission_types:
+        type: "object"
+        description: "Type of submissions allowed on the grader"
+        readOnly: true
+        properties: {}
       user_id:
         type: "integer"
         description: "User ID"
@@ -1029,6 +1039,7 @@ definitions:
       storage_capacity: "storage_capacity"
       evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
+      submission_types: "{}"
       workflow_spec: "{}"
       organisation_id: 5
       cluster_id: 6
@@ -1039,7 +1050,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,dataset_url,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,storage_capacity,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset_url,code_access_auth_key,cluster_id,evaluator_repo,evaluator_repo_tag,storage_capacity,status,submission_types,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

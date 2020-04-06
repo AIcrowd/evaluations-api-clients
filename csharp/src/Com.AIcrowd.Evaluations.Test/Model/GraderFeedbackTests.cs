@@ -82,6 +82,14 @@ namespace Com.AIcrowd.Evaluations.Test
         {
             // TODO unit test for the property 'WorkflowSpec'
         }
+        /// <summary>
+        /// Test the property 'SubmissionTypes'
+        /// </summary>
+        [Test]
+        public void SubmissionTypesTest()
+        {
+            // TODO unit test for the property 'SubmissionTypes'
+        }
 
     }
 

@@ -61,6 +61,10 @@ export interface Grader {
      */
     readonly status?: string;
     /**
+     * Type of submissions allowed on the grader
+     */
+    readonly submissionTypes?: any;
+    /**
      * User ID
      */
     readonly userId?: number;

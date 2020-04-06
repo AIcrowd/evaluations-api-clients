@@ -10,12 +10,14 @@ defmodule AIcrowd.Evaluations.Model.GraderFeedback do
   @derive [Poison.Encoder]
   defstruct [
     :"status",
-    :"workflow_spec"
+    :"workflow_spec",
+    :"submission_types"
   ]
 
   @type t :: %__MODULE__{
     :"status" => boolean(),
-    :"workflow_spec" => String.t
+    :"workflow_spec" => String.t,
+    :"submission_types" => String.t
   }
 end
 

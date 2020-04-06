@@ -20,11 +20,15 @@ module AIcrowdEvaluations
     # Serialized YAML workflow spec
     attr_accessor :workflow_spec
 
+    # Serialized JSON of submissions accepted by the grader
+    attr_accessor :submission_types
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'status' => :'status',
-        :'workflow_spec' => :'workflow_spec'
+        :'workflow_spec' => :'workflow_spec',
+        :'submission_types' => :'submission_types'
       }
     end
 
@@ -32,7 +36,8 @@ module AIcrowdEvaluations
     def self.swagger_types
       {
         :'status' => :'BOOLEAN',
-        :'workflow_spec' => :'String'
+        :'workflow_spec' => :'String',
+        :'submission_types' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module AIcrowdEvaluations
       if attributes.has_key?(:'workflow_spec')
         self.workflow_spec = attributes[:'workflow_spec']
       end
+
+      if attributes.has_key?(:'submission_types')
+        self.submission_types = attributes[:'submission_types']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +74,10 @@ module AIcrowdEvaluations
         invalid_properties.push('invalid value for "workflow_spec", workflow_spec cannot be nil.')
       end
 
+      if @submission_types.nil?
+        invalid_properties.push('invalid value for "submission_types", submission_types cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +86,7 @@ module AIcrowdEvaluations
     def valid?
       return false if @status.nil?
       return false if @workflow_spec.nil?
+      return false if @submission_types.nil?
       true
     end
 
@@ -82,7 +96,8 @@ module AIcrowdEvaluations
       return true if self.equal?(o)
       self.class == o.class &&
           status == o.status &&
-          workflow_spec == o.workflow_spec
+          workflow_spec == o.workflow_spec &&
+          submission_types == o.submission_types
     end
 
     # @see the `==` method
@@ -94,7 +109,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status, workflow_spec].hash
+      [status, workflow_spec, submission_types].hash
     end
 
     # Builds the object from hash

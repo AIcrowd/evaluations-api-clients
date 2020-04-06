@@ -157,16 +157,25 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'submission_types' => {
+    	datatype => 'string',
+    	base_name => 'submission_types',
+    	description => 'Serialized JSON of submissions accepted by the grader',
+    	format => '',
+    	read_only => '',
+    		},
 });
 
 __PACKAGE__->swagger_types( {
     'status' => 'boolean',
-    'workflow_spec' => 'string'
+    'workflow_spec' => 'string',
+    'submission_types' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
     'status' => 'status',
-    'workflow_spec' => 'workflow_spec'
+    'workflow_spec' => 'workflow_spec',
+    'submission_types' => 'submission_types'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

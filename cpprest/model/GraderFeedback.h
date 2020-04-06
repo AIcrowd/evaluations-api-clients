@@ -63,10 +63,16 @@ public:
     /// </summary>
     utility::string_t getWorkflowSpec() const;
         void setWorkflowSpec(utility::string_t value);
+    /// <summary>
+    /// Serialized JSON of submissions accepted by the grader
+    /// </summary>
+    utility::string_t getSubmissionTypes() const;
+        void setSubmissionTypes(utility::string_t value);
 
 protected:
     bool m_Status;
         utility::string_t m_Workflow_spec;
+        utility::string_t m_Submission_types;
     };
 
 }

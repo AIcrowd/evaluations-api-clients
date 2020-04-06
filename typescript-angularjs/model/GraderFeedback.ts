@@ -21,5 +21,9 @@ export interface GraderFeedback {
      * Serialized YAML workflow spec
      */
     "workflowSpec": string;
+    /**
+     * Serialized JSON of submissions accepted by the grader
+     */
+    "submissionTypes": string;
 }
 

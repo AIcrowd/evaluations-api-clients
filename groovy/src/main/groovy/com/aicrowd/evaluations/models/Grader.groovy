@@ -43,6 +43,9 @@ class Grader {
   /* Status of the grader - True if it ready, False otherwise */
   String status = null
 
+  /* Type of submissions allowed on the grader */
+  Object submissionTypes = null
+
   /* User ID */
   Integer userId = null
 

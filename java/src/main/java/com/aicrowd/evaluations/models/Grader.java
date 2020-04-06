@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T14:32:31.128Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T16:23:01.585Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -65,6 +65,9 @@ public class Grader {
 
   @SerializedName("status")
   private String status = null;
+
+  @SerializedName("submission_types")
+  private Object submissionTypes = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -226,6 +229,15 @@ public class Grader {
   }
 
    /**
+   * Type of submissions allowed on the grader
+   * @return submissionTypes
+  **/
+  @ApiModelProperty(value = "Type of submissions allowed on the grader")
+  public Object getSubmissionTypes() {
+    return submissionTypes;
+  }
+
+   /**
    * User ID
    * @return userId
   **/
@@ -265,13 +277,14 @@ public class Grader {
         Objects.equals(this.logs, grader.logs) &&
         Objects.equals(this.meta, grader.meta) &&
         Objects.equals(this.status, grader.status) &&
+        Objects.equals(this.submissionTypes, grader.submissionTypes) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, datasetUrl, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, storageCapacity, logs, meta, status, userId, organisationId);
+    return Objects.hash(id, created, updated, datasetUrl, clusterId, workflowSpec, evaluatorRepo, evaluatorRepoTag, storageCapacity, logs, meta, status, submissionTypes, userId, organisationId);
   }
 
 
@@ -292,6 +305,7 @@ public class Grader {
     sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **logs** | [***Value**](Value.md) | Logs from argo workflow | [optional] [default to null]
 **meta** | [***Value**](Value.md) | Additional meta data of the grader | [optional] [default to null]
 **status** | **String** | Status of the grader - True if it ready, False otherwise | [optional] [default to null]
+**submission_types** | [***Value**](Value.md) | Type of submissions allowed on the grader | [optional] [default to null]
 **user_id** | **i32** | User ID | [optional] [default to null]
 **organisation_id** | **i32** | Organisation ID | [optional] [default to null]
 

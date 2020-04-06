@@ -26,6 +26,7 @@ package com.aicrowd.evaluations.models
  * @param logs Logs from argo workflow
  * @param meta Additional meta data of the grader
  * @param status Status of the grader - True if it ready, False otherwise
+ * @param submission_types Type of submissions allowed on the grader
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -54,6 +55,8 @@ data class Grader (
     val meta: kotlin.Any? = null,
     /* Status of the grader - True if it ready, False otherwise */
     val status: kotlin.String? = null,
+    /* Type of submissions allowed on the grader */
+    val submission_types: kotlin.Any? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

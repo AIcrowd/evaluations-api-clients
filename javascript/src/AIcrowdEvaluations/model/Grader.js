@@ -80,6 +80,8 @@
         obj.meta = ApiClient.convertToType(data['meta'], Object);
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'String');
+      if (data.hasOwnProperty('submission_types'))
+        obj.submissionTypes = ApiClient.convertToType(data['submission_types'], Object);
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -159,6 +161,12 @@
    * @member {String} status
    */
   exports.prototype.status = undefined;
+
+  /**
+   * Type of submissions allowed on the grader
+   * @member {Object} submissionTypes
+   */
+  exports.prototype.submissionTypes = undefined;
 
   /**
    * User ID

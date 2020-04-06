@@ -227,6 +227,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'submission_types' => {
+    	datatype => 'object',
+    	base_name => 'submission_types',
+    	description => 'Type of submissions allowed on the grader',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -256,6 +263,7 @@ __PACKAGE__->swagger_types( {
     'logs' => 'object',
     'meta' => 'object',
     'status' => 'string',
+    'submission_types' => 'object',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -273,6 +281,7 @@ __PACKAGE__->attribute_map( {
     'logs' => 'logs',
     'meta' => 'meta',
     'status' => 'status',
+    'submission_types' => 'submission_types',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

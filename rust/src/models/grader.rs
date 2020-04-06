@@ -50,6 +50,9 @@ pub struct Grader {
   /// Status of the grader - True if it ready, False otherwise
   #[serde(rename = "status")]
   status: Option<String>,
+  /// Type of submissions allowed on the grader
+  #[serde(rename = "submission_types")]
+  submission_types: Option<Value>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -73,6 +76,7 @@ impl Grader {
       logs: None,
       meta: None,
       status: None,
+      submission_types: None,
       user_id: None,
       organisation_id: None
     }
@@ -277,6 +281,23 @@ impl Grader {
 
   pub fn reset_status(&mut self) {
     self.status = None;
+  }
+
+  pub fn set_submission_types(&mut self, submission_types: Value) {
+    self.submission_types = Some(submission_types);
+  }
+
+  pub fn with_submission_types(mut self, submission_types: Value) -> Grader {
+    self.submission_types = Some(submission_types);
+    self
+  }
+
+  pub fn submission_types(&self) -> Option<&Value> {
+    self.submission_types.as_ref()
+  }
+
+  pub fn reset_submission_types(&mut self) {
+    self.submission_types = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

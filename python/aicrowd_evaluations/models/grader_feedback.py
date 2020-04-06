@@ -32,23 +32,27 @@ class GraderFeedback(object):
     """
     swagger_types = {
         'status': 'bool',
-        'workflow_spec': 'str'
+        'workflow_spec': 'str',
+        'submission_types': 'str'
     }
 
     attribute_map = {
         'status': 'status',
-        'workflow_spec': 'workflow_spec'
+        'workflow_spec': 'workflow_spec',
+        'submission_types': 'submission_types'
     }
 
-    def __init__(self, status=None, workflow_spec=None):  # noqa: E501
+    def __init__(self, status=None, workflow_spec=None, submission_types=None):  # noqa: E501
         """GraderFeedback - a model defined in Swagger"""  # noqa: E501
 
         self._status = None
         self._workflow_spec = None
+        self._submission_types = None
         self.discriminator = None
 
         self.status = status
         self.workflow_spec = workflow_spec
+        self.submission_types = submission_types
 
     @property
     def status(self):
@@ -99,6 +103,31 @@ class GraderFeedback(object):
             raise ValueError("Invalid value for `workflow_spec`, must not be `None`")  # noqa: E501
 
         self._workflow_spec = workflow_spec
+
+    @property
+    def submission_types(self):
+        """Gets the submission_types of this GraderFeedback.  # noqa: E501
+
+        Serialized JSON of submissions accepted by the grader  # noqa: E501
+
+        :return: The submission_types of this GraderFeedback.  # noqa: E501
+        :rtype: str
+        """
+        return self._submission_types
+
+    @submission_types.setter
+    def submission_types(self, submission_types):
+        """Sets the submission_types of this GraderFeedback.
+
+        Serialized JSON of submissions accepted by the grader  # noqa: E501
+
+        :param submission_types: The submission_types of this GraderFeedback.  # noqa: E501
+        :type: str
+        """
+        if submission_types is None:
+            raise ValueError("Invalid value for `submission_types`, must not be `None`")  # noqa: E501
+
+        self._submission_types = submission_types
 
     def to_dict(self):
         """Returns the model properties as a dict"""

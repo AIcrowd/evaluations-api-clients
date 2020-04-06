@@ -291,6 +291,12 @@ export interface Grader {
      */
     status?: string;
     /**
+     * Type of submissions allowed on the grader
+     * @type {any}
+     * @memberof Grader
+     */
+    submissionTypes?: any;
+    /**
      * User ID
      * @type {number}
      * @memberof Grader
@@ -322,6 +328,12 @@ export interface GraderFeedback {
      * @memberof GraderFeedback
      */
     workflowSpec: string;
+    /**
+     * Serialized JSON of submissions accepted by the grader
+     * @type {string}
+     * @memberof GraderFeedback
+     */
+    submissionTypes: string;
 }
 
 /**

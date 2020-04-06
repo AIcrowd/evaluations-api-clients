@@ -52,6 +52,12 @@
         // expect(instance.workflowSpec).to.be(expectedValueLiteral);
       });
 
+      it('should have the property submissionTypes (base name: "submission_types")', function() {
+        // TODO: update the code to test the property submissionTypes
+        expect(instance).to.have.property('submissionTypes');
+        // expect(instance.submissionTypes).to.be(expectedValueLiteral);
+      });
+
     });
   });
 

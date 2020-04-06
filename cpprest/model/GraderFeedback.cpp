@@ -23,6 +23,7 @@ GraderFeedback::GraderFeedback()
 {
     m_Status = false;
     m_Workflow_spec = utility::conversions::to_string_t("");
+    m_Submission_types = utility::conversions::to_string_t("");
 }
 
 GraderFeedback::~GraderFeedback()
@@ -40,6 +41,7 @@ web::json::value GraderFeedback::toJson() const
 
     val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_Status);
     val[utility::conversions::to_string_t("workflow_spec")] = ModelBase::toJson(m_Workflow_spec);
+    val[utility::conversions::to_string_t("submission_types")] = ModelBase::toJson(m_Submission_types);
 
     return val;
 }
@@ -48,6 +50,7 @@ void GraderFeedback::fromJson(web::json::value& val)
 {
     setStatus(ModelBase::boolFromJson(val[utility::conversions::to_string_t("status")]));
     setWorkflowSpec(ModelBase::stringFromJson(val[utility::conversions::to_string_t("workflow_spec")]));
+    setSubmissionTypes(ModelBase::stringFromJson(val[utility::conversions::to_string_t("submission_types")]));
 }
 
 void GraderFeedback::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -60,6 +63,7 @@ void GraderFeedback::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
 
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("workflow_spec"), m_Workflow_spec));
+    multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("submission_types"), m_Submission_types));
 }
 
 void GraderFeedback::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -72,6 +76,7 @@ void GraderFeedback::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
 
     setStatus(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
     setWorkflowSpec(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("workflow_spec"))));
+    setSubmissionTypes(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("submission_types"))));
 }
 
 bool GraderFeedback::isStatus() const
@@ -94,6 +99,17 @@ utility::string_t GraderFeedback::getWorkflowSpec() const
 void GraderFeedback::setWorkflowSpec(utility::string_t value)
 {
     m_Workflow_spec = value;
+    
+}
+utility::string_t GraderFeedback::getSubmissionTypes() const
+{
+    return m_Submission_types;
+}
+
+
+void GraderFeedback::setSubmissionTypes(utility::string_t value)
+{
+    m_Submission_types = value;
     
 }
 }

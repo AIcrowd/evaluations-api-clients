@@ -69,6 +69,7 @@ class Grader implements ModelInterface, ArrayAccess
         'logs' => 'object',
         'meta' => 'object',
         'status' => 'string',
+        'submission_types' => 'object',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -91,6 +92,7 @@ class Grader implements ModelInterface, ArrayAccess
         'logs' => null,
         'meta' => null,
         'status' => null,
+        'submission_types' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -134,6 +136,7 @@ class Grader implements ModelInterface, ArrayAccess
         'logs' => 'logs',
         'meta' => 'meta',
         'status' => 'status',
+        'submission_types' => 'submission_types',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -156,6 +159,7 @@ class Grader implements ModelInterface, ArrayAccess
         'logs' => 'setLogs',
         'meta' => 'setMeta',
         'status' => 'setStatus',
+        'submission_types' => 'setSubmissionTypes',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -178,6 +182,7 @@ class Grader implements ModelInterface, ArrayAccess
         'logs' => 'getLogs',
         'meta' => 'getMeta',
         'status' => 'getStatus',
+        'submission_types' => 'getSubmissionTypes',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -254,6 +259,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['logs'] = isset($data['logs']) ? $data['logs'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['submission_types'] = isset($data['submission_types']) ? $data['submission_types'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -569,6 +575,30 @@ class Grader implements ModelInterface, ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets submission_types
+     *
+     * @return object
+     */
+    public function getSubmissionTypes()
+    {
+        return $this->container['submission_types'];
+    }
+
+    /**
+     * Sets submission_types
+     *
+     * @param object $submission_types Type of submissions allowed on the grader
+     *
+     * @return $this
+     */
+    public function setSubmissionTypes($submission_types)
+    {
+        $this->container['submission_types'] = $submission_types;
 
         return $this;
     }

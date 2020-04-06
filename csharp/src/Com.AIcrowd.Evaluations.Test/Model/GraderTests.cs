@@ -163,6 +163,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Status'
         }
         /// <summary>
+        /// Test the property 'SubmissionTypes'
+        /// </summary>
+        [Test]
+        public void SubmissionTypesTest()
+        {
+            // TODO unit test for the property 'SubmissionTypes'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

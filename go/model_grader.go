@@ -38,6 +38,8 @@ type Grader struct {
 	Meta *interface{} `json:"meta,omitempty"`
 	// Status of the grader - True if it ready, False otherwise
 	Status string `json:"status,omitempty"`
+	// Type of submissions allowed on the grader
+	SubmissionTypes *interface{} `json:"submission_types,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

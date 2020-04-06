@@ -50,6 +50,9 @@ module AIcrowdEvaluations
     # Status of the grader - True if it ready, False otherwise
     attr_accessor :status
 
+    # Type of submissions allowed on the grader
+    attr_accessor :submission_types
+
     # User ID
     attr_accessor :user_id
 
@@ -71,6 +74,7 @@ module AIcrowdEvaluations
         :'logs' => :'logs',
         :'meta' => :'meta',
         :'status' => :'status',
+        :'submission_types' => :'submission_types',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -91,6 +95,7 @@ module AIcrowdEvaluations
         :'logs' => :'Object',
         :'meta' => :'Object',
         :'status' => :'String',
+        :'submission_types' => :'Object',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -152,6 +157,10 @@ module AIcrowdEvaluations
         self.status = attributes[:'status']
       end
 
+      if attributes.has_key?(:'submission_types')
+        self.submission_types = attributes[:'submission_types']
+      end
+
       if attributes.has_key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
@@ -196,6 +205,7 @@ module AIcrowdEvaluations
           logs == o.logs &&
           meta == o.meta &&
           status == o.status &&
+          submission_types == o.submission_types &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -209,7 +219,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset_url, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, storage_capacity, logs, meta, status, user_id, organisation_id].hash
+      [id, created, updated, dataset_url, cluster_id, workflow_spec, evaluator_repo, evaluator_repo_tag, storage_capacity, logs, meta, status, submission_types, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

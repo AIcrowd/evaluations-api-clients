@@ -145,6 +145,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string Status { get; private set; }
 
         /// <summary>
+        /// Type of submissions allowed on the grader
+        /// </summary>
+        /// <value>Type of submissions allowed on the grader</value>
+        [DataMember(Name="submission_types", EmitDefaultValue=false)]
+        public Object SubmissionTypes { get; private set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -178,6 +185,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Logs: ").Append(Logs).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -275,6 +283,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
+                    this.SubmissionTypes == input.SubmissionTypes ||
+                    (this.SubmissionTypes != null &&
+                    this.SubmissionTypes.Equals(input.SubmissionTypes))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -319,6 +332,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Meta.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.SubmissionTypes != null)
+                    hashCode = hashCode * 59 + this.SubmissionTypes.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

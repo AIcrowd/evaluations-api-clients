@@ -6,12 +6,15 @@
 
 -type aicrowd_evaluations_grader_feedback() ::
     #{ 'status' := boolean(),
-       'workflow_spec' := binary()
+       'workflow_spec' := binary(),
+       'submission_types' := binary()
      }.
 
 encode(#{ 'status' := Status,
-          'workflow_spec' := WorkflowSpec
+          'workflow_spec' := WorkflowSpec,
+          'submission_types' := SubmissionTypes
         }) ->
     #{ 'status' => Status,
-       'workflow_spec' => WorkflowSpec
+       'workflow_spec' => WorkflowSpec,
+       'submission_types' => SubmissionTypes
      }.

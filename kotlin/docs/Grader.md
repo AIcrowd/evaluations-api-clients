@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **logs** | [**kotlin.Any**](kotlin.Any.md) | Logs from argo workflow |  [optional]
 **meta** | [**kotlin.Any**](kotlin.Any.md) | Additional meta data of the grader |  [optional]
 **status** | **kotlin.String** | Status of the grader - True if it ready, False otherwise |  [optional]
+**submission_types** | [**kotlin.Any**](kotlin.Any.md) | Type of submissions allowed on the grader |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

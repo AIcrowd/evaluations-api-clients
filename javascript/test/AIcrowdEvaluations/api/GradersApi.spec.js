@@ -93,6 +93,8 @@
             expect(data.meta).to.be();
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
+            expect(data.submissionTypes).to.be.a(Object);
+            expect(data.submissionTypes).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -148,6 +150,8 @@
               expect(data.meta).to.be();
               expect(data.status).to.be.a('string');
               expect(data.status).to.be("");
+              expect(data.submissionTypes).to.be.a(Object);
+              expect(data.submissionTypes).to.be();
               expect(data.userId).to.be.a('number');
               expect(data.userId).to.be(0);
               expect(data.organisationId).to.be.a('number');
@@ -205,6 +209,8 @@
             expect(data.meta).to.be();
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
+            expect(data.submissionTypes).to.be.a(Object);
+            expect(data.submissionTypes).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -262,6 +268,8 @@
             expect(data.meta).to.be();
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
+            expect(data.submissionTypes).to.be.a(Object);
+            expect(data.submissionTypes).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');

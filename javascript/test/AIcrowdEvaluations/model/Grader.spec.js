@@ -112,6 +112,12 @@
         // expect(instance.status).to.be(expectedValueLiteral);
       });
 
+      it('should have the property submissionTypes (base name: "submission_types")', function() {
+        // TODO: update the code to test the property submissionTypes
+        expect(instance).to.have.property('submissionTypes');
+        // expect(instance.submissionTypes).to.be(expectedValueLiteral);
+      });
+
       it('should have the property userId (base name: "user_id")', function() {
         // TODO: update the code to test the property userId
         expect(instance).to.have.property('userId');

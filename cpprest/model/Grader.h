@@ -137,6 +137,13 @@ public:
     void unsetStatus();
     void setStatus(utility::string_t value);
     /// <summary>
+    /// Type of submissions allowed on the grader
+    /// </summary>
+    std::shared_ptr<Object> getSubmissionTypes() const;
+    bool submissionTypesIsSet() const;
+    void unsetSubmission_types();
+    void setSubmissionTypes(std::shared_ptr<Object> value);
+    /// <summary>
     /// User ID
     /// </summary>
     int32_t getUserId() const;
@@ -175,6 +182,8 @@ protected:
     bool m_MetaIsSet;
     utility::string_t m_Status;
     bool m_StatusIsSet;
+    std::shared_ptr<Object> m_Submission_types;
+    bool m_Submission_typesIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

@@ -161,6 +161,13 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "submission_types"
+     */
+    public function testPropertySubmissionTypes()
+    {
+    }
+
+    /**
      * Test attribute "user_id"
      */
     public function testPropertyUserId()
