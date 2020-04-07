@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * UserQuota
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-07T17:14:40.156Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-07T18:03:40.504Z")
 public class UserQuota {
   @SerializedName("quota")
   private Integer quota = null;
