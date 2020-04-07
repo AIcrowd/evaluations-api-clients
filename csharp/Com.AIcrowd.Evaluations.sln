@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations", "src\Com.AIcrowd.Evaluations\Com.AIcrowd.Evaluations.csproj", "{33DC8910-B062-45C8-B4D9-3E4ECAB3F44E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations", "src\Com.AIcrowd.Evaluations\Com.AIcrowd.Evaluations.csproj", "{6BF92FA2-37DD-4307-B5F3-15B7A5EE5BED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations.Test", "src\Com.AIcrowd.Evaluations.Test\Com.AIcrowd.Evaluations.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33DC8910-B062-45C8-B4D9-3E4ECAB3F44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33DC8910-B062-45C8-B4D9-3E4ECAB3F44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33DC8910-B062-45C8-B4D9-3E4ECAB3F44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33DC8910-B062-45C8-B4D9-3E4ECAB3F44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF92FA2-37DD-4307-B5F3-15B7A5EE5BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF92FA2-37DD-4307-B5F3-15B7A5EE5BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF92FA2-37DD-4307-B5F3-15B7A5EE5BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF92FA2-37DD-4307-B5F3-15B7A5EE5BED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
