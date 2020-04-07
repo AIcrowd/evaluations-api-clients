@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * SubmissionFeedback
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-06T19:25:11.021Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-07T11:49:13.944Z")
 public class SubmissionFeedback {
   @SerializedName("status")
   private String status = null;
