@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AuthLogout
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-07T14:37:12.087Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-07T15:03:45.479Z")
 public class AuthLogout {
   @SerializedName("message")
   private String message = null;
