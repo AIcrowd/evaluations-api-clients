@@ -1,4 +1,4 @@
-# SwaggerClient::OrganisationQuota
+# AIcrowdEvaluations::OrganisationQuota
 
 ## Properties
 Name | Type | Description | Notes

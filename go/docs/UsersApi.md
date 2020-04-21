@@ -4,58 +4,30 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteUserDao**](UsersApi.md#DeleteUserDao) | **Delete** /users/{user_id} | 
-[**GetUserDao**](UsersApi.md#GetUserDao) | **Get** /users/{user_id} | 
-[**GetUserListDao**](UsersApi.md#GetUserListDao) | **Get** /users/ | 
-[**PostUserListDao**](UsersApi.md#PostUserListDao) | **Post** /users/ | 
-[**PutQuotaDao**](UsersApi.md#PutQuotaDao) | **Put** /users/addquota/{user_id} | 
-[**PutUserDao**](UsersApi.md#PutUserDao) | **Put** /users/{user_id} | 
+[**CreateUser**](UsersApi.md#CreateUser) | **Post** /users/ | 
+[**DeleteUser**](UsersApi.md#DeleteUser) | **Delete** /users/{user_id} | 
+[**GetUser**](UsersApi.md#GetUser) | **Get** /users/{user_id} | 
+[**ListUsers**](UsersApi.md#ListUsers) | **Get** /users/ | 
+[**UpdateUser**](UsersApi.md#UpdateUser) | **Put** /users/{user_id} | 
+[**UpdateUserQuota**](UsersApi.md#UpdateUserQuota) | **Put** /users/{user_id}/addquota | 
 
 
-# **DeleteUserDao**
-> DeleteUserDao(ctx, userId)
+# **CreateUser**
+> User CreateUser(ctx, payload, optional)
 
 
-Delete a user
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **userId** | **int32**| User identifier | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetUserDao**
-> User GetUserDao(ctx, userId, optional)
-
-
-Get information of a user
+Create a new user
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **userId** | **int32**| User identifier | 
- **optional** | ***GetUserDaoOpts** | optional parameters | nil if no parameters
+  **payload** | [**User**](User.md)|  | 
+ **optional** | ***UsersApiCreateUserOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetUserDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiCreateUserOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -77,8 +49,73 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetUserListDao**
-> []User GetUserListDao(ctx, optional)
+# **DeleteUser**
+> DeleteUser(ctx, userId)
+
+
+Delete a user
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **userId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetUser**
+> User GetUser(ctx, userId, optional)
+
+
+Get information of a user
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **userId** | **int32**|  | 
+ **optional** | ***UsersApiGetUserOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UsersApiGetUserOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListUsers**
+> []User ListUsers(ctx, optional)
 
 
 Get all user
@@ -88,10 +125,10 @@ Get all user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetUserListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiListUsersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetUserListDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiListUsersOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -112,74 +149,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **PostUserListDao**
-> User PostUserListDao(ctx, payload, optional)
-
-
-Create a new user
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **payload** | [**User**](User.md)|  | 
- **optional** | ***PostUserListDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a PostUserListDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PutQuotaDao**
-> PutQuotaDao(ctx, userId, payload)
-
-
-Add or subtract quota for a user
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **userId** | **int32**| User identifier | 
-  **payload** | [**UserQuota**](UserQuota.md)|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PutUserDao**
-> User PutUserDao(ctx, userId, payload, optional)
+# **UpdateUser**
+> User UpdateUser(ctx, userId, payload, optional)
 
 
 Update a user
@@ -189,12 +160,12 @@ Update a user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **userId** | **int32**| User identifier | 
+  **userId** | **int32**|  | 
   **payload** | [**User**](User.md)|  | 
- **optional** | ***PutUserDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***UsersApiUpdateUserOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PutUserDaoOpts struct
+Optional parameters are passed through a pointer to a UsersApiUpdateUserOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -205,6 +176,35 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UpdateUserQuota**
+> UpdateUserQuota(ctx, userId, payload)
+
+
+Add or subtract quota for a user
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **userId** | **int32**|  | 
+  **payload** | [**UserQuota**](UserQuota.md)|  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

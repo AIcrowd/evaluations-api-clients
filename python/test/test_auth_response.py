@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.auth_response import AuthResponse  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.models.auth_response import AuthResponse  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestAuthResponse(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestAuthResponse(unittest.TestCase):
     def testAuthResponse(self):
         """Test AuthResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.auth_response.AuthResponse()  # noqa: E501
+        # model = aicrowd_evaluations.models.auth_response.AuthResponse()  # noqa: E501
         pass
 
 

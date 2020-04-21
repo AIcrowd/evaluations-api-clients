@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -15,46 +15,40 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.graders_api import GradersApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.graders_api import GradersApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestGradersApi(unittest.TestCase):
     """GradersApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.graders_api.GradersApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.graders_api.GradersApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_delete_grader_dao(self):
-        """Test case for delete_grader_dao
+    def test_create_grader(self):
+        """Test case for create_grader
 
         """
         pass
 
-    def test_get_grader_dao(self):
-        """Test case for get_grader_dao
+    def test_delete_grader(self):
+        """Test case for delete_grader
 
         """
         pass
 
-    def test_get_grader_list_dao(self):
-        """Test case for get_grader_list_dao
+    def test_get_grader(self):
+        """Test case for get_grader
 
         """
         pass
 
-    def test_post_grader_list_dao(self):
-        """Test case for post_grader_list_dao
-
-        """
-        pass
-
-    def test_put_grader_dao(self):
-        """Test case for put_grader_dao
+    def test_list_graders(self):
+        """Test case for list_graders
 
         """
         pass

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -13,7 +13,7 @@
 
 export interface AuthResponse { 
     /**
-     * Authorization token that should be used in the headers
+     * API Authorization token that should be used in the headers
      */
     authorization?: string;
 }

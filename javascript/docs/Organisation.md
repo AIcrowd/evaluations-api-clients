@@ -1,4 +1,4 @@
-# EvaluationsApi.Organisation
+# AicrowdEvaluations.Organisation
 
 ## Properties
 Name | Type | Description | Notes

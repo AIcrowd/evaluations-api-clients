@@ -1,4 +1,4 @@
-# IO.Swagger.Model.AuthLogout
+# Com.AIcrowd.Evaluations.Model.AuthLogout
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -25,41 +25,37 @@ export interface Grader {
      */
     readonly updated?: Date;
     /**
-     * S3 link of the Dataset
+     * Dataset metadata
      */
-    datasetUrl?: string;
-    /**
-     * git/http
-     */
-    codeAccessMode: string;
+    readonly dataset?: any;
     /**
      * Cluster to run the grader on
      */
     clusterId?: number;
     /**
-     * Docker registry username
+     * Description of the grader
      */
-    dockerUsername: string;
-    /**
-     * Docker registry password
-     */
-    dockerPassword: string;
-    /**
-     * Docker registry URL. Dockerhub is used by default.
-     */
-    dockerRegistry?: string;
+    readonly description?: string;
     /**
      * Argo workflow template spec
      */
     readonly workflowSpec?: any;
     /**
-     * S3 link to the zip file containing the code that will be used for the evaluation
+     * Git URL of the repository containing the code that will be used for the evaluation
      */
-    evaluationCode: string;
+    evaluatorRepo: string;
     /**
-     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
+     * Git branch/tag that should be used with the evaluator repository.
      */
-    storageCapacity?: string;
+    evaluatorRepoTag?: string;
+    /**
+     * Name of the grader
+     */
+    readonly name?: string;
+    /**
+     * Notifications available for the grader.
+     */
+    readonly notifications?: string;
     /**
      * Logs from argo workflow
      */
@@ -72,6 +68,14 @@ export interface Grader {
      * Status of the grader - True if it ready, False otherwise
      */
     readonly status?: string;
+    /**
+     * List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
+     */
+    secrets?: any;
+    /**
+     * Type of submissions allowed on the grader
+     */
+    readonly submissionTypes?: any;
     /**
      * User ID
      */

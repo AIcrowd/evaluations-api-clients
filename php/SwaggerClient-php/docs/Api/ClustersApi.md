@@ -4,18 +4,75 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
-[**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**createCluster**](ClustersApi.md#createCluster) | **POST** /clusters/ | 
+[**deleteCluster**](ClustersApi.md#deleteCluster) | **DELETE** /clusters/{cluster_id} | 
+[**getCluster**](ClustersApi.md#getCluster) | **GET** /clusters/{cluster_id} | 
+[**listClusters**](ClustersApi.md#listClusters) | **GET** /clusters/ | 
 
 
-# **deleteClusterDao**
-> deleteClusterDao($cluster_id)
+# **createCluster**
+> \Swagger\Client\Model\Cluster createCluster($payload, $x_fields)
 
 
 
-Delete a cluster
+Add a new cluster to AIcrowd and install necessary dependencies
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api_key
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('AUTHORIZATION', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('AUTHORIZATION', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\ClustersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$payload = new \Swagger\Client\Model\Cluster(); // \Swagger\Client\Model\Cluster | 
+$x_fields = "x_fields_example"; // string | An optional fields mask
+
+try {
+    $result = $apiInstance->createCluster($payload, $x_fields);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ClustersApi->createCluster: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**\Swagger\Client\Model\Cluster**](../Model/Cluster.md)|  |
+ **x_fields** | **string**| An optional fields mask | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\Cluster**](../Model/Cluster.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **deleteCluster**
+> deleteCluster($cluster_id)
+
+
+
+Delete a cluster by its ID
 
 ### Example
 ```php
@@ -36,9 +93,9 @@ $apiInstance = new Swagger\Client\Api\ClustersApi(
 $cluster_id = 56; // int | 
 
 try {
-    $apiInstance->deleteClusterDao($cluster_id);
+    $apiInstance->deleteCluster($cluster_id);
 } catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->deleteClusterDao: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClustersApi->deleteCluster: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -64,12 +121,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getClusterDao**
-> \Swagger\Client\Model\Cluster getClusterDao($cluster_id, $x_fields)
+# **getCluster**
+> \Swagger\Client\Model\Cluster getCluster($cluster_id, $x_fields)
 
 
 
-Get information of a cluster
+Get details of a cluster by its ID
 
 ### Example
 ```php
@@ -91,10 +148,10 @@ $cluster_id = 56; // int |
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->getClusterDao($cluster_id, $x_fields);
+    $result = $apiInstance->getCluster($cluster_id, $x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->getClusterDao: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClustersApi->getCluster: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -121,12 +178,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getGraderListDao**
-> \Swagger\Client\Model\Cluster[] getGraderListDao($x_fields)
+# **listClusters**
+> \Swagger\Client\Model\Cluster[] listClusters($x_fields)
 
 
 
-Get all clusters
+List all clusters available
 
 ### Example
 ```php
@@ -147,10 +204,10 @@ $apiInstance = new Swagger\Client\Api\ClustersApi(
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->getGraderListDao($x_fields);
+    $result = $apiInstance->listClusters($x_fields);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->getGraderListDao: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClustersApi->listClusters: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -164,63 +221,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Swagger\Client\Model\Cluster[]**](../Model/Cluster.md)
-
-### Authorization
-
-[api_key](../../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **postGraderListDao**
-> \Swagger\Client\Model\Cluster postGraderListDao($payload, $x_fields)
-
-
-
-Add a new cluster
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: api_key
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('AUTHORIZATION', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('AUTHORIZATION', 'Bearer');
-
-$apiInstance = new Swagger\Client\Api\ClustersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$payload = new \Swagger\Client\Model\Cluster(); // \Swagger\Client\Model\Cluster | 
-$x_fields = "x_fields_example"; // string | An optional fields mask
-
-try {
-    $result = $apiInstance->postGraderListDao($payload, $x_fields);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ClustersApi->postGraderListDao: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**\Swagger\Client\Model\Cluster**](../Model/Cluster.md)|  |
- **x_fields** | **string**| An optional fields mask | [optional]
-
-### Return type
-
-[**\Swagger\Client\Model\Cluster**](../Model/Cluster.md)
 
 ### Authorization
 

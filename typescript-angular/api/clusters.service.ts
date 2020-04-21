@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -58,24 +58,81 @@ export class ClustersService {
 
     /**
      * 
-     * Delete a cluster
+     * Add a new cluster to AIcrowd and install necessary dependencies
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createCluster(payload: Cluster, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
+    public createCluster(payload: Cluster, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
+    public createCluster(payload: Cluster, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
+    public createCluster(payload: Cluster, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createCluster.');
+        }
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Cluster>(`${this.basePath}/clusters/`,
+            payload,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Delete a cluster by its ID
      * @param clusterId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteClusterDao(clusterId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteClusterDao(clusterId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteClusterDao(clusterId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteClusterDao(clusterId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteCluster(clusterId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteCluster(clusterId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteCluster(clusterId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteCluster(clusterId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (clusterId === null || clusterId === undefined) {
-            throw new Error('Required parameter clusterId was null or undefined when calling deleteClusterDao.');
+            throw new Error('Required parameter clusterId was null or undefined when calling deleteCluster.');
         }
 
         let headers = this.defaultHeaders;
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -105,19 +162,19 @@ export class ClustersService {
 
     /**
      * 
-     * Get information of a cluster
+     * Get details of a cluster by its ID
      * @param clusterId 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getClusterDao(clusterId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
-    public getClusterDao(clusterId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
-    public getClusterDao(clusterId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
-    public getClusterDao(clusterId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getCluster(clusterId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
+    public getCluster(clusterId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
+    public getCluster(clusterId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
+    public getCluster(clusterId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (clusterId === null || clusterId === undefined) {
-            throw new Error('Required parameter clusterId was null or undefined when calling getClusterDao.');
+            throw new Error('Required parameter clusterId was null or undefined when calling getCluster.');
         }
 
 
@@ -127,7 +184,7 @@ export class ClustersService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -157,15 +214,15 @@ export class ClustersService {
 
     /**
      * 
-     * Get all clusters
+     * List all clusters available
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Cluster>>;
-    public getGraderListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cluster>>>;
-    public getGraderListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Cluster>>>;
-    public getGraderListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listClusters(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Cluster>>;
+    public listClusters(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cluster>>>;
+    public listClusters(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Cluster>>>;
+    public listClusters(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -174,7 +231,7 @@ export class ClustersService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -193,63 +250,6 @@ export class ClustersService {
         ];
 
         return this.httpClient.get<Array<Cluster>>(`${this.basePath}/clusters/`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Add a new cluster
-     * @param payload 
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Cluster>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Cluster>>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Cluster>>;
-    public postGraderListDao(payload: Cluster, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
-        }
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Cluster>(`${this.basePath}/clusters/`,
-            payload,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

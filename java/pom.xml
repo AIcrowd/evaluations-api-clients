@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-java-client</artifactId>
+    <groupId>com.aicrowd</groupId>
+    <artifactId>evaluations</artifactId>
     <packaging>jar</packaging>
-    <name>swagger-java-client</name>
-    <version>1.0.0</version>
+    <name>evaluations</name>
+    <version>0.0.1</version>
     <url>https://github.com/swagger-api/swagger-codegen</url>
     <description>Swagger Java</description>
     <scm>
@@ -25,9 +25,9 @@
     <developers>
         <developer>
             <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <email>devops@aicrowd.com</email>
+            <organization>AIcrowd</organization>
+            <organizationUrl>https://aicrowd.com</organizationUrl>
         </developer>
     </developers>
 

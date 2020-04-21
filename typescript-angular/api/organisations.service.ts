@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -59,165 +59,19 @@ export class OrganisationsService {
 
     /**
      * 
-     * Delete an Organisation
-     * @param organisationId Organisation identifier
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteOrganisationDao(organisationId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteOrganisationDao(organisationId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteOrganisationDao(organisationId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteOrganisationDao(organisationId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling deleteOrganisationDao.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.delete<any>(`${this.basePath}/organisations/${encodeURIComponent(String(organisationId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Get information of an organisation
-     * @param organisationId Organisation identifier
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getOrganisationDao(organisationId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
-    public getOrganisationDao(organisationId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
-    public getOrganisationDao(organisationId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
-    public getOrganisationDao(organisationId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling getOrganisationDao.');
-        }
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<Organisation>(`${this.basePath}/organisations/${encodeURIComponent(String(organisationId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Get all organisations
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getOrganisationListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Organisation>>;
-    public getOrganisationListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Organisation>>>;
-    public getOrganisationListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Organisation>>>;
-    public getOrganisationListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<Array<Organisation>>(`${this.basePath}/organisations/`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
      * Create a new organisation
      * @param payload 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postOrganisationListDao(payload: Organisation, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
-    public postOrganisationListDao(payload: Organisation, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
-    public postOrganisationListDao(payload: Organisation, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
-    public postOrganisationListDao(payload: Organisation, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createOrganisation(payload: Organisation, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
+    public createOrganisation(payload: Organisation, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
+    public createOrganisation(payload: Organisation, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
+    public createOrganisation(payload: Organisation, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postOrganisationListDao.');
+            throw new Error('Required parameter payload was null or undefined when calling createOrganisation.');
         }
 
 
@@ -227,7 +81,7 @@ export class OrganisationsService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -262,24 +116,66 @@ export class OrganisationsService {
 
     /**
      * 
-     * Update an Organisation
-     * @param organisationId Organisation identifier
-     * @param payload 
+     * Delete an Organisation
+     * @param organisationId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteOrganisation(organisationId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteOrganisation(organisationId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteOrganisation(organisationId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteOrganisation(organisationId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (organisationId === null || organisationId === undefined) {
+            throw new Error('Required parameter organisationId was null or undefined when calling deleteOrganisation.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.delete<any>(`${this.basePath}/organisations/${encodeURIComponent(String(organisationId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Get details of an organisation
+     * @param organisationId 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
-    public putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
-    public putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
-    public putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getOrganisation(organisationId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
+    public getOrganisation(organisationId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
+    public getOrganisation(organisationId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
+    public getOrganisation(organisationId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling putOrganisationDao.');
-        }
-
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putOrganisationDao.');
+            throw new Error('Required parameter organisationId was null or undefined when calling getOrganisation.');
         }
 
 
@@ -289,7 +185,111 @@ export class OrganisationsService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<Organisation>(`${this.basePath}/organisations/${encodeURIComponent(String(organisationId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * List all organisations
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listOrganisations(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Organisation>>;
+    public listOrganisations(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Organisation>>>;
+    public listOrganisations(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Organisation>>>;
+    public listOrganisations(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<Array<Organisation>>(`${this.basePath}/organisations/`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Update an Organisation
+     * @param organisationId 
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Organisation>;
+    public updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Organisation>>;
+    public updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Organisation>>;
+    public updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (organisationId === null || organisationId === undefined) {
+            throw new Error('Required parameter organisationId was null or undefined when calling updateOrganisation.');
+        }
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling updateOrganisation.');
+        }
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -325,28 +325,28 @@ export class OrganisationsService {
     /**
      * 
      * Add or subtract quota for an organisation
-     * @param organisationId Organisation identifier
+     * @param organisationId 
      * @param payload 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putQuotaDao(organisationId: number, payload: OrganisationQuota, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public putQuotaDao(organisationId: number, payload: OrganisationQuota, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public putQuotaDao(organisationId: number, payload: OrganisationQuota, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public putQuotaDao(organisationId: number, payload: OrganisationQuota, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (organisationId === null || organisationId === undefined) {
-            throw new Error('Required parameter organisationId was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter organisationId was null or undefined when calling updateOrganisationQuota.');
         }
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateOrganisationQuota.');
         }
 
         let headers = this.defaultHeaders;
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -368,7 +368,7 @@ export class OrganisationsService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/organisations/addquota/${encodeURIComponent(String(organisationId))}`,
+        return this.httpClient.put<any>(`${this.basePath}/organisations/${encodeURIComponent(String(organisationId))}/addquota`,
             payload,
             {
                 withCredentials: this.configuration.withCredentials,

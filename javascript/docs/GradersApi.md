@@ -1,28 +1,27 @@
-# EvaluationsApi.GradersApi
+# AicrowdEvaluations.GradersApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteGraderDao**](GradersApi.md#deleteGraderDao) | **DELETE** /graders/{grader_id} | 
-[**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
-[**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
-[**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
+[**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
+[**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+[**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
 
 
-<a name="deleteGraderDao"></a>
-# **deleteGraderDao**
-> deleteGraderDao(graderId)
+<a name="createGrader"></a>
+# **createGrader**
+> Grader createGrader(payload, opts)
 
 
 
-Delete a grader
+Create a new grader
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -30,7 +29,64 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
+
+var payload = new AicrowdEvaluations.Grader(); // Grader | 
+
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.createGrader(payload, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  | 
+ **xFields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteGrader"></a>
+# **deleteGrader**
+> deleteGrader(graderId)
+
+
+
+Delete a grader by its ID
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
@@ -42,7 +98,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.deleteGraderDao(graderId, callback);
+apiInstance.deleteGrader(graderId, callback);
 ```
 
 ### Parameters
@@ -64,18 +120,18 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderDao"></a>
-# **getGraderDao**
-> Grader getGraderDao(graderId, opts)
+<a name="getGrader"></a>
+# **getGrader**
+> Grader getGrader(graderId, opts)
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -83,7 +139,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
@@ -98,7 +154,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getGraderDao(graderId, opts, callback);
+apiInstance.getGrader(graderId, opts, callback);
 ```
 
 ### Parameters
@@ -121,18 +177,18 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> [Grader] getGraderListDao(opts)
+<a name="listGraders"></a>
+# **listGraders**
+> [Grader] listGraders(opts)
 
 
 
-Get all grader
+List all graders available
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -140,7 +196,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.GradersApi();
+var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -153,7 +209,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getGraderListDao(opts, callback);
+apiInstance.listGraders(opts, callback);
 ```
 
 ### Parameters
@@ -165,123 +221,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[Grader]**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Grader postGraderListDao(payload, opts)
-
-
-
-Create a new grader
-
-### Example
-```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new EvaluationsApi.GradersApi();
-
-var payload = new EvaluationsApi.Grader(); // Grader | 
-
-var opts = { 
-  'xFields': "xFields_example" // String | An optional fields mask
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.postGraderListDao(payload, opts, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **xFields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putGraderDao"></a>
-# **putGraderDao**
-> Grader putGraderDao(graderIdpayload, opts)
-
-
-
-Update a grader
-
-### Example
-```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new EvaluationsApi.GradersApi();
-
-var graderId = 56; // Number | 
-
-var payload = new EvaluationsApi.Grader(); // Grader | 
-
-var opts = { 
-  'xFields': "xFields_example" // String | An optional fields mask
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.putGraderDao(graderIdpayload, opts, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **Number**|  | 
- **payload** | [**Grader**](Grader.md)|  | 
- **xFields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

@@ -4,18 +4,54 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteGraderDao**](GradersApi.md#DeleteGraderDao) | **Delete** /graders/{grader_id} | 
-[**GetGraderDao**](GradersApi.md#GetGraderDao) | **Get** /graders/{grader_id} | 
-[**GetGraderListDao**](GradersApi.md#GetGraderListDao) | **Get** /graders/ | 
-[**PostGraderListDao**](GradersApi.md#PostGraderListDao) | **Post** /graders/ | 
-[**PutGraderDao**](GradersApi.md#PutGraderDao) | **Put** /graders/{grader_id} | 
+[**CreateGrader**](GradersApi.md#CreateGrader) | **Post** /graders/ | 
+[**DeleteGrader**](GradersApi.md#DeleteGrader) | **Delete** /graders/{grader_id} | 
+[**GetGrader**](GradersApi.md#GetGrader) | **Get** /graders/{grader_id} | 
+[**ListGraders**](GradersApi.md#ListGraders) | **Get** /graders/ | 
 
 
-# **DeleteGraderDao**
-> DeleteGraderDao(ctx, graderId)
+# **CreateGrader**
+> Grader CreateGrader(ctx, payload, optional)
 
 
-Delete a grader
+Create a new grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**Grader**](Grader.md)|  | 
+ **optional** | ***GradersApiCreateGraderOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GradersApiCreateGraderOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **DeleteGrader**
+> DeleteGrader(ctx, graderId)
+
+
+Delete a grader by its ID
 
 ### Required Parameters
 
@@ -39,11 +75,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetGraderDao**
-> Grader GetGraderDao(ctx, graderId, optional)
+# **GetGrader**
+> Grader GetGrader(ctx, graderId, optional)
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Required Parameters
 
@@ -51,10 +87,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **graderId** | **int32**|  | 
- **optional** | ***GetGraderDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiGetGraderOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetGraderDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiGetGraderOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -76,21 +112,21 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetGraderListDao**
-> []Grader GetGraderListDao(ctx, optional)
+# **ListGraders**
+> []Grader ListGraders(ctx, optional)
 
 
-Get all grader
+List all graders available
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetGraderListDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***GradersApiListGradersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetGraderListDaoOpts struct
+Optional parameters are passed through a pointer to a GradersApiListGradersOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -99,82 +135,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PostGraderListDao**
-> Grader PostGraderListDao(ctx, payload, optional)
-
-
-Create a new grader
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **payload** | [**Grader**](Grader.md)|  | 
- **optional** | ***PostGraderListDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a PostGraderListDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PutGraderDao**
-> Grader PutGraderDao(ctx, graderId, payload, optional)
-
-
-Update a grader
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **graderId** | **int32**|  | 
-  **payload** | [**Grader**](Grader.md)|  | 
- **optional** | ***PutGraderDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a PutGraderDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

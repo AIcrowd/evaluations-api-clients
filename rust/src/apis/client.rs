@@ -5,7 +5,6 @@ use super::configuration::Configuration;
 
 pub struct APIClient<C: hyper::client::Connect> {
   configuration: Rc<Configuration<C>>,
-  argo_api: Box<::apis::ArgoApi>,
   auth_api: Box<::apis::AuthApi>,
   clusters_api: Box<::apis::ClustersApi>,
   graders_api: Box<::apis::GradersApi>,
@@ -20,7 +19,6 @@ impl<C: hyper::client::Connect> APIClient<C> {
 
     APIClient {
       configuration: rc.clone(),
-      argo_api: Box::new(::apis::ArgoApiClient::new(rc.clone())),
       auth_api: Box::new(::apis::AuthApiClient::new(rc.clone())),
       clusters_api: Box::new(::apis::ClustersApiClient::new(rc.clone())),
       graders_api: Box::new(::apis::GradersApiClient::new(rc.clone())),
@@ -28,10 +26,6 @@ impl<C: hyper::client::Connect> APIClient<C> {
       submissions_api: Box::new(::apis::SubmissionsApiClient::new(rc.clone())),
       users_api: Box::new(::apis::UsersApiClient::new(rc.clone())),
     }
-  }
-
-  pub fn argo_api(&self) -> &::apis::ArgoApi{
-    self.argo_api.as_ref()
   }
 
   pub fn auth_api(&self) -> &::apis::AuthApi{

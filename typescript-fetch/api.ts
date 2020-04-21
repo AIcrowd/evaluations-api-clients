@@ -1,8 +1,8 @@
 /// <reference path="./custom.d.ts" />
 // tslint:disable
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -99,7 +99,7 @@ export interface AuthLogout {
  */
 export interface AuthResponse {
     /**
-     * Authorization token that should be used in the headers
+     * API Authorization token that should be used in the headers
      * @type {string}
      * @memberof AuthResponse
      */
@@ -143,6 +143,24 @@ export interface Cluster {
      */
     authToken: string;
     /**
+     * Docker registry username
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerUsername: string;
+    /**
+     * Docker registry password
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerPassword: string;
+    /**
+     * Docker registry URL. Dockerhub is used by default.
+     * @type {string}
+     * @memberof Cluster
+     */
+    dockerRegistry?: string;
+    /**
      * Storage class to use for datasets
      * @type {string}
      * @memberof Cluster
@@ -177,26 +195,6 @@ export interface Cluster {
 /**
  * 
  * @export
- * @interface GenericFeedback
- */
-export interface GenericFeedback {
-    /**
-     * Status of the operation
-     * @type {boolean}
-     * @memberof GenericFeedback
-     */
-    status: boolean;
-    /**
-     * Additional metadata to add
-     * @type {any}
-     * @memberof GenericFeedback
-     */
-    meta?: any;
-}
-
-/**
- * 
- * @export
  * @interface Grader
  */
 export interface Grader {
@@ -219,17 +217,11 @@ export interface Grader {
      */
     updated?: Date;
     /**
-     * S3 link of the Dataset
-     * @type {string}
+     * Dataset metadata
+     * @type {any}
      * @memberof Grader
      */
-    datasetUrl?: string;
-    /**
-     * git/http
-     * @type {string}
-     * @memberof Grader
-     */
-    codeAccessMode: string;
+    dataset?: any;
     /**
      * Cluster to run the grader on
      * @type {number}
@@ -237,23 +229,11 @@ export interface Grader {
      */
     clusterId?: number;
     /**
-     * Docker registry username
+     * Description of the grader
      * @type {string}
      * @memberof Grader
      */
-    dockerUsername: string;
-    /**
-     * Docker registry password
-     * @type {string}
-     * @memberof Grader
-     */
-    dockerPassword: string;
-    /**
-     * Docker registry URL. Dockerhub is used by default.
-     * @type {string}
-     * @memberof Grader
-     */
-    dockerRegistry?: string;
+    description?: string;
     /**
      * Argo workflow template spec
      * @type {any}
@@ -261,17 +241,29 @@ export interface Grader {
      */
     workflowSpec?: any;
     /**
-     * S3 link to the zip file containing the code that will be used for the evaluation
+     * Git URL of the repository containing the code that will be used for the evaluation
      * @type {string}
      * @memberof Grader
      */
-    evaluationCode: string;
+    evaluatorRepo: string;
     /**
-     * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
+     * Git branch/tag that should be used with the evaluator repository.
      * @type {string}
      * @memberof Grader
      */
-    storageCapacity?: string;
+    evaluatorRepoTag?: string;
+    /**
+     * Name of the grader
+     * @type {string}
+     * @memberof Grader
+     */
+    name?: string;
+    /**
+     * Notifications available for the grader.
+     * @type {string}
+     * @memberof Grader
+     */
+    notifications?: string;
     /**
      * Logs from argo workflow
      * @type {any}
@@ -291,6 +283,18 @@ export interface Grader {
      */
     status?: string;
     /**
+     * List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
+     * @type {any}
+     * @memberof Grader
+     */
+    secrets?: any;
+    /**
+     * Type of submissions allowed on the grader
+     * @type {any}
+     * @memberof Grader
+     */
+    submissionTypes?: any;
+    /**
      * User ID
      * @type {number}
      * @memberof Grader
@@ -307,37 +311,17 @@ export interface Grader {
 /**
  * 
  * @export
- * @interface GraderFeedback
- */
-export interface GraderFeedback {
-    /**
-     * Status of the grader
-     * @type {boolean}
-     * @memberof GraderFeedback
-     */
-    status: boolean;
-    /**
-     * Serialized YAML workflow spec
-     * @type {string}
-     * @memberof GraderFeedback
-     */
-    workflowSpec: string;
-}
-
-/**
- * 
- * @export
  * @interface Login
  */
 export interface Login {
     /**
-     * The email address
+     * Email address of the user
      * @type {string}
      * @memberof Login
      */
     email: string;
     /**
-     * The user password 
+     * Password corresponding to the Email address
      * @type {string}
      * @memberof Login
      */
@@ -405,38 +389,6 @@ export interface OrganisationQuota {
 /**
  * 
  * @export
- * @interface SubmissionFeedback
- */
-export interface SubmissionFeedback {
-    /**
-     * Status of the submission
-     * @type {string}
-     * @memberof SubmissionFeedback
-     */
-    status: string;
-    /**
-     * S3 link of the outputs
-     * @type {string}
-     * @memberof SubmissionFeedback
-     */
-    outputs: string;
-    /**
-     * Additional outputs
-     * @type {number}
-     * @memberof SubmissionFeedback
-     */
-    score: number;
-    /**
-     * Output on stdout for run-evaluator.run-submitted-code step
-     * @type {string}
-     * @memberof SubmissionFeedback
-     */
-    logs: string;
-}
-
-/**
- * 
- * @export
  * @interface Submissions
  */
 export interface Submissions {
@@ -481,7 +433,7 @@ export interface Submissions {
      * @type {any}
      * @memberof Submissions
      */
-    submissionCode: any;
+    submissionData?: any;
     /**
      * Current status of the submission
      * @type {string}
@@ -616,321 +568,54 @@ export interface UserQuota {
 
 
 /**
- * ArgoApi - fetch parameter creator
- * @export
- */
-export const ArgoApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Update the status of an object
-         * @param {string} modelName 
-         * @param {number} objectId 
-         * @param {GenericFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGenericFeedbackContract(modelName: string, objectId: number, payload: GenericFeedback, options: any = {}): FetchArgs {
-            // verify required parameter 'modelName' is not null or undefined
-            if (modelName === null || modelName === undefined) {
-                throw new RequiredError('modelName','Required parameter modelName was null or undefined when calling postGenericFeedbackContract.');
-            }
-            // verify required parameter 'objectId' is not null or undefined
-            if (objectId === null || objectId === undefined) {
-                throw new RequiredError('objectId','Required parameter objectId was null or undefined when calling postGenericFeedbackContract.');
-            }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postGenericFeedbackContract.');
-            }
-            const localVarPath = `/argo/{model_name}/{object_id}`
-                .replace(`{${"model_name"}}`, encodeURIComponent(String(modelName)))
-                .replace(`{${"object_id"}}`, encodeURIComponent(String(objectId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"GenericFeedback" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update the grader details
-         * @param {number} graderId 
-         * @param {GraderFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderFeedbackDao(graderId: number, payload: GraderFeedback, options: any = {}): FetchArgs {
-            // verify required parameter 'graderId' is not null or undefined
-            if (graderId === null || graderId === undefined) {
-                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling postGraderFeedbackDao.');
-            }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postGraderFeedbackDao.');
-            }
-            const localVarPath = `/argo/graders/{grader_id}`
-                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"GraderFeedback" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update the submission details
-         * @param {number} submissionId 
-         * @param {SubmissionFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSubmissionFeedbackDao(submissionId: number, payload: SubmissionFeedback, options: any = {}): FetchArgs {
-            // verify required parameter 'submissionId' is not null or undefined
-            if (submissionId === null || submissionId === undefined) {
-                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling postSubmissionFeedbackDao.');
-            }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postSubmissionFeedbackDao.');
-            }
-            const localVarPath = `/argo/submissions/{submission_id}`
-                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"SubmissionFeedback" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ArgoApi - functional programming interface
- * @export
- */
-export const ArgoApiFp = function(configuration?: Configuration) {
-    return {
-        /**
-         * Update the status of an object
-         * @param {string} modelName 
-         * @param {number} objectId 
-         * @param {GenericFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGenericFeedbackContract(modelName: string, objectId: number, payload: GenericFeedback, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = ArgoApiFetchParamCreator(configuration).postGenericFeedbackContract(modelName, objectId, payload, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Update the grader details
-         * @param {number} graderId 
-         * @param {GraderFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderFeedbackDao(graderId: number, payload: GraderFeedback, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = ArgoApiFetchParamCreator(configuration).postGraderFeedbackDao(graderId, payload, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Update the submission details
-         * @param {number} submissionId 
-         * @param {SubmissionFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSubmissionFeedbackDao(submissionId: number, payload: SubmissionFeedback, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = ArgoApiFetchParamCreator(configuration).postSubmissionFeedbackDao(submissionId, payload, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * ArgoApi - factory interface
- * @export
- */
-export const ArgoApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * Update the status of an object
-         * @param {string} modelName 
-         * @param {number} objectId 
-         * @param {GenericFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGenericFeedbackContract(modelName: string, objectId: number, payload: GenericFeedback, options?: any) {
-            return ArgoApiFp(configuration).postGenericFeedbackContract(modelName, objectId, payload, options)(fetch, basePath);
-        },
-        /**
-         * Update the grader details
-         * @param {number} graderId 
-         * @param {GraderFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderFeedbackDao(graderId: number, payload: GraderFeedback, options?: any) {
-            return ArgoApiFp(configuration).postGraderFeedbackDao(graderId, payload, options)(fetch, basePath);
-        },
-        /**
-         * Update the submission details
-         * @param {number} submissionId 
-         * @param {SubmissionFeedback} payload 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSubmissionFeedbackDao(submissionId: number, payload: SubmissionFeedback, options?: any) {
-            return ArgoApiFp(configuration).postSubmissionFeedbackDao(submissionId, payload, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * ArgoApi - object-oriented interface
- * @export
- * @class ArgoApi
- * @extends {BaseAPI}
- */
-export class ArgoApi extends BaseAPI {
-    /**
-     * Update the status of an object
-     * @param {string} modelName 
-     * @param {number} objectId 
-     * @param {GenericFeedback} payload 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ArgoApi
-     */
-    public postGenericFeedbackContract(modelName: string, objectId: number, payload: GenericFeedback, options?: any) {
-        return ArgoApiFp(this.configuration).postGenericFeedbackContract(modelName, objectId, payload, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Update the grader details
-     * @param {number} graderId 
-     * @param {GraderFeedback} payload 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ArgoApi
-     */
-    public postGraderFeedbackDao(graderId: number, payload: GraderFeedback, options?: any) {
-        return ArgoApiFp(this.configuration).postGraderFeedbackDao(graderId, payload, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Update the submission details
-     * @param {number} submissionId 
-     * @param {SubmissionFeedback} payload 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ArgoApi
-     */
-    public postSubmissionFeedbackDao(submissionId: number, payload: SubmissionFeedback, options?: any) {
-        return ArgoApiFp(this.configuration).postSubmissionFeedbackDao(submissionId, payload, options)(this.fetch, this.basePath);
-    }
-
-}
-
-/**
  * AuthApi - fetch parameter creator
  * @export
  */
 export const AuthApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Log in a user with email and password.
+         * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(xFields?: string, options: any = {}): FetchArgs {
+        login(payload: Login, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'payload' is not null or undefined
+            if (payload === null || payload === undefined) {
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling login.');
+            }
+            const localVarPath = `/auth/login`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Login" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Invalidate the current authorization token.
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout(xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/auth/logout`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -959,42 +644,6 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {Login} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userLogin(payload: Login, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling userLogin.');
-            }
-            const localVarPath = `/auth/login`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Login" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -1005,13 +654,14 @@ export const AuthApiFetchParamCreator = function (configuration?: Configuration)
 export const AuthApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 
+         * Log in a user with email and password.
+         * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logoutAUser(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthLogout> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).logoutAUser(xFields, options);
+        login(payload: Login, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthResponse> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).login(payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1023,14 +673,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * 
-         * @param {Login} payload 
+         * Invalidate the current authorization token.
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthResponse> {
-            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).userLogin(payload, xFields, options);
+        logout(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AuthLogout> {
+            const localVarFetchArgs = AuthApiFetchParamCreator(configuration).logout(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1051,23 +700,23 @@ export const AuthApiFp = function(configuration?: Configuration) {
 export const AuthApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
-         * 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        logoutAUser(xFields?: string, options?: any) {
-            return AuthApiFp(configuration).logoutAUser(xFields, options)(fetch, basePath);
-        },
-        /**
-         * 
+         * Log in a user with email and password.
          * @param {Login} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLogin(payload: Login, xFields?: string, options?: any) {
-            return AuthApiFp(configuration).userLogin(payload, xFields, options)(fetch, basePath);
+        login(payload: Login, xFields?: string, options?: any) {
+            return AuthApiFp(configuration).login(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Invalidate the current authorization token.
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout(xFields?: string, options?: any) {
+            return AuthApiFp(configuration).logout(xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1080,26 +729,26 @@ export const AuthApiFactory = function (configuration?: Configuration, fetch?: F
  */
 export class AuthApi extends BaseAPI {
     /**
-     * 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApi
-     */
-    public logoutAUser(xFields?: string, options?: any) {
-        return AuthApiFp(this.configuration).logoutAUser(xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
+     * Log in a user with email and password.
      * @param {Login} payload 
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public userLogin(payload: Login, xFields?: string, options?: any) {
-        return AuthApiFp(this.configuration).userLogin(payload, xFields, options)(this.fetch, this.basePath);
+    public login(payload: Login, xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).login(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Invalidate the current authorization token.
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public logout(xFields?: string, options?: any) {
+        return AuthApiFp(this.configuration).logout(xFields, options)(this.fetch, this.basePath);
     }
 
 }
@@ -1111,128 +760,16 @@ export class AuthApi extends BaseAPI {
 export const ClustersApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Delete a cluster
-         * @param {number} clusterId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteClusterDao(clusterId: number, options: any = {}): FetchArgs {
-            // verify required parameter 'clusterId' is not null or undefined
-            if (clusterId === null || clusterId === undefined) {
-                throw new RequiredError('clusterId','Required parameter clusterId was null or undefined when calling deleteClusterDao.');
-            }
-            const localVarPath = `/clusters/{cluster_id}`
-                .replace(`{${"cluster_id"}}`, encodeURIComponent(String(clusterId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get information of a cluster
-         * @param {number} clusterId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getClusterDao(clusterId: number, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'clusterId' is not null or undefined
-            if (clusterId === null || clusterId === undefined) {
-                throw new RequiredError('clusterId','Required parameter clusterId was null or undefined when calling getClusterDao.');
-            }
-            const localVarPath = `/clusters/{cluster_id}`
-                .replace(`{${"cluster_id"}}`, encodeURIComponent(String(clusterId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get all clusters
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderListDao(xFields?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/clusters/`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Add a new cluster
+         * Add a new cluster to AIcrowd and install necessary dependencies
          * @param {Cluster} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postGraderListDao(payload: Cluster, xFields?: string, options: any = {}): FetchArgs {
+        createCluster(payload: Cluster, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postGraderListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling createCluster.');
             }
             const localVarPath = `/clusters/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1266,213 +803,19 @@ export const ClustersApiFetchParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
-    }
-};
-
-/**
- * ClustersApi - functional programming interface
- * @export
- */
-export const ClustersApiFp = function(configuration?: Configuration) {
-    return {
         /**
-         * Delete a cluster
+         * Delete a cluster by its ID
          * @param {number} clusterId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteClusterDao(clusterId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).deleteClusterDao(clusterId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get information of a cluster
-         * @param {number} clusterId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getClusterDao(clusterId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).getClusterDao(clusterId, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get all clusters
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Cluster>> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).getGraderListDao(xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Add a new cluster
-         * @param {Cluster} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderListDao(payload: Cluster, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
-            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).postGraderListDao(payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * ClustersApi - factory interface
- * @export
- */
-export const ClustersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * Delete a cluster
-         * @param {number} clusterId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteClusterDao(clusterId: number, options?: any) {
-            return ClustersApiFp(configuration).deleteClusterDao(clusterId, options)(fetch, basePath);
-        },
-        /**
-         * Get information of a cluster
-         * @param {number} clusterId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getClusterDao(clusterId: number, xFields?: string, options?: any) {
-            return ClustersApiFp(configuration).getClusterDao(clusterId, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Get all clusters
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderListDao(xFields?: string, options?: any) {
-            return ClustersApiFp(configuration).getGraderListDao(xFields, options)(fetch, basePath);
-        },
-        /**
-         * Add a new cluster
-         * @param {Cluster} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderListDao(payload: Cluster, xFields?: string, options?: any) {
-            return ClustersApiFp(configuration).postGraderListDao(payload, xFields, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * ClustersApi - object-oriented interface
- * @export
- * @class ClustersApi
- * @extends {BaseAPI}
- */
-export class ClustersApi extends BaseAPI {
-    /**
-     * Delete a cluster
-     * @param {number} clusterId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClustersApi
-     */
-    public deleteClusterDao(clusterId: number, options?: any) {
-        return ClustersApiFp(this.configuration).deleteClusterDao(clusterId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get information of a cluster
-     * @param {number} clusterId 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClustersApi
-     */
-    public getClusterDao(clusterId: number, xFields?: string, options?: any) {
-        return ClustersApiFp(this.configuration).getClusterDao(clusterId, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get all clusters
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClustersApi
-     */
-    public getGraderListDao(xFields?: string, options?: any) {
-        return ClustersApiFp(this.configuration).getGraderListDao(xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Add a new cluster
-     * @param {Cluster} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClustersApi
-     */
-    public postGraderListDao(payload: Cluster, xFields?: string, options?: any) {
-        return ClustersApiFp(this.configuration).postGraderListDao(payload, xFields, options)(this.fetch, this.basePath);
-    }
-
-}
-
-/**
- * GradersApi - fetch parameter creator
- * @export
- */
-export const GradersApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Delete a grader
-         * @param {number} graderId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteGraderDao(graderId: number, options: any = {}): FetchArgs {
-            // verify required parameter 'graderId' is not null or undefined
-            if (graderId === null || graderId === undefined) {
-                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling deleteGraderDao.');
+        deleteCluster(clusterId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'clusterId' is not null or undefined
+            if (clusterId === null || clusterId === undefined) {
+                throw new RequiredError('clusterId','Required parameter clusterId was null or undefined when calling deleteCluster.');
             }
-            const localVarPath = `/graders/{grader_id}`
-                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
+            const localVarPath = `/clusters/{cluster_id}`
+                .replace(`{${"cluster_id"}}`, encodeURIComponent(String(clusterId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1497,19 +840,19 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Get information of a grader
-         * @param {number} graderId 
+         * Get details of a cluster by its ID
+         * @param {number} clusterId 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderDao(graderId: number, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'graderId' is not null or undefined
-            if (graderId === null || graderId === undefined) {
-                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling getGraderDao.');
+        getCluster(clusterId: number, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'clusterId' is not null or undefined
+            if (clusterId === null || clusterId === undefined) {
+                throw new RequiredError('clusterId','Required parameter clusterId was null or undefined when calling getCluster.');
             }
-            const localVarPath = `/graders/{grader_id}`
-                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
+            const localVarPath = `/clusters/{cluster_id}`
+                .replace(`{${"cluster_id"}}`, encodeURIComponent(String(clusterId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1538,13 +881,13 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Get all grader
+         * List all clusters available
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderListDao(xFields?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/graders/`;
+        listClusters(xFields?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/clusters/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1572,6 +915,200 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * ClustersApi - functional programming interface
+ * @export
+ */
+export const ClustersApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Add a new cluster to AIcrowd and install necessary dependencies
+         * @param {Cluster} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createCluster(payload: Cluster, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).createCluster(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a cluster by its ID
+         * @param {number} clusterId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCluster(clusterId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).deleteCluster(clusterId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get details of a cluster by its ID
+         * @param {number} clusterId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCluster(clusterId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Cluster> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).getCluster(clusterId, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * List all clusters available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listClusters(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Cluster>> {
+            const localVarFetchArgs = ClustersApiFetchParamCreator(configuration).listClusters(xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * ClustersApi - factory interface
+ * @export
+ */
+export const ClustersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Add a new cluster to AIcrowd and install necessary dependencies
+         * @param {Cluster} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createCluster(payload: Cluster, xFields?: string, options?: any) {
+            return ClustersApiFp(configuration).createCluster(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Delete a cluster by its ID
+         * @param {number} clusterId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCluster(clusterId: number, options?: any) {
+            return ClustersApiFp(configuration).deleteCluster(clusterId, options)(fetch, basePath);
+        },
+        /**
+         * Get details of a cluster by its ID
+         * @param {number} clusterId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCluster(clusterId: number, xFields?: string, options?: any) {
+            return ClustersApiFp(configuration).getCluster(clusterId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * List all clusters available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listClusters(xFields?: string, options?: any) {
+            return ClustersApiFp(configuration).listClusters(xFields, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * ClustersApi - object-oriented interface
+ * @export
+ * @class ClustersApi
+ * @extends {BaseAPI}
+ */
+export class ClustersApi extends BaseAPI {
+    /**
+     * Add a new cluster to AIcrowd and install necessary dependencies
+     * @param {Cluster} payload 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClustersApi
+     */
+    public createCluster(payload: Cluster, xFields?: string, options?: any) {
+        return ClustersApiFp(this.configuration).createCluster(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a cluster by its ID
+     * @param {number} clusterId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClustersApi
+     */
+    public deleteCluster(clusterId: number, options?: any) {
+        return ClustersApiFp(this.configuration).deleteCluster(clusterId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get details of a cluster by its ID
+     * @param {number} clusterId 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClustersApi
+     */
+    public getCluster(clusterId: number, xFields?: string, options?: any) {
+        return ClustersApiFp(this.configuration).getCluster(clusterId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * List all clusters available
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClustersApi
+     */
+    public listClusters(xFields?: string, options?: any) {
+        return ClustersApiFp(this.configuration).listClusters(xFields, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * GradersApi - fetch parameter creator
+ * @export
+ */
+export const GradersApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * Create a new grader
          * @param {Grader} payload 
@@ -1579,10 +1116,10 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postGraderListDao(payload: Grader, xFields?: string, options: any = {}): FetchArgs {
+        createGrader(payload: Grader, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postGraderListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling createGrader.');
             }
             const localVarPath = `/graders/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1617,306 +1154,18 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Update a grader
+         * Delete a grader by its ID
          * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options: any = {}): FetchArgs {
+        deleteGrader(graderId: number, options: any = {}): FetchArgs {
             // verify required parameter 'graderId' is not null or undefined
             if (graderId === null || graderId === undefined) {
-                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling putGraderDao.');
-            }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putGraderDao.');
+                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling deleteGrader.');
             }
             const localVarPath = `/graders/{grader_id}`
                 .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Grader" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * GradersApi - functional programming interface
- * @export
- */
-export const GradersApiFp = function(configuration?: Configuration) {
-    return {
-        /**
-         * Delete a grader
-         * @param {number} graderId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteGraderDao(graderId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).deleteGraderDao(graderId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get information of a grader
-         * @param {number} graderId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderDao(graderId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGraderDao(graderId, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get all grader
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGraderListDao(xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Create a new grader
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderListDao(payload: Grader, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).postGraderListDao(payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Update a grader
-         * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).putGraderDao(graderId, payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * GradersApi - factory interface
- * @export
- */
-export const GradersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * Delete a grader
-         * @param {number} graderId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteGraderDao(graderId: number, options?: any) {
-            return GradersApiFp(configuration).deleteGraderDao(graderId, options)(fetch, basePath);
-        },
-        /**
-         * Get information of a grader
-         * @param {number} graderId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderDao(graderId: number, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).getGraderDao(graderId, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Get all grader
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getGraderListDao(xFields?: string, options?: any) {
-            return GradersApiFp(configuration).getGraderListDao(xFields, options)(fetch, basePath);
-        },
-        /**
-         * Create a new grader
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postGraderListDao(payload: Grader, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).postGraderListDao(payload, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Update a grader
-         * @param {number} graderId 
-         * @param {Grader} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).putGraderDao(graderId, payload, xFields, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * GradersApi - object-oriented interface
- * @export
- * @class GradersApi
- * @extends {BaseAPI}
- */
-export class GradersApi extends BaseAPI {
-    /**
-     * Delete a grader
-     * @param {number} graderId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public deleteGraderDao(graderId: number, options?: any) {
-        return GradersApiFp(this.configuration).deleteGraderDao(graderId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get information of a grader
-     * @param {number} graderId 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public getGraderDao(graderId: number, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).getGraderDao(graderId, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get all grader
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public getGraderListDao(xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).getGraderListDao(xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Create a new grader
-     * @param {Grader} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public postGraderListDao(payload: Grader, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).postGraderListDao(payload, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Update a grader
-     * @param {number} graderId 
-     * @param {Grader} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GradersApi
-     */
-    public putGraderDao(graderId: number, payload: Grader, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).putGraderDao(graderId, payload, xFields, options)(this.fetch, this.basePath);
-    }
-
-}
-
-/**
- * OrganisationsApi - fetch parameter creator
- * @export
- */
-export const OrganisationsApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Delete an Organisation
-         * @param {number} organisationId Organisation identifier
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteOrganisationDao(organisationId: number, options: any = {}): FetchArgs {
-            // verify required parameter 'organisationId' is not null or undefined
-            if (organisationId === null || organisationId === undefined) {
-                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling deleteOrganisationDao.');
-            }
-            const localVarPath = `/organisations/{organisation_id}`
-                .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1941,19 +1190,19 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Get information of an organisation
-         * @param {number} organisationId Organisation identifier
+         * Get details of a grader by its ID
+         * @param {number} graderId 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganisationDao(organisationId: number, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'organisationId' is not null or undefined
-            if (organisationId === null || organisationId === undefined) {
-                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling getOrganisationDao.');
+        getGrader(graderId: number, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'graderId' is not null or undefined
+            if (graderId === null || graderId === undefined) {
+                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling getGrader.');
             }
-            const localVarPath = `/organisations/{organisation_id}`
-                .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
+            const localVarPath = `/graders/{grader_id}`
+                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1982,13 +1231,13 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Get all organisations
+         * List all graders available
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganisationListDao(xFields?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/organisations/`;
+        listGraders(xFields?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/graders/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2016,6 +1265,200 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * GradersApi - functional programming interface
+ * @export
+ */
+export const GradersApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Create a new grader
+         * @param {Grader} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGrader(payload: Grader, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).createGrader(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a grader by its ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGrader(graderId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).deleteGrader(graderId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get details of a grader by its ID
+         * @param {number} graderId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGrader(graderId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGrader(graderId, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * List all graders available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listGraders(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * GradersApi - factory interface
+ * @export
+ */
+export const GradersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Create a new grader
+         * @param {Grader} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGrader(payload: Grader, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).createGrader(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Delete a grader by its ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGrader(graderId: number, options?: any) {
+            return GradersApiFp(configuration).deleteGrader(graderId, options)(fetch, basePath);
+        },
+        /**
+         * Get details of a grader by its ID
+         * @param {number} graderId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGrader(graderId: number, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).getGrader(graderId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * List all graders available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listGraders(xFields?: string, options?: any) {
+            return GradersApiFp(configuration).listGraders(xFields, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * GradersApi - object-oriented interface
+ * @export
+ * @class GradersApi
+ * @extends {BaseAPI}
+ */
+export class GradersApi extends BaseAPI {
+    /**
+     * Create a new grader
+     * @param {Grader} payload 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public createGrader(payload: Grader, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).createGrader(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a grader by its ID
+     * @param {number} graderId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public deleteGrader(graderId: number, options?: any) {
+        return GradersApiFp(this.configuration).deleteGrader(graderId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get details of a grader by its ID
+     * @param {number} graderId 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public getGrader(graderId: number, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).getGrader(graderId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * List all graders available
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public listGraders(xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).listGraders(xFields, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * OrganisationsApi - fetch parameter creator
+ * @export
+ */
+export const OrganisationsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * Create a new organisation
          * @param {Organisation} payload 
@@ -2023,10 +1466,10 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOrganisationListDao(payload: Organisation, xFields?: string, options: any = {}): FetchArgs {
+        createOrganisation(payload: Organisation, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postOrganisationListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling createOrganisation.');
             }
             const localVarPath = `/organisations/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -2061,21 +1504,133 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
             };
         },
         /**
+         * Delete an Organisation
+         * @param {number} organisationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteOrganisation(organisationId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'organisationId' is not null or undefined
+            if (organisationId === null || organisationId === undefined) {
+                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling deleteOrganisation.');
+            }
+            const localVarPath = `/organisations/{organisation_id}`
+                .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get details of an organisation
+         * @param {number} organisationId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganisation(organisationId: number, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'organisationId' is not null or undefined
+            if (organisationId === null || organisationId === undefined) {
+                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling getOrganisation.');
+            }
+            const localVarPath = `/organisations/{organisation_id}`
+                .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * List all organisations
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOrganisations(xFields?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/organisations/`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update an Organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {Organisation} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, options: any = {}): FetchArgs {
+        updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'organisationId' is not null or undefined
             if (organisationId === null || organisationId === undefined) {
-                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling putOrganisationDao.');
+                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling updateOrganisation.');
             }
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putOrganisationDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling updateOrganisation.');
             }
             const localVarPath = `/organisations/{organisation_id}`
                 .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
@@ -2112,21 +1667,21 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * Add or subtract quota for an organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {OrganisationQuota} payload 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(organisationId: number, payload: OrganisationQuota, options: any = {}): FetchArgs {
+        updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, options: any = {}): FetchArgs {
             // verify required parameter 'organisationId' is not null or undefined
             if (organisationId === null || organisationId === undefined) {
-                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling putQuotaDao.');
+                throw new RequiredError('organisationId','Required parameter organisationId was null or undefined when calling updateOrganisationQuota.');
             }
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putQuotaDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling updateOrganisationQuota.');
             }
-            const localVarPath = `/organisations/addquota/{organisation_id}`
+            const localVarPath = `/organisations/{organisation_id}/addquota`
                 .replace(`{${"organisation_id"}}`, encodeURIComponent(String(organisationId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
@@ -2165,13 +1720,32 @@ export const OrganisationsApiFetchParamCreator = function (configuration?: Confi
 export const OrganisationsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Delete an Organisation
-         * @param {number} organisationId Organisation identifier
+         * Create a new organisation
+         * @param {Organisation} payload 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrganisationDao(organisationId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).deleteOrganisationDao(organisationId, options);
+        createOrganisation(payload: Organisation, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).createOrganisation(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete an Organisation
+         * @param {number} organisationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteOrganisation(organisationId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).deleteOrganisation(organisationId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2183,14 +1757,14 @@ export const OrganisationsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Get information of an organisation
-         * @param {number} organisationId Organisation identifier
+         * Get details of an organisation
+         * @param {number} organisationId 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganisationDao(organisationId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).getOrganisationDao(organisationId, xFields, options);
+        getOrganisation(organisationId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).getOrganisation(organisationId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2202,32 +1776,13 @@ export const OrganisationsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Get all organisations
+         * List all organisations
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganisationListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Organisation>> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).getOrganisationListDao(xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Create a new organisation
-         * @param {Organisation} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postOrganisationListDao(payload: Organisation, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).postOrganisationListDao(payload, xFields, options);
+        listOrganisations(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Organisation>> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).listOrganisations(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2240,14 +1795,14 @@ export const OrganisationsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update an Organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {Organisation} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).putOrganisationDao(organisationId, payload, xFields, options);
+        updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Organisation> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).updateOrganisation(organisationId, payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2260,13 +1815,13 @@ export const OrganisationsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Add or subtract quota for an organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {OrganisationQuota} payload 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(organisationId: number, payload: OrganisationQuota, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).putQuotaDao(organisationId, payload, options);
+        updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = OrganisationsApiFetchParamCreator(configuration).updateOrganisationQuota(organisationId, payload, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2287,63 +1842,63 @@ export const OrganisationsApiFp = function(configuration?: Configuration) {
 export const OrganisationsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
-         * Delete an Organisation
-         * @param {number} organisationId Organisation identifier
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteOrganisationDao(organisationId: number, options?: any) {
-            return OrganisationsApiFp(configuration).deleteOrganisationDao(organisationId, options)(fetch, basePath);
-        },
-        /**
-         * Get information of an organisation
-         * @param {number} organisationId Organisation identifier
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getOrganisationDao(organisationId: number, xFields?: string, options?: any) {
-            return OrganisationsApiFp(configuration).getOrganisationDao(organisationId, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Get all organisations
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getOrganisationListDao(xFields?: string, options?: any) {
-            return OrganisationsApiFp(configuration).getOrganisationListDao(xFields, options)(fetch, basePath);
-        },
-        /**
          * Create a new organisation
          * @param {Organisation} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOrganisationListDao(payload: Organisation, xFields?: string, options?: any) {
-            return OrganisationsApiFp(configuration).postOrganisationListDao(payload, xFields, options)(fetch, basePath);
+        createOrganisation(payload: Organisation, xFields?: string, options?: any) {
+            return OrganisationsApiFp(configuration).createOrganisation(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Delete an Organisation
+         * @param {number} organisationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteOrganisation(organisationId: number, options?: any) {
+            return OrganisationsApiFp(configuration).deleteOrganisation(organisationId, options)(fetch, basePath);
+        },
+        /**
+         * Get details of an organisation
+         * @param {number} organisationId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganisation(organisationId: number, xFields?: string, options?: any) {
+            return OrganisationsApiFp(configuration).getOrganisation(organisationId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * List all organisations
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listOrganisations(xFields?: string, options?: any) {
+            return OrganisationsApiFp(configuration).listOrganisations(xFields, options)(fetch, basePath);
         },
         /**
          * Update an Organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {Organisation} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, options?: any) {
-            return OrganisationsApiFp(configuration).putOrganisationDao(organisationId, payload, xFields, options)(fetch, basePath);
+        updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, options?: any) {
+            return OrganisationsApiFp(configuration).updateOrganisation(organisationId, payload, xFields, options)(fetch, basePath);
         },
         /**
          * Add or subtract quota for an organisation
-         * @param {number} organisationId Organisation identifier
+         * @param {number} organisationId 
          * @param {OrganisationQuota} payload 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(organisationId: number, payload: OrganisationQuota, options?: any) {
-            return OrganisationsApiFp(configuration).putQuotaDao(organisationId, payload, options)(fetch, basePath);
+        updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, options?: any) {
+            return OrganisationsApiFp(configuration).updateOrganisationQuota(organisationId, payload, options)(fetch, basePath);
         },
     };
 };
@@ -2356,40 +1911,6 @@ export const OrganisationsApiFactory = function (configuration?: Configuration, 
  */
 export class OrganisationsApi extends BaseAPI {
     /**
-     * Delete an Organisation
-     * @param {number} organisationId Organisation identifier
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrganisationsApi
-     */
-    public deleteOrganisationDao(organisationId: number, options?: any) {
-        return OrganisationsApiFp(this.configuration).deleteOrganisationDao(organisationId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get information of an organisation
-     * @param {number} organisationId Organisation identifier
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrganisationsApi
-     */
-    public getOrganisationDao(organisationId: number, xFields?: string, options?: any) {
-        return OrganisationsApiFp(this.configuration).getOrganisationDao(organisationId, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get all organisations
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrganisationsApi
-     */
-    public getOrganisationListDao(xFields?: string, options?: any) {
-        return OrganisationsApiFp(this.configuration).getOrganisationListDao(xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
      * Create a new organisation
      * @param {Organisation} payload 
      * @param {string} [xFields] An optional fields mask
@@ -2397,33 +1918,67 @@ export class OrganisationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof OrganisationsApi
      */
-    public postOrganisationListDao(payload: Organisation, xFields?: string, options?: any) {
-        return OrganisationsApiFp(this.configuration).postOrganisationListDao(payload, xFields, options)(this.fetch, this.basePath);
+    public createOrganisation(payload: Organisation, xFields?: string, options?: any) {
+        return OrganisationsApiFp(this.configuration).createOrganisation(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete an Organisation
+     * @param {number} organisationId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganisationsApi
+     */
+    public deleteOrganisation(organisationId: number, options?: any) {
+        return OrganisationsApiFp(this.configuration).deleteOrganisation(organisationId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get details of an organisation
+     * @param {number} organisationId 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganisationsApi
+     */
+    public getOrganisation(organisationId: number, xFields?: string, options?: any) {
+        return OrganisationsApiFp(this.configuration).getOrganisation(organisationId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * List all organisations
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganisationsApi
+     */
+    public listOrganisations(xFields?: string, options?: any) {
+        return OrganisationsApiFp(this.configuration).listOrganisations(xFields, options)(this.fetch, this.basePath);
     }
 
     /**
      * Update an Organisation
-     * @param {number} organisationId Organisation identifier
+     * @param {number} organisationId 
      * @param {Organisation} payload 
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrganisationsApi
      */
-    public putOrganisationDao(organisationId: number, payload: Organisation, xFields?: string, options?: any) {
-        return OrganisationsApiFp(this.configuration).putOrganisationDao(organisationId, payload, xFields, options)(this.fetch, this.basePath);
+    public updateOrganisation(organisationId: number, payload: Organisation, xFields?: string, options?: any) {
+        return OrganisationsApiFp(this.configuration).updateOrganisation(organisationId, payload, xFields, options)(this.fetch, this.basePath);
     }
 
     /**
      * Add or subtract quota for an organisation
-     * @param {number} organisationId Organisation identifier
+     * @param {number} organisationId 
      * @param {OrganisationQuota} payload 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrganisationsApi
      */
-    public putQuotaDao(organisationId: number, payload: OrganisationQuota, options?: any) {
-        return OrganisationsApiFp(this.configuration).putQuotaDao(organisationId, payload, options)(this.fetch, this.basePath);
+    public updateOrganisationQuota(organisationId: number, payload: OrganisationQuota, options?: any) {
+        return OrganisationsApiFp(this.configuration).updateOrganisationQuota(organisationId, payload, options)(this.fetch, this.basePath);
     }
 
 }
@@ -2435,128 +1990,16 @@ export class OrganisationsApi extends BaseAPI {
 export const SubmissionsApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Stop evaluation of a submission
-         * @param {number} submissionId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteSubmissionDao(submissionId: number, options: any = {}): FetchArgs {
-            // verify required parameter 'submissionId' is not null or undefined
-            if (submissionId === null || submissionId === undefined) {
-                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling deleteSubmissionDao.');
-            }
-            const localVarPath = `/submissions/{submission_id}`
-                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get details of a submission
-         * @param {number} submissionId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionDao(submissionId: number, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'submissionId' is not null or undefined
-            if (submissionId === null || submissionId === undefined) {
-                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmissionDao.');
-            }
-            const localVarPath = `/submissions/{submission_id}`
-                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get all submissions
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionListDao(xFields?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/submissions/`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("AUTHORIZATION")
-					: configuration.apiKey;
-                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
-            }
-
-            if (xFields !== undefined && xFields !== null) {
-                localVarHeaderParameter['X-Fields'] = String(xFields);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Make a new submission
          * @param {Submissions} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmissionListDao(payload: Submissions, xFields?: string, options: any = {}): FetchArgs {
+        createSubmission(payload: Submissions, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postSubmissionListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling createSubmission.');
             }
             const localVarPath = `/submissions/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -2590,213 +2033,19 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
                 options: localVarRequestOptions,
             };
         },
-    }
-};
-
-/**
- * SubmissionsApi - functional programming interface
- * @export
- */
-export const SubmissionsApiFp = function(configuration?: Configuration) {
-    return {
         /**
-         * Stop evaluation of a submission
+         * Stop evaluation of a submission and delete it
          * @param {number} submissionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteSubmissionDao(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).deleteSubmissionDao(submissionId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get details of a submission
-         * @param {number} submissionId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionDao(submissionId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Submissions> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionDao(submissionId, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Get all submissions
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionListDao(xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Make a new submission
-         * @param {Submissions} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSubmissionListDao(payload: Submissions, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Submissions> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).postSubmissionListDao(payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * SubmissionsApi - factory interface
- * @export
- */
-export const SubmissionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * Stop evaluation of a submission
-         * @param {number} submissionId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteSubmissionDao(submissionId: number, options?: any) {
-            return SubmissionsApiFp(configuration).deleteSubmissionDao(submissionId, options)(fetch, basePath);
-        },
-        /**
-         * Get details of a submission
-         * @param {number} submissionId 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionDao(submissionId: number, xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).getSubmissionDao(submissionId, xFields, options)(fetch, basePath);
-        },
-        /**
-         * Get all submissions
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSubmissionListDao(xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).getSubmissionListDao(xFields, options)(fetch, basePath);
-        },
-        /**
-         * Make a new submission
-         * @param {Submissions} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSubmissionListDao(payload: Submissions, xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).postSubmissionListDao(payload, xFields, options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * SubmissionsApi - object-oriented interface
- * @export
- * @class SubmissionsApi
- * @extends {BaseAPI}
- */
-export class SubmissionsApi extends BaseAPI {
-    /**
-     * Stop evaluation of a submission
-     * @param {number} submissionId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubmissionsApi
-     */
-    public deleteSubmissionDao(submissionId: number, options?: any) {
-        return SubmissionsApiFp(this.configuration).deleteSubmissionDao(submissionId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get details of a submission
-     * @param {number} submissionId 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubmissionsApi
-     */
-    public getSubmissionDao(submissionId: number, xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).getSubmissionDao(submissionId, xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get all submissions
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubmissionsApi
-     */
-    public getSubmissionListDao(xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).getSubmissionListDao(xFields, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Make a new submission
-     * @param {Submissions} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubmissionsApi
-     */
-    public postSubmissionListDao(payload: Submissions, xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).postSubmissionListDao(payload, xFields, options)(this.fetch, this.basePath);
-    }
-
-}
-
-/**
- * UsersApi - fetch parameter creator
- * @export
- */
-export const UsersApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Delete a user
-         * @param {number} userId User identifier
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteUserDao(userId: number, options: any = {}): FetchArgs {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling deleteUserDao.');
+        deleteSubmission(submissionId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling deleteSubmission.');
             }
-            const localVarPath = `/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            const localVarPath = `/submissions/{submission_id}`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2821,19 +2070,19 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Get information of a user
-         * @param {number} userId User identifier
+         * Get details of a submission by its ID
+         * @param {number} submissionId 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDao(userId: number, xFields?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling getUserDao.');
+        getSubmission(submissionId: number, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmission.');
             }
-            const localVarPath = `/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            const localVarPath = `/submissions/{submission_id}`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2862,13 +2111,49 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Get all user
+         * Get the submission data by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionData(submissionId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmissionData.');
+            }
+            const localVarPath = `/submissions/{submission_id}/data`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * List all submissions available
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserListDao(xFields?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/users/`;
+        listSubmissions(xFields?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/submissions/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2896,6 +2181,238 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * SubmissionsApi - functional programming interface
+ * @export
+ */
+export const SubmissionsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Make a new submission
+         * @param {Submissions} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSubmission(payload: Submissions, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Submissions> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).createSubmission(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Stop evaluation of a submission and delete it
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteSubmission(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).deleteSubmission(submissionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get details of a submission by its ID
+         * @param {number} submissionId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmission(submissionId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Submissions> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmission(submissionId, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get the submission data by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionData(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionData(submissionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * List all submissions available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listSubmissions(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * SubmissionsApi - factory interface
+ * @export
+ */
+export const SubmissionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Make a new submission
+         * @param {Submissions} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createSubmission(payload: Submissions, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).createSubmission(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Stop evaluation of a submission and delete it
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteSubmission(submissionId: number, options?: any) {
+            return SubmissionsApiFp(configuration).deleteSubmission(submissionId, options)(fetch, basePath);
+        },
+        /**
+         * Get details of a submission by its ID
+         * @param {number} submissionId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmission(submissionId: number, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).getSubmission(submissionId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Get the submission data by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionData(submissionId: number, options?: any) {
+            return SubmissionsApiFp(configuration).getSubmissionData(submissionId, options)(fetch, basePath);
+        },
+        /**
+         * List all submissions available
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listSubmissions(xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).listSubmissions(xFields, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * SubmissionsApi - object-oriented interface
+ * @export
+ * @class SubmissionsApi
+ * @extends {BaseAPI}
+ */
+export class SubmissionsApi extends BaseAPI {
+    /**
+     * Make a new submission
+     * @param {Submissions} payload 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public createSubmission(payload: Submissions, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).createSubmission(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Stop evaluation of a submission and delete it
+     * @param {number} submissionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public deleteSubmission(submissionId: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).deleteSubmission(submissionId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get details of a submission by its ID
+     * @param {number} submissionId 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmission(submissionId: number, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).getSubmission(submissionId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get the submission data by submission ID
+     * @param {number} submissionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmissionData(submissionId: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).getSubmissionData(submissionId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * List all submissions available
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public listSubmissions(xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).listSubmissions(xFields, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * UsersApi - fetch parameter creator
+ * @export
+ */
+export const UsersApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * Create a new user
          * @param {User} payload 
@@ -2903,10 +2420,10 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postUserListDao(payload: User, xFields?: string, options: any = {}): FetchArgs {
+        createUser(payload: User, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling postUserListDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling createUser.');
             }
             const localVarPath = `/users/`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -2941,25 +2458,20 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Add or subtract quota for a user
-         * @param {number} userId User identifier
-         * @param {UserQuota} payload 
+         * Delete a user
+         * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(userId: number, payload: UserQuota, options: any = {}): FetchArgs {
+        deleteUser(userId: number, options: any = {}): FetchArgs {
             // verify required parameter 'userId' is not null or undefined
             if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling putQuotaDao.');
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling deleteUser.');
             }
-            // verify required parameter 'payload' is not null or undefined
-            if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putQuotaDao.');
-            }
-            const localVarPath = `/users/addquota/{user_id}`
+            const localVarPath = `/users/{user_id}`
                 .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2971,14 +2483,86 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information of a user
+         * @param {number} userId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser(userId: number, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'userId' is not null or undefined
+            if (userId === null || userId === undefined) {
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling getUser.');
+            }
+            const localVarPath = `/users/{user_id}`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"UserQuota" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get all user
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listUsers(xFields?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/users/`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
                 url: url.format(localVarUrlObj),
@@ -2987,20 +2571,20 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
         },
         /**
          * Update a user
-         * @param {number} userId User identifier
+         * @param {number} userId 
          * @param {User} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putUserDao(userId: number, payload: User, xFields?: string, options: any = {}): FetchArgs {
+        updateUser(userId: number, payload: User, xFields?: string, options: any = {}): FetchArgs {
             // verify required parameter 'userId' is not null or undefined
             if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling putUserDao.');
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling updateUser.');
             }
             // verify required parameter 'payload' is not null or undefined
             if (payload === null || payload === undefined) {
-                throw new RequiredError('payload','Required parameter payload was null or undefined when calling putUserDao.');
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling updateUser.');
             }
             const localVarPath = `/users/{user_id}`
                 .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
@@ -3035,6 +2619,51 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Add or subtract quota for a user
+         * @param {number} userId 
+         * @param {UserQuota} payload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUserQuota(userId: number, payload: UserQuota, options: any = {}): FetchArgs {
+            // verify required parameter 'userId' is not null or undefined
+            if (userId === null || userId === undefined) {
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling updateUserQuota.');
+            }
+            // verify required parameter 'payload' is not null or undefined
+            if (payload === null || payload === undefined) {
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling updateUserQuota.');
+            }
+            const localVarPath = `/users/{user_id}/addquota`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"UserQuota" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -3045,13 +2674,32 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
 export const UsersApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Delete a user
-         * @param {number} userId User identifier
+         * Create a new user
+         * @param {User} payload 
+         * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUserDao(userId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).deleteUserDao(userId, options);
+        createUser(payload: User, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).createUser(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a user
+         * @param {number} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser(userId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).deleteUser(userId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3064,13 +2712,13 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Get information of a user
-         * @param {number} userId User identifier
+         * @param {number} userId 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDao(userId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).getUserDao(userId, xFields, options);
+        getUser(userId: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).getUser(userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3087,8 +2735,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserListDao(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<User>> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).getUserListDao(xFields, options);
+        listUsers(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<User>> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).listUsers(xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3100,14 +2748,15 @@ export const UsersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Create a new user
+         * Update a user
+         * @param {number} userId 
          * @param {User} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postUserListDao(payload: User, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).postUserListDao(payload, xFields, options);
+        updateUser(userId: number, payload: User, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).updateUser(userId, payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3120,37 +2769,17 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Add or subtract quota for a user
-         * @param {number} userId User identifier
+         * @param {number} userId 
          * @param {UserQuota} payload 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(userId: number, payload: UserQuota, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).putQuotaDao(userId, payload, options);
+        updateUserQuota(userId: number, payload: UserQuota, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).updateUserQuota(userId, payload, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Update a user
-         * @param {number} userId User identifier
-         * @param {User} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putUserDao(userId: number, payload: User, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
-            const localVarFetchArgs = UsersApiFetchParamCreator(configuration).putUserDao(userId, payload, xFields, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
                     } else {
                         throw response;
                     }
@@ -3167,23 +2796,33 @@ export const UsersApiFp = function(configuration?: Configuration) {
 export const UsersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
-         * Delete a user
-         * @param {number} userId User identifier
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteUserDao(userId: number, options?: any) {
-            return UsersApiFp(configuration).deleteUserDao(userId, options)(fetch, basePath);
-        },
-        /**
-         * Get information of a user
-         * @param {number} userId User identifier
+         * Create a new user
+         * @param {User} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDao(userId: number, xFields?: string, options?: any) {
-            return UsersApiFp(configuration).getUserDao(userId, xFields, options)(fetch, basePath);
+        createUser(payload: User, xFields?: string, options?: any) {
+            return UsersApiFp(configuration).createUser(payload, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Delete a user
+         * @param {number} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser(userId: number, options?: any) {
+            return UsersApiFp(configuration).deleteUser(userId, options)(fetch, basePath);
+        },
+        /**
+         * Get information of a user
+         * @param {number} userId 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser(userId: number, xFields?: string, options?: any) {
+            return UsersApiFp(configuration).getUser(userId, xFields, options)(fetch, basePath);
         },
         /**
          * Get all user
@@ -3191,39 +2830,29 @@ export const UsersApiFactory = function (configuration?: Configuration, fetch?: 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserListDao(xFields?: string, options?: any) {
-            return UsersApiFp(configuration).getUserListDao(xFields, options)(fetch, basePath);
+        listUsers(xFields?: string, options?: any) {
+            return UsersApiFp(configuration).listUsers(xFields, options)(fetch, basePath);
         },
         /**
-         * Create a new user
+         * Update a user
+         * @param {number} userId 
          * @param {User} payload 
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postUserListDao(payload: User, xFields?: string, options?: any) {
-            return UsersApiFp(configuration).postUserListDao(payload, xFields, options)(fetch, basePath);
+        updateUser(userId: number, payload: User, xFields?: string, options?: any) {
+            return UsersApiFp(configuration).updateUser(userId, payload, xFields, options)(fetch, basePath);
         },
         /**
          * Add or subtract quota for a user
-         * @param {number} userId User identifier
+         * @param {number} userId 
          * @param {UserQuota} payload 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putQuotaDao(userId: number, payload: UserQuota, options?: any) {
-            return UsersApiFp(configuration).putQuotaDao(userId, payload, options)(fetch, basePath);
-        },
-        /**
-         * Update a user
-         * @param {number} userId User identifier
-         * @param {User} payload 
-         * @param {string} [xFields] An optional fields mask
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putUserDao(userId: number, payload: User, xFields?: string, options?: any) {
-            return UsersApiFp(configuration).putUserDao(userId, payload, xFields, options)(fetch, basePath);
+        updateUserQuota(userId: number, payload: UserQuota, options?: any) {
+            return UsersApiFp(configuration).updateUserQuota(userId, payload, options)(fetch, basePath);
         },
     };
 };
@@ -3236,26 +2865,38 @@ export const UsersApiFactory = function (configuration?: Configuration, fetch?: 
  */
 export class UsersApi extends BaseAPI {
     /**
-     * Delete a user
-     * @param {number} userId User identifier
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public deleteUserDao(userId: number, options?: any) {
-        return UsersApiFp(this.configuration).deleteUserDao(userId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Get information of a user
-     * @param {number} userId User identifier
+     * Create a new user
+     * @param {User} payload 
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public getUserDao(userId: number, xFields?: string, options?: any) {
-        return UsersApiFp(this.configuration).getUserDao(userId, xFields, options)(this.fetch, this.basePath);
+    public createUser(payload: User, xFields?: string, options?: any) {
+        return UsersApiFp(this.configuration).createUser(payload, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a user
+     * @param {number} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public deleteUser(userId: number, options?: any) {
+        return UsersApiFp(this.configuration).deleteUser(userId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get information of a user
+     * @param {number} userId 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUser(userId: number, xFields?: string, options?: any) {
+        return UsersApiFp(this.configuration).getUser(userId, xFields, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3265,45 +2906,33 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public getUserListDao(xFields?: string, options?: any) {
-        return UsersApiFp(this.configuration).getUserListDao(xFields, options)(this.fetch, this.basePath);
+    public listUsers(xFields?: string, options?: any) {
+        return UsersApiFp(this.configuration).listUsers(xFields, options)(this.fetch, this.basePath);
     }
 
     /**
-     * Create a new user
+     * Update a user
+     * @param {number} userId 
      * @param {User} payload 
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public postUserListDao(payload: User, xFields?: string, options?: any) {
-        return UsersApiFp(this.configuration).postUserListDao(payload, xFields, options)(this.fetch, this.basePath);
+    public updateUser(userId: number, payload: User, xFields?: string, options?: any) {
+        return UsersApiFp(this.configuration).updateUser(userId, payload, xFields, options)(this.fetch, this.basePath);
     }
 
     /**
      * Add or subtract quota for a user
-     * @param {number} userId User identifier
+     * @param {number} userId 
      * @param {UserQuota} payload 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public putQuotaDao(userId: number, payload: UserQuota, options?: any) {
-        return UsersApiFp(this.configuration).putQuotaDao(userId, payload, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Update a user
-     * @param {number} userId User identifier
-     * @param {User} payload 
-     * @param {string} [xFields] An optional fields mask
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public putUserDao(userId: number, payload: User, xFields?: string, options?: any) {
-        return UsersApiFp(this.configuration).putUserDao(userId, payload, xFields, options)(this.fetch, this.basePath);
+    public updateUserQuota(userId: number, payload: UserQuota, options?: any) {
+        return UsersApiFp(this.configuration).updateUserQuota(userId, payload, options)(this.fetch, this.basePath);
     }
 
 }

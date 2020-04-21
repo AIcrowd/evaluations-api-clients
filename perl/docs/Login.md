@@ -1,15 +1,15 @@
-# WWW::SwaggerClient::Object::Login
+# AIcrowdEvaluations::Object::Login
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Login;
+use AIcrowdEvaluations::Object::Login;
 ```
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** | The email address | 
-**password** | **string** | The user password  | 
+**email** | **string** | Email address of the user | 
+**password** | **string** | Password corresponding to the Email address | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

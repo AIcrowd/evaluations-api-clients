@@ -1,101 +1,49 @@
-# SwaggerClient::UsersApi
+# AIcrowdEvaluations::UsersApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_user_dao**](UsersApi.md#delete_user_dao) | **DELETE** /users/{user_id} | 
-[**get_user_dao**](UsersApi.md#get_user_dao) | **GET** /users/{user_id} | 
-[**get_user_list_dao**](UsersApi.md#get_user_list_dao) | **GET** /users/ | 
-[**post_user_list_dao**](UsersApi.md#post_user_list_dao) | **POST** /users/ | 
-[**put_quota_dao**](UsersApi.md#put_quota_dao) | **PUT** /users/addquota/{user_id} | 
-[**put_user_dao**](UsersApi.md#put_user_dao) | **PUT** /users/{user_id} | 
+[**create_user**](UsersApi.md#create_user) | **POST** /users/ | 
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /users/{user_id} | 
+[**get_user**](UsersApi.md#get_user) | **GET** /users/{user_id} | 
+[**list_users**](UsersApi.md#list_users) | **GET** /users/ | 
+[**update_user**](UsersApi.md#update_user) | **PUT** /users/{user_id} | 
+[**update_user_quota**](UsersApi.md#update_user_quota) | **PUT** /users/{user_id}/addquota | 
 
 
-# **delete_user_dao**
-> delete_user_dao(user_id)
+# **create_user**
+> User create_user(payload, opts)
 
 
 
-Delete a user
+Create a new user
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
-user_id = 56 # Integer | User identifier
-
-
-begin
-  api_instance.delete_user_dao(user_id)
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->delete_user_dao: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **Integer**| User identifier | 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **get_user_dao**
-> User get_user_dao(user_id, opts)
-
-
-
-Get information of a user
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UsersApi.new
-
-user_id = 56 # Integer | User identifier
+payload = AIcrowdEvaluations::User.new # User | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.get_user_dao(user_id, opts)
+  result = api_instance.create_user(payload, opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->get_user_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->create_user: #{e}"
 end
 ```
 
@@ -103,7 +51,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **Integer**| User identifier | 
+ **payload** | [**User**](User.md)|  | 
  **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
@@ -121,8 +69,117 @@ Name | Type | Description  | Notes
 
 
 
-# **get_user_list_dao**
-> Array&lt;User&gt; get_user_list_dao(opts)
+# **delete_user**
+> delete_user(user_id)
+
+
+
+Delete a user
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::UsersApi.new
+
+user_id = 56 # Integer | 
+
+
+begin
+  api_instance.delete_user(user_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->delete_user: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **get_user**
+> User get_user(user_id, opts)
+
+
+
+Get information of a user
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::UsersApi.new
+
+user_id = 56 # Integer | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.get_user(user_id, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->get_user: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **Integer**|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **list_users**
+> Array&lt;User&gt; list_users(opts)
 
 
 
@@ -131,26 +188,26 @@ Get all user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.get_user_list_dao(opts)
+  result = api_instance.list_users(opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->get_user_list_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->list_users: #{e}"
 end
 ```
 
@@ -175,120 +232,8 @@ Name | Type | Description  | Notes
 
 
 
-# **post_user_list_dao**
-> User post_user_list_dao(payload, opts)
-
-
-
-Create a new user
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UsersApi.new
-
-payload = SwaggerClient::User.new # User | 
-
-opts = { 
-  x_fields: 'x_fields_example' # String | An optional fields mask
-}
-
-begin
-  result = api_instance.post_user_list_dao(payload, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->post_user_list_dao: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**User**](User.md)|  | 
- **x_fields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **put_quota_dao**
-> put_quota_dao(user_id, payload)
-
-
-
-Add or subtract quota for a user
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UsersApi.new
-
-user_id = 56 # Integer | User identifier
-
-payload = SwaggerClient::UserQuota.new # UserQuota | 
-
-
-begin
-  api_instance.put_quota_dao(user_id, payload)
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->put_quota_dao: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **Integer**| User identifier | 
- **payload** | [**UserQuota**](UserQuota.md)|  | 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **put_user_dao**
-> User put_user_dao(user_idpayload, opts)
+# **update_user**
+> User update_user(user_idpayload, opts)
 
 
 
@@ -297,30 +242,30 @@ Update a user
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::UsersApi.new
+api_instance = AIcrowdEvaluations::UsersApi.new
 
-user_id = 56 # Integer | User identifier
+user_id = 56 # Integer | 
 
-payload = SwaggerClient::User.new # User | 
+payload = AIcrowdEvaluations::User.new # User | 
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.put_user_dao(user_idpayload, opts)
+  result = api_instance.update_user(user_idpayload, opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UsersApi->put_user_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->update_user: #{e}"
 end
 ```
 
@@ -328,13 +273,68 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **Integer**| User identifier | 
+ **user_id** | **Integer**|  | 
  **payload** | [**User**](User.md)|  | 
  **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **update_user_quota**
+> update_user_quota(user_id, payload)
+
+
+
+Add or subtract quota for a user
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::UsersApi.new
+
+user_id = 56 # Integer | 
+
+payload = AIcrowdEvaluations::UserQuota.new # UserQuota | 
+
+
+begin
+  api_instance.update_user_quota(user_id, payload)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling UsersApi->update_user_quota: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **Integer**|  | 
+ **payload** | [**UserQuota**](UserQuota.md)|  | 
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 

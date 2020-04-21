@@ -4,29 +4,85 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteGraderDao**](GradersApi.md#deleteGraderDao) | **DELETE** /graders/{grader_id} | 
-[**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
-[**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
-[**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
+[**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
+[**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+[**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
 
 
-<a name="deleteGraderDao"></a>
-# **deleteGraderDao**
-> deleteGraderDao(graderId)
+<a name="createGrader"></a>
+# **createGrader**
+> Grader createGrader(payload, xFields)
 
 
 
-Delete a grader
+Create a new grader
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+GradersApi apiInstance = new GradersApi();
+Grader payload = new Grader(); // Grader | 
+String xFields = "xFields_example"; // String | An optional fields mask
+try {
+    Grader result = apiInstance.createGrader(payload, xFields);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling GradersApi#createGrader");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  |
+ **xFields** | **String**| An optional fields mask | [optional]
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteGrader"></a>
+# **deleteGrader**
+> deleteGrader(graderId)
+
+
+
+Delete a grader by its ID
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -39,9 +95,9 @@ api_key.setApiKey("YOUR API KEY");
 GradersApi apiInstance = new GradersApi();
 Integer graderId = 56; // Integer | 
 try {
-    apiInstance.deleteGraderDao(graderId);
+    apiInstance.deleteGrader(graderId);
 } catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#deleteGraderDao");
+    System.err.println("Exception when calling GradersApi#deleteGrader");
     e.printStackTrace();
 }
 ```
@@ -65,22 +121,22 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderDao"></a>
-# **getGraderDao**
-> Grader getGraderDao(graderId, xFields)
+<a name="getGrader"></a>
+# **getGrader**
+> Grader getGrader(graderId, xFields)
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -94,10 +150,10 @@ GradersApi apiInstance = new GradersApi();
 Integer graderId = 56; // Integer | 
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    Grader result = apiInstance.getGraderDao(graderId, xFields);
+    Grader result = apiInstance.getGrader(graderId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#getGraderDao");
+    System.err.println("Exception when calling GradersApi#getGrader");
     e.printStackTrace();
 }
 ```
@@ -122,22 +178,22 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> List&lt;Grader&gt; getGraderListDao(xFields)
+<a name="listGraders"></a>
+# **listGraders**
+> List&lt;Grader&gt; listGraders(xFields)
 
 
 
-Get all grader
+List all graders available
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -150,10 +206,10 @@ api_key.setApiKey("YOUR API KEY");
 GradersApi apiInstance = new GradersApi();
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Grader> result = apiInstance.getGraderListDao(xFields);
+    List<Grader> result = apiInstance.listGraders(xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#getGraderListDao");
+    System.err.println("Exception when calling GradersApi#listGraders");
     e.printStackTrace();
 }
 ```
@@ -167,122 +223,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;Grader&gt;**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Grader postGraderListDao(payload, xFields)
-
-
-
-Create a new grader
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: api_key
-ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-api_key.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.setApiKeyPrefix("Token");
-
-GradersApi apiInstance = new GradersApi();
-Grader payload = new Grader(); // Grader | 
-String xFields = "xFields_example"; // String | An optional fields mask
-try {
-    Grader result = apiInstance.postGraderListDao(payload, xFields);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#postGraderListDao");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  |
- **xFields** | **String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putGraderDao"></a>
-# **putGraderDao**
-> Grader putGraderDao(graderId, payload, xFields)
-
-
-
-Update a grader
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.GradersApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: api_key
-ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-api_key.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.setApiKeyPrefix("Token");
-
-GradersApi apiInstance = new GradersApi();
-Integer graderId = 56; // Integer | 
-Grader payload = new Grader(); // Grader | 
-String xFields = "xFields_example"; // String | An optional fields mask
-try {
-    Grader result = apiInstance.putGraderDao(graderId, payload, xFields);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling GradersApi#putGraderDao");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **Integer**|  |
- **payload** | [**Grader**](Grader.md)|  |
- **xFields** | **String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

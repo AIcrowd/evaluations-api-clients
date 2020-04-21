@@ -50,8 +50,6 @@ impl<T> From<serde_json::Error> for Error<T> {
 
 use super::models::*;
 
-mod argo_api;
-pub use self::argo_api::{ ArgoApi, ArgoApiClient };
 mod auth_api;
 pub use self::auth_api::{ AuthApi, AuthApiClient };
 mod clusters_api;

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,10 +27,41 @@ export class ClustersApi {
     }
 
     /**
-     * Delete a cluster
+     * Add a new cluster to AIcrowd and install necessary dependencies
+     * @param payload 
+     * @param xFields An optional fields mask
+     */
+    public createCluster (payload: models.Cluster, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
+        const localVarPath = this.basePath + '/clusters/';
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createCluster.');
+        }
+
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            data: payload,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Delete a cluster by its ID
      * @param clusterId 
      */
-    public deleteClusterDao (clusterId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public deleteCluster (clusterId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/clusters/{cluster_id}'
             .replace('{' + 'cluster_id' + '}', encodeURIComponent(String(clusterId)));
 
@@ -38,7 +69,7 @@ export class ClustersApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'clusterId' is not null or undefined
         if (clusterId === null || clusterId === undefined) {
-            throw new Error('Required parameter clusterId was null or undefined when calling deleteClusterDao.');
+            throw new Error('Required parameter clusterId was null or undefined when calling deleteCluster.');
         }
 
         let httpRequestParams: ng.IRequestConfig = {
@@ -55,11 +86,11 @@ export class ClustersApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get information of a cluster
+     * Get details of a cluster by its ID
      * @param clusterId 
      * @param xFields An optional fields mask
      */
-    public getClusterDao (clusterId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
+    public getCluster (clusterId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
         const localVarPath = this.basePath + '/clusters/{cluster_id}'
             .replace('{' + 'cluster_id' + '}', encodeURIComponent(String(clusterId)));
 
@@ -67,7 +98,7 @@ export class ClustersApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'clusterId' is not null or undefined
         if (clusterId === null || clusterId === undefined) {
-            throw new Error('Required parameter clusterId was null or undefined when calling getClusterDao.');
+            throw new Error('Required parameter clusterId was null or undefined when calling getCluster.');
         }
 
         headerParams['X-Fields'] = xFields;
@@ -86,10 +117,10 @@ export class ClustersApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get all clusters
+     * List all clusters available
      * @param xFields An optional fields mask
      */
-    public getGraderListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Cluster>> {
+    public listClusters (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Cluster>> {
         const localVarPath = this.basePath + '/clusters/';
 
         let queryParameters: any = {};
@@ -99,37 +130,6 @@ export class ClustersApi {
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',
             url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Add a new cluster
-     * @param payload 
-     * @param xFields An optional fields mask
-     */
-    public postGraderListDao (payload: models.Cluster, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Cluster> {
-        const localVarPath = this.basePath + '/clusters/';
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postGraderListDao.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            data: payload,
             params: queryParameters,
             headers: headerParams
         };

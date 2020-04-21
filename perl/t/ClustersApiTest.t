@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -24,43 +24,43 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::ClustersApi');
+use_ok('AIcrowdEvaluations::ClustersApi');
 
-my $api = WWW::SwaggerClient::ClustersApi->new();
-isa_ok($api, 'WWW::SwaggerClient::ClustersApi');
-
-#
-# delete_cluster_dao test
-#
-{
-    my $cluster_id = undef; # replace NULL with a proper value
-    my $result = $api->delete_cluster_dao(cluster_id => $cluster_id);
-}
+my $api = AIcrowdEvaluations::ClustersApi->new();
+isa_ok($api, 'AIcrowdEvaluations::ClustersApi');
 
 #
-# get_cluster_dao test
-#
-{
-    my $cluster_id = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_cluster_dao(cluster_id => $cluster_id, x_fields => $x_fields);
-}
-
-#
-# get_grader_list_dao test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_list_dao(x_fields => $x_fields);
-}
-
-#
-# post_grader_list_dao test
+# create_cluster test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_grader_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->create_cluster(payload => $payload, x_fields => $x_fields);
+}
+
+#
+# delete_cluster test
+#
+{
+    my $cluster_id = undef; # replace NULL with a proper value
+    my $result = $api->delete_cluster(cluster_id => $cluster_id);
+}
+
+#
+# get_cluster test
+#
+{
+    my $cluster_id = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_cluster(cluster_id => $cluster_id, x_fields => $x_fields);
+}
+
+#
+# list_clusters test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->list_clusters(x_fields => $x_fields);
 }
 
 

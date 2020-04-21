@@ -1,4 +1,4 @@
-# EvaluationsApi.AuthLogout
+# AicrowdEvaluations.AuthLogout
 
 ## Properties
 Name | Type | Description | Notes

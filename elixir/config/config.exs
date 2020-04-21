@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :evaluations_api, key: :value
+#     config :a_icrowd_evaluations_api, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:evaluations_api, :key)
+#     Application.get_env(:a_icrowd_evaluations_api, :key)
 #
 # Or configure a 3rd-party app:
 #

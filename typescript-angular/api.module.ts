@@ -3,7 +3,6 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
-import { ArgoService } from './api/argo.service';
 import { AuthService } from './api/auth.service';
 import { ClustersService } from './api/clusters.service';
 import { GradersService } from './api/graders.service';
@@ -16,7 +15,6 @@ import { UsersService } from './api/users.service';
   declarations: [],
   exports:      [],
   providers: [
-    ArgoService,
     AuthService,
     ClustersService,
     GradersService,

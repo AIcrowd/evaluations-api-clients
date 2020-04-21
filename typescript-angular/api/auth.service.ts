@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -60,67 +60,19 @@ export class AuthService {
 
     /**
      * 
-     * 
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public logoutAUser(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthLogout>;
-    public logoutAUser(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthLogout>>;
-    public logoutAUser(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthLogout>>;
-    public logoutAUser(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.post<AuthLogout>(`${this.basePath}/auth/logout`,
-            null,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
+     * Log in a user with email and password.
      * @param payload 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public userLogin(payload: Login, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthResponse>;
-    public userLogin(payload: Login, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthResponse>>;
-    public userLogin(payload: Login, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthResponse>>;
-    public userLogin(payload: Login, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public login(payload: Login, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthResponse>;
+    public login(payload: Login, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthResponse>>;
+    public login(payload: Login, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthResponse>>;
+    public login(payload: Login, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling userLogin.');
+            throw new Error('Required parameter payload was null or undefined when calling login.');
         }
 
 
@@ -149,6 +101,54 @@ export class AuthService {
 
         return this.httpClient.post<AuthResponse>(`${this.basePath}/auth/login`,
             payload,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Invalidate the current authorization token.
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public logout(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<AuthLogout>;
+    public logout(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AuthLogout>>;
+    public logout(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AuthLogout>>;
+    public logout(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<AuthLogout>(`${this.basePath}/auth/logout`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

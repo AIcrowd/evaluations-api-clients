@@ -1,27 +1,27 @@
-# EvaluationsApi.ClustersApi
+# AicrowdEvaluations.ClustersApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteClusterDao**](ClustersApi.md#deleteClusterDao) | **DELETE** /clusters/{cluster_id} | 
-[**getClusterDao**](ClustersApi.md#getClusterDao) | **GET** /clusters/{cluster_id} | 
-[**getGraderListDao**](ClustersApi.md#getGraderListDao) | **GET** /clusters/ | 
-[**postGraderListDao**](ClustersApi.md#postGraderListDao) | **POST** /clusters/ | 
+[**createCluster**](ClustersApi.md#createCluster) | **POST** /clusters/ | 
+[**deleteCluster**](ClustersApi.md#deleteCluster) | **DELETE** /clusters/{cluster_id} | 
+[**getCluster**](ClustersApi.md#getCluster) | **GET** /clusters/{cluster_id} | 
+[**listClusters**](ClustersApi.md#listClusters) | **GET** /clusters/ | 
 
 
-<a name="deleteClusterDao"></a>
-# **deleteClusterDao**
-> deleteClusterDao(clusterId)
+<a name="createCluster"></a>
+# **createCluster**
+> Cluster createCluster(payload, opts)
 
 
 
-Delete a cluster
+Add a new cluster to AIcrowd and install necessary dependencies
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -29,7 +29,64 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
+
+var payload = new AicrowdEvaluations.Cluster(); // Cluster | 
+
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.createCluster(payload, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Cluster**](Cluster.md)|  | 
+ **xFields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteCluster"></a>
+# **deleteCluster**
+> deleteCluster(clusterId)
+
+
+
+Delete a cluster by its ID
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var clusterId = 56; // Number | 
 
@@ -41,7 +98,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.deleteClusterDao(clusterId, callback);
+apiInstance.deleteCluster(clusterId, callback);
 ```
 
 ### Parameters
@@ -63,18 +120,18 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getClusterDao"></a>
-# **getClusterDao**
-> Cluster getClusterDao(clusterId, opts)
+<a name="getCluster"></a>
+# **getCluster**
+> Cluster getCluster(clusterId, opts)
 
 
 
-Get information of a cluster
+Get details of a cluster by its ID
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -82,7 +139,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var clusterId = 56; // Number | 
 
@@ -97,7 +154,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getClusterDao(clusterId, opts, callback);
+apiInstance.getCluster(clusterId, opts, callback);
 ```
 
 ### Parameters
@@ -120,18 +177,18 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getGraderListDao"></a>
-# **getGraderListDao**
-> [Cluster] getGraderListDao(opts)
+<a name="listClusters"></a>
+# **listClusters**
+> [Cluster] listClusters(opts)
 
 
 
-Get all clusters
+List all clusters available
 
 ### Example
 ```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
 
 // Configure API key authorization: api_key
 var api_key = defaultClient.authentications['api_key'];
@@ -139,7 +196,7 @@ api_key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //api_key.apiKeyPrefix = 'Token';
 
-var apiInstance = new EvaluationsApi.ClustersApi();
+var apiInstance = new AicrowdEvaluations.ClustersApi();
 
 var opts = { 
   'xFields': "xFields_example" // String | An optional fields mask
@@ -152,7 +209,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getGraderListDao(opts, callback);
+apiInstance.listClusters(opts, callback);
 ```
 
 ### Parameters
@@ -164,63 +221,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[Cluster]**](Cluster.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="postGraderListDao"></a>
-# **postGraderListDao**
-> Cluster postGraderListDao(payload, opts)
-
-
-
-Add a new cluster
-
-### Example
-```javascript
-var EvaluationsApi = require('evaluations_api');
-var defaultClient = EvaluationsApi.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new EvaluationsApi.ClustersApi();
-
-var payload = new EvaluationsApi.Cluster(); // Cluster | 
-
-var opts = { 
-  'xFields': "xFields_example" // String | An optional fields mask
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.postGraderListDao(payload, opts, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Cluster**](Cluster.md)|  | 
- **xFields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Cluster**](Cluster.md)
 
 ### Authorization
 

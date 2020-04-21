@@ -4,85 +4,39 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteUserDao**](UsersApi.md#deleteUserDao) | **DELETE** /users/{user_id} | 
-[**getUserDao**](UsersApi.md#getUserDao) | **GET** /users/{user_id} | 
-[**getUserListDao**](UsersApi.md#getUserListDao) | **GET** /users/ | 
-[**postUserListDao**](UsersApi.md#postUserListDao) | **POST** /users/ | 
-[**putQuotaDao**](UsersApi.md#putQuotaDao) | **PUT** /users/addquota/{user_id} | 
-[**putUserDao**](UsersApi.md#putUserDao) | **PUT** /users/{user_id} | 
+[**createUser**](UsersApi.md#createUser) | **POST** /users/ | 
+[**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /users/{user_id} | 
+[**getUser**](UsersApi.md#getUser) | **GET** /users/{user_id} | 
+[**listUsers**](UsersApi.md#listUsers) | **GET** /users/ | 
+[**updateUser**](UsersApi.md#updateUser) | **PUT** /users/{user_id} | 
+[**updateUserQuota**](UsersApi.md#updateUserQuota) | **PUT** /users/{user_id}/addquota | 
 
 
-<a name="deleteUserDao"></a>
-# **deleteUserDao**
-> deleteUserDao(userId)
-
-
-
-Delete a user
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = UsersApi()
-val userId : kotlin.Int = 56 // kotlin.Int | User identifier
-try {
-    apiInstance.deleteUserDao(userId)
-} catch (e: ClientException) {
-    println("4xx response calling UsersApi#deleteUserDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling UsersApi#deleteUserDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **kotlin.Int**| User identifier |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="getUserDao"></a>
-# **getUserDao**
-> User getUserDao(userId, xFields)
+<a name="createUser"></a>
+# **createUser**
+> User createUser(payload, xFields)
 
 
 
-Get information of a user
+Create a new user
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
-val userId : kotlin.Int = 56 // kotlin.Int | User identifier
+val payload : User =  // User | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : User = apiInstance.getUserDao(userId, xFields)
+    val result : User = apiInstance.createUser(payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#getUserDao")
+    println("4xx response calling UsersApi#createUser")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#getUserDao")
+    println("5xx response calling UsersApi#createUser")
     e.printStackTrace()
 }
 ```
@@ -91,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **kotlin.Int**| User identifier |
+ **payload** | [**User**](User.md)|  |
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
@@ -107,9 +61,104 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getUserListDao"></a>
-# **getUserListDao**
-> kotlin.Array&lt;User&gt; getUserListDao(xFields)
+<a name="deleteUser"></a>
+# **deleteUser**
+> deleteUser(userId)
+
+
+
+Delete a user
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = UsersApi()
+val userId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.deleteUser(userId)
+} catch (e: ClientException) {
+    println("4xx response calling UsersApi#deleteUser")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling UsersApi#deleteUser")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getUser"></a>
+# **getUser**
+> User getUser(userId, xFields)
+
+
+
+Get information of a user
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = UsersApi()
+val userId : kotlin.Int = 56 // kotlin.Int | 
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
+try {
+    val result : User = apiInstance.getUser(userId, xFields)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling UsersApi#getUser")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling UsersApi#getUser")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **kotlin.Int**|  |
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="listUsers"></a>
+# **listUsers**
+> kotlin.Array&lt;User&gt; listUsers(xFields)
 
 
 
@@ -118,19 +167,19 @@ Get all user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<User> = apiInstance.getUserListDao(xFields)
+    val result : kotlin.Array<User> = apiInstance.listUsers(xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#getUserListDao")
+    println("4xx response calling UsersApi#listUsers")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#getUserListDao")
+    println("5xx response calling UsersApi#listUsers")
     e.printStackTrace()
 }
 ```
@@ -154,106 +203,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="postUserListDao"></a>
-# **postUserListDao**
-> User postUserListDao(payload, xFields)
-
-
-
-Create a new user
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = UsersApi()
-val payload : User =  // User | 
-val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
-try {
-    val result : User = apiInstance.postUserListDao(payload, xFields)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling UsersApi#postUserListDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling UsersApi#postUserListDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**User**](User.md)|  |
- **xFields** | **kotlin.String**| An optional fields mask | [optional]
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putQuotaDao"></a>
-# **putQuotaDao**
-> putQuotaDao(userId, payload)
-
-
-
-Add or subtract quota for a user
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = UsersApi()
-val userId : kotlin.Int = 56 // kotlin.Int | User identifier
-val payload : UserQuota =  // UserQuota | 
-try {
-    apiInstance.putQuotaDao(userId, payload)
-} catch (e: ClientException) {
-    println("4xx response calling UsersApi#putQuotaDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling UsersApi#putQuotaDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **kotlin.Int**| User identifier |
- **payload** | [**UserQuota**](UserQuota.md)|  |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putUserDao"></a>
-# **putUserDao**
-> User putUserDao(userId, payload, xFields)
+<a name="updateUser"></a>
+# **updateUser**
+> User updateUser(userId, payload, xFields)
 
 
 
@@ -262,21 +214,21 @@ Update a user
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = UsersApi()
-val userId : kotlin.Int = 56 // kotlin.Int | User identifier
+val userId : kotlin.Int = 56 // kotlin.Int | 
 val payload : User =  // User | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : User = apiInstance.putUserDao(userId, payload, xFields)
+    val result : User = apiInstance.updateUser(userId, payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#putUserDao")
+    println("4xx response calling UsersApi#updateUser")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#putUserDao")
+    println("5xx response calling UsersApi#updateUser")
     e.printStackTrace()
 }
 ```
@@ -285,13 +237,61 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **kotlin.Int**| User identifier |
+ **userId** | **kotlin.Int**|  |
  **payload** | [**User**](User.md)|  |
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="updateUserQuota"></a>
+# **updateUserQuota**
+> updateUserQuota(userId, payload)
+
+
+
+Add or subtract quota for a user
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = UsersApi()
+val userId : kotlin.Int = 56 // kotlin.Int | 
+val payload : UserQuota =  // UserQuota | 
+try {
+    apiInstance.updateUserQuota(userId, payload)
+} catch (e: ClientException) {
+    println("4xx response calling UsersApi#updateUserQuota")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling UsersApi#updateUserQuota")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **kotlin.Int**|  |
+ **payload** | [**UserQuota**](UserQuota.md)|  |
+
+### Return type
+
+null (empty response body)
 
 ### Authorization
 

@@ -1,43 +1,101 @@
-# SwaggerClient::SubmissionsApi
+# AIcrowdEvaluations::SubmissionsApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_submission_dao**](SubmissionsApi.md#delete_submission_dao) | **DELETE** /submissions/{submission_id} | 
-[**get_submission_dao**](SubmissionsApi.md#get_submission_dao) | **GET** /submissions/{submission_id} | 
-[**get_submission_list_dao**](SubmissionsApi.md#get_submission_list_dao) | **GET** /submissions/ | 
-[**post_submission_list_dao**](SubmissionsApi.md#post_submission_list_dao) | **POST** /submissions/ | 
+[**create_submission**](SubmissionsApi.md#create_submission) | **POST** /submissions/ | 
+[**delete_submission**](SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
+[**get_submission**](SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
+[**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
+[**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
 
 
-# **delete_submission_dao**
-> delete_submission_dao(submission_id)
+# **create_submission**
+> Submissions create_submission(payload, opts)
 
 
 
-Stop evaluation of a submission
+Make a new submission
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SubmissionsApi.new
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
+
+payload = AIcrowdEvaluations::Submissions.new # Submissions | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.create_submission(payload, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->create_submission: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Submissions**](Submissions.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **delete_submission**
+> delete_submission(submission_id)
+
+
+
+Stop evaluation of a submission and delete it
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 submission_id = 56 # Integer | 
 
 
 begin
-  api_instance.delete_submission_dao(submission_id)
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling SubmissionsApi->delete_submission_dao: #{e}"
+  api_instance.delete_submission(submission_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->delete_submission: #{e}"
 end
 ```
 
@@ -62,26 +120,26 @@ nil (empty response body)
 
 
 
-# **get_submission_dao**
-> Submissions get_submission_dao(submission_id, opts)
+# **get_submission**
+> Submissions get_submission(submission_id, opts)
 
 
 
-Get details of a submission
+Get details of a submission by its ID
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SubmissionsApi.new
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 submission_id = 56 # Integer | 
 
@@ -90,10 +148,10 @@ opts = {
 }
 
 begin
-  result = api_instance.get_submission_dao(submission_id, opts)
+  result = api_instance.get_submission(submission_id, opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling SubmissionsApi->get_submission_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->get_submission: #{e}"
 end
 ```
 
@@ -119,36 +177,34 @@ Name | Type | Description  | Notes
 
 
 
-# **get_submission_list_dao**
-> Array&lt;Submissions&gt; get_submission_list_dao(opts)
+# **get_submission_data**
+> get_submission_data(submission_id)
 
 
 
-Get all submissions
+Get the submission data by submission ID
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SubmissionsApi.new
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
-opts = { 
-  x_fields: 'x_fields_example' # String | An optional fields mask
-}
+submission_id = 56 # Integer | 
+
 
 begin
-  result = api_instance.get_submission_list_dao(opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling SubmissionsApi->get_submission_list_dao: #{e}"
+  api_instance.get_submission_data(submission_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->get_submission_data: #{e}"
 end
 ```
 
@@ -156,11 +212,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_fields** | **String**| An optional fields mask | [optional] 
+ **submission_id** | **Integer**|  | 
 
 ### Return type
 
-[**Array&lt;Submissions&gt;**](Submissions.md)
+nil (empty response body)
 
 ### Authorization
 
@@ -173,38 +229,36 @@ Name | Type | Description  | Notes
 
 
 
-# **post_submission_list_dao**
-> Submissions post_submission_list_dao(payload, opts)
+# **list_submissions**
+> Array&lt;Submissions&gt; list_submissions(opts)
 
 
 
-Make a new submission
+List all submissions available
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SubmissionsApi.new
-
-payload = SwaggerClient::Submissions.new # Submissions | 
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.post_submission_list_dao(payload, opts)
+  result = api_instance.list_submissions(opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling SubmissionsApi->post_submission_list_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->list_submissions: #{e}"
 end
 ```
 
@@ -212,12 +266,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Submissions**](Submissions.md)|  | 
  **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-[**Submissions**](Submissions.md)
+[**Array&lt;Submissions&gt;**](Submissions.md)
 
 ### Authorization
 

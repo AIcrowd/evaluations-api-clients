@@ -4,21 +4,55 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSubmissionDao**](SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
-[**getSubmissionDao**](SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
-[**getSubmissionListDao**](SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
-[**postSubmissionListDao**](SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
+[**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
+[**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
+[**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
-## **deleteSubmissionDao**
+## **createSubmission**
 
 
 
-Stop evaluation of a submission
+Make a new submission
 
 ### Example
 ```bash
- deleteSubmissionDao submission_id=value
+aicrowd-evaluations createSubmission X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Submissions**](Submissions.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **deleteSubmission**
+
+
+
+Stop evaluation of a submission and delete it
+
+### Example
+```bash
+aicrowd-evaluations deleteSubmission submission_id=value
 ```
 
 ### Parameters
@@ -42,15 +76,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSubmissionDao**
+## **getSubmission**
 
 
 
-Get details of a submission
+Get details of a submission by its ID
 
 ### Example
 ```bash
- getSubmissionDao submission_id=value X-Fields:value
+aicrowd-evaluations getSubmission submission_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -75,26 +109,26 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSubmissionListDao**
+## **getSubmissionData**
 
 
 
-Get all submissions
+Get the submission data by submission ID
 
 ### Example
 ```bash
- getSubmissionListDao X-Fields:value
+aicrowd-evaluations getSubmissionData submission_id=value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xFields** | **string** | An optional fields mask | [optional]
+ **submissionId** | **integer** |  |
 
 ### Return type
 
-[**array[Submissions]**](Submissions.md)
+(empty response body)
 
 ### Authorization
 
@@ -107,27 +141,26 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postSubmissionListDao**
+## **listSubmissions**
 
 
 
-Make a new submission
+List all submissions available
 
 ### Example
 ```bash
- postSubmissionListDao X-Fields:value
+aicrowd-evaluations listSubmissions X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Submissions**](Submissions.md) |  |
  **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type
 
-[**Submissions**](Submissions.md)
+[**array[Submissions]**](Submissions.md)
 
 ### Authorization
 

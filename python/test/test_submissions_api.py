@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -15,40 +15,46 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.submissions_api import SubmissionsApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.submissions_api import SubmissionsApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestSubmissionsApi(unittest.TestCase):
     """SubmissionsApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.submissions_api.SubmissionsApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.submissions_api.SubmissionsApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_delete_submission_dao(self):
-        """Test case for delete_submission_dao
+    def test_create_submission(self):
+        """Test case for create_submission
 
         """
         pass
 
-    def test_get_submission_dao(self):
-        """Test case for get_submission_dao
+    def test_delete_submission(self):
+        """Test case for delete_submission
 
         """
         pass
 
-    def test_get_submission_list_dao(self):
-        """Test case for get_submission_list_dao
+    def test_get_submission(self):
+        """Test case for get_submission
 
         """
         pass
 
-    def test_post_submission_list_dao(self):
-        """Test case for post_submission_list_dao
+    def test_get_submission_data(self):
+        """Test case for get_submission_data
+
+        """
+        pass
+
+    def test_list_submissions(self):
+        """Test case for list_submissions
 
         """
         pass

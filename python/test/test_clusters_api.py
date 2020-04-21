@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -15,40 +15,40 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.clusters_api import ClustersApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.clusters_api import ClustersApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestClustersApi(unittest.TestCase):
     """ClustersApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.clusters_api.ClustersApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.clusters_api.ClustersApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_delete_cluster_dao(self):
-        """Test case for delete_cluster_dao
+    def test_create_cluster(self):
+        """Test case for create_cluster
 
         """
         pass
 
-    def test_get_cluster_dao(self):
-        """Test case for get_cluster_dao
+    def test_delete_cluster(self):
+        """Test case for delete_cluster
 
         """
         pass
 
-    def test_get_grader_list_dao(self):
-        """Test case for get_grader_list_dao
+    def test_get_cluster(self):
+        """Test case for get_cluster
 
         """
         pass
 
-    def test_post_grader_list_dao(self):
-        """Test case for post_grader_list_dao
+    def test_list_clusters(self):
+        """Test case for list_clusters
 
         """
         pass

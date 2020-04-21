@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,19 +27,26 @@ export class AuthApi {
     }
 
     /**
-     * 
+     * Log in a user with email and password.
+     * @param payload 
      * @param xFields An optional fields mask
      */
-    public logoutAUser (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthLogout> {
-        const localVarPath = this.basePath + '/auth/logout';
+    public login (payload: models.Login, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthResponse> {
+        const localVarPath = this.basePath + '/auth/login';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling login.');
+        }
+
         headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'POST',
             url: localVarPath,
+            data: payload,
             params: queryParameters,
             headers: headerParams
         };
@@ -51,26 +58,19 @@ export class AuthApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * 
-     * @param payload 
+     * Invalidate the current authorization token.
      * @param xFields An optional fields mask
      */
-    public userLogin (payload: models.Login, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthResponse> {
-        const localVarPath = this.basePath + '/auth/login';
+    public logout (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.AuthLogout> {
+        const localVarPath = this.basePath + '/auth/logout';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling userLogin.');
-        }
-
         headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'POST',
             url: localVarPath,
-            data: payload,
             params: queryParameters,
             headers: headerParams
         };

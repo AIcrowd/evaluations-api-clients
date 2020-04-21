@@ -4,58 +4,30 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteOrganisationDao**](OrganisationsApi.md#DeleteOrganisationDao) | **Delete** /organisations/{organisation_id} | 
-[**GetOrganisationDao**](OrganisationsApi.md#GetOrganisationDao) | **Get** /organisations/{organisation_id} | 
-[**GetOrganisationListDao**](OrganisationsApi.md#GetOrganisationListDao) | **Get** /organisations/ | 
-[**PostOrganisationListDao**](OrganisationsApi.md#PostOrganisationListDao) | **Post** /organisations/ | 
-[**PutOrganisationDao**](OrganisationsApi.md#PutOrganisationDao) | **Put** /organisations/{organisation_id} | 
-[**PutQuotaDao**](OrganisationsApi.md#PutQuotaDao) | **Put** /organisations/addquota/{organisation_id} | 
+[**CreateOrganisation**](OrganisationsApi.md#CreateOrganisation) | **Post** /organisations/ | 
+[**DeleteOrganisation**](OrganisationsApi.md#DeleteOrganisation) | **Delete** /organisations/{organisation_id} | 
+[**GetOrganisation**](OrganisationsApi.md#GetOrganisation) | **Get** /organisations/{organisation_id} | 
+[**ListOrganisations**](OrganisationsApi.md#ListOrganisations) | **Get** /organisations/ | 
+[**UpdateOrganisation**](OrganisationsApi.md#UpdateOrganisation) | **Put** /organisations/{organisation_id} | 
+[**UpdateOrganisationQuota**](OrganisationsApi.md#UpdateOrganisationQuota) | **Put** /organisations/{organisation_id}/addquota | 
 
 
-# **DeleteOrganisationDao**
-> DeleteOrganisationDao(ctx, organisationId)
+# **CreateOrganisation**
+> Organisation CreateOrganisation(ctx, payload, optional)
 
 
-Delete an Organisation
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **organisationId** | **int32**| Organisation identifier | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetOrganisationDao**
-> Organisation GetOrganisationDao(ctx, organisationId, optional)
-
-
-Get information of an organisation
+Create a new organisation
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **organisationId** | **int32**| Organisation identifier | 
- **optional** | ***GetOrganisationDaoOpts** | optional parameters | nil if no parameters
+  **payload** | [**Organisation**](Organisation.md)|  | 
+ **optional** | ***OrganisationsApiCreateOrganisationOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetOrganisationDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiCreateOrganisationOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -77,21 +49,86 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetOrganisationListDao**
-> []Organisation GetOrganisationListDao(ctx, optional)
+# **DeleteOrganisation**
+> DeleteOrganisation(ctx, organisationId)
 
 
-Get all organisations
+Delete an Organisation
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetOrganisationListDaoOpts** | optional parameters | nil if no parameters
+  **organisationId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetOrganisation**
+> Organisation GetOrganisation(ctx, organisationId, optional)
+
+
+Get details of an organisation
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **organisationId** | **int32**|  | 
+ **optional** | ***OrganisationsApiGetOrganisationOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a GetOrganisationListDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiGetOrganisationOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Organisation**](Organisation.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListOrganisations**
+> []Organisation ListOrganisations(ctx, optional)
+
+
+List all organisations
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***OrganisationsApiListOrganisationsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a OrganisationsApiListOrganisationsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -112,45 +149,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **PostOrganisationListDao**
-> Organisation PostOrganisationListDao(ctx, payload, optional)
-
-
-Create a new organisation
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **payload** | [**Organisation**](Organisation.md)|  | 
- **optional** | ***PostOrganisationListDaoOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a PostOrganisationListDaoOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Organisation**](Organisation.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PutOrganisationDao**
-> Organisation PutOrganisationDao(ctx, organisationId, payload, optional)
+# **UpdateOrganisation**
+> Organisation UpdateOrganisation(ctx, organisationId, payload, optional)
 
 
 Update an Organisation
@@ -160,12 +160,12 @@ Update an Organisation
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **organisationId** | **int32**| Organisation identifier | 
+  **organisationId** | **int32**|  | 
   **payload** | [**Organisation**](Organisation.md)|  | 
- **optional** | ***PutOrganisationDaoOpts** | optional parameters | nil if no parameters
+ **optional** | ***OrganisationsApiUpdateOrganisationOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PutOrganisationDaoOpts struct
+Optional parameters are passed through a pointer to a OrganisationsApiUpdateOrganisationOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -188,8 +188,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **PutQuotaDao**
-> PutQuotaDao(ctx, organisationId, payload)
+# **UpdateOrganisationQuota**
+> UpdateOrganisationQuota(ctx, organisationId, payload)
 
 
 Add or subtract quota for an organisation
@@ -199,7 +199,7 @@ Add or subtract quota for an organisation
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **organisationId** | **int32**| Organisation identifier | 
+  **organisationId** | **int32**|  | 
   **payload** | [**OrganisationQuota**](OrganisationQuota.md)|  | 
 
 ### Return type

@@ -1,5 +1,3 @@
-export * from './ArgoApi';
-import { ArgoApi } from './ArgoApi';
 export * from './AuthApi';
 import { AuthApi } from './AuthApi';
 export * from './ClustersApi';
@@ -12,4 +10,4 @@ export * from './SubmissionsApi';
 import { SubmissionsApi } from './SubmissionsApi';
 export * from './UsersApi';
 import { UsersApi } from './UsersApi';
-export const APIS = [ArgoApi, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi];
+export const APIS = [AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi];

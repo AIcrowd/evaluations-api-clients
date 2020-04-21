@@ -27,18 +27,11 @@ API.Client.Grader.prototype.created;
 API.Client.Grader.prototype.updated;
 
 /**
- * S3 link of the Dataset
- * @type {!string}
+ * Dataset metadata
+ * @type {!API.Client.Object}
  * @export
  */
-API.Client.Grader.prototype.datasetUrl;
-
-/**
- * git/http
- * @type {!string}
- * @export
- */
-API.Client.Grader.prototype.codeAccessMode;
+API.Client.Grader.prototype.dataset;
 
 /**
  * Cluster to run the grader on
@@ -48,25 +41,11 @@ API.Client.Grader.prototype.codeAccessMode;
 API.Client.Grader.prototype.clusterId;
 
 /**
- * Docker registry username
+ * Description of the grader
  * @type {!string}
  * @export
  */
-API.Client.Grader.prototype.dockerUsername;
-
-/**
- * Docker registry password
- * @type {!string}
- * @export
- */
-API.Client.Grader.prototype.dockerPassword;
-
-/**
- * Docker registry URL. Dockerhub is used by default.
- * @type {!string}
- * @export
- */
-API.Client.Grader.prototype.dockerRegistry;
+API.Client.Grader.prototype.description;
 
 /**
  * Argo workflow template spec
@@ -76,18 +55,32 @@ API.Client.Grader.prototype.dockerRegistry;
 API.Client.Grader.prototype.workflowSpec;
 
 /**
- * S3 link to the zip file containing the code that will be used for the evaluation
+ * Git URL of the repository containing the code that will be used for the evaluation
  * @type {!string}
  * @export
  */
-API.Client.Grader.prototype.evaluationCode;
+API.Client.Grader.prototype.evaluatorRepo;
 
 /**
- * Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
+ * Git branch/tag that should be used with the evaluator repository.
  * @type {!string}
  * @export
  */
-API.Client.Grader.prototype.storageCapacity;
+API.Client.Grader.prototype.evaluatorRepoTag;
+
+/**
+ * Name of the grader
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.name;
+
+/**
+ * Notifications available for the grader.
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.notifications;
 
 /**
  * Logs from argo workflow
@@ -109,6 +102,20 @@ API.Client.Grader.prototype.meta;
  * @export
  */
 API.Client.Grader.prototype.status;
+
+/**
+ * List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
+ * @type {!API.Client.Object}
+ * @export
+ */
+API.Client.Grader.prototype.secrets;
+
+/**
+ * Type of submissions allowed on the grader
+ * @type {!API.Client.Object}
+ * @export
+ */
+API.Client.Grader.prototype.submissionTypes;
 
 /**
  * User ID

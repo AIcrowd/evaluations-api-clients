@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -14,11 +14,11 @@ import * as models from './models';
 
 export interface Login {
     /**
-     * The email address
+     * Email address of the user
      */
     "email": string;
     /**
-     * The user password 
+     * Password corresponding to the Email address
      */
     "password": string;
 }

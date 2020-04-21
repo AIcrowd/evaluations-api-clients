@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -23,33 +23,30 @@ pub struct Grader {
   /// Last updation time
   #[serde(rename = "updated")]
   updated: Option<String>,
-  /// S3 link of the Dataset
-  #[serde(rename = "dataset_url")]
-  dataset_url: Option<String>,
-  /// git/http
-  #[serde(rename = "code_access_mode")]
-  code_access_mode: String,
+  /// Dataset metadata
+  #[serde(rename = "dataset")]
+  dataset: Option<Value>,
   /// Cluster to run the grader on
   #[serde(rename = "cluster_id")]
   cluster_id: Option<i32>,
-  /// Docker registry username
-  #[serde(rename = "docker_username")]
-  docker_username: String,
-  /// Docker registry password
-  #[serde(rename = "docker_password")]
-  docker_password: String,
-  /// Docker registry URL. Dockerhub is used by default.
-  #[serde(rename = "docker_registry")]
-  docker_registry: Option<String>,
+  /// Description of the grader
+  #[serde(rename = "description")]
+  description: Option<String>,
   /// Argo workflow template spec
   #[serde(rename = "workflow_spec")]
   workflow_spec: Option<Value>,
-  /// S3 link to the zip file containing the code that will be used for the evaluation
-  #[serde(rename = "evaluation_code")]
-  evaluation_code: String,
-  /// Size of the dataset partition to request. Please provide at least 2x of the size of the dataset.
-  #[serde(rename = "storage_capacity")]
-  storage_capacity: Option<String>,
+  /// Git URL of the repository containing the code that will be used for the evaluation
+  #[serde(rename = "evaluator_repo")]
+  evaluator_repo: String,
+  /// Git branch/tag that should be used with the evaluator repository.
+  #[serde(rename = "evaluator_repo_tag")]
+  evaluator_repo_tag: Option<String>,
+  /// Name of the grader
+  #[serde(rename = "name")]
+  name: Option<String>,
+  /// Notifications available for the grader.
+  #[serde(rename = "notifications")]
+  notifications: Option<String>,
   /// Logs from argo workflow
   #[serde(rename = "logs")]
   logs: Option<Value>,
@@ -59,6 +56,12 @@ pub struct Grader {
   /// Status of the grader - True if it ready, False otherwise
   #[serde(rename = "status")]
   status: Option<String>,
+  /// List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
+  #[serde(rename = "secrets")]
+  secrets: Option<Value>,
+  /// Type of submissions allowed on the grader
+  #[serde(rename = "submission_types")]
+  submission_types: Option<Value>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -68,23 +71,24 @@ pub struct Grader {
 }
 
 impl Grader {
-  pub fn new(code_access_mode: String, docker_username: String, docker_password: String, evaluation_code: String) -> Grader {
+  pub fn new(evaluator_repo: String) -> Grader {
     Grader {
       id: None,
       created: None,
       updated: None,
-      dataset_url: None,
-      code_access_mode: code_access_mode,
+      dataset: None,
       cluster_id: None,
-      docker_username: docker_username,
-      docker_password: docker_password,
-      docker_registry: None,
+      description: None,
       workflow_spec: None,
-      evaluation_code: evaluation_code,
-      storage_capacity: None,
+      evaluator_repo: evaluator_repo,
+      evaluator_repo_tag: None,
+      name: None,
+      notifications: None,
       logs: None,
       meta: None,
       status: None,
+      secrets: None,
+      submission_types: None,
       user_id: None,
       organisation_id: None
     }
@@ -141,36 +145,22 @@ impl Grader {
     self.updated = None;
   }
 
-  pub fn set_dataset_url(&mut self, dataset_url: String) {
-    self.dataset_url = Some(dataset_url);
+  pub fn set_dataset(&mut self, dataset: Value) {
+    self.dataset = Some(dataset);
   }
 
-  pub fn with_dataset_url(mut self, dataset_url: String) -> Grader {
-    self.dataset_url = Some(dataset_url);
+  pub fn with_dataset(mut self, dataset: Value) -> Grader {
+    self.dataset = Some(dataset);
     self
   }
 
-  pub fn dataset_url(&self) -> Option<&String> {
-    self.dataset_url.as_ref()
+  pub fn dataset(&self) -> Option<&Value> {
+    self.dataset.as_ref()
   }
 
-  pub fn reset_dataset_url(&mut self) {
-    self.dataset_url = None;
+  pub fn reset_dataset(&mut self) {
+    self.dataset = None;
   }
-
-  pub fn set_code_access_mode(&mut self, code_access_mode: String) {
-    self.code_access_mode = code_access_mode;
-  }
-
-  pub fn with_code_access_mode(mut self, code_access_mode: String) -> Grader {
-    self.code_access_mode = code_access_mode;
-    self
-  }
-
-  pub fn code_access_mode(&self) -> &String {
-    &self.code_access_mode
-  }
-
 
   pub fn set_cluster_id(&mut self, cluster_id: i32) {
     self.cluster_id = Some(cluster_id);
@@ -189,49 +179,21 @@ impl Grader {
     self.cluster_id = None;
   }
 
-  pub fn set_docker_username(&mut self, docker_username: String) {
-    self.docker_username = docker_username;
+  pub fn set_description(&mut self, description: String) {
+    self.description = Some(description);
   }
 
-  pub fn with_docker_username(mut self, docker_username: String) -> Grader {
-    self.docker_username = docker_username;
+  pub fn with_description(mut self, description: String) -> Grader {
+    self.description = Some(description);
     self
   }
 
-  pub fn docker_username(&self) -> &String {
-    &self.docker_username
+  pub fn description(&self) -> Option<&String> {
+    self.description.as_ref()
   }
 
-
-  pub fn set_docker_password(&mut self, docker_password: String) {
-    self.docker_password = docker_password;
-  }
-
-  pub fn with_docker_password(mut self, docker_password: String) -> Grader {
-    self.docker_password = docker_password;
-    self
-  }
-
-  pub fn docker_password(&self) -> &String {
-    &self.docker_password
-  }
-
-
-  pub fn set_docker_registry(&mut self, docker_registry: String) {
-    self.docker_registry = Some(docker_registry);
-  }
-
-  pub fn with_docker_registry(mut self, docker_registry: String) -> Grader {
-    self.docker_registry = Some(docker_registry);
-    self
-  }
-
-  pub fn docker_registry(&self) -> Option<&String> {
-    self.docker_registry.as_ref()
-  }
-
-  pub fn reset_docker_registry(&mut self) {
-    self.docker_registry = None;
+  pub fn reset_description(&mut self) {
+    self.description = None;
   }
 
   pub fn set_workflow_spec(&mut self, workflow_spec: Value) {
@@ -251,35 +213,69 @@ impl Grader {
     self.workflow_spec = None;
   }
 
-  pub fn set_evaluation_code(&mut self, evaluation_code: String) {
-    self.evaluation_code = evaluation_code;
+  pub fn set_evaluator_repo(&mut self, evaluator_repo: String) {
+    self.evaluator_repo = evaluator_repo;
   }
 
-  pub fn with_evaluation_code(mut self, evaluation_code: String) -> Grader {
-    self.evaluation_code = evaluation_code;
+  pub fn with_evaluator_repo(mut self, evaluator_repo: String) -> Grader {
+    self.evaluator_repo = evaluator_repo;
     self
   }
 
-  pub fn evaluation_code(&self) -> &String {
-    &self.evaluation_code
+  pub fn evaluator_repo(&self) -> &String {
+    &self.evaluator_repo
   }
 
 
-  pub fn set_storage_capacity(&mut self, storage_capacity: String) {
-    self.storage_capacity = Some(storage_capacity);
+  pub fn set_evaluator_repo_tag(&mut self, evaluator_repo_tag: String) {
+    self.evaluator_repo_tag = Some(evaluator_repo_tag);
   }
 
-  pub fn with_storage_capacity(mut self, storage_capacity: String) -> Grader {
-    self.storage_capacity = Some(storage_capacity);
+  pub fn with_evaluator_repo_tag(mut self, evaluator_repo_tag: String) -> Grader {
+    self.evaluator_repo_tag = Some(evaluator_repo_tag);
     self
   }
 
-  pub fn storage_capacity(&self) -> Option<&String> {
-    self.storage_capacity.as_ref()
+  pub fn evaluator_repo_tag(&self) -> Option<&String> {
+    self.evaluator_repo_tag.as_ref()
   }
 
-  pub fn reset_storage_capacity(&mut self) {
-    self.storage_capacity = None;
+  pub fn reset_evaluator_repo_tag(&mut self) {
+    self.evaluator_repo_tag = None;
+  }
+
+  pub fn set_name(&mut self, name: String) {
+    self.name = Some(name);
+  }
+
+  pub fn with_name(mut self, name: String) -> Grader {
+    self.name = Some(name);
+    self
+  }
+
+  pub fn name(&self) -> Option<&String> {
+    self.name.as_ref()
+  }
+
+  pub fn reset_name(&mut self) {
+    self.name = None;
+  }
+
+  pub fn set_notifications(&mut self, notifications: String) {
+    self.notifications = Some(notifications);
+  }
+
+  pub fn with_notifications(mut self, notifications: String) -> Grader {
+    self.notifications = Some(notifications);
+    self
+  }
+
+  pub fn notifications(&self) -> Option<&String> {
+    self.notifications.as_ref()
+  }
+
+  pub fn reset_notifications(&mut self) {
+    self.notifications = None;
   }
 
   pub fn set_logs(&mut self, logs: Value) {
@@ -331,6 +327,40 @@ impl Grader {
 
   pub fn reset_status(&mut self) {
     self.status = None;
+  }
+
+  pub fn set_secrets(&mut self, secrets: Value) {
+    self.secrets = Some(secrets);
+  }
+
+  pub fn with_secrets(mut self, secrets: Value) -> Grader {
+    self.secrets = Some(secrets);
+    self
+  }
+
+  pub fn secrets(&self) -> Option<&Value> {
+    self.secrets.as_ref()
+  }
+
+  pub fn reset_secrets(&mut self) {
+    self.secrets = None;
+  }
+
+  pub fn set_submission_types(&mut self, submission_types: Value) {
+    self.submission_types = Some(submission_types);
+  }
+
+  pub fn with_submission_types(mut self, submission_types: Value) -> Grader {
+    self.submission_types = Some(submission_types);
+    self
+  }
+
+  pub fn submission_types(&self) -> Option<&Value> {
+    self.submission_types.as_ref()
+  }
+
+  pub fn reset_submission_types(&mut self) {
+    self.submission_types = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

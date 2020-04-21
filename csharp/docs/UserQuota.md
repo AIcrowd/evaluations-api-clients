@@ -1,4 +1,4 @@
-# IO.Swagger.Model.UserQuota
+# Com.AIcrowd.Evaluations.Model.UserQuota
 ## Properties
 
 Name | Type | Description | Notes

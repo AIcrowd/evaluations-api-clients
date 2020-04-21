@@ -1,6 +1,6 @@
 [package]
-name = "swagger"
-version = "1.0.0"
+name = "aicrowd_evaluations"
+version = "0.0.1"
 authors = ["Swagger Codegen team and contributors"]
 
 [dependencies]

@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -58,24 +58,81 @@ export class SubmissionsService {
 
     /**
      * 
-     * Stop evaluation of a submission
+     * Make a new submission
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createSubmission(payload: Submissions, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Submissions>;
+    public createSubmission(payload: Submissions, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Submissions>>;
+    public createSubmission(payload: Submissions, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Submissions>>;
+    public createSubmission(payload: Submissions, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createSubmission.');
+        }
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Submissions>(`${this.basePath}/submissions/`,
+            payload,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Stop evaluation of a submission and delete it
      * @param submissionId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteSubmissionDao(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteSubmissionDao(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteSubmissionDao(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteSubmissionDao(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteSubmission(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteSubmission(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteSubmission(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteSubmission(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (submissionId === null || submissionId === undefined) {
-            throw new Error('Required parameter submissionId was null or undefined when calling deleteSubmissionDao.');
+            throw new Error('Required parameter submissionId was null or undefined when calling deleteSubmission.');
         }
 
         let headers = this.defaultHeaders;
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -105,19 +162,19 @@ export class SubmissionsService {
 
     /**
      * 
-     * Get details of a submission
+     * Get details of a submission by its ID
      * @param submissionId 
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSubmissionDao(submissionId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Submissions>;
-    public getSubmissionDao(submissionId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Submissions>>;
-    public getSubmissionDao(submissionId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Submissions>>;
-    public getSubmissionDao(submissionId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getSubmission(submissionId: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Submissions>;
+    public getSubmission(submissionId: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Submissions>>;
+    public getSubmission(submissionId: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Submissions>>;
+    public getSubmission(submissionId: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (submissionId === null || submissionId === undefined) {
-            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionDao.');
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmission.');
         }
 
 
@@ -127,7 +184,7 @@ export class SubmissionsService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -157,15 +214,62 @@ export class SubmissionsService {
 
     /**
      * 
-     * Get all submissions
+     * Get the submission data by submission ID
+     * @param submissionId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSubmissionData(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getSubmissionData(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getSubmissionData(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getSubmissionData(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionData.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/data`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * List all submissions available
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSubmissionListDao(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
-    public getSubmissionListDao(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
-    public getSubmissionListDao(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
-    public getSubmissionListDao(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listSubmissions(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
+    public listSubmissions(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
+    public listSubmissions(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
+    public listSubmissions(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -174,7 +278,7 @@ export class SubmissionsService {
         }
 
         // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
             headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
         }
 
@@ -193,63 +297,6 @@ export class SubmissionsService {
         ];
 
         return this.httpClient.get<Array<Submissions>>(`${this.basePath}/submissions/`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Make a new submission
-     * @param payload 
-     * @param xFields An optional fields mask
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postSubmissionListDao(payload: Submissions, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Submissions>;
-    public postSubmissionListDao(payload: Submissions, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Submissions>>;
-    public postSubmissionListDao(payload: Submissions, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Submissions>>;
-    public postSubmissionListDao(payload: Submissions, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postSubmissionListDao.');
-        }
-
-
-        let headers = this.defaultHeaders;
-        if (xFields !== undefined && xFields !== null) {
-            headers = headers.set('X-Fields', String(xFields));
-        }
-
-        // authentication (api_key) required
-        if (this.configuration.apiKeys["AUTHORIZATION"]) {
-            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Submissions>(`${this.basePath}/submissions/`,
-            payload,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

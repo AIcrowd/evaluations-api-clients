@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    Evaluations API
+    AIcrowd Evaluations API
 
-    API to create and evaluate custom challenges  # noqa: E501
+    API to create and evaluate custom challenges on AIcrowd!  # noqa: E501
 
     OpenAPI spec version: 1.0.0
     
@@ -15,52 +15,52 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.organisations_api import OrganisationsApi  # noqa: E501
-from swagger_client.rest import ApiException
+import aicrowd_evaluations
+from aicrowd_evaluations.api.organisations_api import OrganisationsApi  # noqa: E501
+from aicrowd_evaluations.rest import ApiException
 
 
 class TestOrganisationsApi(unittest.TestCase):
     """OrganisationsApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.organisations_api.OrganisationsApi()  # noqa: E501
+        self.api = aicrowd_evaluations.api.organisations_api.OrganisationsApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_delete_organisation_dao(self):
-        """Test case for delete_organisation_dao
+    def test_create_organisation(self):
+        """Test case for create_organisation
 
         """
         pass
 
-    def test_get_organisation_dao(self):
-        """Test case for get_organisation_dao
+    def test_delete_organisation(self):
+        """Test case for delete_organisation
 
         """
         pass
 
-    def test_get_organisation_list_dao(self):
-        """Test case for get_organisation_list_dao
+    def test_get_organisation(self):
+        """Test case for get_organisation
 
         """
         pass
 
-    def test_post_organisation_list_dao(self):
-        """Test case for post_organisation_list_dao
+    def test_list_organisations(self):
+        """Test case for list_organisations
 
         """
         pass
 
-    def test_put_organisation_dao(self):
-        """Test case for put_organisation_dao
+    def test_update_organisation(self):
+        """Test case for update_organisation
 
         """
         pass
 
-    def test_put_quota_dao(self):
-        """Test case for put_quota_dao
+    def test_update_organisation_quota(self):
+        """Test case for update_organisation_quota
 
         """
         pass

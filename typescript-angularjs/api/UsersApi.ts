@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -27,10 +27,41 @@ export class UsersApi {
     }
 
     /**
-     * Delete a user
-     * @param userId User identifier
+     * Create a new user
+     * @param payload 
+     * @param xFields An optional fields mask
      */
-    public deleteUserDao (userId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public createUser (payload: models.User, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
+        const localVarPath = this.basePath + '/users/';
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling createUser.');
+        }
+
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            data: payload,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Delete a user
+     * @param userId 
+     */
+    public deleteUser (userId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
 
@@ -38,7 +69,7 @@ export class UsersApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling deleteUserDao.');
+            throw new Error('Required parameter userId was null or undefined when calling deleteUser.');
         }
 
         let httpRequestParams: ng.IRequestConfig = {
@@ -56,10 +87,10 @@ export class UsersApi {
     }
     /**
      * Get information of a user
-     * @param userId User identifier
+     * @param userId 
      * @param xFields An optional fields mask
      */
-    public getUserDao (userId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
+    public getUser (userId: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
         const localVarPath = this.basePath + '/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
 
@@ -67,7 +98,7 @@ export class UsersApi {
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getUserDao.');
+            throw new Error('Required parameter userId was null or undefined when calling getUser.');
         }
 
         headerParams['X-Fields'] = xFields;
@@ -89,7 +120,7 @@ export class UsersApi {
      * Get all user
      * @param xFields An optional fields mask
      */
-    public getUserListDao (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.User>> {
+    public listUsers (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.User>> {
         const localVarPath = this.basePath + '/users/';
 
         let queryParameters: any = {};
@@ -110,56 +141,28 @@ export class UsersApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Create a new user
+     * Update a user
+     * @param userId 
      * @param payload 
      * @param xFields An optional fields mask
      */
-    public postUserListDao (payload: models.User, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
-        const localVarPath = this.basePath + '/users/';
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling postUserListDao.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            data: payload,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Add or subtract quota for a user
-     * @param userId User identifier
-     * @param payload 
-     */
-    public putQuotaDao (userId: number, payload: models.UserQuota, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
-        const localVarPath = this.basePath + '/users/addquota/{user_id}'
+    public updateUser (userId: number, payload: models.User, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
+        const localVarPath = this.basePath + '/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter userId was null or undefined when calling updateUser.');
         }
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putQuotaDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateUser.');
         }
+
+        headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'PUT',
@@ -176,28 +179,25 @@ export class UsersApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Update a user
-     * @param userId User identifier
+     * Add or subtract quota for a user
+     * @param userId 
      * @param payload 
-     * @param xFields An optional fields mask
      */
-    public putUserDao (userId: number, payload: models.User, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.User> {
-        const localVarPath = this.basePath + '/users/{user_id}'
+    public updateUserQuota (userId: number, payload: models.UserQuota, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/users/{user_id}/addquota'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling putUserDao.');
+            throw new Error('Required parameter userId was null or undefined when calling updateUserQuota.');
         }
 
         // verify required parameter 'payload' is not null or undefined
         if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling putUserDao.');
+            throw new Error('Required parameter payload was null or undefined when calling updateUserQuota.');
         }
-
-        headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'PUT',

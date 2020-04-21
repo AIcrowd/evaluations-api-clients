@@ -4,22 +4,54 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteGraderDao**](GradersApi.md#deleteGraderDao) | **DELETE** /graders/{grader_id} | 
-[**getGraderDao**](GradersApi.md#getGraderDao) | **GET** /graders/{grader_id} | 
-[**getGraderListDao**](GradersApi.md#getGraderListDao) | **GET** /graders/ | 
-[**postGraderListDao**](GradersApi.md#postGraderListDao) | **POST** /graders/ | 
-[**putGraderDao**](GradersApi.md#putGraderDao) | **PUT** /graders/{grader_id} | 
+[**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
+[**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+[**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
 
 
-## **deleteGraderDao**
+## **createGrader**
 
 
 
-Delete a grader
+Create a new grader
 
 ### Example
 ```bash
- deleteGraderDao grader_id=value
+aicrowd-evaluations createGrader X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **deleteGrader**
+
+
+
+Delete a grader by its ID
+
+### Example
+```bash
+aicrowd-evaluations deleteGrader grader_id=value
 ```
 
 ### Parameters
@@ -43,15 +75,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getGraderDao**
+## **getGrader**
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example
 ```bash
- getGraderDao grader_id=value X-Fields:value
+aicrowd-evaluations getGrader grader_id=value X-Fields:value
 ```
 
 ### Parameters
@@ -76,15 +108,15 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getGraderListDao**
+## **listGraders**
 
 
 
-Get all grader
+List all graders available
 
 ### Example
 ```bash
- getGraderListDao X-Fields:value
+aicrowd-evaluations listGraders X-Fields:value
 ```
 
 ### Parameters
@@ -96,73 +128,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**array[Grader]**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **postGraderListDao**
-
-
-
-Create a new grader
-
-### Example
-```bash
- postGraderListDao X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md) |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **putGraderDao**
-
-
-
-Update a grader
-
-### Example
-```bash
- putGraderDao grader_id=value X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **integer** |  |
- **payload** | [**Grader**](Grader.md) |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

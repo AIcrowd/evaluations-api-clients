@@ -4,78 +4,35 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**logout a user**](AuthApi.md#logout a user) | **POST** /auth/logout | 
-[**user login**](AuthApi.md#user login) | **POST** /auth/login | 
+[**login**](AuthApi.md#login) | **POST** /auth/login | 
+[**logout**](AuthApi.md#logout) | **POST** /auth/logout | 
 
 
-<a name="logout a user"></a>
-# **logout a user**
-> AuthLogout logout a user(xFields)
+<a name="login"></a>
+# **login**
+> AuthResponse login(payload, xFields)
 
 
 
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = AuthApi()
-val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
-try {
-    val result : AuthLogout = apiInstance.logout a user(xFields)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AuthApi#logout a user")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AuthApi#logout a user")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xFields** | **kotlin.String**| An optional fields mask | [optional]
-
-### Return type
-
-[**AuthLogout**](AuthLogout.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="user login"></a>
-# **user login**
-> AuthResponse user login(payload, xFields)
-
-
+Log in a user with email and password.
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = AuthApi()
 val payload : Login =  // Login | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : AuthResponse = apiInstance.user login(payload, xFields)
+    val result : AuthResponse = apiInstance.login(payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AuthApi#user login")
+    println("4xx response calling AuthApi#login")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AuthApi#user login")
+    println("5xx response calling AuthApi#login")
     e.printStackTrace()
 }
 ```
@@ -94,6 +51,53 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="logout"></a>
+# **logout**
+> AuthLogout logout(xFields)
+
+
+
+Invalidate the current authorization token.
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = AuthApi()
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
+try {
+    val result : AuthLogout = apiInstance.logout(xFields)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AuthApi#logout")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AuthApi#logout")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
+
+### Return type
+
+[**AuthLogout**](AuthLogout.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 

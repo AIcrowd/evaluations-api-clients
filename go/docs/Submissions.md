@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ParticipantId** | **int32** | Participant identifier | [optional] [default to null]
 **RoundId** | **int32** | Round identifier | [optional] [default to null]
 **GraderId** | **int32** | Grader identifier | [default to null]
-**SubmissionCode** | [***interface{}**](interface{}.md) | URL to the submission code | [default to null]
+**SubmissionData** | [***interface{}**](interface{}.md) | URL to the submission code | [optional] [default to null]
 **Status** | **string** | Current status of the submission | [optional] [default to null]
 **Output** | **string** | S3 link of the output (available after the evaluation) | [optional] [default to null]
 **AdditionalOutputs** | [***interface{}**](interface{}.md) | Array of any additional outputs | [optional] [default to null]

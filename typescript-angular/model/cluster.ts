@@ -1,6 +1,6 @@
 /**
- * Evaluations API
- * API to create and evaluate custom challenges
+ * AIcrowd Evaluations API
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -32,6 +32,18 @@ export interface Cluster {
      * Authentication needed for the cluster
      */
     authToken: string;
+    /**
+     * Docker registry username
+     */
+    dockerUsername: string;
+    /**
+     * Docker registry password
+     */
+    dockerPassword: string;
+    /**
+     * Docker registry URL. Dockerhub is used by default.
+     */
+    dockerRegistry?: string;
     /**
      * Storage class to use for datasets
      */

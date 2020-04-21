@@ -1,4 +1,4 @@
-# EvaluationsApi.UserQuota
+# AicrowdEvaluations.UserQuota
 
 ## Properties
 Name | Type | Description | Notes

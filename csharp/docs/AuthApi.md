@@ -1,93 +1,32 @@
-# IO.Swagger.Api.AuthApi
+# Com.AIcrowd.Evaluations.Api.AuthApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LogoutAUser**](AuthApi.md#logoutauser) | **POST** /auth/logout | 
-[**UserLogin**](AuthApi.md#userlogin) | **POST** /auth/login | 
+[**Login**](AuthApi.md#login) | **POST** /auth/login | 
+[**Logout**](AuthApi.md#logout) | **POST** /auth/logout | 
 
 
-<a name="logoutauser"></a>
-# **LogoutAUser**
-> AuthLogout LogoutAUser (string xFields = null)
+<a name="login"></a>
+# **Login**
+> AuthResponse Login (Login payload, string xFields = null)
 
 
 
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class LogoutAUserExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
-
-            var apiInstance = new AuthApi();
-            var xFields = xFields_example;  // string | An optional fields mask (optional) 
-
-            try
-            {
-                AuthLogout result = apiInstance.LogoutAUser(xFields);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling AuthApi.LogoutAUser: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xFields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**AuthLogout**](AuthLogout.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="userlogin"></a>
-# **UserLogin**
-> AuthResponse UserLogin (Login payload, string xFields = null)
-
-
+Log in a user with email and password.
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class UserLoginExample
+    public class LoginExample
     {
         public void main()
         {
@@ -97,12 +36,12 @@ namespace Example
 
             try
             {
-                AuthResponse result = apiInstance.UserLogin(payload, xFields);
+                AuthResponse result = apiInstance.Login(payload, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AuthApi.UserLogin: " + e.Message );
+                Debug.Print("Exception when calling AuthApi.Login: " + e.Message );
             }
         }
     }
@@ -123,6 +62,71 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="logout"></a>
+# **Logout**
+> AuthLogout Logout (string xFields = null)
+
+
+
+Invalidate the current authorization token.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class LogoutExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new AuthApi();
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
+
+            try
+            {
+                AuthLogout result = apiInstance.Logout(xFields);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthApi.Logout: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**AuthLogout**](AuthLogout.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 

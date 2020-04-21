@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::AuthLogout
+# AIcrowdEvaluations::Object::AuthLogout
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::AuthLogout;
+use AIcrowdEvaluations::Object::AuthLogout;
 ```
 
 ## Properties

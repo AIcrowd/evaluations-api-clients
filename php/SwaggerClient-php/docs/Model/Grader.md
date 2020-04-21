@@ -6,18 +6,19 @@ Name | Type | Description | Notes
 **id** | **int** | ID | [optional] 
 **created** | [**\DateTime**](\DateTime.md) | Creation time | [optional] 
 **updated** | [**\DateTime**](\DateTime.md) | Last updation time | [optional] 
-**dataset_url** | **string** | S3 link of the Dataset | [optional] 
-**code_access_mode** | **string** | git/http | 
+**dataset** | **object** | Dataset metadata | [optional] 
 **cluster_id** | **int** | Cluster to run the grader on | [optional] 
-**docker_username** | **string** | Docker registry username | 
-**docker_password** | **string** | Docker registry password | 
-**docker_registry** | **string** | Docker registry URL. Dockerhub is used by default. | [optional] 
+**description** | **string** | Description of the grader | [optional] 
 **workflow_spec** | **object** | Argo workflow template spec | [optional] 
-**evaluation_code** | **string** | S3 link to the zip file containing the code that will be used for the evaluation | 
-**storage_capacity** | **string** | Size of the dataset partition to request. Please provide at least 2x of the size of the dataset. | [optional] 
+**evaluator_repo** | **string** | Git URL of the repository containing the code that will be used for the evaluation | 
+**evaluator_repo_tag** | **string** | Git branch/tag that should be used with the evaluator repository. | [optional] 
+**name** | **string** | Name of the grader | [optional] 
+**notifications** | **string** | Notifications available for the grader. | [optional] 
 **logs** | **object** | Logs from argo workflow | [optional] 
 **meta** | **object** | Additional meta data of the grader | [optional] 
 **status** | **string** | Status of the grader - True if it ready, False otherwise | [optional] 
+**secrets** | **object** | List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml | [optional] 
+**submission_types** | **object** | Type of submissions allowed on the grader | [optional] 
 **user_id** | **int** | User ID | [optional] 
 **organisation_id** | **int** | Organisation ID | [optional] 
 

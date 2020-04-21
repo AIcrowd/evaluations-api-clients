@@ -6,14 +6,14 @@ goog.provide('API.Client.Login');
 API.Client.Login = function() {}
 
 /**
- * The email address
+ * Email address of the user
  * @type {!string}
  * @export
  */
 API.Client.Login.prototype.email;
 
 /**
- * The user password 
+ * Password corresponding to the Email address
  * @type {!string}
  * @export
  */

@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::Submissions
+# AIcrowdEvaluations::Object::Submissions
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::Submissions;
+use AIcrowdEvaluations::Object::Submissions;
 ```
 
 ## Properties
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **participant_id** | **int** | Participant identifier | [optional] 
 **round_id** | **int** | Round identifier | [optional] 
 **grader_id** | **int** | Grader identifier | 
-**submission_code** | **object** | URL to the submission code | 
+**submission_data** | **object** | URL to the submission code | [optional] 
 **status** | **string** | Current status of the submission | [optional] 
 **output** | **string** | S3 link of the output (available after the evaluation) | [optional] 
 **additional_outputs** | **object** | Array of any additional outputs | [optional] 

@@ -1,8 +1,8 @@
-# WWW::SwaggerClient::Object::User
+# AIcrowdEvaluations::Object::User
 
 ## Load the model package
 ```perl
-use WWW::SwaggerClient::Object::User;
+use AIcrowdEvaluations::Object::User;
 ```
 
 ## Properties

@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -25,9 +25,9 @@ use strict;
 use warnings;
 
 
-use_ok('WWW::SwaggerClient::Object::OrganisationQuota');
+use_ok('AIcrowdEvaluations::Object::OrganisationQuota');
 
-my $instance = WWW::SwaggerClient::Object::OrganisationQuota->new();
+my $instance = AIcrowdEvaluations::Object::OrganisationQuota->new();
 
-isa_ok($instance, 'WWW::SwaggerClient::Object::OrganisationQuota');
+isa_ok($instance, 'AIcrowdEvaluations::Object::OrganisationQuota');
 

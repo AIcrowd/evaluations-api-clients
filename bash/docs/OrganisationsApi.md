@@ -4,62 +4,30 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteOrganisationDao**](OrganisationsApi.md#deleteOrganisationDao) | **DELETE** /organisations/{organisation_id} | 
-[**getOrganisationDao**](OrganisationsApi.md#getOrganisationDao) | **GET** /organisations/{organisation_id} | 
-[**getOrganisationListDao**](OrganisationsApi.md#getOrganisationListDao) | **GET** /organisations/ | 
-[**postOrganisationListDao**](OrganisationsApi.md#postOrganisationListDao) | **POST** /organisations/ | 
-[**putOrganisationDao**](OrganisationsApi.md#putOrganisationDao) | **PUT** /organisations/{organisation_id} | 
-[**putQuotaDao**](OrganisationsApi.md#putQuotaDao) | **PUT** /organisations/addquota/{organisation_id} | 
+[**createOrganisation**](OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
+[**deleteOrganisation**](OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 
+[**getOrganisation**](OrganisationsApi.md#getOrganisation) | **GET** /organisations/{organisation_id} | 
+[**listOrganisations**](OrganisationsApi.md#listOrganisations) | **GET** /organisations/ | 
+[**updateOrganisation**](OrganisationsApi.md#updateOrganisation) | **PUT** /organisations/{organisation_id} | 
+[**updateOrganisationQuota**](OrganisationsApi.md#updateOrganisationQuota) | **PUT** /organisations/{organisation_id}/addquota | 
 
 
-## **deleteOrganisationDao**
+## **createOrganisation**
 
 
 
-Delete an Organisation
+Create a new organisation
 
 ### Example
 ```bash
- deleteOrganisationDao organisation_id=value
+aicrowd-evaluations createOrganisation X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **integer** | Organisation identifier |
-
-### Return type
-
-(empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **getOrganisationDao**
-
-
-
-Get information of an organisation
-
-### Example
-```bash
- getOrganisationDao organisation_id=value X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organisationId** | **integer** | Organisation identifier |
+ **payload** | [**Organisation**](Organisation.md) |  |
  **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type
@@ -77,15 +45,80 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getOrganisationListDao**
+## **deleteOrganisation**
 
 
 
-Get all organisations
+Delete an Organisation
 
 ### Example
 ```bash
- getOrganisationListDao X-Fields:value
+aicrowd-evaluations deleteOrganisation organisation_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisationId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **getOrganisation**
+
+
+
+Get details of an organisation
+
+### Example
+```bash
+aicrowd-evaluations getOrganisation organisation_id=value X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisationId** | **integer** |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Organisation**](Organisation.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **listOrganisations**
+
+
+
+List all organisations
+
+### Example
+```bash
+aicrowd-evaluations listOrganisations X-Fields:value
 ```
 
 ### Parameters
@@ -109,40 +142,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postOrganisationListDao**
-
-
-
-Create a new organisation
-
-### Example
-```bash
- postOrganisationListDao X-Fields:value
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Organisation**](Organisation.md) |  |
- **xFields** | **string** | An optional fields mask | [optional]
-
-### Return type
-
-[**Organisation**](Organisation.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-## **putOrganisationDao**
+## **updateOrganisation**
 
 
 
@@ -150,14 +150,14 @@ Update an Organisation
 
 ### Example
 ```bash
- putOrganisationDao organisation_id=value X-Fields:value
+aicrowd-evaluations updateOrganisation organisation_id=value X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **integer** | Organisation identifier |
+ **organisationId** | **integer** |  |
  **payload** | [**Organisation**](Organisation.md) |  |
  **xFields** | **string** | An optional fields mask | [optional]
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **putQuotaDao**
+## **updateOrganisationQuota**
 
 
 
@@ -184,14 +184,14 @@ Add or subtract quota for an organisation
 
 ### Example
 ```bash
- putQuotaDao organisation_id=value
+aicrowd-evaluations updateOrganisationQuota organisation_id=value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **integer** | Organisation identifier |
+ **organisationId** | **integer** |  |
  **payload** | [**OrganisationQuota**](OrganisationQuota.md) |  |
 
 ### Return type

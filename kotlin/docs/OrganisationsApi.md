@@ -4,85 +4,39 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteOrganisationDao**](OrganisationsApi.md#deleteOrganisationDao) | **DELETE** /organisations/{organisation_id} | 
-[**getOrganisationDao**](OrganisationsApi.md#getOrganisationDao) | **GET** /organisations/{organisation_id} | 
-[**getOrganisationListDao**](OrganisationsApi.md#getOrganisationListDao) | **GET** /organisations/ | 
-[**postOrganisationListDao**](OrganisationsApi.md#postOrganisationListDao) | **POST** /organisations/ | 
-[**putOrganisationDao**](OrganisationsApi.md#putOrganisationDao) | **PUT** /organisations/{organisation_id} | 
-[**putQuotaDao**](OrganisationsApi.md#putQuotaDao) | **PUT** /organisations/addquota/{organisation_id} | 
+[**createOrganisation**](OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
+[**deleteOrganisation**](OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 
+[**getOrganisation**](OrganisationsApi.md#getOrganisation) | **GET** /organisations/{organisation_id} | 
+[**listOrganisations**](OrganisationsApi.md#listOrganisations) | **GET** /organisations/ | 
+[**updateOrganisation**](OrganisationsApi.md#updateOrganisation) | **PUT** /organisations/{organisation_id} | 
+[**updateOrganisationQuota**](OrganisationsApi.md#updateOrganisationQuota) | **PUT** /organisations/{organisation_id}/addquota | 
 
 
-<a name="deleteOrganisationDao"></a>
-# **deleteOrganisationDao**
-> deleteOrganisationDao(organisationId)
-
-
-
-Delete an Organisation
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = OrganisationsApi()
-val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
-try {
-    apiInstance.deleteOrganisationDao(organisationId)
-} catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#deleteOrganisationDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#deleteOrganisationDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organisationId** | **kotlin.Int**| Organisation identifier |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="getOrganisationDao"></a>
-# **getOrganisationDao**
-> Organisation getOrganisationDao(organisationId, xFields)
+<a name="createOrganisation"></a>
+# **createOrganisation**
+> Organisation createOrganisation(payload, xFields)
 
 
 
-Get information of an organisation
+Create a new organisation
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
-val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
+val payload : Organisation =  // Organisation | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : Organisation = apiInstance.getOrganisationDao(organisationId, xFields)
+    val result : Organisation = apiInstance.createOrganisation(payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#getOrganisationDao")
+    println("4xx response calling OrganisationsApi#createOrganisation")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#getOrganisationDao")
+    println("5xx response calling OrganisationsApi#createOrganisation")
     e.printStackTrace()
 }
 ```
@@ -91,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **kotlin.Int**| Organisation identifier |
+ **payload** | [**Organisation**](Organisation.md)|  |
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
@@ -107,30 +61,125 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getOrganisationListDao"></a>
-# **getOrganisationListDao**
-> kotlin.Array&lt;Organisation&gt; getOrganisationListDao(xFields)
+<a name="deleteOrganisation"></a>
+# **deleteOrganisation**
+> deleteOrganisation(organisationId)
 
 
 
-Get all organisations
+Delete an Organisation
 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = OrganisationsApi()
+val organisationId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.deleteOrganisation(organisationId)
+} catch (e: ClientException) {
+    println("4xx response calling OrganisationsApi#deleteOrganisation")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling OrganisationsApi#deleteOrganisation")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisationId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getOrganisation"></a>
+# **getOrganisation**
+> Organisation getOrganisation(organisationId, xFields)
+
+
+
+Get details of an organisation
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = OrganisationsApi()
+val organisationId : kotlin.Int = 56 // kotlin.Int | 
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
+try {
+    val result : Organisation = apiInstance.getOrganisation(organisationId, xFields)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling OrganisationsApi#getOrganisation")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling OrganisationsApi#getOrganisation")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organisationId** | **kotlin.Int**|  |
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
+
+### Return type
+
+[**Organisation**](Organisation.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="listOrganisations"></a>
+# **listOrganisations**
+> kotlin.Array&lt;Organisation&gt; listOrganisations(xFields)
+
+
+
+List all organisations
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Organisation> = apiInstance.getOrganisationListDao(xFields)
+    val result : kotlin.Array<Organisation> = apiInstance.listOrganisations(xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#getOrganisationListDao")
+    println("4xx response calling OrganisationsApi#listOrganisations")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#getOrganisationListDao")
+    println("5xx response calling OrganisationsApi#listOrganisations")
     e.printStackTrace()
 }
 ```
@@ -154,58 +203,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="postOrganisationListDao"></a>
-# **postOrganisationListDao**
-> Organisation postOrganisationListDao(payload, xFields)
-
-
-
-Create a new organisation
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
-
-val apiInstance = OrganisationsApi()
-val payload : Organisation =  // Organisation | 
-val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
-try {
-    val result : Organisation = apiInstance.postOrganisationListDao(payload, xFields)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#postOrganisationListDao")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#postOrganisationListDao")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Organisation**](Organisation.md)|  |
- **xFields** | **kotlin.String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Organisation**](Organisation.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="putOrganisationDao"></a>
-# **putOrganisationDao**
-> Organisation putOrganisationDao(organisationId, payload, xFields)
+<a name="updateOrganisation"></a>
+# **updateOrganisation**
+> Organisation updateOrganisation(organisationId, payload, xFields)
 
 
 
@@ -214,21 +214,21 @@ Update an Organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
-val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
+val organisationId : kotlin.Int = 56 // kotlin.Int | 
 val payload : Organisation =  // Organisation | 
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : Organisation = apiInstance.putOrganisationDao(organisationId, payload, xFields)
+    val result : Organisation = apiInstance.updateOrganisation(organisationId, payload, xFields)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#putOrganisationDao")
+    println("4xx response calling OrganisationsApi#updateOrganisation")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#putOrganisationDao")
+    println("5xx response calling OrganisationsApi#updateOrganisation")
     e.printStackTrace()
 }
 ```
@@ -237,7 +237,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **kotlin.Int**| Organisation identifier |
+ **organisationId** | **kotlin.Int**|  |
  **payload** | [**Organisation**](Organisation.md)|  |
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
@@ -254,9 +254,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="putQuotaDao"></a>
-# **putQuotaDao**
-> putQuotaDao(organisationId, payload)
+<a name="updateOrganisationQuota"></a>
+# **updateOrganisationQuota**
+> updateOrganisationQuota(organisationId, payload)
 
 
 
@@ -265,19 +265,19 @@ Add or subtract quota for an organisation
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
 
 val apiInstance = OrganisationsApi()
-val organisationId : kotlin.Int = 56 // kotlin.Int | Organisation identifier
+val organisationId : kotlin.Int = 56 // kotlin.Int | 
 val payload : OrganisationQuota =  // OrganisationQuota | 
 try {
-    apiInstance.putQuotaDao(organisationId, payload)
+    apiInstance.updateOrganisationQuota(organisationId, payload)
 } catch (e: ClientException) {
-    println("4xx response calling OrganisationsApi#putQuotaDao")
+    println("4xx response calling OrganisationsApi#updateOrganisationQuota")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling OrganisationsApi#putQuotaDao")
+    println("5xx response calling OrganisationsApi#updateOrganisationQuota")
     e.printStackTrace()
 }
 ```
@@ -286,7 +286,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organisationId** | **kotlin.Int**| Organisation identifier |
+ **organisationId** | **kotlin.Int**|  |
  **payload** | [**OrganisationQuota**](OrganisationQuota.md)|  |
 
 ### Return type

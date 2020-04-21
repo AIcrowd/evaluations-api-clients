@@ -1,7 +1,7 @@
 /* 
- * Evaluations API
+ * AIcrowd Evaluations API
  *
- * API to create and evaluate custom challenges
+ * API to create and evaluate custom challenges on AIcrowd!
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -14,10 +14,10 @@ use serde_json::Value;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Login {
-  /// The email address
+  /// Email address of the user
   #[serde(rename = "email")]
   email: String,
-  /// The user password 
+  /// Password corresponding to the Email address
   #[serde(rename = "password")]
   password: String
 }

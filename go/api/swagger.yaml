@@ -1,25 +1,23 @@
 ---
 swagger: "2.0"
 info:
-  description: "API to create and evaluate custom challenges"
+  description: "API to create and evaluate custom challenges on AIcrowd!"
   version: "1.0.0"
-  title: "Evaluations API"
+  title: "AIcrowd Evaluations API"
 basePath: "/v1"
 tags:
 - name: "auth"
-  description: "authentication related operations"
-- name: "clusters"
-  description: "Controller for cluster."
-- name: "argo"
-  description: "Controller for argo feedback."
+  description: "Login and Logout operations."
 - name: "graders"
-  description: "Controller for grader."
-- name: "organisations"
-  description: "Controller for organisation."
+  description: "Manage your graders."
 - name: "submissions"
-  description: "Controller for submissions."
+  description: "Manage your submissions."
+- name: "clusters"
+  description: "Manage your k8s cluster."
+- name: "organisations"
+  description: "Manage your organisation details (Admin)."
 - name: "users"
-  description: "Controller for user."
+  description: "Manage users (Admin)."
 consumes:
 - "application/json"
 produces:
@@ -27,91 +25,12 @@ produces:
 security:
 - api_key: []
 paths:
-  /argo/graders/{grader_id}:
-    post:
-      tags:
-      - "argo"
-      description: "Update the grader details"
-      operationId: "post_grader_feedback_dao"
-      parameters:
-      - name: "grader_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "GraderId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/GraderFeedback"
-        x-exportParamName: "Payload"
-      responses:
-        "200":
-          description: "Success"
-        "400":
-          description: "Bad inputs"
-        "404":
-          description: "Grader not found"
-  /argo/submissions/{submission_id}:
-    post:
-      tags:
-      - "argo"
-      description: "Update the submission details"
-      operationId: "post_submission_feedback_dao"
-      parameters:
-      - name: "submission_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "SubmissionId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/SubmissionFeedback"
-        x-exportParamName: "Payload"
-      responses:
-        "200":
-          description: "Success"
-        "400":
-          description: "Bad inputs"
-        "404":
-          description: "Grader not found"
-  /argo/{model_name}/{object_id}:
-    post:
-      tags:
-      - "argo"
-      description: "Update the status of an object"
-      operationId: "post_generic_feedback_contract"
-      parameters:
-      - name: "model_name"
-        in: "path"
-        required: true
-        type: "string"
-        x-exportParamName: "ModelName"
-      - name: "object_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "ObjectId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/GenericFeedback"
-        x-exportParamName: "Payload"
-      responses:
-        "200":
-          description: "Success"
-        "400":
-          description: "Bad inputs"
-        "404":
-          description: "Object not found"
   /auth/login:
     post:
       tags:
       - "auth"
-      operationId: "user login"
+      description: "Log in a user with email and password."
+      operationId: "Login"
       parameters:
       - in: "body"
         name: "payload"
@@ -139,7 +58,8 @@ paths:
     post:
       tags:
       - "auth"
-      operationId: "logout a user"
+      description: "Invalidate the current authorization token."
+      operationId: "Logout"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -158,8 +78,8 @@ paths:
     get:
       tags:
       - "clusters"
-      description: "Get all clusters"
-      operationId: "get_grader_list_dao"
+      description: "List all clusters available"
+      operationId: "ListClusters"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -179,8 +99,8 @@ paths:
     post:
       tags:
       - "clusters"
-      description: "Add a new cluster"
-      operationId: "post_grader_list_dao"
+      description: "Add a new cluster to AIcrowd and install necessary dependencies"
+      operationId: "CreateCluster"
       parameters:
       - in: "body"
         name: "payload"
@@ -207,8 +127,8 @@ paths:
     get:
       tags:
       - "clusters"
-      description: "Get information of a cluster"
-      operationId: "get_cluster_dao"
+      description: "Get details of a cluster by its ID"
+      operationId: "GetCluster"
       parameters:
       - name: "cluster_id"
         in: "path"
@@ -233,8 +153,8 @@ paths:
     delete:
       tags:
       - "clusters"
-      description: "Delete a cluster"
-      operationId: "delete_cluster_dao"
+      description: "Delete a cluster by its ID"
+      operationId: "DeleteCluster"
       parameters:
       - name: "cluster_id"
         in: "path"
@@ -250,8 +170,8 @@ paths:
     get:
       tags:
       - "graders"
-      description: "Get all grader"
-      operationId: "get_grader_list_dao"
+      description: "List all graders available"
+      operationId: "ListGraders"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -272,71 +192,8 @@ paths:
       tags:
       - "graders"
       description: "Create a new grader"
-      operationId: "post_grader_list_dao"
+      operationId: "CreateGrader"
       parameters:
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/Grader"
-        x-exportParamName: "Payload"
-      - name: "X-Fields"
-        in: "header"
-        description: "An optional fields mask"
-        required: false
-        type: "string"
-        format: "mask"
-        x-exportParamName: "XFields"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Grader"
-        "400":
-          description: "Wrong code access mode"
-        "403":
-          description: "Cluster not ready"
-        "404":
-          description: "Cluster not found"
-  /graders/{grader_id}:
-    get:
-      tags:
-      - "graders"
-      description: "Get information of a grader"
-      operationId: "get_grader_dao"
-      parameters:
-      - name: "grader_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "GraderId"
-      - name: "X-Fields"
-        in: "header"
-        description: "An optional fields mask"
-        required: false
-        type: "string"
-        format: "mask"
-        x-exportParamName: "XFields"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Grader"
-        "404":
-          description: "Grader not found"
-    put:
-      tags:
-      - "graders"
-      description: "Update a grader"
-      operationId: "put_grader_dao"
-      parameters:
-      - name: "grader_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "GraderId"
       - in: "body"
         name: "payload"
         required: true
@@ -358,13 +215,42 @@ paths:
             $ref: "#/definitions/Grader"
         "400":
           description: "Invalid inputs"
+        "403":
+          description: "Cluster not ready"
+        "404":
+          description: "Cluster not found"
+  /graders/{grader_id}:
+    get:
+      tags:
+      - "graders"
+      description: "Get details of a grader by its ID"
+      operationId: "GetGrader"
+      parameters:
+      - name: "grader_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "GraderId"
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Grader"
         "404":
           description: "Grader not found"
     delete:
       tags:
       - "graders"
-      description: "Delete a grader"
-      operationId: "delete_grader_dao"
+      description: "Delete a grader by its ID"
+      operationId: "DeleteGrader"
       parameters:
       - name: "grader_id"
         in: "path"
@@ -380,8 +266,8 @@ paths:
     get:
       tags:
       - "organisations"
-      description: "Get all organisations"
-      operationId: "get_organisation_list_dao"
+      description: "List all organisations"
+      operationId: "ListOrganisations"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -402,7 +288,7 @@ paths:
       tags:
       - "organisations"
       description: "Create a new organisation"
-      operationId: "post_organisation_list_dao"
+      operationId: "CreateOrganisation"
       parameters:
       - in: "body"
         name: "payload"
@@ -427,40 +313,15 @@ paths:
           description: "Invalid inputs"
         "409":
           description: "Organisation already exists"
-  /organisations/addquota/{organisation_id}:
-    put:
-      tags:
-      - "organisations"
-      description: "Add or subtract quota for an organisation"
-      operationId: "put_quota_dao"
-      parameters:
-      - name: "organisation_id"
-        in: "path"
-        description: "Organisation identifier"
-        required: true
-        type: "integer"
-        x-exportParamName: "OrganisationId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/OrganisationQuota"
-        x-exportParamName: "Payload"
-      responses:
-        "200":
-          description: "Success"
-        "404":
-          description: "Organisation not found."
   /organisations/{organisation_id}:
     get:
       tags:
       - "organisations"
-      description: "Get information of an organisation"
-      operationId: "get_organisation_dao"
+      description: "Get details of an organisation"
+      operationId: "GetOrganisation"
       parameters:
       - name: "organisation_id"
         in: "path"
-        description: "Organisation identifier"
         required: true
         type: "integer"
         x-exportParamName: "OrganisationId"
@@ -483,11 +344,10 @@ paths:
       tags:
       - "organisations"
       description: "Update an Organisation"
-      operationId: "put_organisation_dao"
+      operationId: "UpdateOrganisation"
       parameters:
       - name: "organisation_id"
         in: "path"
-        description: "Organisation identifier"
         required: true
         type: "integer"
         x-exportParamName: "OrganisationId"
@@ -518,11 +378,10 @@ paths:
       tags:
       - "organisations"
       description: "Delete an Organisation"
-      operationId: "delete_organisation_dao"
+      operationId: "DeleteOrganisation"
       parameters:
       - name: "organisation_id"
         in: "path"
-        description: "Organisation identifier"
         required: true
         type: "integer"
         x-exportParamName: "OrganisationId"
@@ -531,12 +390,35 @@ paths:
           description: "Success"
         "404":
           description: "Organisation not found"
+  /organisations/{organisation_id}/addquota:
+    put:
+      tags:
+      - "organisations"
+      description: "Add or subtract quota for an organisation"
+      operationId: "UpdateOrganisationQuota"
+      parameters:
+      - name: "organisation_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "OrganisationId"
+      - in: "body"
+        name: "payload"
+        required: true
+        schema:
+          $ref: "#/definitions/OrganisationQuota"
+        x-exportParamName: "Payload"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Organisation not found."
   /submissions/:
     get:
       tags:
       - "submissions"
-      description: "Get all submissions"
-      operationId: "get_submission_list_dao"
+      description: "List all submissions available"
+      operationId: "ListSubmissions"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -557,7 +439,7 @@ paths:
       tags:
       - "submissions"
       description: "Make a new submission"
-      operationId: "post_submission_list_dao"
+      operationId: "CreateSubmission"
       parameters:
       - in: "body"
         name: "payload"
@@ -586,8 +468,8 @@ paths:
     get:
       tags:
       - "submissions"
-      description: "Get details of a submission"
-      operationId: "get_submission_dao"
+      description: "Get details of a submission by its ID"
+      operationId: "GetSubmission"
       parameters:
       - name: "submission_id"
         in: "path"
@@ -612,8 +494,8 @@ paths:
     delete:
       tags:
       - "submissions"
-      description: "Stop evaluation of a submission"
-      operationId: "delete_submission_dao"
+      description: "Stop evaluation of a submission and delete it"
+      operationId: "DeleteSubmission"
       parameters:
       - name: "submission_id"
         in: "path"
@@ -625,12 +507,29 @@ paths:
           description: "Success"
         "404":
           description: "Submission not found"
+  /submissions/{submission_id}/data:
+    get:
+      tags:
+      - "submissions"
+      description: "Get the submission data by submission ID"
+      operationId: "GetSubmissionData"
+      parameters:
+      - name: "submission_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "SubmissionId"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Submission not found"
   /users/:
     get:
       tags:
       - "users"
       description: "Get all user"
-      operationId: "get_user_list_dao"
+      operationId: "ListUsers"
       parameters:
       - name: "X-Fields"
         in: "header"
@@ -651,7 +550,7 @@ paths:
       tags:
       - "users"
       description: "Create a new user"
-      operationId: "post_user_list_dao"
+      operationId: "CreateUser"
       parameters:
       - in: "body"
         name: "payload"
@@ -674,40 +573,15 @@ paths:
             $ref: "#/definitions/User"
         "400":
           description: "Invalid inputs"
-  /users/addquota/{user_id}:
-    put:
-      tags:
-      - "users"
-      description: "Add or subtract quota for a user"
-      operationId: "put_quota_dao"
-      parameters:
-      - name: "user_id"
-        in: "path"
-        description: "User identifier"
-        required: true
-        type: "integer"
-        x-exportParamName: "UserId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/UserQuota"
-        x-exportParamName: "Payload"
-      responses:
-        "200":
-          description: "Success"
-        "404":
-          description: "User not found"
   /users/{user_id}:
     get:
       tags:
       - "users"
       description: "Get information of a user"
-      operationId: "get_user_dao"
+      operationId: "GetUser"
       parameters:
       - name: "user_id"
         in: "path"
-        description: "User identifier"
         required: true
         type: "integer"
         x-exportParamName: "UserId"
@@ -730,11 +604,10 @@ paths:
       tags:
       - "users"
       description: "Update a user"
-      operationId: "put_user_dao"
+      operationId: "UpdateUser"
       parameters:
       - name: "user_id"
         in: "path"
-        description: "User identifier"
         required: true
         type: "integer"
         x-exportParamName: "UserId"
@@ -765,14 +638,36 @@ paths:
       tags:
       - "users"
       description: "Delete a user"
-      operationId: "delete_user_dao"
+      operationId: "DeleteUser"
       parameters:
       - name: "user_id"
         in: "path"
-        description: "User identifier"
         required: true
         type: "integer"
         x-exportParamName: "UserId"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "User not found"
+  /users/{user_id}/addquota:
+    put:
+      tags:
+      - "users"
+      description: "Add or subtract quota for a user"
+      operationId: "UpdateUserQuota"
+      parameters:
+      - name: "user_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "UserId"
+      - in: "body"
+        name: "payload"
+        required: true
+        schema:
+          $ref: "#/definitions/UserQuota"
+        x-exportParamName: "Payload"
       responses:
         "200":
           description: "Success"
@@ -792,10 +687,10 @@ definitions:
     properties:
       email:
         type: "string"
-        description: "The email address"
+        description: "Email address of the user"
       password:
         type: "string"
-        description: "The user password "
+        description: "Password corresponding to the Email address"
     example:
       password: "password"
       email: "email"
@@ -804,7 +699,7 @@ definitions:
     properties:
       Authorization:
         type: "string"
-        description: "Authorization token that should be used in the headers"
+        description: "API Authorization token that should be used in the headers"
     example:
       Authorization: "Authorization"
   AuthLogout:
@@ -815,126 +710,10 @@ definitions:
         description: "Logout message"
     example:
       message: "message"
-  Cluster:
-    type: "object"
-    required:
-    - "auth_token"
-    - "remote_address"
-    properties:
-      id:
-        type: "integer"
-        description: "ID"
-        readOnly: true
-      created:
-        type: "string"
-        format: "date-time"
-        description: "Creation time"
-        readOnly: true
-      updated:
-        type: "string"
-        format: "date-time"
-        description: "Last updation time"
-        readOnly: true
-      remote_address:
-        type: "string"
-        description: "Remote address used to connect to the cluster"
-      auth_token:
-        type: "string"
-        description: "Authentication needed for the cluster"
-      storage_class:
-        type: "string"
-        description: "Storage class to use for datasets"
-      status:
-        type: "boolean"
-        description: "Readiness of the cluster"
-        readOnly: true
-      meta:
-        type: "object"
-        description: "Additional metadata"
-        readOnly: true
-        properties: {}
-      user_id:
-        type: "integer"
-        description: "User ID"
-        readOnly: true
-      organisation_id:
-        type: "integer"
-        description: "Organisation ID"
-        readOnly: true
-    example:
-      organisation_id: 1
-      storage_class: "storage_class"
-      user_id: 6
-      created: "2000-01-23T04:56:07.000+00:00"
-      meta: "{}"
-      id: 0
-      remote_address: "remote_address"
-      auth_token: "auth_token"
-      updated: "2000-01-23T04:56:07.000+00:00"
-      status: true
-    x-mask: "{id,created,updated,remote_address,storage_class,status,deleted,user_id,organisation_id}"
-  GraderFeedback:
-    type: "object"
-    required:
-    - "status"
-    - "workflow_spec"
-    properties:
-      status:
-        type: "boolean"
-        description: "Status of the grader"
-      workflow_spec:
-        type: "string"
-        description: "Serialized YAML workflow spec"
-    example:
-      workflow_spec: "workflow_spec"
-      status: true
-  SubmissionFeedback:
-    type: "object"
-    required:
-    - "logs"
-    - "outputs"
-    - "score"
-    - "status"
-    properties:
-      status:
-        type: "string"
-        description: "Status of the submission"
-      outputs:
-        type: "string"
-        description: "S3 link of the outputs"
-      score:
-        type: "number"
-        description: "Additional outputs"
-      logs:
-        type: "string"
-        description: "Output on stdout for run-evaluator.run-submitted-code step"
-    example:
-      outputs: "outputs"
-      score: 0.80082819046101150206595775671303272247314453125
-      logs: "logs"
-      status: "status"
-  GenericFeedback:
-    type: "object"
-    required:
-    - "status"
-    properties:
-      status:
-        type: "boolean"
-        description: "Status of the operation"
-      meta:
-        type: "object"
-        description: "Additional metadata to add"
-        properties: {}
-    example:
-      meta: "{}"
-      status: true
   Grader:
     type: "object"
     required:
-    - "code_access_mode"
-    - "docker_password"
-    - "docker_username"
-    - "evaluation_code"
+    - "evaluator_repo"
     properties:
       id:
         type: "integer"
@@ -950,37 +729,38 @@ definitions:
         format: "date-time"
         description: "Last updation time"
         readOnly: true
-      dataset_url:
-        type: "string"
-        description: "S3 link of the Dataset"
-      code_access_mode:
-        type: "string"
-        description: "git/http"
+      dataset:
+        type: "object"
+        description: "Dataset metadata"
+        readOnly: true
+        properties: {}
       cluster_id:
         type: "integer"
         description: "Cluster to run the grader on"
-      docker_username:
+      description:
         type: "string"
-        description: "Docker registry username"
-      docker_password:
-        type: "string"
-        description: "Docker registry password"
-      docker_registry:
-        type: "string"
-        description: "Docker registry URL. Dockerhub is used by default."
+        description: "Description of the grader"
+        readOnly: true
       workflow_spec:
         type: "object"
         description: "Argo workflow template spec"
         readOnly: true
         properties: {}
-      evaluation_code:
+      evaluator_repo:
         type: "string"
-        description: "S3 link to the zip file containing the code that will be used\
+        description: "Git URL of the repository containing the code that will be used\
           \ for the evaluation"
-      storage_capacity:
+      evaluator_repo_tag:
         type: "string"
-        description: "Size of the dataset partition to request. Please provide at\
-          \ least 2x of the size of the dataset."
+        description: "Git branch/tag that should be used with the evaluator repository."
+      name:
+        type: "string"
+        description: "Name of the grader"
+        readOnly: true
+      notifications:
+        type: "string"
+        description: "Notifications available for the grader."
+        readOnly: true
       logs:
         type: "object"
         description: "Logs from argo workflow"
@@ -995,6 +775,16 @@ definitions:
         type: "string"
         description: "Status of the grader - True if it ready, False otherwise"
         readOnly: true
+      secrets:
+        type: "object"
+        description: "List of key:value pair of secrets that will be replace `{key}`\
+          \ in aicrowd.yaml"
+        properties: {}
+      submission_types:
+        type: "object"
+        description: "Type of submissions allowed on the grader"
+        readOnly: true
+        properties: {}
       user_id:
         type: "integer"
         description: "User ID"
@@ -1004,75 +794,29 @@ definitions:
         description: "Organisation ID"
         readOnly: true
     example:
-      storage_capacity: "storage_capacity"
+      evaluator_repo: "evaluator_repo"
+      evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
-      docker_registry: "docker_registry"
+      description: "description"
+      submission_types: "{}"
       workflow_spec: "{}"
-      code_access_mode: "code_access_mode"
+      secrets: "{}"
       organisation_id: 5
       cluster_id: 6
-      docker_password: "docker_password"
       user_id: 1
       meta: "{}"
-      id: 0
-      dataset_url: "dataset_url"
-      docker_username: "docker_username"
-      evaluation_code: "evaluation_code"
-      updated: "2000-01-23T04:56:07.000+00:00"
-      logs: "{}"
-      status: "status"
-    x-mask: "{id,created,updated,dataset_url,code_access_mode,code_access_auth_key,cluster_id,docker_username,docker_password,docker_registry,evaluation_code,storage_capacity,status,deleted,user_id,organisation_id}"
-  Organisation:
-    type: "object"
-    required:
-    - "name"
-    - "poc_email"
-    properties:
-      id:
-        type: "integer"
-        description: "ID"
-        readOnly: true
-      name:
-        type: "string"
-        description: "Organisation Name"
-      poc_email:
-        type: "string"
-        description: "Point of contact email"
-      created_on:
-        type: "string"
-        format: "date-time"
-        description: "Creation Time"
-        readOnly: true
-      total_quota:
-        type: "integer"
-        description: "Total assigned evaluation quota"
-        readOnly: true
-      quota:
-        type: "integer"
-        description: "Available evaluation quota"
-        readOnly: true
-    example:
-      total_quota: 6
-      created_on: "2000-01-23T04:56:07.000+00:00"
-      quota: 1
       name: "name"
       id: 0
-      poc_email: "poc_email"
-  OrganisationQuota:
-    type: "object"
-    required:
-    - "quota"
-    properties:
-      quota:
-        type: "integer"
-        description: "Quota to be added or reduced"
-    example:
-      quota: 0
+      updated: "2000-01-23T04:56:07.000+00:00"
+      dataset: "{}"
+      logs: "{}"
+      notifications: "notifications"
+      status: "status"
+    x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,submission_types,deleted,user_id,organisation_id}"
   Submissions:
     type: "object"
     required:
     - "grader_id"
-    - "submission_code"
     properties:
       id:
         type: "integer"
@@ -1097,7 +841,7 @@ definitions:
       grader_id:
         type: "integer"
         description: "Grader identifier"
-      submission_code:
+      submission_data:
         type: "object"
         description: "URL to the submission code"
         properties: {}
@@ -1147,8 +891,8 @@ definitions:
       participant_id: 6
       started: "2000-01-23T04:56:07.000+00:00"
       grader_id: 5
+      submission_data: "{}"
       additional_outputs: "{}"
-      submission_code: "{}"
       output: "output"
       round_id: 1
       organisation_id: 2
@@ -1159,7 +903,125 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "{}"
       status: "status"
-    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_code,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_data,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
+  Cluster:
+    type: "object"
+    required:
+    - "auth_token"
+    - "docker_password"
+    - "docker_username"
+    - "remote_address"
+    properties:
+      id:
+        type: "integer"
+        description: "ID"
+        readOnly: true
+      created:
+        type: "string"
+        format: "date-time"
+        description: "Creation time"
+        readOnly: true
+      updated:
+        type: "string"
+        format: "date-time"
+        description: "Last updation time"
+        readOnly: true
+      remote_address:
+        type: "string"
+        description: "Remote address used to connect to the cluster"
+      auth_token:
+        type: "string"
+        description: "Authentication needed for the cluster"
+      docker_username:
+        type: "string"
+        description: "Docker registry username"
+      docker_password:
+        type: "string"
+        description: "Docker registry password"
+      docker_registry:
+        type: "string"
+        description: "Docker registry URL. Dockerhub is used by default."
+      storage_class:
+        type: "string"
+        description: "Storage class to use for datasets"
+      status:
+        type: "boolean"
+        description: "Readiness of the cluster"
+        readOnly: true
+      meta:
+        type: "object"
+        description: "Additional metadata"
+        readOnly: true
+        properties: {}
+      user_id:
+        type: "integer"
+        description: "User ID"
+        readOnly: true
+      organisation_id:
+        type: "integer"
+        description: "Organisation ID"
+        readOnly: true
+    example:
+      storage_class: "storage_class"
+      created: "2000-01-23T04:56:07.000+00:00"
+      docker_registry: "docker_registry"
+      remote_address: "remote_address"
+      organisation_id: 1
+      docker_password: "docker_password"
+      user_id: 6
+      meta: "{}"
+      id: 0
+      auth_token: "auth_token"
+      docker_username: "docker_username"
+      updated: "2000-01-23T04:56:07.000+00:00"
+      status: true
+    x-mask: "{id,created,updated,remote_address,docker_username,storage_class,status,deleted,user_id,organisation_id}"
+  Organisation:
+    type: "object"
+    required:
+    - "name"
+    - "poc_email"
+    properties:
+      id:
+        type: "integer"
+        description: "ID"
+        readOnly: true
+      name:
+        type: "string"
+        description: "Organisation Name"
+      poc_email:
+        type: "string"
+        description: "Point of contact email"
+      created_on:
+        type: "string"
+        format: "date-time"
+        description: "Creation Time"
+        readOnly: true
+      total_quota:
+        type: "integer"
+        description: "Total assigned evaluation quota"
+        readOnly: true
+      quota:
+        type: "integer"
+        description: "Available evaluation quota"
+        readOnly: true
+    example:
+      total_quota: 6
+      created_on: "2000-01-23T04:56:07.000+00:00"
+      quota: 1
+      name: "name"
+      id: 0
+      poc_email: "poc_email"
+  OrganisationQuota:
+    type: "object"
+    required:
+    - "quota"
+    properties:
+      quota:
+        type: "integer"
+        description: "Quota to be added or reduced"
+    example:
+      quota: 0
   User:
     type: "object"
     required:

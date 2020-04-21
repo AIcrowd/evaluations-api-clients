@@ -4,28 +4,86 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSubmissionDao**](SubmissionsApi.md#deleteSubmissionDao) | **DELETE** /submissions/{submission_id} | 
-[**getSubmissionDao**](SubmissionsApi.md#getSubmissionDao) | **GET** /submissions/{submission_id} | 
-[**getSubmissionListDao**](SubmissionsApi.md#getSubmissionListDao) | **GET** /submissions/ | 
-[**postSubmissionListDao**](SubmissionsApi.md#postSubmissionListDao) | **POST** /submissions/ | 
+[**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
+[**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
+[**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
-<a name="deleteSubmissionDao"></a>
-# **deleteSubmissionDao**
-> deleteSubmissionDao(submissionId)
+<a name="createSubmission"></a>
+# **createSubmission**
+> Submissions createSubmission(payload, xFields)
 
 
 
-Stop evaluation of a submission
+Make a new submission
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SubmissionsApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+SubmissionsApi apiInstance = new SubmissionsApi();
+Submissions payload = new Submissions(); // Submissions | 
+String xFields = "xFields_example"; // String | An optional fields mask
+try {
+    Submissions result = apiInstance.createSubmission(payload, xFields);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SubmissionsApi#createSubmission");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Submissions**](Submissions.md)|  |
+ **xFields** | **String**| An optional fields mask | [optional]
+
+### Return type
+
+[**Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="deleteSubmission"></a>
+# **deleteSubmission**
+> deleteSubmission(submissionId)
+
+
+
+Stop evaluation of a submission and delete it
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -38,9 +96,9 @@ api_key.setApiKey("YOUR API KEY");
 SubmissionsApi apiInstance = new SubmissionsApi();
 Integer submissionId = 56; // Integer | 
 try {
-    apiInstance.deleteSubmissionDao(submissionId);
+    apiInstance.deleteSubmission(submissionId);
 } catch (ApiException e) {
-    System.err.println("Exception when calling SubmissionsApi#deleteSubmissionDao");
+    System.err.println("Exception when calling SubmissionsApi#deleteSubmission");
     e.printStackTrace();
 }
 ```
@@ -64,22 +122,22 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getSubmissionDao"></a>
-# **getSubmissionDao**
-> Submissions getSubmissionDao(submissionId, xFields)
+<a name="getSubmission"></a>
+# **getSubmission**
+> Submissions getSubmission(submissionId, xFields)
 
 
 
-Get details of a submission
+Get details of a submission by its ID
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SubmissionsApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -93,10 +151,10 @@ SubmissionsApi apiInstance = new SubmissionsApi();
 Integer submissionId = 56; // Integer | 
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    Submissions result = apiInstance.getSubmissionDao(submissionId, xFields);
+    Submissions result = apiInstance.getSubmission(submissionId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling SubmissionsApi#getSubmissionDao");
+    System.err.println("Exception when calling SubmissionsApi#getSubmission");
     e.printStackTrace();
 }
 ```
@@ -121,22 +179,76 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getSubmissionListDao"></a>
-# **getSubmissionListDao**
-> List&lt;Submissions&gt; getSubmissionListDao(xFields)
+<a name="getSubmissionData"></a>
+# **getSubmissionData**
+> getSubmissionData(submissionId)
 
 
 
-Get all submissions
+Get the submission data by submission ID
 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SubmissionsApi;
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+SubmissionsApi apiInstance = new SubmissionsApi();
+Integer submissionId = 56; // Integer | 
+try {
+    apiInstance.getSubmissionData(submissionId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SubmissionsApi#getSubmissionData");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="listSubmissions"></a>
+# **listSubmissions**
+> List&lt;Submissions&gt; listSubmissions(xFields)
+
+
+
+List all submissions available
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -149,10 +261,10 @@ api_key.setApiKey("YOUR API KEY");
 SubmissionsApi apiInstance = new SubmissionsApi();
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Submissions> result = apiInstance.getSubmissionListDao(xFields);
+    List<Submissions> result = apiInstance.listSubmissions(xFields);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling SubmissionsApi#getSubmissionListDao");
+    System.err.println("Exception when calling SubmissionsApi#listSubmissions");
     e.printStackTrace();
 }
 ```
@@ -166,63 +278,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;Submissions&gt;**](Submissions.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="postSubmissionListDao"></a>
-# **postSubmissionListDao**
-> Submissions postSubmissionListDao(payload, xFields)
-
-
-
-Make a new submission
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SubmissionsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: api_key
-ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-api_key.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.setApiKeyPrefix("Token");
-
-SubmissionsApi apiInstance = new SubmissionsApi();
-Submissions payload = new Submissions(); // Submissions | 
-String xFields = "xFields_example"; // String | An optional fields mask
-try {
-    Submissions result = apiInstance.postSubmissionListDao(payload, xFields);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling SubmissionsApi#postSubmissionListDao");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Submissions**](Submissions.md)|  |
- **xFields** | **String**| An optional fields mask | [optional]
-
-### Return type
-
-[**Submissions**](Submissions.md)
 
 ### Authorization
 

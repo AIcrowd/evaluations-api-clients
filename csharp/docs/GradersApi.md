@@ -1,35 +1,101 @@
-# IO.Swagger.Api.GradersApi
+# Com.AIcrowd.Evaluations.Api.GradersApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteGraderDao**](GradersApi.md#deletegraderdao) | **DELETE** /graders/{grader_id} | 
-[**GetGraderDao**](GradersApi.md#getgraderdao) | **GET** /graders/{grader_id} | 
-[**GetGraderListDao**](GradersApi.md#getgraderlistdao) | **GET** /graders/ | 
-[**PostGraderListDao**](GradersApi.md#postgraderlistdao) | **POST** /graders/ | 
-[**PutGraderDao**](GradersApi.md#putgraderdao) | **PUT** /graders/{grader_id} | 
+[**CreateGrader**](GradersApi.md#creategrader) | **POST** /graders/ | 
+[**DeleteGrader**](GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
+[**GetGrader**](GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
+[**ListGraders**](GradersApi.md#listgraders) | **GET** /graders/ | 
 
 
-<a name="deletegraderdao"></a>
-# **DeleteGraderDao**
-> void DeleteGraderDao (int? graderId)
+<a name="creategrader"></a>
+# **CreateGrader**
+> Grader CreateGrader (Grader payload, string xFields = null)
 
 
 
-Delete a grader
+Create a new grader
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class DeleteGraderDaoExample
+    public class CreateGraderExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var payload = new Grader(); // Grader | 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
+
+            try
+            {
+                Grader result = apiInstance.CreateGrader(payload, xFields);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.CreateGrader: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  | 
+ **xFields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="deletegrader"></a>
+# **DeleteGrader**
+> void DeleteGrader (int? graderId)
+
+
+
+Delete a grader by its ID
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class DeleteGraderExample
     {
         public void main()
         {
@@ -43,11 +109,11 @@ namespace Example
 
             try
             {
-                apiInstance.DeleteGraderDao(graderId);
+                apiInstance.DeleteGrader(graderId);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling GradersApi.DeleteGraderDao: " + e.Message );
+                Debug.Print("Exception when calling GradersApi.DeleteGrader: " + e.Message );
             }
         }
     }
@@ -75,25 +141,25 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getgraderdao"></a>
-# **GetGraderDao**
-> Grader GetGraderDao (int? graderId, string xFields = null)
+<a name="getgrader"></a>
+# **GetGrader**
+> Grader GetGrader (int? graderId, string xFields = null)
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class GetGraderDaoExample
+    public class GetGraderExample
     {
         public void main()
         {
@@ -108,12 +174,12 @@ namespace Example
 
             try
             {
-                Grader result = apiInstance.GetGraderDao(graderId, xFields);
+                Grader result = apiInstance.GetGrader(graderId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling GradersApi.GetGraderDao: " + e.Message );
+                Debug.Print("Exception when calling GradersApi.GetGrader: " + e.Message );
             }
         }
     }
@@ -142,25 +208,25 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getgraderlistdao"></a>
-# **GetGraderListDao**
-> List<Grader> GetGraderListDao (string xFields = null)
+<a name="listgraders"></a>
+# **ListGraders**
+> List<Grader> ListGraders (string xFields = null)
 
 
 
-Get all grader
+List all graders available
 
 ### Example
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
 
 namespace Example
 {
-    public class GetGraderListDaoExample
+    public class ListGradersExample
     {
         public void main()
         {
@@ -174,12 +240,12 @@ namespace Example
 
             try
             {
-                List&lt;Grader&gt; result = apiInstance.GetGraderListDao(xFields);
+                List&lt;Grader&gt; result = apiInstance.ListGraders(xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling GradersApi.GetGraderListDao: " + e.Message );
+                Debug.Print("Exception when calling GradersApi.ListGraders: " + e.Message );
             }
         }
     }
@@ -195,142 +261,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List<Grader>**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="postgraderlistdao"></a>
-# **PostGraderListDao**
-> Grader PostGraderListDao (Grader payload, string xFields = null)
-
-
-
-Create a new grader
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class PostGraderListDaoExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
-
-            var apiInstance = new GradersApi();
-            var payload = new Grader(); // Grader | 
-            var xFields = xFields_example;  // string | An optional fields mask (optional) 
-
-            try
-            {
-                Grader result = apiInstance.PostGraderListDao(payload, xFields);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling GradersApi.PostGraderListDao: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **xFields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="putgraderdao"></a>
-# **PutGraderDao**
-> Grader PutGraderDao (int? graderId, Grader payload, string xFields = null)
-
-
-
-Update a grader
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class PutGraderDaoExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
-
-            var apiInstance = new GradersApi();
-            var graderId = 56;  // int? | 
-            var payload = new Grader(); // Grader | 
-            var xFields = xFields_example;  // string | An optional fields mask (optional) 
-
-            try
-            {
-                Grader result = apiInstance.PutGraderDao(graderId, payload, xFields);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling GradersApi.PutGraderDao: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **graderId** | **int?**|  | 
- **payload** | [**Grader**](Grader.md)|  | 
- **xFields** | **string**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

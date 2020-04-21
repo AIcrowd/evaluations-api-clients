@@ -1,8 +1,8 @@
 =begin comment
 
-Evaluations API
+AIcrowd Evaluations API
 
-API to create and evaluate custom challenges
+API to create and evaluate custom challenges on AIcrowd!
 
 OpenAPI spec version: 1.0.0
 
@@ -24,62 +24,62 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('WWW::SwaggerClient::OrganisationsApi');
+use_ok('AIcrowdEvaluations::OrganisationsApi');
 
-my $api = WWW::SwaggerClient::OrganisationsApi->new();
-isa_ok($api, 'WWW::SwaggerClient::OrganisationsApi');
-
-#
-# delete_organisation_dao test
-#
-{
-    my $organisation_id = undef; # replace NULL with a proper value
-    my $result = $api->delete_organisation_dao(organisation_id => $organisation_id);
-}
+my $api = AIcrowdEvaluations::OrganisationsApi->new();
+isa_ok($api, 'AIcrowdEvaluations::OrganisationsApi');
 
 #
-# get_organisation_dao test
-#
-{
-    my $organisation_id = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_organisation_dao(organisation_id => $organisation_id, x_fields => $x_fields);
-}
-
-#
-# get_organisation_list_dao test
-#
-{
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->get_organisation_list_dao(x_fields => $x_fields);
-}
-
-#
-# post_organisation_list_dao test
+# create_organisation test
 #
 {
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->post_organisation_list_dao(payload => $payload, x_fields => $x_fields);
+    my $result = $api->create_organisation(payload => $payload, x_fields => $x_fields);
 }
 
 #
-# put_organisation_dao test
+# delete_organisation test
+#
+{
+    my $organisation_id = undef; # replace NULL with a proper value
+    my $result = $api->delete_organisation(organisation_id => $organisation_id);
+}
+
+#
+# get_organisation test
+#
+{
+    my $organisation_id = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_organisation(organisation_id => $organisation_id, x_fields => $x_fields);
+}
+
+#
+# list_organisations test
+#
+{
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->list_organisations(x_fields => $x_fields);
+}
+
+#
+# update_organisation test
 #
 {
     my $organisation_id = undef; # replace NULL with a proper value
     my $payload = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->put_organisation_dao(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields);
+    my $result = $api->update_organisation(organisation_id => $organisation_id, payload => $payload, x_fields => $x_fields);
 }
 
 #
-# put_quota_dao test
+# update_organisation_quota test
 #
 {
     my $organisation_id = undef; # replace NULL with a proper value
     my $payload = undef; # replace NULL with a proper value
-    my $result = $api->put_quota_dao(organisation_id => $organisation_id, payload => $payload);
+    my $result = $api->update_organisation_quota(organisation_id => $organisation_id, payload => $payload);
 }
 
 

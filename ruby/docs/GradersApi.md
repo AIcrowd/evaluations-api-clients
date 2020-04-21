@@ -1,44 +1,100 @@
-# SwaggerClient::GradersApi
+# AIcrowdEvaluations::GradersApi
 
 All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_grader_dao**](GradersApi.md#delete_grader_dao) | **DELETE** /graders/{grader_id} | 
-[**get_grader_dao**](GradersApi.md#get_grader_dao) | **GET** /graders/{grader_id} | 
-[**get_grader_list_dao**](GradersApi.md#get_grader_list_dao) | **GET** /graders/ | 
-[**post_grader_list_dao**](GradersApi.md#post_grader_list_dao) | **POST** /graders/ | 
-[**put_grader_dao**](GradersApi.md#put_grader_dao) | **PUT** /graders/{grader_id} | 
+[**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
+[**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
+[**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
+[**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
 
 
-# **delete_grader_dao**
-> delete_grader_dao(grader_id)
+# **create_grader**
+> Grader create_grader(payload, opts)
 
 
 
-Delete a grader
+Create a new grader
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+payload = AIcrowdEvaluations::Grader.new # Grader | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.create_grader(payload, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->create_grader: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**Grader**](Grader.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **delete_grader**
+> delete_grader(grader_id)
+
+
+
+Delete a grader by its ID
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
 
 begin
-  api_instance.delete_grader_dao(grader_id)
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling GradersApi->delete_grader_dao: #{e}"
+  api_instance.delete_grader(grader_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->delete_grader: #{e}"
 end
 ```
 
@@ -63,26 +119,26 @@ nil (empty response body)
 
 
 
-# **get_grader_dao**
-> Grader get_grader_dao(grader_id, opts)
+# **get_grader**
+> Grader get_grader(grader_id, opts)
 
 
 
-Get information of a grader
+Get details of a grader by its ID
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
@@ -91,10 +147,10 @@ opts = {
 }
 
 begin
-  result = api_instance.get_grader_dao(grader_id, opts)
+  result = api_instance.get_grader(grader_id, opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling GradersApi->get_grader_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->get_grader: #{e}"
 end
 ```
 
@@ -120,36 +176,36 @@ Name | Type | Description  | Notes
 
 
 
-# **get_grader_list_dao**
-> Array&lt;Grader&gt; get_grader_list_dao(opts)
+# **list_graders**
+> Array&lt;Grader&gt; list_graders(opts)
 
 
 
-Get all grader
+List all graders available
 
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'aicrowd_evaluations'
 # setup authorization
-SwaggerClient.configure do |config|
+AIcrowdEvaluations.configure do |config|
   # Configure API key authorization: api_key
   config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::GradersApi.new
+api_instance = AIcrowdEvaluations::GradersApi.new
 
 opts = { 
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  result = api_instance.get_grader_list_dao(opts)
+  result = api_instance.list_graders(opts)
   p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling GradersApi->get_grader_list_dao: #{e}"
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->list_graders: #{e}"
 end
 ```
 
@@ -162,123 +218,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Array&lt;Grader&gt;**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **post_grader_list_dao**
-> Grader post_grader_list_dao(payload, opts)
-
-
-
-Create a new grader
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::GradersApi.new
-
-payload = SwaggerClient::Grader.new # Grader | 
-
-opts = { 
-  x_fields: 'x_fields_example' # String | An optional fields mask
-}
-
-begin
-  result = api_instance.post_grader_list_dao(payload, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling GradersApi->post_grader_list_dao: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payload** | [**Grader**](Grader.md)|  | 
- **x_fields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **put_grader_dao**
-> Grader put_grader_dao(grader_idpayload, opts)
-
-
-
-Update a grader
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::GradersApi.new
-
-grader_id = 56 # Integer | 
-
-payload = SwaggerClient::Grader.new # Grader | 
-
-opts = { 
-  x_fields: 'x_fields_example' # String | An optional fields mask
-}
-
-begin
-  result = api_instance.put_grader_dao(grader_idpayload, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling GradersApi->put_grader_dao: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grader_id** | **Integer**|  | 
- **payload** | [**Grader**](Grader.md)|  | 
- **x_fields** | **String**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 
