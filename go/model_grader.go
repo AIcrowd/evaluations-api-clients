@@ -37,13 +37,15 @@ type Grader struct {
 	// Notifications available for the grader.
 	Notifications string `json:"notifications,omitempty"`
 	// Logs from argo workflow
-	Logs *interface{} `json:"logs,omitempty"`
+	Logs string `json:"logs,omitempty"`
 	// Additional meta data of the grader
-	Meta *interface{} `json:"meta,omitempty"`
+	Meta string `json:"meta,omitempty"`
 	// Status of the grader - True if it ready, False otherwise
 	Status string `json:"status,omitempty"`
 	// List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
 	Secrets *interface{} `json:"secrets,omitempty"`
+	// Name of the workflow used to setup grader
+	WfName string `json:"wf_name,omitempty"`
 	// Type of submissions allowed on the grader
 	SubmissionTypes *interface{} `json:"submission_types,omitempty"`
 	// User ID

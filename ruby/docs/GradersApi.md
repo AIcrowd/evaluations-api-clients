@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
+[**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
 
 
@@ -176,6 +177,58 @@ Name | Type | Description  | Notes
 
 
 
+# **get_grader_logs**
+> get_grader_logs(grader_id)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+grader_id = 56 # Integer | 
+
+
+begin
+  api_instance.get_grader_logs(grader_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->get_grader_logs: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **list_graders**
 > Array&lt;Grader&gt; list_graders(opts)
 
@@ -198,6 +251,9 @@ end
 api_instance = AIcrowdEvaluations::GradersApi.new
 
 opts = { 
+  name: 'name_example', # String | Fetch grader with this name
+  status: 'status_example', # String | Fetch graders with this status
+  user_id: 56, # Integer | Fetch graders created by the user
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
@@ -213,6 +269,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **String**| Fetch grader with this name | [optional] 
+ **status** | **String**| Fetch graders with this status | [optional] 
+ **user_id** | **Integer**| Fetch graders created by the user | [optional] 
  **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type

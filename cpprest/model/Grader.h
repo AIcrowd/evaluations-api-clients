@@ -132,17 +132,17 @@ public:
     /// <summary>
     /// Logs from argo workflow
     /// </summary>
-    std::shared_ptr<Object> getLogs() const;
+    utility::string_t getLogs() const;
     bool logsIsSet() const;
     void unsetLogs();
-    void setLogs(std::shared_ptr<Object> value);
+    void setLogs(utility::string_t value);
     /// <summary>
     /// Additional meta data of the grader
     /// </summary>
-    std::shared_ptr<Object> getMeta() const;
+    utility::string_t getMeta() const;
     bool metaIsSet() const;
     void unsetMeta();
-    void setMeta(std::shared_ptr<Object> value);
+    void setMeta(utility::string_t value);
     /// <summary>
     /// Status of the grader - True if it ready, False otherwise
     /// </summary>
@@ -157,6 +157,13 @@ public:
     bool secretsIsSet() const;
     void unsetSecrets();
     void setSecrets(std::shared_ptr<Object> value);
+    /// <summary>
+    /// Name of the workflow used to setup grader
+    /// </summary>
+    utility::string_t getWfName() const;
+    bool wfNameIsSet() const;
+    void unsetWf_name();
+    void setWfName(utility::string_t value);
     /// <summary>
     /// Type of submissions allowed on the grader
     /// </summary>
@@ -201,14 +208,16 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_Notifications;
     bool m_NotificationsIsSet;
-    std::shared_ptr<Object> m_Logs;
+    utility::string_t m_Logs;
     bool m_LogsIsSet;
-    std::shared_ptr<Object> m_Meta;
+    utility::string_t m_Meta;
     bool m_MetaIsSet;
     utility::string_t m_Status;
     bool m_StatusIsSet;
     std::shared_ptr<Object> m_Secrets;
     bool m_SecretsIsSet;
+    utility::string_t m_Wf_name;
+    bool m_Wf_nameIsSet;
     std::shared_ptr<Object> m_Submission_types;
     bool m_Submission_typesIsSet;
     int32_t m_User_id;

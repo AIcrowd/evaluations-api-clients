@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
@@ -201,9 +202,55 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getSubmissionLogs"></a>
+# **getSubmissionLogs**
+> getSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = SubmissionsApi()
+val submissionId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.getSubmissionLogs(submissionId)
+} catch (e: ClientException) {
+    println("4xx response calling SubmissionsApi#getSubmissionLogs")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SubmissionsApi#getSubmissionLogs")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> kotlin.Array&lt;Submissions&gt; listSubmissions(xFields)
+> kotlin.Array&lt;Submissions&gt; listSubmissions(meta, status, userId, xFields)
 
 
 
@@ -216,9 +263,12 @@ List all submissions available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
+val meta : kotlin.String = meta_example // kotlin.String | Fetch submissions with this meta value
+val status : kotlin.String = status_example // kotlin.String | Fetch submissions with this status
+val userId : kotlin.Int = 56 // kotlin.Int | Fetch submissions created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(xFields)
+    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(meta, status, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SubmissionsApi#listSubmissions")
@@ -233,6 +283,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **kotlin.String**| Fetch submissions with this meta value | [optional]
+ **status** | **kotlin.String**| Fetch submissions with this status | [optional]
+ **userId** | **kotlin.Int**| Fetch submissions created by the user | [optional]
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type

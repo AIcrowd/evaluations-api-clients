@@ -85,6 +85,22 @@ public class GradersApiTest {
     /**
      * 
      *
+     * Get the grader logs by submission ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getGraderLogsTest() throws ApiException {
+        Integer graderId = null;
+        api.getGraderLogs(graderId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * List all graders available
      *
      * @throws ApiException
@@ -92,8 +108,11 @@ public class GradersApiTest {
      */
     @Test
     public void listGradersTest() throws ApiException {
+        String name = null;
+        String status = null;
+        Integer userId = null;
         String xFields = null;
-        List<Grader> response = api.listGraders(xFields);
+        List<Grader> response = api.listGraders(name, status, userId, xFields);
 
         // TODO: test validations
     }

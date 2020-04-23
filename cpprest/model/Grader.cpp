@@ -40,11 +40,15 @@ Grader::Grader()
     m_NameIsSet = false;
     m_Notifications = utility::conversions::to_string_t("");
     m_NotificationsIsSet = false;
+    m_Logs = utility::conversions::to_string_t("");
     m_LogsIsSet = false;
+    m_Meta = utility::conversions::to_string_t("");
     m_MetaIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_SecretsIsSet = false;
+    m_Wf_name = utility::conversions::to_string_t("");
+    m_Wf_nameIsSet = false;
     m_Submission_typesIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
@@ -121,6 +125,10 @@ web::json::value Grader::toJson() const
     if(m_SecretsIsSet)
     {
         val[utility::conversions::to_string_t("secrets")] = ModelBase::toJson(m_Secrets);
+    }
+    if(m_Wf_nameIsSet)
+    {
+        val[utility::conversions::to_string_t("wf_name")] = ModelBase::toJson(m_Wf_name);
     }
     if(m_Submission_typesIsSet)
     {
@@ -230,9 +238,7 @@ void Grader::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("logs")];
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromJson(fieldValue);
-            setLogs( newItem );
+            setLogs(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("meta")))
@@ -240,9 +246,7 @@ void Grader::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("meta")];
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromJson(fieldValue);
-            setMeta( newItem );
+            setMeta(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("status")))
@@ -261,6 +265,14 @@ void Grader::fromJson(web::json::value& val)
             std::shared_ptr<Object> newItem(nullptr);
             newItem->fromJson(fieldValue);
             setSecrets( newItem );
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("wf_name")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("wf_name")];
+        if(!fieldValue.is_null())
+        {
+            setWfName(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("submission_types")))
@@ -356,18 +368,12 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
     if(m_LogsIsSet)
     {
-        if (m_Logs.get())
-        {
-            m_Logs->toMultipart(multipart, utility::conversions::to_string_t("logs."));
-        }
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("logs"), m_Logs));
         
     }
     if(m_MetaIsSet)
     {
-        if (m_Meta.get())
-        {
-            m_Meta->toMultipart(multipart, utility::conversions::to_string_t("meta."));
-        }
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("meta"), m_Meta));
         
     }
     if(m_StatusIsSet)
@@ -381,6 +387,11 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         {
             m_Secrets->toMultipart(multipart, utility::conversions::to_string_t("secrets."));
         }
+        
+    }
+    if(m_Wf_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("wf_name"), m_Wf_name));
         
     }
     if(m_Submission_typesIsSet)
@@ -462,21 +473,11 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("logs")))
-        {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("logs."));
-            setLogs( newItem );
-        }
+        setLogs(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("logs"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("meta")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("meta")))
-        {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("meta."));
-            setMeta( newItem );
-        }
+        setMeta(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("meta"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
@@ -490,6 +491,10 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
             newItem->fromMultiPart(multipart, utility::conversions::to_string_t("secrets."));
             setSecrets( newItem );
         }
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("wf_name")))
+    {
+        setWfName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("wf_name"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("submission_types")))
     {
@@ -731,13 +736,13 @@ void Grader::unsetNotifications()
     m_NotificationsIsSet = false;
 }
 
-std::shared_ptr<Object> Grader::getLogs() const
+utility::string_t Grader::getLogs() const
 {
     return m_Logs;
 }
 
 
-void Grader::setLogs(std::shared_ptr<Object> value)
+void Grader::setLogs(utility::string_t value)
 {
     m_Logs = value;
     m_LogsIsSet = true;
@@ -752,13 +757,13 @@ void Grader::unsetLogs()
     m_LogsIsSet = false;
 }
 
-std::shared_ptr<Object> Grader::getMeta() const
+utility::string_t Grader::getMeta() const
 {
     return m_Meta;
 }
 
 
-void Grader::setMeta(std::shared_ptr<Object> value)
+void Grader::setMeta(utility::string_t value)
 {
     m_Meta = value;
     m_MetaIsSet = true;
@@ -813,6 +818,27 @@ bool Grader::secretsIsSet() const
 void Grader::unsetSecrets()
 {
     m_SecretsIsSet = false;
+}
+
+utility::string_t Grader::getWfName() const
+{
+    return m_Wf_name;
+}
+
+
+void Grader::setWfName(utility::string_t value)
+{
+    m_Wf_name = value;
+    m_Wf_nameIsSet = true;
+}
+bool Grader::wfNameIsSet() const
+{
+    return m_Wf_nameIsSet;
+}
+
+void Grader::unsetWf_name()
+{
+    m_Wf_nameIsSet = false;
 }
 
 std::shared_ptr<Object> Grader::getSubmissionTypes() const

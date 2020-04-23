@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_submission**](SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
 [**get_submission**](SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
+[**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
 
 
@@ -225,8 +226,60 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_submission_logs**
+> get_submission_logs(submission_id)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```python
+from __future__ import print_function
+import time
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: api_key
+configuration = aicrowd_evaluations.Configuration()
+configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
+submission_id = 56 # int | 
+
+try:
+    api_instance.get_submission_logs(submission_id)
+except ApiException as e:
+    print("Exception when calling SubmissionsApi->get_submission_logs: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_submissions**
-> list[Submissions] list_submissions(x_fields=x_fields)
+> list[Submissions] list_submissions(meta=meta, status=status, user_id=user_id, x_fields=x_fields)
 
 
 
@@ -248,10 +301,13 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
+meta = 'meta_example' # str | Fetch submissions with this meta value (optional)
+status = 'status_example' # str | Fetch submissions with this status (optional)
+user_id = 56 # int | Fetch submissions created by the user (optional)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_response = api_instance.list_submissions(x_fields=x_fields)
+    api_response = api_instance.list_submissions(meta=meta, status=status, user_id=user_id, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SubmissionsApi->list_submissions: %s\n" % e)
@@ -261,6 +317,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **str**| Fetch submissions with this meta value | [optional] 
+ **status** | **str**| Fetch submissions with this status | [optional] 
+ **user_id** | **int**| Fetch submissions created by the user | [optional] 
  **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type

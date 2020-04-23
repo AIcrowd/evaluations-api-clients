@@ -213,10 +213,10 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
-    'meta' => {
-    	datatype => 'object',
-    	base_name => 'meta',
-    	description => 'Additional metadata',
+    'wf_name' => {
+    	datatype => 'string',
+    	base_name => 'wf_name',
+    	description => 'Name of the workflow used to setup grader',
     	format => '',
     	read_only => '',
     		},
@@ -247,7 +247,7 @@ __PACKAGE__->swagger_types( {
     'docker_registry' => 'string',
     'storage_class' => 'string',
     'status' => 'boolean',
-    'meta' => 'object',
+    'wf_name' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -263,7 +263,7 @@ __PACKAGE__->attribute_map( {
     'docker_registry' => 'docker_registry',
     'storage_class' => 'storage_class',
     'status' => 'status',
-    'meta' => 'meta',
+    'wf_name' => 'wf_name',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

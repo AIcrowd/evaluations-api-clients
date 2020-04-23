@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
@@ -233,9 +234,63 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getSubmissionLogs"></a>
+# **getSubmissionLogs**
+> getSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+SubmissionsApi apiInstance = new SubmissionsApi();
+Integer submissionId = 56; // Integer | 
+try {
+    apiInstance.getSubmissionLogs(submissionId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SubmissionsApi#getSubmissionLogs");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> List&lt;Submissions&gt; listSubmissions(xFields)
+> List&lt;Submissions&gt; listSubmissions(meta, status, userId, xFields)
 
 
 
@@ -259,9 +314,12 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 SubmissionsApi apiInstance = new SubmissionsApi();
+String meta = "meta_example"; // String | Fetch submissions with this meta value
+String status = "status_example"; // String | Fetch submissions with this status
+Integer userId = 56; // Integer | Fetch submissions created by the user
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Submissions> result = apiInstance.listSubmissions(xFields);
+    List<Submissions> result = apiInstance.listSubmissions(meta, status, userId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#listSubmissions");
@@ -273,6 +331,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **String**| Fetch submissions with this meta value | [optional]
+ **status** | **String**| Fetch submissions with this status | [optional]
+ **userId** | **Integer**| Fetch submissions created by the user | [optional]
  **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type

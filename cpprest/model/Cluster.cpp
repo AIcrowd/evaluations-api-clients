@@ -37,7 +37,8 @@ Cluster::Cluster()
     m_Storage_classIsSet = false;
     m_Status = false;
     m_StatusIsSet = false;
-    m_MetaIsSet = false;
+    m_Wf_name = utility::conversions::to_string_t("");
+    m_Wf_nameIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -85,9 +86,9 @@ web::json::value Cluster::toJson() const
     {
         val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_Status);
     }
-    if(m_MetaIsSet)
+    if(m_Wf_nameIsSet)
     {
-        val[utility::conversions::to_string_t("meta")] = ModelBase::toJson(m_Meta);
+        val[utility::conversions::to_string_t("wf_name")] = ModelBase::toJson(m_Wf_name);
     }
     if(m_User_idIsSet)
     {
@@ -155,14 +156,12 @@ void Cluster::fromJson(web::json::value& val)
             setStatus(ModelBase::boolFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("meta")))
+    if(val.has_field(utility::conversions::to_string_t("wf_name")))
     {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("meta")];
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("wf_name")];
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromJson(fieldValue);
-            setMeta( newItem );
+            setWfName(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
@@ -223,12 +222,9 @@ void Cluster::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_Status));
     }
-    if(m_MetaIsSet)
+    if(m_Wf_nameIsSet)
     {
-        if (m_Meta.get())
-        {
-            m_Meta->toMultipart(multipart, utility::conversions::to_string_t("meta."));
-        }
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("wf_name"), m_Wf_name));
         
     }
     if(m_User_idIsSet)
@@ -277,14 +273,9 @@ void Cluster::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         setStatus(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("status"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("meta")))
+    if(multipart->hasContent(utility::conversions::to_string_t("wf_name")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("meta")))
-        {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("meta."));
-            setMeta( newItem );
-        }
+        setWfName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("wf_name"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -466,25 +457,25 @@ void Cluster::unsetStatus()
     m_StatusIsSet = false;
 }
 
-std::shared_ptr<Object> Cluster::getMeta() const
+utility::string_t Cluster::getWfName() const
 {
-    return m_Meta;
+    return m_Wf_name;
 }
 
 
-void Cluster::setMeta(std::shared_ptr<Object> value)
+void Cluster::setWfName(utility::string_t value)
 {
-    m_Meta = value;
-    m_MetaIsSet = true;
+    m_Wf_name = value;
+    m_Wf_nameIsSet = true;
 }
-bool Cluster::metaIsSet() const
+bool Cluster::wfNameIsSet() const
 {
-    return m_MetaIsSet;
+    return m_Wf_nameIsSet;
 }
 
-void Cluster::unsetMeta()
+void Cluster::unsetWf_name()
 {
-    m_MetaIsSet = false;
+    m_Wf_nameIsSet = false;
 }
 
 int32_t Cluster::getUserId() const

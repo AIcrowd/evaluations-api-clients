@@ -194,12 +194,52 @@ API.Client.SubmissionsApi.prototype.getSubmissionData = function(submissionId, o
 
 /**
  * 
+ * Get the submission logs by submission ID
+ * @param {!number} submissionId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/submissions/{submission_id}/logs'
+      .replace('{' + 'submission_id' + '}', String(submissionId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'submissionId' is set
+  if (!submissionId) {
+    throw new Error('Missing required parameter submissionId when calling getSubmissionLogs');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * List all submissions available
+ * @param {!string=} opt_meta Fetch submissions with this meta value
+ * @param {!string=} opt_status Fetch submissions with this status
+ * @param {!number=} opt_userId Fetch submissions created by the user
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.Submissions>>}
  */
-API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_xFields, opt_extraHttpRequestParams) {
+API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_status, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/submissions/';
 
@@ -208,6 +248,18 @@ API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_xFields, opt_
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  if (opt_meta !== undefined) {
+    queryParameters['meta'] = opt_meta;
+  }
+
+  if (opt_status !== undefined) {
+    queryParameters['status'] = opt_status;
+  }
+
+  if (opt_userId !== undefined) {
+    queryParameters['user_id'] = opt_userId;
+  }
+
   headerParams['X-Fields'] = opt_xFields;
 
   /** @type {!Object} */

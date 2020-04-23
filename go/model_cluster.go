@@ -34,8 +34,8 @@ type Cluster struct {
 	StorageClass string `json:"storage_class,omitempty"`
 	// Readiness of the cluster
 	Status bool `json:"status,omitempty"`
-	// Additional metadata
-	Meta *interface{} `json:"meta,omitempty"`
+	// Name of the workflow used to setup grader
+	WfName string `json:"wf_name,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

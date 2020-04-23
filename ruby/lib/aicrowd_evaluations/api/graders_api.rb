@@ -180,8 +180,62 @@ module AIcrowdEvaluations
       end
       return data, status_code, headers
     end
+    # Get the grader logs by submission ID
+    # @param grader_id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def get_grader_logs(grader_id, opts = {})
+      get_grader_logs_with_http_info(grader_id, opts)
+      nil
+    end
+
+    # Get the grader logs by submission ID
+    # @param grader_id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def get_grader_logs_with_http_info(grader_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: GradersApi.get_grader_logs ...'
+      end
+      # verify the required parameter 'grader_id' is set
+      if @api_client.config.client_side_validation && grader_id.nil?
+        fail ArgumentError, "Missing the required parameter 'grader_id' when calling GradersApi.get_grader_logs"
+      end
+      # resource path
+      local_var_path = '/graders/{grader_id}/logs'.sub('{' + 'grader_id' + '}', grader_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: GradersApi#get_grader_logs\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
     # List all graders available
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Fetch grader with this name
+    # @option opts [String] :status Fetch graders with this status
+    # @option opts [Integer] :user_id Fetch graders created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<Grader>]
     def list_graders(opts = {})
@@ -191,6 +245,9 @@ module AIcrowdEvaluations
 
     # List all graders available
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Fetch grader with this name
+    # @option opts [String] :status Fetch graders with this status
+    # @option opts [Integer] :user_id Fetch graders created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Array<Grader>, Fixnum, Hash)>] Array<Grader> data, response status code and response headers
     def list_graders_with_http_info(opts = {})
@@ -202,6 +259,9 @@ module AIcrowdEvaluations
 
       # query parameters
       query_params = {}
+      query_params[:'name'] = opts[:'name'] if !opts[:'name'].nil?
+      query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
+      query_params[:'user_id'] = opts[:'user_id'] if !opts[:'user_id'].nil?
 
       # header parameters
       header_params = {}

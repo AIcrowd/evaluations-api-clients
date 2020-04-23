@@ -64,11 +64,22 @@ isa_ok($api, 'AIcrowdEvaluations::SubmissionsApi');
 }
 
 #
+# get_submission_logs test
+#
+{
+    my $submission_id = undef; # replace NULL with a proper value
+    my $result = $api->get_submission_logs(submission_id => $submission_id);
+}
+
+#
 # list_submissions test
 #
 {
+    my $meta = undef; # replace NULL with a proper value
+    my $status = undef; # replace NULL with a proper value
+    my $user_id = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->list_submissions(x_fields => $x_fields);
+    my $result = $api->list_submissions(meta => $meta, status => $status, user_id => $user_id, x_fields => $x_fields);
 }
 
 

@@ -76,20 +76,6 @@ public:
     void unsetUpdated();
     void setUpdated(utility::datetime value);
     /// <summary>
-    /// Participant identifier
-    /// </summary>
-    int32_t getParticipantId() const;
-    bool participantIdIsSet() const;
-    void unsetParticipant_id();
-    void setParticipantId(int32_t value);
-    /// <summary>
-    /// Round identifier
-    /// </summary>
-    int32_t getRoundId() const;
-    bool roundIdIsSet() const;
-    void unsetRound_id();
-    void setRoundId(int32_t value);
-    /// <summary>
     /// Grader identifier
     /// </summary>
     int32_t getGraderId() const;
@@ -125,10 +111,10 @@ public:
     /// <summary>
     /// S3 link of the STDOUT of the evaluation
     /// </summary>
-    std::shared_ptr<Object> getLogs() const;
+    utility::string_t getLogs() const;
     bool logsIsSet() const;
     void unsetLogs();
-    void setLogs(std::shared_ptr<Object> value);
+    void setLogs(utility::string_t value);
     /// <summary>
     /// Evaluation start time
     /// </summary>
@@ -144,12 +130,19 @@ public:
     void unsetEnded();
     void setEnded(utility::datetime value);
     /// <summary>
-    /// Additional meta-data
+    /// Additional meta data of the grader
     /// </summary>
-    std::shared_ptr<Object> getMeta() const;
+    utility::string_t getMeta() const;
     bool metaIsSet() const;
     void unsetMeta();
-    void setMeta(std::shared_ptr<Object> value);
+    void setMeta(utility::string_t value);
+    /// <summary>
+    /// Name of the workflow used to evaluate submission
+    /// </summary>
+    utility::string_t getWfName() const;
+    bool wfNameIsSet() const;
+    void unsetWf_name();
+    void setWfName(utility::string_t value);
     /// <summary>
     /// User ID
     /// </summary>
@@ -172,10 +165,6 @@ protected:
     bool m_CreatedIsSet;
     utility::datetime m_Updated;
     bool m_UpdatedIsSet;
-    int32_t m_Participant_id;
-    bool m_Participant_idIsSet;
-    int32_t m_Round_id;
-    bool m_Round_idIsSet;
     int32_t m_Grader_id;
         std::shared_ptr<Object> m_Submission_data;
     bool m_Submission_dataIsSet;
@@ -185,14 +174,16 @@ protected:
     bool m_OutputIsSet;
     std::shared_ptr<Object> m_Additional_outputs;
     bool m_Additional_outputsIsSet;
-    std::shared_ptr<Object> m_Logs;
+    utility::string_t m_Logs;
     bool m_LogsIsSet;
     utility::datetime m_Started;
     bool m_StartedIsSet;
     utility::datetime m_Ended;
     bool m_EndedIsSet;
-    std::shared_ptr<Object> m_Meta;
+    utility::string_t m_Meta;
     bool m_MetaIsSet;
+    utility::string_t m_Wf_name;
+    bool m_Wf_nameIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

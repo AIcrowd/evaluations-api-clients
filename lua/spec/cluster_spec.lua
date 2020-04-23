@@ -86,8 +86,8 @@ describe("cluster", function()
     end)
   end)
 
-  -- unit tests for the property 'meta'
-  describe("property meta test", function()
+  -- unit tests for the property 'wf_name'
+  describe("property wf_name test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

@@ -130,6 +130,12 @@
         // expect(instance.secrets).to.be(expectedValueLiteral);
       });
 
+      it('should have the property wfName (base name: "wf_name")', function() {
+        // TODO: update the code to test the property wfName
+        expect(instance).to.have.property('wfName');
+        // expect(instance.wfName).to.be(expectedValueLiteral);
+      });
+
       it('should have the property submissionTypes (base name: "submission_types")', function() {
         // TODO: update the code to test the property submissionTypes
         expect(instance).to.have.property('submissionTypes');

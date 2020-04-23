@@ -44,9 +44,9 @@ pub struct Cluster {
   /// Readiness of the cluster
   #[serde(rename = "status")]
   status: Option<bool>,
-  /// Additional metadata
-  #[serde(rename = "meta")]
-  meta: Option<Value>,
+  /// Name of the workflow used to setup grader
+  #[serde(rename = "wf_name")]
+  wf_name: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -68,7 +68,7 @@ impl Cluster {
       docker_registry: None,
       storage_class: None,
       status: None,
-      meta: None,
+      wf_name: None,
       user_id: None,
       organisation_id: None
     }
@@ -232,21 +232,21 @@ impl Cluster {
     self.status = None;
   }
 
-  pub fn set_meta(&mut self, meta: Value) {
-    self.meta = Some(meta);
+  pub fn set_wf_name(&mut self, wf_name: String) {
+    self.wf_name = Some(wf_name);
   }
 
-  pub fn with_meta(mut self, meta: Value) -> Cluster {
-    self.meta = Some(meta);
+  pub fn with_wf_name(mut self, wf_name: String) -> Cluster {
+    self.wf_name = Some(wf_name);
     self
   }
 
-  pub fn meta(&self) -> Option<&Value> {
-    self.meta.as_ref()
+  pub fn wf_name(&self) -> Option<&String> {
+    self.wf_name.as_ref()
   }
 
-  pub fn reset_meta(&mut self) {
-    self.meta = None;
+  pub fn reset_wf_name(&mut self) {
+    self.wf_name = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

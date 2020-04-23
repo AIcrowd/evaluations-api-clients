@@ -338,15 +338,105 @@ func (a *GradersApiService) GetGrader(ctx context.Context, graderId int32, local
 
 /* 
 GradersApiService
+Get the grader logs by submission ID
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param graderId
+
+
+*/
+func (a *GradersApiService) GetGraderLogs(ctx context.Context, graderId int32) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+		
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/graders/{grader_id}/logs"
+	localVarPath = strings.Replace(localVarPath, "{"+"grader_id"+"}", fmt.Sprintf("%v", graderId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["AUTHORIZATION"] = key
+			
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body: localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/* 
+GradersApiService
 List all graders available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GradersApiListGradersOpts - Optional Parameters:
+     * @param "Name" (optional.String) -  Fetch grader with this name
+     * @param "Status" (optional.String) -  Fetch graders with this status
+     * @param "UserId" (optional.Int32) -  Fetch graders created by the user
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Grader
 */
 
 type GradersApiListGradersOpts struct { 
+	Name optional.String
+	Status optional.String
+	UserId optional.Int32
 	XFields optional.String
 }
 
@@ -366,6 +456,15 @@ func (a *GradersApiService) ListGraders(ctx context.Context, localVarOptionals *
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Status.IsSet() {
+		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.UserId.IsSet() {
+		localVarQueryParams.Add("user_id", parameterToString(localVarOptionals.UserId.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

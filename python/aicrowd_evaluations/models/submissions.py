@@ -34,17 +34,16 @@ class Submissions(object):
         'id': 'int',
         'created': 'datetime',
         'updated': 'datetime',
-        'participant_id': 'int',
-        'round_id': 'int',
         'grader_id': 'int',
         'submission_data': 'object',
         'status': 'str',
         'output': 'str',
         'additional_outputs': 'object',
-        'logs': 'object',
+        'logs': 'str',
         'started': 'datetime',
         'ended': 'datetime',
-        'meta': 'object',
+        'meta': 'str',
+        'wf_name': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -53,8 +52,6 @@ class Submissions(object):
         'id': 'id',
         'created': 'created',
         'updated': 'updated',
-        'participant_id': 'participant_id',
-        'round_id': 'round_id',
         'grader_id': 'grader_id',
         'submission_data': 'submission_data',
         'status': 'status',
@@ -64,18 +61,17 @@ class Submissions(object):
         'started': 'started',
         'ended': 'ended',
         'meta': 'meta',
+        'wf_name': 'wf_name',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, participant_id=None, round_id=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
         """Submissions - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._created = None
         self._updated = None
-        self._participant_id = None
-        self._round_id = None
         self._grader_id = None
         self._submission_data = None
         self._status = None
@@ -85,6 +81,7 @@ class Submissions(object):
         self._started = None
         self._ended = None
         self._meta = None
+        self._wf_name = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -95,10 +92,6 @@ class Submissions(object):
             self.created = created
         if updated is not None:
             self.updated = updated
-        if participant_id is not None:
-            self.participant_id = participant_id
-        if round_id is not None:
-            self.round_id = round_id
         self.grader_id = grader_id
         if submission_data is not None:
             self.submission_data = submission_data
@@ -116,6 +109,8 @@ class Submissions(object):
             self.ended = ended
         if meta is not None:
             self.meta = meta
+        if wf_name is not None:
+            self.wf_name = wf_name
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -189,52 +184,6 @@ class Submissions(object):
         """
 
         self._updated = updated
-
-    @property
-    def participant_id(self):
-        """Gets the participant_id of this Submissions.  # noqa: E501
-
-        Participant identifier  # noqa: E501
-
-        :return: The participant_id of this Submissions.  # noqa: E501
-        :rtype: int
-        """
-        return self._participant_id
-
-    @participant_id.setter
-    def participant_id(self, participant_id):
-        """Sets the participant_id of this Submissions.
-
-        Participant identifier  # noqa: E501
-
-        :param participant_id: The participant_id of this Submissions.  # noqa: E501
-        :type: int
-        """
-
-        self._participant_id = participant_id
-
-    @property
-    def round_id(self):
-        """Gets the round_id of this Submissions.  # noqa: E501
-
-        Round identifier  # noqa: E501
-
-        :return: The round_id of this Submissions.  # noqa: E501
-        :rtype: int
-        """
-        return self._round_id
-
-    @round_id.setter
-    def round_id(self, round_id):
-        """Sets the round_id of this Submissions.
-
-        Round identifier  # noqa: E501
-
-        :param round_id: The round_id of this Submissions.  # noqa: E501
-        :type: int
-        """
-
-        self._round_id = round_id
 
     @property
     def grader_id(self):
@@ -360,7 +309,7 @@ class Submissions(object):
         S3 link of the STDOUT of the evaluation  # noqa: E501
 
         :return: The logs of this Submissions.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._logs
 
@@ -371,7 +320,7 @@ class Submissions(object):
         S3 link of the STDOUT of the evaluation  # noqa: E501
 
         :param logs: The logs of this Submissions.  # noqa: E501
-        :type: object
+        :type: str
         """
 
         self._logs = logs
@@ -426,10 +375,10 @@ class Submissions(object):
     def meta(self):
         """Gets the meta of this Submissions.  # noqa: E501
 
-        Additional meta-data  # noqa: E501
+        Additional meta data of the grader  # noqa: E501
 
         :return: The meta of this Submissions.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._meta
 
@@ -437,13 +386,36 @@ class Submissions(object):
     def meta(self, meta):
         """Sets the meta of this Submissions.
 
-        Additional meta-data  # noqa: E501
+        Additional meta data of the grader  # noqa: E501
 
         :param meta: The meta of this Submissions.  # noqa: E501
-        :type: object
+        :type: str
         """
 
         self._meta = meta
+
+    @property
+    def wf_name(self):
+        """Gets the wf_name of this Submissions.  # noqa: E501
+
+        Name of the workflow used to evaluate submission  # noqa: E501
+
+        :return: The wf_name of this Submissions.  # noqa: E501
+        :rtype: str
+        """
+        return self._wf_name
+
+    @wf_name.setter
+    def wf_name(self, wf_name):
+        """Sets the wf_name of this Submissions.
+
+        Name of the workflow used to evaluate submission  # noqa: E501
+
+        :param wf_name: The wf_name of this Submissions.  # noqa: E501
+        :type: str
+        """
+
+        self._wf_name = wf_name
 
     @property
     def user_id(self):

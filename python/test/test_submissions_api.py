@@ -53,6 +53,12 @@ class TestSubmissionsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_submission_logs(self):
+        """Test case for get_submission_logs
+
+        """
+        pass
+
     def test_list_submissions(self):
         """Test case for list_submissions
 

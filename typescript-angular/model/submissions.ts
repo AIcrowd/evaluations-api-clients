@@ -25,14 +25,6 @@ export interface Submissions {
      */
     readonly updated?: Date;
     /**
-     * Participant identifier
-     */
-    participantId?: number;
-    /**
-     * Round identifier
-     */
-    roundId?: number;
-    /**
      * Grader identifier
      */
     graderId: number;
@@ -55,7 +47,7 @@ export interface Submissions {
     /**
      * S3 link of the STDOUT of the evaluation
      */
-    readonly logs?: any;
+    readonly logs?: string;
     /**
      * Evaluation start time
      */
@@ -65,9 +57,13 @@ export interface Submissions {
      */
     readonly ended?: Date;
     /**
-     * Additional meta-data
+     * Additional meta data of the grader
      */
-    readonly meta?: any;
+    meta?: string;
+    /**
+     * Name of the workflow used to evaluate submission
+     */
+    readonly wfName?: string;
     /**
      * User ID
      */

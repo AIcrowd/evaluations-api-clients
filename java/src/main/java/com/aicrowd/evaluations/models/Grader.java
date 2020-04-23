@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-21T18:26:04.510Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-23T19:58:39.101Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -64,16 +64,19 @@ public class Grader {
   private String notifications = null;
 
   @SerializedName("logs")
-  private Object logs = null;
+  private String logs = null;
 
   @SerializedName("meta")
-  private Object meta = null;
+  private String meta = null;
 
   @SerializedName("status")
   private String status = null;
 
   @SerializedName("secrets")
   private Object secrets = null;
+
+  @SerializedName("wf_name")
+  private String wfName = null;
 
   @SerializedName("submission_types")
   private Object submissionTypes = null;
@@ -215,8 +218,13 @@ public class Grader {
    * @return logs
   **/
   @ApiModelProperty(value = "Logs from argo workflow")
-  public Object getLogs() {
+  public String getLogs() {
     return logs;
+  }
+
+  public Grader meta(String meta) {
+    this.meta = meta;
+    return this;
   }
 
    /**
@@ -224,8 +232,12 @@ public class Grader {
    * @return meta
   **/
   @ApiModelProperty(value = "Additional meta data of the grader")
-  public Object getMeta() {
+  public String getMeta() {
     return meta;
+  }
+
+  public void setMeta(String meta) {
+    this.meta = meta;
   }
 
    /**
@@ -253,6 +265,15 @@ public class Grader {
 
   public void setSecrets(Object secrets) {
     this.secrets = secrets;
+  }
+
+   /**
+   * Name of the workflow used to setup grader
+   * @return wfName
+  **/
+  @ApiModelProperty(value = "Name of the workflow used to setup grader")
+  public String getWfName() {
+    return wfName;
   }
 
    /**
@@ -307,6 +328,7 @@ public class Grader {
         Objects.equals(this.meta, grader.meta) &&
         Objects.equals(this.status, grader.status) &&
         Objects.equals(this.secrets, grader.secrets) &&
+        Objects.equals(this.wfName, grader.wfName) &&
         Objects.equals(this.submissionTypes, grader.submissionTypes) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
@@ -314,7 +336,7 @@ public class Grader {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, submissionTypes, userId, organisationId);
+    return Objects.hash(id, created, updated, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, submissionTypes, userId, organisationId);
   }
 
 
@@ -338,6 +360,7 @@ public class Grader {
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
+    sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");

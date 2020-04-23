@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**delete_submission**](SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
 [**get_submission**](SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
+[**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
 
 
@@ -222,8 +223,58 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_submission_logs**
+> get_submission_logs(submission_id => $submission_id)
+
+
+
+Get the submission logs by submission ID
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::SubmissionsApi;
+my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $submission_id = 56; # int | 
+
+eval { 
+    $api_instance->get_submission_logs(submission_id => $submission_id);
+};
+if ($@) {
+    warn "Exception when calling SubmissionsApi->get_submission_logs: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_submissions**
-> ARRAY[Submissions] list_submissions(x_fields => $x_fields)
+> ARRAY[Submissions] list_submissions(meta => $meta, status => $status, user_id => $user_id, x_fields => $x_fields)
 
 
 
@@ -241,10 +292,13 @@ my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
+my $meta = 'meta_example'; # string | Fetch submissions with this meta value
+my $status = 'status_example'; # string | Fetch submissions with this status
+my $user_id = 56; # int | Fetch submissions created by the user
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->list_submissions(x_fields => $x_fields);
+    my $result = $api_instance->list_submissions(meta => $meta, status => $status, user_id => $user_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
@@ -256,6 +310,9 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **string**| Fetch submissions with this meta value | [optional] 
+ **status** | **string**| Fetch submissions with this status | [optional] 
+ **user_id** | **int**| Fetch submissions created by the user | [optional] 
  **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type

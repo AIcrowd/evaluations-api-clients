@@ -1107,33 +1107,272 @@ class SubmissionsApi
     }
 
     /**
+     * Operation getSubmissionLogs
+     *
+     * @param  int $submission_id submission_id (required)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function getSubmissionLogs($submission_id)
+    {
+        $this->getSubmissionLogsWithHttpInfo($submission_id);
+    }
+
+    /**
+     * Operation getSubmissionLogsWithHttpInfo
+     *
+     * @param  int $submission_id (required)
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getSubmissionLogsWithHttpInfo($submission_id)
+    {
+        $returnType = '';
+        $request = $this->getSubmissionLogsRequest($submission_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getSubmissionLogsAsync
+     *
+     * 
+     *
+     * @param  int $submission_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSubmissionLogsAsync($submission_id)
+    {
+        return $this->getSubmissionLogsAsyncWithHttpInfo($submission_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSubmissionLogsAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  int $submission_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSubmissionLogsAsyncWithHttpInfo($submission_id)
+    {
+        $returnType = '';
+        $request = $this->getSubmissionLogsRequest($submission_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getSubmissionLogs'
+     *
+     * @param  int $submission_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getSubmissionLogsRequest($submission_id)
+    {
+        // verify the required parameter 'submission_id' is set
+        if ($submission_id === null || (is_array($submission_id) && count($submission_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $submission_id when calling getSubmissionLogs'
+            );
+        }
+
+        $resourcePath = '/submissions/{submission_id}/logs';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($submission_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'submission_id' . '}',
+                ObjectSerializer::toPathValue($submission_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            
+            if($headers['Content-Type'] === 'application/json') {
+                // \stdClass has no __toString(), so we should encode it manually
+                if ($httpBody instanceof \stdClass) {
+                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                }
+                // array has no __toString(), so we should encode it manually
+                if(is_array($httpBody)) {
+                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                }
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('AUTHORIZATION');
+        if ($apiKey !== null) {
+            $headers['AUTHORIZATION'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listSubmissions
      *
+     * @param  string $meta Fetch submissions with this meta value (optional)
+     * @param  string $status Fetch submissions with this status (optional)
+     * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Submissions[]
      */
-    public function listSubmissions($x_fields = null)
+    public function listSubmissions($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
-        list($response) = $this->listSubmissionsWithHttpInfo($x_fields);
+        list($response) = $this->listSubmissionsWithHttpInfo($meta, $status, $user_id, $x_fields);
         return $response;
     }
 
     /**
      * Operation listSubmissionsWithHttpInfo
      *
+     * @param  string $meta Fetch submissions with this meta value (optional)
+     * @param  string $status Fetch submissions with this status (optional)
+     * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Submissions[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listSubmissionsWithHttpInfo($x_fields = null)
+    public function listSubmissionsWithHttpInfo($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->listSubmissionsRequest($x_fields);
+        $request = $this->listSubmissionsRequest($meta, $status, $user_id, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1199,14 +1438,17 @@ class SubmissionsApi
      *
      * 
      *
+     * @param  string $meta Fetch submissions with this meta value (optional)
+     * @param  string $status Fetch submissions with this status (optional)
+     * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSubmissionsAsync($x_fields = null)
+    public function listSubmissionsAsync($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
-        return $this->listSubmissionsAsyncWithHttpInfo($x_fields)
+        return $this->listSubmissionsAsyncWithHttpInfo($meta, $status, $user_id, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1219,15 +1461,18 @@ class SubmissionsApi
      *
      * 
      *
+     * @param  string $meta Fetch submissions with this meta value (optional)
+     * @param  string $status Fetch submissions with this status (optional)
+     * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSubmissionsAsyncWithHttpInfo($x_fields = null)
+    public function listSubmissionsAsyncWithHttpInfo($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->listSubmissionsRequest($x_fields);
+        $request = $this->listSubmissionsRequest($meta, $status, $user_id, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1269,12 +1514,15 @@ class SubmissionsApi
     /**
      * Create request for operation 'listSubmissions'
      *
+     * @param  string $meta Fetch submissions with this meta value (optional)
+     * @param  string $status Fetch submissions with this status (optional)
+     * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listSubmissionsRequest($x_fields = null)
+    protected function listSubmissionsRequest($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
 
         $resourcePath = '/submissions/';
@@ -1284,6 +1532,18 @@ class SubmissionsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($meta !== null) {
+            $queryParams['meta'] = ObjectSerializer::toQueryValue($meta);
+        }
+        // query params
+        if ($status !== null) {
+            $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        }
+        // query params
+        if ($user_id !== null) {
+            $queryParams['user_id'] = ObjectSerializer::toQueryValue($user_id);
+        }
         // header params
         if ($x_fields !== null) {
             $headerParams['X-Fields'] = ObjectSerializer::toHeaderValue($x_fields);

@@ -29,6 +29,7 @@ package com.aicrowd.evaluations.models
  * @param meta Additional meta data of the grader
  * @param status Status of the grader - True if it ready, False otherwise
  * @param secrets List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
+ * @param wf_name Name of the workflow used to setup grader
  * @param submission_types Type of submissions allowed on the grader
  * @param user_id User ID
  * @param organisation_id Organisation ID
@@ -57,13 +58,15 @@ data class Grader (
     /* Notifications available for the grader. */
     val notifications: kotlin.String? = null,
     /* Logs from argo workflow */
-    val logs: kotlin.Any? = null,
+    val logs: kotlin.String? = null,
     /* Additional meta data of the grader */
-    val meta: kotlin.Any? = null,
+    val meta: kotlin.String? = null,
     /* Status of the grader - True if it ready, False otherwise */
     val status: kotlin.String? = null,
     /* List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml */
     val secrets: kotlin.Any? = null,
+    /* Name of the workflow used to setup grader */
+    val wf_name: kotlin.String? = null,
     /* Type of submissions allowed on the grader */
     val submission_types: kotlin.Any? = null,
     /* User ID */

@@ -112,6 +112,16 @@ class SubmissionsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getSubmissionLogs
+     *
+     * .
+     *
+     */
+    public function testGetSubmissionLogs()
+    {
+    }
+
+    /**
      * Test case for listSubmissions
      *
      * .

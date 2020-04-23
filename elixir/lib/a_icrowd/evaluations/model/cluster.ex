@@ -19,7 +19,7 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"docker_registry",
     :"storage_class",
     :"status",
-    :"meta",
+    :"wf_name",
     :"user_id",
     :"organisation_id"
   ]
@@ -35,17 +35,15 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"docker_registry" => String.t,
     :"storage_class" => String.t,
     :"status" => boolean(),
-    :"meta" => Object,
+    :"wf_name" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }
 end
 
 defimpl Poison.Decoder, for: AIcrowd.Evaluations.Model.Cluster do
-  import AIcrowd.Evaluations.Deserializer
-  def decode(value, options) do
+  def decode(value, _options) do
     value
-    |> deserialize(:"meta", :struct, AIcrowd.Evaluations.Model.Object, options)
   end
 end
 

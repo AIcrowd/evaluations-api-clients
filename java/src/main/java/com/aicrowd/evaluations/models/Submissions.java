@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-21T18:26:04.510Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-23T19:58:39.101Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -38,12 +38,6 @@ public class Submissions {
 
   @SerializedName("updated")
   private OffsetDateTime updated = null;
-
-  @SerializedName("participant_id")
-  private Integer participantId = null;
-
-  @SerializedName("round_id")
-  private Integer roundId = null;
 
   @SerializedName("grader_id")
   private Integer graderId = null;
@@ -61,7 +55,7 @@ public class Submissions {
   private Object additionalOutputs = null;
 
   @SerializedName("logs")
-  private Object logs = null;
+  private String logs = null;
 
   @SerializedName("started")
   private OffsetDateTime started = null;
@@ -70,7 +64,10 @@ public class Submissions {
   private OffsetDateTime ended = null;
 
   @SerializedName("meta")
-  private Object meta = null;
+  private String meta = null;
+
+  @SerializedName("wf_name")
+  private String wfName = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -103,42 +100,6 @@ public class Submissions {
   @ApiModelProperty(value = "Last updation time")
   public OffsetDateTime getUpdated() {
     return updated;
-  }
-
-  public Submissions participantId(Integer participantId) {
-    this.participantId = participantId;
-    return this;
-  }
-
-   /**
-   * Participant identifier
-   * @return participantId
-  **/
-  @ApiModelProperty(value = "Participant identifier")
-  public Integer getParticipantId() {
-    return participantId;
-  }
-
-  public void setParticipantId(Integer participantId) {
-    this.participantId = participantId;
-  }
-
-  public Submissions roundId(Integer roundId) {
-    this.roundId = roundId;
-    return this;
-  }
-
-   /**
-   * Round identifier
-   * @return roundId
-  **/
-  @ApiModelProperty(value = "Round identifier")
-  public Integer getRoundId() {
-    return roundId;
-  }
-
-  public void setRoundId(Integer roundId) {
-    this.roundId = roundId;
   }
 
   public Submissions graderId(Integer graderId) {
@@ -209,7 +170,7 @@ public class Submissions {
    * @return logs
   **/
   @ApiModelProperty(value = "S3 link of the STDOUT of the evaluation")
-  public Object getLogs() {
+  public String getLogs() {
     return logs;
   }
 
@@ -231,13 +192,31 @@ public class Submissions {
     return ended;
   }
 
+  public Submissions meta(String meta) {
+    this.meta = meta;
+    return this;
+  }
+
    /**
-   * Additional meta-data
+   * Additional meta data of the grader
    * @return meta
   **/
-  @ApiModelProperty(value = "Additional meta-data")
-  public Object getMeta() {
+  @ApiModelProperty(value = "Additional meta data of the grader")
+  public String getMeta() {
     return meta;
+  }
+
+  public void setMeta(String meta) {
+    this.meta = meta;
+  }
+
+   /**
+   * Name of the workflow used to evaluate submission
+   * @return wfName
+  **/
+  @ApiModelProperty(value = "Name of the workflow used to evaluate submission")
+  public String getWfName() {
+    return wfName;
   }
 
    /**
@@ -271,8 +250,6 @@ public class Submissions {
     return Objects.equals(this.id, submissions.id) &&
         Objects.equals(this.created, submissions.created) &&
         Objects.equals(this.updated, submissions.updated) &&
-        Objects.equals(this.participantId, submissions.participantId) &&
-        Objects.equals(this.roundId, submissions.roundId) &&
         Objects.equals(this.graderId, submissions.graderId) &&
         Objects.equals(this.submissionData, submissions.submissionData) &&
         Objects.equals(this.status, submissions.status) &&
@@ -282,13 +259,14 @@ public class Submissions {
         Objects.equals(this.started, submissions.started) &&
         Objects.equals(this.ended, submissions.ended) &&
         Objects.equals(this.meta, submissions.meta) &&
+        Objects.equals(this.wfName, submissions.wfName) &&
         Objects.equals(this.userId, submissions.userId) &&
         Objects.equals(this.organisationId, submissions.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, participantId, roundId, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, userId, organisationId);
+    return Objects.hash(id, created, updated, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, wfName, userId, organisationId);
   }
 
 
@@ -300,8 +278,6 @@ public class Submissions {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("    participantId: ").append(toIndentedString(participantId)).append("\n");
-    sb.append("    roundId: ").append(toIndentedString(roundId)).append("\n");
     sb.append("    graderId: ").append(toIndentedString(graderId)).append("\n");
     sb.append("    submissionData: ").append(toIndentedString(submissionData)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -311,6 +287,7 @@ public class Submissions {
     sb.append("    started: ").append(toIndentedString(started)).append("\n");
     sb.append("    ended: ").append(toIndentedString(ended)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

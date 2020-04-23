@@ -68,10 +68,11 @@ class Grader implements ModelInterface, ArrayAccess
         'evaluator_repo_tag' => 'string',
         'name' => 'string',
         'notifications' => 'string',
-        'logs' => 'object',
-        'meta' => 'object',
+        'logs' => 'string',
+        'meta' => 'string',
         'status' => 'string',
         'secrets' => 'object',
+        'wf_name' => 'string',
         'submission_types' => 'object',
         'user_id' => 'int',
         'organisation_id' => 'int'
@@ -98,6 +99,7 @@ class Grader implements ModelInterface, ArrayAccess
         'meta' => null,
         'status' => null,
         'secrets' => null,
+        'wf_name' => null,
         'submission_types' => null,
         'user_id' => null,
         'organisation_id' => null
@@ -145,6 +147,7 @@ class Grader implements ModelInterface, ArrayAccess
         'meta' => 'meta',
         'status' => 'status',
         'secrets' => 'secrets',
+        'wf_name' => 'wf_name',
         'submission_types' => 'submission_types',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
@@ -171,6 +174,7 @@ class Grader implements ModelInterface, ArrayAccess
         'meta' => 'setMeta',
         'status' => 'setStatus',
         'secrets' => 'setSecrets',
+        'wf_name' => 'setWfName',
         'submission_types' => 'setSubmissionTypes',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
@@ -197,6 +201,7 @@ class Grader implements ModelInterface, ArrayAccess
         'meta' => 'getMeta',
         'status' => 'getStatus',
         'secrets' => 'getSecrets',
+        'wf_name' => 'getWfName',
         'submission_types' => 'getSubmissionTypes',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
@@ -277,6 +282,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['secrets'] = isset($data['secrets']) ? $data['secrets'] : null;
+        $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
         $this->container['submission_types'] = isset($data['submission_types']) ? $data['submission_types'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
@@ -576,7 +582,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Gets logs
      *
-     * @return object
+     * @return string
      */
     public function getLogs()
     {
@@ -586,7 +592,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Sets logs
      *
-     * @param object $logs Logs from argo workflow
+     * @param string $logs Logs from argo workflow
      *
      * @return $this
      */
@@ -600,7 +606,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Gets meta
      *
-     * @return object
+     * @return string
      */
     public function getMeta()
     {
@@ -610,7 +616,7 @@ class Grader implements ModelInterface, ArrayAccess
     /**
      * Sets meta
      *
-     * @param object $meta Additional meta data of the grader
+     * @param string $meta Additional meta data of the grader
      *
      * @return $this
      */
@@ -665,6 +671,30 @@ class Grader implements ModelInterface, ArrayAccess
     public function setSecrets($secrets)
     {
         $this->container['secrets'] = $secrets;
+
+        return $this;
+    }
+
+    /**
+     * Gets wf_name
+     *
+     * @return string
+     */
+    public function getWfName()
+    {
+        return $this->container['wf_name'];
+    }
+
+    /**
+     * Sets wf_name
+     *
+     * @param string $wf_name Name of the workflow used to setup grader
+     *
+     * @return $this
+     */
+    public function setWfName($wf_name)
+    {
+        $this->container['wf_name'] = $wf_name;
 
         return $this;
     }

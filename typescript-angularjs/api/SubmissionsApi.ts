@@ -145,14 +145,57 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     */
+    public getSubmissionLogs (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * List all submissions available
+     * @param meta Fetch submissions with this meta value
+     * @param status Fetch submissions with this status
+     * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      */
-    public listSubmissions (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
+    public listSubmissions (meta?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
         const localVarPath = this.basePath + '/submissions/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        if (meta !== undefined) {
+            queryParameters['meta'] = meta;
+        }
+
+        if (status !== undefined) {
+            queryParameters['status'] = status;
+        }
+
+        if (userId !== undefined) {
+            queryParameters['user_id'] = userId;
+        }
+
         headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {

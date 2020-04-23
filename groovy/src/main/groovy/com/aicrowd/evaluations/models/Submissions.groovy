@@ -16,12 +16,6 @@ class Submissions {
   /* Last updation time */
   Date updated = null
 
-  /* Participant identifier */
-  Integer participantId = null
-
-  /* Round identifier */
-  Integer roundId = null
-
   /* Grader identifier */
   Integer graderId = null
 
@@ -38,7 +32,7 @@ class Submissions {
   Object additionalOutputs = null
 
   /* S3 link of the STDOUT of the evaluation */
-  Object logs = null
+  String logs = null
 
   /* Evaluation start time */
   Date started = null
@@ -46,8 +40,11 @@ class Submissions {
   /* Evaluation end time */
   Date ended = null
 
-  /* Additional meta-data */
-  Object meta = null
+  /* Additional meta data of the grader */
+  String meta = null
+
+  /* Name of the workflow used to evaluate submission */
+  String wfName = null
 
   /* User ID */
   Integer userId = null

@@ -189,13 +189,42 @@ class SubmissionsApi(
 
   /**
    * 
+   * Get the submission logs by submission ID
+   *
+   * @param submissionId  
+   * @return void
+   */
+  def getSubmissionLogs(submissionId: Integer) = {
+    val await = Try(Await.result(getSubmissionLogsAsync(submissionId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Get the submission logs by submission ID
+   *
+   * @param submissionId  
+   * @return Future(void)
+   */
+  def getSubmissionLogsAsync(submissionId: Integer) = {
+      helper.getSubmissionLogs(submissionId)
+  }
+
+  /**
+   * 
    * List all submissions available
    *
+   * @param meta Fetch submissions with this meta value (optional)
+   * @param status Fetch submissions with this status (optional)
+   * @param userId Fetch submissions created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return List[Submissions]
    */
-  def listSubmissions(xFields: Option[String] = None): Option[List[Submissions]] = {
-    val await = Try(Await.result(listSubmissionsAsync(xFields), Duration.Inf))
+  def listSubmissions(meta: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Submissions]] = {
+    val await = Try(Await.result(listSubmissionsAsync(meta, status, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -206,11 +235,14 @@ class SubmissionsApi(
    *  asynchronously
    * List all submissions available
    *
+   * @param meta Fetch submissions with this meta value (optional)
+   * @param status Fetch submissions with this status (optional)
+   * @param userId Fetch submissions created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Submissions])
    */
-  def listSubmissionsAsync(xFields: Option[String] = None): Future[List[Submissions]] = {
-      helper.listSubmissions(xFields)
+  def listSubmissionsAsync(meta: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Submissions]] = {
+      helper.listSubmissions(meta, status, userId, xFields)
   }
 
 }
@@ -293,7 +325,26 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def listSubmissions(xFields: Option[String] = None
+  def getSubmissionLogs(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/submissions/{submission_id}/logs")
+      replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def listSubmissions(meta: Option[String] = None,
+    status: Option[String] = None,
+    userId: Option[Integer] = None,
+    xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Submissions]]): Future[List[Submissions]] = {
     // create path and map variables
     val path = (addFmt("/submissions/"))
@@ -302,6 +353,18 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    meta match {
+      case Some(param) => queryParams += "meta" -> param.toString
+      case _ => queryParams
+    }
+    status match {
+      case Some(param) => queryParams += "status" -> param.toString
+      case _ => queryParams
+    }
+    userId match {
+      case Some(param) => queryParams += "user_id" -> param.toString
+      case _ => queryParams
+    }
     xFields match {
       case Some(param) => headerParams += "X-Fields" -> param.toString
       case _ => headerParams

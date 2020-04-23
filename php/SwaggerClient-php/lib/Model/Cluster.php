@@ -67,7 +67,7 @@ class Cluster implements ModelInterface, ArrayAccess
         'docker_registry' => 'string',
         'storage_class' => 'string',
         'status' => 'bool',
-        'meta' => 'object',
+        'wf_name' => 'string',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -88,7 +88,7 @@ class Cluster implements ModelInterface, ArrayAccess
         'docker_registry' => null,
         'storage_class' => null,
         'status' => null,
-        'meta' => null,
+        'wf_name' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -130,7 +130,7 @@ class Cluster implements ModelInterface, ArrayAccess
         'docker_registry' => 'docker_registry',
         'storage_class' => 'storage_class',
         'status' => 'status',
-        'meta' => 'meta',
+        'wf_name' => 'wf_name',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -151,7 +151,7 @@ class Cluster implements ModelInterface, ArrayAccess
         'docker_registry' => 'setDockerRegistry',
         'storage_class' => 'setStorageClass',
         'status' => 'setStatus',
-        'meta' => 'setMeta',
+        'wf_name' => 'setWfName',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -172,7 +172,7 @@ class Cluster implements ModelInterface, ArrayAccess
         'docker_registry' => 'getDockerRegistry',
         'storage_class' => 'getStorageClass',
         'status' => 'getStatus',
-        'meta' => 'getMeta',
+        'wf_name' => 'getWfName',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -247,7 +247,7 @@ class Cluster implements ModelInterface, ArrayAccess
         $this->container['docker_registry'] = isset($data['docker_registry']) ? $data['docker_registry'] : null;
         $this->container['storage_class'] = isset($data['storage_class']) ? $data['storage_class'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
+        $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -529,25 +529,25 @@ class Cluster implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets meta
+     * Gets wf_name
      *
-     * @return object
+     * @return string
      */
-    public function getMeta()
+    public function getWfName()
     {
-        return $this->container['meta'];
+        return $this->container['wf_name'];
     }
 
     /**
-     * Sets meta
+     * Sets wf_name
      *
-     * @param object $meta Additional metadata
+     * @param string $wf_name Name of the workflow used to setup grader
      *
      * @return $this
      */
-    public function setMeta($meta)
+    public function setWfName($wf_name)
     {
-        $this->container['meta'] = $meta;
+        $this->container['wf_name'] = $wf_name;
 
         return $this;
     }

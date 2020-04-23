@@ -103,14 +103,29 @@ namespace Com.AIcrowd.Evaluations.Test
         }
         
         /// <summary>
+        /// Test GetGraderLogs
+        /// </summary>
+        [Test]
+        public void GetGraderLogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //instance.GetGraderLogs(graderId);
+            
+        }
+        
+        /// <summary>
         /// Test ListGraders
         /// </summary>
         [Test]
         public void ListGradersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //string name = null;
+            //string status = null;
+            //int? userId = null;
             //string xFields = null;
-            //var response = instance.ListGraders(xFields);
+            //var response = instance.ListGraders(name, status, userId, xFields);
             //Assert.IsInstanceOf<List<Grader>> (response, "response is List<Grader>");
         }
         

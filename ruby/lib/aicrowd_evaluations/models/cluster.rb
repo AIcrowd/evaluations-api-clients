@@ -44,8 +44,8 @@ module AIcrowdEvaluations
     # Readiness of the cluster
     attr_accessor :status
 
-    # Additional metadata
-    attr_accessor :meta
+    # Name of the workflow used to setup grader
+    attr_accessor :wf_name
 
     # User ID
     attr_accessor :user_id
@@ -66,7 +66,7 @@ module AIcrowdEvaluations
         :'docker_registry' => :'docker_registry',
         :'storage_class' => :'storage_class',
         :'status' => :'status',
-        :'meta' => :'meta',
+        :'wf_name' => :'wf_name',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -85,7 +85,7 @@ module AIcrowdEvaluations
         :'docker_registry' => :'String',
         :'storage_class' => :'String',
         :'status' => :'BOOLEAN',
-        :'meta' => :'Object',
+        :'wf_name' => :'String',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -139,8 +139,8 @@ module AIcrowdEvaluations
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'meta')
-        self.meta = attributes[:'meta']
+      if attributes.has_key?(:'wf_name')
+        self.wf_name = attributes[:'wf_name']
       end
 
       if attributes.has_key?(:'user_id')
@@ -200,7 +200,7 @@ module AIcrowdEvaluations
           docker_registry == o.docker_registry &&
           storage_class == o.storage_class &&
           status == o.status &&
-          meta == o.meta &&
+          wf_name == o.wf_name &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -214,7 +214,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, remote_address, auth_token, docker_username, docker_password, docker_registry, storage_class, status, meta, user_id, organisation_id].hash
+      [id, created, updated, remote_address, auth_token, docker_username, docker_password, docker_registry, storage_class, status, wf_name, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

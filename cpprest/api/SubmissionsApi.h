@@ -87,10 +87,26 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Get the submission logs by submission ID
+    /// </remarks>
+    /// <param name="submissionId"></param>
+    pplx::task<void> getSubmissionLogs(
+        int32_t submissionId
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// List all submissions available
     /// </remarks>
+    /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+    /// <param name="status">Fetch submissions with this status (optional)</param>
+    /// <param name="userId">Fetch submissions created by the user (optional)</param>
     /// <param name="xFields">An optional fields mask (optional)</param>
     pplx::task<std::vector<std::shared_ptr<Submissions>>> listSubmissions(
+        boost::optional<utility::string_t> meta,
+        boost::optional<utility::string_t> status,
+        boost::optional<int32_t> userId,
         boost::optional<utility::string_t> xFields
     );
 

@@ -60,17 +60,16 @@ class Submissions implements ModelInterface, ArrayAccess
         'id' => 'int',
         'created' => '\DateTime',
         'updated' => '\DateTime',
-        'participant_id' => 'int',
-        'round_id' => 'int',
         'grader_id' => 'int',
         'submission_data' => 'object',
         'status' => 'string',
         'output' => 'string',
         'additional_outputs' => 'object',
-        'logs' => 'object',
+        'logs' => 'string',
         'started' => '\DateTime',
         'ended' => '\DateTime',
-        'meta' => 'object',
+        'meta' => 'string',
+        'wf_name' => 'string',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -84,8 +83,6 @@ class Submissions implements ModelInterface, ArrayAccess
         'id' => null,
         'created' => 'date-time',
         'updated' => 'date-time',
-        'participant_id' => null,
-        'round_id' => null,
         'grader_id' => null,
         'submission_data' => null,
         'status' => null,
@@ -95,6 +92,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'started' => 'date-time',
         'ended' => 'date-time',
         'meta' => null,
+        'wf_name' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -129,8 +127,6 @@ class Submissions implements ModelInterface, ArrayAccess
         'id' => 'id',
         'created' => 'created',
         'updated' => 'updated',
-        'participant_id' => 'participant_id',
-        'round_id' => 'round_id',
         'grader_id' => 'grader_id',
         'submission_data' => 'submission_data',
         'status' => 'status',
@@ -140,6 +136,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'started' => 'started',
         'ended' => 'ended',
         'meta' => 'meta',
+        'wf_name' => 'wf_name',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -153,8 +150,6 @@ class Submissions implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'created' => 'setCreated',
         'updated' => 'setUpdated',
-        'participant_id' => 'setParticipantId',
-        'round_id' => 'setRoundId',
         'grader_id' => 'setGraderId',
         'submission_data' => 'setSubmissionData',
         'status' => 'setStatus',
@@ -164,6 +159,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'started' => 'setStarted',
         'ended' => 'setEnded',
         'meta' => 'setMeta',
+        'wf_name' => 'setWfName',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -177,8 +173,6 @@ class Submissions implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'created' => 'getCreated',
         'updated' => 'getUpdated',
-        'participant_id' => 'getParticipantId',
-        'round_id' => 'getRoundId',
         'grader_id' => 'getGraderId',
         'submission_data' => 'getSubmissionData',
         'status' => 'getStatus',
@@ -188,6 +182,7 @@ class Submissions implements ModelInterface, ArrayAccess
         'started' => 'getStarted',
         'ended' => 'getEnded',
         'meta' => 'getMeta',
+        'wf_name' => 'getWfName',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -255,8 +250,6 @@ class Submissions implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
-        $this->container['participant_id'] = isset($data['participant_id']) ? $data['participant_id'] : null;
-        $this->container['round_id'] = isset($data['round_id']) ? $data['round_id'] : null;
         $this->container['grader_id'] = isset($data['grader_id']) ? $data['grader_id'] : null;
         $this->container['submission_data'] = isset($data['submission_data']) ? $data['submission_data'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
@@ -266,6 +259,7 @@ class Submissions implements ModelInterface, ArrayAccess
         $this->container['started'] = isset($data['started']) ? $data['started'] : null;
         $this->container['ended'] = isset($data['ended']) ? $data['ended'] : null;
         $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
+        $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -365,54 +359,6 @@ class Submissions implements ModelInterface, ArrayAccess
     public function setUpdated($updated)
     {
         $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets participant_id
-     *
-     * @return int
-     */
-    public function getParticipantId()
-    {
-        return $this->container['participant_id'];
-    }
-
-    /**
-     * Sets participant_id
-     *
-     * @param int $participant_id Participant identifier
-     *
-     * @return $this
-     */
-    public function setParticipantId($participant_id)
-    {
-        $this->container['participant_id'] = $participant_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets round_id
-     *
-     * @return int
-     */
-    public function getRoundId()
-    {
-        return $this->container['round_id'];
-    }
-
-    /**
-     * Sets round_id
-     *
-     * @param int $round_id Round identifier
-     *
-     * @return $this
-     */
-    public function setRoundId($round_id)
-    {
-        $this->container['round_id'] = $round_id;
 
         return $this;
     }
@@ -540,7 +486,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Gets logs
      *
-     * @return object
+     * @return string
      */
     public function getLogs()
     {
@@ -550,7 +496,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Sets logs
      *
-     * @param object $logs S3 link of the STDOUT of the evaluation
+     * @param string $logs S3 link of the STDOUT of the evaluation
      *
      * @return $this
      */
@@ -612,7 +558,7 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Gets meta
      *
-     * @return object
+     * @return string
      */
     public function getMeta()
     {
@@ -622,13 +568,37 @@ class Submissions implements ModelInterface, ArrayAccess
     /**
      * Sets meta
      *
-     * @param object $meta Additional meta-data
+     * @param string $meta Additional meta data of the grader
      *
      * @return $this
      */
     public function setMeta($meta)
     {
         $this->container['meta'] = $meta;
+
+        return $this;
+    }
+
+    /**
+     * Gets wf_name
+     *
+     * @return string
+     */
+    public function getWfName()
+    {
+        return $this->container['wf_name'];
+    }
+
+    /**
+     * Sets wf_name
+     *
+     * @param string $wf_name Name of the workflow used to evaluate submission
+     *
+     * @return $this
+     */
+    public function setWfName($wf_name)
+    {
+        $this->container['wf_name'] = $wf_name;
 
         return $this;
     }

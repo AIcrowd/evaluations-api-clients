@@ -43,6 +43,7 @@
           payload.clusterId = 0;
           payload.evaluatorRepo = "";
           payload.evaluatorRepoTag = "";
+          payload.meta = "";
           payload.secrets = ;
           var opts = {};
           opts.xFields = "xFields_example";
@@ -76,14 +77,16 @@
             expect(data.name).to.be("");
             expect(data.notifications).to.be.a('string');
             expect(data.notifications).to.be("");
-            expect(data.logs).to.be.a(Object);
-            expect(data.logs).to.be();
-            expect(data.meta).to.be.a(Object);
-            expect(data.meta).to.be();
+            expect(data.logs).to.be.a('string');
+            expect(data.logs).to.be("");
+            expect(data.meta).to.be.a('string');
+            expect(data.meta).to.be("");
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
             expect(data.secrets).to.be.a(Object);
             expect(data.secrets).to.be();
+            expect(data.wfName).to.be.a('string');
+            expect(data.wfName).to.be("");
             expect(data.submissionTypes).to.be.a(Object);
             expect(data.submissionTypes).to.be();
             expect(data.userId).to.be.a('number');
@@ -154,14 +157,16 @@
             expect(data.name).to.be("");
             expect(data.notifications).to.be.a('string');
             expect(data.notifications).to.be("");
-            expect(data.logs).to.be.a(Object);
-            expect(data.logs).to.be();
-            expect(data.meta).to.be.a(Object);
-            expect(data.meta).to.be();
+            expect(data.logs).to.be.a('string');
+            expect(data.logs).to.be("");
+            expect(data.meta).to.be.a('string');
+            expect(data.meta).to.be("");
             expect(data.status).to.be.a('string');
             expect(data.status).to.be("");
             expect(data.secrets).to.be.a(Object);
             expect(data.secrets).to.be();
+            expect(data.wfName).to.be.a('string');
+            expect(data.wfName).to.be("");
             expect(data.submissionTypes).to.be.a(Object);
             expect(data.submissionTypes).to.be();
             expect(data.userId).to.be.a('number');
@@ -176,11 +181,33 @@
           done();
         });
       });
+      describe('getGraderLogs', function() {
+        it('should call getGraderLogs successfully', function(done) {
+          // TODO: uncomment, update parameter values for getGraderLogs call
+          /*
+          var graderId = 56;
+
+          instance.getGraderLogs(graderId, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
       describe('listGraders', function() {
         it('should call listGraders successfully', function(done) {
           // TODO: uncomment, update parameter values for listGraders call and complete the assertions
           /*
           var opts = {};
+          opts.name = "name_example";
+          opts.status = "status_example";
+          opts.userId = 56;
           opts.xFields = "xFields_example";
 
           instance.listGraders(opts, function(error, data, response) {
@@ -217,14 +244,16 @@
               expect(data.name).to.be("");
               expect(data.notifications).to.be.a('string');
               expect(data.notifications).to.be("");
-              expect(data.logs).to.be.a(Object);
-              expect(data.logs).to.be();
-              expect(data.meta).to.be.a(Object);
-              expect(data.meta).to.be();
+              expect(data.logs).to.be.a('string');
+              expect(data.logs).to.be("");
+              expect(data.meta).to.be.a('string');
+              expect(data.meta).to.be("");
               expect(data.status).to.be.a('string');
               expect(data.status).to.be("");
               expect(data.secrets).to.be.a(Object);
               expect(data.secrets).to.be();
+              expect(data.wfName).to.be.a('string');
+              expect(data.wfName).to.be("");
               expect(data.submissionTypes).to.be.a(Object);
               expect(data.submissionTypes).to.be();
               expect(data.userId).to.be.a('number');

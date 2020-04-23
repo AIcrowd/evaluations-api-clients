@@ -58,18 +58,6 @@
         // expect(instance.updated).to.be(expectedValueLiteral);
       });
 
-      it('should have the property participantId (base name: "participant_id")', function() {
-        // TODO: update the code to test the property participantId
-        expect(instance).to.have.property('participantId');
-        // expect(instance.participantId).to.be(expectedValueLiteral);
-      });
-
-      it('should have the property roundId (base name: "round_id")', function() {
-        // TODO: update the code to test the property roundId
-        expect(instance).to.have.property('roundId');
-        // expect(instance.roundId).to.be(expectedValueLiteral);
-      });
-
       it('should have the property graderId (base name: "grader_id")', function() {
         // TODO: update the code to test the property graderId
         expect(instance).to.have.property('graderId');
@@ -122,6 +110,12 @@
         // TODO: update the code to test the property meta
         expect(instance).to.have.property('meta');
         // expect(instance.meta).to.be(expectedValueLiteral);
+      });
+
+      it('should have the property wfName (base name: "wf_name")', function() {
+        // TODO: update the code to test the property wfName
+        expect(instance).to.have.property('wfName');
+        // expect(instance.wfName).to.be(expectedValueLiteral);
       });
 
       it('should have the property userId (base name: "user_id")', function() {

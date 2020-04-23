@@ -100,10 +100,10 @@
         // expect(instance.status).to.be(expectedValueLiteral);
       });
 
-      it('should have the property meta (base name: "meta")', function() {
-        // TODO: update the code to test the property meta
-        expect(instance).to.have.property('meta');
-        // expect(instance.meta).to.be(expectedValueLiteral);
+      it('should have the property wfName (base name: "wf_name")', function() {
+        // TODO: update the code to test the property wfName
+        expect(instance).to.have.property('wfName');
+        // expect(instance.wfName).to.be(expectedValueLiteral);
       });
 
       it('should have the property userId (base name: "user_id")', function() {

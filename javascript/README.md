@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.GradersApi* | [**createGrader**](docs/GradersApi.md#createGrader) | **POST** /graders/ | 
 *AicrowdEvaluations.GradersApi* | [**deleteGrader**](docs/GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+*AicrowdEvaluations.GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *AicrowdEvaluations.GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
 *AicrowdEvaluations.OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
 *AicrowdEvaluations.OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 
@@ -140,6 +141,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.SubmissionsApi* | [**deleteSubmission**](docs/SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmission**](docs/SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+*AicrowdEvaluations.SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 *AicrowdEvaluations.SubmissionsApi* | [**listSubmissions**](docs/SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 *AicrowdEvaluations.UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users/ | 
 *AicrowdEvaluations.UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{user_id} | 

@@ -171,14 +171,54 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
+    * Get the submission logs by submission ID
+    * @param submissionId  
+    * @return void
+    */
+    fun getSubmissionLogs(submissionId: kotlin.Int) : Unit {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/submissions/{submission_id}/logs".replace("{"+"submission_id"+"}", "$submissionId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Unit>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> Unit
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
     * List all submissions available
+    * @param meta Fetch submissions with this meta value (optional)
+    * @param status Fetch submissions with this status (optional)
+    * @param userId Fetch submissions created by the user (optional)
     * @param xFields An optional fields mask (optional)
     * @return kotlin.Array<Submissions>
     */
     @Suppress("UNCHECKED_CAST")
-    fun listSubmissions(xFields: kotlin.String) : kotlin.Array<Submissions> {
+    fun listSubmissions(meta: kotlin.String, status: kotlin.String, userId: kotlin.Int, xFields: kotlin.String) : kotlin.Array<Submissions> {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf("meta" to listOf("$meta"), "status" to listOf("$status"), "user_id" to listOf("$userId"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")

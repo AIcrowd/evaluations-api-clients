@@ -102,6 +102,16 @@ class GradersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getGraderLogs
+     *
+     * .
+     *
+     */
+    public function testGetGraderLogs()
+    {
+    }
+
+    /**
      * Test case for listGraders
      *
      * .

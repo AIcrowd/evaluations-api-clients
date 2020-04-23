@@ -157,11 +157,11 @@ namespace Com.AIcrowd.Evaluations.Model
         public bool? Status { get; private set; }
 
         /// <summary>
-        /// Additional metadata
+        /// Name of the workflow used to setup grader
         /// </summary>
-        /// <value>Additional metadata</value>
-        [DataMember(Name="meta", EmitDefaultValue=false)]
-        public Object Meta { get; private set; }
+        /// <value>Name of the workflow used to setup grader</value>
+        [DataMember(Name="wf_name", EmitDefaultValue=false)]
+        public string WfName { get; private set; }
 
         /// <summary>
         /// User ID
@@ -195,7 +195,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  DockerRegistry: ").Append(DockerRegistry).Append("\n");
             sb.Append("  StorageClass: ").Append(StorageClass).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Meta: ").Append(Meta).Append("\n");
+            sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -283,9 +283,9 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Meta == input.Meta ||
-                    (this.Meta != null &&
-                    this.Meta.Equals(input.Meta))
+                    this.WfName == input.WfName ||
+                    (this.WfName != null &&
+                    this.WfName.Equals(input.WfName))
                 ) && 
                 (
                     this.UserId == input.UserId ||
@@ -328,8 +328,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.StorageClass.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.Meta != null)
-                    hashCode = hashCode * 59 + this.Meta.GetHashCode();
+                if (this.WfName != null)
+                    hashCode = hashCode * 59 + this.WfName.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

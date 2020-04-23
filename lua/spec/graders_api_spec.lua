@@ -36,6 +36,13 @@ describe("graders_api", function()
     end)
   end)
 
+  -- unit tests for get_grader_logs
+  describe("get_grader_logs test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for list_graders
   describe("list_graders test", function()
     it("should work", function()

@@ -214,16 +214,80 @@ export class GradersService {
 
     /**
      * 
+     * Get the grader logs by submission ID
+     * @param graderId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getGraderLogs(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getGraderLogs(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getGraderLogs(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getGraderLogs(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/logs`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * List all graders available
+     * @param name Fetch grader with this name
+     * @param status Fetch graders with this status
+     * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listGraders(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
-    public listGraders(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
-    public listGraders(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
-    public listGraders(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
+    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
+    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
+    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (name !== undefined && name !== null) {
+            queryParameters = queryParameters.set('name', <any>name);
+        }
+        if (status !== undefined && status !== null) {
+            queryParameters = queryParameters.set('status', <any>status);
+        }
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('user_id', <any>userId);
+        }
 
         let headers = this.defaultHeaders;
         if (xFields !== undefined && xFields !== null) {
@@ -251,6 +315,7 @@ export class GradersService {
 
         return this.httpClient.get<Array<Grader>>(`${this.basePath}/graders/`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

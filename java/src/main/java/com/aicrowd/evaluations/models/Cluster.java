@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Cluster
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-21T18:26:04.510Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-23T19:58:39.101Z")
 public class Cluster {
   @SerializedName("id")
   private Integer id = null;
@@ -60,8 +60,8 @@ public class Cluster {
   @SerializedName("status")
   private Boolean status = null;
 
-  @SerializedName("meta")
-  private Object meta = null;
+  @SerializedName("wf_name")
+  private String wfName = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -214,12 +214,12 @@ public class Cluster {
   }
 
    /**
-   * Additional metadata
-   * @return meta
+   * Name of the workflow used to setup grader
+   * @return wfName
   **/
-  @ApiModelProperty(value = "Additional metadata")
-  public Object getMeta() {
-    return meta;
+  @ApiModelProperty(value = "Name of the workflow used to setup grader")
+  public String getWfName() {
+    return wfName;
   }
 
    /**
@@ -260,14 +260,14 @@ public class Cluster {
         Objects.equals(this.dockerRegistry, cluster.dockerRegistry) &&
         Objects.equals(this.storageClass, cluster.storageClass) &&
         Objects.equals(this.status, cluster.status) &&
-        Objects.equals(this.meta, cluster.meta) &&
+        Objects.equals(this.wfName, cluster.wfName) &&
         Objects.equals(this.userId, cluster.userId) &&
         Objects.equals(this.organisationId, cluster.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerPassword, dockerRegistry, storageClass, status, meta, userId, organisationId);
+    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerPassword, dockerRegistry, storageClass, status, wfName, userId, organisationId);
   }
 
 
@@ -286,7 +286,7 @@ public class Cluster {
     sb.append("    dockerRegistry: ").append(toIndentedString(dockerRegistry)).append("\n");
     sb.append("    storageClass: ").append(toIndentedString(storageClass)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

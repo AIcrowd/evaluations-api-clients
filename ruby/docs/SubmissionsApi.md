@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_submission**](SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
 [**get_submission**](SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
+[**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
 
 
@@ -229,6 +230,58 @@ nil (empty response body)
 
 
 
+# **get_submission_logs**
+> get_submission_logs(submission_id)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
+
+submission_id = 56 # Integer | 
+
+
+begin
+  api_instance.get_submission_logs(submission_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->get_submission_logs: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **list_submissions**
 > Array&lt;Submissions&gt; list_submissions(opts)
 
@@ -251,6 +304,9 @@ end
 api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 opts = { 
+  meta: 'meta_example', # String | Fetch submissions with this meta value
+  status: 'status_example', # String | Fetch submissions with this status
+  user_id: 56, # Integer | Fetch submissions created by the user
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
@@ -266,6 +322,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **String**| Fetch submissions with this meta value | [optional] 
+ **status** | **String**| Fetch submissions with this status | [optional] 
+ **user_id** | **Integer**| Fetch submissions created by the user | [optional] 
  **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type

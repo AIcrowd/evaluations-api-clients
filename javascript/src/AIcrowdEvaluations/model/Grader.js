@@ -79,13 +79,15 @@
       if (data.hasOwnProperty('notifications'))
         obj.notifications = ApiClient.convertToType(data['notifications'], 'String');
       if (data.hasOwnProperty('logs'))
-        obj.logs = ApiClient.convertToType(data['logs'], Object);
+        obj.logs = ApiClient.convertToType(data['logs'], 'String');
       if (data.hasOwnProperty('meta'))
-        obj.meta = ApiClient.convertToType(data['meta'], Object);
+        obj.meta = ApiClient.convertToType(data['meta'], 'String');
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'String');
       if (data.hasOwnProperty('secrets'))
         obj.secrets = ApiClient.convertToType(data['secrets'], Object);
+      if (data.hasOwnProperty('wf_name'))
+        obj.wfName = ApiClient.convertToType(data['wf_name'], 'String');
       if (data.hasOwnProperty('submission_types'))
         obj.submissionTypes = ApiClient.convertToType(data['submission_types'], Object);
       if (data.hasOwnProperty('user_id'))
@@ -164,13 +166,13 @@
 
   /**
    * Logs from argo workflow
-   * @member {Object} logs
+   * @member {String} logs
    */
   exports.prototype.logs = undefined;
 
   /**
    * Additional meta data of the grader
-   * @member {Object} meta
+   * @member {String} meta
    */
   exports.prototype.meta = undefined;
 
@@ -185,6 +187,12 @@
    * @member {Object} secrets
    */
   exports.prototype.secrets = undefined;
+
+  /**
+   * Name of the workflow used to setup grader
+   * @member {String} wfName
+   */
+  exports.prototype.wfName = undefined;
 
   /**
    * Type of submissions allowed on the grader

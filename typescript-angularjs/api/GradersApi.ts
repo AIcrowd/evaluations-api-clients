@@ -117,14 +117,57 @@ export class GradersApi {
         return this.$http(httpRequestParams);
     }
     /**
+     * Get the grader logs by submission ID
+     * @param graderId 
+     */
+    public getGraderLogs (graderId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/logs'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * List all graders available
+     * @param name Fetch grader with this name
+     * @param status Fetch graders with this status
+     * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      */
-    public listGraders (xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
+    public listGraders (name?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
         const localVarPath = this.basePath + '/graders/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        if (name !== undefined) {
+            queryParameters['name'] = name;
+        }
+
+        if (status !== undefined) {
+            queryParameters['status'] = status;
+        }
+
+        if (userId !== undefined) {
+            queryParameters['user_id'] = userId;
+        }
+
         headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {

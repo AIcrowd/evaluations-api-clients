@@ -23,12 +23,6 @@ module AIcrowdEvaluations
     # Last updation time
     attr_accessor :updated
 
-    # Participant identifier
-    attr_accessor :participant_id
-
-    # Round identifier
-    attr_accessor :round_id
-
     # Grader identifier
     attr_accessor :grader_id
 
@@ -53,8 +47,11 @@ module AIcrowdEvaluations
     # Evaluation end time
     attr_accessor :ended
 
-    # Additional meta-data
+    # Additional meta data of the grader
     attr_accessor :meta
+
+    # Name of the workflow used to evaluate submission
+    attr_accessor :wf_name
 
     # User ID
     attr_accessor :user_id
@@ -68,8 +65,6 @@ module AIcrowdEvaluations
         :'id' => :'id',
         :'created' => :'created',
         :'updated' => :'updated',
-        :'participant_id' => :'participant_id',
-        :'round_id' => :'round_id',
         :'grader_id' => :'grader_id',
         :'submission_data' => :'submission_data',
         :'status' => :'status',
@@ -79,6 +74,7 @@ module AIcrowdEvaluations
         :'started' => :'started',
         :'ended' => :'ended',
         :'meta' => :'meta',
+        :'wf_name' => :'wf_name',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -90,17 +86,16 @@ module AIcrowdEvaluations
         :'id' => :'Integer',
         :'created' => :'DateTime',
         :'updated' => :'DateTime',
-        :'participant_id' => :'Integer',
-        :'round_id' => :'Integer',
         :'grader_id' => :'Integer',
         :'submission_data' => :'Object',
         :'status' => :'String',
         :'output' => :'String',
         :'additional_outputs' => :'Object',
-        :'logs' => :'Object',
+        :'logs' => :'String',
         :'started' => :'DateTime',
         :'ended' => :'DateTime',
-        :'meta' => :'Object',
+        :'meta' => :'String',
+        :'wf_name' => :'String',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -124,14 +119,6 @@ module AIcrowdEvaluations
 
       if attributes.has_key?(:'updated')
         self.updated = attributes[:'updated']
-      end
-
-      if attributes.has_key?(:'participant_id')
-        self.participant_id = attributes[:'participant_id']
-      end
-
-      if attributes.has_key?(:'round_id')
-        self.round_id = attributes[:'round_id']
       end
 
       if attributes.has_key?(:'grader_id')
@@ -170,6 +157,10 @@ module AIcrowdEvaluations
         self.meta = attributes[:'meta']
       end
 
+      if attributes.has_key?(:'wf_name')
+        self.wf_name = attributes[:'wf_name']
+      end
+
       if attributes.has_key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
@@ -205,8 +196,6 @@ module AIcrowdEvaluations
           id == o.id &&
           created == o.created &&
           updated == o.updated &&
-          participant_id == o.participant_id &&
-          round_id == o.round_id &&
           grader_id == o.grader_id &&
           submission_data == o.submission_data &&
           status == o.status &&
@@ -216,6 +205,7 @@ module AIcrowdEvaluations
           started == o.started &&
           ended == o.ended &&
           meta == o.meta &&
+          wf_name == o.wf_name &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -229,7 +219,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, participant_id, round_id, grader_id, submission_data, status, output, additional_outputs, logs, started, ended, meta, user_id, organisation_id].hash
+      [id, created, updated, grader_id, submission_data, status, output, additional_outputs, logs, started, ended, meta, wf_name, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

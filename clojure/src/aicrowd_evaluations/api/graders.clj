@@ -67,15 +67,35 @@
   ([grader-id optional-params]
    (:data (get-grader-with-http-info grader-id optional-params))))
 
+(defn get-grader-logs-with-http-info
+  "
+  Get the grader logs by submission ID"
+  [grader-id ]
+  (check-required-params grader-id)
+  (call-api "/graders/{grader_id}/logs" :get
+            {:path-params   {"grader_id" grader-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn get-grader-logs
+  "
+  Get the grader logs by submission ID"
+  [grader-id ]
+  (:data (get-grader-logs-with-http-info grader-id)))
+
 (defn list-graders-with-http-info
   "
   List all graders available"
   ([] (list-graders-with-http-info nil))
-  ([{:keys [x-fields ]}]
+  ([{:keys [name status user-id x-fields ]}]
    (call-api "/graders/" :get
              {:path-params   {}
               :header-params {"X-Fields" x-fields }
-              :query-params  {}
+              :query-params  {"name" name "status" status "user_id" user-id }
               :form-params   {}
               :content-types ["application/json"]
               :accepts       ["application/json"]

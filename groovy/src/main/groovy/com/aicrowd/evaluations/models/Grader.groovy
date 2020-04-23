@@ -41,16 +41,19 @@ class Grader {
   String notifications = null
 
   /* Logs from argo workflow */
-  Object logs = null
+  String logs = null
 
   /* Additional meta data of the grader */
-  Object meta = null
+  String meta = null
 
   /* Status of the grader - True if it ready, False otherwise */
   String status = null
 
   /* List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml */
   Object secrets = null
+
+  /* Name of the workflow used to setup grader */
+  String wfName = null
 
   /* Type of submissions allowed on the grader */
   Object submissionTypes = null

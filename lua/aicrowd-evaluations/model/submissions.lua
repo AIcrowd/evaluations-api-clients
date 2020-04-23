@@ -19,13 +19,11 @@ local function cast_submissions(t)
 	return setmetatable(t, submissions_mt)
 end
 
-local function new_submissions(id, created, updated, participant_id, round_id, grader_id, submission_data, status, output, additional_outputs, logs, started, ended, meta, user_id, organisation_id)
+local function new_submissions(id, created, updated, grader_id, submission_data, status, output, additional_outputs, logs, started, ended, meta, wf_name, user_id, organisation_id)
 	return cast_submissions({
 		["id"] = id;
 		["created"] = created;
 		["updated"] = updated;
-		["participant_id"] = participant_id;
-		["round_id"] = round_id;
 		["grader_id"] = grader_id;
 		["submission_data"] = submission_data;
 		["status"] = status;
@@ -35,6 +33,7 @@ local function new_submissions(id, created, updated, participant_id, round_id, g
 		["started"] = started;
 		["ended"] = ended;
 		["meta"] = meta;
+		["wf_name"] = wf_name;
 		["user_id"] = user_id;
 		["organisation_id"] = organisation_id;
 	})

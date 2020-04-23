@@ -98,20 +98,6 @@ class SubmissionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "participant_id"
-     */
-    public function testPropertyParticipantId()
-    {
-    }
-
-    /**
-     * Test attribute "round_id"
-     */
-    public function testPropertyRoundId()
-    {
-    }
-
-    /**
      * Test attribute "grader_id"
      */
     public function testPropertyGraderId()
@@ -171,6 +157,13 @@ class SubmissionsTest extends \PHPUnit_Framework_TestCase
      * Test attribute "meta"
      */
     public function testPropertyMeta()
+    {
+    }
+
+    /**
+     * Test attribute "wf_name"
+     */
+    public function testPropertyWfName()
     {
     }
 

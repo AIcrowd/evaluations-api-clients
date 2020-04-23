@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+[**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
 
 
@@ -178,9 +179,63 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getGraderLogs"></a>
+# **getGraderLogs**
+> getGraderLogs(graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+GradersApi apiInstance = new GradersApi();
+Integer graderId = 56; // Integer | 
+try {
+    apiInstance.getGraderLogs(graderId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling GradersApi#getGraderLogs");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="listGraders"></a>
 # **listGraders**
-> List&lt;Grader&gt; listGraders(xFields)
+> List&lt;Grader&gt; listGraders(name, status, userId, xFields)
 
 
 
@@ -204,9 +259,12 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 GradersApi apiInstance = new GradersApi();
+String name = "name_example"; // String | Fetch grader with this name
+String status = "status_example"; // String | Fetch graders with this status
+Integer userId = 56; // Integer | Fetch graders created by the user
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Grader> result = apiInstance.listGraders(xFields);
+    List<Grader> result = apiInstance.listGraders(name, status, userId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GradersApi#listGraders");
@@ -218,6 +276,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **String**| Fetch grader with this name | [optional]
+ **status** | **String**| Fetch graders with this status | [optional]
+ **userId** | **Integer**| Fetch graders created by the user | [optional]
  **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type

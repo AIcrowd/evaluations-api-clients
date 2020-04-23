@@ -76,11 +76,11 @@ API.Client.Cluster.prototype.storageClass;
 API.Client.Cluster.prototype.status;
 
 /**
- * Additional metadata
- * @type {!API.Client.Object}
+ * Name of the workflow used to setup grader
+ * @type {!string}
  * @export
  */
-API.Client.Cluster.prototype.meta;
+API.Client.Cluster.prototype.wfName;
 
 /**
  * User ID

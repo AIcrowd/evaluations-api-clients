@@ -82,7 +82,29 @@ class GradersApi {
                     Grader.class )
                     
     }
-    def listGraders ( String xFields, Closure onSuccess, Closure onFailure)  {
+    def getGraderLogs ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/{grader_id}/logs"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (graderId == null) {
+            throw new RuntimeException("missing required params graderId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    null )
+                    
+    }
+    def listGraders ( String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/"
 
@@ -91,7 +113,13 @@ class GradersApi {
         def headerParams = [:]
     
 
-        
+        if (!"null".equals(String.valueOf(name)))
+            queryParams.put("name", String.valueOf(name))
+if (!"null".equals(String.valueOf(status)))
+            queryParams.put("status", String.valueOf(status))
+if (!"null".equals(String.valueOf(userId)))
+            queryParams.put("user_id", String.valueOf(userId))
+
         headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param

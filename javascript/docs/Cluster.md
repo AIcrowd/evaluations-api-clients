@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **dockerRegistry** | **String** | Docker registry URL. Dockerhub is used by default. | [optional] 
 **storageClass** | **String** | Storage class to use for datasets | [optional] 
 **status** | **Boolean** | Readiness of the cluster | [optional] 
-**meta** | **Object** | Additional metadata | [optional] 
+**wfName** | **String** | Name of the workflow used to setup grader | [optional] 
 **userId** | **Number** | User ID | [optional] 
 **organisationId** | **Number** | Organisation ID | [optional] 
 

@@ -261,16 +261,80 @@ export class SubmissionsService {
 
     /**
      * 
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSubmissionLogs(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getSubmissionLogs(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getSubmissionLogs(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getSubmissionLogs(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/logs`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * List all submissions available
+     * @param meta Fetch submissions with this meta value
+     * @param status Fetch submissions with this status
+     * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listSubmissions(xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
-    public listSubmissions(xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
-    public listSubmissions(xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
-    public listSubmissions(xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
+    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
+    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
+    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
+
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (meta !== undefined && meta !== null) {
+            queryParameters = queryParameters.set('meta', <any>meta);
+        }
+        if (status !== undefined && status !== null) {
+            queryParameters = queryParameters.set('status', <any>status);
+        }
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('user_id', <any>userId);
+        }
 
         let headers = this.defaultHeaders;
         if (xFields !== undefined && xFields !== null) {
@@ -298,6 +362,7 @@ export class SubmissionsService {
 
         return this.httpClient.get<Array<Submissions>>(`${this.basePath}/submissions/`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

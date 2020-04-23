@@ -24,7 +24,7 @@ package com.aicrowd.evaluations.models
  * @param docker_registry Docker registry URL. Dockerhub is used by default.
  * @param storage_class Storage class to use for datasets
  * @param status Readiness of the cluster
- * @param meta Additional metadata
+ * @param wf_name Name of the workflow used to setup grader
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -49,8 +49,8 @@ data class Cluster (
     val storage_class: kotlin.String? = null,
     /* Readiness of the cluster */
     val status: kotlin.Boolean? = null,
-    /* Additional metadata */
-    val meta: kotlin.Any? = null,
+    /* Name of the workflow used to setup grader */
+    val wf_name: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

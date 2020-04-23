@@ -41,8 +41,9 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="clusterId">Cluster to run the grader on.</param>
         /// <param name="evaluatorRepo">Git URL of the repository containing the code that will be used for the evaluation (required).</param>
         /// <param name="evaluatorRepoTag">Git branch/tag that should be used with the evaluator repository..</param>
+        /// <param name="meta">Additional meta data of the grader.</param>
         /// <param name="secrets">List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml.</param>
-        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), Object secrets = default(Object))
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -55,6 +56,7 @@ namespace Com.AIcrowd.Evaluations.Model
             }
             this.ClusterId = clusterId;
             this.EvaluatorRepoTag = evaluatorRepoTag;
+            this.Meta = meta;
             this.Secrets = secrets;
         }
         
@@ -140,14 +142,14 @@ namespace Com.AIcrowd.Evaluations.Model
         /// </summary>
         /// <value>Logs from argo workflow</value>
         [DataMember(Name="logs", EmitDefaultValue=false)]
-        public Object Logs { get; private set; }
+        public string Logs { get; private set; }
 
         /// <summary>
         /// Additional meta data of the grader
         /// </summary>
         /// <value>Additional meta data of the grader</value>
         [DataMember(Name="meta", EmitDefaultValue=false)]
-        public Object Meta { get; private set; }
+        public string Meta { get; set; }
 
         /// <summary>
         /// Status of the grader - True if it ready, False otherwise
@@ -162,6 +164,13 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml</value>
         [DataMember(Name="secrets", EmitDefaultValue=false)]
         public Object Secrets { get; set; }
+
+        /// <summary>
+        /// Name of the workflow used to setup grader
+        /// </summary>
+        /// <value>Name of the workflow used to setup grader</value>
+        [DataMember(Name="wf_name", EmitDefaultValue=false)]
+        public string WfName { get; private set; }
 
         /// <summary>
         /// Type of submissions allowed on the grader
@@ -207,6 +216,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Secrets: ").Append(Secrets).Append("\n");
+            sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
@@ -320,6 +330,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Secrets.Equals(input.Secrets))
                 ) && 
                 (
+                    this.WfName == input.WfName ||
+                    (this.WfName != null &&
+                    this.WfName.Equals(input.WfName))
+                ) && 
+                (
                     this.SubmissionTypes == input.SubmissionTypes ||
                     (this.SubmissionTypes != null &&
                     this.SubmissionTypes.Equals(input.SubmissionTypes))
@@ -375,6 +390,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Secrets != null)
                     hashCode = hashCode * 59 + this.Secrets.GetHashCode();
+                if (this.WfName != null)
+                    hashCode = hashCode * 59 + this.WfName.GetHashCode();
                 if (this.SubmissionTypes != null)
                     hashCode = hashCode * 59 + this.SubmissionTypes.GetHashCode();
                 if (this.UserId != null)

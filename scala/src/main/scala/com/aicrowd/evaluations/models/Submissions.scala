@@ -21,10 +21,6 @@ case class Submissions (
   created: Option[Date] = None,
   // Last updation time
   updated: Option[Date] = None,
-  // Participant identifier
-  participantId: Option[Integer] = None,
-  // Round identifier
-  roundId: Option[Integer] = None,
   // Grader identifier
   graderId: Integer,
   // URL to the submission code
@@ -36,13 +32,15 @@ case class Submissions (
   // Array of any additional outputs
   additionalOutputs: Option[Any] = None,
   // S3 link of the STDOUT of the evaluation
-  logs: Option[Any] = None,
+  logs: Option[String] = None,
   // Evaluation start time
   started: Option[Date] = None,
   // Evaluation end time
   ended: Option[Date] = None,
-  // Additional meta-data
-  meta: Option[Any] = None,
+  // Additional meta data of the grader
+  meta: Option[String] = None,
+  // Name of the workflow used to evaluate submission
+  wfName: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

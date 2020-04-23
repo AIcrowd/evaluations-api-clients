@@ -91,22 +91,6 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Updated'
         }
         /// <summary>
-        /// Test the property 'ParticipantId'
-        /// </summary>
-        [Test]
-        public void ParticipantIdTest()
-        {
-            // TODO unit test for the property 'ParticipantId'
-        }
-        /// <summary>
-        /// Test the property 'RoundId'
-        /// </summary>
-        [Test]
-        public void RoundIdTest()
-        {
-            // TODO unit test for the property 'RoundId'
-        }
-        /// <summary>
         /// Test the property 'GraderId'
         /// </summary>
         [Test]
@@ -177,6 +161,14 @@ namespace Com.AIcrowd.Evaluations.Test
         public void MetaTest()
         {
             // TODO unit test for the property 'Meta'
+        }
+        /// <summary>
+        /// Test the property 'WfName'
+        /// </summary>
+        [Test]
+        public void WfNameTest()
+        {
+            // TODO unit test for the property 'WfName'
         }
         /// <summary>
         /// Test the property 'UserId'

@@ -187,6 +187,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Secrets'
         }
         /// <summary>
+        /// Test the property 'WfName'
+        /// </summary>
+        [Test]
+        public void WfNameTest()
+        {
+            // TODO unit test for the property 'WfName'
+        }
+        /// <summary>
         /// Test the property 'SubmissionTypes'
         /// </summary>
         [Test]

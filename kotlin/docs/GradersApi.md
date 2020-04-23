@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
+[**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
 
 
@@ -154,9 +155,55 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getGraderLogs"></a>
+# **getGraderLogs**
+> getGraderLogs(graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = GradersApi()
+val graderId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.getGraderLogs(graderId)
+} catch (e: ClientException) {
+    println("4xx response calling GradersApi#getGraderLogs")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GradersApi#getGraderLogs")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="listGraders"></a>
 # **listGraders**
-> kotlin.Array&lt;Grader&gt; listGraders(xFields)
+> kotlin.Array&lt;Grader&gt; listGraders(name, status, userId, xFields)
 
 
 
@@ -169,9 +216,12 @@ List all graders available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
+val name : kotlin.String = name_example // kotlin.String | Fetch grader with this name
+val status : kotlin.String = status_example // kotlin.String | Fetch graders with this status
+val userId : kotlin.Int = 56 // kotlin.Int | Fetch graders created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Grader> = apiInstance.listGraders(xFields)
+    val result : kotlin.Array<Grader> = apiInstance.listGraders(name, status, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GradersApi#listGraders")
@@ -186,6 +236,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **kotlin.String**| Fetch grader with this name | [optional]
+ **status** | **kotlin.String**| Fetch graders with this status | [optional]
+ **userId** | **kotlin.Int**| Fetch graders created by the user | [optional]
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type

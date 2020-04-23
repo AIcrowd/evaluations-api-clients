@@ -12,8 +12,6 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"id",
     :"created",
     :"updated",
-    :"participant_id",
-    :"round_id",
     :"grader_id",
     :"submission_data",
     :"status",
@@ -23,6 +21,7 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"started",
     :"ended",
     :"meta",
+    :"wf_name",
     :"user_id",
     :"organisation_id"
   ]
@@ -31,17 +30,16 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"id" => integer(),
     :"created" => DateTime.t,
     :"updated" => DateTime.t,
-    :"participant_id" => integer(),
-    :"round_id" => integer(),
     :"grader_id" => integer(),
     :"submission_data" => Object,
     :"status" => String.t,
     :"output" => String.t,
     :"additional_outputs" => Object,
-    :"logs" => Object,
+    :"logs" => String.t,
     :"started" => DateTime.t,
     :"ended" => DateTime.t,
-    :"meta" => Object,
+    :"meta" => String.t,
+    :"wf_name" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }
@@ -53,8 +51,6 @@ defimpl Poison.Decoder, for: AIcrowd.Evaluations.Model.Submissions do
     value
     |> deserialize(:"submission_data", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"additional_outputs", :struct, AIcrowd.Evaluations.Model.Object, options)
-    |> deserialize(:"logs", :struct, AIcrowd.Evaluations.Model.Object, options)
-    |> deserialize(:"meta", :struct, AIcrowd.Evaluations.Model.Object, options)
   end
 end
 

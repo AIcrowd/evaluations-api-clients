@@ -109,6 +109,10 @@ operation_parameters_minimum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
+operation_parameters_minimum_occurrences["getGraderLogs:::grader_id"]=1
+operation_parameters_minimum_occurrences["listGraders:::name"]=0
+operation_parameters_minimum_occurrences["listGraders:::status"]=0
+operation_parameters_minimum_occurrences["listGraders:::user_id"]=0
 operation_parameters_minimum_occurrences["listGraders:::X-Fields"]=0
 operation_parameters_minimum_occurrences["createOrganisation:::payload"]=1
 operation_parameters_minimum_occurrences["createOrganisation:::X-Fields"]=0
@@ -127,6 +131,10 @@ operation_parameters_minimum_occurrences["deleteSubmission:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmission:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
+operation_parameters_minimum_occurrences["getSubmissionLogs:::submission_id"]=1
+operation_parameters_minimum_occurrences["listSubmissions:::meta"]=0
+operation_parameters_minimum_occurrences["listSubmissions:::status"]=0
+operation_parameters_minimum_occurrences["listSubmissions:::user_id"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::X-Fields"]=0
 operation_parameters_minimum_occurrences["createUser:::payload"]=1
 operation_parameters_minimum_occurrences["createUser:::X-Fields"]=0
@@ -161,6 +169,10 @@ operation_parameters_maximum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
+operation_parameters_maximum_occurrences["getGraderLogs:::grader_id"]=0
+operation_parameters_maximum_occurrences["listGraders:::name"]=0
+operation_parameters_maximum_occurrences["listGraders:::status"]=0
+operation_parameters_maximum_occurrences["listGraders:::user_id"]=0
 operation_parameters_maximum_occurrences["listGraders:::X-Fields"]=0
 operation_parameters_maximum_occurrences["createOrganisation:::payload"]=0
 operation_parameters_maximum_occurrences["createOrganisation:::X-Fields"]=0
@@ -179,6 +191,10 @@ operation_parameters_maximum_occurrences["deleteSubmission:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmission:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
+operation_parameters_maximum_occurrences["getSubmissionLogs:::submission_id"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::meta"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::status"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::user_id"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::X-Fields"]=0
 operation_parameters_maximum_occurrences["createUser:::payload"]=0
 operation_parameters_maximum_occurrences["createUser:::X-Fields"]=0
@@ -210,6 +226,10 @@ operation_parameters_collection_type["createGrader:::X-Fields"]=""
 operation_parameters_collection_type["deleteGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::X-Fields"]=""
+operation_parameters_collection_type["getGraderLogs:::grader_id"]=""
+operation_parameters_collection_type["listGraders:::name"]=""
+operation_parameters_collection_type["listGraders:::status"]=""
+operation_parameters_collection_type["listGraders:::user_id"]=""
 operation_parameters_collection_type["listGraders:::X-Fields"]=""
 operation_parameters_collection_type["createOrganisation:::payload"]=""
 operation_parameters_collection_type["createOrganisation:::X-Fields"]=""
@@ -228,6 +248,10 @@ operation_parameters_collection_type["deleteSubmission:::submission_id"]=""
 operation_parameters_collection_type["getSubmission:::submission_id"]=""
 operation_parameters_collection_type["getSubmission:::X-Fields"]=""
 operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
+operation_parameters_collection_type["getSubmissionLogs:::submission_id"]=""
+operation_parameters_collection_type["listSubmissions:::meta"]=""
+operation_parameters_collection_type["listSubmissions:::status"]=""
+operation_parameters_collection_type["listSubmissions:::user_id"]=""
 operation_parameters_collection_type["listSubmissions:::X-Fields"]=""
 operation_parameters_collection_type["createUser:::payload"]=""
 operation_parameters_collection_type["createUser:::X-Fields"]=""
@@ -640,6 +664,7 @@ read -r -d '' ops <<EOF
   ${CYAN}createGrader${OFF}; (AUTH)
   ${CYAN}deleteGrader${OFF}; (AUTH)
   ${CYAN}getGrader${OFF}; (AUTH)
+  ${CYAN}getGraderLogs${OFF}; (AUTH)
   ${CYAN}listGraders${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
@@ -661,6 +686,7 @@ read -r -d '' ops <<EOF
   ${CYAN}deleteSubmission${OFF}; (AUTH)
   ${CYAN}getSubmission${OFF}; (AUTH)
   ${CYAN}getSubmissionData${OFF}; (AUTH)
+  ${CYAN}getSubmissionLogs${OFF}; (AUTH)
   ${CYAN}listSubmissions${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
@@ -916,6 +942,26 @@ print_getGrader_help() {
 }
 ##############################################################################
 #
+# Print help for getGraderLogs operation
+#
+##############################################################################
+print_getGraderLogs_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getGraderLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get the grader logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
 # Print help for listGraders operation
 #
 ##############################################################################
@@ -926,6 +972,12 @@ print_listGraders_help() {
     echo -e "List all graders available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch grader with this name${YELLOW} Specify as: name=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}status${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch graders with this status${YELLOW} Specify as: status=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF}${OFF} - Fetch graders created by the user${YELLOW} Specify as: user_id=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1149,6 +1201,26 @@ print_getSubmissionData_help() {
 }
 ##############################################################################
 #
+# Print help for getSubmissionLogs operation
+#
+##############################################################################
+print_getSubmissionLogs_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getSubmissionLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get the submission logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
 # Print help for listSubmissions operation
 #
 ##############################################################################
@@ -1159,6 +1231,12 @@ print_listSubmissions_help() {
     echo -e "List all submissions available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions with this meta value${YELLOW} Specify as: meta=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}status${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions with this status${YELLOW} Specify as: status=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF}${OFF} - Fetch submissions created by the user${YELLOW} Specify as: user_id=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1747,6 +1825,42 @@ call_getGrader() {
 
 ##############################################################################
 #
+# Call getGraderLogs operation
+#
+##############################################################################
+call_getGraderLogs() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(grader_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/graders/{grader_id}/logs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call listGraders operation
 #
 ##############################################################################
@@ -1756,7 +1870,7 @@ call_listGraders() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=(name status user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/graders/" path_parameter_names query_parameter_names); then
@@ -2311,6 +2425,42 @@ call_getSubmissionData() {
 
 ##############################################################################
 #
+# Call getSubmissionLogs operation
+#
+##############################################################################
+call_getSubmissionLogs() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(submission_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/submissions/{submission_id}/logs" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call listSubmissions operation
 #
 ##############################################################################
@@ -2320,7 +2470,7 @@ call_listSubmissions() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=(meta status user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/submissions/" path_parameter_names query_parameter_names); then
@@ -2811,6 +2961,9 @@ case $key in
     getGrader)
     operation="getGrader"
     ;;
+    getGraderLogs)
+    operation="getGraderLogs"
+    ;;
     listGraders)
     operation="listGraders"
     ;;
@@ -2843,6 +2996,9 @@ case $key in
     ;;
     getSubmissionData)
     operation="getSubmissionData"
+    ;;
+    getSubmissionLogs)
+    operation="getSubmissionLogs"
     ;;
     listSubmissions)
     operation="listSubmissions"
@@ -2976,6 +3132,9 @@ case $operation in
     getGrader)
     call_getGrader
     ;;
+    getGraderLogs)
+    call_getGraderLogs
+    ;;
     listGraders)
     call_listGraders
     ;;
@@ -3008,6 +3167,9 @@ case $operation in
     ;;
     getSubmissionData)
     call_getSubmissionData
+    ;;
+    getSubmissionLogs)
+    call_getSubmissionLogs
     ;;
     listSubmissions)
     call_listSubmissions

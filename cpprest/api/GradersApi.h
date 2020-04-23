@@ -77,10 +77,26 @@ public:
     /// 
     /// </summary>
     /// <remarks>
+    /// Get the grader logs by submission ID
+    /// </remarks>
+    /// <param name="graderId"></param>
+    pplx::task<void> getGraderLogs(
+        int32_t graderId
+    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
     /// List all graders available
     /// </remarks>
+    /// <param name="name">Fetch grader with this name (optional)</param>
+    /// <param name="status">Fetch graders with this status (optional)</param>
+    /// <param name="userId">Fetch graders created by the user (optional)</param>
     /// <param name="xFields">An optional fields mask (optional)</param>
     pplx::task<std::vector<std::shared_ptr<Grader>>> listGraders(
+        boost::optional<utility::string_t> name,
+        boost::optional<utility::string_t> status,
+        boost::optional<int32_t> userId,
         boost::optional<utility::string_t> xFields
     );
 

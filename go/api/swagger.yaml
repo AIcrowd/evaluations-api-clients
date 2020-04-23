@@ -173,6 +173,27 @@ paths:
       description: "List all graders available"
       operationId: "ListGraders"
       parameters:
+      - name: "name"
+        in: "query"
+        description: "Fetch grader with this name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "status"
+        in: "query"
+        description: "Fetch graders with this status"
+        required: false
+        type: "string"
+        x-exportParamName: "Status"
+        x-optionalDataType: "String"
+      - name: "user_id"
+        in: "query"
+        description: "Fetch graders created by the user"
+        required: false
+        type: "integer"
+        x-exportParamName: "UserId"
+        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -251,6 +272,23 @@ paths:
       - "graders"
       description: "Delete a grader by its ID"
       operationId: "DeleteGrader"
+      parameters:
+      - name: "grader_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "GraderId"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Grader not found"
+  /graders/{grader_id}/logs:
+    get:
+      tags:
+      - "graders"
+      description: "Get the grader logs by submission ID"
+      operationId: "GetGraderLogs"
       parameters:
       - name: "grader_id"
         in: "path"
@@ -420,6 +458,27 @@ paths:
       description: "List all submissions available"
       operationId: "ListSubmissions"
       parameters:
+      - name: "meta"
+        in: "query"
+        description: "Fetch submissions with this meta value"
+        required: false
+        type: "string"
+        x-exportParamName: "Meta"
+        x-optionalDataType: "String"
+      - name: "status"
+        in: "query"
+        description: "Fetch submissions with this status"
+        required: false
+        type: "string"
+        x-exportParamName: "Status"
+        x-optionalDataType: "String"
+      - name: "user_id"
+        in: "query"
+        description: "Fetch submissions created by the user"
+        required: false
+        type: "integer"
+        x-exportParamName: "UserId"
+        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -513,6 +572,23 @@ paths:
       - "submissions"
       description: "Get the submission data by submission ID"
       operationId: "GetSubmissionData"
+      parameters:
+      - name: "submission_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "SubmissionId"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Submission not found"
+  /submissions/{submission_id}/logs:
+    get:
+      tags:
+      - "submissions"
+      description: "Get the submission logs by submission ID"
+      operationId: "GetSubmissionLogs"
       parameters:
       - name: "submission_id"
         in: "path"
@@ -762,15 +838,12 @@ definitions:
         description: "Notifications available for the grader."
         readOnly: true
       logs:
-        type: "object"
+        type: "string"
         description: "Logs from argo workflow"
         readOnly: true
-        properties: {}
       meta:
-        type: "object"
+        type: "string"
         description: "Additional meta data of the grader"
-        readOnly: true
-        properties: {}
       status:
         type: "string"
         description: "Status of the grader - True if it ready, False otherwise"
@@ -780,6 +853,10 @@ definitions:
         description: "List of key:value pair of secrets that will be replace `{key}`\
           \ in aicrowd.yaml"
         properties: {}
+      wf_name:
+        type: "string"
+        description: "Name of the workflow used to setup grader"
+        readOnly: true
       submission_types:
         type: "object"
         description: "Type of submissions allowed on the grader"
@@ -804,12 +881,13 @@ definitions:
       organisation_id: 5
       cluster_id: 6
       user_id: 1
-      meta: "{}"
+      meta: "meta"
       name: "name"
+      wf_name: "wf_name"
       id: 0
       updated: "2000-01-23T04:56:07.000+00:00"
       dataset: "{}"
-      logs: "{}"
+      logs: "logs"
       notifications: "notifications"
       status: "status"
     x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,submission_types,deleted,user_id,organisation_id}"
@@ -832,12 +910,6 @@ definitions:
         format: "date-time"
         description: "Last updation time"
         readOnly: true
-      participant_id:
-        type: "integer"
-        description: "Participant identifier"
-      round_id:
-        type: "integer"
-        description: "Round identifier"
       grader_id:
         type: "integer"
         description: "Grader identifier"
@@ -859,10 +931,9 @@ definitions:
         readOnly: true
         properties: {}
       logs:
-        type: "object"
+        type: "string"
         description: "S3 link of the STDOUT of the evaluation"
         readOnly: true
-        properties: {}
       started:
         type: "string"
         format: "date-time"
@@ -874,10 +945,12 @@ definitions:
         description: "Evaluation end time"
         readOnly: true
       meta:
-        type: "object"
-        description: "Additional meta-data"
+        type: "string"
+        description: "Additional meta data of the grader"
+      wf_name:
+        type: "string"
+        description: "Name of the workflow used to evaluate submission"
         readOnly: true
-        properties: {}
       user_id:
         type: "integer"
         description: "User ID"
@@ -888,22 +961,21 @@ definitions:
         readOnly: true
     example:
       created: "2000-01-23T04:56:07.000+00:00"
-      participant_id: 6
       started: "2000-01-23T04:56:07.000+00:00"
-      grader_id: 5
+      grader_id: 6
       submission_data: "{}"
       additional_outputs: "{}"
       output: "output"
-      round_id: 1
-      organisation_id: 2
-      user_id: 5
-      meta: "{}"
+      organisation_id: 5
+      user_id: 1
+      meta: "meta"
       ended: "2000-01-23T04:56:07.000+00:00"
+      wf_name: "wf_name"
       id: 0
       updated: "2000-01-23T04:56:07.000+00:00"
-      logs: "{}"
+      logs: "logs"
       status: "status"
-    x-mask: "{id,created,updated,participant_id,round_id,grader_id,submission_data,status,output,additional_outputs,started,ended,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,user_id,organisation_id}"
   Cluster:
     type: "object"
     required:
@@ -948,11 +1020,10 @@ definitions:
         type: "boolean"
         description: "Readiness of the cluster"
         readOnly: true
-      meta:
-        type: "object"
-        description: "Additional metadata"
+      wf_name:
+        type: "string"
+        description: "Name of the workflow used to setup grader"
         readOnly: true
-        properties: {}
       user_id:
         type: "integer"
         description: "User ID"
@@ -969,7 +1040,7 @@ definitions:
       organisation_id: 1
       docker_password: "docker_password"
       user_id: 6
-      meta: "{}"
+      wf_name: "wf_name"
       id: 0
       auth_token: "auth_token"
       docker_username: "docker_username"

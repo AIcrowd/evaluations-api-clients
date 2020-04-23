@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateGrader**](GradersApi.md#CreateGrader) | **Post** /graders/ | 
 [**DeleteGrader**](GradersApi.md#DeleteGrader) | **Delete** /graders/{grader_id} | 
 [**GetGrader**](GradersApi.md#GetGrader) | **Get** /graders/{grader_id} | 
+[**GetGraderLogs**](GradersApi.md#GetGraderLogs) | **Get** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#ListGraders) | **Get** /graders/ | 
 
 
@@ -112,6 +113,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **GetGraderLogs**
+> GetGraderLogs(ctx, graderId)
+
+
+Get the grader logs by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **graderId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ListGraders**
 > []Grader ListGraders(ctx, optional)
 
@@ -130,6 +159,9 @@ Optional parameters are passed through a pointer to a GradersApiListGradersOpts 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **optional.String**| Fetch grader with this name | 
+ **status** | **optional.String**| Fetch graders with this status | 
+ **userId** | **optional.Int32**| Fetch graders created by the user | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type

@@ -37,8 +37,8 @@ class Cluster {
   /* Readiness of the cluster */
   Boolean status = null
 
-  /* Additional metadata */
-  Object meta = null
+  /* Name of the workflow used to setup grader */
+  String wfName = null
 
   /* User ID */
   Integer userId = null

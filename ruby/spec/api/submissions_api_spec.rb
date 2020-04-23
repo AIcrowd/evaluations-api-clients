@@ -78,9 +78,23 @@ describe 'SubmissionsApi' do
     end
   end
 
+  # unit tests for get_submission_logs
+  # Get the submission logs by submission ID
+  # @param submission_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'get_submission_logs test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_submissions
   # List all submissions available
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :meta Fetch submissions with this meta value
+  # @option opts [String] :status Fetch submissions with this status
+  # @option opts [Integer] :user_id Fetch submissions created by the user
   # @option opts [String] :x_fields An optional fields mask
   # @return [Array<Submissions>]
   describe 'list_submissions test' do

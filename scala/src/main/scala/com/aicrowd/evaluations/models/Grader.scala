@@ -38,13 +38,15 @@ case class Grader (
   // Notifications available for the grader.
   notifications: Option[String] = None,
   // Logs from argo workflow
-  logs: Option[Any] = None,
+  logs: Option[String] = None,
   // Additional meta data of the grader
-  meta: Option[Any] = None,
+  meta: Option[String] = None,
   // Status of the grader - True if it ready, False otherwise
   status: Option[String] = None,
   // List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
   secrets: Option[Any] = None,
+  // Name of the workflow used to setup grader
+  wfName: Option[String] = None,
   // Type of submissions allowed on the grader
   submissionTypes: Option[Any] = None,
   // User ID

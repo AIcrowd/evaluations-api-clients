@@ -104,7 +104,29 @@ class SubmissionsApi {
                     null )
                     
     }
-    def listSubmissions ( String xFields, Closure onSuccess, Closure onFailure)  {
+    def getSubmissionLogs ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/submissions/{submission_id}/logs"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (submissionId == null) {
+            throw new RuntimeException("missing required params submissionId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    null )
+                    
+    }
+    def listSubmissions ( String meta, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/"
 
@@ -113,7 +135,13 @@ class SubmissionsApi {
         def headerParams = [:]
     
 
-        
+        if (!"null".equals(String.valueOf(meta)))
+            queryParams.put("meta", String.valueOf(meta))
+if (!"null".equals(String.valueOf(status)))
+            queryParams.put("status", String.valueOf(status))
+if (!"null".equals(String.valueOf(userId)))
+            queryParams.put("user_id", String.valueOf(userId))
+
         headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param

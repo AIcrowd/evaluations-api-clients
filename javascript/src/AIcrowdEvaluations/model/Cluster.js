@@ -82,8 +82,8 @@
         obj.storageClass = ApiClient.convertToType(data['storage_class'], 'String');
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'Boolean');
-      if (data.hasOwnProperty('meta'))
-        obj.meta = ApiClient.convertToType(data['meta'], Object);
+      if (data.hasOwnProperty('wf_name'))
+        obj.wfName = ApiClient.convertToType(data['wf_name'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -153,10 +153,10 @@
   exports.prototype.status = undefined;
 
   /**
-   * Additional metadata
-   * @member {Object} meta
+   * Name of the workflow used to setup grader
+   * @member {String} wfName
    */
-  exports.prototype.meta = undefined;
+  exports.prototype.wfName = undefined;
 
   /**
    * User ID

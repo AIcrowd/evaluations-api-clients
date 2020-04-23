@@ -422,15 +422,105 @@ func (a *SubmissionsApiService) GetSubmissionData(ctx context.Context, submissio
 
 /* 
 SubmissionsApiService
+Get the submission logs by submission ID
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param submissionId
+
+
+*/
+func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissionId int32) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+		
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/submissions/{submission_id}/logs"
+	localVarPath = strings.Replace(localVarPath, "{"+"submission_id"+"}", fmt.Sprintf("%v", submissionId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["AUTHORIZATION"] = key
+			
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body: localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/* 
+SubmissionsApiService
 List all submissions available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SubmissionsApiListSubmissionsOpts - Optional Parameters:
+     * @param "Meta" (optional.String) -  Fetch submissions with this meta value
+     * @param "Status" (optional.String) -  Fetch submissions with this status
+     * @param "UserId" (optional.Int32) -  Fetch submissions created by the user
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Submissions
 */
 
 type SubmissionsApiListSubmissionsOpts struct { 
+	Meta optional.String
+	Status optional.String
+	UserId optional.Int32
 	XFields optional.String
 }
 
@@ -450,6 +540,15 @@ func (a *SubmissionsApiService) ListSubmissions(ctx context.Context, localVarOpt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Meta.IsSet() {
+		localVarQueryParams.Add("meta", parameterToString(localVarOptionals.Meta.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Status.IsSet() {
+		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.UserId.IsSet() {
+		localVarQueryParams.Add("user_id", parameterToString(localVarOptionals.UserId.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

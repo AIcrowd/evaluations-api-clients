@@ -62,10 +62,6 @@
         obj.created = ApiClient.convertToType(data['created'], 'Date');
       if (data.hasOwnProperty('updated'))
         obj.updated = ApiClient.convertToType(data['updated'], 'Date');
-      if (data.hasOwnProperty('participant_id'))
-        obj.participantId = ApiClient.convertToType(data['participant_id'], 'Number');
-      if (data.hasOwnProperty('round_id'))
-        obj.roundId = ApiClient.convertToType(data['round_id'], 'Number');
       if (data.hasOwnProperty('grader_id'))
         obj.graderId = ApiClient.convertToType(data['grader_id'], 'Number');
       if (data.hasOwnProperty('submission_data'))
@@ -77,13 +73,15 @@
       if (data.hasOwnProperty('additional_outputs'))
         obj.additionalOutputs = ApiClient.convertToType(data['additional_outputs'], Object);
       if (data.hasOwnProperty('logs'))
-        obj.logs = ApiClient.convertToType(data['logs'], Object);
+        obj.logs = ApiClient.convertToType(data['logs'], 'String');
       if (data.hasOwnProperty('started'))
         obj.started = ApiClient.convertToType(data['started'], 'Date');
       if (data.hasOwnProperty('ended'))
         obj.ended = ApiClient.convertToType(data['ended'], 'Date');
       if (data.hasOwnProperty('meta'))
-        obj.meta = ApiClient.convertToType(data['meta'], Object);
+        obj.meta = ApiClient.convertToType(data['meta'], 'String');
+      if (data.hasOwnProperty('wf_name'))
+        obj.wfName = ApiClient.convertToType(data['wf_name'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -109,18 +107,6 @@
    * @member {Date} updated
    */
   exports.prototype.updated = undefined;
-
-  /**
-   * Participant identifier
-   * @member {Number} participantId
-   */
-  exports.prototype.participantId = undefined;
-
-  /**
-   * Round identifier
-   * @member {Number} roundId
-   */
-  exports.prototype.roundId = undefined;
 
   /**
    * Grader identifier
@@ -154,7 +140,7 @@
 
   /**
    * S3 link of the STDOUT of the evaluation
-   * @member {Object} logs
+   * @member {String} logs
    */
   exports.prototype.logs = undefined;
 
@@ -171,10 +157,16 @@
   exports.prototype.ended = undefined;
 
   /**
-   * Additional meta-data
-   * @member {Object} meta
+   * Additional meta data of the grader
+   * @member {String} meta
    */
   exports.prototype.meta = undefined;
+
+  /**
+   * Name of the workflow used to evaluate submission
+   * @member {String} wfName
+   */
+  exports.prototype.wfName = undefined;
 
   /**
    * User ID

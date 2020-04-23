@@ -35,8 +35,8 @@ case class Cluster (
   storageClass: Option[String] = None,
   // Readiness of the cluster
   status: Option[Boolean] = None,
-  // Additional metadata
-  meta: Option[Any] = None,
+  // Name of the workflow used to setup grader
+  wfName: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

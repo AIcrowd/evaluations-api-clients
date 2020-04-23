@@ -49,16 +49,19 @@ pub struct Grader {
   notifications: Option<String>,
   /// Logs from argo workflow
   #[serde(rename = "logs")]
-  logs: Option<Value>,
+  logs: Option<String>,
   /// Additional meta data of the grader
   #[serde(rename = "meta")]
-  meta: Option<Value>,
+  meta: Option<String>,
   /// Status of the grader - True if it ready, False otherwise
   #[serde(rename = "status")]
   status: Option<String>,
   /// List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
   #[serde(rename = "secrets")]
   secrets: Option<Value>,
+  /// Name of the workflow used to setup grader
+  #[serde(rename = "wf_name")]
+  wf_name: Option<String>,
   /// Type of submissions allowed on the grader
   #[serde(rename = "submission_types")]
   submission_types: Option<Value>,
@@ -88,6 +91,7 @@ impl Grader {
       meta: None,
       status: None,
       secrets: None,
+      wf_name: None,
       submission_types: None,
       user_id: None,
       organisation_id: None
@@ -278,16 +282,16 @@ impl Grader {
     self.notifications = None;
   }
 
-  pub fn set_logs(&mut self, logs: Value) {
+  pub fn set_logs(&mut self, logs: String) {
     self.logs = Some(logs);
   }
 
-  pub fn with_logs(mut self, logs: Value) -> Grader {
+  pub fn with_logs(mut self, logs: String) -> Grader {
     self.logs = Some(logs);
     self
   }
 
-  pub fn logs(&self) -> Option<&Value> {
+  pub fn logs(&self) -> Option<&String> {
     self.logs.as_ref()
   }
 
@@ -295,16 +299,16 @@ impl Grader {
     self.logs = None;
   }
 
-  pub fn set_meta(&mut self, meta: Value) {
+  pub fn set_meta(&mut self, meta: String) {
     self.meta = Some(meta);
   }
 
-  pub fn with_meta(mut self, meta: Value) -> Grader {
+  pub fn with_meta(mut self, meta: String) -> Grader {
     self.meta = Some(meta);
     self
   }
 
-  pub fn meta(&self) -> Option<&Value> {
+  pub fn meta(&self) -> Option<&String> {
     self.meta.as_ref()
   }
 
@@ -344,6 +348,23 @@ impl Grader {
 
   pub fn reset_secrets(&mut self) {
     self.secrets = None;
+  }
+
+  pub fn set_wf_name(&mut self, wf_name: String) {
+    self.wf_name = Some(wf_name);
+  }
+
+  pub fn with_wf_name(mut self, wf_name: String) -> Grader {
+    self.wf_name = Some(wf_name);
+    self
+  }
+
+  pub fn wf_name(&self) -> Option<&String> {
+    self.wf_name.as_ref()
+  }
+
+  pub fn reset_wf_name(&mut self) {
+    self.wf_name = None;
   }
 
   pub fn set_submission_types(&mut self, submission_types: Value) {

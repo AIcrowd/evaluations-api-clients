@@ -67,9 +67,23 @@ describe 'GradersApi' do
     end
   end
 
+  # unit tests for get_grader_logs
+  # Get the grader logs by submission ID
+  # @param grader_id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'get_grader_logs test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_graders
   # List all graders available
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :name Fetch grader with this name
+  # @option opts [String] :status Fetch graders with this status
+  # @option opts [Integer] :user_id Fetch graders created by the user
   # @option opts [String] :x_fields An optional fields mask
   # @return [Array<Grader>]
   describe 'list_graders test' do

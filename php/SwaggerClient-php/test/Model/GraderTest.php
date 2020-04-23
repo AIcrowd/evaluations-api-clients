@@ -182,6 +182,13 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "wf_name"
+     */
+    public function testPropertyWfName()
+    {
+    }
+
+    /**
      * Test attribute "submission_types"
      */
     public function testPropertySubmissionTypes()

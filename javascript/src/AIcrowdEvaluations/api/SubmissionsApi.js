@@ -241,6 +241,52 @@
     }
 
     /**
+     * Callback function to receive the result of the getSubmissionLogs operation.
+     * @callback module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionLogsCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the submission logs by submission ID
+     * @param {Number} submissionId 
+     * @param {module:AIcrowdEvaluations/api/SubmissionsApi~getSubmissionLogsCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.getSubmissionLogs = function(submissionId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'submissionId' is set
+      if (submissionId === undefined || submissionId === null) {
+        throw new Error("Missing the required parameter 'submissionId' when calling getSubmissionLogs");
+      }
+
+
+      var pathParams = {
+        'submission_id': submissionId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/submissions/{submission_id}/logs', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the listSubmissions operation.
      * @callback module:AIcrowdEvaluations/api/SubmissionsApi~listSubmissionsCallback
      * @param {String} error Error message, if any.
@@ -251,6 +297,9 @@
     /**
      * List all submissions available
      * @param {Object} opts Optional parameters
+     * @param {String} opts.meta Fetch submissions with this meta value
+     * @param {String} opts.status Fetch submissions with this status
+     * @param {Number} opts.userId Fetch submissions created by the user
      * @param {String} opts.xFields An optional fields mask
      * @param {module:AIcrowdEvaluations/api/SubmissionsApi~listSubmissionsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Submissions>}
@@ -263,6 +312,9 @@
       var pathParams = {
       };
       var queryParams = {
+        'meta': opts['meta'],
+        'status': opts['status'],
+        'user_id': opts['userId'],
       };
       var collectionQueryParams = {
       };

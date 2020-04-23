@@ -53,9 +53,9 @@ export interface Cluster {
      */
     readonly status?: boolean;
     /**
-     * Additional metadata
+     * Name of the workflow used to setup grader
      */
-    readonly meta?: any;
+    readonly wfName?: string;
     /**
      * User ID
      */

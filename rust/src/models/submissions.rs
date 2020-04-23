@@ -23,12 +23,6 @@ pub struct Submissions {
   /// Last updation time
   #[serde(rename = "updated")]
   updated: Option<String>,
-  /// Participant identifier
-  #[serde(rename = "participant_id")]
-  participant_id: Option<i32>,
-  /// Round identifier
-  #[serde(rename = "round_id")]
-  round_id: Option<i32>,
   /// Grader identifier
   #[serde(rename = "grader_id")]
   grader_id: i32,
@@ -46,16 +40,19 @@ pub struct Submissions {
   additional_outputs: Option<Value>,
   /// S3 link of the STDOUT of the evaluation
   #[serde(rename = "logs")]
-  logs: Option<Value>,
+  logs: Option<String>,
   /// Evaluation start time
   #[serde(rename = "started")]
   started: Option<String>,
   /// Evaluation end time
   #[serde(rename = "ended")]
   ended: Option<String>,
-  /// Additional meta-data
+  /// Additional meta data of the grader
   #[serde(rename = "meta")]
-  meta: Option<Value>,
+  meta: Option<String>,
+  /// Name of the workflow used to evaluate submission
+  #[serde(rename = "wf_name")]
+  wf_name: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -70,8 +67,6 @@ impl Submissions {
       id: None,
       created: None,
       updated: None,
-      participant_id: None,
-      round_id: None,
       grader_id: grader_id,
       submission_data: None,
       status: None,
@@ -81,6 +76,7 @@ impl Submissions {
       started: None,
       ended: None,
       meta: None,
+      wf_name: None,
       user_id: None,
       organisation_id: None
     }
@@ -135,40 +131,6 @@ impl Submissions {
 
   pub fn reset_updated(&mut self) {
     self.updated = None;
-  }
-
-  pub fn set_participant_id(&mut self, participant_id: i32) {
-    self.participant_id = Some(participant_id);
-  }
-
-  pub fn with_participant_id(mut self, participant_id: i32) -> Submissions {
-    self.participant_id = Some(participant_id);
-    self
-  }
-
-  pub fn participant_id(&self) -> Option<&i32> {
-    self.participant_id.as_ref()
-  }
-
-  pub fn reset_participant_id(&mut self) {
-    self.participant_id = None;
-  }
-
-  pub fn set_round_id(&mut self, round_id: i32) {
-    self.round_id = Some(round_id);
-  }
-
-  pub fn with_round_id(mut self, round_id: i32) -> Submissions {
-    self.round_id = Some(round_id);
-    self
-  }
-
-  pub fn round_id(&self) -> Option<&i32> {
-    self.round_id.as_ref()
-  }
-
-  pub fn reset_round_id(&mut self) {
-    self.round_id = None;
   }
 
   pub fn set_grader_id(&mut self, grader_id: i32) {
@@ -253,16 +215,16 @@ impl Submissions {
     self.additional_outputs = None;
   }
 
-  pub fn set_logs(&mut self, logs: Value) {
+  pub fn set_logs(&mut self, logs: String) {
     self.logs = Some(logs);
   }
 
-  pub fn with_logs(mut self, logs: Value) -> Submissions {
+  pub fn with_logs(mut self, logs: String) -> Submissions {
     self.logs = Some(logs);
     self
   }
 
-  pub fn logs(&self) -> Option<&Value> {
+  pub fn logs(&self) -> Option<&String> {
     self.logs.as_ref()
   }
 
@@ -304,21 +266,38 @@ impl Submissions {
     self.ended = None;
   }
 
-  pub fn set_meta(&mut self, meta: Value) {
+  pub fn set_meta(&mut self, meta: String) {
     self.meta = Some(meta);
   }
 
-  pub fn with_meta(mut self, meta: Value) -> Submissions {
+  pub fn with_meta(mut self, meta: String) -> Submissions {
     self.meta = Some(meta);
     self
   }
 
-  pub fn meta(&self) -> Option<&Value> {
+  pub fn meta(&self) -> Option<&String> {
     self.meta.as_ref()
   }
 
   pub fn reset_meta(&mut self) {
     self.meta = None;
+  }
+
+  pub fn set_wf_name(&mut self, wf_name: String) {
+    self.wf_name = Some(wf_name);
+  }
+
+  pub fn with_wf_name(mut self, wf_name: String) -> Submissions {
+    self.wf_name = Some(wf_name);
+    self
+  }
+
+  pub fn wf_name(&self) -> Option<&String> {
+    self.wf_name.as_ref()
+  }
+
+  pub fn reset_wf_name(&mut self) {
+    self.wf_name = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

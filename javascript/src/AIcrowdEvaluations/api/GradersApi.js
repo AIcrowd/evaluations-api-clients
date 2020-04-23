@@ -195,6 +195,52 @@
     }
 
     /**
+     * Callback function to receive the result of the getGraderLogs operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~getGraderLogsCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the grader logs by submission ID
+     * @param {Number} graderId 
+     * @param {module:AIcrowdEvaluations/api/GradersApi~getGraderLogsCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.getGraderLogs = function(graderId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'graderId' is set
+      if (graderId === undefined || graderId === null) {
+        throw new Error("Missing the required parameter 'graderId' when calling getGraderLogs");
+      }
+
+
+      var pathParams = {
+        'grader_id': graderId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/graders/{grader_id}/logs', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the listGraders operation.
      * @callback module:AIcrowdEvaluations/api/GradersApi~listGradersCallback
      * @param {String} error Error message, if any.
@@ -205,6 +251,9 @@
     /**
      * List all graders available
      * @param {Object} opts Optional parameters
+     * @param {String} opts.name Fetch grader with this name
+     * @param {String} opts.status Fetch graders with this status
+     * @param {Number} opts.userId Fetch graders created by the user
      * @param {String} opts.xFields An optional fields mask
      * @param {module:AIcrowdEvaluations/api/GradersApi~listGradersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:AIcrowdEvaluations/model/Grader>}
@@ -217,6 +266,9 @@
       var pathParams = {
       };
       var queryParams = {
+        'name': opts['name'],
+        'status': opts['status'],
+        'user_id': opts['userId'],
       };
       var collectionQueryParams = {
       };

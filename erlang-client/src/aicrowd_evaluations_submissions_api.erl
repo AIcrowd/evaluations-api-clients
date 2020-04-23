@@ -4,6 +4,7 @@
          delete_submission/2, delete_submission/3,
          get_submission/2, get_submission/3,
          get_submission_data/2, get_submission_data/3,
+         get_submission_logs/2, get_submission_logs/3,
          list_submissions/1, list_submissions/2]).
 
 -define(BASE_URL, "/v1").
@@ -93,6 +94,27 @@ get_submission_data(Ctx, SubmissionId, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
+%% Get the submission logs by submission ID
+-spec get_submission_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+get_submission_logs(Ctx, SubmissionId) ->
+    get_submission_logs(Ctx, SubmissionId, #{}).
+
+-spec get_submission_logs(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+get_submission_logs(Ctx, SubmissionId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = get,
+    Path = ["/submissions/", SubmissionId, "/logs"],
+    QS = [],
+    Headers = [],
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
 %% List all submissions available
 -spec list_submissions(ctx:ctx()) -> {ok, [aicrowd_evaluations_submissions:aicrowd_evaluations_submissions()], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 list_submissions(Ctx) ->
@@ -105,7 +127,7 @@ list_submissions(Ctx, Optional) ->
 
     Method = get,
     Path = ["/submissions/"],
-    QS = [],
+    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['meta', 'status', 'user_id'], _OptionalParams),
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),

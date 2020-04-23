@@ -231,8 +231,62 @@ module AIcrowdEvaluations
       end
       return data, status_code, headers
     end
+    # Get the submission logs by submission ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def get_submission_logs(submission_id, opts = {})
+      get_submission_logs_with_http_info(submission_id, opts)
+      nil
+    end
+
+    # Get the submission logs by submission ID
+    # @param submission_id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def get_submission_logs_with_http_info(submission_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: SubmissionsApi.get_submission_logs ...'
+      end
+      # verify the required parameter 'submission_id' is set
+      if @api_client.config.client_side_validation && submission_id.nil?
+        fail ArgumentError, "Missing the required parameter 'submission_id' when calling SubmissionsApi.get_submission_logs"
+      end
+      # resource path
+      local_var_path = '/submissions/{submission_id}/logs'.sub('{' + 'submission_id' + '}', submission_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['api_key']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SubmissionsApi#get_submission_logs\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
     # List all submissions available
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :meta Fetch submissions with this meta value
+    # @option opts [String] :status Fetch submissions with this status
+    # @option opts [Integer] :user_id Fetch submissions created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<Submissions>]
     def list_submissions(opts = {})
@@ -242,6 +296,9 @@ module AIcrowdEvaluations
 
     # List all submissions available
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :meta Fetch submissions with this meta value
+    # @option opts [String] :status Fetch submissions with this status
+    # @option opts [Integer] :user_id Fetch submissions created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Array<Submissions>, Fixnum, Hash)>] Array<Submissions> data, response status code and response headers
     def list_submissions_with_http_info(opts = {})
@@ -253,6 +310,9 @@ module AIcrowdEvaluations
 
       # query parameters
       query_params = {}
+      query_params[:'meta'] = opts[:'meta'] if !opts[:'meta'].nil?
+      query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
+      query_params[:'user_id'] = opts[:'user_id'] if !opts[:'user_id'].nil?
 
       # header parameters
       header_params = {}

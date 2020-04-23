@@ -18,7 +18,7 @@ import com.aicrowd.evaluations.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-21T18:26:04.510Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-04-23T19:58:39.101Z")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

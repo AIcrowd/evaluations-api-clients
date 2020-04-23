@@ -38,11 +38,10 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Submissions" /> class.
         /// </summary>
-        /// <param name="participantId">Participant identifier.</param>
-        /// <param name="roundId">Round identifier.</param>
         /// <param name="graderId">Grader identifier (required).</param>
         /// <param name="submissionData">URL to the submission code.</param>
-        public Submissions(int? participantId = default(int?), int? roundId = default(int?), int? graderId = default(int?), Object submissionData = default(Object))
+        /// <param name="meta">Additional meta data of the grader.</param>
+        public Submissions(int? graderId = default(int?), Object submissionData = default(Object), string meta = default(string))
         {
             // to ensure "graderId" is required (not null)
             if (graderId == null)
@@ -53,9 +52,8 @@ namespace Com.AIcrowd.Evaluations.Model
             {
                 this.GraderId = graderId;
             }
-            this.ParticipantId = participantId;
-            this.RoundId = roundId;
             this.SubmissionData = submissionData;
+            this.Meta = meta;
         }
         
         /// <summary>
@@ -78,20 +76,6 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>Last updation time</value>
         [DataMember(Name="updated", EmitDefaultValue=false)]
         public DateTime? Updated { get; private set; }
-
-        /// <summary>
-        /// Participant identifier
-        /// </summary>
-        /// <value>Participant identifier</value>
-        [DataMember(Name="participant_id", EmitDefaultValue=false)]
-        public int? ParticipantId { get; set; }
-
-        /// <summary>
-        /// Round identifier
-        /// </summary>
-        /// <value>Round identifier</value>
-        [DataMember(Name="round_id", EmitDefaultValue=false)]
-        public int? RoundId { get; set; }
 
         /// <summary>
         /// Grader identifier
@@ -133,7 +117,7 @@ namespace Com.AIcrowd.Evaluations.Model
         /// </summary>
         /// <value>S3 link of the STDOUT of the evaluation</value>
         [DataMember(Name="logs", EmitDefaultValue=false)]
-        public Object Logs { get; private set; }
+        public string Logs { get; private set; }
 
         /// <summary>
         /// Evaluation start time
@@ -150,11 +134,18 @@ namespace Com.AIcrowd.Evaluations.Model
         public DateTime? Ended { get; private set; }
 
         /// <summary>
-        /// Additional meta-data
+        /// Additional meta data of the grader
         /// </summary>
-        /// <value>Additional meta-data</value>
+        /// <value>Additional meta data of the grader</value>
         [DataMember(Name="meta", EmitDefaultValue=false)]
-        public Object Meta { get; private set; }
+        public string Meta { get; set; }
+
+        /// <summary>
+        /// Name of the workflow used to evaluate submission
+        /// </summary>
+        /// <value>Name of the workflow used to evaluate submission</value>
+        [DataMember(Name="wf_name", EmitDefaultValue=false)]
+        public string WfName { get; private set; }
 
         /// <summary>
         /// User ID
@@ -181,8 +172,6 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
-            sb.Append("  ParticipantId: ").Append(ParticipantId).Append("\n");
-            sb.Append("  RoundId: ").Append(RoundId).Append("\n");
             sb.Append("  GraderId: ").Append(GraderId).Append("\n");
             sb.Append("  SubmissionData: ").Append(SubmissionData).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -192,6 +181,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Started: ").Append(Started).Append("\n");
             sb.Append("  Ended: ").Append(Ended).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
+            sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -244,16 +234,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Updated.Equals(input.Updated))
                 ) && 
                 (
-                    this.ParticipantId == input.ParticipantId ||
-                    (this.ParticipantId != null &&
-                    this.ParticipantId.Equals(input.ParticipantId))
-                ) && 
-                (
-                    this.RoundId == input.RoundId ||
-                    (this.RoundId != null &&
-                    this.RoundId.Equals(input.RoundId))
-                ) && 
-                (
                     this.GraderId == input.GraderId ||
                     (this.GraderId != null &&
                     this.GraderId.Equals(input.GraderId))
@@ -299,6 +279,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Meta.Equals(input.Meta))
                 ) && 
                 (
+                    this.WfName == input.WfName ||
+                    (this.WfName != null &&
+                    this.WfName.Equals(input.WfName))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -325,10 +310,6 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Created.GetHashCode();
                 if (this.Updated != null)
                     hashCode = hashCode * 59 + this.Updated.GetHashCode();
-                if (this.ParticipantId != null)
-                    hashCode = hashCode * 59 + this.ParticipantId.GetHashCode();
-                if (this.RoundId != null)
-                    hashCode = hashCode * 59 + this.RoundId.GetHashCode();
                 if (this.GraderId != null)
                     hashCode = hashCode * 59 + this.GraderId.GetHashCode();
                 if (this.SubmissionData != null)
@@ -347,6 +328,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Ended.GetHashCode();
                 if (this.Meta != null)
                     hashCode = hashCode * 59 + this.Meta.GetHashCode();
+                if (this.WfName != null)
+                    hashCode = hashCode * 59 + this.WfName.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

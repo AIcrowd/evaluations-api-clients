@@ -116,12 +116,36 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns></returns>
+        void GetSubmissionLogs (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        List<Submissions> ListSubmissions (string xFields = null);
+        List<Submissions> ListSubmissions (string meta = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -130,9 +154,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        ApiResponse<List<Submissions>> ListSubmissionsWithHttpInfo (string xFields = null);
+        ApiResponse<List<Submissions>> ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -227,12 +254,36 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string xFields = null);
+        System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -241,9 +292,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -947,14 +1001,160 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns></returns>
+        public void GetSubmissionLogs (int? submissionId)
+        {
+             GetSubmissionLogsWithHttpInfo(submissionId);
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId)
+        {
+            // verify the required parameter 'submissionId' is set
+            if (submissionId == null)
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionLogs");
+
+            var localVarPath = "/submissions/{submission_id}/logs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSubmissionLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId)
+        {
+             await GetSubmissionLogsAsyncWithHttpInfo(submissionId);
+
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId)
+        {
+            // verify the required parameter 'submissionId' is set
+            if (submissionId == null)
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->GetSubmissionLogs");
+
+            var localVarPath = "/submissions/{submission_id}/logs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSubmissionLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        public List<Submissions> ListSubmissions (string xFields = null)
+        public List<Submissions> ListSubmissions (string meta = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = ListSubmissionsWithHttpInfo(xFields);
+             ApiResponse<List<Submissions>> localVarResponse = ListSubmissionsWithHttpInfo(meta, status, userId, xFields);
              return localVarResponse.Data;
         }
 
@@ -962,9 +1162,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        public ApiResponse< List<Submissions> > ListSubmissionsWithHttpInfo (string xFields = null)
+        public ApiResponse< List<Submissions> > ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -989,6 +1192,9 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
@@ -1019,11 +1225,14 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string xFields = null)
+        public async System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = await ListSubmissionsAsyncWithHttpInfo(xFields);
+             ApiResponse<List<Submissions>> localVarResponse = await ListSubmissionsAsyncWithHttpInfo(meta, status, userId, xFields);
              return localVarResponse.Data;
 
         }
@@ -1032,9 +1241,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -1059,6 +1271,9 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required

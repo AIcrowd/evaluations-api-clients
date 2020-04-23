@@ -87,15 +87,35 @@
   [submission-id ]
   (:data (get-submission-data-with-http-info submission-id)))
 
+(defn get-submission-logs-with-http-info
+  "
+  Get the submission logs by submission ID"
+  [submission-id ]
+  (check-required-params submission-id)
+  (call-api "/submissions/{submission_id}/logs" :get
+            {:path-params   {"submission_id" submission-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn get-submission-logs
+  "
+  Get the submission logs by submission ID"
+  [submission-id ]
+  (:data (get-submission-logs-with-http-info submission-id)))
+
 (defn list-submissions-with-http-info
   "
   List all submissions available"
   ([] (list-submissions-with-http-info nil))
-  ([{:keys [x-fields ]}]
+  ([{:keys [meta status user-id x-fields ]}]
    (call-api "/submissions/" :get
              {:path-params   {}
               :header-params {"X-Fields" x-fields }
-              :query-params  {}
+              :query-params  {"meta" meta "status" status "user_id" user-id }
               :form-params   {}
               :content-types ["application/json"]
               :accepts       ["application/json"]

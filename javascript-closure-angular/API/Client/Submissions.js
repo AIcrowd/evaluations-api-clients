@@ -27,20 +27,6 @@ API.Client.Submissions.prototype.created;
 API.Client.Submissions.prototype.updated;
 
 /**
- * Participant identifier
- * @type {!number}
- * @export
- */
-API.Client.Submissions.prototype.participantId;
-
-/**
- * Round identifier
- * @type {!number}
- * @export
- */
-API.Client.Submissions.prototype.roundId;
-
-/**
  * Grader identifier
  * @type {!number}
  * @export
@@ -77,7 +63,7 @@ API.Client.Submissions.prototype.additionalOutputs;
 
 /**
  * S3 link of the STDOUT of the evaluation
- * @type {!API.Client.Object}
+ * @type {!string}
  * @export
  */
 API.Client.Submissions.prototype.logs;
@@ -97,11 +83,18 @@ API.Client.Submissions.prototype.started;
 API.Client.Submissions.prototype.ended;
 
 /**
- * Additional meta-data
- * @type {!API.Client.Object}
+ * Additional meta data of the grader
+ * @type {!string}
  * @export
  */
 API.Client.Submissions.prototype.meta;
+
+/**
+ * Name of the workflow used to evaluate submission
+ * @type {!string}
+ * @export
+ */
+API.Client.Submissions.prototype.wfName;
 
 /**
  * User ID

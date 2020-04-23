@@ -42,10 +42,11 @@ class Grader(object):
         'evaluator_repo_tag': 'str',
         'name': 'str',
         'notifications': 'str',
-        'logs': 'object',
-        'meta': 'object',
+        'logs': 'str',
+        'meta': 'str',
         'status': 'str',
         'secrets': 'object',
+        'wf_name': 'str',
         'submission_types': 'object',
         'user_id': 'int',
         'organisation_id': 'int'
@@ -67,12 +68,13 @@ class Grader(object):
         'meta': 'meta',
         'status': 'status',
         'secrets': 'secrets',
+        'wf_name': 'wf_name',
         'submission_types': 'submission_types',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -90,6 +92,7 @@ class Grader(object):
         self._meta = None
         self._status = None
         self._secrets = None
+        self._wf_name = None
         self._submission_types = None
         self._user_id = None
         self._organisation_id = None
@@ -124,6 +127,8 @@ class Grader(object):
             self.status = status
         if secrets is not None:
             self.secrets = secrets
+        if wf_name is not None:
+            self.wf_name = wf_name
         if submission_types is not None:
             self.submission_types = submission_types
         if user_id is not None:
@@ -393,7 +398,7 @@ class Grader(object):
         Logs from argo workflow  # noqa: E501
 
         :return: The logs of this Grader.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._logs
 
@@ -404,7 +409,7 @@ class Grader(object):
         Logs from argo workflow  # noqa: E501
 
         :param logs: The logs of this Grader.  # noqa: E501
-        :type: object
+        :type: str
         """
 
         self._logs = logs
@@ -416,7 +421,7 @@ class Grader(object):
         Additional meta data of the grader  # noqa: E501
 
         :return: The meta of this Grader.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._meta
 
@@ -427,7 +432,7 @@ class Grader(object):
         Additional meta data of the grader  # noqa: E501
 
         :param meta: The meta of this Grader.  # noqa: E501
-        :type: object
+        :type: str
         """
 
         self._meta = meta
@@ -477,6 +482,29 @@ class Grader(object):
         """
 
         self._secrets = secrets
+
+    @property
+    def wf_name(self):
+        """Gets the wf_name of this Grader.  # noqa: E501
+
+        Name of the workflow used to setup grader  # noqa: E501
+
+        :return: The wf_name of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._wf_name
+
+    @wf_name.setter
+    def wf_name(self, wf_name):
+        """Sets the wf_name of this Grader.
+
+        Name of the workflow used to setup grader  # noqa: E501
+
+        :param wf_name: The wf_name of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._wf_name = wf_name
 
     @property
     def submission_types(self):

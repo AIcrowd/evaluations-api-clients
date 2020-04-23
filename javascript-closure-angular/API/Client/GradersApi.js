@@ -157,12 +157,52 @@ API.Client.GradersApi.prototype.getGrader = function(graderId, opt_xFields, opt_
 
 /**
  * 
+ * Get the grader logs by submission ID
+ * @param {!number} graderId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/graders/{grader_id}/logs'
+      .replace('{' + 'grader_id' + '}', String(graderId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'graderId' is set
+  if (!graderId) {
+    throw new Error('Missing required parameter graderId when calling getGraderLogs');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * List all graders available
+ * @param {!string=} opt_name Fetch grader with this name
+ * @param {!string=} opt_status Fetch graders with this status
+ * @param {!number=} opt_userId Fetch graders created by the user
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.Grader>>}
  */
-API.Client.GradersApi.prototype.listGraders = function(opt_xFields, opt_extraHttpRequestParams) {
+API.Client.GradersApi.prototype.listGraders = function(opt_name, opt_status, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/graders/';
 
@@ -171,6 +211,18 @@ API.Client.GradersApi.prototype.listGraders = function(opt_xFields, opt_extraHtt
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  if (opt_name !== undefined) {
+    queryParameters['name'] = opt_name;
+  }
+
+  if (opt_status !== undefined) {
+    queryParameters['status'] = opt_status;
+  }
+
+  if (opt_userId !== undefined) {
+    queryParameters['user_id'] = opt_userId;
+  }
+
   headerParams['X-Fields'] = opt_xFields;
 
   /** @type {!Object} */

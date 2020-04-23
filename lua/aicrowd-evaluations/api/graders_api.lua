@@ -204,12 +204,56 @@ function graders_api:get_grader(grader_id, x_fields)
 	end
 end
 
-function graders_api:list_graders(x_fields)
+function graders_api:get_grader_logs(grader_id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
-		path = string.format("%s/graders",
-			self.basePath);
+		path = string.format("%s/graders/%s/logs",
+			self.basePath, grader_id);
+	})
+
+	-- set HTTP verb
+	req.headers:upsert(":method", "GET")
+	-- TODO: create a function to select proper accept
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_content_type = { "application/json" }
+	req.headers:upsert("accept", "application/json")
+
+	-- TODO: create a function to select proper content-type
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_accept = { "application/json" }
+	req.headers:upsert("content-type", "application/json")
+
+	-- api key in headers 'AUTHORIZATION'
+	if self.api_key['AUTHORIZATION'] then
+		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
+	end
+
+	-- make the HTTP call
+	local headers, stream, errno = req:go()
+	if not headers then
+		return nil, stream, errno
+	end
+	local http_status = headers:get(":status")
+	if http_status:sub(1,1) == "2" then
+		return nil, headers
+	else
+		local body, err, errno2 = stream:get_body_as_string()
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		-- return the error message (http body)
+		return nil, http_status, body
+	end
+end
+
+function graders_api:list_graders(name, status, user_id, x_fields)
+	local req = http_request.new_from_uri({
+		scheme = self.default_scheme;
+		host = self.host;
+		path = string.format("%s/graders?name=%s&status=%s&user_id=%s",
+			self.basePath, http_util.encodeURIComponent(name), http_util.encodeURIComponent(status), http_util.encodeURIComponent(user_id));
 	})
 
 	-- set HTTP verb

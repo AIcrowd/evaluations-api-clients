@@ -27,10 +27,6 @@ Submissions::Submissions()
     m_CreatedIsSet = false;
     m_Updated = utility::datetime();
     m_UpdatedIsSet = false;
-    m_Participant_id = 0;
-    m_Participant_idIsSet = false;
-    m_Round_id = 0;
-    m_Round_idIsSet = false;
     m_Grader_id = 0;
     m_Submission_dataIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -38,12 +34,16 @@ Submissions::Submissions()
     m_Output = utility::conversions::to_string_t("");
     m_OutputIsSet = false;
     m_Additional_outputsIsSet = false;
+    m_Logs = utility::conversions::to_string_t("");
     m_LogsIsSet = false;
     m_Started = utility::datetime();
     m_StartedIsSet = false;
     m_Ended = utility::datetime();
     m_EndedIsSet = false;
+    m_Meta = utility::conversions::to_string_t("");
     m_MetaIsSet = false;
+    m_Wf_name = utility::conversions::to_string_t("");
+    m_Wf_nameIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -74,14 +74,6 @@ web::json::value Submissions::toJson() const
     if(m_UpdatedIsSet)
     {
         val[utility::conversions::to_string_t("updated")] = ModelBase::toJson(m_Updated);
-    }
-    if(m_Participant_idIsSet)
-    {
-        val[utility::conversions::to_string_t("participant_id")] = ModelBase::toJson(m_Participant_id);
-    }
-    if(m_Round_idIsSet)
-    {
-        val[utility::conversions::to_string_t("round_id")] = ModelBase::toJson(m_Round_id);
     }
     val[utility::conversions::to_string_t("grader_id")] = ModelBase::toJson(m_Grader_id);
     if(m_Submission_dataIsSet)
@@ -115,6 +107,10 @@ web::json::value Submissions::toJson() const
     if(m_MetaIsSet)
     {
         val[utility::conversions::to_string_t("meta")] = ModelBase::toJson(m_Meta);
+    }
+    if(m_Wf_nameIsSet)
+    {
+        val[utility::conversions::to_string_t("wf_name")] = ModelBase::toJson(m_Wf_name);
     }
     if(m_User_idIsSet)
     {
@@ -152,22 +148,6 @@ void Submissions::fromJson(web::json::value& val)
         if(!fieldValue.is_null())
         {
             setUpdated(ModelBase::dateFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("participant_id")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("participant_id")];
-        if(!fieldValue.is_null())
-        {
-            setParticipantId(ModelBase::int32_tFromJson(fieldValue));
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("round_id")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("round_id")];
-        if(!fieldValue.is_null())
-        {
-            setRoundId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     setGraderId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("grader_id")]));
@@ -212,9 +192,7 @@ void Submissions::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("logs")];
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromJson(fieldValue);
-            setLogs( newItem );
+            setLogs(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("started")))
@@ -238,9 +216,15 @@ void Submissions::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("meta")];
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromJson(fieldValue);
-            setMeta( newItem );
+            setMeta(ModelBase::stringFromJson(fieldValue));
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("wf_name")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("wf_name")];
+        if(!fieldValue.is_null())
+        {
+            setWfName(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
@@ -283,14 +267,6 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("updated"), m_Updated));
         
     }
-    if(m_Participant_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("participant_id"), m_Participant_id));
-    }
-    if(m_Round_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("round_id"), m_Round_id));
-    }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("grader_id"), m_Grader_id));
     if(m_Submission_dataIsSet)
     {
@@ -320,10 +296,7 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(m_LogsIsSet)
     {
-        if (m_Logs.get())
-        {
-            m_Logs->toMultipart(multipart, utility::conversions::to_string_t("logs."));
-        }
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("logs"), m_Logs));
         
     }
     if(m_StartedIsSet)
@@ -338,10 +311,12 @@ void Submissions::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(m_MetaIsSet)
     {
-        if (m_Meta.get())
-        {
-            m_Meta->toMultipart(multipart, utility::conversions::to_string_t("meta."));
-        }
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("meta"), m_Meta));
+        
+    }
+    if(m_Wf_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("wf_name"), m_Wf_name));
         
     }
     if(m_User_idIsSet)
@@ -374,14 +349,6 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     {
         setUpdated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("updated"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("participant_id")))
-    {
-        setParticipantId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("participant_id"))));
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("round_id")))
-    {
-        setRoundId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("round_id"))));
-    }
     setGraderId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grader_id"))));
     if(multipart->hasContent(utility::conversions::to_string_t("submission_data")))
     {
@@ -411,12 +378,7 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("logs")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("logs")))
-        {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("logs."));
-            setLogs( newItem );
-        }
+        setLogs(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("logs"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("started")))
     {
@@ -428,12 +390,11 @@ void Submissions::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("meta")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("meta")))
-        {
-            std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("meta."));
-            setMeta( newItem );
-        }
+        setMeta(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("meta"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("wf_name")))
+    {
+        setWfName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("wf_name"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -506,48 +467,6 @@ bool Submissions::updatedIsSet() const
 void Submissions::unsetUpdated()
 {
     m_UpdatedIsSet = false;
-}
-
-int32_t Submissions::getParticipantId() const
-{
-    return m_Participant_id;
-}
-
-
-void Submissions::setParticipantId(int32_t value)
-{
-    m_Participant_id = value;
-    m_Participant_idIsSet = true;
-}
-bool Submissions::participantIdIsSet() const
-{
-    return m_Participant_idIsSet;
-}
-
-void Submissions::unsetParticipant_id()
-{
-    m_Participant_idIsSet = false;
-}
-
-int32_t Submissions::getRoundId() const
-{
-    return m_Round_id;
-}
-
-
-void Submissions::setRoundId(int32_t value)
-{
-    m_Round_id = value;
-    m_Round_idIsSet = true;
-}
-bool Submissions::roundIdIsSet() const
-{
-    return m_Round_idIsSet;
-}
-
-void Submissions::unsetRound_id()
-{
-    m_Round_idIsSet = false;
 }
 
 int32_t Submissions::getGraderId() const
@@ -645,13 +564,13 @@ void Submissions::unsetAdditional_outputs()
     m_Additional_outputsIsSet = false;
 }
 
-std::shared_ptr<Object> Submissions::getLogs() const
+utility::string_t Submissions::getLogs() const
 {
     return m_Logs;
 }
 
 
-void Submissions::setLogs(std::shared_ptr<Object> value)
+void Submissions::setLogs(utility::string_t value)
 {
     m_Logs = value;
     m_LogsIsSet = true;
@@ -708,13 +627,13 @@ void Submissions::unsetEnded()
     m_EndedIsSet = false;
 }
 
-std::shared_ptr<Object> Submissions::getMeta() const
+utility::string_t Submissions::getMeta() const
 {
     return m_Meta;
 }
 
 
-void Submissions::setMeta(std::shared_ptr<Object> value)
+void Submissions::setMeta(utility::string_t value)
 {
     m_Meta = value;
     m_MetaIsSet = true;
@@ -727,6 +646,27 @@ bool Submissions::metaIsSet() const
 void Submissions::unsetMeta()
 {
     m_MetaIsSet = false;
+}
+
+utility::string_t Submissions::getWfName() const
+{
+    return m_Wf_name;
+}
+
+
+void Submissions::setWfName(utility::string_t value)
+{
+    m_Wf_name = value;
+    m_Wf_nameIsSet = true;
+}
+bool Submissions::wfNameIsSet() const
+{
+    return m_Wf_nameIsSet;
+}
+
+void Submissions::unsetWf_name()
+{
+    m_Wf_nameIsSet = false;
 }
 
 int32_t Submissions::getUserId() const

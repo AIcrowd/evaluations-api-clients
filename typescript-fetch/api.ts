@@ -173,11 +173,11 @@ export interface Cluster {
      */
     status?: boolean;
     /**
-     * Additional metadata
-     * @type {any}
+     * Name of the workflow used to setup grader
+     * @type {string}
      * @memberof Cluster
      */
-    meta?: any;
+    wfName?: string;
     /**
      * User ID
      * @type {number}
@@ -266,16 +266,16 @@ export interface Grader {
     notifications?: string;
     /**
      * Logs from argo workflow
-     * @type {any}
+     * @type {string}
      * @memberof Grader
      */
-    logs?: any;
+    logs?: string;
     /**
      * Additional meta data of the grader
-     * @type {any}
+     * @type {string}
      * @memberof Grader
      */
-    meta?: any;
+    meta?: string;
     /**
      * Status of the grader - True if it ready, False otherwise
      * @type {string}
@@ -288,6 +288,12 @@ export interface Grader {
      * @memberof Grader
      */
     secrets?: any;
+    /**
+     * Name of the workflow used to setup grader
+     * @type {string}
+     * @memberof Grader
+     */
+    wfName?: string;
     /**
      * Type of submissions allowed on the grader
      * @type {any}
@@ -411,18 +417,6 @@ export interface Submissions {
      */
     updated?: Date;
     /**
-     * Participant identifier
-     * @type {number}
-     * @memberof Submissions
-     */
-    participantId?: number;
-    /**
-     * Round identifier
-     * @type {number}
-     * @memberof Submissions
-     */
-    roundId?: number;
-    /**
      * Grader identifier
      * @type {number}
      * @memberof Submissions
@@ -454,10 +448,10 @@ export interface Submissions {
     additionalOutputs?: any;
     /**
      * S3 link of the STDOUT of the evaluation
-     * @type {any}
+     * @type {string}
      * @memberof Submissions
      */
-    logs?: any;
+    logs?: string;
     /**
      * Evaluation start time
      * @type {Date}
@@ -471,11 +465,17 @@ export interface Submissions {
      */
     ended?: Date;
     /**
-     * Additional meta-data
-     * @type {any}
+     * Additional meta data of the grader
+     * @type {string}
      * @memberof Submissions
      */
-    meta?: any;
+    meta?: string;
+    /**
+     * Name of the workflow used to evaluate submission
+     * @type {string}
+     * @memberof Submissions
+     */
+    wfName?: string;
     /**
      * User ID
      * @type {number}
@@ -1231,12 +1231,51 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGraderLogs(graderId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'graderId' is not null or undefined
+            if (graderId === null || graderId === undefined) {
+                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling getGraderLogs.');
+            }
+            const localVarPath = `/graders/{grader_id}/logs`
+                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * List all graders available
+         * @param {string} [name] Fetch grader with this name
+         * @param {string} [status] Fetch graders with this status
+         * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(xFields?: string, options: any = {}): FetchArgs {
+        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/graders/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1249,6 +1288,18 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (name !== undefined) {
+                localVarQueryParameter['name'] = name;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['user_id'] = userId;
             }
 
             if (xFields !== undefined && xFields !== null) {
@@ -1331,13 +1382,34 @@ export const GradersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGraderLogs(graderId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGraderLogs(graderId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * List all graders available
+         * @param {string} [name] Fetch grader with this name
+         * @param {string} [status] Fetch graders with this status
+         * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(xFields, options);
+        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(name, status, userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1387,13 +1459,25 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
             return GradersApiFp(configuration).getGrader(graderId, xFields, options)(fetch, basePath);
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGraderLogs(graderId: number, options?: any) {
+            return GradersApiFp(configuration).getGraderLogs(graderId, options)(fetch, basePath);
+        },
+        /**
          * List all graders available
+         * @param {string} [name] Fetch grader with this name
+         * @param {string} [status] Fetch graders with this status
+         * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(xFields?: string, options?: any) {
-            return GradersApiFp(configuration).listGraders(xFields, options)(fetch, basePath);
+        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).listGraders(name, status, userId, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1441,14 +1525,28 @@ export class GradersApi extends BaseAPI {
     }
 
     /**
+     * Get the grader logs by submission ID
+     * @param {number} graderId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public getGraderLogs(graderId: number, options?: any) {
+        return GradersApiFp(this.configuration).getGraderLogs(graderId, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * List all graders available
+     * @param {string} [name] Fetch grader with this name
+     * @param {string} [status] Fetch graders with this status
+     * @param {number} [userId] Fetch graders created by the user
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GradersApi
      */
-    public listGraders(xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).listGraders(xFields, options)(this.fetch, this.basePath);
+    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).listGraders(name, status, userId, xFields, options)(this.fetch, this.basePath);
     }
 
 }
@@ -2147,12 +2245,51 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
             };
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionLogs(submissionId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+            }
+            const localVarPath = `/submissions/{submission_id}/logs`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * List all submissions available
+         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [status] Fetch submissions with this status
+         * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(xFields?: string, options: any = {}): FetchArgs {
+        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/submissions/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -2165,6 +2302,18 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (meta !== undefined) {
+                localVarQueryParameter['meta'] = meta;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['user_id'] = userId;
             }
 
             if (xFields !== undefined && xFields !== null) {
@@ -2265,13 +2414,34 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionLogs(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionLogs(submissionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * List all submissions available
+         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [status] Fetch submissions with this status
+         * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(xFields, options);
+        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(meta, status, userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2330,13 +2500,25 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
             return SubmissionsApiFp(configuration).getSubmissionData(submissionId, options)(fetch, basePath);
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSubmissionLogs(submissionId: number, options?: any) {
+            return SubmissionsApiFp(configuration).getSubmissionLogs(submissionId, options)(fetch, basePath);
+        },
+        /**
          * List all submissions available
+         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [status] Fetch submissions with this status
+         * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).listSubmissions(xFields, options)(fetch, basePath);
+        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).listSubmissions(meta, status, userId, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -2395,14 +2577,28 @@ export class SubmissionsApi extends BaseAPI {
     }
 
     /**
+     * Get the submission logs by submission ID
+     * @param {number} submissionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmissionLogs(submissionId: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).getSubmissionLogs(submissionId, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * List all submissions available
+     * @param {string} [meta] Fetch submissions with this meta value
+     * @param {string} [status] Fetch submissions with this status
+     * @param {number} [userId] Fetch submissions created by the user
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public listSubmissions(xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).listSubmissions(xFields, options)(this.fetch, this.basePath);
+    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).listSubmissions(meta, status, userId, xFields, options)(this.fetch, this.basePath);
     }
 
 }

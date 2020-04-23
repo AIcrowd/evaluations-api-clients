@@ -163,13 +163,42 @@ class GradersApi(
 
   /**
    * 
+   * Get the grader logs by submission ID
+   *
+   * @param graderId  
+   * @return void
+   */
+  def getGraderLogs(graderId: Integer) = {
+    val await = Try(Await.result(getGraderLogsAsync(graderId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Get the grader logs by submission ID
+   *
+   * @param graderId  
+   * @return Future(void)
+   */
+  def getGraderLogsAsync(graderId: Integer) = {
+      helper.getGraderLogs(graderId)
+  }
+
+  /**
+   * 
    * List all graders available
    *
+   * @param name Fetch grader with this name (optional)
+   * @param status Fetch graders with this status (optional)
+   * @param userId Fetch graders created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return List[Grader]
    */
-  def listGraders(xFields: Option[String] = None): Option[List[Grader]] = {
-    val await = Try(Await.result(listGradersAsync(xFields), Duration.Inf))
+  def listGraders(name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Grader]] = {
+    val await = Try(Await.result(listGradersAsync(name, status, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -180,11 +209,14 @@ class GradersApi(
    *  asynchronously
    * List all graders available
    *
+   * @param name Fetch grader with this name (optional)
+   * @param status Fetch graders with this status (optional)
+   * @param userId Fetch graders created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Grader])
    */
-  def listGradersAsync(xFields: Option[String] = None): Future[List[Grader]] = {
-      helper.listGraders(xFields)
+  def listGradersAsync(name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Grader]] = {
+      helper.listGraders(name, status, userId, xFields)
   }
 
 }
@@ -251,7 +283,26 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def listGraders(xFields: Option[String] = None
+  def getGraderLogs(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/graders/{grader_id}/logs")
+      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def listGraders(name: Option[String] = None,
+    status: Option[String] = None,
+    userId: Option[Integer] = None,
+    xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Grader]]): Future[List[Grader]] = {
     // create path and map variables
     val path = (addFmt("/graders/"))
@@ -260,6 +311,18 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    name match {
+      case Some(param) => queryParams += "name" -> param.toString
+      case _ => queryParams
+    }
+    status match {
+      case Some(param) => queryParams += "status" -> param.toString
+      case _ => queryParams
+    }
+    userId match {
+      case Some(param) => queryParams += "user_id" -> param.toString
+      case _ => queryParams
+    }
     xFields match {
       case Some(param) => headerParams += "X-Fields" -> param.toString
       case _ => headerParams

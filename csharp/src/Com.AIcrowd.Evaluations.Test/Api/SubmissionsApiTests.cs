@@ -115,14 +115,29 @@ namespace Com.AIcrowd.Evaluations.Test
         }
         
         /// <summary>
+        /// Test GetSubmissionLogs
+        /// </summary>
+        [Test]
+        public void GetSubmissionLogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? submissionId = null;
+            //instance.GetSubmissionLogs(submissionId);
+            
+        }
+        
+        /// <summary>
         /// Test ListSubmissions
         /// </summary>
         [Test]
         public void ListSubmissionsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //string meta = null;
+            //string status = null;
+            //int? userId = null;
             //string xFields = null;
-            //var response = instance.ListSubmissions(xFields);
+            //var response = instance.ListSubmissions(meta, status, userId, xFields);
             //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
         }
         

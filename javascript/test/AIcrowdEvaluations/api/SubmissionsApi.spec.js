@@ -40,10 +40,9 @@
           // TODO: uncomment, update parameter values for createSubmission call and complete the assertions
           /*
           var payload = new AicrowdEvaluations.Submissions();
-          payload.participantId = 0;
-          payload.roundId = 0;
           payload.graderId = 0;
           payload.submissionData = ;
+          payload.meta = "";
           var opts = {};
           opts.xFields = "xFields_example";
 
@@ -60,10 +59,6 @@
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);
             expect(data.updated).to.be(new Date());
-            expect(data.participantId).to.be.a('number');
-            expect(data.participantId).to.be(0);
-            expect(data.roundId).to.be.a('number');
-            expect(data.roundId).to.be(0);
             expect(data.graderId).to.be.a('number');
             expect(data.graderId).to.be(0);
             expect(data.submissionData).to.be.a(Object);
@@ -74,14 +69,16 @@
             expect(data.output).to.be("");
             expect(data.additionalOutputs).to.be.a(Object);
             expect(data.additionalOutputs).to.be();
-            expect(data.logs).to.be.a(Object);
-            expect(data.logs).to.be();
+            expect(data.logs).to.be.a('string');
+            expect(data.logs).to.be("");
             expect(data.started).to.be.a(Date);
             expect(data.started).to.be(new Date());
             expect(data.ended).to.be.a(Date);
             expect(data.ended).to.be(new Date());
-            expect(data.meta).to.be.a(Object);
-            expect(data.meta).to.be();
+            expect(data.meta).to.be.a('string');
+            expect(data.meta).to.be("");
+            expect(data.wfName).to.be.a('string');
+            expect(data.wfName).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -134,10 +131,6 @@
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);
             expect(data.updated).to.be(new Date());
-            expect(data.participantId).to.be.a('number');
-            expect(data.participantId).to.be(0);
-            expect(data.roundId).to.be.a('number');
-            expect(data.roundId).to.be(0);
             expect(data.graderId).to.be.a('number');
             expect(data.graderId).to.be(0);
             expect(data.submissionData).to.be.a(Object);
@@ -148,14 +141,16 @@
             expect(data.output).to.be("");
             expect(data.additionalOutputs).to.be.a(Object);
             expect(data.additionalOutputs).to.be();
-            expect(data.logs).to.be.a(Object);
-            expect(data.logs).to.be();
+            expect(data.logs).to.be.a('string');
+            expect(data.logs).to.be("");
             expect(data.started).to.be.a(Date);
             expect(data.started).to.be(new Date());
             expect(data.ended).to.be.a(Date);
             expect(data.ended).to.be(new Date());
-            expect(data.meta).to.be.a(Object);
-            expect(data.meta).to.be();
+            expect(data.meta).to.be.a('string');
+            expect(data.meta).to.be("");
+            expect(data.wfName).to.be.a('string');
+            expect(data.wfName).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -187,11 +182,33 @@
           done();
         });
       });
+      describe('getSubmissionLogs', function() {
+        it('should call getSubmissionLogs successfully', function(done) {
+          // TODO: uncomment, update parameter values for getSubmissionLogs call
+          /*
+          var submissionId = 56;
+
+          instance.getSubmissionLogs(submissionId, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
       describe('listSubmissions', function() {
         it('should call listSubmissions successfully', function(done) {
           // TODO: uncomment, update parameter values for listSubmissions call and complete the assertions
           /*
           var opts = {};
+          opts.meta = "meta_example";
+          opts.status = "status_example";
+          opts.userId = 56;
           opts.xFields = "xFields_example";
 
           instance.listSubmissions(opts, function(error, data, response) {
@@ -212,10 +229,6 @@
               expect(data.created).to.be(new Date());
               expect(data.updated).to.be.a(Date);
               expect(data.updated).to.be(new Date());
-              expect(data.participantId).to.be.a('number');
-              expect(data.participantId).to.be(0);
-              expect(data.roundId).to.be.a('number');
-              expect(data.roundId).to.be(0);
               expect(data.graderId).to.be.a('number');
               expect(data.graderId).to.be(0);
               expect(data.submissionData).to.be.a(Object);
@@ -226,14 +239,16 @@
               expect(data.output).to.be("");
               expect(data.additionalOutputs).to.be.a(Object);
               expect(data.additionalOutputs).to.be();
-              expect(data.logs).to.be.a(Object);
-              expect(data.logs).to.be();
+              expect(data.logs).to.be.a('string');
+              expect(data.logs).to.be("");
               expect(data.started).to.be.a(Date);
               expect(data.started).to.be(new Date());
               expect(data.ended).to.be.a(Date);
               expect(data.ended).to.be(new Date());
-              expect(data.meta).to.be.a(Object);
-              expect(data.meta).to.be();
+              expect(data.meta).to.be.a('string');
+              expect(data.meta).to.be("");
+              expect(data.wfName).to.be.a('string');
+              expect(data.wfName).to.be("");
               expect(data.userId).to.be.a('number');
               expect(data.userId).to.be(0);
               expect(data.organisationId).to.be.a('number');

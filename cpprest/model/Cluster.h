@@ -23,7 +23,6 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "Object.h"
 
 namespace com {
 namespace aicrowd {
@@ -117,12 +116,12 @@ public:
     void unsetStatus();
     void setStatus(bool value);
     /// <summary>
-    /// Additional metadata
+    /// Name of the workflow used to setup grader
     /// </summary>
-    std::shared_ptr<Object> getMeta() const;
-    bool metaIsSet() const;
-    void unsetMeta();
-    void setMeta(std::shared_ptr<Object> value);
+    utility::string_t getWfName() const;
+    bool wfNameIsSet() const;
+    void unsetWf_name();
+    void setWfName(utility::string_t value);
     /// <summary>
     /// User ID
     /// </summary>
@@ -155,8 +154,8 @@ protected:
     bool m_Storage_classIsSet;
     bool m_Status;
     bool m_StatusIsSet;
-    std::shared_ptr<Object> m_Meta;
-    bool m_MetaIsSet;
+    utility::string_t m_Wf_name;
+    bool m_Wf_nameIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

@@ -15,7 +15,7 @@
        'docker_registry' => binary(),
        'storage_class' => binary(),
        'status' => boolean(),
-       'meta' => maps:map(),
+       'wf_name' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -30,7 +30,7 @@ encode(#{ 'id' := Id,
           'docker_registry' := DockerRegistry,
           'storage_class' := StorageClass,
           'status' := Status,
-          'meta' := Meta,
+          'wf_name' := WfName,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -44,7 +44,7 @@ encode(#{ 'id' := Id,
        'docker_registry' => DockerRegistry,
        'storage_class' => StorageClass,
        'status' => Status,
-       'meta' => Meta,
+       'wf_name' => WfName,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

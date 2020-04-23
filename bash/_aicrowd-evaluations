@@ -303,6 +303,7 @@ case $state in
             "listClusters[]"             "createGrader[]" \
             "deleteGrader[]" \
             "getGrader[]" \
+            "getGraderLogs[]" \
             "listGraders[]"             "createOrganisation[]" \
             "deleteOrganisation[]" \
             "getOrganisation[]" \
@@ -312,6 +313,7 @@ case $state in
             "deleteSubmission[]" \
             "getSubmission[]" \
             "getSubmissionData[]" \
+            "getSubmissionLogs[]" \
             "listSubmissions[]"             "createUser[]" \
             "deleteUser[]" \
             "getUser[]" \
@@ -389,10 +391,20 @@ case $state in
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      getGraderLogs)
+        local -a _op_arguments
+        _op_arguments=(
+          "grader_id=:[PATH] "
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       listGraders)
         local -a _op_arguments
         _op_arguments=(
-                              "X-Fields\::[HEADER] An optional fields mask"
+                    "name=:[QUERY] Fetch grader with this name"
+"status=:[QUERY] Fetch graders with this status"
+"user_id=:[QUERY] Fetch graders created by the user"
+          "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -469,10 +481,20 @@ case $state in
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      getSubmissionLogs)
+        local -a _op_arguments
+        _op_arguments=(
+          "submission_id=:[PATH] "
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       listSubmissions)
         local -a _op_arguments
         _op_arguments=(
-                              "X-Fields\::[HEADER] An optional fields mask"
+                    "meta=:[QUERY] Fetch submissions with this meta value"
+"status=:[QUERY] Fetch submissions with this status"
+"user_id=:[QUERY] Fetch submissions created by the user"
+          "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

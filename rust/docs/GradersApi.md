@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_grader**](GradersApi.md#create_grader) | **Post** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **Delete** /graders/{grader_id} | 
 [**get_grader**](GradersApi.md#get_grader) | **Get** /graders/{grader_id} | 
+[**get_grader_logs**](GradersApi.md#get_grader_logs) | **Get** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **Get** /graders/ | 
 
 
@@ -112,6 +113,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_grader_logs**
+> get_grader_logs(ctx, grader_id)
+
+
+Get the grader logs by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **grader_id** | **i32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_graders**
 > Vec<::models::Grader> list_graders(ctx, optional)
 
@@ -130,6 +159,9 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **String**| Fetch grader with this name | 
+ **status** | **String**| Fetch graders with this status | 
+ **user_id** | **i32**| Fetch graders created by the user | 
  **x_fields** | **String**| An optional fields mask | 
 
 ### Return type

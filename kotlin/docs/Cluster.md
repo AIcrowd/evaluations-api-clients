@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **docker_registry** | **kotlin.String** | Docker registry URL. Dockerhub is used by default. |  [optional]
 **storage_class** | **kotlin.String** | Storage class to use for datasets |  [optional]
 **status** | **kotlin.Boolean** | Readiness of the cluster |  [optional]
-**meta** | [**kotlin.Any**](kotlin.Any.md) | Additional metadata |  [optional]
+**wf_name** | **kotlin.String** | Name of the workflow used to setup grader |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

@@ -84,14 +84,14 @@ API.Client.Grader.prototype.notifications;
 
 /**
  * Logs from argo workflow
- * @type {!API.Client.Object}
+ * @type {!string}
  * @export
  */
 API.Client.Grader.prototype.logs;
 
 /**
  * Additional meta data of the grader
- * @type {!API.Client.Object}
+ * @type {!string}
  * @export
  */
 API.Client.Grader.prototype.meta;
@@ -109,6 +109,13 @@ API.Client.Grader.prototype.status;
  * @export
  */
 API.Client.Grader.prototype.secrets;
+
+/**
+ * Name of the workflow used to setup grader
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.wfName;
 
 /**
  * Type of submissions allowed on the grader

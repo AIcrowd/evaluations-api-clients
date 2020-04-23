@@ -147,12 +147,12 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Status'
         }
         /// <summary>
-        /// Test the property 'Meta'
+        /// Test the property 'WfName'
         /// </summary>
         [Test]
-        public void MetaTest()
+        public void WfNameTest()
         {
-            // TODO unit test for the property 'Meta'
+            // TODO unit test for the property 'WfName'
         }
         /// <summary>
         /// Test the property 'UserId'

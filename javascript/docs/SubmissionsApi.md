@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
@@ -231,6 +232,59 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getSubmissionLogs"></a>
+# **getSubmissionLogs**
+> getSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
+
+var submissionId = 56; // Number | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.getSubmissionLogs(submissionId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Number**|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="listSubmissions"></a>
 # **listSubmissions**
 > [Submissions] listSubmissions(opts)
@@ -253,6 +307,9 @@ api_key.apiKey = 'YOUR API KEY';
 var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var opts = { 
+  'meta': "meta_example", // String | Fetch submissions with this meta value
+  'status': "status_example", // String | Fetch submissions with this status
+  'userId': 56, // Number | Fetch submissions created by the user
   'xFields': "xFields_example" // String | An optional fields mask
 };
 
@@ -270,6 +327,9 @@ apiInstance.listSubmissions(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **String**| Fetch submissions with this meta value | [optional] 
+ **status** | **String**| Fetch submissions with this status | [optional] 
+ **userId** | **Number**| Fetch submissions created by the user | [optional] 
  **xFields** | **String**| An optional fields mask | [optional] 
 
 ### Return type

@@ -60,11 +60,11 @@ export interface Grader {
     /**
      * Logs from argo workflow
      */
-    "logs"?: any;
+    "logs"?: string;
     /**
      * Additional meta data of the grader
      */
-    "meta"?: any;
+    "meta"?: string;
     /**
      * Status of the grader - True if it ready, False otherwise
      */
@@ -73,6 +73,10 @@ export interface Grader {
      * List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
      */
     "secrets"?: any;
+    /**
+     * Name of the workflow used to setup grader
+     */
+    "wfName"?: string;
     /**
      * Type of submissions allowed on the grader
      */

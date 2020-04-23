@@ -17,8 +17,6 @@ package com.aicrowd.evaluations.models
  * @param id ID
  * @param created Creation time
  * @param updated Last updation time
- * @param participant_id Participant identifier
- * @param round_id Round identifier
  * @param grader_id Grader identifier
  * @param submission_data URL to the submission code
  * @param status Current status of the submission
@@ -27,7 +25,8 @@ package com.aicrowd.evaluations.models
  * @param logs S3 link of the STDOUT of the evaluation
  * @param started Evaluation start time
  * @param ended Evaluation end time
- * @param meta Additional meta-data
+ * @param meta Additional meta data of the grader
+ * @param wf_name Name of the workflow used to evaluate submission
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -40,10 +39,6 @@ data class Submissions (
     val created: java.time.LocalDateTime? = null,
     /* Last updation time */
     val updated: java.time.LocalDateTime? = null,
-    /* Participant identifier */
-    val participant_id: kotlin.Int? = null,
-    /* Round identifier */
-    val round_id: kotlin.Int? = null,
     /* URL to the submission code */
     val submission_data: kotlin.Any? = null,
     /* Current status of the submission */
@@ -53,13 +48,15 @@ data class Submissions (
     /* Array of any additional outputs */
     val additional_outputs: kotlin.Any? = null,
     /* S3 link of the STDOUT of the evaluation */
-    val logs: kotlin.Any? = null,
+    val logs: kotlin.String? = null,
     /* Evaluation start time */
     val started: java.time.LocalDateTime? = null,
     /* Evaluation end time */
     val ended: java.time.LocalDateTime? = null,
-    /* Additional meta-data */
-    val meta: kotlin.Any? = null,
+    /* Additional meta data of the grader */
+    val meta: kotlin.String? = null,
+    /* Name of the workflow used to evaluate submission */
+    val wf_name: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

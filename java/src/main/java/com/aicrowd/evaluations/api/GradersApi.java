@@ -431,14 +431,136 @@ public class GradersApi {
         return call;
     }
     /**
+     * Build call for getGraderLogs
+     * @param graderId  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getGraderLogsCall(Integer graderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/graders/{grader_id}/logs"
+            .replaceAll("\\{" + "grader_id" + "\\}", apiClient.escapeString(graderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "api_key" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getGraderLogsValidateBeforeCall(Integer graderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'graderId' is set
+        if (graderId == null) {
+            throw new ApiException("Missing the required parameter 'graderId' when calling getGraderLogs(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getGraderLogsCall(graderId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Get the grader logs by submission ID
+     * @param graderId  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void getGraderLogs(Integer graderId) throws ApiException {
+        getGraderLogsWithHttpInfo(graderId);
+    }
+
+    /**
+     * 
+     * Get the grader logs by submission ID
+     * @param graderId  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> getGraderLogsWithHttpInfo(Integer graderId) throws ApiException {
+        com.squareup.okhttp.Call call = getGraderLogsValidateBeforeCall(graderId, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get the grader logs by submission ID
+     * @param graderId  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getGraderLogsAsync(Integer graderId, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getGraderLogsValidateBeforeCall(graderId, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for listGraders
+     * @param name Fetch grader with this name (optional)
+     * @param status Fetch graders with this status (optional)
+     * @param userId Fetch graders created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listGradersCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call listGradersCall(String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -446,6 +568,12 @@ public class GradersApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (name != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("name", name));
+        if (status != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("status", status));
+        if (userId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("user_id", userId));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (xFields != null)
@@ -482,10 +610,10 @@ public class GradersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listGradersValidateBeforeCall(String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call listGradersValidateBeforeCall(String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listGradersCall(xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listGradersCall(name, status, userId, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -493,24 +621,30 @@ public class GradersApi {
     /**
      * 
      * List all graders available
+     * @param name Fetch grader with this name (optional)
+     * @param status Fetch graders with this status (optional)
+     * @param userId Fetch graders created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @return List&lt;Grader&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Grader> listGraders(String xFields) throws ApiException {
-        ApiResponse<List<Grader>> resp = listGradersWithHttpInfo(xFields);
+    public List<Grader> listGraders(String name, String status, Integer userId, String xFields) throws ApiException {
+        ApiResponse<List<Grader>> resp = listGradersWithHttpInfo(name, status, userId, xFields);
         return resp.getData();
     }
 
     /**
      * 
      * List all graders available
+     * @param name Fetch grader with this name (optional)
+     * @param status Fetch graders with this status (optional)
+     * @param userId Fetch graders created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @return ApiResponse&lt;List&lt;Grader&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Grader>> listGradersWithHttpInfo(String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(xFields, null, null);
+    public ApiResponse<List<Grader>> listGradersWithHttpInfo(String name, String status, Integer userId, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(name, status, userId, xFields, null, null);
         Type localVarReturnType = new TypeToken<List<Grader>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -518,12 +652,15 @@ public class GradersApi {
     /**
      *  (asynchronously)
      * List all graders available
+     * @param name Fetch grader with this name (optional)
+     * @param status Fetch graders with this status (optional)
+     * @param userId Fetch graders created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listGradersAsync(String xFields, final ApiCallback<List<Grader>> callback) throws ApiException {
+    public com.squareup.okhttp.Call listGradersAsync(String name, String status, Integer userId, String xFields, final ApiCallback<List<Grader>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -544,7 +681,7 @@ public class GradersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(name, status, userId, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Grader>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteSubmission**](SubmissionsApi.md#DeleteSubmission) | **Delete** /submissions/{submission_id} | 
 [**GetSubmission**](SubmissionsApi.md#GetSubmission) | **Get** /submissions/{submission_id} | 
 [**GetSubmissionData**](SubmissionsApi.md#GetSubmissionData) | **Get** /submissions/{submission_id}/data | 
+[**GetSubmissionLogs**](SubmissionsApi.md#GetSubmissionLogs) | **Get** /submissions/{submission_id}/logs | 
 [**ListSubmissions**](SubmissionsApi.md#ListSubmissions) | **Get** /submissions/ | 
 
 
@@ -141,6 +142,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **GetSubmissionLogs**
+> GetSubmissionLogs(ctx, submissionId)
+
+
+Get the submission logs by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ListSubmissions**
 > []Submissions ListSubmissions(ctx, optional)
 
@@ -159,6 +188,9 @@ Optional parameters are passed through a pointer to a SubmissionsApiListSubmissi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **optional.String**| Fetch submissions with this meta value | 
+ **status** | **optional.String**| Fetch submissions with this status | 
+ **userId** | **optional.Int32**| Fetch submissions created by the user | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type

@@ -95,12 +95,39 @@ defmodule AIcrowd.Evaluations.Api.Graders do
   end
 
   @doc """
+  Get the grader logs by submission ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - grader_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec get_grader_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def get_grader_logs(connection, grader_id, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/graders/#{grader_id}/logs")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
   List all graders available
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :name (String.t): Fetch grader with this name
+    - :status (String.t): Fetch graders with this status
+    - :user_id (integer()): Fetch graders created by the user
     - :x_fields (String.t): An optional fields mask
 
   ## Returns
@@ -111,6 +138,9 @@ defmodule AIcrowd.Evaluations.Api.Graders do
   @spec list_graders(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Grader.t)} | {:error, Tesla.Env.t}
   def list_graders(connection, opts \\ []) do
     optional_params = %{
+      :"name" => :query,
+      :"status" => :query,
+      :"user_id" => :query,
       :"X-Fields" => :headers
     }
     %{}

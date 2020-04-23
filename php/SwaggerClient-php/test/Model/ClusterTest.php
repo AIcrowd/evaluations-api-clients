@@ -147,9 +147,9 @@ class ClusterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "meta"
+     * Test attribute "wf_name"
      */
-    public function testPropertyMeta()
+    public function testPropertyWfName()
     {
     }
 

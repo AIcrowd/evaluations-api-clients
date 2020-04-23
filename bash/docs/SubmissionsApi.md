@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
+[**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
 
 
@@ -141,6 +142,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+## **getSubmissionLogs**
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```bash
+aicrowd-evaluations getSubmissionLogs submission_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 ## **listSubmissions**
 
 
@@ -149,13 +182,16 @@ List all submissions available
 
 ### Example
 ```bash
-aicrowd-evaluations listSubmissions X-Fields:value
+aicrowd-evaluations listSubmissions  meta=value  status=value  user_id=value X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **meta** | **string** | Fetch submissions with this meta value | [optional]
+ **status** | **string** | Fetch submissions with this status | [optional]
+ **userId** | **integer** | Fetch submissions created by the user | [optional]
  **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type

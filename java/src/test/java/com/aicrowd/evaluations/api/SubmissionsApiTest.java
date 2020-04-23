@@ -101,6 +101,22 @@ public class SubmissionsApiTest {
     /**
      * 
      *
+     * Get the submission logs by submission ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSubmissionLogsTest() throws ApiException {
+        Integer submissionId = null;
+        api.getSubmissionLogs(submissionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * List all submissions available
      *
      * @throws ApiException
@@ -108,8 +124,11 @@ public class SubmissionsApiTest {
      */
     @Test
     public void listSubmissionsTest() throws ApiException {
+        String meta = null;
+        String status = null;
+        Integer userId = null;
         String xFields = null;
-        List<Submissions> response = api.listSubmissions(xFields);
+        List<Submissions> response = api.listSubmissions(meta, status, userId, xFields);
 
         // TODO: test validations
     }

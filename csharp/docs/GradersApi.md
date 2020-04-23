@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateGrader**](GradersApi.md#creategrader) | **POST** /graders/ | 
 [**DeleteGrader**](GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
 [**GetGrader**](GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
+[**GetGraderLogs**](GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#listgraders) | **GET** /graders/ | 
 
 
@@ -208,9 +209,73 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getgraderlogs"></a>
+# **GetGraderLogs**
+> void GetGraderLogs (int? graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class GetGraderLogsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var graderId = 56;  // int? | 
+
+            try
+            {
+                apiInstance.GetGraderLogs(graderId);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.GetGraderLogs: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **int?**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="listgraders"></a>
 # **ListGraders**
-> List<Grader> ListGraders (string xFields = null)
+> List<Grader> ListGraders (string name = null, string status = null, int? userId = null, string xFields = null)
 
 
 
@@ -236,11 +301,14 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new GradersApi();
+            var name = name_example;  // string | Fetch grader with this name (optional) 
+            var status = status_example;  // string | Fetch graders with this status (optional) 
+            var userId = 56;  // int? | Fetch graders created by the user (optional) 
             var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                List&lt;Grader&gt; result = apiInstance.ListGraders(xFields);
+                List&lt;Grader&gt; result = apiInstance.ListGraders(name, status, userId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -256,6 +324,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **string**| Fetch grader with this name | [optional] 
+ **status** | **string**| Fetch graders with this status | [optional] 
+ **userId** | **int?**| Fetch graders created by the user | [optional] 
  **xFields** | **string**| An optional fields mask | [optional] 
 
 ### Return type

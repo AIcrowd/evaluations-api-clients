@@ -119,12 +119,39 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   end
 
   @doc """
+  Get the submission logs by submission ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - submission_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec get_submission_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def get_submission_logs(connection, submission_id, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/submissions/#{submission_id}/logs")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
   List all submissions available
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :meta (String.t): Fetch submissions with this meta value
+    - :status (String.t): Fetch submissions with this status
+    - :user_id (integer()): Fetch submissions created by the user
     - :x_fields (String.t): An optional fields mask
 
   ## Returns
@@ -135,6 +162,9 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   @spec list_submissions(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Submissions.t)} | {:error, Tesla.Env.t}
   def list_submissions(connection, opts \\ []) do
     optional_params = %{
+      :"meta" => :query,
+      :"status" => :query,
+      :"user_id" => :query,
       :"X-Fields" => :headers
     }
     %{}

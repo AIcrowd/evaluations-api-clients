@@ -218,9 +218,9 @@ export class Cluster {
     */
     'status'?: boolean;
     /**
-    * Additional metadata
+    * Name of the workflow used to setup grader
     */
-    'meta'?: any;
+    'wfName'?: string;
     /**
     * User ID
     */
@@ -284,9 +284,9 @@ export class Cluster {
             "type": "boolean"
         },
         {
-            "name": "meta",
-            "baseName": "meta",
-            "type": "any"
+            "name": "wfName",
+            "baseName": "wf_name",
+            "type": "string"
         },
         {
             "name": "userId",
@@ -352,11 +352,11 @@ export class Grader {
     /**
     * Logs from argo workflow
     */
-    'logs'?: any;
+    'logs'?: string;
     /**
     * Additional meta data of the grader
     */
-    'meta'?: any;
+    'meta'?: string;
     /**
     * Status of the grader - True if it ready, False otherwise
     */
@@ -365,6 +365,10 @@ export class Grader {
     * List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
     */
     'secrets'?: any;
+    /**
+    * Name of the workflow used to setup grader
+    */
+    'wfName'?: string;
     /**
     * Type of submissions allowed on the grader
     */
@@ -439,12 +443,12 @@ export class Grader {
         {
             "name": "logs",
             "baseName": "logs",
-            "type": "any"
+            "type": "string"
         },
         {
             "name": "meta",
             "baseName": "meta",
-            "type": "any"
+            "type": "string"
         },
         {
             "name": "status",
@@ -455,6 +459,11 @@ export class Grader {
             "name": "secrets",
             "baseName": "secrets",
             "type": "any"
+        },
+        {
+            "name": "wfName",
+            "baseName": "wf_name",
+            "type": "string"
         },
         {
             "name": "submissionTypes",
@@ -605,14 +614,6 @@ export class Submissions {
     */
     'updated'?: Date;
     /**
-    * Participant identifier
-    */
-    'participantId'?: number;
-    /**
-    * Round identifier
-    */
-    'roundId'?: number;
-    /**
     * Grader identifier
     */
     'graderId': number;
@@ -635,7 +636,7 @@ export class Submissions {
     /**
     * S3 link of the STDOUT of the evaluation
     */
-    'logs'?: any;
+    'logs'?: string;
     /**
     * Evaluation start time
     */
@@ -645,9 +646,13 @@ export class Submissions {
     */
     'ended'?: Date;
     /**
-    * Additional meta-data
+    * Additional meta data of the grader
     */
-    'meta'?: any;
+    'meta'?: string;
+    /**
+    * Name of the workflow used to evaluate submission
+    */
+    'wfName'?: string;
     /**
     * User ID
     */
@@ -674,16 +679,6 @@ export class Submissions {
             "name": "updated",
             "baseName": "updated",
             "type": "Date"
-        },
-        {
-            "name": "participantId",
-            "baseName": "participant_id",
-            "type": "number"
-        },
-        {
-            "name": "roundId",
-            "baseName": "round_id",
-            "type": "number"
         },
         {
             "name": "graderId",
@@ -713,7 +708,7 @@ export class Submissions {
         {
             "name": "logs",
             "baseName": "logs",
-            "type": "any"
+            "type": "string"
         },
         {
             "name": "started",
@@ -728,7 +723,12 @@ export class Submissions {
         {
             "name": "meta",
             "baseName": "meta",
-            "type": "any"
+            "type": "string"
+        },
+        {
+            "name": "wfName",
+            "baseName": "wf_name",
+            "type": "string"
         },
         {
             "name": "userId",
@@ -1568,15 +1568,85 @@ export class GradersApi {
         });
     }
     /**
+     * Get the grader logs by submission ID
+     * @param graderId 
+     * @param {*} [options] Override http request options.
+     */
+    public getGraderLogs (graderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/logs'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * List all graders available
+     * @param name Fetch grader with this name
+     * @param status Fetch graders with this status
+     * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listGraders (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
+    public listGraders (name?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
         const localVarPath = this.basePath + '/graders/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (name !== undefined) {
+            localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "string");
+        }
+
+        if (status !== undefined) {
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['user_id'] = ObjectSerializer.serialize(userId, "number");
+        }
 
         localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -2288,15 +2358,85 @@ export class SubmissionsApi {
         });
     }
     /**
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     * @param {*} [options] Override http request options.
+     */
+    public getSubmissionLogs (submissionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * List all submissions available
+     * @param meta Fetch submissions with this meta value
+     * @param status Fetch submissions with this status
+     * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listSubmissions (xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
+    public listSubmissions (meta?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
         const localVarPath = this.basePath + '/submissions/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (meta !== undefined) {
+            localVarQueryParameters['meta'] = ObjectSerializer.serialize(meta, "string");
+        }
+
+        if (status !== undefined) {
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['user_id'] = ObjectSerializer.serialize(userId, "number");
+        }
 
         localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);

@@ -37,20 +37,6 @@ describe("submissions", function()
     end)
   end)
 
-  -- unit tests for the property 'participant_id'
-  describe("property participant_id test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
-  -- unit tests for the property 'round_id'
-  describe("property round_id test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
   -- unit tests for the property 'grader_id'
   describe("property grader_id test", function()
     it("should work", function()
@@ -109,6 +95,13 @@ describe("submissions", function()
 
   -- unit tests for the property 'meta'
   describe("property meta test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'wf_name'
+  describe("property wf_name test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

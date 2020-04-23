@@ -41,7 +41,7 @@ class Cluster(object):
         'docker_registry': 'str',
         'storage_class': 'str',
         'status': 'bool',
-        'meta': 'object',
+        'wf_name': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -57,12 +57,12 @@ class Cluster(object):
         'docker_registry': 'docker_registry',
         'storage_class': 'storage_class',
         'status': 'status',
-        'meta': 'meta',
+        'wf_name': 'wf_name',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_password=None, docker_registry=None, storage_class=None, status=None, meta=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_password=None, docker_registry=None, storage_class=None, status=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
         """Cluster - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -75,7 +75,7 @@ class Cluster(object):
         self._docker_registry = None
         self._storage_class = None
         self._status = None
-        self._meta = None
+        self._wf_name = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -96,8 +96,8 @@ class Cluster(object):
             self.storage_class = storage_class
         if status is not None:
             self.status = status
-        if meta is not None:
-            self.meta = meta
+        if wf_name is not None:
+            self.wf_name = wf_name
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -342,27 +342,27 @@ class Cluster(object):
         self._status = status
 
     @property
-    def meta(self):
-        """Gets the meta of this Cluster.  # noqa: E501
+    def wf_name(self):
+        """Gets the wf_name of this Cluster.  # noqa: E501
 
-        Additional metadata  # noqa: E501
+        Name of the workflow used to setup grader  # noqa: E501
 
-        :return: The meta of this Cluster.  # noqa: E501
-        :rtype: object
+        :return: The wf_name of this Cluster.  # noqa: E501
+        :rtype: str
         """
-        return self._meta
+        return self._wf_name
 
-    @meta.setter
-    def meta(self, meta):
-        """Sets the meta of this Cluster.
+    @wf_name.setter
+    def wf_name(self, wf_name):
+        """Sets the wf_name of this Cluster.
 
-        Additional metadata  # noqa: E501
+        Name of the workflow used to setup grader  # noqa: E501
 
-        :param meta: The meta of this Cluster.  # noqa: E501
-        :type: object
+        :param wf_name: The wf_name of this Cluster.  # noqa: E501
+        :type: str
         """
 
-        self._meta = meta
+        self._wf_name = wf_name
 
     @property
     def user_id(self):
