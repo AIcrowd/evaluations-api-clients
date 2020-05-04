@@ -126,9 +126,10 @@ public class SubmissionsApiTest {
     public void listSubmissionsTest() throws ApiException {
         String meta = null;
         String status = null;
+        Integer graderId = null;
         Integer userId = null;
         String xFields = null;
-        List<Submissions> response = api.listSubmissions(meta, status, userId, xFields);
+        List<Submissions> response = api.listSubmissions(meta, status, graderId, userId, xFields);
 
         // TODO: test validations
     }

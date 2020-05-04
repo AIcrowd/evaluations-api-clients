@@ -188,8 +188,9 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **String**| Fetch submissions with this meta value | 
+ **meta** | **String**| Fetch submissions containing this meta value | 
  **status** | **String**| Fetch submissions with this status | 
+ **grader_id** | **i32**| Fetch submissions for a grader | 
  **user_id** | **i32**| Fetch submissions created by the user | 
  **x_fields** | **String**| An optional fields mask | 
 

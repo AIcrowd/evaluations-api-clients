@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
+[**update_grader**](GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
 
 
 # **create_grader**
@@ -223,7 +224,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_graders**
-> ARRAY[Grader] list_graders(name => $name, status => $status, user_id => $user_id, x_fields => $x_fields)
+> ARRAY[Grader] list_graders(meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields)
 
 
 
@@ -241,13 +242,14 @@ my $api_instance = AIcrowdEvaluations::GradersApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $name = 'name_example'; # string | Fetch grader with this name
+my $meta = 'meta_example'; # string | Fetch graders containing this meta value
+my $name = 'name_example'; # string | Fetch grader containing name
 my $status = 'status_example'; # string | Fetch graders with this status
 my $user_id = 56; # int | Fetch graders created by the user
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->list_graders(name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
+    my $result = $api_instance->list_graders(meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
@@ -259,7 +261,8 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Fetch grader with this name | [optional] 
+ **meta** | **string**| Fetch graders containing this meta value | [optional] 
+ **name** | **string**| Fetch grader containing name | [optional] 
  **status** | **string**| Fetch graders with this status | [optional] 
  **user_id** | **int**| Fetch graders created by the user | [optional] 
  **x_fields** | **string**| An optional fields mask | [optional] 
@@ -267,6 +270,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ARRAY[Grader]**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_grader**
+> Grader update_grader(grader_id => $grader_id, payload => $payload, x_fields => $x_fields)
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $grader_id = 56; # int | 
+my $payload = AIcrowdEvaluations::Object::GraderMeta->new(); # GraderMeta | 
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
+
+eval { 
+    my $result = $api_instance->update_grader(grader_id => $grader_id, payload => $payload, x_fields => $x_fields);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling GradersApi->update_grader: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **int**|  | 
+ **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **x_fields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

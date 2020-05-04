@@ -509,8 +509,9 @@ SubmissionsApiService
 List all submissions available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SubmissionsApiListSubmissionsOpts - Optional Parameters:
-     * @param "Meta" (optional.String) -  Fetch submissions with this meta value
+     * @param "Meta" (optional.String) -  Fetch submissions containing this meta value
      * @param "Status" (optional.String) -  Fetch submissions with this status
+     * @param "GraderId" (optional.Int32) -  Fetch submissions for a grader
      * @param "UserId" (optional.Int32) -  Fetch submissions created by the user
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -520,6 +521,7 @@ List all submissions available
 type SubmissionsApiListSubmissionsOpts struct { 
 	Meta optional.String
 	Status optional.String
+	GraderId optional.Int32
 	UserId optional.Int32
 	XFields optional.String
 }
@@ -545,6 +547,9 @@ func (a *SubmissionsApiService) ListSubmissions(ctx context.Context, localVarOpt
 	}
 	if localVarOptionals != nil && localVarOptionals.Status.IsSet() {
 		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.GraderId.IsSet() {
+		localVarQueryParams.Add("grader_id", parameterToString(localVarOptionals.GraderId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.UserId.IsSet() {
 		localVarQueryParams.Add("user_id", parameterToString(localVarOptionals.UserId.Value(), ""))

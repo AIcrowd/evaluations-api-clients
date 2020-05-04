@@ -6,6 +6,7 @@ import static groovyx.net.http.Method.*
 import com.aicrowd.evaluations.ApiUtils
 
 import com.aicrowd.evaluations.models.Grader
+import com.aicrowd.evaluations.models.GraderMeta
 
 import java.util.*;
 
@@ -104,7 +105,7 @@ class GradersApi {
                     null )
                     
     }
-    def listGraders ( String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def listGraders ( String meta, String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/"
 
@@ -113,7 +114,9 @@ class GradersApi {
         def headerParams = [:]
     
 
-        if (!"null".equals(String.valueOf(name)))
+        if (!"null".equals(String.valueOf(meta)))
+            queryParams.put("meta", String.valueOf(meta))
+if (!"null".equals(String.valueOf(name)))
             queryParams.put("name", String.valueOf(name))
 if (!"null".equals(String.valueOf(status)))
             queryParams.put("status", String.valueOf(status))
@@ -126,6 +129,33 @@ if (!"null".equals(String.valueOf(userId)))
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
+                    Grader.class )
+                    
+    }
+    def updateGrader ( Integer graderId, GraderMeta payload, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/{grader_id}"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (graderId == null) {
+            throw new RuntimeException("missing required params graderId")
+        }
+        // verify required params are set
+        if (payload == null) {
+            throw new RuntimeException("missing required params payload")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "PATCH", "",
                     Grader.class )
                     
     }

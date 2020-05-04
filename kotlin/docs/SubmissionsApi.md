@@ -250,7 +250,7 @@ null (empty response body)
 
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> kotlin.Array&lt;Submissions&gt; listSubmissions(meta, status, userId, xFields)
+> kotlin.Array&lt;Submissions&gt; listSubmissions(meta, status, graderId, userId, xFields)
 
 
 
@@ -263,12 +263,13 @@ List all submissions available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
-val meta : kotlin.String = meta_example // kotlin.String | Fetch submissions with this meta value
+val meta : kotlin.String = meta_example // kotlin.String | Fetch submissions containing this meta value
 val status : kotlin.String = status_example // kotlin.String | Fetch submissions with this status
+val graderId : kotlin.Int = 56 // kotlin.Int | Fetch submissions for a grader
 val userId : kotlin.Int = 56 // kotlin.Int | Fetch submissions created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(meta, status, userId, xFields)
+    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(meta, status, graderId, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SubmissionsApi#listSubmissions")
@@ -283,8 +284,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **kotlin.String**| Fetch submissions with this meta value | [optional]
+ **meta** | **kotlin.String**| Fetch submissions containing this meta value | [optional]
  **status** | **kotlin.String**| Fetch submissions with this status | [optional]
+ **graderId** | **kotlin.Int**| Fetch submissions for a grader | [optional]
  **userId** | **kotlin.Int**| Fetch submissions created by the user | [optional]
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
 

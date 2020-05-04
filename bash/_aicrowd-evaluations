@@ -304,7 +304,8 @@ case $state in
             "deleteGrader[]" \
             "getGrader[]" \
             "getGraderLogs[]" \
-            "listGraders[]"             "createOrganisation[]" \
+            "listGraders[]" \
+            "updateGrader[]"             "createOrganisation[]" \
             "deleteOrganisation[]" \
             "getOrganisation[]" \
             "listOrganisations[]" \
@@ -401,10 +402,19 @@ case $state in
       listGraders)
         local -a _op_arguments
         _op_arguments=(
-                    "name=:[QUERY] Fetch grader with this name"
+                    "meta=:[QUERY] Fetch graders containing this meta value"
+"name=:[QUERY] Fetch grader containing name"
 "status=:[QUERY] Fetch graders with this status"
 "user_id=:[QUERY] Fetch graders created by the user"
           "X-Fields\::[HEADER] An optional fields mask"
+)
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      updateGrader)
+        local -a _op_arguments
+        _op_arguments=(
+          "grader_id=:[PATH] "
+                    "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -491,8 +501,9 @@ case $state in
       listSubmissions)
         local -a _op_arguments
         _op_arguments=(
-                    "meta=:[QUERY] Fetch submissions with this meta value"
+                    "meta=:[QUERY] Fetch submissions containing this meta value"
 "status=:[QUERY] Fetch submissions with this status"
+"grader_id=:[QUERY] Fetch submissions for a grader"
 "user_id=:[QUERY] Fetch submissions created by the user"
           "X-Fields\::[HEADER] An optional fields mask"
 )

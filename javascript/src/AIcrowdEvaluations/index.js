@@ -16,12 +16,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['AIcrowdEvaluations/ApiClient', 'AIcrowdEvaluations/model/AuthLogout', 'AIcrowdEvaluations/model/AuthResponse', 'AIcrowdEvaluations/model/Cluster', 'AIcrowdEvaluations/model/Grader', 'AIcrowdEvaluations/model/Login', 'AIcrowdEvaluations/model/Organisation', 'AIcrowdEvaluations/model/OrganisationQuota', 'AIcrowdEvaluations/model/Submissions', 'AIcrowdEvaluations/model/User', 'AIcrowdEvaluations/model/UserQuota', 'AIcrowdEvaluations/api/AuthApi', 'AIcrowdEvaluations/api/ClustersApi', 'AIcrowdEvaluations/api/GradersApi', 'AIcrowdEvaluations/api/OrganisationsApi', 'AIcrowdEvaluations/api/SubmissionsApi', 'AIcrowdEvaluations/api/UsersApi'], factory);
+    define(['AIcrowdEvaluations/ApiClient', 'AIcrowdEvaluations/model/AuthLogout', 'AIcrowdEvaluations/model/AuthResponse', 'AIcrowdEvaluations/model/Cluster', 'AIcrowdEvaluations/model/Grader', 'AIcrowdEvaluations/model/GraderMeta', 'AIcrowdEvaluations/model/Login', 'AIcrowdEvaluations/model/Organisation', 'AIcrowdEvaluations/model/OrganisationQuota', 'AIcrowdEvaluations/model/Submissions', 'AIcrowdEvaluations/model/User', 'AIcrowdEvaluations/model/UserQuota', 'AIcrowdEvaluations/api/AuthApi', 'AIcrowdEvaluations/api/ClustersApi', 'AIcrowdEvaluations/api/GradersApi', 'AIcrowdEvaluations/api/OrganisationsApi', 'AIcrowdEvaluations/api/SubmissionsApi', 'AIcrowdEvaluations/api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AuthLogout'), require('./model/AuthResponse'), require('./model/Cluster'), require('./model/Grader'), require('./model/Login'), require('./model/Organisation'), require('./model/OrganisationQuota'), require('./model/Submissions'), require('./model/User'), require('./model/UserQuota'), require('./api/AuthApi'), require('./api/ClustersApi'), require('./api/GradersApi'), require('./api/OrganisationsApi'), require('./api/SubmissionsApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AuthLogout'), require('./model/AuthResponse'), require('./model/Cluster'), require('./model/Grader'), require('./model/GraderMeta'), require('./model/Login'), require('./model/Organisation'), require('./model/OrganisationQuota'), require('./model/Submissions'), require('./model/User'), require('./model/UserQuota'), require('./api/AuthApi'), require('./api/ClustersApi'), require('./api/GradersApi'), require('./api/OrganisationsApi'), require('./api/SubmissionsApi'), require('./api/UsersApi'));
   }
-}(function(ApiClient, AuthLogout, AuthResponse, Cluster, Grader, Login, Organisation, OrganisationQuota, Submissions, User, UserQuota, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi) {
+}(function(ApiClient, AuthLogout, AuthResponse, Cluster, Grader, GraderMeta, Login, Organisation, OrganisationQuota, Submissions, User, UserQuota, AuthApi, ClustersApi, GradersApi, OrganisationsApi, SubmissionsApi, UsersApi) {
   'use strict';
 
   /**
@@ -81,6 +81,11 @@
      * @property {module:AIcrowdEvaluations/model/Grader}
      */
     Grader: Grader,
+    /**
+     * The GraderMeta model constructor.
+     * @property {module:AIcrowdEvaluations/model/GraderMeta}
+     */
+    GraderMeta: GraderMeta,
     /**
      * The Login model constructor.
      * @property {module:AIcrowdEvaluations/model/Login}

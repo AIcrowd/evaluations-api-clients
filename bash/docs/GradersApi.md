@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
+[**updateGrader**](GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 
 
 ## **createGrader**
@@ -149,14 +150,15 @@ List all graders available
 
 ### Example
 ```bash
-aicrowd-evaluations listGraders  name=value  status=value  user_id=value X-Fields:value
+aicrowd-evaluations listGraders  meta=value  name=value  status=value  user_id=value X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Fetch grader with this name | [optional]
+ **meta** | **string** | Fetch graders containing this meta value | [optional]
+ **name** | **string** | Fetch grader containing name | [optional]
  **status** | **string** | Fetch graders with this status | [optional]
  **userId** | **integer** | Fetch graders created by the user | [optional]
  **xFields** | **string** | An optional fields mask | [optional]
@@ -164,6 +166,40 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**array[Grader]**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **updateGrader**
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example
+```bash
+aicrowd-evaluations updateGrader grader_id=value X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **integer** |  |
+ **payload** | [**GraderMeta**](GraderMeta.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

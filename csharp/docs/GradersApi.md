@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetGrader**](GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#listgraders) | **GET** /graders/ | 
+[**UpdateGrader**](GradersApi.md#updategrader) | **PATCH** /graders/{grader_id} | 
 
 
 <a name="creategrader"></a>
@@ -275,7 +276,7 @@ void (empty response body)
 
 <a name="listgraders"></a>
 # **ListGraders**
-> List<Grader> ListGraders (string name = null, string status = null, int? userId = null, string xFields = null)
+> List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
 
 
 
@@ -301,14 +302,15 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new GradersApi();
-            var name = name_example;  // string | Fetch grader with this name (optional) 
+            var meta = meta_example;  // string | Fetch graders containing this meta value (optional) 
+            var name = name_example;  // string | Fetch grader containing name (optional) 
             var status = status_example;  // string | Fetch graders with this status (optional) 
             var userId = 56;  // int? | Fetch graders created by the user (optional) 
             var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                List&lt;Grader&gt; result = apiInstance.ListGraders(name, status, userId, xFields);
+                List&lt;Grader&gt; result = apiInstance.ListGraders(meta, name, status, userId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -324,7 +326,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Fetch grader with this name | [optional] 
+ **meta** | **string**| Fetch graders containing this meta value | [optional] 
+ **name** | **string**| Fetch grader containing name | [optional] 
  **status** | **string**| Fetch graders with this status | [optional] 
  **userId** | **int?**| Fetch graders created by the user | [optional] 
  **xFields** | **string**| An optional fields mask | [optional] 
@@ -332,6 +335,75 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List<Grader>**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="updategrader"></a>
+# **UpdateGrader**
+> Grader UpdateGrader (int? graderId, GraderMeta payload, string xFields = null)
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class UpdateGraderExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var graderId = 56;  // int? | 
+            var payload = new GraderMeta(); // GraderMeta | 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
+
+            try
+            {
+                Grader result = apiInstance.UpdateGrader(graderId, payload, xFields);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.UpdateGrader: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **int?**|  | 
+ **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **xFields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

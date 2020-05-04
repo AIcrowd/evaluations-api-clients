@@ -126,7 +126,7 @@ class SubmissionsApi {
                     null )
                     
     }
-    def listSubmissions ( String meta, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def listSubmissions ( String meta, String status, Integer graderId, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/"
 
@@ -139,6 +139,8 @@ class SubmissionsApi {
             queryParams.put("meta", String.valueOf(meta))
 if (!"null".equals(String.valueOf(status)))
             queryParams.put("status", String.valueOf(status))
+if (!"null".equals(String.valueOf(graderId)))
+            queryParams.put("grader_id", String.valueOf(graderId))
 if (!"null".equals(String.valueOf(userId)))
             queryParams.put("user_id", String.valueOf(userId))
 

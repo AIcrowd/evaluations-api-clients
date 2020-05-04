@@ -396,20 +396,26 @@ sub get_submission_logs {
 #
 # 
 # 
-# @param string $meta Fetch submissions with this meta value (optional)
+# @param string $meta Fetch submissions containing this meta value (optional)
 # @param string $status Fetch submissions with this status (optional)
+# @param int $grader_id Fetch submissions for a grader (optional)
 # @param int $user_id Fetch submissions created by the user (optional)
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
     'meta' => {
         data_type => 'string',
-        description => 'Fetch submissions with this meta value',
+        description => 'Fetch submissions containing this meta value',
         required => '0',
     },
     'status' => {
         data_type => 'string',
         description => 'Fetch submissions with this status',
+        required => '0',
+    },
+    'grader_id' => {
+        data_type => 'int',
+        description => 'Fetch submissions for a grader',
         required => '0',
     },
     'user_id' => {
@@ -457,6 +463,11 @@ sub list_submissions {
     # query params
     if ( exists $args{'status'}) {
         $query_params->{'status'} = $self->{api_client}->to_query_value($args{'status'});
+    }
+
+    # query params
+    if ( exists $args{'grader_id'}) {
+        $query_params->{'grader_id'} = $self->{api_client}->to_query_value($args{'grader_id'});
     }
 
     # query params

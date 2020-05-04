@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
+[**updateGrader**](GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 
 
 <a name="createGrader"></a>
@@ -70,7 +71,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteGrader"></a>
 # **deleteGrader**
-> deleteGrader(graderId)
+> deleteGrader(graderId, )
 
 
 
@@ -99,7 +100,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.deleteGrader(graderId, callback);
+apiInstance.deleteGrader(graderId, , callback);
 ```
 
 ### Parameters
@@ -123,7 +124,7 @@ null (empty response body)
 
 <a name="getGrader"></a>
 # **getGrader**
-> Grader getGrader(graderId, opts)
+> Grader getGrader(graderId, , opts)
 
 
 
@@ -155,7 +156,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getGrader(graderId, opts, callback);
+apiInstance.getGrader(graderId, , opts, callback);
 ```
 
 ### Parameters
@@ -253,7 +254,8 @@ api_key.apiKey = 'YOUR API KEY';
 var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var opts = { 
-  'name': "name_example", // String | Fetch grader with this name
+  'meta': "meta_example", // String | Fetch graders containing this meta value
+  'name': "name_example", // String | Fetch grader containing name
   'status': "status_example", // String | Fetch graders with this status
   'userId': 56, // Number | Fetch graders created by the user
   'xFields': "xFields_example" // String | An optional fields mask
@@ -273,7 +275,8 @@ apiInstance.listGraders(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Fetch grader with this name | [optional] 
+ **meta** | **String**| Fetch graders containing this meta value | [optional] 
+ **name** | **String**| Fetch grader containing name | [optional] 
  **status** | **String**| Fetch graders with this status | [optional] 
  **userId** | **Number**| Fetch graders created by the user | [optional] 
  **xFields** | **String**| An optional fields mask | [optional] 
@@ -281,6 +284,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[Grader]**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="updateGrader"></a>
+# **updateGrader**
+> Grader updateGrader(graderId, payload, opts)
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.GradersApi();
+
+var graderId = 56; // Number | 
+
+var payload = new AicrowdEvaluations.GraderMeta(); // GraderMeta | 
+
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.updateGrader(graderId, payload, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Number**|  | 
+ **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **xFields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

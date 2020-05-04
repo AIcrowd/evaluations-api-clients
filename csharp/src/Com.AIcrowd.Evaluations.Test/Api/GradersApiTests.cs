@@ -121,12 +121,27 @@ namespace Com.AIcrowd.Evaluations.Test
         public void ListGradersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //string meta = null;
             //string name = null;
             //string status = null;
             //int? userId = null;
             //string xFields = null;
-            //var response = instance.ListGraders(name, status, userId, xFields);
+            //var response = instance.ListGraders(meta, name, status, userId, xFields);
             //Assert.IsInstanceOf<List<Grader>> (response, "response is List<Grader>");
+        }
+        
+        /// <summary>
+        /// Test UpdateGrader
+        /// </summary>
+        [Test]
+        public void UpdateGraderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //GraderMeta payload = null;
+            //string xFields = null;
+            //var response = instance.UpdateGrader(graderId, payload, xFields);
+            //Assert.IsInstanceOf<Grader> (response, "response is Grader");
         }
         
     }

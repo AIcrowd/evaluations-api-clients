@@ -188,8 +188,9 @@ Optional parameters are passed through a pointer to a SubmissionsApiListSubmissi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **optional.String**| Fetch submissions with this meta value | 
+ **meta** | **optional.String**| Fetch submissions containing this meta value | 
  **status** | **optional.String**| Fetch submissions with this status | 
+ **graderId** | **optional.Int32**| Fetch submissions for a grader | 
  **userId** | **optional.Int32**| Fetch submissions created by the user | 
  **xFields** | **optional.String**| An optional fields mask | 
 

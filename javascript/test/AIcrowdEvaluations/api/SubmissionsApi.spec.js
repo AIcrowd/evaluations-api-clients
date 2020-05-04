@@ -208,6 +208,7 @@
           var opts = {};
           opts.meta = "meta_example";
           opts.status = "status_example";
+          opts.graderId = 56;
           opts.userId = 56;
           opts.xFields = "xFields_example";
 
