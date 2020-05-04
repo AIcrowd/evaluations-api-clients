@@ -125,8 +125,7 @@ defmodule AIcrowd.Evaluations.Api.Graders do
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :meta (String.t): Fetch graders containing this meta value
-    - :name (String.t): Fetch grader containing name
+    - :name (String.t): Fetch grader with this name
     - :status (String.t): Fetch graders with this status
     - :user_id (integer()): Fetch graders created by the user
     - :x_fields (String.t): An optional fields mask
@@ -139,7 +138,6 @@ defmodule AIcrowd.Evaluations.Api.Graders do
   @spec list_graders(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Grader.t)} | {:error, Tesla.Env.t}
   def list_graders(connection, opts \\ []) do
     optional_params = %{
-      :"meta" => :query,
       :"name" => :query,
       :"status" => :query,
       :"user_id" => :query,
@@ -152,36 +150,5 @@ defmodule AIcrowd.Evaluations.Api.Graders do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode([%AIcrowd.Evaluations.Model.Grader{}])
-  end
-
-  @doc """
-  Update meta details of a grader by its ID. Warning: There is no data validation.
-
-  ## Parameters
-
-  - connection (AIcrowd.Evaluations.Connection): Connection to server
-  - grader_id (integer()): 
-  - payload (GraderMeta): 
-  - opts (KeywordList): [optional] Optional parameters
-    - :x_fields (String.t): An optional fields mask
-
-  ## Returns
-
-  {:ok, %AIcrowd.Evaluations.Model.Grader{}} on success
-  {:error, info} on failure
-  """
-  @spec update_grader(Tesla.Env.client, integer(), AIcrowd.Evaluations.Model.GraderMeta.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.Grader.t} | {:error, Tesla.Env.t}
-  def update_grader(connection, grader_id, payload, opts \\ []) do
-    optional_params = %{
-      :"X-Fields" => :headers
-    }
-    %{}
-    |> method(:patch)
-    |> url("/graders/#{grader_id}")
-    |> add_param(:body, :"payload", payload)
-    |> add_optional_params(optional_params, opts)
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> decode(%AIcrowd.Evaluations.Model.Grader{})
   end
 end

@@ -205,7 +205,6 @@
           // TODO: uncomment, update parameter values for listGraders call and complete the assertions
           /*
           var opts = {};
-          opts.meta = "meta_example";
           opts.name = "name_example";
           opts.status = "status_example";
           opts.userId = 56;
@@ -262,74 +261,6 @@
               expect(data.organisationId).to.be.a('number');
               expect(data.organisationId).to.be(0);
             }
-
-            done();
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('updateGrader', function() {
-        it('should call updateGrader successfully', function(done) {
-          // TODO: uncomment, update parameter values for updateGrader call and complete the assertions
-          /*
-          var graderId = 56;
-          var payload = new AicrowdEvaluations.GraderMeta();
-          payload.dataset = ;
-          payload.notifications = ;
-          payload.name = "";
-          payload.description = "";
-          payload.clusterId = 0;
-          payload.meta = "";
-          var opts = {};
-          opts.xFields = "xFields_example";
-
-          instance.updateGrader(graderId, payload, opts, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(AicrowdEvaluations.Grader);
-            expect(data.id).to.be.a('number');
-            expect(data.id).to.be(0);
-            expect(data.created).to.be.a(Date);
-            expect(data.created).to.be(new Date());
-            expect(data.updated).to.be.a(Date);
-            expect(data.updated).to.be(new Date());
-            expect(data.dataset).to.be.a(Object);
-            expect(data.dataset).to.be();
-            expect(data.clusterId).to.be.a('number');
-            expect(data.clusterId).to.be(0);
-            expect(data.description).to.be.a('string');
-            expect(data.description).to.be("");
-            expect(data.workflowSpec).to.be.a(Object);
-            expect(data.workflowSpec).to.be();
-            expect(data.evaluatorRepo).to.be.a('string');
-            expect(data.evaluatorRepo).to.be("");
-            expect(data.evaluatorRepoTag).to.be.a('string');
-            expect(data.evaluatorRepoTag).to.be("");
-            expect(data.name).to.be.a('string');
-            expect(data.name).to.be("");
-            expect(data.notifications).to.be.a('string');
-            expect(data.notifications).to.be("");
-            expect(data.logs).to.be.a('string');
-            expect(data.logs).to.be("");
-            expect(data.meta).to.be.a('string');
-            expect(data.meta).to.be("");
-            expect(data.status).to.be.a('string');
-            expect(data.status).to.be("");
-            expect(data.secrets).to.be.a(Object);
-            expect(data.secrets).to.be();
-            expect(data.wfName).to.be.a('string');
-            expect(data.wfName).to.be("");
-            expect(data.submissionTypes).to.be.a(Object);
-            expect(data.submissionTypes).to.be();
-            expect(data.userId).to.be.a('number');
-            expect(data.userId).to.be(0);
-            expect(data.organisationId).to.be.a('number');
-            expect(data.organisationId).to.be(0);
 
             done();
           });

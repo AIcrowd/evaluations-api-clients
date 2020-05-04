@@ -297,9 +297,8 @@
     /**
      * List all submissions available
      * @param {Object} opts Optional parameters
-     * @param {String} opts.meta Fetch submissions containing this meta value
+     * @param {String} opts.meta Fetch submissions with this meta value
      * @param {String} opts.status Fetch submissions with this status
-     * @param {Number} opts.graderId Fetch submissions for a grader
      * @param {Number} opts.userId Fetch submissions created by the user
      * @param {String} opts.xFields An optional fields mask
      * @param {module:AIcrowdEvaluations/api/SubmissionsApi~listSubmissionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -315,7 +314,6 @@
       var queryParams = {
         'meta': opts['meta'],
         'status': opts['status'],
-        'grader_id': opts['graderId'],
         'user_id': opts['userId'],
       };
       var collectionQueryParams = {

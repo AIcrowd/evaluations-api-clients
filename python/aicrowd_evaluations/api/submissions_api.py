@@ -546,9 +546,8 @@ class SubmissionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str meta: Fetch submissions containing this meta value
+        :param str meta: Fetch submissions with this meta value
         :param str status: Fetch submissions with this status
-        :param int grader_id: Fetch submissions for a grader
         :param int user_id: Fetch submissions created by the user
         :param str x_fields: An optional fields mask
         :return: list[Submissions]
@@ -572,9 +571,8 @@ class SubmissionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str meta: Fetch submissions containing this meta value
+        :param str meta: Fetch submissions with this meta value
         :param str status: Fetch submissions with this status
-        :param int grader_id: Fetch submissions for a grader
         :param int user_id: Fetch submissions created by the user
         :param str x_fields: An optional fields mask
         :return: list[Submissions]
@@ -582,7 +580,7 @@ class SubmissionsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['meta', 'status', 'grader_id', 'user_id', 'x_fields']  # noqa: E501
+        all_params = ['meta', 'status', 'user_id', 'x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -607,8 +605,6 @@ class SubmissionsApi(object):
             query_params.append(('meta', params['meta']))  # noqa: E501
         if 'status' in params:
             query_params.append(('status', params['status']))  # noqa: E501
-        if 'grader_id' in params:
-            query_params.append(('grader_id', params['grader_id']))  # noqa: E501
         if 'user_id' in params:
             query_params.append(('user_id', params['user_id']))  # noqa: E501
 

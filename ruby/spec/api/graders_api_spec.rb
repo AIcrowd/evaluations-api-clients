@@ -81,26 +81,12 @@ describe 'GradersApi' do
   # unit tests for list_graders
   # List all graders available
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :meta Fetch graders containing this meta value
-  # @option opts [String] :name Fetch grader containing name
+  # @option opts [String] :name Fetch grader with this name
   # @option opts [String] :status Fetch graders with this status
   # @option opts [Integer] :user_id Fetch graders created by the user
   # @option opts [String] :x_fields An optional fields mask
   # @return [Array<Grader>]
   describe 'list_graders test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update_grader
-  # Update meta details of a grader by its ID. Warning: There is no data validation.
-  # @param grader_id 
-  # @param payload 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_fields An optional fields mask
-  # @return [Grader]
-  describe 'update_grader test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

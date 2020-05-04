@@ -13,7 +13,7 @@
 
 package com.aicrowd.evaluations;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-05-04T14:45:25.122Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-05-04T16:16:44.877Z")
 public class Pair {
     private String name = "";
     private String value = "";

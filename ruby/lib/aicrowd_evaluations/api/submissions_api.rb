@@ -284,9 +284,8 @@ module AIcrowdEvaluations
     end
     # List all submissions available
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :meta Fetch submissions containing this meta value
+    # @option opts [String] :meta Fetch submissions with this meta value
     # @option opts [String] :status Fetch submissions with this status
-    # @option opts [Integer] :grader_id Fetch submissions for a grader
     # @option opts [Integer] :user_id Fetch submissions created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<Submissions>]
@@ -297,9 +296,8 @@ module AIcrowdEvaluations
 
     # List all submissions available
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :meta Fetch submissions containing this meta value
+    # @option opts [String] :meta Fetch submissions with this meta value
     # @option opts [String] :status Fetch submissions with this status
-    # @option opts [Integer] :grader_id Fetch submissions for a grader
     # @option opts [Integer] :user_id Fetch submissions created by the user
     # @option opts [String] :x_fields An optional fields mask
     # @return [Array<(Array<Submissions>, Fixnum, Hash)>] Array<Submissions> data, response status code and response headers
@@ -314,7 +312,6 @@ module AIcrowdEvaluations
       query_params = {}
       query_params[:'meta'] = opts[:'meta'] if !opts[:'meta'].nil?
       query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
-      query_params[:'grader_id'] = opts[:'grader_id'] if !opts[:'grader_id'].nil?
       query_params[:'user_id'] = opts[:'user_id'] if !opts[:'user_id'].nil?
 
       # header parameters

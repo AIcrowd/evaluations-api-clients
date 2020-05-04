@@ -105,7 +105,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listgraders) | **GET** /graders/ | 
-*GradersApi* | [**updateGrader**](docs/GradersApi.md#updategrader) | **PATCH** /graders/{grader_id} | 
 *OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createorganisation) | **POST** /organisations/ | 
 *OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteorganisation) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisation**](docs/OrganisationsApi.md#getorganisation) | **GET** /organisations/{organisation_id} | 
@@ -132,7 +131,6 @@ Class | Method | HTTP request | Description
  - [AuthResponse](docs/AuthResponse.md)
  - [Cluster](docs/Cluster.md)
  - [Grader](docs/Grader.md)
- - [GraderMeta](docs/GraderMeta.md)
  - [Login](docs/Login.md)
  - [Organisation](docs/Organisation.md)
  - [OrganisationQuota](docs/OrganisationQuota.md)

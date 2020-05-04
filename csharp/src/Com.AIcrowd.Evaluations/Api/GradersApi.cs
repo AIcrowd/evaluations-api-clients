@@ -119,13 +119,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        List<Grader> ListGraders (string name = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -134,38 +133,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        ApiResponse<List<Grader>> ListGradersWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Grader</returns>
-        Grader UpdateGrader (int? graderId, GraderMeta payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Grader</returns>
-        ApiResponse<Grader> UpdateGraderWithHttpInfo (int? graderId, GraderMeta payload, string xFields = null);
+        ApiResponse<List<Grader>> ListGradersWithHttpInfo (string name = null, string status = null, int? userId = null, string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -263,13 +236,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string name = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -278,38 +250,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Grader</returns>
-        System.Threading.Tasks.Task<Grader> UpdateGraderAsync (int? graderId, GraderMeta payload, string xFields = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </remarks>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Grader)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Grader>> UpdateGraderAsyncWithHttpInfo (int? graderId, GraderMeta payload, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string name = null, string status = null, int? userId = null, string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -1016,15 +962,14 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        public List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public List<Grader> ListGraders (string name = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = ListGradersWithHttpInfo(meta, name, status, userId, xFields);
+             ApiResponse<List<Grader>> localVarResponse = ListGradersWithHttpInfo(name, status, userId, xFields);
              return localVarResponse.Data;
         }
 
@@ -1032,13 +977,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        public ApiResponse< List<Grader> > ListGradersWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public ApiResponse< List<Grader> > ListGradersWithHttpInfo (string name = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -1063,7 +1007,6 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (name != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
             if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
@@ -1097,15 +1040,14 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string name = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = await ListGradersAsyncWithHttpInfo(meta, name, status, userId, xFields);
+             ApiResponse<List<Grader>> localVarResponse = await ListGradersAsyncWithHttpInfo(name, status, userId, xFields);
              return localVarResponse.Data;
 
         }
@@ -1114,13 +1056,12 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch graders containing this meta value (optional)</param>
-        /// <param name="name">Fetch grader containing name (optional)</param>
+        /// <param name="name">Fetch grader with this name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string name = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -1145,7 +1086,6 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (name != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
             if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
@@ -1173,183 +1113,6 @@ namespace Com.AIcrowd.Evaluations.Api
             return new ApiResponse<List<Grader>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Grader>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Grader>)));
-        }
-
-        /// <summary>
-        ///  Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Grader</returns>
-        public Grader UpdateGrader (int? graderId, GraderMeta payload, string xFields = null)
-        {
-             ApiResponse<Grader> localVarResponse = UpdateGraderWithHttpInfo(graderId, payload, xFields);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>ApiResponse of Grader</returns>
-        public ApiResponse< Grader > UpdateGraderWithHttpInfo (int? graderId, GraderMeta payload, string xFields = null)
-        {
-            // verify the required parameter 'graderId' is set
-            if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->UpdateGrader");
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->UpdateGrader");
-
-            var localVarPath = "/graders/{grader_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateGrader", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Grader>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
-        }
-
-        /// <summary>
-        ///  Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of Grader</returns>
-        public async System.Threading.Tasks.Task<Grader> UpdateGraderAsync (int? graderId, GraderMeta payload, string xFields = null)
-        {
-             ApiResponse<Grader> localVarResponse = await UpdateGraderAsyncWithHttpInfo(graderId, payload, xFields);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Update meta details of a grader by its ID. Warning: There is no data validation.
-        /// </summary>
-        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="graderId"></param>
-        /// <param name="payload"></param>
-        /// <param name="xFields">An optional fields mask (optional)</param>
-        /// <returns>Task of ApiResponse (Grader)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Grader>> UpdateGraderAsyncWithHttpInfo (int? graderId, GraderMeta payload, string xFields = null)
-        {
-            // verify the required parameter 'graderId' is set
-            if (graderId == null)
-                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->UpdateGrader");
-            // verify the required parameter 'payload' is set
-            if (payload == null)
-                throw new ApiException(400, "Missing required parameter 'payload' when calling GradersApi->UpdateGrader");
-
-            var localVarPath = "/graders/{grader_id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
-            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(payload); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = payload; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
-            {
-                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateGrader", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Grader>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Grader) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Grader)));
         }
 
     }

@@ -1342,9 +1342,8 @@ class SubmissionsApi
     /**
      * Operation listSubmissions
      *
-     * @param  string $meta Fetch submissions containing this meta value (optional)
+     * @param  string $meta Fetch submissions with this meta value (optional)
      * @param  string $status Fetch submissions with this status (optional)
-     * @param  int $grader_id Fetch submissions for a grader (optional)
      * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -1352,18 +1351,17 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\Submissions[]
      */
-    public function listSubmissions($meta = null, $status = null, $grader_id = null, $user_id = null, $x_fields = null)
+    public function listSubmissions($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
-        list($response) = $this->listSubmissionsWithHttpInfo($meta, $status, $grader_id, $user_id, $x_fields);
+        list($response) = $this->listSubmissionsWithHttpInfo($meta, $status, $user_id, $x_fields);
         return $response;
     }
 
     /**
      * Operation listSubmissionsWithHttpInfo
      *
-     * @param  string $meta Fetch submissions containing this meta value (optional)
+     * @param  string $meta Fetch submissions with this meta value (optional)
      * @param  string $status Fetch submissions with this status (optional)
-     * @param  int $grader_id Fetch submissions for a grader (optional)
      * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
@@ -1371,10 +1369,10 @@ class SubmissionsApi
      * @throws \InvalidArgumentException
      * @return array of \Swagger\Client\Model\Submissions[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listSubmissionsWithHttpInfo($meta = null, $status = null, $grader_id = null, $user_id = null, $x_fields = null)
+    public function listSubmissionsWithHttpInfo($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->listSubmissionsRequest($meta, $status, $grader_id, $user_id, $x_fields);
+        $request = $this->listSubmissionsRequest($meta, $status, $user_id, $x_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1440,18 +1438,17 @@ class SubmissionsApi
      *
      * 
      *
-     * @param  string $meta Fetch submissions containing this meta value (optional)
+     * @param  string $meta Fetch submissions with this meta value (optional)
      * @param  string $status Fetch submissions with this status (optional)
-     * @param  int $grader_id Fetch submissions for a grader (optional)
      * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSubmissionsAsync($meta = null, $status = null, $grader_id = null, $user_id = null, $x_fields = null)
+    public function listSubmissionsAsync($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
-        return $this->listSubmissionsAsyncWithHttpInfo($meta, $status, $grader_id, $user_id, $x_fields)
+        return $this->listSubmissionsAsyncWithHttpInfo($meta, $status, $user_id, $x_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1464,19 +1461,18 @@ class SubmissionsApi
      *
      * 
      *
-     * @param  string $meta Fetch submissions containing this meta value (optional)
+     * @param  string $meta Fetch submissions with this meta value (optional)
      * @param  string $status Fetch submissions with this status (optional)
-     * @param  int $grader_id Fetch submissions for a grader (optional)
      * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSubmissionsAsyncWithHttpInfo($meta = null, $status = null, $grader_id = null, $user_id = null, $x_fields = null)
+    public function listSubmissionsAsyncWithHttpInfo($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
         $returnType = '\Swagger\Client\Model\Submissions[]';
-        $request = $this->listSubmissionsRequest($meta, $status, $grader_id, $user_id, $x_fields);
+        $request = $this->listSubmissionsRequest($meta, $status, $user_id, $x_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1518,16 +1514,15 @@ class SubmissionsApi
     /**
      * Create request for operation 'listSubmissions'
      *
-     * @param  string $meta Fetch submissions containing this meta value (optional)
+     * @param  string $meta Fetch submissions with this meta value (optional)
      * @param  string $status Fetch submissions with this status (optional)
-     * @param  int $grader_id Fetch submissions for a grader (optional)
      * @param  int $user_id Fetch submissions created by the user (optional)
      * @param  string $x_fields An optional fields mask (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listSubmissionsRequest($meta = null, $status = null, $grader_id = null, $user_id = null, $x_fields = null)
+    protected function listSubmissionsRequest($meta = null, $status = null, $user_id = null, $x_fields = null)
     {
 
         $resourcePath = '/submissions/';
@@ -1544,10 +1539,6 @@ class SubmissionsApi
         // query params
         if ($status !== null) {
             $queryParams['status'] = ObjectSerializer::toQueryValue($status);
-        }
-        // query params
-        if ($grader_id !== null) {
-            $queryParams['grader_id'] = ObjectSerializer::toQueryValue($grader_id);
         }
         // query params
         if ($user_id !== null) {

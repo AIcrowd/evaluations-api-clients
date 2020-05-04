@@ -307,9 +307,8 @@ api_key.apiKey = 'YOUR API KEY';
 var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var opts = { 
-  'meta': "meta_example", // String | Fetch submissions containing this meta value
+  'meta': "meta_example", // String | Fetch submissions with this meta value
   'status': "status_example", // String | Fetch submissions with this status
-  'graderId': 56, // Number | Fetch submissions for a grader
   'userId': 56, // Number | Fetch submissions created by the user
   'xFields': "xFields_example" // String | An optional fields mask
 };
@@ -328,9 +327,8 @@ apiInstance.listSubmissions(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **String**| Fetch submissions containing this meta value | [optional] 
+ **meta** | **String**| Fetch submissions with this meta value | [optional] 
  **status** | **String**| Fetch submissions with this status | [optional] 
- **graderId** | **Number**| Fetch submissions for a grader | [optional] 
  **userId** | **Number**| Fetch submissions created by the user | [optional] 
  **xFields** | **String**| An optional fields mask | [optional] 
 

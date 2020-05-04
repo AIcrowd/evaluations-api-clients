@@ -173,16 +173,9 @@ paths:
       description: "List all graders available"
       operationId: "ListGraders"
       parameters:
-      - name: "meta"
-        in: "query"
-        description: "Fetch graders containing this meta value"
-        required: false
-        type: "string"
-        x-exportParamName: "Meta"
-        x-optionalDataType: "String"
       - name: "name"
         in: "query"
-        description: "Fetch grader containing name"
+        description: "Fetch grader with this name"
         required: false
         type: "string"
         x-exportParamName: "Name"
@@ -288,41 +281,6 @@ paths:
       responses:
         "200":
           description: "Success"
-        "404":
-          description: "Grader not found"
-    patch:
-      tags:
-      - "graders"
-      description: "Update meta details of a grader by its ID. Warning: There is no\
-        \ data validation."
-      operationId: "UpdateGrader"
-      parameters:
-      - name: "grader_id"
-        in: "path"
-        required: true
-        type: "integer"
-        x-exportParamName: "GraderId"
-      - in: "body"
-        name: "payload"
-        required: true
-        schema:
-          $ref: "#/definitions/GraderMeta"
-        x-exportParamName: "Payload"
-      - name: "X-Fields"
-        in: "header"
-        description: "An optional fields mask"
-        required: false
-        type: "string"
-        format: "mask"
-        x-exportParamName: "XFields"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Grader"
-        "400":
-          description: "Invalid inputs"
         "404":
           description: "Grader not found"
   /graders/{grader_id}/logs:
@@ -502,7 +460,7 @@ paths:
       parameters:
       - name: "meta"
         in: "query"
-        description: "Fetch submissions containing this meta value"
+        description: "Fetch submissions with this meta value"
         required: false
         type: "string"
         x-exportParamName: "Meta"
@@ -514,13 +472,6 @@ paths:
         type: "string"
         x-exportParamName: "Status"
         x-optionalDataType: "String"
-      - name: "grader_id"
-        in: "query"
-        description: "Fetch submissions for a grader"
-        required: false
-        type: "integer"
-        x-exportParamName: "GraderId"
-        x-optionalDataType: "Int32"
       - name: "user_id"
         in: "query"
         description: "Fetch submissions created by the user"
@@ -940,36 +891,6 @@ definitions:
       notifications: "notifications"
       status: "status"
     x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,submission_types,deleted,user_id,organisation_id}"
-  GraderMeta:
-    type: "object"
-    properties:
-      dataset:
-        type: "object"
-        description: "Dataset metadata"
-        properties: {}
-      notifications:
-        type: "object"
-        description: "Notifications available for the grader"
-        properties: {}
-      name:
-        type: "string"
-        description: "Name of the grader"
-      description:
-        type: "string"
-        description: "Description of the grader"
-      cluster_id:
-        type: "integer"
-        description: "Cluster to run the grader on"
-      meta:
-        type: "string"
-        description: "Additional meta data of the grader"
-    example:
-      cluster_id: 0
-      meta: "meta"
-      name: "name"
-      description: "description"
-      dataset: "{}"
-      notifications: "{}"
   Submissions:
     type: "object"
     required:

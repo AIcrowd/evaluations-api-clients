@@ -50,11 +50,4 @@ describe("graders_api", function()
     end)
   end)
 
-  -- unit tests for update_grader
-  describe("update_grader test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
 end)

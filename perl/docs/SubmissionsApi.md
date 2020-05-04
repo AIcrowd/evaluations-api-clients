@@ -274,7 +274,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_submissions**
-> ARRAY[Submissions] list_submissions(meta => $meta, status => $status, grader_id => $grader_id, user_id => $user_id, x_fields => $x_fields)
+> ARRAY[Submissions] list_submissions(meta => $meta, status => $status, user_id => $user_id, x_fields => $x_fields)
 
 
 
@@ -292,14 +292,13 @@ my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
-my $meta = 'meta_example'; # string | Fetch submissions containing this meta value
+my $meta = 'meta_example'; # string | Fetch submissions with this meta value
 my $status = 'status_example'; # string | Fetch submissions with this status
-my $grader_id = 56; # int | Fetch submissions for a grader
 my $user_id = 56; # int | Fetch submissions created by the user
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->list_submissions(meta => $meta, status => $status, grader_id => $grader_id, user_id => $user_id, x_fields => $x_fields);
+    my $result = $api_instance->list_submissions(meta => $meta, status => $status, user_id => $user_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
@@ -311,9 +310,8 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **string**| Fetch submissions containing this meta value | [optional] 
+ **meta** | **string**| Fetch submissions with this meta value | [optional] 
  **status** | **string**| Fetch submissions with this status | [optional] 
- **grader_id** | **int**| Fetch submissions for a grader | [optional] 
  **user_id** | **int**| Fetch submissions created by the user | [optional] 
  **x_fields** | **string**| An optional fields mask | [optional] 
 

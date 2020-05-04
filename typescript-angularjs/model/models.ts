@@ -2,7 +2,6 @@ export * from './AuthLogout';
 export * from './AuthResponse';
 export * from './Cluster';
 export * from './Grader';
-export * from './GraderMeta';
 export * from './Login';
 export * from './Organisation';
 export * from './OrganisationQuota';

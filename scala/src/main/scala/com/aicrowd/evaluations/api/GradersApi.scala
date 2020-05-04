@@ -15,7 +15,6 @@ package com.aicrowd.evaluations.api
 import java.text.SimpleDateFormat
 
 import com.aicrowd.evaluations.models.Grader
-import com.aicrowd.evaluations.models.GraderMeta
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -192,15 +191,14 @@ class GradersApi(
    * 
    * List all graders available
    *
-   * @param meta Fetch graders containing this meta value (optional)
-   * @param name Fetch grader containing name (optional)
+   * @param name Fetch grader with this name (optional)
    * @param status Fetch graders with this status (optional)
    * @param userId Fetch graders created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return List[Grader]
    */
-  def listGraders(meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Grader]] = {
-    val await = Try(Await.result(listGradersAsync(meta, name, status, userId, xFields), Duration.Inf))
+  def listGraders(name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Grader]] = {
+    val await = Try(Await.result(listGradersAsync(name, status, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -211,45 +209,14 @@ class GradersApi(
    *  asynchronously
    * List all graders available
    *
-   * @param meta Fetch graders containing this meta value (optional)
-   * @param name Fetch grader containing name (optional)
+   * @param name Fetch grader with this name (optional)
    * @param status Fetch graders with this status (optional)
    * @param userId Fetch graders created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Grader])
    */
-  def listGradersAsync(meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Grader]] = {
-      helper.listGraders(meta, name, status, userId, xFields)
-  }
-
-  /**
-   * 
-   * Update meta details of a grader by its ID. Warning: There is no data validation.
-   *
-   * @param graderId  
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Grader
-   */
-  def updateGrader(graderId: Integer, payload: GraderMeta, xFields: Option[String] = None): Option[Grader] = {
-    val await = Try(Await.result(updateGraderAsync(graderId, payload, xFields), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   *  asynchronously
-   * Update meta details of a grader by its ID. Warning: There is no data validation.
-   *
-   * @param graderId  
-   * @param payload  
-   * @param xFields An optional fields mask (optional)
-   * @return Future(Grader)
-   */
-  def updateGraderAsync(graderId: Integer, payload: GraderMeta, xFields: Option[String] = None): Future[Grader] = {
-      helper.updateGrader(graderId, payload, xFields)
+  def listGradersAsync(name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Grader]] = {
+      helper.listGraders(name, status, userId, xFields)
   }
 
 }
@@ -332,8 +299,7 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def listGraders(meta: Option[String] = None,
-    name: Option[String] = None,
+  def listGraders(name: Option[String] = None,
     status: Option[String] = None,
     userId: Option[Integer] = None,
     xFields: Option[String] = None
@@ -345,10 +311,6 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    meta match {
-      case Some(param) => queryParams += "meta" -> param.toString
-      case _ => queryParams
-    }
     name match {
       case Some(param) => queryParams += "name" -> param.toString
       case _ => queryParams
@@ -367,30 +329,6 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def updateGrader(graderId: Integer,
-    payload: GraderMeta,
-    xFields: Option[String] = None
-    )(implicit reader: ClientResponseReader[Grader], writer: RequestWriter[GraderMeta]): Future[Grader] = {
-    // create path and map variables
-    val path = (addFmt("/graders/{grader_id}")
-      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling GradersApi->updateGrader")
-    xFields match {
-      case Some(param) => headerParams += "X-Fields" -> param.toString
-      case _ => headerParams
-    }
-
-    val resFuture = client.submit("PATCH", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

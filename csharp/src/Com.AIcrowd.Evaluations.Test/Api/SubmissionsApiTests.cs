@@ -135,10 +135,9 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string meta = null;
             //string status = null;
-            //int? graderId = null;
             //int? userId = null;
             //string xFields = null;
-            //var response = instance.ListSubmissions(meta, status, graderId, userId, xFields);
+            //var response = instance.ListSubmissions(meta, status, userId, xFields);
             //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
         }
         

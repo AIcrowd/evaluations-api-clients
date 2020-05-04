@@ -59,12 +59,6 @@ class TestGradersApi(unittest.TestCase):
         """
         pass
 
-    def test_update_grader(self):
-        """Test case for update_grader
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

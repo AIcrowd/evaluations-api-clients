@@ -304,9 +304,8 @@ end
 api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 opts = { 
-  meta: 'meta_example', # String | Fetch submissions containing this meta value
+  meta: 'meta_example', # String | Fetch submissions with this meta value
   status: 'status_example', # String | Fetch submissions with this status
-  grader_id: 56, # Integer | Fetch submissions for a grader
   user_id: 56, # Integer | Fetch submissions created by the user
   x_fields: 'x_fields_example' # String | An optional fields mask
 }
@@ -323,9 +322,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **String**| Fetch submissions containing this meta value | [optional] 
+ **meta** | **String**| Fetch submissions with this meta value | [optional] 
  **status** | **String**| Fetch submissions with this status | [optional] 
- **grader_id** | **Integer**| Fetch submissions for a grader | [optional] 
  **user_id** | **Integer**| Fetch submissions created by the user | [optional] 
  **x_fields** | **String**| An optional fields mask | [optional] 
 

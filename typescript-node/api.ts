@@ -486,71 +486,6 @@ export class Grader {
     }
 }
 
-export class GraderMeta {
-    /**
-    * Dataset metadata
-    */
-    'dataset'?: any;
-    /**
-    * Notifications available for the grader
-    */
-    'notifications'?: any;
-    /**
-    * Name of the grader
-    */
-    'name'?: string;
-    /**
-    * Description of the grader
-    */
-    'description'?: string;
-    /**
-    * Cluster to run the grader on
-    */
-    'clusterId'?: number;
-    /**
-    * Additional meta data of the grader
-    */
-    'meta'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "dataset",
-            "baseName": "dataset",
-            "type": "any"
-        },
-        {
-            "name": "notifications",
-            "baseName": "notifications",
-            "type": "any"
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "clusterId",
-            "baseName": "cluster_id",
-            "type": "number"
-        },
-        {
-            "name": "meta",
-            "baseName": "meta",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return GraderMeta.attributeTypeMap;
-    }
-}
-
 export class Login {
     /**
     * Email address of the user
@@ -932,7 +867,6 @@ let typeMap: {[index: string]: any} = {
     "AuthResponse": AuthResponse,
     "Cluster": Cluster,
     "Grader": Grader,
-    "GraderMeta": GraderMeta,
     "Login": Login,
     "Organisation": Organisation,
     "OrganisationQuota": OrganisationQuota,
@@ -1690,22 +1624,17 @@ export class GradersApi {
     }
     /**
      * List all graders available
-     * @param meta Fetch graders containing this meta value
-     * @param name Fetch grader containing name
+     * @param name Fetch grader with this name
      * @param status Fetch graders with this status
      * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listGraders (meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
+    public listGraders (name?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
         const localVarPath = this.basePath + '/graders/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
-
-        if (meta !== undefined) {
-            localVarQueryParameters['meta'] = ObjectSerializer.serialize(meta, "string");
-        }
 
         if (name !== undefined) {
             localVarQueryParameters['name'] = ObjectSerializer.serialize(name, "string");
@@ -1750,71 +1679,6 @@ export class GradersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Array<Grader>");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * Update meta details of a grader by its ID. Warning: There is no data validation.
-     * @param graderId 
-     * @param payload 
-     * @param xFields An optional fields mask
-     * @param {*} [options] Override http request options.
-     */
-    public updateGrader (graderId: number, payload: GraderMeta, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Grader;  }> {
-        const localVarPath = this.basePath + '/graders/{grader_id}'
-            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'graderId' is not null or undefined
-        if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling updateGrader.');
-        }
-
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling updateGrader.');
-        }
-
-        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(payload, "GraderMeta")
-        };
-
-        this.authentications.api_key.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Grader;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Grader");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2550,14 +2414,13 @@ export class SubmissionsApi {
     }
     /**
      * List all submissions available
-     * @param meta Fetch submissions containing this meta value
+     * @param meta Fetch submissions with this meta value
      * @param status Fetch submissions with this status
-     * @param graderId Fetch submissions for a grader
      * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listSubmissions (meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
+    public listSubmissions (meta?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
         const localVarPath = this.basePath + '/submissions/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -2569,10 +2432,6 @@ export class SubmissionsApi {
 
         if (status !== undefined) {
             localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
-        }
-
-        if (graderId !== undefined) {
-            localVarQueryParameters['grader_id'] = ObjectSerializer.serialize(graderId, "number");
         }
 
         if (userId !== undefined) {

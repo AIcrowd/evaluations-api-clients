@@ -146,21 +146,16 @@ export class GradersApi {
     }
     /**
      * List all graders available
-     * @param meta Fetch graders containing this meta value
-     * @param name Fetch grader containing name
+     * @param name Fetch grader with this name
      * @param status Fetch graders with this status
      * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      */
-    public listGraders (meta?: string, name?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
+    public listGraders (name?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
         const localVarPath = this.basePath + '/graders/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        if (meta !== undefined) {
-            queryParameters['meta'] = meta;
-        }
-
         if (name !== undefined) {
             queryParameters['name'] = name;
         }
@@ -178,44 +173,6 @@ export class GradersApi {
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',
             url: localVarPath,
-            params: queryParameters,
-            headers: headerParams
-        };
-
-        if (extraHttpRequestParams) {
-            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
-        }
-
-        return this.$http(httpRequestParams);
-    }
-    /**
-     * Update meta details of a grader by its ID. Warning: There is no data validation.
-     * @param graderId 
-     * @param payload 
-     * @param xFields An optional fields mask
-     */
-    public updateGrader (graderId: number, payload: models.GraderMeta, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.Grader> {
-        const localVarPath = this.basePath + '/graders/{grader_id}'
-            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
-
-        let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        // verify required parameter 'graderId' is not null or undefined
-        if (graderId === null || graderId === undefined) {
-            throw new Error('Required parameter graderId was null or undefined when calling updateGrader.');
-        }
-
-        // verify required parameter 'payload' is not null or undefined
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling updateGrader.');
-        }
-
-        headerParams['X-Fields'] = xFields;
-
-        let httpRequestParams: ng.IRequestConfig = {
-            method: 'PATCH',
-            url: localVarPath,
-            data: payload,
             params: queryParameters,
             headers: headerParams
         };

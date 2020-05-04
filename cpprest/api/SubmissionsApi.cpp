@@ -625,7 +625,7 @@ pplx::task<void> SubmissionsApi::getSubmissionLogs(int32_t submissionId)
         return void();
     });
 }
-pplx::task<std::vector<std::shared_ptr<Submissions>>> SubmissionsApi::listSubmissions(boost::optional<utility::string_t> meta, boost::optional<utility::string_t> status, boost::optional<int32_t> graderId, boost::optional<int32_t> userId, boost::optional<utility::string_t> xFields)
+pplx::task<std::vector<std::shared_ptr<Submissions>>> SubmissionsApi::listSubmissions(boost::optional<utility::string_t> meta, boost::optional<utility::string_t> status, boost::optional<int32_t> userId, boost::optional<utility::string_t> xFields)
 {
 
 
@@ -674,10 +674,6 @@ pplx::task<std::vector<std::shared_ptr<Submissions>>> SubmissionsApi::listSubmis
     if (status)
     {
         queryParams[utility::conversions::to_string_t("status")] = ApiClient::parameterToString(*status);
-    }
-    if (graderId)
-    {
-        queryParams[utility::conversions::to_string_t("grader_id")] = ApiClient::parameterToString(*graderId);
     }
     if (userId)
     {

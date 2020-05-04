@@ -15,7 +15,6 @@ package com.aicrowd.evaluations.api;
 
 import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.Grader;
-import com.aicrowd.evaluations.models.GraderMeta;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -109,30 +108,11 @@ public class GradersApiTest {
      */
     @Test
     public void listGradersTest() throws ApiException {
-        String meta = null;
         String name = null;
         String status = null;
         Integer userId = null;
         String xFields = null;
-        List<Grader> response = api.listGraders(meta, name, status, userId, xFields);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Update meta details of a grader by its ID. Warning: There is no data validation.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateGraderTest() throws ApiException {
-        Integer graderId = null;
-        GraderMeta payload = null;
-        String xFields = null;
-        Grader response = api.updateGrader(graderId, payload, xFields);
+        List<Grader> response = api.listGraders(name, status, userId, xFields);
 
         // TODO: test validations
     }

@@ -290,7 +290,7 @@ null (empty response body)
 
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> List&lt;Submissions&gt; listSubmissions(meta, status, graderId, userId, xFields)
+> List&lt;Submissions&gt; listSubmissions(meta, status, userId, xFields)
 
 
 
@@ -314,13 +314,12 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 SubmissionsApi apiInstance = new SubmissionsApi();
-String meta = "meta_example"; // String | Fetch submissions containing this meta value
+String meta = "meta_example"; // String | Fetch submissions with this meta value
 String status = "status_example"; // String | Fetch submissions with this status
-Integer graderId = 56; // Integer | Fetch submissions for a grader
 Integer userId = 56; // Integer | Fetch submissions created by the user
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Submissions> result = apiInstance.listSubmissions(meta, status, graderId, userId, xFields);
+    List<Submissions> result = apiInstance.listSubmissions(meta, status, userId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#listSubmissions");
@@ -332,9 +331,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **String**| Fetch submissions containing this meta value | [optional]
+ **meta** | **String**| Fetch submissions with this meta value | [optional]
  **status** | **String**| Fetch submissions with this status | [optional]
- **graderId** | **Integer**| Fetch submissions for a grader | [optional]
  **userId** | **Integer**| Fetch submissions created by the user | [optional]
  **xFields** | **String**| An optional fields mask | [optional]
 

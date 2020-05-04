@@ -110,14 +110,10 @@ operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getGraderLogs:::grader_id"]=1
-operation_parameters_minimum_occurrences["listGraders:::meta"]=0
 operation_parameters_minimum_occurrences["listGraders:::name"]=0
 operation_parameters_minimum_occurrences["listGraders:::status"]=0
 operation_parameters_minimum_occurrences["listGraders:::user_id"]=0
 operation_parameters_minimum_occurrences["listGraders:::X-Fields"]=0
-operation_parameters_minimum_occurrences["updateGrader:::grader_id"]=1
-operation_parameters_minimum_occurrences["updateGrader:::payload"]=1
-operation_parameters_minimum_occurrences["updateGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["createOrganisation:::payload"]=1
 operation_parameters_minimum_occurrences["createOrganisation:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteOrganisation:::organisation_id"]=1
@@ -138,7 +134,6 @@ operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmissionLogs:::submission_id"]=1
 operation_parameters_minimum_occurrences["listSubmissions:::meta"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::status"]=0
-operation_parameters_minimum_occurrences["listSubmissions:::grader_id"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::user_id"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::X-Fields"]=0
 operation_parameters_minimum_occurrences["createUser:::payload"]=1
@@ -175,14 +170,10 @@ operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::grader_id"]=0
-operation_parameters_maximum_occurrences["listGraders:::meta"]=0
 operation_parameters_maximum_occurrences["listGraders:::name"]=0
 operation_parameters_maximum_occurrences["listGraders:::status"]=0
 operation_parameters_maximum_occurrences["listGraders:::user_id"]=0
 operation_parameters_maximum_occurrences["listGraders:::X-Fields"]=0
-operation_parameters_maximum_occurrences["updateGrader:::grader_id"]=0
-operation_parameters_maximum_occurrences["updateGrader:::payload"]=0
-operation_parameters_maximum_occurrences["updateGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["createOrganisation:::payload"]=0
 operation_parameters_maximum_occurrences["createOrganisation:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteOrganisation:::organisation_id"]=0
@@ -203,7 +194,6 @@ operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::submission_id"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::meta"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::status"]=0
-operation_parameters_maximum_occurrences["listSubmissions:::grader_id"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::user_id"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::X-Fields"]=0
 operation_parameters_maximum_occurrences["createUser:::payload"]=0
@@ -237,14 +227,10 @@ operation_parameters_collection_type["deleteGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::X-Fields"]=""
 operation_parameters_collection_type["getGraderLogs:::grader_id"]=""
-operation_parameters_collection_type["listGraders:::meta"]=""
 operation_parameters_collection_type["listGraders:::name"]=""
 operation_parameters_collection_type["listGraders:::status"]=""
 operation_parameters_collection_type["listGraders:::user_id"]=""
 operation_parameters_collection_type["listGraders:::X-Fields"]=""
-operation_parameters_collection_type["updateGrader:::grader_id"]=""
-operation_parameters_collection_type["updateGrader:::payload"]=""
-operation_parameters_collection_type["updateGrader:::X-Fields"]=""
 operation_parameters_collection_type["createOrganisation:::payload"]=""
 operation_parameters_collection_type["createOrganisation:::X-Fields"]=""
 operation_parameters_collection_type["deleteOrganisation:::organisation_id"]=""
@@ -265,7 +251,6 @@ operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
 operation_parameters_collection_type["getSubmissionLogs:::submission_id"]=""
 operation_parameters_collection_type["listSubmissions:::meta"]=""
 operation_parameters_collection_type["listSubmissions:::status"]=""
-operation_parameters_collection_type["listSubmissions:::grader_id"]=""
 operation_parameters_collection_type["listSubmissions:::user_id"]=""
 operation_parameters_collection_type["listSubmissions:::X-Fields"]=""
 operation_parameters_collection_type["createUser:::payload"]=""
@@ -681,7 +666,6 @@ read -r -d '' ops <<EOF
   ${CYAN}getGrader${OFF}; (AUTH)
   ${CYAN}getGraderLogs${OFF}; (AUTH)
   ${CYAN}listGraders${OFF}; (AUTH)
-  ${CYAN}updateGrader${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -988,9 +972,7 @@ print_listGraders_help() {
     echo -e "List all graders available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch graders containing this meta value${YELLOW} Specify as: meta=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch grader containing name${YELLOW} Specify as: name=value${OFF}" \
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch grader with this name${YELLOW} Specify as: name=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}status${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch graders with this status${YELLOW} Specify as: status=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -1001,31 +983,6 @@ print_listGraders_help() {
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for updateGrader operation
-#
-##############################################################################
-print_updateGrader_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}updateGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Update meta details of a grader by its ID. Warning: There is no data validation." | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Invalid inputs${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1274,11 +1231,9 @@ print_listSubmissions_help() {
     echo -e "List all submissions available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions containing this meta value${YELLOW} Specify as: meta=value${OFF}" \
+    echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions with this meta value${YELLOW} Specify as: meta=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}status${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions with this status${YELLOW} Specify as: status=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF}${OFF} - Fetch submissions for a grader${YELLOW} Specify as: grader_id=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}user_id${OFF} ${BLUE}[integer]${OFF}${OFF} - Fetch submissions created by the user${YELLOW} Specify as: user_id=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -1915,7 +1870,7 @@ call_listGraders() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(meta name status user_id  )
+    local query_parameter_names=(name status user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/graders/" path_parameter_names query_parameter_names); then
@@ -1937,84 +1892,6 @@ call_listGraders() {
         echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
         eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call updateGrader operation
-#
-##############################################################################
-call_updateGrader() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(grader_id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/v1/graders/{grader_id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="PATCH"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    local body_json_curl=""
-
-    #
-    # Check if the user provided 'Content-type' headers in the
-    # command line. If not try to set them based on the Swagger specification
-    # if values produces and consumes are defined unambigously
-    #
-    if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
-    fi
-
-
-    if [[ -z $header_content_type && "$force" = false ]]; then
-        :
-        echo "ERROR: Request's content-type not specified!!!"
-        echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
-        echo ""
-        echo "Use '--content-type' to set proper content type"
-        exit 1
-    else
-        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
-    fi
-
-
-    #
-    # If we have received some body content over pipe, pass it from the
-    # temporary file to cURL
-    #
-    if [[ -n $body_content_temp_file ]]; then
-        if [[ "$print_curl" = true ]]; then
-            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        else
-            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        fi
-        rm "${body_content_temp_file}"
-    #
-    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
-    #
-    else
-        body_json_curl=$(body_parameters_to_json)
-        if [[ "$print_curl" = true ]]; then
-            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        else
-            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        fi
     fi
 }
 
@@ -2593,7 +2470,7 @@ call_listSubmissions() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(meta status grader_id user_id  )
+    local query_parameter_names=(meta status user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/submissions/" path_parameter_names query_parameter_names); then
@@ -3090,9 +2967,6 @@ case $key in
     listGraders)
     operation="listGraders"
     ;;
-    updateGrader)
-    operation="updateGrader"
-    ;;
     createOrganisation)
     operation="createOrganisation"
     ;;
@@ -3263,9 +3137,6 @@ case $operation in
     ;;
     listGraders)
     call_listGraders
-    ;;
-    updateGrader)
-    call_updateGrader
     ;;
     createOrganisation)
     call_createOrganisation

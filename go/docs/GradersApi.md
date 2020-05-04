@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**GetGrader**](GradersApi.md#GetGrader) | **Get** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#GetGraderLogs) | **Get** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#ListGraders) | **Get** /graders/ | 
-[**UpdateGrader**](GradersApi.md#UpdateGrader) | **Patch** /graders/{grader_id} | 
 
 
 # **CreateGrader**
@@ -160,8 +159,7 @@ Optional parameters are passed through a pointer to a GradersApiListGradersOpts 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **optional.String**| Fetch graders containing this meta value | 
- **name** | **optional.String**| Fetch grader containing name | 
+ **name** | **optional.String**| Fetch grader with this name | 
  **status** | **optional.String**| Fetch graders with this status | 
  **userId** | **optional.Int32**| Fetch graders created by the user | 
  **xFields** | **optional.String**| An optional fields mask | 
@@ -169,45 +167,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Grader**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **UpdateGrader**
-> Grader UpdateGrader(ctx, graderId, payload, optional)
-
-
-Update meta details of a grader by its ID. Warning: There is no data validation.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **graderId** | **int32**|  | 
-  **payload** | [**GraderMeta**](GraderMeta.md)|  | 
- **optional** | ***GradersApiUpdateGraderOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a GradersApiUpdateGraderOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

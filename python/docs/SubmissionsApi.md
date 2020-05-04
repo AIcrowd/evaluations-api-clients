@@ -279,7 +279,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_submissions**
-> list[Submissions] list_submissions(meta=meta, status=status, grader_id=grader_id, user_id=user_id, x_fields=x_fields)
+> list[Submissions] list_submissions(meta=meta, status=status, user_id=user_id, x_fields=x_fields)
 
 
 
@@ -301,14 +301,13 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
-meta = 'meta_example' # str | Fetch submissions containing this meta value (optional)
+meta = 'meta_example' # str | Fetch submissions with this meta value (optional)
 status = 'status_example' # str | Fetch submissions with this status (optional)
-grader_id = 56 # int | Fetch submissions for a grader (optional)
 user_id = 56 # int | Fetch submissions created by the user (optional)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_response = api_instance.list_submissions(meta=meta, status=status, grader_id=grader_id, user_id=user_id, x_fields=x_fields)
+    api_response = api_instance.list_submissions(meta=meta, status=status, user_id=user_id, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SubmissionsApi->list_submissions: %s\n" % e)
@@ -318,9 +317,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **str**| Fetch submissions containing this meta value | [optional] 
+ **meta** | **str**| Fetch submissions with this meta value | [optional] 
  **status** | **str**| Fetch submissions with this status | [optional] 
- **grader_id** | **int**| Fetch submissions for a grader | [optional] 
  **user_id** | **int**| Fetch submissions created by the user | [optional] 
  **x_fields** | **str**| An optional fields mask | [optional] 
 

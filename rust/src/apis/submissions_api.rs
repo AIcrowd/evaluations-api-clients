@@ -40,7 +40,7 @@ pub trait SubmissionsApi {
     fn get_submission(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
     fn get_submission_data(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn list_submissions(&self, meta: &str, status: &str, grader_id: i32, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
+    fn list_submissions(&self, meta: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
 }
 
 
@@ -378,7 +378,7 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
         )
     }
 
-    fn list_submissions(&self, meta: &str, status: &str, grader_id: i32, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>> {
+    fn list_submissions(&self, meta: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -397,7 +397,6 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
             let mut query = ::url::form_urlencoded::Serializer::new(String::new());
             query.append_pair("meta", &meta.to_string());
             query.append_pair("status", &status.to_string());
-            query.append_pair("grader_id", &grader_id.to_string());
             query.append_pair("user_id", &user_id.to_string());
             for (key, val) in &auth_query {
                 query.append_pair(key, val);

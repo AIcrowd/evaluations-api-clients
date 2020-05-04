@@ -33,7 +33,6 @@ build = {
 		["aicrowd-evaluations.model.auth_response"] = "aicrowd-evaluations/model/auth_response.lua";
 		["aicrowd-evaluations.model.cluster"] = "aicrowd-evaluations/model/cluster.lua";
 		["aicrowd-evaluations.model.grader"] = "aicrowd-evaluations/model/grader.lua";
-		["aicrowd-evaluations.model.grader_meta"] = "aicrowd-evaluations/model/grader_meta.lua";
 		["aicrowd-evaluations.model.login"] = "aicrowd-evaluations/model/login.lua";
 		["aicrowd-evaluations.model.organisation"] = "aicrowd-evaluations/model/organisation.lua";
 		["aicrowd-evaluations.model.organisation_quota"] = "aicrowd-evaluations/model/organisation_quota.lua";

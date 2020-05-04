@@ -67,22 +67,11 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 # list_graders test
 #
 {
-    my $meta = undef; # replace NULL with a proper value
     my $name = undef; # replace NULL with a proper value
     my $status = undef; # replace NULL with a proper value
     my $user_id = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->list_graders(meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
-}
-
-#
-# update_grader test
-#
-{
-    my $grader_id = undef; # replace NULL with a proper value
-    my $payload = undef; # replace NULL with a proper value
-    my $x_fields = undef; # replace NULL with a proper value
-    my $result = $api->update_grader(grader_id => $grader_id, payload => $payload, x_fields => $x_fields);
+    my $result = $api->list_graders(name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
 }
 
 

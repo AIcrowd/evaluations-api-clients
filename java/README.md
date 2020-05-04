@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-05-04T14:45:25.122Z
+  - Build date: 2020-05-04T16:16:44.877Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
@@ -116,7 +116,6 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
-*GradersApi* | [**updateGrader**](docs/GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 *OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
 *OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisation**](docs/OrganisationsApi.md#getOrganisation) | **GET** /organisations/{organisation_id} | 
@@ -143,7 +142,6 @@ Class | Method | HTTP request | Description
  - [AuthResponse](docs/AuthResponse.md)
  - [Cluster](docs/Cluster.md)
  - [Grader](docs/Grader.md)
- - [GraderMeta](docs/GraderMeta.md)
  - [Login](docs/Login.md)
  - [Organisation](docs/Organisation.md)
  - [OrganisationQuota](docs/OrganisationQuota.md)

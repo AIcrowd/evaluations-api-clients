@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
-[**update_grader**](GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
 
 
 # **create_grader**
@@ -227,7 +226,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_graders**
-> list[Grader] list_graders(meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
+> list[Grader] list_graders(name=name, status=status, user_id=user_id, x_fields=x_fields)
 
 
 
@@ -249,14 +248,13 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = aicrowd_evaluations.GradersApi(aicrowd_evaluations.ApiClient(configuration))
-meta = 'meta_example' # str | Fetch graders containing this meta value (optional)
-name = 'name_example' # str | Fetch grader containing name (optional)
+name = 'name_example' # str | Fetch grader with this name (optional)
 status = 'status_example' # str | Fetch graders with this status (optional)
 user_id = 56 # int | Fetch graders created by the user (optional)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_response = api_instance.list_graders(meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
+    api_response = api_instance.list_graders(name=name, status=status, user_id=user_id, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling GradersApi->list_graders: %s\n" % e)
@@ -266,8 +264,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **str**| Fetch graders containing this meta value | [optional] 
- **name** | **str**| Fetch grader containing name | [optional] 
+ **name** | **str**| Fetch grader with this name | [optional] 
  **status** | **str**| Fetch graders with this status | [optional] 
  **user_id** | **int**| Fetch graders created by the user | [optional] 
  **x_fields** | **str**| An optional fields mask | [optional] 
@@ -275,63 +272,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**list[Grader]**](Grader.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_grader**
-> Grader update_grader(grader_id, payload, x_fields=x_fields)
-
-
-
-Update meta details of a grader by its ID. Warning: There is no data validation.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import aicrowd_evaluations
-from aicrowd_evaluations.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: api_key
-configuration = aicrowd_evaluations.Configuration()
-configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = aicrowd_evaluations.GradersApi(aicrowd_evaluations.ApiClient(configuration))
-grader_id = 56 # int | 
-payload = aicrowd_evaluations.GraderMeta() # GraderMeta | 
-x_fields = 'x_fields_example' # str | An optional fields mask (optional)
-
-try:
-    api_response = api_instance.update_grader(grader_id, payload, x_fields=x_fields)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling GradersApi->update_grader: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **grader_id** | **int**|  | 
- **payload** | [**GraderMeta**](GraderMeta.md)|  | 
- **x_fields** | **str**| An optional fields mask | [optional] 
-
-### Return type
-
-[**Grader**](Grader.md)
 
 ### Authorization
 

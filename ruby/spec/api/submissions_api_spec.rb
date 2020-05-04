@@ -92,9 +92,8 @@ describe 'SubmissionsApi' do
   # unit tests for list_submissions
   # List all submissions available
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :meta Fetch submissions containing this meta value
+  # @option opts [String] :meta Fetch submissions with this meta value
   # @option opts [String] :status Fetch submissions with this status
-  # @option opts [Integer] :grader_id Fetch submissions for a grader
   # @option opts [Integer] :user_id Fetch submissions created by the user
   # @option opts [String] :x_fields An optional fields mask
   # @return [Array<Submissions>]
