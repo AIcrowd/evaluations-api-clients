@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
+[**update_grader**](GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
 
 
 # **create_grader**
@@ -69,7 +70,7 @@ Name | Type | Description  | Notes
 
 
 # **delete_grader**
-> delete_grader(grader_id)
+> delete_grader(grader_id, )
 
 
 
@@ -93,7 +94,7 @@ grader_id = 56 # Integer |
 
 
 begin
-  api_instance.delete_grader(grader_id)
+  api_instance.delete_grader(grader_id, )
 rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->delete_grader: #{e}"
 end
@@ -121,7 +122,7 @@ nil (empty response body)
 
 
 # **get_grader**
-> Grader get_grader(grader_id, opts)
+> Grader get_grader(grader_id, , opts)
 
 
 
@@ -148,7 +149,7 @@ opts = {
 }
 
 begin
-  result = api_instance.get_grader(grader_id, opts)
+  result = api_instance.get_grader(grader_id, , opts)
   p result
 rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->get_grader: #{e}"
@@ -251,7 +252,8 @@ end
 api_instance = AIcrowdEvaluations::GradersApi.new
 
 opts = { 
-  name: 'name_example', # String | Fetch grader with this name
+  meta: 'meta_example', # String | Fetch graders containing this meta value
+  name: 'name_example', # String | Fetch grader containing name
   status: 'status_example', # String | Fetch graders with this status
   user_id: 56, # Integer | Fetch graders created by the user
   x_fields: 'x_fields_example' # String | An optional fields mask
@@ -269,7 +271,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Fetch grader with this name | [optional] 
+ **meta** | **String**| Fetch graders containing this meta value | [optional] 
+ **name** | **String**| Fetch grader containing name | [optional] 
  **status** | **String**| Fetch graders with this status | [optional] 
  **user_id** | **Integer**| Fetch graders created by the user | [optional] 
  **x_fields** | **String**| An optional fields mask | [optional] 
@@ -277,6 +280,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Array&lt;Grader&gt;**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **update_grader**
+> Grader update_grader(grader_id, payload, opts)
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+grader_id = 56 # Integer | 
+
+payload = AIcrowdEvaluations::GraderMeta.new # GraderMeta | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.update_grader(grader_id, payload, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->update_grader: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **Integer**|  | 
+ **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

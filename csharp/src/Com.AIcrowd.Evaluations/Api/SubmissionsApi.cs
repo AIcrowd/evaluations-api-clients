@@ -140,12 +140,13 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        List<Submissions> ListSubmissions (string meta = null, string status = null, int? userId = null, string xFields = null);
+        List<Submissions> ListSubmissions (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -154,12 +155,13 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        ApiResponse<List<Submissions>> ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null);
+        ApiResponse<List<Submissions>> ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -278,12 +280,13 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? userId = null, string xFields = null);
+        System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -292,12 +295,13 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all submissions available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null);
         #endregion Asynchronous Operations
     }
 
@@ -1147,14 +1151,15 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Submissions&gt;</returns>
-        public List<Submissions> ListSubmissions (string meta = null, string status = null, int? userId = null, string xFields = null)
+        public List<Submissions> ListSubmissions (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = ListSubmissionsWithHttpInfo(meta, status, userId, xFields);
+             ApiResponse<List<Submissions>> localVarResponse = ListSubmissionsWithHttpInfo(meta, status, graderId, userId, xFields);
              return localVarResponse.Data;
         }
 
@@ -1162,12 +1167,13 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Submissions&gt;</returns>
-        public ApiResponse< List<Submissions> > ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null)
+        public ApiResponse< List<Submissions> > ListSubmissionsWithHttpInfo (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -1194,6 +1200,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (graderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "grader_id", graderId)); // query parameter
             if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
@@ -1225,14 +1232,15 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Submissions&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<List<Submissions>> ListSubmissionsAsync (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Submissions>> localVarResponse = await ListSubmissionsAsyncWithHttpInfo(meta, status, userId, xFields);
+             ApiResponse<List<Submissions>> localVarResponse = await ListSubmissionsAsyncWithHttpInfo(meta, status, graderId, userId, xFields);
              return localVarResponse.Data;
 
         }
@@ -1241,12 +1249,13 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all submissions available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="meta">Fetch submissions with this meta value (optional)</param>
+        /// <param name="meta">Fetch submissions containing this meta value (optional)</param>
         /// <param name="status">Fetch submissions with this status (optional)</param>
+        /// <param name="graderId">Fetch submissions for a grader (optional)</param>
         /// <param name="userId">Fetch submissions created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Submissions&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Submissions>>> ListSubmissionsAsyncWithHttpInfo (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/submissions/";
@@ -1273,6 +1282,7 @@ namespace Com.AIcrowd.Evaluations.Api
 
             if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+            if (graderId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "grader_id", graderId)); // query parameter
             if (userId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id", userId)); // query parameter
             if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 

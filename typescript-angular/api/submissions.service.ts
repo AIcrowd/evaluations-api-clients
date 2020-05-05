@@ -309,17 +309,19 @@ export class SubmissionsService {
     /**
      * 
      * List all submissions available
-     * @param meta Fetch submissions with this meta value
+     * @param meta Fetch submissions containing this meta value
      * @param status Fetch submissions with this status
+     * @param graderId Fetch submissions for a grader
      * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
-    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
-    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
-    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
+    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
+    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
+    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
 
 
@@ -331,6 +333,9 @@ export class SubmissionsService {
         }
         if (status !== undefined && status !== null) {
             queryParameters = queryParameters.set('status', <any>status);
+        }
+        if (graderId !== undefined && graderId !== null) {
+            queryParameters = queryParameters.set('grader_id', <any>graderId);
         }
         if (userId !== undefined && userId !== null) {
             queryParameters = queryParameters.set('user_id', <any>userId);

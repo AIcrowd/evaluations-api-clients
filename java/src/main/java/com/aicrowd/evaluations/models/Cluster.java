@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Cluster
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-05-05T00:16:25.565Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-05-05T00:37:50.226Z")
 public class Cluster {
   @SerializedName("id")
   private Integer id = null;

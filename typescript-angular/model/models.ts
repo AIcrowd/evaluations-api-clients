@@ -2,6 +2,7 @@ export * from './authLogout';
 export * from './authResponse';
 export * from './cluster';
 export * from './grader';
+export * from './graderMeta';
 export * from './login';
 export * from './organisation';
 export * from './organisationQuota';

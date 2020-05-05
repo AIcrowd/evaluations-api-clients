@@ -340,7 +340,7 @@ void (empty response body)
 
 <a name="listsubmissions"></a>
 # **ListSubmissions**
-> List<Submissions> ListSubmissions (string meta = null, string status = null, int? userId = null, string xFields = null)
+> List<Submissions> ListSubmissions (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
 
 
 
@@ -366,14 +366,15 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new SubmissionsApi();
-            var meta = meta_example;  // string | Fetch submissions with this meta value (optional) 
+            var meta = meta_example;  // string | Fetch submissions containing this meta value (optional) 
             var status = status_example;  // string | Fetch submissions with this status (optional) 
+            var graderId = 56;  // int? | Fetch submissions for a grader (optional) 
             var userId = 56;  // int? | Fetch submissions created by the user (optional) 
             var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                List&lt;Submissions&gt; result = apiInstance.ListSubmissions(meta, status, userId, xFields);
+                List&lt;Submissions&gt; result = apiInstance.ListSubmissions(meta, status, graderId, userId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -389,8 +390,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **string**| Fetch submissions with this meta value | [optional] 
+ **meta** | **string**| Fetch submissions containing this meta value | [optional] 
  **status** | **string**| Fetch submissions with this status | [optional] 
+ **graderId** | **int?**| Fetch submissions for a grader | [optional] 
  **userId** | **int?**| Fetch submissions created by the user | [optional] 
  **xFields** | **string**| An optional fields mask | [optional] 
 

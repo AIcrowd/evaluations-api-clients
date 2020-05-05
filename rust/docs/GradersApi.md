@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_grader**](GradersApi.md#get_grader) | **Get** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **Get** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **Get** /graders/ | 
+[**update_grader**](GradersApi.md#update_grader) | **Patch** /graders/{grader_id} | 
 
 
 # **create_grader**
@@ -159,7 +160,8 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Fetch grader with this name | 
+ **meta** | **String**| Fetch graders containing this meta value | 
+ **name** | **String**| Fetch grader containing name | 
  **status** | **String**| Fetch graders with this status | 
  **user_id** | **i32**| Fetch graders created by the user | 
  **x_fields** | **String**| An optional fields mask | 
@@ -167,6 +169,45 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vec<::models::Grader>**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_grader**
+> ::models::Grader update_grader(ctx, grader_id, payload, optional)
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **grader_id** | **i32**|  | 
+  **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **i32**|  | 
+ **payload** | [**GraderMeta**](GraderMeta.md)|  | 
+ **x_fields** | **String**| An optional fields mask | 
+
+### Return type
+
+[**::models::Grader**](Grader.md)
 
 ### Authorization
 

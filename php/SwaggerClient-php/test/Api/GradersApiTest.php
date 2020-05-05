@@ -120,4 +120,14 @@ class GradersApiTest extends \PHPUnit_Framework_TestCase
     public function testListGraders()
     {
     }
+
+    /**
+     * Test case for updateGrader
+     *
+     * .
+     *
+     */
+    public function testUpdateGrader()
+    {
+    }
 }

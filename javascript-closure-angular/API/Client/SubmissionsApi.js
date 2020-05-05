@@ -232,14 +232,15 @@ API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, o
 /**
  * 
  * List all submissions available
- * @param {!string=} opt_meta Fetch submissions with this meta value
+ * @param {!string=} opt_meta Fetch submissions containing this meta value
  * @param {!string=} opt_status Fetch submissions with this status
+ * @param {!number=} opt_graderId Fetch submissions for a grader
  * @param {!number=} opt_userId Fetch submissions created by the user
  * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.Submissions>>}
  */
-API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_status, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
+API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_status, opt_graderId, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/submissions/';
 
@@ -254,6 +255,10 @@ API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_sta
 
   if (opt_status !== undefined) {
     queryParameters['status'] = opt_status;
+  }
+
+  if (opt_graderId !== undefined) {
+    queryParameters['grader_id'] = opt_graderId;
   }
 
   if (opt_userId !== undefined) {

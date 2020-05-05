@@ -6,6 +6,8 @@ mod cluster;
 pub use self::cluster::Cluster;
 mod grader;
 pub use self::grader::Grader;
+mod grader_meta;
+pub use self::grader_meta::GraderMeta;
 mod login;
 pub use self::login::Login;
 mod organisation;

@@ -333,15 +333,21 @@ sub get_grader_logs {
 #
 # 
 # 
-# @param string $name Fetch grader with this name (optional)
+# @param string $meta Fetch graders containing this meta value (optional)
+# @param string $name Fetch grader containing name (optional)
 # @param string $status Fetch graders with this status (optional)
 # @param int $user_id Fetch graders created by the user (optional)
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
+    'meta' => {
+        data_type => 'string',
+        description => 'Fetch graders containing this meta value',
+        required => '0',
+    },
     'name' => {
         data_type => 'string',
-        description => 'Fetch grader with this name',
+        description => 'Fetch grader containing name',
         required => '0',
     },
     'status' => {
@@ -387,6 +393,11 @@ sub list_graders {
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
 
     # query params
+    if ( exists $args{'meta'}) {
+        $query_params->{'meta'} = $self->{api_client}->to_query_value($args{'meta'});
+    }
+
+    # query params
     if ( exists $args{'name'}) {
         $query_params->{'name'} = $self->{api_client}->to_query_value($args{'name'});
     }
@@ -418,6 +429,100 @@ sub list_graders {
         return;
     }
     my $_response_object = $self->{api_client}->deserialize('ARRAY[Grader]', $response);
+    return $_response_object;
+}
+
+#
+# update_grader
+#
+# 
+# 
+# @param int $grader_id  (required)
+# @param GraderMeta $payload  (required)
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'grader_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    'payload' => {
+        data_type => 'GraderMeta',
+        description => '',
+        required => '1',
+    },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'update_grader' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'Grader',
+        };
+}
+# @return Grader
+#
+sub update_grader {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'grader_id' is set
+    unless (exists $args{'grader_id'}) {
+      croak("Missing the required parameter 'grader_id' when calling update_grader");
+    }
+
+    # verify the required parameter 'payload' is set
+    unless (exists $args{'payload'}) {
+      croak("Missing the required parameter 'payload' when calling update_grader");
+    }
+
+    # parse inputs
+    my $_resource_path = '/graders/{grader_id}';
+
+    my $_method = 'PATCH';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    # path params
+    if ( exists $args{'grader_id'}) {
+        my $_base_variable = "{" . "grader_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'grader_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # body params
+    if ( exists $args{'payload'}) {
+        $_body_data = $args{'payload'};
+    }
+
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('Grader', $response);
     return $_response_object;
 }
 

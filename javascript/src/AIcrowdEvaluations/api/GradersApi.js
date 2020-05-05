@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['AIcrowdEvaluations/ApiClient', 'AIcrowdEvaluations/model/Grader'], factory);
+    define(['AIcrowdEvaluations/ApiClient', 'AIcrowdEvaluations/model/Grader', 'AIcrowdEvaluations/model/GraderMeta'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Grader'));
+    module.exports = factory(require('../ApiClient'), require('../model/Grader'), require('../model/GraderMeta'));
   } else {
     // Browser globals (root is window)
     if (!root.AicrowdEvaluations) {
       root.AicrowdEvaluations = {};
     }
-    root.AicrowdEvaluations.GradersApi = factory(root.AicrowdEvaluations.ApiClient, root.AicrowdEvaluations.Grader);
+    root.AicrowdEvaluations.GradersApi = factory(root.AicrowdEvaluations.ApiClient, root.AicrowdEvaluations.Grader, root.AicrowdEvaluations.GraderMeta);
   }
-}(this, function(ApiClient, Grader) {
+}(this, function(ApiClient, Grader, GraderMeta) {
   'use strict';
 
   /**
@@ -251,7 +251,8 @@
     /**
      * List all graders available
      * @param {Object} opts Optional parameters
-     * @param {String} opts.name Fetch grader with this name
+     * @param {String} opts.meta Fetch graders containing this meta value
+     * @param {String} opts.name Fetch grader containing name
      * @param {String} opts.status Fetch graders with this status
      * @param {Number} opts.userId Fetch graders created by the user
      * @param {String} opts.xFields An optional fields mask
@@ -266,6 +267,7 @@
       var pathParams = {
       };
       var queryParams = {
+        'meta': opts['meta'],
         'name': opts['name'],
         'status': opts['status'],
         'user_id': opts['userId'],
@@ -285,6 +287,63 @@
 
       return this.apiClient.callApi(
         '/graders/', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateGrader operation.
+     * @callback module:AIcrowdEvaluations/api/GradersApi~updateGraderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:AIcrowdEvaluations/model/Grader} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update meta details of a grader by its ID. Warning: There is no data validation.
+     * @param {Number} graderId 
+     * @param {module:AIcrowdEvaluations/model/GraderMeta} payload 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xFields An optional fields mask
+     * @param {module:AIcrowdEvaluations/api/GradersApi~updateGraderCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:AIcrowdEvaluations/model/Grader}
+     */
+    this.updateGrader = function(graderId, payload, opts, callback) {
+      opts = opts || {};
+      var postBody = payload;
+
+      // verify the required parameter 'graderId' is set
+      if (graderId === undefined || graderId === null) {
+        throw new Error("Missing the required parameter 'graderId' when calling updateGrader");
+      }
+
+      // verify the required parameter 'payload' is set
+      if (payload === undefined || payload === null) {
+        throw new Error("Missing the required parameter 'payload' when calling updateGrader");
+      }
+
+
+      var pathParams = {
+        'grader_id': graderId
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+        'X-Fields': opts['xFields']
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = Grader;
+
+      return this.apiClient.callApi(
+        '/graders/{grader_id}', 'PATCH',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

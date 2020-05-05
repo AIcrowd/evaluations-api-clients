@@ -670,8 +670,9 @@ public class SubmissionsApi {
     }
     /**
      * Build call for listSubmissions
-     * @param meta Fetch submissions with this meta value (optional)
+     * @param meta Fetch submissions containing this meta value (optional)
      * @param status Fetch submissions with this status (optional)
+     * @param graderId Fetch submissions for a grader (optional)
      * @param userId Fetch submissions created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @param progressListener Progress listener
@@ -679,7 +680,7 @@ public class SubmissionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listSubmissionsCall(String meta, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call listSubmissionsCall(String meta, String status, Integer graderId, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -691,6 +692,8 @@ public class SubmissionsApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("meta", meta));
         if (status != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("status", status));
+        if (graderId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("grader_id", graderId));
         if (userId != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("user_id", userId));
 
@@ -729,10 +732,10 @@ public class SubmissionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listSubmissionsValidateBeforeCall(String meta, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call listSubmissionsValidateBeforeCall(String meta, String status, Integer graderId, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listSubmissionsCall(meta, status, userId, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listSubmissionsCall(meta, status, graderId, userId, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -740,30 +743,32 @@ public class SubmissionsApi {
     /**
      * 
      * List all submissions available
-     * @param meta Fetch submissions with this meta value (optional)
+     * @param meta Fetch submissions containing this meta value (optional)
      * @param status Fetch submissions with this status (optional)
+     * @param graderId Fetch submissions for a grader (optional)
      * @param userId Fetch submissions created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @return List&lt;Submissions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Submissions> listSubmissions(String meta, String status, Integer userId, String xFields) throws ApiException {
-        ApiResponse<List<Submissions>> resp = listSubmissionsWithHttpInfo(meta, status, userId, xFields);
+    public List<Submissions> listSubmissions(String meta, String status, Integer graderId, Integer userId, String xFields) throws ApiException {
+        ApiResponse<List<Submissions>> resp = listSubmissionsWithHttpInfo(meta, status, graderId, userId, xFields);
         return resp.getData();
     }
 
     /**
      * 
      * List all submissions available
-     * @param meta Fetch submissions with this meta value (optional)
+     * @param meta Fetch submissions containing this meta value (optional)
      * @param status Fetch submissions with this status (optional)
+     * @param graderId Fetch submissions for a grader (optional)
      * @param userId Fetch submissions created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @return ApiResponse&lt;List&lt;Submissions&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Submissions>> listSubmissionsWithHttpInfo(String meta, String status, Integer userId, String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = listSubmissionsValidateBeforeCall(meta, status, userId, xFields, null, null);
+    public ApiResponse<List<Submissions>> listSubmissionsWithHttpInfo(String meta, String status, Integer graderId, Integer userId, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = listSubmissionsValidateBeforeCall(meta, status, graderId, userId, xFields, null, null);
         Type localVarReturnType = new TypeToken<List<Submissions>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -771,15 +776,16 @@ public class SubmissionsApi {
     /**
      *  (asynchronously)
      * List all submissions available
-     * @param meta Fetch submissions with this meta value (optional)
+     * @param meta Fetch submissions containing this meta value (optional)
      * @param status Fetch submissions with this status (optional)
+     * @param graderId Fetch submissions for a grader (optional)
      * @param userId Fetch submissions created by the user (optional)
      * @param xFields An optional fields mask (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listSubmissionsAsync(String meta, String status, Integer userId, String xFields, final ApiCallback<List<Submissions>> callback) throws ApiException {
+    public com.squareup.okhttp.Call listSubmissionsAsync(String meta, String status, Integer graderId, Integer userId, String xFields, final ApiCallback<List<Submissions>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -800,7 +806,7 @@ public class SubmissionsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listSubmissionsValidateBeforeCall(meta, status, userId, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listSubmissionsValidateBeforeCall(meta, status, graderId, userId, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Submissions>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -79,6 +79,7 @@ _aicrowd-evaluations()
     operations["getGrader"]=1
     operations["getGraderLogs"]=1
     operations["listGraders"]=1
+    operations["updateGrader"]=1
     operations["createOrganisation"]=1
     operations["deleteOrganisation"]=1
     operations["getOrganisation"]=1
@@ -111,7 +112,8 @@ _aicrowd-evaluations()
     operation_parameters["deleteGrader"]="grader_id= "
     operation_parameters["getGrader"]="grader_id= X-Fields: "
     operation_parameters["getGraderLogs"]="grader_id= "
-    operation_parameters["listGraders"]="name= status= user_id= X-Fields: "
+    operation_parameters["listGraders"]="meta= name= status= user_id= X-Fields: "
+    operation_parameters["updateGrader"]="grader_id= X-Fields: "
     operation_parameters["createOrganisation"]="X-Fields: "
     operation_parameters["deleteOrganisation"]="organisation_id= "
     operation_parameters["getOrganisation"]="organisation_id= X-Fields: "
@@ -123,7 +125,7 @@ _aicrowd-evaluations()
     operation_parameters["getSubmission"]="submission_id= X-Fields: "
     operation_parameters["getSubmissionData"]="submission_id= "
     operation_parameters["getSubmissionLogs"]="submission_id= "
-    operation_parameters["listSubmissions"]="meta= status= user_id= X-Fields: "
+    operation_parameters["listSubmissions"]="meta= status= grader_id= user_id= X-Fields: "
     operation_parameters["createUser"]="X-Fields: "
     operation_parameters["deleteUser"]="user_id= "
     operation_parameters["getUser"]="user_id= X-Fields: "

@@ -217,14 +217,15 @@ class SubmissionsApi(
    * 
    * List all submissions available
    *
-   * @param meta Fetch submissions with this meta value (optional)
+   * @param meta Fetch submissions containing this meta value (optional)
    * @param status Fetch submissions with this status (optional)
+   * @param graderId Fetch submissions for a grader (optional)
    * @param userId Fetch submissions created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return List[Submissions]
    */
-  def listSubmissions(meta: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Submissions]] = {
-    val await = Try(Await.result(listSubmissionsAsync(meta, status, userId, xFields), Duration.Inf))
+  def listSubmissions(meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Submissions]] = {
+    val await = Try(Await.result(listSubmissionsAsync(meta, status, graderId, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -235,14 +236,15 @@ class SubmissionsApi(
    *  asynchronously
    * List all submissions available
    *
-   * @param meta Fetch submissions with this meta value (optional)
+   * @param meta Fetch submissions containing this meta value (optional)
    * @param status Fetch submissions with this status (optional)
+   * @param graderId Fetch submissions for a grader (optional)
    * @param userId Fetch submissions created by the user (optional)
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Submissions])
    */
-  def listSubmissionsAsync(meta: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Submissions]] = {
-      helper.listSubmissions(meta, status, userId, xFields)
+  def listSubmissionsAsync(meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Submissions]] = {
+      helper.listSubmissions(meta, status, graderId, userId, xFields)
   }
 
 }
@@ -343,6 +345,7 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
 
   def listSubmissions(meta: Option[String] = None,
     status: Option[String] = None,
+    graderId: Option[Integer] = None,
     userId: Option[Integer] = None,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[List[Submissions]]): Future[List[Submissions]] = {
@@ -359,6 +362,10 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
     status match {
       case Some(param) => queryParams += "status" -> param.toString
+      case _ => queryParams
+    }
+    graderId match {
+      case Some(param) => queryParams += "grader_id" -> param.toString
       case _ => queryParams
     }
     userId match {

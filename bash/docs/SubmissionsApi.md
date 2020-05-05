@@ -182,15 +182,16 @@ List all submissions available
 
 ### Example
 ```bash
-aicrowd-evaluations listSubmissions  meta=value  status=value  user_id=value X-Fields:value
+aicrowd-evaluations listSubmissions  meta=value  status=value  grader_id=value  user_id=value X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **meta** | **string** | Fetch submissions with this meta value | [optional]
+ **meta** | **string** | Fetch submissions containing this meta value | [optional]
  **status** | **string** | Fetch submissions with this status | [optional]
+ **graderId** | **integer** | Fetch submissions for a grader | [optional]
  **userId** | **integer** | Fetch submissions created by the user | [optional]
  **xFields** | **string** | An optional fields mask | [optional]
 

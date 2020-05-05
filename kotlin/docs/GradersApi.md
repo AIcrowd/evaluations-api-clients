@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
+[**updateGrader**](GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 
 
 <a name="createGrader"></a>
@@ -203,7 +204,7 @@ null (empty response body)
 
 <a name="listGraders"></a>
 # **listGraders**
-> kotlin.Array&lt;Grader&gt; listGraders(name, status, userId, xFields)
+> kotlin.Array&lt;Grader&gt; listGraders(meta, name, status, userId, xFields)
 
 
 
@@ -216,12 +217,13 @@ List all graders available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
-val name : kotlin.String = name_example // kotlin.String | Fetch grader with this name
+val meta : kotlin.String = meta_example // kotlin.String | Fetch graders containing this meta value
+val name : kotlin.String = name_example // kotlin.String | Fetch grader containing name
 val status : kotlin.String = status_example // kotlin.String | Fetch graders with this status
 val userId : kotlin.Int = 56 // kotlin.Int | Fetch graders created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Grader> = apiInstance.listGraders(name, status, userId, xFields)
+    val result : kotlin.Array<Grader> = apiInstance.listGraders(meta, name, status, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GradersApi#listGraders")
@@ -236,7 +238,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Fetch grader with this name | [optional]
+ **meta** | **kotlin.String**| Fetch graders containing this meta value | [optional]
+ **name** | **kotlin.String**| Fetch grader containing name | [optional]
  **status** | **kotlin.String**| Fetch graders with this status | [optional]
  **userId** | **kotlin.Int**| Fetch graders created by the user | [optional]
  **xFields** | **kotlin.String**| An optional fields mask | [optional]
@@ -244,6 +247,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**kotlin.Array&lt;Grader&gt;**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="updateGrader"></a>
+# **updateGrader**
+> Grader updateGrader(graderId, payload, xFields)
+
+
+
+Update meta details of a grader by its ID. Warning: There is no data validation.
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = GradersApi()
+val graderId : kotlin.Int = 56 // kotlin.Int | 
+val payload : GraderMeta =  // GraderMeta | 
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
+try {
+    val result : Grader = apiInstance.updateGrader(graderId, payload, xFields)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling GradersApi#updateGrader")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GradersApi#updateGrader")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **kotlin.Int**|  |
+ **payload** | [**GraderMeta**](GraderMeta.md)|  |
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
+
+### Return type
+
+[**Grader**](Grader.md)
 
 ### Authorization
 

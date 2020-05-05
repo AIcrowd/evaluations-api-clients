@@ -131,6 +131,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *AicrowdEvaluations.GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
+*AicrowdEvaluations.GradersApi* | [**updateGrader**](docs/GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
 *AicrowdEvaluations.OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**getOrganisation**](docs/OrganisationsApi.md#getOrganisation) | **GET** /organisations/{organisation_id} | 
@@ -157,6 +158,7 @@ Class | Method | HTTP request | Description
  - [AicrowdEvaluations.AuthResponse](docs/AuthResponse.md)
  - [AicrowdEvaluations.Cluster](docs/Cluster.md)
  - [AicrowdEvaluations.Grader](docs/Grader.md)
+ - [AicrowdEvaluations.GraderMeta](docs/GraderMeta.md)
  - [AicrowdEvaluations.Login](docs/Login.md)
  - [AicrowdEvaluations.Organisation](docs/Organisation.md)
  - [AicrowdEvaluations.OrganisationQuota](docs/OrganisationQuota.md)

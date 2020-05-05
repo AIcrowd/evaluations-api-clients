@@ -91,11 +91,11 @@
   "
   List all graders available"
   ([] (list-graders-with-http-info nil))
-  ([{:keys [name status user-id x-fields ]}]
+  ([{:keys [meta name status user-id x-fields ]}]
    (call-api "/graders/" :get
              {:path-params   {}
               :header-params {"X-Fields" x-fields }
-              :query-params  {"name" name "status" status "user_id" user-id }
+              :query-params  {"meta" meta "name" name "status" status "user_id" user-id }
               :form-params   {}
               :content-types ["application/json"]
               :accepts       ["application/json"]
@@ -107,4 +107,27 @@
   ([] (list-graders nil))
   ([optional-params]
    (:data (list-graders-with-http-info optional-params))))
+
+(defn update-grader-with-http-info
+  "
+  Update meta details of a grader by its ID. Warning: There is no data validation."
+  ([grader-id payload ] (update-grader-with-http-info grader-id payload nil))
+  ([grader-id payload {:keys [x-fields ]}]
+   (check-required-params grader-id payload)
+   (call-api "/graders/{grader_id}" :patch
+             {:path-params   {"grader_id" grader-id }
+              :header-params {"X-Fields" x-fields }
+              :query-params  {}
+              :form-params   {}
+              :body-param    payload
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
+
+(defn update-grader
+  "
+  Update meta details of a grader by its ID. Warning: There is no data validation."
+  ([grader-id payload ] (update-grader grader-id payload nil))
+  ([grader-id payload optional-params]
+   (:data (update-grader-with-http-info grader-id payload optional-params))))
 

@@ -317,6 +317,50 @@ export interface Grader {
 /**
  * 
  * @export
+ * @interface GraderMeta
+ */
+export interface GraderMeta {
+    /**
+     * Dataset metadata
+     * @type {any}
+     * @memberof GraderMeta
+     */
+    dataset?: any;
+    /**
+     * Notifications available for the grader
+     * @type {any}
+     * @memberof GraderMeta
+     */
+    notifications?: any;
+    /**
+     * Name of the grader
+     * @type {string}
+     * @memberof GraderMeta
+     */
+    name?: string;
+    /**
+     * Description of the grader
+     * @type {string}
+     * @memberof GraderMeta
+     */
+    description?: string;
+    /**
+     * Cluster to run the grader on
+     * @type {number}
+     * @memberof GraderMeta
+     */
+    clusterId?: number;
+    /**
+     * Additional meta data of the grader
+     * @type {string}
+     * @memberof GraderMeta
+     */
+    meta?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface Login
  */
 export interface Login {
@@ -1268,14 +1312,15 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
         },
         /**
          * List all graders available
-         * @param {string} [name] Fetch grader with this name
+         * @param {string} [meta] Fetch graders containing this meta value
+         * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
          * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
+        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/graders/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1288,6 +1333,10 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (meta !== undefined) {
+                localVarQueryParameter['meta'] = meta;
             }
 
             if (name !== undefined) {
@@ -1310,6 +1359,56 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update meta details of a grader by its ID. Warning: There is no data validation.
+         * @param {number} graderId 
+         * @param {GraderMeta} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGrader(graderId: number, payload: GraderMeta, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'graderId' is not null or undefined
+            if (graderId === null || graderId === undefined) {
+                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling updateGrader.');
+            }
+            // verify required parameter 'payload' is not null or undefined
+            if (payload === null || payload === undefined) {
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling updateGrader.');
+            }
+            const localVarPath = `/graders/{grader_id}`
+                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"GraderMeta" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -1401,15 +1500,36 @@ export const GradersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all graders available
-         * @param {string} [name] Fetch grader with this name
+         * @param {string} [meta] Fetch graders containing this meta value
+         * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
          * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(name, status, userId, xFields, options);
+        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(meta, name, status, userId, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update meta details of a grader by its ID. Warning: There is no data validation.
+         * @param {number} graderId 
+         * @param {GraderMeta} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGrader(graderId: number, payload: GraderMeta, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Grader> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).updateGrader(graderId, payload, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1469,15 +1589,27 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
         },
         /**
          * List all graders available
-         * @param {string} [name] Fetch grader with this name
+         * @param {string} [meta] Fetch graders containing this meta value
+         * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
          * @param {number} [userId] Fetch graders created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).listGraders(name, status, userId, xFields, options)(fetch, basePath);
+        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).listGraders(meta, name, status, userId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Update meta details of a grader by its ID. Warning: There is no data validation.
+         * @param {number} graderId 
+         * @param {GraderMeta} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGrader(graderId: number, payload: GraderMeta, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).updateGrader(graderId, payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -1537,7 +1669,8 @@ export class GradersApi extends BaseAPI {
 
     /**
      * List all graders available
-     * @param {string} [name] Fetch grader with this name
+     * @param {string} [meta] Fetch graders containing this meta value
+     * @param {string} [name] Fetch grader containing name
      * @param {string} [status] Fetch graders with this status
      * @param {number} [userId] Fetch graders created by the user
      * @param {string} [xFields] An optional fields mask
@@ -1545,8 +1678,21 @@ export class GradersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GradersApi
      */
-    public listGraders(name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).listGraders(name, status, userId, xFields, options)(this.fetch, this.basePath);
+    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).listGraders(meta, name, status, userId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update meta details of a grader by its ID. Warning: There is no data validation.
+     * @param {number} graderId 
+     * @param {GraderMeta} payload 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public updateGrader(graderId: number, payload: GraderMeta, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).updateGrader(graderId, payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }
@@ -2282,14 +2428,15 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
         },
         /**
          * List all submissions available
-         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
+         * @param {number} [graderId] Fetch submissions for a grader
          * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
+        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/submissions/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -2310,6 +2457,10 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
 
             if (status !== undefined) {
                 localVarQueryParameter['status'] = status;
+            }
+
+            if (graderId !== undefined) {
+                localVarQueryParameter['grader_id'] = graderId;
             }
 
             if (userId !== undefined) {
@@ -2433,15 +2584,16 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all submissions available
-         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
+         * @param {number} [graderId] Fetch submissions for a grader
          * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(meta, status, userId, xFields, options);
+        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(meta, status, graderId, userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2510,15 +2662,16 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
         },
         /**
          * List all submissions available
-         * @param {string} [meta] Fetch submissions with this meta value
+         * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
+         * @param {number} [graderId] Fetch submissions for a grader
          * @param {number} [userId] Fetch submissions created by the user
          * @param {string} [xFields] An optional fields mask
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).listSubmissions(meta, status, userId, xFields, options)(fetch, basePath);
+        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -2589,16 +2742,17 @@ export class SubmissionsApi extends BaseAPI {
 
     /**
      * List all submissions available
-     * @param {string} [meta] Fetch submissions with this meta value
+     * @param {string} [meta] Fetch submissions containing this meta value
      * @param {string} [status] Fetch submissions with this status
+     * @param {number} [graderId] Fetch submissions for a grader
      * @param {number} [userId] Fetch submissions created by the user
      * @param {string} [xFields] An optional fields mask
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public listSubmissions(meta?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).listSubmissions(meta, status, userId, xFields, options)(this.fetch, this.basePath);
+    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(this.fetch, this.basePath);
     }
 
 }

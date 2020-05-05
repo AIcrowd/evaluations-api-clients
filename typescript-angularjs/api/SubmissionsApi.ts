@@ -174,12 +174,13 @@ export class SubmissionsApi {
     }
     /**
      * List all submissions available
-     * @param meta Fetch submissions with this meta value
+     * @param meta Fetch submissions containing this meta value
      * @param status Fetch submissions with this status
+     * @param graderId Fetch submissions for a grader
      * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      */
-    public listSubmissions (meta?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
+    public listSubmissions (meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
         const localVarPath = this.basePath + '/submissions/';
 
         let queryParameters: any = {};
@@ -190,6 +191,10 @@ export class SubmissionsApi {
 
         if (status !== undefined) {
             queryParameters['status'] = status;
+        }
+
+        if (graderId !== undefined) {
+            queryParameters['grader_id'] = graderId;
         }
 
         if (userId !== undefined) {

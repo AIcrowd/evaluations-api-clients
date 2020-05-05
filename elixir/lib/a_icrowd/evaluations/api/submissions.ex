@@ -149,8 +149,9 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :meta (String.t): Fetch submissions with this meta value
+    - :meta (String.t): Fetch submissions containing this meta value
     - :status (String.t): Fetch submissions with this status
+    - :grader_id (integer()): Fetch submissions for a grader
     - :user_id (integer()): Fetch submissions created by the user
     - :x_fields (String.t): An optional fields mask
 
@@ -164,6 +165,7 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
     optional_params = %{
       :"meta" => :query,
       :"status" => :query,
+      :"grader_id" => :query,
       :"user_id" => :query,
       :"X-Fields" => :headers
     }

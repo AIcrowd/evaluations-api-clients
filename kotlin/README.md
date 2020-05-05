@@ -46,6 +46,7 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listgraders) | **GET** /graders/ | 
+*GradersApi* | [**updateGrader**](docs/GradersApi.md#updategrader) | **PATCH** /graders/{grader_id} | 
 *OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createorganisation) | **POST** /organisations/ | 
 *OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteorganisation) | **DELETE** /organisations/{organisation_id} | 
 *OrganisationsApi* | [**getOrganisation**](docs/OrganisationsApi.md#getorganisation) | **GET** /organisations/{organisation_id} | 
@@ -73,6 +74,7 @@ Class | Method | HTTP request | Description
  - [com.aicrowd.evaluations.models.AuthResponse](docs/AuthResponse.md)
  - [com.aicrowd.evaluations.models.Cluster](docs/Cluster.md)
  - [com.aicrowd.evaluations.models.Grader](docs/Grader.md)
+ - [com.aicrowd.evaluations.models.GraderMeta](docs/GraderMeta.md)
  - [com.aicrowd.evaluations.models.Login](docs/Login.md)
  - [com.aicrowd.evaluations.models.Organisation](docs/Organisation.md)
  - [com.aicrowd.evaluations.models.OrganisationQuota](docs/OrganisationQuota.md)
