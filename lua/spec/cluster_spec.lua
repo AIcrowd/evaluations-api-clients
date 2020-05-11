@@ -58,15 +58,15 @@ describe("cluster", function()
     end)
   end)
 
-  -- unit tests for the property 'docker_password'
-  describe("property docker_password test", function()
+  -- unit tests for the property 'docker_registry'
+  describe("property docker_registry test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'docker_registry'
-  describe("property docker_registry test", function()
+  -- unit tests for the property 'namespace'
+  describe("property namespace test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

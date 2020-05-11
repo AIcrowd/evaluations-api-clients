@@ -26,10 +26,10 @@ type Cluster struct {
 	AuthToken string `json:"auth_token"`
 	// Docker registry username
 	DockerUsername string `json:"docker_username"`
-	// Docker registry password
-	DockerPassword string `json:"docker_password"`
 	// Docker registry URL. Dockerhub is used by default.
 	DockerRegistry string `json:"docker_registry,omitempty"`
+	// Kubernetes namespace to run the workflows in
+	Namespace string `json:"namespace,omitempty"`
 	// Storage class to use for datasets
 	StorageClass string `json:"storage_class,omitempty"`
 	// Readiness of the cluster

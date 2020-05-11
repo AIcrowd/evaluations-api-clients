@@ -25,11 +25,11 @@ class Cluster {
   /* Docker registry username */
   String dockerUsername = null
 
-  /* Docker registry password */
-  String dockerPassword = null
-
   /* Docker registry URL. Dockerhub is used by default. */
   String dockerRegistry = null
+
+  /* Kubernetes namespace to run the workflows in */
+  String namespace = null
 
   /* Storage class to use for datasets */
   String storageClass = null

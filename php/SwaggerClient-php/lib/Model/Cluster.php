@@ -63,8 +63,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'remote_address' => 'string',
         'auth_token' => 'string',
         'docker_username' => 'string',
-        'docker_password' => 'string',
         'docker_registry' => 'string',
+        'namespace' => 'string',
         'storage_class' => 'string',
         'status' => 'bool',
         'wf_name' => 'string',
@@ -84,8 +84,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'remote_address' => null,
         'auth_token' => null,
         'docker_username' => null,
-        'docker_password' => null,
         'docker_registry' => null,
+        'namespace' => null,
         'storage_class' => null,
         'status' => null,
         'wf_name' => null,
@@ -126,8 +126,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'remote_address' => 'remote_address',
         'auth_token' => 'auth_token',
         'docker_username' => 'docker_username',
-        'docker_password' => 'docker_password',
         'docker_registry' => 'docker_registry',
+        'namespace' => 'namespace',
         'storage_class' => 'storage_class',
         'status' => 'status',
         'wf_name' => 'wf_name',
@@ -147,8 +147,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'remote_address' => 'setRemoteAddress',
         'auth_token' => 'setAuthToken',
         'docker_username' => 'setDockerUsername',
-        'docker_password' => 'setDockerPassword',
         'docker_registry' => 'setDockerRegistry',
+        'namespace' => 'setNamespace',
         'storage_class' => 'setStorageClass',
         'status' => 'setStatus',
         'wf_name' => 'setWfName',
@@ -168,8 +168,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'remote_address' => 'getRemoteAddress',
         'auth_token' => 'getAuthToken',
         'docker_username' => 'getDockerUsername',
-        'docker_password' => 'getDockerPassword',
         'docker_registry' => 'getDockerRegistry',
+        'namespace' => 'getNamespace',
         'storage_class' => 'getStorageClass',
         'status' => 'getStatus',
         'wf_name' => 'getWfName',
@@ -243,8 +243,8 @@ class Cluster implements ModelInterface, ArrayAccess
         $this->container['remote_address'] = isset($data['remote_address']) ? $data['remote_address'] : null;
         $this->container['auth_token'] = isset($data['auth_token']) ? $data['auth_token'] : null;
         $this->container['docker_username'] = isset($data['docker_username']) ? $data['docker_username'] : null;
-        $this->container['docker_password'] = isset($data['docker_password']) ? $data['docker_password'] : null;
         $this->container['docker_registry'] = isset($data['docker_registry']) ? $data['docker_registry'] : null;
+        $this->container['namespace'] = isset($data['namespace']) ? $data['namespace'] : null;
         $this->container['storage_class'] = isset($data['storage_class']) ? $data['storage_class'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
@@ -269,9 +269,6 @@ class Cluster implements ModelInterface, ArrayAccess
         }
         if ($this->container['docker_username'] === null) {
             $invalidProperties[] = "'docker_username' can't be null";
-        }
-        if ($this->container['docker_password'] === null) {
-            $invalidProperties[] = "'docker_password' can't be null";
         }
         return $invalidProperties;
     }
@@ -433,30 +430,6 @@ class Cluster implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets docker_password
-     *
-     * @return string
-     */
-    public function getDockerPassword()
-    {
-        return $this->container['docker_password'];
-    }
-
-    /**
-     * Sets docker_password
-     *
-     * @param string $docker_password Docker registry password
-     *
-     * @return $this
-     */
-    public function setDockerPassword($docker_password)
-    {
-        $this->container['docker_password'] = $docker_password;
-
-        return $this;
-    }
-
-    /**
      * Gets docker_registry
      *
      * @return string
@@ -476,6 +449,30 @@ class Cluster implements ModelInterface, ArrayAccess
     public function setDockerRegistry($docker_registry)
     {
         $this->container['docker_registry'] = $docker_registry;
+
+        return $this;
+    }
+
+    /**
+     * Gets namespace
+     *
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->container['namespace'];
+    }
+
+    /**
+     * Sets namespace
+     *
+     * @param string $namespace Kubernetes namespace to run the workflows in
+     *
+     * @return $this
+     */
+    public function setNamespace($namespace)
+    {
+        $this->container['namespace'] = $namespace;
 
         return $this;
     }

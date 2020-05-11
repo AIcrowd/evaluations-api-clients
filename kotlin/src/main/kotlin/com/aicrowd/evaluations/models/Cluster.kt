@@ -20,8 +20,8 @@ package com.aicrowd.evaluations.models
  * @param remote_address Remote address used to connect to the cluster
  * @param auth_token Authentication needed for the cluster
  * @param docker_username Docker registry username
- * @param docker_password Docker registry password
  * @param docker_registry Docker registry URL. Dockerhub is used by default.
+ * @param namespace Kubernetes namespace to run the workflows in
  * @param storage_class Storage class to use for datasets
  * @param status Readiness of the cluster
  * @param wf_name Name of the workflow used to setup grader
@@ -35,8 +35,6 @@ data class Cluster (
     val auth_token: kotlin.String,
     /* Docker registry username */
     val docker_username: kotlin.String,
-    /* Docker registry password */
-    val docker_password: kotlin.String,
     /* ID */
     val id: kotlin.Int? = null,
     /* Creation time */
@@ -45,6 +43,8 @@ data class Cluster (
     val updated: java.time.LocalDateTime? = null,
     /* Docker registry URL. Dockerhub is used by default. */
     val docker_registry: kotlin.String? = null,
+    /* Kubernetes namespace to run the workflows in */
+    val namespace: kotlin.String? = null,
     /* Storage class to use for datasets */
     val storage_class: kotlin.String? = null,
     /* Readiness of the cluster */

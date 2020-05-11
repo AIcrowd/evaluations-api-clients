@@ -149,17 +149,17 @@ export interface Cluster {
      */
     dockerUsername: string;
     /**
-     * Docker registry password
-     * @type {string}
-     * @memberof Cluster
-     */
-    dockerPassword: string;
-    /**
      * Docker registry URL. Dockerhub is used by default.
      * @type {string}
      * @memberof Cluster
      */
     dockerRegistry?: string;
+    /**
+     * Kubernetes namespace to run the workflows in
+     * @type {string}
+     * @memberof Cluster
+     */
+    namespace?: string;
     /**
      * Storage class to use for datasets
      * @type {string}

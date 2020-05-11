@@ -27,10 +27,10 @@ case class Cluster (
   authToken: String,
   // Docker registry username
   dockerUsername: String,
-  // Docker registry password
-  dockerPassword: String,
   // Docker registry URL. Dockerhub is used by default.
   dockerRegistry: Option[String] = None,
+  // Kubernetes namespace to run the workflows in
+  namespace: Option[String] = None,
   // Storage class to use for datasets
   storageClass: Option[String] = None,
   // Readiness of the cluster

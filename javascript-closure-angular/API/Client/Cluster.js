@@ -48,18 +48,18 @@ API.Client.Cluster.prototype.authToken;
 API.Client.Cluster.prototype.dockerUsername;
 
 /**
- * Docker registry password
- * @type {!string}
- * @export
- */
-API.Client.Cluster.prototype.dockerPassword;
-
-/**
  * Docker registry URL. Dockerhub is used by default.
  * @type {!string}
  * @export
  */
 API.Client.Cluster.prototype.dockerRegistry;
+
+/**
+ * Kubernetes namespace to run the workflows in
+ * @type {!string}
+ * @export
+ */
+API.Client.Cluster.prototype.namespace;
 
 /**
  * Storage class to use for datasets

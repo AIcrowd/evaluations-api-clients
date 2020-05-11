@@ -119,16 +119,16 @@ class ClusterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "docker_password"
+     * Test attribute "docker_registry"
      */
-    public function testPropertyDockerPassword()
+    public function testPropertyDockerRegistry()
     {
     }
 
     /**
-     * Test attribute "docker_registry"
+     * Test attribute "namespace"
      */
-    public function testPropertyDockerRegistry()
+    public function testPropertyNamespace()
     {
     }
 

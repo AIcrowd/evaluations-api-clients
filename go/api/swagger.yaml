@@ -1059,7 +1059,6 @@ definitions:
     type: "object"
     required:
     - "auth_token"
-    - "docker_password"
     - "docker_username"
     - "remote_address"
     properties:
@@ -1086,12 +1085,12 @@ definitions:
       docker_username:
         type: "string"
         description: "Docker registry username"
-      docker_password:
-        type: "string"
-        description: "Docker registry password"
       docker_registry:
         type: "string"
         description: "Docker registry URL. Dockerhub is used by default."
+      namespace:
+        type: "string"
+        description: "Kubernetes namespace to run the workflows in"
       storage_class:
         type: "string"
         description: "Storage class to use for datasets"
@@ -1117,15 +1116,15 @@ definitions:
       docker_registry: "docker_registry"
       remote_address: "remote_address"
       organisation_id: 1
-      docker_password: "docker_password"
       user_id: 6
+      namespace: "namespace"
       wf_name: "wf_name"
       id: 0
       auth_token: "auth_token"
       docker_username: "docker_username"
       updated: "2000-01-23T04:56:07.000+00:00"
       status: true
-    x-mask: "{id,created,updated,remote_address,docker_username,storage_class,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,remote_address,docker_username,namespace,storage_class,status,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

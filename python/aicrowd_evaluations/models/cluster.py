@@ -37,8 +37,8 @@ class Cluster(object):
         'remote_address': 'str',
         'auth_token': 'str',
         'docker_username': 'str',
-        'docker_password': 'str',
         'docker_registry': 'str',
+        'namespace': 'str',
         'storage_class': 'str',
         'status': 'bool',
         'wf_name': 'str',
@@ -53,8 +53,8 @@ class Cluster(object):
         'remote_address': 'remote_address',
         'auth_token': 'auth_token',
         'docker_username': 'docker_username',
-        'docker_password': 'docker_password',
         'docker_registry': 'docker_registry',
+        'namespace': 'namespace',
         'storage_class': 'storage_class',
         'status': 'status',
         'wf_name': 'wf_name',
@@ -62,7 +62,7 @@ class Cluster(object):
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_password=None, docker_registry=None, storage_class=None, status=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_registry=None, namespace=None, storage_class=None, status=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
         """Cluster - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -71,8 +71,8 @@ class Cluster(object):
         self._remote_address = None
         self._auth_token = None
         self._docker_username = None
-        self._docker_password = None
         self._docker_registry = None
+        self._namespace = None
         self._storage_class = None
         self._status = None
         self._wf_name = None
@@ -89,9 +89,10 @@ class Cluster(object):
         self.remote_address = remote_address
         self.auth_token = auth_token
         self.docker_username = docker_username
-        self.docker_password = docker_password
         if docker_registry is not None:
             self.docker_registry = docker_registry
+        if namespace is not None:
+            self.namespace = namespace
         if storage_class is not None:
             self.storage_class = storage_class
         if status is not None:
@@ -248,31 +249,6 @@ class Cluster(object):
         self._docker_username = docker_username
 
     @property
-    def docker_password(self):
-        """Gets the docker_password of this Cluster.  # noqa: E501
-
-        Docker registry password  # noqa: E501
-
-        :return: The docker_password of this Cluster.  # noqa: E501
-        :rtype: str
-        """
-        return self._docker_password
-
-    @docker_password.setter
-    def docker_password(self, docker_password):
-        """Sets the docker_password of this Cluster.
-
-        Docker registry password  # noqa: E501
-
-        :param docker_password: The docker_password of this Cluster.  # noqa: E501
-        :type: str
-        """
-        if docker_password is None:
-            raise ValueError("Invalid value for `docker_password`, must not be `None`")  # noqa: E501
-
-        self._docker_password = docker_password
-
-    @property
     def docker_registry(self):
         """Gets the docker_registry of this Cluster.  # noqa: E501
 
@@ -294,6 +270,29 @@ class Cluster(object):
         """
 
         self._docker_registry = docker_registry
+
+    @property
+    def namespace(self):
+        """Gets the namespace of this Cluster.  # noqa: E501
+
+        Kubernetes namespace to run the workflows in  # noqa: E501
+
+        :return: The namespace of this Cluster.  # noqa: E501
+        :rtype: str
+        """
+        return self._namespace
+
+    @namespace.setter
+    def namespace(self, namespace):
+        """Sets the namespace of this Cluster.
+
+        Kubernetes namespace to run the workflows in  # noqa: E501
+
+        :param namespace: The namespace of this Cluster.  # noqa: E501
+        :type: str
+        """
+
+        self._namespace = namespace
 
     @property
     def storage_class(self):

@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **remote_address** | **string** | Remote address used to connect to the cluster | 
 **auth_token** | **string** | Authentication needed for the cluster | 
 **docker_username** | **string** | Docker registry username | 
-**docker_password** | **string** | Docker registry password | 
 **docker_registry** | **string** | Docker registry URL. Dockerhub is used by default. | [optional] 
+**namespace** | **string** | Kubernetes namespace to run the workflows in | [optional] 
 **storage_class** | **string** | Storage class to use for datasets | [optional] 
 **status** | **bool** | Readiness of the cluster | [optional] 
 **wf_name** | **string** | Name of the workflow used to setup grader | [optional] 

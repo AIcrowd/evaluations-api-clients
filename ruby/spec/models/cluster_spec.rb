@@ -68,13 +68,13 @@ describe 'Cluster' do
     end
   end
 
-  describe 'test attribute "docker_password"' do
+  describe 'test attribute "docker_registry"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "docker_registry"' do
+  describe 'test attribute "namespace"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -115,20 +115,20 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'DockerUsername'
         }
         /// <summary>
-        /// Test the property 'DockerPassword'
-        /// </summary>
-        [Test]
-        public void DockerPasswordTest()
-        {
-            // TODO unit test for the property 'DockerPassword'
-        }
-        /// <summary>
         /// Test the property 'DockerRegistry'
         /// </summary>
         [Test]
         public void DockerRegistryTest()
         {
             // TODO unit test for the property 'DockerRegistry'
+        }
+        /// <summary>
+        /// Test the property 'Namespace'
+        /// </summary>
+        [Test]
+        public void NamespaceTest()
+        {
+            // TODO unit test for the property 'Namespace'
         }
         /// <summary>
         /// Test the property 'StorageClass'

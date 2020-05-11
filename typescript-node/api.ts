@@ -202,13 +202,13 @@ export class Cluster {
     */
     'dockerUsername': string;
     /**
-    * Docker registry password
-    */
-    'dockerPassword': string;
-    /**
     * Docker registry URL. Dockerhub is used by default.
     */
     'dockerRegistry'?: string;
+    /**
+    * Kubernetes namespace to run the workflows in
+    */
+    'namespace'?: string;
     /**
     * Storage class to use for datasets
     */
@@ -264,13 +264,13 @@ export class Cluster {
             "type": "string"
         },
         {
-            "name": "dockerPassword",
-            "baseName": "docker_password",
+            "name": "dockerRegistry",
+            "baseName": "docker_registry",
             "type": "string"
         },
         {
-            "name": "dockerRegistry",
-            "baseName": "docker_registry",
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string"
         },
         {
