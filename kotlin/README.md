@@ -59,6 +59,7 @@ Class | Method | HTTP request | Description
 *SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getsubmissiondata) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getsubmissionlogs) | **GET** /submissions/{submission_id}/logs | 
 *SubmissionsApi* | [**listSubmissions**](docs/SubmissionsApi.md#listsubmissions) | **GET** /submissions/ | 
+*SubmissionsApi* | [**retrySubmissions**](docs/SubmissionsApi.md#retrysubmissions) | **POST** /submissions/retry | 
 *UsersApi* | [**createUser**](docs/UsersApi.md#createuser) | **POST** /users/ | 
 *UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteuser) | **DELETE** /users/{user_id} | 
 *UsersApi* | [**getUser**](docs/UsersApi.md#getuser) | **GET** /users/{user_id} | 
@@ -78,6 +79,8 @@ Class | Method | HTTP request | Description
  - [com.aicrowd.evaluations.models.Login](docs/Login.md)
  - [com.aicrowd.evaluations.models.Organisation](docs/Organisation.md)
  - [com.aicrowd.evaluations.models.OrganisationQuota](docs/OrganisationQuota.md)
+ - [com.aicrowd.evaluations.models.SubmissionRetry](docs/SubmissionRetry.md)
+ - [com.aicrowd.evaluations.models.SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [com.aicrowd.evaluations.models.Submissions](docs/Submissions.md)
  - [com.aicrowd.evaluations.models.User](docs/User.md)
  - [com.aicrowd.evaluations.models.UserQuota](docs/UserQuota.md)

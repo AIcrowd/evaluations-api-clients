@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
+[**retrySubmissions**](SubmissionsApi.md#retrySubmissions) | **POST** /submissions/retry | 
 
 
 ## **createSubmission**
@@ -198,6 +199,39 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**array[Submissions]**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **retrySubmissions**
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```bash
+aicrowd-evaluations retrySubmissions X-Fields:value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md) |  |
+ **xFields** | **string** | An optional fields mask | [optional]
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

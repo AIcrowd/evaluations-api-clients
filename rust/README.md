@@ -45,6 +45,7 @@ Class | Method | HTTP request | Description
 *SubmissionsApi* | [**get_submission_data**](docs/SubmissionsApi.md#get_submission_data) | **Get** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**get_submission_logs**](docs/SubmissionsApi.md#get_submission_logs) | **Get** /submissions/{submission_id}/logs | 
 *SubmissionsApi* | [**list_submissions**](docs/SubmissionsApi.md#list_submissions) | **Get** /submissions/ | 
+*SubmissionsApi* | [**retry_submissions**](docs/SubmissionsApi.md#retry_submissions) | **Post** /submissions/retry | 
 *UsersApi* | [**create_user**](docs/UsersApi.md#create_user) | **Post** /users/ | 
 *UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **Delete** /users/{user_id} | 
 *UsersApi* | [**get_user**](docs/UsersApi.md#get_user) | **Get** /users/{user_id} | 
@@ -63,6 +64,8 @@ Class | Method | HTTP request | Description
  - [Login](docs/Login.md)
  - [Organisation](docs/Organisation.md)
  - [OrganisationQuota](docs/OrganisationQuota.md)
+ - [SubmissionRetry](docs/SubmissionRetry.md)
+ - [SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [Submissions](docs/Submissions.md)
  - [User](docs/User.md)
  - [UserQuota](docs/UserQuota.md)

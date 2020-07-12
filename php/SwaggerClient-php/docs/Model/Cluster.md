@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **storage_class** | **string** | Storage class to use for datasets | [optional] 
 **status** | **bool** | Readiness of the cluster | [optional] 
 **wf_name** | **string** | Name of the workflow used to setup grader | [optional] 
+**argo_host** | **string** | External IP exposed by LoadBalancer Service of argo-server deployment | [optional] 
+**argo_token** | **string** | Argo server token required for authentication | [optional] 
 **user_id** | **int** | User ID | [optional] 
 **organisation_id** | **int** | Organisation ID | [optional] 
 

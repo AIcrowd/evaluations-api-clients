@@ -47,6 +47,12 @@ pub struct Cluster {
   /// Name of the workflow used to setup grader
   #[serde(rename = "wf_name")]
   wf_name: Option<String>,
+  /// External IP exposed by LoadBalancer Service of argo-server deployment
+  #[serde(rename = "argo_host")]
+  argo_host: Option<String>,
+  /// Argo server token required for authentication
+  #[serde(rename = "argo_token")]
+  argo_token: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -69,6 +75,8 @@ impl Cluster {
       storage_class: None,
       status: None,
       wf_name: None,
+      argo_host: None,
+      argo_token: None,
       user_id: None,
       organisation_id: None
     }
@@ -250,6 +258,40 @@ impl Cluster {
 
   pub fn reset_wf_name(&mut self) {
     self.wf_name = None;
+  }
+
+  pub fn set_argo_host(&mut self, argo_host: String) {
+    self.argo_host = Some(argo_host);
+  }
+
+  pub fn with_argo_host(mut self, argo_host: String) -> Cluster {
+    self.argo_host = Some(argo_host);
+    self
+  }
+
+  pub fn argo_host(&self) -> Option<&String> {
+    self.argo_host.as_ref()
+  }
+
+  pub fn reset_argo_host(&mut self) {
+    self.argo_host = None;
+  }
+
+  pub fn set_argo_token(&mut self, argo_token: String) {
+    self.argo_token = Some(argo_token);
+  }
+
+  pub fn with_argo_token(mut self, argo_token: String) -> Cluster {
+    self.argo_token = Some(argo_token);
+    self
+  }
+
+  pub fn argo_token(&self) -> Option<&String> {
+    self.argo_token.as_ref()
+  }
+
+  pub fn reset_argo_token(&mut self) {
+    self.argo_token = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

@@ -5,6 +5,8 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
 import com.aicrowd.evaluations.ApiUtils
 
+import com.aicrowd.evaluations.models.SubmissionRetry
+import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
 
 import java.util.*;
@@ -151,6 +153,29 @@ if (!"null".equals(String.valueOf(userId)))
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
                     Submissions.class )
+                    
+    }
+    def retrySubmissions ( SubmissionRetryInput payload, String xFields, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/submissions/retry"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (payload == null) {
+            throw new RuntimeException("missing required params payload")
+        }
+
+        
+        headerParams.put("X-Fields", xFields)
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    SubmissionRetry.class )
                     
     }
 }

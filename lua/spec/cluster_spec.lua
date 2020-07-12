@@ -93,6 +93,20 @@ describe("cluster", function()
     end)
   end)
 
+  -- unit tests for the property 'argo_host'
+  describe("property argo_host test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'argo_token'
+  describe("property argo_token test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'user_id'
   describe("property user_id test", function()
     it("should work", function()

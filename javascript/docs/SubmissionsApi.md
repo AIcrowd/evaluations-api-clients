@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
+[**retrySubmissions**](SubmissionsApi.md#retrySubmissions) | **POST** /submissions/retry | 
 
 
 <a name="createSubmission"></a>
@@ -337,6 +338,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[Submissions]**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="retrySubmissions"></a>
+# **retrySubmissions**
+> SubmissionRetry retrySubmissions(payload, opts)
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
+
+var payload = new AicrowdEvaluations.SubmissionRetryInput(); // SubmissionRetryInput | 
+
+var opts = { 
+  'xFields': "xFields_example" // String | An optional fields mask
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.retrySubmissions(payload, opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **xFields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

@@ -142,6 +142,19 @@ namespace Com.AIcrowd.Evaluations.Test
             //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
         }
         
+        /// <summary>
+        /// Test RetrySubmissions
+        /// </summary>
+        [Test]
+        public void RetrySubmissionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SubmissionRetryInput payload = null;
+            //string xFields = null;
+            //var response = instance.RetrySubmissions(payload, xFields);
+            //Assert.IsInstanceOf<SubmissionRetry> (response, "response is SubmissionRetry");
+        }
+        
     }
 
 }

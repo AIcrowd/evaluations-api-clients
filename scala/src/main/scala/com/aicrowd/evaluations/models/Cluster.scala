@@ -37,6 +37,10 @@ case class Cluster (
   status: Option[Boolean] = None,
   // Name of the workflow used to setup grader
   wfName: Option[String] = None,
+  // External IP exposed by LoadBalancer Service of argo-server deployment
+  argoHost: Option[String] = None,
+  // Argo server token required for authentication
+  argoToken: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

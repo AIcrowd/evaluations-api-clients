@@ -83,6 +83,20 @@ API.Client.Cluster.prototype.status;
 API.Client.Cluster.prototype.wfName;
 
 /**
+ * External IP exposed by LoadBalancer Service of argo-server deployment
+ * @type {!string}
+ * @export
+ */
+API.Client.Cluster.prototype.argoHost;
+
+/**
+ * Argo server token required for authentication
+ * @type {!string}
+ * @export
+ */
+API.Client.Cluster.prototype.argoToken;
+
+/**
  * User ID
  * @type {!number}
  * @export

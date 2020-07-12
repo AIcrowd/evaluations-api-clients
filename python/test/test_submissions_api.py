@@ -65,6 +65,12 @@ class TestSubmissionsApi(unittest.TestCase):
         """
         pass
 
+    def test_retry_submissions(self):
+        """Test case for retry_submissions
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

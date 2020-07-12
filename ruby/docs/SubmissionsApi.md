@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 [**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
+[**retry_submissions**](SubmissionsApi.md#retry_submissions) | **POST** /submissions/retry | 
 
 
 # **create_submission**
@@ -332,6 +333,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Array&lt;Submissions&gt;**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **retry_submissions**
+> SubmissionRetry retry_submissions(payload, opts)
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::SubmissionsApi.new
+
+payload = AIcrowdEvaluations::SubmissionRetryInput.new # SubmissionRetryInput | 
+
+opts = { 
+  x_fields: 'x_fields_example' # String | An optional fields mask
+}
+
+begin
+  result = api_instance.retry_submissions(payload, opts)
+  p result
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling SubmissionsApi->retry_submissions: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **x_fields** | **String**| An optional fields mask | [optional] 
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

@@ -495,4 +495,80 @@ sub list_submissions {
     return $_response_object;
 }
 
+#
+# retry_submissions
+#
+# 
+# 
+# @param SubmissionRetryInput $payload  (required)
+# @param string $x_fields An optional fields mask (optional)
+{
+    my $params = {
+    'payload' => {
+        data_type => 'SubmissionRetryInput',
+        description => '',
+        required => '1',
+    },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'retry_submissions' } = { 
+    	summary => '',
+        params => $params,
+        returns => 'SubmissionRetry',
+        };
+}
+# @return SubmissionRetry
+#
+sub retry_submissions {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'payload' is set
+    unless (exists $args{'payload'}) {
+      croak("Missing the required parameter 'payload' when calling retry_submissions");
+    }
+
+    # parse inputs
+    my $_resource_path = '/submissions/retry';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
+    my $_body_data;
+    # body params
+    if ( exists $args{'payload'}) {
+        $_body_data = $args{'payload'};
+    }
+
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('SubmissionRetry', $response);
+    return $_response_object;
+}
+
 1;

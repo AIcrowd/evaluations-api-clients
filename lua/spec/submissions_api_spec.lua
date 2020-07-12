@@ -57,4 +57,11 @@ describe("submissions_api", function()
     end)
   end)
 
+  -- unit tests for retry_submissions
+  describe("retry_submissions test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
 end)

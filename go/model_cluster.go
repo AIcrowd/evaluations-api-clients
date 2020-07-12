@@ -36,6 +36,10 @@ type Cluster struct {
 	Status bool `json:"status,omitempty"`
 	// Name of the workflow used to setup grader
 	WfName string `json:"wf_name,omitempty"`
+	// External IP exposed by LoadBalancer Service of argo-server deployment
+	ArgoHost string `json:"argo_host,omitempty"`
+	// Argo server token required for authentication
+	ArgoToken string `json:"argo_token,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

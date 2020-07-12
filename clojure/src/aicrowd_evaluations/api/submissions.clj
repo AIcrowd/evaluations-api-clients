@@ -128,3 +128,26 @@
   ([optional-params]
    (:data (list-submissions-with-http-info optional-params))))
 
+(defn retry-submissions-with-http-info
+  "
+  Retry the submissions with given IDs"
+  ([payload ] (retry-submissions-with-http-info payload nil))
+  ([payload {:keys [x-fields ]}]
+   (check-required-params payload)
+   (call-api "/submissions/retry" :post
+             {:path-params   {}
+              :header-params {"X-Fields" x-fields }
+              :query-params  {}
+              :form-params   {}
+              :body-param    payload
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
+
+(defn retry-submissions
+  "
+  Retry the submissions with given IDs"
+  ([payload ] (retry-submissions payload nil))
+  ([payload optional-params]
+   (:data (retry-submissions-with-http-info payload optional-params))))
+

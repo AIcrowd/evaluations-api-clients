@@ -216,4 +216,35 @@ export class SubmissionsApi {
 
         return this.$http(httpRequestParams);
     }
+    /**
+     * Retry the submissions with given IDs
+     * @param payload 
+     * @param xFields An optional fields mask
+     */
+    public retrySubmissions (payload: models.SubmissionRetryInput, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.SubmissionRetry> {
+        const localVarPath = this.basePath + '/submissions/retry';
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling retrySubmissions.');
+        }
+
+        headerParams['X-Fields'] = xFields;
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            data: payload,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
 }

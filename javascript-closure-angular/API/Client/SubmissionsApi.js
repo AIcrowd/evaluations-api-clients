@@ -9,6 +9,8 @@
  */
 goog.provide('API.Client.SubmissionsApi');
 
+goog.require('API.Client.SubmissionRetry');
+goog.require('API.Client.SubmissionRetryInput');
 goog.require('API.Client.Submissions');
 
 /**
@@ -273,6 +275,46 @@ API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_sta
     url: path,
     json: true,
             params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Retry the submissions with given IDs
+ * @param {!SubmissionRetryInput} payload 
+ * @param {!string=} opt_xFields An optional fields mask
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise<!API.Client.SubmissionRetry>}
+ */
+API.Client.SubmissionsApi.prototype.retrySubmissions = function(payload, opt_xFields, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/submissions/retry';
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'payload' is set
+  if (!payload) {
+    throw new Error('Missing required parameter payload when calling retrySubmissions');
+  }
+  headerParams['X-Fields'] = opt_xFields;
+
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'POST',
+    url: path,
+    json: true,
+    data: payload,
+        params: queryParameters,
     headers: headerParams
   };
 

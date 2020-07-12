@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **storage_class** | **kotlin.String** | Storage class to use for datasets |  [optional]
 **status** | **kotlin.Boolean** | Readiness of the cluster |  [optional]
 **wf_name** | **kotlin.String** | Name of the workflow used to setup grader |  [optional]
+**argo_host** | **kotlin.String** | External IP exposed by LoadBalancer Service of argo-server deployment |  [optional]
+**argo_token** | **kotlin.String** | Argo server token required for authentication |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

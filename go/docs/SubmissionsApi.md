@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetSubmissionData**](SubmissionsApi.md#GetSubmissionData) | **Get** /submissions/{submission_id}/data | 
 [**GetSubmissionLogs**](SubmissionsApi.md#GetSubmissionLogs) | **Get** /submissions/{submission_id}/logs | 
 [**ListSubmissions**](SubmissionsApi.md#ListSubmissions) | **Get** /submissions/ | 
+[**RetrySubmissions**](SubmissionsApi.md#RetrySubmissions) | **Post** /submissions/retry | 
 
 
 # **CreateSubmission**
@@ -197,6 +198,43 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Submissions**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **RetrySubmissions**
+> SubmissionRetry RetrySubmissions(ctx, payload, optional)
+
+
+Retry the submissions with given IDs
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **optional** | ***SubmissionsApiRetrySubmissionsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubmissionsApiRetrySubmissionsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

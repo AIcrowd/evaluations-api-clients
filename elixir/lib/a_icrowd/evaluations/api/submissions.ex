@@ -177,4 +177,34 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
     |> (&Connection.request(connection, &1)).()
     |> decode([%AIcrowd.Evaluations.Model.Submissions{}])
   end
+
+  @doc """
+  Retry the submissions with given IDs
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - payload (SubmissionRetryInput): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :x_fields (String.t): An optional fields mask
+
+  ## Returns
+
+  {:ok, %AIcrowd.Evaluations.Model.SubmissionRetry{}} on success
+  {:error, info} on failure
+  """
+  @spec retry_submissions(Tesla.Env.client, AIcrowd.Evaluations.Model.SubmissionRetryInput.t, keyword()) :: {:ok, AIcrowd.Evaluations.Model.SubmissionRetry.t} | {:error, Tesla.Env.t}
+  def retry_submissions(connection, payload, opts \\ []) do
+    optional_params = %{
+      :"X-Fields" => :headers
+    }
+    %{}
+    |> method(:post)
+    |> url("/submissions/retry")
+    |> add_param(:body, :"payload", payload)
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(%AIcrowd.Evaluations.Model.SubmissionRetry{})
+  end
 end

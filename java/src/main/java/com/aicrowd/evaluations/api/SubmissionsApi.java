@@ -27,6 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.aicrowd.evaluations.models.SubmissionRetry;
+import com.aicrowd.evaluations.models.SubmissionRetryInput;
 import com.aicrowd.evaluations.models.Submissions;
 
 import java.lang.reflect.Type;
@@ -808,6 +810,134 @@ public class SubmissionsApi {
 
         com.squareup.okhttp.Call call = listSubmissionsValidateBeforeCall(meta, status, graderId, userId, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Submissions>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for retrySubmissions
+     * @param payload  (required)
+     * @param xFields An optional fields mask (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call retrySubmissionsCall(SubmissionRetryInput payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = payload;
+
+        // create path and map variables
+        String localVarPath = "/submissions/retry";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xFields != null)
+        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "api_key" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call retrySubmissionsValidateBeforeCall(SubmissionRetryInput payload, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'payload' is set
+        if (payload == null) {
+            throw new ApiException("Missing the required parameter 'payload' when calling retrySubmissions(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = retrySubmissionsCall(payload, xFields, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Retry the submissions with given IDs
+     * @param payload  (required)
+     * @param xFields An optional fields mask (optional)
+     * @return SubmissionRetry
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SubmissionRetry retrySubmissions(SubmissionRetryInput payload, String xFields) throws ApiException {
+        ApiResponse<SubmissionRetry> resp = retrySubmissionsWithHttpInfo(payload, xFields);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Retry the submissions with given IDs
+     * @param payload  (required)
+     * @param xFields An optional fields mask (optional)
+     * @return ApiResponse&lt;SubmissionRetry&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<SubmissionRetry> retrySubmissionsWithHttpInfo(SubmissionRetryInput payload, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = retrySubmissionsValidateBeforeCall(payload, xFields, null, null);
+        Type localVarReturnType = new TypeToken<SubmissionRetry>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Retry the submissions with given IDs
+     * @param payload  (required)
+     * @param xFields An optional fields mask (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call retrySubmissionsAsync(SubmissionRetryInput payload, String xFields, final ApiCallback<SubmissionRetry> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = retrySubmissionsValidateBeforeCall(payload, xFields, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<SubmissionRetry>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

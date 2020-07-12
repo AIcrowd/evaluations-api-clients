@@ -11,6 +11,8 @@
 */
 package com.aicrowd.evaluations.apis
 
+import com.aicrowd.evaluations.models.SubmissionRetry
+import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
 
 import com.aicrowd.evaluations.infrastructure.*
@@ -240,6 +242,45 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as kotlin.Array<Submissions>
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
+    * Retry the submissions with given IDs
+    * @param payload  
+    * @param xFields An optional fields mask (optional)
+    * @return SubmissionRetry
+    */
+    @Suppress("UNCHECKED_CAST")
+    fun retrySubmissions(payload: SubmissionRetryInput, xFields: kotlin.String) : SubmissionRetry {
+        val localVariableBody: kotlin.Any? = payload
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.POST,
+            "/submissions/retry",
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<SubmissionRetry>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as SubmissionRetry
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

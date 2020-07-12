@@ -18,6 +18,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { SubmissionRetry } from '../model/submissionRetry';
+import { SubmissionRetryInput } from '../model/submissionRetryInput';
 import { Submissions } from '../model/submissions';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -368,6 +370,63 @@ export class SubmissionsService {
         return this.httpClient.get<Array<Submissions>>(`${this.basePath}/submissions/`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Retry the submissions with given IDs
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public retrySubmissions(payload: SubmissionRetryInput, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<SubmissionRetry>;
+    public retrySubmissions(payload: SubmissionRetryInput, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SubmissionRetry>>;
+    public retrySubmissions(payload: SubmissionRetryInput, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SubmissionRetry>>;
+    public retrySubmissions(payload: SubmissionRetryInput, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling retrySubmissions.');
+        }
+
+
+        let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<SubmissionRetry>(`${this.basePath}/submissions/retry`,
+            payload,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

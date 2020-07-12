@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetSubmissionData**](SubmissionsApi.md#getsubmissiondata) | **GET** /submissions/{submission_id}/data | 
 [**GetSubmissionLogs**](SubmissionsApi.md#getsubmissionlogs) | **GET** /submissions/{submission_id}/logs | 
 [**ListSubmissions**](SubmissionsApi.md#listsubmissions) | **GET** /submissions/ | 
+[**RetrySubmissions**](SubmissionsApi.md#retrysubmissions) | **POST** /submissions/retry | 
 
 
 <a name="createsubmission"></a>
@@ -399,6 +400,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List<Submissions>**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="retrysubmissions"></a>
+# **RetrySubmissions**
+> SubmissionRetry RetrySubmissions (SubmissionRetryInput payload, string xFields = null)
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class RetrySubmissionsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new SubmissionsApi();
+            var payload = new SubmissionRetryInput(); // SubmissionRetryInput | 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
+
+            try
+            {
+                SubmissionRetry result = apiInstance.RetrySubmissions(payload, xFields);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SubmissionsApi.RetrySubmissions: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **xFields** | **string**| An optional fields mask | [optional] 
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

@@ -222,6 +222,14 @@ export class Cluster {
     */
     'wfName'?: string;
     /**
+    * External IP exposed by LoadBalancer Service of argo-server deployment
+    */
+    'argoHost'?: string;
+    /**
+    * Argo server token required for authentication
+    */
+    'argoToken'?: string;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -286,6 +294,16 @@ export class Cluster {
         {
             "name": "wfName",
             "baseName": "wf_name",
+            "type": "string"
+        },
+        {
+            "name": "argoHost",
+            "baseName": "argo_host",
+            "type": "string"
+        },
+        {
+            "name": "argoToken",
+            "baseName": "argo_token",
             "type": "string"
         },
         {
@@ -665,6 +683,55 @@ export class OrganisationQuota {
     }
 }
 
+export class SubmissionRetry {
+    /**
+    * List of submission IDs queued for evaluation
+    */
+    'queued'?: any;
+    /**
+    * List of submission IDs failed to get queued
+    */
+    'failed'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "queued",
+            "baseName": "queued",
+            "type": "any"
+        },
+        {
+            "name": "failed",
+            "baseName": "failed",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubmissionRetry.attributeTypeMap;
+    }
+}
+
+export class SubmissionRetryInput {
+    /**
+    * List of submission IDs to retry
+    */
+    'submissions'?: Array<number>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "submissions",
+            "baseName": "submissions",
+            "type": "Array<number>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubmissionRetryInput.attributeTypeMap;
+    }
+}
+
 export class Submissions {
     /**
     * ID
@@ -936,6 +1003,8 @@ let typeMap: {[index: string]: any} = {
     "Login": Login,
     "Organisation": Organisation,
     "OrganisationQuota": OrganisationQuota,
+    "SubmissionRetry": SubmissionRetry,
+    "SubmissionRetryInput": SubmissionRetryInput,
     "Submissions": Submissions,
     "User": User,
     "UserQuota": UserQuota,
@@ -2610,6 +2679,64 @@ export class SubmissionsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Array<Submissions>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retry the submissions with given IDs
+     * @param payload 
+     * @param xFields An optional fields mask
+     * @param {*} [options] Override http request options.
+     */
+    public retrySubmissions (payload: SubmissionRetryInput, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: SubmissionRetry;  }> {
+        const localVarPath = this.basePath + '/submissions/retry';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new Error('Required parameter payload was null or undefined when calling retrySubmissions.');
+        }
+
+        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(payload, "SubmissionRetryInput")
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: SubmissionRetry;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "SubmissionRetry");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

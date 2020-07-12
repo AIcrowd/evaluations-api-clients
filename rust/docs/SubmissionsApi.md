@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **Get** /submissions/{submission_id}/data | 
 [**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **Get** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **Get** /submissions/ | 
+[**retry_submissions**](SubmissionsApi.md#retry_submissions) | **Post** /submissions/retry | 
 
 
 # **create_submission**
@@ -197,6 +198,43 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vec<::models::Submissions>**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retry_submissions**
+> ::models::SubmissionRetry retry_submissions(ctx, payload, optional)
+
+
+Retry the submissions with given IDs
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **x_fields** | **String**| An optional fields mask | 
+
+### Return type
+
+[**::models::SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

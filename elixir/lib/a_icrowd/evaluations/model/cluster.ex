@@ -20,6 +20,8 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"storage_class",
     :"status",
     :"wf_name",
+    :"argo_host",
+    :"argo_token",
     :"user_id",
     :"organisation_id"
   ]
@@ -36,6 +38,8 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"storage_class" => String.t,
     :"status" => boolean(),
     :"wf_name" => String.t,
+    :"argo_host" => String.t,
+    :"argo_token" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

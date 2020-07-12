@@ -83,5 +83,14 @@ isa_ok($api, 'AIcrowdEvaluations::SubmissionsApi');
     my $result = $api->list_submissions(meta => $meta, status => $status, grader_id => $grader_id, user_id => $user_id, x_fields => $x_fields);
 }
 
+#
+# retry_submissions test
+#
+{
+    my $payload = undef; # replace NULL with a proper value
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->retry_submissions(payload => $payload, x_fields => $x_fields);
+}
+
 
 1;

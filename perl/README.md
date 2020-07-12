@@ -240,6 +240,8 @@ use AIcrowdEvaluations::Object::GraderMeta;
 use AIcrowdEvaluations::Object::Login;
 use AIcrowdEvaluations::Object::Organisation;
 use AIcrowdEvaluations::Object::OrganisationQuota;
+use AIcrowdEvaluations::Object::SubmissionRetry;
+use AIcrowdEvaluations::Object::SubmissionRetryInput;
 use AIcrowdEvaluations::Object::Submissions;
 use AIcrowdEvaluations::Object::User;
 use AIcrowdEvaluations::Object::UserQuota;
@@ -270,6 +272,8 @@ use AIcrowdEvaluations::Object::GraderMeta;
 use AIcrowdEvaluations::Object::Login;
 use AIcrowdEvaluations::Object::Organisation;
 use AIcrowdEvaluations::Object::OrganisationQuota;
+use AIcrowdEvaluations::Object::SubmissionRetry;
+use AIcrowdEvaluations::Object::SubmissionRetryInput;
 use AIcrowdEvaluations::Object::Submissions;
 use AIcrowdEvaluations::Object::User;
 use AIcrowdEvaluations::Object::UserQuota;
@@ -324,6 +328,7 @@ Class | Method | HTTP request | Description
 *SubmissionsApi* | [**get_submission_data**](docs/SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**get_submission_logs**](docs/SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 *SubmissionsApi* | [**list_submissions**](docs/SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
+*SubmissionsApi* | [**retry_submissions**](docs/SubmissionsApi.md#retry_submissions) | **POST** /submissions/retry | 
 *UsersApi* | [**create_user**](docs/UsersApi.md#create_user) | **POST** /users/ | 
 *UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /users/{user_id} | 
 *UsersApi* | [**get_user**](docs/UsersApi.md#get_user) | **GET** /users/{user_id} | 
@@ -341,6 +346,8 @@ Class | Method | HTTP request | Description
  - [AIcrowdEvaluations::Object::Login](docs/Login.md)
  - [AIcrowdEvaluations::Object::Organisation](docs/Organisation.md)
  - [AIcrowdEvaluations::Object::OrganisationQuota](docs/OrganisationQuota.md)
+ - [AIcrowdEvaluations::Object::SubmissionRetry](docs/SubmissionRetry.md)
+ - [AIcrowdEvaluations::Object::SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [AIcrowdEvaluations::Object::Submissions](docs/Submissions.md)
  - [AIcrowdEvaluations::Object::User](docs/User.md)
  - [AIcrowdEvaluations::Object::UserQuota](docs/UserQuota.md)

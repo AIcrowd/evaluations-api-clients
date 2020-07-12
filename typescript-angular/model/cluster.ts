@@ -57,6 +57,14 @@ export interface Cluster {
      */
     readonly wfName?: string;
     /**
+     * External IP exposed by LoadBalancer Service of argo-server deployment
+     */
+    readonly argoHost?: string;
+    /**
+     * Argo server token required for authentication
+     */
+    argoToken?: string;
+    /**
      * User ID
      */
     readonly userId?: number;

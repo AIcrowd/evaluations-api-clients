@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Cluster
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-05-11T19:19:11.371Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-07-12T14:26:17.374Z")
 public class Cluster {
   @SerializedName("id")
   private Integer id = null;
@@ -62,6 +62,12 @@ public class Cluster {
 
   @SerializedName("wf_name")
   private String wfName = null;
+
+  @SerializedName("argo_host")
+  private String argoHost = null;
+
+  @SerializedName("argo_token")
+  private String argoToken = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -223,6 +229,33 @@ public class Cluster {
   }
 
    /**
+   * External IP exposed by LoadBalancer Service of argo-server deployment
+   * @return argoHost
+  **/
+  @ApiModelProperty(value = "External IP exposed by LoadBalancer Service of argo-server deployment")
+  public String getArgoHost() {
+    return argoHost;
+  }
+
+  public Cluster argoToken(String argoToken) {
+    this.argoToken = argoToken;
+    return this;
+  }
+
+   /**
+   * Argo server token required for authentication
+   * @return argoToken
+  **/
+  @ApiModelProperty(value = "Argo server token required for authentication")
+  public String getArgoToken() {
+    return argoToken;
+  }
+
+  public void setArgoToken(String argoToken) {
+    this.argoToken = argoToken;
+  }
+
+   /**
    * User ID
    * @return userId
   **/
@@ -261,13 +294,15 @@ public class Cluster {
         Objects.equals(this.storageClass, cluster.storageClass) &&
         Objects.equals(this.status, cluster.status) &&
         Objects.equals(this.wfName, cluster.wfName) &&
+        Objects.equals(this.argoHost, cluster.argoHost) &&
+        Objects.equals(this.argoToken, cluster.argoToken) &&
         Objects.equals(this.userId, cluster.userId) &&
         Objects.equals(this.organisationId, cluster.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerRegistry, namespace, storageClass, status, wfName, userId, organisationId);
+    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerRegistry, namespace, storageClass, status, wfName, argoHost, argoToken, userId, organisationId);
   }
 
 
@@ -287,6 +322,8 @@ public class Cluster {
     sb.append("    storageClass: ").append(toIndentedString(storageClass)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
+    sb.append("    argoHost: ").append(toIndentedString(argoHost)).append("\n");
+    sb.append("    argoToken: ").append(toIndentedString(argoToken)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

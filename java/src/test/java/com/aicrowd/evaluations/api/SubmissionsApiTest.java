@@ -14,6 +14,8 @@
 package com.aicrowd.evaluations.api;
 
 import com.aicrowd.evaluations.ApiException;
+import com.aicrowd.evaluations.models.SubmissionRetry;
+import com.aicrowd.evaluations.models.SubmissionRetryInput;
 import com.aicrowd.evaluations.models.Submissions;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -130,6 +132,23 @@ public class SubmissionsApiTest {
         Integer userId = null;
         String xFields = null;
         List<Submissions> response = api.listSubmissions(meta, status, graderId, userId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Retry the submissions with given IDs
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void retrySubmissionsTest() throws ApiException {
+        SubmissionRetryInput payload = null;
+        String xFields = null;
+        SubmissionRetry response = api.retrySubmissions(payload, xFields);
 
         // TODO: test validations
     }

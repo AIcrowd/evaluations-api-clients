@@ -572,6 +572,34 @@ paths:
           description: "Invalid inputs"
         "403":
           description: "Grader not found or ready"
+  /submissions/retry:
+    post:
+      tags:
+      - "submissions"
+      description: "Retry the submissions with given IDs"
+      operationId: "RetrySubmissions"
+      parameters:
+      - in: "body"
+        name: "payload"
+        required: true
+        schema:
+          $ref: "#/definitions/SubmissionRetryInput"
+        x-exportParamName: "Payload"
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/SubmissionRetry"
+        "404":
+          description: "Submission not found"
   /submissions/{submission_id}:
     get:
       tags:
@@ -1055,6 +1083,35 @@ definitions:
       logs: "logs"
       status: "status"
     x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,user_id,organisation_id}"
+  SubmissionRetryInput:
+    type: "object"
+    properties:
+      submissions:
+        type: "array"
+        description: "List of submission IDs to retry"
+        items:
+          type: "integer"
+    example:
+      submissions:
+      - 0
+      - 0
+  SubmissionRetry:
+    type: "object"
+    properties:
+      queued:
+        type: "object"
+        description: "List of submission IDs queued for evaluation"
+        properties: {}
+      failed:
+        type: "array"
+        description: "List of submission IDs failed to get queued"
+        items:
+          type: "integer"
+    example:
+      queued: "{}"
+      failed:
+      - 0
+      - 0
   Cluster:
     type: "object"
     required:
@@ -1102,6 +1159,13 @@ definitions:
         type: "string"
         description: "Name of the workflow used to setup grader"
         readOnly: true
+      argo_host:
+        type: "string"
+        description: "External IP exposed by LoadBalancer Service of argo-server deployment"
+        readOnly: true
+      argo_token:
+        type: "string"
+        description: "Argo server token required for authentication"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1112,6 +1176,7 @@ definitions:
         readOnly: true
     example:
       storage_class: "storage_class"
+      argo_host: "argo_host"
       created: "2000-01-23T04:56:07.000+00:00"
       docker_registry: "docker_registry"
       remote_address: "remote_address"
@@ -1123,8 +1188,9 @@ definitions:
       auth_token: "auth_token"
       docker_username: "docker_username"
       updated: "2000-01-23T04:56:07.000+00:00"
+      argo_token: "argo_token"
       status: true
-    x-mask: "{id,created,updated,remote_address,docker_username,namespace,storage_class,status,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,remote_address,docker_username,namespace,storage_class,status,argo_host,deleted,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

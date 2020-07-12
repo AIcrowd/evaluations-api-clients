@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **storage_class** | **string** |  | [optional] [default to null]
 **status** | **boolean** |  | [optional] [default to null]
 **wf_name** | **string** |  | [optional] [default to null]
+**argo_host** | **string** |  | [optional] [default to null]
+**argo_token** | **string** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

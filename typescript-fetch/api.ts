@@ -40,7 +40,7 @@ export interface FetchAPI {
 }
 
 /**
- *  
+ *
  * @export
  * @interface FetchArgs
  */
@@ -50,7 +50,7 @@ export interface FetchArgs {
 }
 
 /**
- * 
+ *
  * @export
  * @class BaseAPI
  */
@@ -66,7 +66,7 @@ export class BaseAPI {
 };
 
 /**
- * 
+ *
  * @export
  * @class RequiredError
  * @extends {Error}
@@ -178,6 +178,18 @@ export interface Cluster {
      * @memberof Cluster
      */
     wfName?: string;
+    /**
+     * External IP exposed by LoadBalancer Service of argo-server deployment
+     * @type {string}
+     * @memberof Cluster
+     */
+    argoHost?: string;
+    /**
+     * Argo server token required for authentication
+     * @type {string}
+     * @memberof Cluster
+     */
+    argoToken?: string;
     /**
      * User ID
      * @type {number}
@@ -434,6 +446,40 @@ export interface OrganisationQuota {
      * @memberof OrganisationQuota
      */
     quota: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface SubmissionRetry
+ */
+export interface SubmissionRetry {
+    /**
+     * List of submission IDs queued for evaluation
+     * @type {any}
+     * @memberof SubmissionRetry
+     */
+    queued?: any;
+    /**
+     * List of submission IDs failed to get queued
+     * @type {Array<number>}
+     * @memberof SubmissionRetry
+     */
+    failed?: Array<number>;
+}
+
+/**
+ * 
+ * @export
+ * @interface SubmissionRetryInput
+ */
+export interface SubmissionRetryInput {
+    /**
+     * List of submission IDs to retry
+     * @type {Array<number>}
+     * @memberof SubmissionRetryInput
+     */
+    submissions?: Array<number>;
 }
 
 /**
@@ -2481,6 +2527,50 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Retry the submissions with given IDs
+         * @param {SubmissionRetryInput} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrySubmissions(payload: SubmissionRetryInput, xFields?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'payload' is not null or undefined
+            if (payload === null || payload === undefined) {
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling retrySubmissions.');
+            }
+            const localVarPath = `/submissions/retry`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (xFields !== undefined && xFields !== null) {
+                localVarHeaderParameter['X-Fields'] = String(xFields);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"SubmissionRetryInput" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payload || {}) : (payload || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2604,6 +2694,25 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * Retry the submissions with given IDs
+         * @param {SubmissionRetryInput} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrySubmissions(payload: SubmissionRetryInput, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SubmissionRetry> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).retrySubmissions(payload, xFields, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -2672,6 +2781,16 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
          */
         listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
             return SubmissionsApiFp(configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(fetch, basePath);
+        },
+        /**
+         * Retry the submissions with given IDs
+         * @param {SubmissionRetryInput} payload 
+         * @param {string} [xFields] An optional fields mask
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrySubmissions(payload: SubmissionRetryInput, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).retrySubmissions(payload, xFields, options)(fetch, basePath);
         },
     };
 };
@@ -2753,6 +2872,18 @@ export class SubmissionsApi extends BaseAPI {
      */
     public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
         return SubmissionsApiFp(this.configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retry the submissions with given IDs
+     * @param {SubmissionRetryInput} payload 
+     * @param {string} [xFields] An optional fields mask
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public retrySubmissions(payload: SubmissionRetryInput, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).retrySubmissions(payload, xFields, options)(this.fetch, this.basePath);
     }
 
 }

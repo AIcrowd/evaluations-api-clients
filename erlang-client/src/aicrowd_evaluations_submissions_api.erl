@@ -5,7 +5,8 @@
          get_submission/2, get_submission/3,
          get_submission_data/2, get_submission_data/3,
          get_submission_logs/2, get_submission_logs/3,
-         list_submissions/1, list_submissions/2]).
+         list_submissions/1, list_submissions/2,
+         retry_submissions/2, retry_submissions/3]).
 
 -define(BASE_URL, "/v1").
 
@@ -130,6 +131,27 @@ list_submissions(Ctx, Optional) ->
     QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['meta', 'status', 'grader_id', 'user_id'], _OptionalParams),
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
+%% Retry the submissions with given IDs
+-spec retry_submissions(ctx:ctx(), aicrowd_evaluations_submission_retry_input:aicrowd_evaluations_submission_retry_input()) -> {ok, aicrowd_evaluations_submission_retry:aicrowd_evaluations_submission_retry(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+retry_submissions(Ctx, Payload) ->
+    retry_submissions(Ctx, Payload, #{}).
+
+-spec retry_submissions(ctx:ctx(), aicrowd_evaluations_submission_retry_input:aicrowd_evaluations_submission_retry_input(), maps:map()) -> {ok, aicrowd_evaluations_submission_retry:aicrowd_evaluations_submission_retry(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+retry_submissions(Ctx, Payload, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = post,
+    Path = ["/submissions/retry"],
+    QS = [],
+    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
+    Body1 = Payload,
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 

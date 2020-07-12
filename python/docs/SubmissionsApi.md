@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 [**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 [**list_submissions**](SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
+[**retry_submissions**](SubmissionsApi.md#retry_submissions) | **POST** /submissions/retry | 
 
 
 # **create_submission**
@@ -327,6 +328,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**list[Submissions]**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retry_submissions**
+> SubmissionRetry retry_submissions(payload, x_fields=x_fields)
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```python
+from __future__ import print_function
+import time
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: api_key
+configuration = aicrowd_evaluations.Configuration()
+configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(configuration))
+payload = aicrowd_evaluations.SubmissionRetryInput() # SubmissionRetryInput | 
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
+
+try:
+    api_response = api_instance.retry_submissions(payload, x_fields=x_fields)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SubmissionsApi->retry_submissions: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  | 
+ **x_fields** | **str**| An optional fields mask | [optional] 
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

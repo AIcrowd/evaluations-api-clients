@@ -6,6 +6,8 @@ export * from './GraderMeta';
 export * from './Login';
 export * from './Organisation';
 export * from './OrganisationQuota';
+export * from './SubmissionRetry';
+export * from './SubmissionRetryInput';
 export * from './Submissions';
 export * from './User';
 export * from './UserQuota';

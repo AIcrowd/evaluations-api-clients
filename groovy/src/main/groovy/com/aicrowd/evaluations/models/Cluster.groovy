@@ -40,6 +40,12 @@ class Cluster {
   /* Name of the workflow used to setup grader */
   String wfName = null
 
+  /* External IP exposed by LoadBalancer Service of argo-server deployment */
+  String argoHost = null
+
+  /* Argo server token required for authentication */
+  String argoToken = null
+
   /* User ID */
   Integer userId = null
 

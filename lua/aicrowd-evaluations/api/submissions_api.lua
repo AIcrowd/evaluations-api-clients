@@ -16,7 +16,9 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
+local aicrowd-evaluations_submission_retry = require "aicrowd-evaluations.model.submission_retry"
 local aicrowd-evaluations_submissions = require "aicrowd-evaluations.model.submissions"
+local aicrowd-evaluations_submission_retry_input = require "aicrowd-evaluations.model.submission_retry_input"
 
 local submissions_api = {}
 local submissions_api_mt = {
@@ -342,6 +344,66 @@ function submissions_api:list_submissions(meta, status, grader_id, user_id, x_fi
 			aicrowd-evaluations_submissions.cast(ob)
 		end
 		return result, headers
+	else
+		local body, err, errno2 = stream:get_body_as_string()
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		-- return the error message (http body)
+		return nil, http_status, body
+	end
+end
+
+function submissions_api:retry_submissions(payload, x_fields)
+	local req = http_request.new_from_uri({
+		scheme = self.default_scheme;
+		host = self.host;
+		path = string.format("%s/submissions/retry",
+			self.basePath);
+	})
+
+	-- set HTTP verb
+	req.headers:upsert(":method", "POST")
+	-- TODO: create a function to select proper accept
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_content_type = { "application/json" }
+	req.headers:upsert("accept", "application/json")
+
+	-- TODO: create a function to select proper content-type
+	-- ref: https://github.com/swagger-api/swagger-codegen/pull/6252#issuecomment-321199879
+	--local var_accept = { "application/json" }
+	req.headers:upsert("content-type", "application/json")
+
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
+	req:set_body(dkjson.encode(payload))
+
+	-- api key in headers 'AUTHORIZATION'
+	if self.api_key['AUTHORIZATION'] then
+		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
+	end
+
+	-- make the HTTP call
+	local headers, stream, errno = req:go()
+	if not headers then
+		return nil, stream, errno
+	end
+	local http_status = headers:get(":status")
+	if http_status:sub(1,1) == "2" then
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return aicrowd-evaluations_submission_retry.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

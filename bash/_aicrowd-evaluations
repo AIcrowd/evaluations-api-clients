@@ -315,7 +315,8 @@ case $state in
             "getSubmission[]" \
             "getSubmissionData[]" \
             "getSubmissionLogs[]" \
-            "listSubmissions[]"             "createUser[]" \
+            "listSubmissions[]" \
+            "retrySubmissions[]"             "createUser[]" \
             "deleteUser[]" \
             "getUser[]" \
             "listUsers[]" \
@@ -506,6 +507,13 @@ case $state in
 "grader_id=:[QUERY] Fetch submissions for a grader"
 "user_id=:[QUERY] Fetch submissions created by the user"
           "X-Fields\::[HEADER] An optional fields mask"
+)
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      retrySubmissions)
+        local -a _op_arguments
+        _op_arguments=(
+                              "X-Fields\::[HEADER] An optional fields mask"
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

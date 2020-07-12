@@ -23,6 +23,8 @@ from aicrowd_evaluations.models.grader_meta import GraderMeta
 from aicrowd_evaluations.models.login import Login
 from aicrowd_evaluations.models.organisation import Organisation
 from aicrowd_evaluations.models.organisation_quota import OrganisationQuota
+from aicrowd_evaluations.models.submission_retry import SubmissionRetry
+from aicrowd_evaluations.models.submission_retry_input import SubmissionRetryInput
 from aicrowd_evaluations.models.submissions import Submissions
 from aicrowd_evaluations.models.user import User
 from aicrowd_evaluations.models.user_quota import UserQuota

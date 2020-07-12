@@ -144,6 +144,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 *AicrowdEvaluations.SubmissionsApi* | [**listSubmissions**](docs/SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
+*AicrowdEvaluations.SubmissionsApi* | [**retrySubmissions**](docs/SubmissionsApi.md#retrySubmissions) | **POST** /submissions/retry | 
 *AicrowdEvaluations.UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users/ | 
 *AicrowdEvaluations.UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{user_id} | 
 *AicrowdEvaluations.UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /users/{user_id} | 
@@ -162,6 +163,8 @@ Class | Method | HTTP request | Description
  - [AicrowdEvaluations.Login](docs/Login.md)
  - [AicrowdEvaluations.Organisation](docs/Organisation.md)
  - [AicrowdEvaluations.OrganisationQuota](docs/OrganisationQuota.md)
+ - [AicrowdEvaluations.SubmissionRetry](docs/SubmissionRetry.md)
+ - [AicrowdEvaluations.SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [AicrowdEvaluations.Submissions](docs/Submissions.md)
  - [AicrowdEvaluations.User](docs/User.md)
  - [AicrowdEvaluations.UserQuota](docs/UserQuota.md)

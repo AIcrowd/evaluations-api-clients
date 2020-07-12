@@ -25,6 +25,8 @@ package com.aicrowd.evaluations.models
  * @param storage_class Storage class to use for datasets
  * @param status Readiness of the cluster
  * @param wf_name Name of the workflow used to setup grader
+ * @param argo_host External IP exposed by LoadBalancer Service of argo-server deployment
+ * @param argo_token Argo server token required for authentication
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -51,6 +53,10 @@ data class Cluster (
     val status: kotlin.Boolean? = null,
     /* Name of the workflow used to setup grader */
     val wf_name: kotlin.String? = null,
+    /* External IP exposed by LoadBalancer Service of argo-server deployment */
+    val argo_host: kotlin.String? = null,
+    /* Argo server token required for authentication */
+    val argo_token: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

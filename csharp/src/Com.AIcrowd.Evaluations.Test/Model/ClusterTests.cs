@@ -155,6 +155,22 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WfName'
         }
         /// <summary>
+        /// Test the property 'ArgoHost'
+        /// </summary>
+        [Test]
+        public void ArgoHostTest()
+        {
+            // TODO unit test for the property 'ArgoHost'
+        }
+        /// <summary>
+        /// Test the property 'ArgoToken'
+        /// </summary>
+        [Test]
+        public void ArgoTokenTest()
+        {
+            // TODO unit test for the property 'ArgoToken'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

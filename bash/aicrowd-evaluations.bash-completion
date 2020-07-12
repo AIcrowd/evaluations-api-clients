@@ -92,6 +92,7 @@ _aicrowd-evaluations()
     operations["getSubmissionData"]=1
     operations["getSubmissionLogs"]=1
     operations["listSubmissions"]=1
+    operations["retrySubmissions"]=1
     operations["createUser"]=1
     operations["deleteUser"]=1
     operations["getUser"]=1
@@ -126,6 +127,7 @@ _aicrowd-evaluations()
     operation_parameters["getSubmissionData"]="submission_id= "
     operation_parameters["getSubmissionLogs"]="submission_id= "
     operation_parameters["listSubmissions"]="meta= status= grader_id= user_id= X-Fields: "
+    operation_parameters["retrySubmissions"]="X-Fields: "
     operation_parameters["createUser"]="X-Fields: "
     operation_parameters["deleteUser"]="user_id= "
     operation_parameters["getUser"]="user_id= X-Fields: "

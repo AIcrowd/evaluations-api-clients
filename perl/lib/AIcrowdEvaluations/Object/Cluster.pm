@@ -220,6 +220,20 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'argo_host' => {
+    	datatype => 'string',
+    	base_name => 'argo_host',
+    	description => 'External IP exposed by LoadBalancer Service of argo-server deployment',
+    	format => '',
+    	read_only => '',
+    		},
+    'argo_token' => {
+    	datatype => 'string',
+    	base_name => 'argo_token',
+    	description => 'Argo server token required for authentication',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -248,6 +262,8 @@ __PACKAGE__->swagger_types( {
     'storage_class' => 'string',
     'status' => 'boolean',
     'wf_name' => 'string',
+    'argo_host' => 'string',
+    'argo_token' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -264,6 +280,8 @@ __PACKAGE__->attribute_map( {
     'storage_class' => 'storage_class',
     'status' => 'status',
     'wf_name' => 'wf_name',
+    'argo_host' => 'argo_host',
+    'argo_token' => 'argo_token',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

@@ -16,6 +16,8 @@
        'storage_class' => binary(),
        'status' => boolean(),
        'wf_name' => binary(),
+       'argo_host' => binary(),
+       'argo_token' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -31,6 +33,8 @@ encode(#{ 'id' := Id,
           'storage_class' := StorageClass,
           'status' := Status,
           'wf_name' := WfName,
+          'argo_host' := ArgoHost,
+          'argo_token' := ArgoToken,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -45,6 +49,8 @@ encode(#{ 'id' := Id,
        'storage_class' => StorageClass,
        'status' => Status,
        'wf_name' => WfName,
+       'argo_host' => ArgoHost,
+       'argo_token' => ArgoToken,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

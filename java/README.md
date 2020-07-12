@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-05-11T19:19:11.371Z
+  - Build date: 2020-07-12T14:26:17.374Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 *SubmissionsApi* | [**listSubmissions**](docs/SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
+*SubmissionsApi* | [**retrySubmissions**](docs/SubmissionsApi.md#retrySubmissions) | **POST** /submissions/retry | 
 *UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users/ | 
 *UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{user_id} | 
 *UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /users/{user_id} | 
@@ -147,6 +148,8 @@ Class | Method | HTTP request | Description
  - [Login](docs/Login.md)
  - [Organisation](docs/Organisation.md)
  - [OrganisationQuota](docs/OrganisationQuota.md)
+ - [SubmissionRetry](docs/SubmissionRetry.md)
+ - [SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [Submissions](docs/Submissions.md)
  - [User](docs/User.md)
  - [UserQuota](docs/UserQuota.md)

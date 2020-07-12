@@ -42,6 +42,8 @@ class Cluster(object):
         'storage_class': 'str',
         'status': 'bool',
         'wf_name': 'str',
+        'argo_host': 'str',
+        'argo_token': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -58,11 +60,13 @@ class Cluster(object):
         'storage_class': 'storage_class',
         'status': 'status',
         'wf_name': 'wf_name',
+        'argo_host': 'argo_host',
+        'argo_token': 'argo_token',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_registry=None, namespace=None, storage_class=None, status=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_registry=None, namespace=None, storage_class=None, status=None, wf_name=None, argo_host=None, argo_token=None, user_id=None, organisation_id=None):  # noqa: E501
         """Cluster - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -76,6 +80,8 @@ class Cluster(object):
         self._storage_class = None
         self._status = None
         self._wf_name = None
+        self._argo_host = None
+        self._argo_token = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -99,6 +105,10 @@ class Cluster(object):
             self.status = status
         if wf_name is not None:
             self.wf_name = wf_name
+        if argo_host is not None:
+            self.argo_host = argo_host
+        if argo_token is not None:
+            self.argo_token = argo_token
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -362,6 +372,52 @@ class Cluster(object):
         """
 
         self._wf_name = wf_name
+
+    @property
+    def argo_host(self):
+        """Gets the argo_host of this Cluster.  # noqa: E501
+
+        External IP exposed by LoadBalancer Service of argo-server deployment  # noqa: E501
+
+        :return: The argo_host of this Cluster.  # noqa: E501
+        :rtype: str
+        """
+        return self._argo_host
+
+    @argo_host.setter
+    def argo_host(self, argo_host):
+        """Sets the argo_host of this Cluster.
+
+        External IP exposed by LoadBalancer Service of argo-server deployment  # noqa: E501
+
+        :param argo_host: The argo_host of this Cluster.  # noqa: E501
+        :type: str
+        """
+
+        self._argo_host = argo_host
+
+    @property
+    def argo_token(self):
+        """Gets the argo_token of this Cluster.  # noqa: E501
+
+        Argo server token required for authentication  # noqa: E501
+
+        :return: The argo_token of this Cluster.  # noqa: E501
+        :rtype: str
+        """
+        return self._argo_token
+
+    @argo_token.setter
+    def argo_token(self, argo_token):
+        """Sets the argo_token of this Cluster.
+
+        Argo server token required for authentication  # noqa: E501
+
+        :param argo_token: The argo_token of this Cluster.  # noqa: E501
+        :type: str
+        """
+
+        self._argo_token = argo_token
 
     @property
     def user_id(self):

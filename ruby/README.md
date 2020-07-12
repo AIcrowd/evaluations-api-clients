@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 *AIcrowdEvaluations::SubmissionsApi* | [**get_submission_data**](docs/SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 *AIcrowdEvaluations::SubmissionsApi* | [**get_submission_logs**](docs/SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
 *AIcrowdEvaluations::SubmissionsApi* | [**list_submissions**](docs/SubmissionsApi.md#list_submissions) | **GET** /submissions/ | 
+*AIcrowdEvaluations::SubmissionsApi* | [**retry_submissions**](docs/SubmissionsApi.md#retry_submissions) | **POST** /submissions/retry | 
 *AIcrowdEvaluations::UsersApi* | [**create_user**](docs/UsersApi.md#create_user) | **POST** /users/ | 
 *AIcrowdEvaluations::UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /users/{user_id} | 
 *AIcrowdEvaluations::UsersApi* | [**get_user**](docs/UsersApi.md#get_user) | **GET** /users/{user_id} | 
@@ -119,6 +120,8 @@ Class | Method | HTTP request | Description
  - [AIcrowdEvaluations::Login](docs/Login.md)
  - [AIcrowdEvaluations::Organisation](docs/Organisation.md)
  - [AIcrowdEvaluations::OrganisationQuota](docs/OrganisationQuota.md)
+ - [AIcrowdEvaluations::SubmissionRetry](docs/SubmissionRetry.md)
+ - [AIcrowdEvaluations::SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [AIcrowdEvaluations::Submissions](docs/Submissions.md)
  - [AIcrowdEvaluations::User](docs/User.md)
  - [AIcrowdEvaluations::UserQuota](docs/UserQuota.md)

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
 [**listSubmissions**](SubmissionsApi.md#listSubmissions) | **GET** /submissions/ | 
+[**retrySubmissions**](SubmissionsApi.md#retrySubmissions) | **POST** /submissions/retry | 
 
 
 <a name="createSubmission"></a>
@@ -293,6 +294,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**kotlin.Array&lt;Submissions&gt;**](Submissions.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="retrySubmissions"></a>
+# **retrySubmissions**
+> SubmissionRetry retrySubmissions(payload, xFields)
+
+
+
+Retry the submissions with given IDs
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = SubmissionsApi()
+val payload : SubmissionRetryInput =  // SubmissionRetryInput | 
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
+try {
+    val result : SubmissionRetry = apiInstance.retrySubmissions(payload, xFields)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling SubmissionsApi#retrySubmissions")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SubmissionsApi#retrySubmissions")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SubmissionRetryInput**](SubmissionRetryInput.md)|  |
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
+
+### Return type
+
+[**SubmissionRetry**](SubmissionRetry.md)
 
 ### Authorization
 

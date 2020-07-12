@@ -14,6 +14,8 @@ package com.aicrowd.evaluations.api
 
 import java.text.SimpleDateFormat
 
+import com.aicrowd.evaluations.models.SubmissionRetry
+import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -247,6 +249,34 @@ class SubmissionsApi(
       helper.listSubmissions(meta, status, graderId, userId, xFields)
   }
 
+  /**
+   * 
+   * Retry the submissions with given IDs
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return SubmissionRetry
+   */
+  def retrySubmissions(payload: SubmissionRetryInput, xFields: Option[String] = None): Option[SubmissionRetry] = {
+    val await = Try(Await.result(retrySubmissionsAsync(payload, xFields), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Retry the submissions with given IDs
+   *
+   * @param payload  
+   * @param xFields An optional fields mask (optional)
+   * @return Future(SubmissionRetry)
+   */
+  def retrySubmissionsAsync(payload: SubmissionRetryInput, xFields: Option[String] = None): Future[SubmissionRetry] = {
+      helper.retrySubmissions(payload, xFields)
+  }
+
 }
 
 class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -378,6 +408,28 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def retrySubmissions(payload: SubmissionRetryInput,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[SubmissionRetry], writer: RequestWriter[SubmissionRetryInput]): Future[SubmissionRetry] = {
+    // create path and map variables
+    val path = (addFmt("/submissions/retry"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (payload == null) throw new Exception("Missing required parameter 'payload' when calling SubmissionsApi->retrySubmissions")
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
+    }
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(payload))
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }
