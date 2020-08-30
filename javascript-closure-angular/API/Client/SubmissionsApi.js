@@ -234,6 +234,8 @@ API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, o
 /**
  * 
  * List all submissions available
+ * @param {!string=} opt_perPage Results to display per page
+ * @param {!string=} opt_page Page number
  * @param {!string=} opt_meta Fetch submissions containing this meta value
  * @param {!string=} opt_status Fetch submissions with this status
  * @param {!number=} opt_graderId Fetch submissions for a grader
@@ -242,7 +244,7 @@ API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, o
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.Submissions>>}
  */
-API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_status, opt_graderId, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
+API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_perPage, opt_page, opt_meta, opt_status, opt_graderId, opt_userId, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/submissions/';
 
@@ -251,6 +253,14 @@ API.Client.SubmissionsApi.prototype.listSubmissions = function(opt_meta, opt_sta
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  if (opt_perPage !== undefined) {
+    queryParameters['per_page'] = opt_perPage;
+  }
+
+  if (opt_page !== undefined) {
+    queryParameters['page'] = opt_page;
+  }
+
   if (opt_meta !== undefined) {
     queryParameters['meta'] = opt_meta;
   }

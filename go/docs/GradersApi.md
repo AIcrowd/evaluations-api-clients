@@ -160,6 +160,8 @@ Optional parameters are passed through a pointer to a GradersApiListGradersOpts 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **optional.String**| Results to display per page | 
+ **page** | **optional.String**| Page number | 
  **meta** | **optional.String**| Fetch graders containing this meta value | 
  **name** | **optional.String**| Fetch grader containing name | 
  **status** | **optional.String**| Fetch graders with this status | 

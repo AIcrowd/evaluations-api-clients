@@ -173,6 +173,8 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
     /**
     * 
     * List all graders available
+    * @param perPage Results to display per page (optional)
+    * @param page Page number (optional)
     * @param meta Fetch graders containing this meta value (optional)
     * @param name Fetch grader containing name (optional)
     * @param status Fetch graders with this status (optional)
@@ -181,9 +183,9 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
     * @return kotlin.Array<Grader>
     */
     @Suppress("UNCHECKED_CAST")
-    fun listGraders(meta: kotlin.String, name: kotlin.String, status: kotlin.String, userId: kotlin.Int, xFields: kotlin.String) : kotlin.Array<Grader> {
+    fun listGraders(perPage: kotlin.String, page: kotlin.String, meta: kotlin.String, name: kotlin.String, status: kotlin.String, userId: kotlin.Int, xFields: kotlin.String) : kotlin.Array<Grader> {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf("meta" to listOf("$meta"), "name" to listOf("$name"), "status" to listOf("$status"), "user_id" to listOf("$userId"))
+        val localVariableQuery: MultiValueMap = mapOf("per_page" to listOf("$perPage"), "page" to listOf("$page"), "meta" to listOf("$meta"), "name" to listOf("$name"), "status" to listOf("$status"), "user_id" to listOf("$userId"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")

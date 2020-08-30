@@ -333,6 +333,8 @@ sub get_grader_logs {
 #
 # 
 # 
+# @param string $per_page Results to display per page (optional)
+# @param string $page Page number (optional)
 # @param string $meta Fetch graders containing this meta value (optional)
 # @param string $name Fetch grader containing name (optional)
 # @param string $status Fetch graders with this status (optional)
@@ -340,6 +342,16 @@ sub get_grader_logs {
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
+    'per_page' => {
+        data_type => 'string',
+        description => 'Results to display per page',
+        required => '0',
+    },
+    'page' => {
+        data_type => 'string',
+        description => 'Page number',
+        required => '0',
+    },
     'meta' => {
         data_type => 'string',
         description => 'Fetch graders containing this meta value',
@@ -391,6 +403,16 @@ sub list_graders {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # query params
+    if ( exists $args{'per_page'}) {
+        $query_params->{'per_page'} = $self->{api_client}->to_query_value($args{'per_page'});
+    }
+
+    # query params
+    if ( exists $args{'page'}) {
+        $query_params->{'page'} = $self->{api_client}->to_query_value($args{'page'});
+    }
 
     # query params
     if ( exists $args{'meta'}) {

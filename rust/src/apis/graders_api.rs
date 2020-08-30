@@ -39,7 +39,7 @@ pub trait GradersApi {
     fn delete_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_grader(&self, grader_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>>;
     fn get_grader_logs(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn list_graders(&self, meta: &str, name: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Grader>, Error = Error<serde_json::Value>>>;
+    fn list_graders(&self, per_page: &str, page: &str, meta: &str, name: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Grader>, Error = Error<serde_json::Value>>>;
     fn update_grader(&self, grader_id: i32, payload: ::models::GraderMeta, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>>;
 }
 
@@ -315,7 +315,7 @@ impl<C: hyper::client::Connect>GradersApi for GradersApiClient<C> {
         )
     }
 
-    fn list_graders(&self, meta: &str, name: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Grader>, Error = Error<serde_json::Value>>> {
+    fn list_graders(&self, per_page: &str, page: &str, meta: &str, name: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Grader>, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -332,6 +332,8 @@ impl<C: hyper::client::Connect>GradersApi for GradersApiClient<C> {
 
         let query_string = {
             let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            query.append_pair("per_page", &per_page.to_string());
+            query.append_pair("page", &page.to_string());
             query.append_pair("meta", &meta.to_string());
             query.append_pair("name", &name.to_string());
             query.append_pair("status", &status.to_string());

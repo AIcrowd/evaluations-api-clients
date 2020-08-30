@@ -105,7 +105,7 @@ class GradersApi {
                     null )
                     
     }
-    def listGraders ( String meta, String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
+    def listGraders ( String perPage, String page, String meta, String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/"
 
@@ -114,7 +114,11 @@ class GradersApi {
         def headerParams = [:]
     
 
-        if (!"null".equals(String.valueOf(meta)))
+        if (!"null".equals(String.valueOf(perPage)))
+            queryParams.put("per_page", String.valueOf(perPage))
+if (!"null".equals(String.valueOf(page)))
+            queryParams.put("page", String.valueOf(page))
+if (!"null".equals(String.valueOf(meta)))
             queryParams.put("meta", String.valueOf(meta))
 if (!"null".equals(String.valueOf(name)))
             queryParams.put("name", String.valueOf(name))

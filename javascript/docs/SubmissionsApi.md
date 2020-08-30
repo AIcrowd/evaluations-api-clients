@@ -308,6 +308,8 @@ api_key.apiKey = 'YOUR API KEY';
 var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var opts = { 
+  'perPage': "perPage_example", // String | Results to display per page
+  'page': "page_example", // String | Page number
   'meta': "meta_example", // String | Fetch submissions containing this meta value
   'status': "status_example", // String | Fetch submissions with this status
   'graderId': 56, // Number | Fetch submissions for a grader
@@ -329,6 +331,8 @@ apiInstance.listSubmissions(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **String**| Results to display per page | [optional] 
+ **page** | **String**| Page number | [optional] 
  **meta** | **String**| Fetch submissions containing this meta value | [optional] 
  **status** | **String**| Fetch submissions with this status | [optional] 
  **graderId** | **Number**| Fetch submissions for a grader | [optional] 

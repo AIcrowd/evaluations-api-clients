@@ -235,7 +235,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listGraders**
-> \Swagger\Client\Model\Grader[] listGraders($meta, $name, $status, $user_id, $x_fields)
+> \Swagger\Client\Model\Grader[] listGraders($per_page, $page, $meta, $name, $status, $user_id, $x_fields)
 
 
 
@@ -257,6 +257,8 @@ $apiInstance = new Swagger\Client\Api\GradersApi(
     new GuzzleHttp\Client(),
     $config
 );
+$per_page = "per_page_example"; // string | Results to display per page
+$page = "page_example"; // string | Page number
 $meta = "meta_example"; // string | Fetch graders containing this meta value
 $name = "name_example"; // string | Fetch grader containing name
 $status = "status_example"; // string | Fetch graders with this status
@@ -264,7 +266,7 @@ $user_id = 56; // int | Fetch graders created by the user
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->listGraders($meta, $name, $status, $user_id, $x_fields);
+    $result = $apiInstance->listGraders($per_page, $page, $meta, $name, $status, $user_id, $x_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GradersApi->listGraders: ', $e->getMessage(), PHP_EOL;
@@ -276,6 +278,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **string**| Results to display per page | [optional]
+ **page** | **string**| Page number | [optional]
  **meta** | **string**| Fetch graders containing this meta value | [optional]
  **name** | **string**| Fetch grader containing name | [optional]
  **status** | **string**| Fetch graders with this status | [optional]

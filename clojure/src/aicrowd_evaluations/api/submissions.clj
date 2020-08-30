@@ -111,11 +111,11 @@
   "
   List all submissions available"
   ([] (list-submissions-with-http-info nil))
-  ([{:keys [meta status grader-id user-id x-fields ]}]
+  ([{:keys [per-page page meta status grader-id user-id x-fields ]}]
    (call-api "/submissions/" :get
              {:path-params   {}
               :header-params {"X-Fields" x-fields }
-              :query-params  {"meta" meta "status" status "grader_id" grader-id "user_id" user-id }
+              :query-params  {"per_page" per-page "page" page "meta" meta "status" status "grader_id" grader-id "user_id" user-id }
               :form-params   {}
               :content-types ["application/json"]
               :accepts       ["application/json"]

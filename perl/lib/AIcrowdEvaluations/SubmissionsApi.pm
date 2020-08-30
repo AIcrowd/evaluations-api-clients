@@ -396,6 +396,8 @@ sub get_submission_logs {
 #
 # 
 # 
+# @param string $per_page Results to display per page (optional)
+# @param string $page Page number (optional)
 # @param string $meta Fetch submissions containing this meta value (optional)
 # @param string $status Fetch submissions with this status (optional)
 # @param int $grader_id Fetch submissions for a grader (optional)
@@ -403,6 +405,16 @@ sub get_submission_logs {
 # @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
+    'per_page' => {
+        data_type => 'string',
+        description => 'Results to display per page',
+        required => '0',
+    },
+    'page' => {
+        data_type => 'string',
+        description => 'Page number',
+        required => '0',
+    },
     'meta' => {
         data_type => 'string',
         description => 'Fetch submissions containing this meta value',
@@ -454,6 +466,16 @@ sub list_submissions {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # query params
+    if ( exists $args{'per_page'}) {
+        $query_params->{'per_page'} = $self->{api_client}->to_query_value($args{'per_page'});
+    }
+
+    # query params
+    if ( exists $args{'page'}) {
+        $query_params->{'page'} = $self->{api_client}->to_query_value($args{'page'});
+    }
 
     # query params
     if ( exists $args{'meta'}) {

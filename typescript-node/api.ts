@@ -1759,6 +1759,8 @@ export class GradersApi {
     }
     /**
      * List all graders available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch graders containing this meta value
      * @param name Fetch grader containing name
      * @param status Fetch graders with this status
@@ -1766,11 +1768,19 @@ export class GradersApi {
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listGraders (meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
+    public listGraders (perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Grader>;  }> {
         const localVarPath = this.basePath + '/graders/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (perPage !== undefined) {
+            localVarQueryParameters['per_page'] = ObjectSerializer.serialize(perPage, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "string");
+        }
 
         if (meta !== undefined) {
             localVarQueryParameters['meta'] = ObjectSerializer.serialize(meta, "string");
@@ -2619,6 +2629,8 @@ export class SubmissionsApi {
     }
     /**
      * List all submissions available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch submissions containing this meta value
      * @param status Fetch submissions with this status
      * @param graderId Fetch submissions for a grader
@@ -2626,11 +2638,19 @@ export class SubmissionsApi {
      * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public listSubmissions (meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
+    public listSubmissions (perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Submissions>;  }> {
         const localVarPath = this.basePath + '/submissions/';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (perPage !== undefined) {
+            localVarQueryParameters['per_page'] = ObjectSerializer.serialize(perPage, "string");
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "string");
+        }
 
         if (meta !== undefined) {
             localVarQueryParameters['meta'] = ObjectSerializer.serialize(meta, "string");

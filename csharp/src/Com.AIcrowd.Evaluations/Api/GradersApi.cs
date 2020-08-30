@@ -119,13 +119,15 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        List<Grader> ListGraders (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -134,13 +136,15 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        ApiResponse<List<Grader>> ListGradersWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        ApiResponse<List<Grader>> ListGradersWithHttpInfo (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -263,13 +267,15 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -278,13 +284,15 @@ namespace Com.AIcrowd.Evaluations.Api
         /// List all graders available
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -1016,15 +1024,17 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>List&lt;Grader&gt;</returns>
-        public List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public List<Grader> ListGraders (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = ListGradersWithHttpInfo(meta, name, status, userId, xFields);
+             ApiResponse<List<Grader>> localVarResponse = ListGradersWithHttpInfo(perPage, page, meta, name, status, userId, xFields);
              return localVarResponse.Data;
         }
 
@@ -1032,13 +1042,15 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>ApiResponse of List&lt;Grader&gt;</returns>
-        public ApiResponse< List<Grader> > ListGradersWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public ApiResponse< List<Grader> > ListGradersWithHttpInfo (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -1063,6 +1075,8 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (name != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
@@ -1097,15 +1111,17 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of List&lt;Grader&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<List<Grader>> ListGradersAsync (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
         {
-             ApiResponse<List<Grader>> localVarResponse = await ListGradersAsyncWithHttpInfo(meta, name, status, userId, xFields);
+             ApiResponse<List<Grader>> localVarResponse = await ListGradersAsyncWithHttpInfo(perPage, page, meta, name, status, userId, xFields);
              return localVarResponse.Data;
 
         }
@@ -1114,13 +1130,15 @@ namespace Com.AIcrowd.Evaluations.Api
         ///  List all graders available
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="perPage">Results to display per page (optional)</param>
+        /// <param name="page">Page number (optional)</param>
         /// <param name="meta">Fetch graders containing this meta value (optional)</param>
         /// <param name="name">Fetch grader containing name (optional)</param>
         /// <param name="status">Fetch graders with this status (optional)</param>
         /// <param name="userId">Fetch graders created by the user (optional)</param>
         /// <param name="xFields">An optional fields mask (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Grader&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Grader>>> ListGradersAsyncWithHttpInfo (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
         {
 
             var localVarPath = "/graders/";
@@ -1145,6 +1163,8 @@ namespace Com.AIcrowd.Evaluations.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (perPage != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (meta != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "meta", meta)); // query parameter
             if (name != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
             if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter

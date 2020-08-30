@@ -290,7 +290,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listSubmissions**
-> \Swagger\Client\Model\Submissions[] listSubmissions($meta, $status, $grader_id, $user_id, $x_fields)
+> \Swagger\Client\Model\Submissions[] listSubmissions($per_page, $page, $meta, $status, $grader_id, $user_id, $x_fields)
 
 
 
@@ -312,6 +312,8 @@ $apiInstance = new Swagger\Client\Api\SubmissionsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$per_page = "per_page_example"; // string | Results to display per page
+$page = "page_example"; // string | Page number
 $meta = "meta_example"; // string | Fetch submissions containing this meta value
 $status = "status_example"; // string | Fetch submissions with this status
 $grader_id = 56; // int | Fetch submissions for a grader
@@ -319,7 +321,7 @@ $user_id = 56; // int | Fetch submissions created by the user
 $x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $result = $apiInstance->listSubmissions($meta, $status, $grader_id, $user_id, $x_fields);
+    $result = $apiInstance->listSubmissions($per_page, $page, $meta, $status, $grader_id, $user_id, $x_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubmissionsApi->listSubmissions: ', $e->getMessage(), PHP_EOL;
@@ -331,6 +333,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **string**| Results to display per page | [optional]
+ **page** | **string**| Page number | [optional]
  **meta** | **string**| Fetch submissions containing this meta value | [optional]
  **status** | **string**| Fetch submissions with this status | [optional]
  **grader_id** | **int**| Fetch submissions for a grader | [optional]

@@ -311,6 +311,8 @@ export class SubmissionsService {
     /**
      * 
      * List all submissions available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch submissions containing this meta value
      * @param status Fetch submissions with this status
      * @param graderId Fetch submissions for a grader
@@ -319,10 +321,12 @@ export class SubmissionsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
-    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
-    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
-    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Submissions>>;
+    public listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Submissions>>>;
+    public listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Submissions>>>;
+    public listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
 
 
 
@@ -330,6 +334,12 @@ export class SubmissionsService {
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (perPage !== undefined && perPage !== null) {
+            queryParameters = queryParameters.set('per_page', <any>perPage);
+        }
+        if (page !== undefined && page !== null) {
+            queryParameters = queryParameters.set('page', <any>page);
+        }
         if (meta !== undefined && meta !== null) {
             queryParameters = queryParameters.set('meta', <any>meta);
         }

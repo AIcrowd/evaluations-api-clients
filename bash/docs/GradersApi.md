@@ -150,13 +150,15 @@ List all graders available
 
 ### Example
 ```bash
-aicrowd-evaluations listGraders  meta=value  name=value  status=value  user_id=value X-Fields:value
+aicrowd-evaluations listGraders  per_page=value  page=value  meta=value  name=value  status=value  user_id=value X-Fields:value
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **string** | Results to display per page | [optional]
+ **page** | **string** | Page number | [optional]
  **meta** | **string** | Fetch graders containing this meta value | [optional]
  **name** | **string** | Fetch grader containing name | [optional]
  **status** | **string** | Fetch graders with this status | [optional]

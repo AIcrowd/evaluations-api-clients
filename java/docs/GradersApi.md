@@ -236,7 +236,7 @@ null (empty response body)
 
 <a name="listGraders"></a>
 # **listGraders**
-> List&lt;Grader&gt; listGraders(meta, name, status, userId, xFields)
+> List&lt;Grader&gt; listGraders(perPage, page, meta, name, status, userId, xFields)
 
 
 
@@ -260,13 +260,15 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 GradersApi apiInstance = new GradersApi();
+String perPage = "perPage_example"; // String | Results to display per page
+String page = "page_example"; // String | Page number
 String meta = "meta_example"; // String | Fetch graders containing this meta value
 String name = "name_example"; // String | Fetch grader containing name
 String status = "status_example"; // String | Fetch graders with this status
 Integer userId = 56; // Integer | Fetch graders created by the user
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Grader> result = apiInstance.listGraders(meta, name, status, userId, xFields);
+    List<Grader> result = apiInstance.listGraders(perPage, page, meta, name, status, userId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GradersApi#listGraders");
@@ -278,6 +280,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **String**| Results to display per page | [optional]
+ **page** | **String**| Page number | [optional]
  **meta** | **String**| Fetch graders containing this meta value | [optional]
  **name** | **String**| Fetch grader containing name | [optional]
  **status** | **String**| Fetch graders with this status | [optional]

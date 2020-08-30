@@ -174,17 +174,27 @@ export class SubmissionsApi {
     }
     /**
      * List all submissions available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch submissions containing this meta value
      * @param status Fetch submissions with this status
      * @param graderId Fetch submissions for a grader
      * @param userId Fetch submissions created by the user
      * @param xFields An optional fields mask
      */
-    public listSubmissions (meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
+    public listSubmissions (perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Submissions>> {
         const localVarPath = this.basePath + '/submissions/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        if (perPage !== undefined) {
+            queryParameters['per_page'] = perPage;
+        }
+
+        if (page !== undefined) {
+            queryParameters['page'] = page;
+        }
+
         if (meta !== undefined) {
             queryParameters['meta'] = meta;
         }

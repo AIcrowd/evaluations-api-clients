@@ -219,6 +219,8 @@ class SubmissionsApi(
    * 
    * List all submissions available
    *
+   * @param perPage Results to display per page (optional)
+   * @param page Page number (optional)
    * @param meta Fetch submissions containing this meta value (optional)
    * @param status Fetch submissions with this status (optional)
    * @param graderId Fetch submissions for a grader (optional)
@@ -226,8 +228,8 @@ class SubmissionsApi(
    * @param xFields An optional fields mask (optional)
    * @return List[Submissions]
    */
-  def listSubmissions(meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Submissions]] = {
-    val await = Try(Await.result(listSubmissionsAsync(meta, status, graderId, userId, xFields), Duration.Inf))
+  def listSubmissions(perPage: Option[String] = None, page: Option[String] = None, meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Submissions]] = {
+    val await = Try(Await.result(listSubmissionsAsync(perPage, page, meta, status, graderId, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -238,6 +240,8 @@ class SubmissionsApi(
    *  asynchronously
    * List all submissions available
    *
+   * @param perPage Results to display per page (optional)
+   * @param page Page number (optional)
    * @param meta Fetch submissions containing this meta value (optional)
    * @param status Fetch submissions with this status (optional)
    * @param graderId Fetch submissions for a grader (optional)
@@ -245,8 +249,8 @@ class SubmissionsApi(
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Submissions])
    */
-  def listSubmissionsAsync(meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Submissions]] = {
-      helper.listSubmissions(meta, status, graderId, userId, xFields)
+  def listSubmissionsAsync(perPage: Option[String] = None, page: Option[String] = None, meta: Option[String] = None, status: Option[String] = None, graderId: Option[Integer] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Submissions]] = {
+      helper.listSubmissions(perPage, page, meta, status, graderId, userId, xFields)
   }
 
   /**
@@ -373,7 +377,9 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def listSubmissions(meta: Option[String] = None,
+  def listSubmissions(perPage: Option[String] = None,
+    page: Option[String] = None,
+    meta: Option[String] = None,
     status: Option[String] = None,
     graderId: Option[Integer] = None,
     userId: Option[Integer] = None,
@@ -386,6 +392,14 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    perPage match {
+      case Some(param) => queryParams += "per_page" -> param.toString
+      case _ => queryParams
+    }
+    page match {
+      case Some(param) => queryParams += "page" -> param.toString
+      case _ => queryParams
+    }
     meta match {
       case Some(param) => queryParams += "meta" -> param.toString
       case _ => queryParams

@@ -189,6 +189,8 @@ Optional parameters are passed through a pointer to a SubmissionsApiListSubmissi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **optional.String**| Results to display per page | 
+ **page** | **optional.String**| Page number | 
  **meta** | **optional.String**| Fetch submissions containing this meta value | 
  **status** | **optional.String**| Fetch submissions with this status | 
  **graderId** | **optional.Int32**| Fetch submissions for a grader | 

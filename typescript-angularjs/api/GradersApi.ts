@@ -146,17 +146,27 @@ export class GradersApi {
     }
     /**
      * List all graders available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch graders containing this meta value
      * @param name Fetch grader containing name
      * @param status Fetch graders with this status
      * @param userId Fetch graders created by the user
      * @param xFields An optional fields mask
      */
-    public listGraders (meta?: string, name?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
+    public listGraders (perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<models.Grader>> {
         const localVarPath = this.basePath + '/graders/';
 
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        if (perPage !== undefined) {
+            queryParameters['per_page'] = perPage;
+        }
+
+        if (page !== undefined) {
+            queryParameters['page'] = page;
+        }
+
         if (meta !== undefined) {
             queryParameters['meta'] = meta;
         }

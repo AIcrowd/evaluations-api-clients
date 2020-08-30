@@ -204,7 +204,7 @@ null (empty response body)
 
 <a name="listGraders"></a>
 # **listGraders**
-> kotlin.Array&lt;Grader&gt; listGraders(meta, name, status, userId, xFields)
+> kotlin.Array&lt;Grader&gt; listGraders(perPage, page, meta, name, status, userId, xFields)
 
 
 
@@ -217,13 +217,15 @@ List all graders available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = GradersApi()
+val perPage : kotlin.String = perPage_example // kotlin.String | Results to display per page
+val page : kotlin.String = page_example // kotlin.String | Page number
 val meta : kotlin.String = meta_example // kotlin.String | Fetch graders containing this meta value
 val name : kotlin.String = name_example // kotlin.String | Fetch grader containing name
 val status : kotlin.String = status_example // kotlin.String | Fetch graders with this status
 val userId : kotlin.Int = 56 // kotlin.Int | Fetch graders created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Grader> = apiInstance.listGraders(meta, name, status, userId, xFields)
+    val result : kotlin.Array<Grader> = apiInstance.listGraders(perPage, page, meta, name, status, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GradersApi#listGraders")
@@ -238,6 +240,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **kotlin.String**| Results to display per page | [optional]
+ **page** | **kotlin.String**| Page number | [optional]
  **meta** | **kotlin.String**| Fetch graders containing this meta value | [optional]
  **name** | **kotlin.String**| Fetch grader containing name | [optional]
  **status** | **kotlin.String**| Fetch graders with this status | [optional]

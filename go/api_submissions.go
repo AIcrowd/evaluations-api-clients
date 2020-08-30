@@ -509,6 +509,8 @@ SubmissionsApiService
 List all submissions available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SubmissionsApiListSubmissionsOpts - Optional Parameters:
+     * @param "PerPage" (optional.String) -  Results to display per page
+     * @param "Page" (optional.String) -  Page number
      * @param "Meta" (optional.String) -  Fetch submissions containing this meta value
      * @param "Status" (optional.String) -  Fetch submissions with this status
      * @param "GraderId" (optional.Int32) -  Fetch submissions for a grader
@@ -519,6 +521,8 @@ List all submissions available
 */
 
 type SubmissionsApiListSubmissionsOpts struct { 
+	PerPage optional.String
+	Page optional.String
 	Meta optional.String
 	Status optional.String
 	GraderId optional.Int32
@@ -542,6 +546,12 @@ func (a *SubmissionsApiService) ListSubmissions(ctx context.Context, localVarOpt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.PerPage.IsSet() {
+		localVarQueryParams.Add("per_page", parameterToString(localVarOptionals.PerPage.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Meta.IsSet() {
 		localVarQueryParams.Add("meta", parameterToString(localVarOptionals.Meta.Value(), ""))
 	}

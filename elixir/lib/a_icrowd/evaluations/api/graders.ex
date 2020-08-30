@@ -125,6 +125,8 @@ defmodule AIcrowd.Evaluations.Api.Graders do
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :per_page (String.t): Results to display per page
+    - :page (String.t): Page number
     - :meta (String.t): Fetch graders containing this meta value
     - :name (String.t): Fetch grader containing name
     - :status (String.t): Fetch graders with this status
@@ -139,6 +141,8 @@ defmodule AIcrowd.Evaluations.Api.Graders do
   @spec list_graders(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Grader.t)} | {:error, Tesla.Env.t}
   def list_graders(connection, opts \\ []) do
     optional_params = %{
+      :"per_page" => :query,
+      :"page" => :query,
       :"meta" => :query,
       :"name" => :query,
       :"status" => :query,

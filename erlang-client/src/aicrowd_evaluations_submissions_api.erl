@@ -128,7 +128,7 @@ list_submissions(Ctx, Optional) ->
 
     Method = get,
     Path = ["/submissions/"],
-    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['meta', 'status', 'grader_id', 'user_id'], _OptionalParams),
+    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['per_page', 'page', 'meta', 'status', 'grader_id', 'user_id'], _OptionalParams),
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),

@@ -133,12 +133,14 @@ namespace Com.AIcrowd.Evaluations.Test
         public void ListSubmissionsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //string perPage = null;
+            //string page = null;
             //string meta = null;
             //string status = null;
             //int? graderId = null;
             //int? userId = null;
             //string xFields = null;
-            //var response = instance.ListSubmissions(meta, status, graderId, userId, xFields);
+            //var response = instance.ListSubmissions(perPage, page, meta, status, graderId, userId, xFields);
             //Assert.IsInstanceOf<List<Submissions>> (response, "response is List<Submissions>");
         }
         

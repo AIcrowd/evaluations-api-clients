@@ -160,6 +160,8 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **String**| Results to display per page | 
+ **page** | **String**| Page number | 
  **meta** | **String**| Fetch graders containing this meta value | 
  **name** | **String**| Fetch grader containing name | 
  **status** | **String**| Fetch graders with this status | 

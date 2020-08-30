@@ -249,12 +249,12 @@ function graders_api:get_grader_logs(grader_id)
 	end
 end
 
-function graders_api:list_graders(meta, name, status, user_id, x_fields)
+function graders_api:list_graders(per_page, page, meta, name, status, user_id, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
-		path = string.format("%s/graders?meta=%s&name=%s&status=%s&user_id=%s",
-			self.basePath, http_util.encodeURIComponent(meta), http_util.encodeURIComponent(name), http_util.encodeURIComponent(status), http_util.encodeURIComponent(user_id));
+		path = string.format("%s/graders?per_page=%s&page=%s&meta=%s&name=%s&status=%s&user_id=%s",
+			self.basePath, http_util.encodeURIComponent(per_page), http_util.encodeURIComponent(page), http_util.encodeURIComponent(meta), http_util.encodeURIComponent(name), http_util.encodeURIComponent(status), http_util.encodeURIComponent(user_id));
 	})
 
 	-- set HTTP verb

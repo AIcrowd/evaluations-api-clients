@@ -546,6 +546,8 @@ class SubmissionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str per_page: Results to display per page
+        :param str page: Page number
         :param str meta: Fetch submissions containing this meta value
         :param str status: Fetch submissions with this status
         :param int grader_id: Fetch submissions for a grader
@@ -572,6 +574,8 @@ class SubmissionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str per_page: Results to display per page
+        :param str page: Page number
         :param str meta: Fetch submissions containing this meta value
         :param str status: Fetch submissions with this status
         :param int grader_id: Fetch submissions for a grader
@@ -582,7 +586,7 @@ class SubmissionsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['meta', 'status', 'grader_id', 'user_id', 'x_fields']  # noqa: E501
+        all_params = ['per_page', 'page', 'meta', 'status', 'grader_id', 'user_id', 'x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -603,6 +607,10 @@ class SubmissionsApi(object):
         path_params = {}
 
         query_params = []
+        if 'per_page' in params:
+            query_params.append(('per_page', params['per_page']))  # noqa: E501
+        if 'page' in params:
+            query_params.append(('page', params['page']))  # noqa: E501
         if 'meta' in params:
             query_params.append(('meta', params['meta']))  # noqa: E501
         if 'status' in params:

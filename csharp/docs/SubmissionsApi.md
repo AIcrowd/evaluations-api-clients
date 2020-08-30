@@ -341,7 +341,7 @@ void (empty response body)
 
 <a name="listsubmissions"></a>
 # **ListSubmissions**
-> List<Submissions> ListSubmissions (string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
+> List<Submissions> ListSubmissions (string perPage = null, string page = null, string meta = null, string status = null, int? graderId = null, int? userId = null, string xFields = null)
 
 
 
@@ -367,6 +367,8 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new SubmissionsApi();
+            var perPage = perPage_example;  // string | Results to display per page (optional) 
+            var page = page_example;  // string | Page number (optional) 
             var meta = meta_example;  // string | Fetch submissions containing this meta value (optional) 
             var status = status_example;  // string | Fetch submissions with this status (optional) 
             var graderId = 56;  // int? | Fetch submissions for a grader (optional) 
@@ -375,7 +377,7 @@ namespace Example
 
             try
             {
-                List&lt;Submissions&gt; result = apiInstance.ListSubmissions(meta, status, graderId, userId, xFields);
+                List&lt;Submissions&gt; result = apiInstance.ListSubmissions(perPage, page, meta, status, graderId, userId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -391,6 +393,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **string**| Results to display per page | [optional] 
+ **page** | **string**| Page number | [optional] 
  **meta** | **string**| Fetch submissions containing this meta value | [optional] 
  **status** | **string**| Fetch submissions with this status | [optional] 
  **graderId** | **int?**| Fetch submissions for a grader | [optional] 

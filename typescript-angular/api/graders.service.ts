@@ -263,6 +263,8 @@ export class GradersService {
     /**
      * 
      * List all graders available
+     * @param perPage Results to display per page
+     * @param page Page number
      * @param meta Fetch graders containing this meta value
      * @param name Fetch grader containing name
      * @param status Fetch graders with this status
@@ -271,10 +273,12 @@ export class GradersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
-    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
-    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
-    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Grader>>;
+    public listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Grader>>>;
+    public listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Grader>>>;
+    public listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
 
 
 
@@ -282,6 +286,12 @@ export class GradersService {
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (perPage !== undefined && perPage !== null) {
+            queryParameters = queryParameters.set('per_page', <any>perPage);
+        }
+        if (page !== undefined && page !== null) {
+            queryParameters = queryParameters.set('page', <any>page);
+        }
         if (meta !== undefined && meta !== null) {
             queryParameters = queryParameters.set('meta', <any>meta);
         }

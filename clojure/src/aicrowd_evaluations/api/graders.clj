@@ -91,11 +91,11 @@
   "
   List all graders available"
   ([] (list-graders-with-http-info nil))
-  ([{:keys [meta name status user-id x-fields ]}]
+  ([{:keys [per-page page meta name status user-id x-fields ]}]
    (call-api "/graders/" :get
              {:path-params   {}
               :header-params {"X-Fields" x-fields }
-              :query-params  {"meta" meta "name" name "status" status "user_id" user-id }
+              :query-params  {"per_page" per-page "page" page "meta" meta "name" name "status" status "user_id" user-id }
               :form-params   {}
               :content-types ["application/json"]
               :accepts       ["application/json"]

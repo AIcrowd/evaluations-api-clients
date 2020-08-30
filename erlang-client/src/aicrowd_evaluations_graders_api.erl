@@ -106,7 +106,7 @@ list_graders(Ctx, Optional) ->
 
     Method = get,
     Path = ["/graders/"],
-    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['meta', 'name', 'status', 'user_id'], _OptionalParams),
+    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['per_page', 'page', 'meta', 'name', 'status', 'user_id'], _OptionalParams),
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),

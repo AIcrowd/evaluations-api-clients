@@ -224,7 +224,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_graders**
-> ARRAY[Grader] list_graders(meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields)
+> ARRAY[Grader] list_graders(per_page => $per_page, page => $page, meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields)
 
 
 
@@ -242,6 +242,8 @@ my $api_instance = AIcrowdEvaluations::GradersApi->new(
     #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
 );
 
+my $per_page = 'per_page_example'; # string | Results to display per page
+my $page = 'page_example'; # string | Page number
 my $meta = 'meta_example'; # string | Fetch graders containing this meta value
 my $name = 'name_example'; # string | Fetch grader containing name
 my $status = 'status_example'; # string | Fetch graders with this status
@@ -249,7 +251,7 @@ my $user_id = 56; # int | Fetch graders created by the user
 my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    my $result = $api_instance->list_graders(meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
+    my $result = $api_instance->list_graders(per_page => $per_page, page => $page, meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
     print Dumper($result);
 };
 if ($@) {
@@ -261,6 +263,8 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **string**| Results to display per page | [optional] 
+ **page** | **string**| Page number | [optional] 
  **meta** | **string**| Fetch graders containing this meta value | [optional] 
  **name** | **string**| Fetch grader containing name | [optional] 
  **status** | **string**| Fetch graders with this status | [optional] 

@@ -211,6 +211,8 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
     /**
     * 
     * List all submissions available
+    * @param perPage Results to display per page (optional)
+    * @param page Page number (optional)
     * @param meta Fetch submissions containing this meta value (optional)
     * @param status Fetch submissions with this status (optional)
     * @param graderId Fetch submissions for a grader (optional)
@@ -219,9 +221,9 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
     * @return kotlin.Array<Submissions>
     */
     @Suppress("UNCHECKED_CAST")
-    fun listSubmissions(meta: kotlin.String, status: kotlin.String, graderId: kotlin.Int, userId: kotlin.Int, xFields: kotlin.String) : kotlin.Array<Submissions> {
+    fun listSubmissions(perPage: kotlin.String, page: kotlin.String, meta: kotlin.String, status: kotlin.String, graderId: kotlin.Int, userId: kotlin.Int, xFields: kotlin.String) : kotlin.Array<Submissions> {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf("meta" to listOf("$meta"), "status" to listOf("$status"), "grader_id" to listOf("$graderId"), "user_id" to listOf("$userId"))
+        val localVariableQuery: MultiValueMap = mapOf("per_page" to listOf("$perPage"), "page" to listOf("$page"), "meta" to listOf("$meta"), "status" to listOf("$status"), "grader_id" to listOf("$graderId"), "user_id" to listOf("$userId"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")

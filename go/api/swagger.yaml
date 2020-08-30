@@ -173,6 +173,20 @@ paths:
       description: "List all graders available"
       operationId: "ListGraders"
       parameters:
+      - name: "per_page"
+        in: "query"
+        description: "Results to display per page"
+        required: false
+        type: "string"
+        x-exportParamName: "PerPage"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page number"
+        required: false
+        type: "string"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
       - name: "meta"
         in: "query"
         description: "Fetch graders containing this meta value"
@@ -500,6 +514,20 @@ paths:
       description: "List all submissions available"
       operationId: "ListSubmissions"
       parameters:
+      - name: "per_page"
+        in: "query"
+        description: "Results to display per page"
+        required: false
+        type: "string"
+        x-exportParamName: "PerPage"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "Page number"
+        required: false
+        type: "string"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
       - name: "meta"
         in: "query"
         description: "Fetch submissions containing this meta value"

@@ -291,7 +291,7 @@ null (empty response body)
 
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> List&lt;Submissions&gt; listSubmissions(meta, status, graderId, userId, xFields)
+> List&lt;Submissions&gt; listSubmissions(perPage, page, meta, status, graderId, userId, xFields)
 
 
 
@@ -315,13 +315,15 @@ api_key.setApiKey("YOUR API KEY");
 //api_key.setApiKeyPrefix("Token");
 
 SubmissionsApi apiInstance = new SubmissionsApi();
+String perPage = "perPage_example"; // String | Results to display per page
+String page = "page_example"; // String | Page number
 String meta = "meta_example"; // String | Fetch submissions containing this meta value
 String status = "status_example"; // String | Fetch submissions with this status
 Integer graderId = 56; // Integer | Fetch submissions for a grader
 Integer userId = 56; // Integer | Fetch submissions created by the user
 String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    List<Submissions> result = apiInstance.listSubmissions(meta, status, graderId, userId, xFields);
+    List<Submissions> result = apiInstance.listSubmissions(perPage, page, meta, status, graderId, userId, xFields);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#listSubmissions");
@@ -333,6 +335,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **String**| Results to display per page | [optional]
+ **page** | **String**| Page number | [optional]
  **meta** | **String**| Fetch submissions containing this meta value | [optional]
  **status** | **String**| Fetch submissions with this status | [optional]
  **graderId** | **Integer**| Fetch submissions for a grader | [optional]

@@ -447,6 +447,8 @@ class GradersApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str per_page: Results to display per page
+        :param str page: Page number
         :param str meta: Fetch graders containing this meta value
         :param str name: Fetch grader containing name
         :param str status: Fetch graders with this status
@@ -473,6 +475,8 @@ class GradersApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str per_page: Results to display per page
+        :param str page: Page number
         :param str meta: Fetch graders containing this meta value
         :param str name: Fetch grader containing name
         :param str status: Fetch graders with this status
@@ -483,7 +487,7 @@ class GradersApi(object):
                  returns the request thread.
         """
 
-        all_params = ['meta', 'name', 'status', 'user_id', 'x_fields']  # noqa: E501
+        all_params = ['per_page', 'page', 'meta', 'name', 'status', 'user_id', 'x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -504,6 +508,10 @@ class GradersApi(object):
         path_params = {}
 
         query_params = []
+        if 'per_page' in params:
+            query_params.append(('per_page', params['per_page']))  # noqa: E501
+        if 'page' in params:
+            query_params.append(('page', params['page']))  # noqa: E501
         if 'meta' in params:
             query_params.append(('meta', params['meta']))  # noqa: E501
         if 'name' in params:

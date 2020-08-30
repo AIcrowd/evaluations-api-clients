@@ -109,12 +109,14 @@ public class GradersApiTest {
      */
     @Test
     public void listGradersTest() throws ApiException {
+        String perPage = null;
+        String page = null;
         String meta = null;
         String name = null;
         String status = null;
         Integer userId = null;
         String xFields = null;
-        List<Grader> response = api.listGraders(meta, name, status, userId, xFields);
+        List<Grader> response = api.listGraders(perPage, page, meta, name, status, userId, xFields);
 
         // TODO: test validations
     }

@@ -189,6 +189,8 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **String**| Results to display per page | 
+ **page** | **String**| Page number | 
  **meta** | **String**| Fetch submissions containing this meta value | 
  **status** | **String**| Fetch submissions with this status | 
  **grader_id** | **i32**| Fetch submissions for a grader | 

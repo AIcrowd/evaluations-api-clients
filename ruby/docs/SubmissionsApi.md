@@ -305,6 +305,8 @@ end
 api_instance = AIcrowdEvaluations::SubmissionsApi.new
 
 opts = { 
+  per_page: 'per_page_example', # String | Results to display per page
+  page: 'page_example', # String | Page number
   meta: 'meta_example', # String | Fetch submissions containing this meta value
   status: 'status_example', # String | Fetch submissions with this status
   grader_id: 56, # Integer | Fetch submissions for a grader
@@ -324,6 +326,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **String**| Results to display per page | [optional] 
+ **page** | **String**| Page number | [optional] 
  **meta** | **String**| Fetch submissions containing this meta value | [optional] 
  **status** | **String**| Fetch submissions with this status | [optional] 
  **grader_id** | **Integer**| Fetch submissions for a grader | [optional] 

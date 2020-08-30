@@ -227,7 +227,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_graders**
-> list[Grader] list_graders(meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
+> list[Grader] list_graders(per_page=per_page, page=page, meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
 
 
 
@@ -249,6 +249,8 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = aicrowd_evaluations.GradersApi(aicrowd_evaluations.ApiClient(configuration))
+per_page = 'per_page_example' # str | Results to display per page (optional)
+page = 'page_example' # str | Page number (optional)
 meta = 'meta_example' # str | Fetch graders containing this meta value (optional)
 name = 'name_example' # str | Fetch grader containing name (optional)
 status = 'status_example' # str | Fetch graders with this status (optional)
@@ -256,7 +258,7 @@ user_id = 56 # int | Fetch graders created by the user (optional)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_response = api_instance.list_graders(meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
+    api_response = api_instance.list_graders(per_page=per_page, page=page, meta=meta, name=name, status=status, user_id=user_id, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling GradersApi->list_graders: %s\n" % e)
@@ -266,6 +268,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **per_page** | **str**| Results to display per page | [optional] 
+ **page** | **str**| Page number | [optional] 
  **meta** | **str**| Fetch graders containing this meta value | [optional] 
  **name** | **str**| Fetch grader containing name | [optional] 
  **status** | **str**| Fetch graders with this status | [optional] 

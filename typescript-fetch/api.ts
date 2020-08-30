@@ -1358,6 +1358,8 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
         },
         /**
          * List all graders available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch graders containing this meta value
          * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
@@ -1366,7 +1368,7 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
+        listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/graders/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1379,6 +1381,14 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['per_page'] = perPage;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             if (meta !== undefined) {
@@ -1546,6 +1556,8 @@ export const GradersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all graders available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch graders containing this meta value
          * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
@@ -1554,8 +1566,8 @@ export const GradersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(meta, name, status, userId, xFields, options);
+        listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Grader>> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).listGraders(perPage, page, meta, name, status, userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1635,6 +1647,8 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
         },
         /**
          * List all graders available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch graders containing this meta value
          * @param {string} [name] Fetch grader containing name
          * @param {string} [status] Fetch graders with this status
@@ -1643,8 +1657,8 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-            return GradersApiFp(configuration).listGraders(meta, name, status, userId, xFields, options)(fetch, basePath);
+        listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+            return GradersApiFp(configuration).listGraders(perPage, page, meta, name, status, userId, xFields, options)(fetch, basePath);
         },
         /**
          * Update meta details of a grader by its ID. Warning: There is no data validation.
@@ -1715,6 +1729,8 @@ export class GradersApi extends BaseAPI {
 
     /**
      * List all graders available
+     * @param {string} [perPage] Results to display per page
+     * @param {string} [page] Page number
      * @param {string} [meta] Fetch graders containing this meta value
      * @param {string} [name] Fetch grader containing name
      * @param {string} [status] Fetch graders with this status
@@ -1724,8 +1740,8 @@ export class GradersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GradersApi
      */
-    public listGraders(meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
-        return GradersApiFp(this.configuration).listGraders(meta, name, status, userId, xFields, options)(this.fetch, this.basePath);
+    public listGraders(perPage?: string, page?: string, meta?: string, name?: string, status?: string, userId?: number, xFields?: string, options?: any) {
+        return GradersApiFp(this.configuration).listGraders(perPage, page, meta, name, status, userId, xFields, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2474,6 +2490,8 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
         },
         /**
          * List all submissions available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
          * @param {number} [graderId] Fetch submissions for a grader
@@ -2482,7 +2500,7 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}): FetchArgs {
+        listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options: any = {}): FetchArgs {
             const localVarPath = `/submissions/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -2495,6 +2513,14 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['per_page'] = perPage;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             if (meta !== undefined) {
@@ -2674,6 +2700,8 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all submissions available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
          * @param {number} [graderId] Fetch submissions for a grader
@@ -2682,8 +2710,8 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(meta, status, graderId, userId, xFields, options);
+        listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Submissions>> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).listSubmissions(perPage, page, meta, status, graderId, userId, xFields, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2771,6 +2799,8 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
         },
         /**
          * List all submissions available
+         * @param {string} [perPage] Results to display per page
+         * @param {string} [page] Page number
          * @param {string} [meta] Fetch submissions containing this meta value
          * @param {string} [status] Fetch submissions with this status
          * @param {number} [graderId] Fetch submissions for a grader
@@ -2779,8 +2809,8 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
-            return SubmissionsApiFp(configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(fetch, basePath);
+        listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
+            return SubmissionsApiFp(configuration).listSubmissions(perPage, page, meta, status, graderId, userId, xFields, options)(fetch, basePath);
         },
         /**
          * Retry the submissions with given IDs
@@ -2861,6 +2891,8 @@ export class SubmissionsApi extends BaseAPI {
 
     /**
      * List all submissions available
+     * @param {string} [perPage] Results to display per page
+     * @param {string} [page] Page number
      * @param {string} [meta] Fetch submissions containing this meta value
      * @param {string} [status] Fetch submissions with this status
      * @param {number} [graderId] Fetch submissions for a grader
@@ -2870,8 +2902,8 @@ export class SubmissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public listSubmissions(meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
-        return SubmissionsApiFp(this.configuration).listSubmissions(meta, status, graderId, userId, xFields, options)(this.fetch, this.basePath);
+    public listSubmissions(perPage?: string, page?: string, meta?: string, status?: string, graderId?: number, userId?: number, xFields?: string, options?: any) {
+        return SubmissionsApiFp(this.configuration).listSubmissions(perPage, page, meta, status, graderId, userId, xFields, options)(this.fetch, this.basePath);
     }
 
     /**

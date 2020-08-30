@@ -294,12 +294,12 @@ function submissions_api:get_submission_logs(submission_id)
 	end
 end
 
-function submissions_api:list_submissions(meta, status, grader_id, user_id, x_fields)
+function submissions_api:list_submissions(per_page, page, meta, status, grader_id, user_id, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
-		path = string.format("%s/submissions?meta=%s&status=%s&grader_id=%s&user_id=%s",
-			self.basePath, http_util.encodeURIComponent(meta), http_util.encodeURIComponent(status), http_util.encodeURIComponent(grader_id), http_util.encodeURIComponent(user_id));
+		path = string.format("%s/submissions?per_page=%s&page=%s&meta=%s&status=%s&grader_id=%s&user_id=%s",
+			self.basePath, http_util.encodeURIComponent(per_page), http_util.encodeURIComponent(page), http_util.encodeURIComponent(meta), http_util.encodeURIComponent(status), http_util.encodeURIComponent(grader_id), http_util.encodeURIComponent(user_id));
 	})
 
 	-- set HTTP verb

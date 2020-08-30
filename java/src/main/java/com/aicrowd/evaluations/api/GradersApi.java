@@ -552,6 +552,8 @@ public class GradersApi {
     }
     /**
      * Build call for listGraders
+     * @param perPage Results to display per page (optional)
+     * @param page Page number (optional)
      * @param meta Fetch graders containing this meta value (optional)
      * @param name Fetch grader containing name (optional)
      * @param status Fetch graders with this status (optional)
@@ -562,7 +564,7 @@ public class GradersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listGradersCall(String meta, String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call listGradersCall(String perPage, String page, String meta, String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -570,6 +572,10 @@ public class GradersApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (perPage != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("per_page", perPage));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (meta != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("meta", meta));
         if (name != null)
@@ -614,10 +620,10 @@ public class GradersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listGradersValidateBeforeCall(String meta, String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call listGradersValidateBeforeCall(String perPage, String page, String meta, String name, String status, Integer userId, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listGradersCall(meta, name, status, userId, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listGradersCall(perPage, page, meta, name, status, userId, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -625,6 +631,8 @@ public class GradersApi {
     /**
      * 
      * List all graders available
+     * @param perPage Results to display per page (optional)
+     * @param page Page number (optional)
      * @param meta Fetch graders containing this meta value (optional)
      * @param name Fetch grader containing name (optional)
      * @param status Fetch graders with this status (optional)
@@ -633,14 +641,16 @@ public class GradersApi {
      * @return List&lt;Grader&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Grader> listGraders(String meta, String name, String status, Integer userId, String xFields) throws ApiException {
-        ApiResponse<List<Grader>> resp = listGradersWithHttpInfo(meta, name, status, userId, xFields);
+    public List<Grader> listGraders(String perPage, String page, String meta, String name, String status, Integer userId, String xFields) throws ApiException {
+        ApiResponse<List<Grader>> resp = listGradersWithHttpInfo(perPage, page, meta, name, status, userId, xFields);
         return resp.getData();
     }
 
     /**
      * 
      * List all graders available
+     * @param perPage Results to display per page (optional)
+     * @param page Page number (optional)
      * @param meta Fetch graders containing this meta value (optional)
      * @param name Fetch grader containing name (optional)
      * @param status Fetch graders with this status (optional)
@@ -649,8 +659,8 @@ public class GradersApi {
      * @return ApiResponse&lt;List&lt;Grader&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Grader>> listGradersWithHttpInfo(String meta, String name, String status, Integer userId, String xFields) throws ApiException {
-        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(meta, name, status, userId, xFields, null, null);
+    public ApiResponse<List<Grader>> listGradersWithHttpInfo(String perPage, String page, String meta, String name, String status, Integer userId, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(perPage, page, meta, name, status, userId, xFields, null, null);
         Type localVarReturnType = new TypeToken<List<Grader>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -658,6 +668,8 @@ public class GradersApi {
     /**
      *  (asynchronously)
      * List all graders available
+     * @param perPage Results to display per page (optional)
+     * @param page Page number (optional)
      * @param meta Fetch graders containing this meta value (optional)
      * @param name Fetch grader containing name (optional)
      * @param status Fetch graders with this status (optional)
@@ -667,7 +679,7 @@ public class GradersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listGradersAsync(String meta, String name, String status, Integer userId, String xFields, final ApiCallback<List<Grader>> callback) throws ApiException {
+    public com.squareup.okhttp.Call listGradersAsync(String perPage, String page, String meta, String name, String status, Integer userId, String xFields, final ApiCallback<List<Grader>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -688,7 +700,7 @@ public class GradersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(meta, name, status, userId, xFields, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listGradersValidateBeforeCall(perPage, page, meta, name, status, userId, xFields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Grader>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

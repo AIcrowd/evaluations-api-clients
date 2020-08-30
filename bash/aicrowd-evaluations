@@ -110,6 +110,8 @@ operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getGraderLogs:::grader_id"]=1
+operation_parameters_minimum_occurrences["listGraders:::per_page"]=0
+operation_parameters_minimum_occurrences["listGraders:::page"]=0
 operation_parameters_minimum_occurrences["listGraders:::meta"]=0
 operation_parameters_minimum_occurrences["listGraders:::name"]=0
 operation_parameters_minimum_occurrences["listGraders:::status"]=0
@@ -136,6 +138,8 @@ operation_parameters_minimum_occurrences["getSubmission:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmissionLogs:::submission_id"]=1
+operation_parameters_minimum_occurrences["listSubmissions:::per_page"]=0
+operation_parameters_minimum_occurrences["listSubmissions:::page"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::meta"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::status"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::grader_id"]=0
@@ -177,6 +181,8 @@ operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::grader_id"]=0
+operation_parameters_maximum_occurrences["listGraders:::per_page"]=0
+operation_parameters_maximum_occurrences["listGraders:::page"]=0
 operation_parameters_maximum_occurrences["listGraders:::meta"]=0
 operation_parameters_maximum_occurrences["listGraders:::name"]=0
 operation_parameters_maximum_occurrences["listGraders:::status"]=0
@@ -203,6 +209,8 @@ operation_parameters_maximum_occurrences["getSubmission:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::submission_id"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::per_page"]=0
+operation_parameters_maximum_occurrences["listSubmissions:::page"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::meta"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::status"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::grader_id"]=0
@@ -241,6 +249,8 @@ operation_parameters_collection_type["deleteGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::X-Fields"]=""
 operation_parameters_collection_type["getGraderLogs:::grader_id"]=""
+operation_parameters_collection_type["listGraders:::per_page"]=""
+operation_parameters_collection_type["listGraders:::page"]=""
 operation_parameters_collection_type["listGraders:::meta"]=""
 operation_parameters_collection_type["listGraders:::name"]=""
 operation_parameters_collection_type["listGraders:::status"]=""
@@ -267,6 +277,8 @@ operation_parameters_collection_type["getSubmission:::submission_id"]=""
 operation_parameters_collection_type["getSubmission:::X-Fields"]=""
 operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
 operation_parameters_collection_type["getSubmissionLogs:::submission_id"]=""
+operation_parameters_collection_type["listSubmissions:::per_page"]=""
+operation_parameters_collection_type["listSubmissions:::page"]=""
 operation_parameters_collection_type["listSubmissions:::meta"]=""
 operation_parameters_collection_type["listSubmissions:::status"]=""
 operation_parameters_collection_type["listSubmissions:::grader_id"]=""
@@ -995,6 +1007,10 @@ print_listGraders_help() {
     echo -e "List all graders available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}per_page${OFF} ${BLUE}[string]${OFF}${OFF} - Results to display per page${YELLOW} Specify as: per_page=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}page${OFF} ${BLUE}[string]${OFF}${OFF} - Page number${YELLOW} Specify as: page=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch graders containing this meta value${YELLOW} Specify as: meta=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch grader containing name${YELLOW} Specify as: name=value${OFF}" \
@@ -1281,6 +1297,10 @@ print_listSubmissions_help() {
     echo -e "List all submissions available" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}per_page${OFF} ${BLUE}[string]${OFF}${OFF} - Results to display per page${YELLOW} Specify as: per_page=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}page${OFF} ${BLUE}[string]${OFF}${OFF} - Page number${YELLOW} Specify as: page=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}meta${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions containing this meta value${YELLOW} Specify as: meta=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}status${OFF} ${BLUE}[string]${OFF}${OFF} - Fetch submissions with this status${YELLOW} Specify as: status=value${OFF}" \
@@ -1944,7 +1964,7 @@ call_listGraders() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(meta name status user_id  )
+    local query_parameter_names=(per_page page meta name status user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/graders/" path_parameter_names query_parameter_names); then
@@ -2622,7 +2642,7 @@ call_listSubmissions() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(meta status grader_id user_id  )
+    local query_parameter_names=(per_page page meta status grader_id user_id  )
     local path
 
     if ! path=$(build_request_path "/v1/submissions/" path_parameter_names query_parameter_names); then

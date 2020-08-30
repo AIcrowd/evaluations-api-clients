@@ -149,6 +149,8 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :per_page (String.t): Results to display per page
+    - :page (String.t): Page number
     - :meta (String.t): Fetch submissions containing this meta value
     - :status (String.t): Fetch submissions with this status
     - :grader_id (integer()): Fetch submissions for a grader
@@ -163,6 +165,8 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   @spec list_submissions(Tesla.Env.client, keyword()) :: {:ok, list(AIcrowd.Evaluations.Model.Submissions.t)} | {:error, Tesla.Env.t}
   def list_submissions(connection, opts \\ []) do
     optional_params = %{
+      :"per_page" => :query,
+      :"page" => :query,
       :"meta" => :query,
       :"status" => :query,
       :"grader_id" => :query,

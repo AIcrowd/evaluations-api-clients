@@ -403,7 +403,9 @@ case $state in
       listGraders)
         local -a _op_arguments
         _op_arguments=(
-                    "meta=:[QUERY] Fetch graders containing this meta value"
+                    "per_page=:[QUERY] Results to display per page"
+"page=:[QUERY] Page number"
+"meta=:[QUERY] Fetch graders containing this meta value"
 "name=:[QUERY] Fetch grader containing name"
 "status=:[QUERY] Fetch graders with this status"
 "user_id=:[QUERY] Fetch graders created by the user"
@@ -502,7 +504,9 @@ case $state in
       listSubmissions)
         local -a _op_arguments
         _op_arguments=(
-                    "meta=:[QUERY] Fetch submissions containing this meta value"
+                    "per_page=:[QUERY] Results to display per page"
+"page=:[QUERY] Page number"
+"meta=:[QUERY] Fetch submissions containing this meta value"
 "status=:[QUERY] Fetch submissions with this status"
 "grader_id=:[QUERY] Fetch submissions for a grader"
 "user_id=:[QUERY] Fetch submissions created by the user"

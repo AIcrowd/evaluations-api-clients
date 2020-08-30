@@ -192,6 +192,8 @@ class GradersApi(
    * 
    * List all graders available
    *
+   * @param perPage Results to display per page (optional)
+   * @param page Page number (optional)
    * @param meta Fetch graders containing this meta value (optional)
    * @param name Fetch grader containing name (optional)
    * @param status Fetch graders with this status (optional)
@@ -199,8 +201,8 @@ class GradersApi(
    * @param xFields An optional fields mask (optional)
    * @return List[Grader]
    */
-  def listGraders(meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Grader]] = {
-    val await = Try(Await.result(listGradersAsync(meta, name, status, userId, xFields), Duration.Inf))
+  def listGraders(perPage: Option[String] = None, page: Option[String] = None, meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Option[List[Grader]] = {
+    val await = Try(Await.result(listGradersAsync(perPage, page, meta, name, status, userId, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -211,6 +213,8 @@ class GradersApi(
    *  asynchronously
    * List all graders available
    *
+   * @param perPage Results to display per page (optional)
+   * @param page Page number (optional)
    * @param meta Fetch graders containing this meta value (optional)
    * @param name Fetch grader containing name (optional)
    * @param status Fetch graders with this status (optional)
@@ -218,8 +222,8 @@ class GradersApi(
    * @param xFields An optional fields mask (optional)
    * @return Future(List[Grader])
    */
-  def listGradersAsync(meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Grader]] = {
-      helper.listGraders(meta, name, status, userId, xFields)
+  def listGradersAsync(perPage: Option[String] = None, page: Option[String] = None, meta: Option[String] = None, name: Option[String] = None, status: Option[String] = None, userId: Option[Integer] = None, xFields: Option[String] = None): Future[List[Grader]] = {
+      helper.listGraders(perPage, page, meta, name, status, userId, xFields)
   }
 
   /**
@@ -332,7 +336,9 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def listGraders(meta: Option[String] = None,
+  def listGraders(perPage: Option[String] = None,
+    page: Option[String] = None,
+    meta: Option[String] = None,
     name: Option[String] = None,
     status: Option[String] = None,
     userId: Option[Integer] = None,
@@ -345,6 +351,14 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    perPage match {
+      case Some(param) => queryParams += "per_page" -> param.toString
+      case _ => queryParams
+    }
+    page match {
+      case Some(param) => queryParams += "page" -> param.toString
+      case _ => queryParams
+    }
     meta match {
       case Some(param) => queryParams += "meta" -> param.toString
       case _ => queryParams

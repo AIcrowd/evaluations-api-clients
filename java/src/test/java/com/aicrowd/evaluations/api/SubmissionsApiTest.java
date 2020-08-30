@@ -126,12 +126,14 @@ public class SubmissionsApiTest {
      */
     @Test
     public void listSubmissionsTest() throws ApiException {
+        String perPage = null;
+        String page = null;
         String meta = null;
         String status = null;
         Integer graderId = null;
         Integer userId = null;
         String xFields = null;
-        List<Submissions> response = api.listSubmissions(meta, status, graderId, userId, xFields);
+        List<Submissions> response = api.listSubmissions(perPage, page, meta, status, graderId, userId, xFields);
 
         // TODO: test validations
     }

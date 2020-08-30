@@ -425,6 +425,8 @@ GradersApiService
 List all graders available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GradersApiListGradersOpts - Optional Parameters:
+     * @param "PerPage" (optional.String) -  Results to display per page
+     * @param "Page" (optional.String) -  Page number
      * @param "Meta" (optional.String) -  Fetch graders containing this meta value
      * @param "Name" (optional.String) -  Fetch grader containing name
      * @param "Status" (optional.String) -  Fetch graders with this status
@@ -435,6 +437,8 @@ List all graders available
 */
 
 type GradersApiListGradersOpts struct { 
+	PerPage optional.String
+	Page optional.String
 	Meta optional.String
 	Name optional.String
 	Status optional.String
@@ -458,6 +462,12 @@ func (a *GradersApiService) ListGraders(ctx context.Context, localVarOptionals *
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.PerPage.IsSet() {
+		localVarQueryParams.Add("per_page", parameterToString(localVarOptionals.PerPage.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Meta.IsSet() {
 		localVarQueryParams.Add("meta", parameterToString(localVarOptionals.Meta.Value(), ""))
 	}

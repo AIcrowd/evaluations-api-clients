@@ -276,7 +276,7 @@ void (empty response body)
 
 <a name="listgraders"></a>
 # **ListGraders**
-> List<Grader> ListGraders (string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
+> List<Grader> ListGraders (string perPage = null, string page = null, string meta = null, string name = null, string status = null, int? userId = null, string xFields = null)
 
 
 
@@ -302,6 +302,8 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
 
             var apiInstance = new GradersApi();
+            var perPage = perPage_example;  // string | Results to display per page (optional) 
+            var page = page_example;  // string | Page number (optional) 
             var meta = meta_example;  // string | Fetch graders containing this meta value (optional) 
             var name = name_example;  // string | Fetch grader containing name (optional) 
             var status = status_example;  // string | Fetch graders with this status (optional) 
@@ -310,7 +312,7 @@ namespace Example
 
             try
             {
-                List&lt;Grader&gt; result = apiInstance.ListGraders(meta, name, status, userId, xFields);
+                List&lt;Grader&gt; result = apiInstance.ListGraders(perPage, page, meta, name, status, userId, xFields);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -326,6 +328,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **string**| Results to display per page | [optional] 
+ **page** | **string**| Page number | [optional] 
  **meta** | **string**| Fetch graders containing this meta value | [optional] 
  **name** | **string**| Fetch grader containing name | [optional] 
  **status** | **string**| Fetch graders with this status | [optional] 

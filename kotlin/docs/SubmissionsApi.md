@@ -251,7 +251,7 @@ null (empty response body)
 
 <a name="listSubmissions"></a>
 # **listSubmissions**
-> kotlin.Array&lt;Submissions&gt; listSubmissions(meta, status, graderId, userId, xFields)
+> kotlin.Array&lt;Submissions&gt; listSubmissions(perPage, page, meta, status, graderId, userId, xFields)
 
 
 
@@ -264,13 +264,15 @@ List all submissions available
 //import com.aicrowd.evaluations.models.*
 
 val apiInstance = SubmissionsApi()
+val perPage : kotlin.String = perPage_example // kotlin.String | Results to display per page
+val page : kotlin.String = page_example // kotlin.String | Page number
 val meta : kotlin.String = meta_example // kotlin.String | Fetch submissions containing this meta value
 val status : kotlin.String = status_example // kotlin.String | Fetch submissions with this status
 val graderId : kotlin.Int = 56 // kotlin.Int | Fetch submissions for a grader
 val userId : kotlin.Int = 56 // kotlin.Int | Fetch submissions created by the user
 val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(meta, status, graderId, userId, xFields)
+    val result : kotlin.Array<Submissions> = apiInstance.listSubmissions(perPage, page, meta, status, graderId, userId, xFields)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SubmissionsApi#listSubmissions")
@@ -285,6 +287,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **kotlin.String**| Results to display per page | [optional]
+ **page** | **kotlin.String**| Page number | [optional]
  **meta** | **kotlin.String**| Fetch submissions containing this meta value | [optional]
  **status** | **kotlin.String**| Fetch submissions with this status | [optional]
  **graderId** | **kotlin.Int**| Fetch submissions for a grader | [optional]

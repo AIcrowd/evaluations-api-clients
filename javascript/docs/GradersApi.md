@@ -254,6 +254,8 @@ api_key.apiKey = 'YOUR API KEY';
 var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var opts = { 
+  'perPage': "perPage_example", // String | Results to display per page
+  'page': "page_example", // String | Page number
   'meta': "meta_example", // String | Fetch graders containing this meta value
   'name': "name_example", // String | Fetch grader containing name
   'status': "status_example", // String | Fetch graders with this status
@@ -275,6 +277,8 @@ apiInstance.listGraders(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **perPage** | **String**| Results to display per page | [optional] 
+ **page** | **String**| Page number | [optional] 
  **meta** | **String**| Fetch graders containing this meta value | [optional] 
  **name** | **String**| Fetch grader containing name | [optional] 
  **status** | **String**| Fetch graders with this status | [optional] 
