@@ -49,7 +49,7 @@ Grader::Grader()
     m_SecretsIsSet = false;
     m_Wf_name = utility::conversions::to_string_t("");
     m_Wf_nameIsSet = false;
-    m_Submission_typesIsSet = false;
+    m_Allowed_extensionsIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -130,9 +130,9 @@ web::json::value Grader::toJson() const
     {
         val[utility::conversions::to_string_t("wf_name")] = ModelBase::toJson(m_Wf_name);
     }
-    if(m_Submission_typesIsSet)
+    if(m_Allowed_extensionsIsSet)
     {
-        val[utility::conversions::to_string_t("submission_types")] = ModelBase::toJson(m_Submission_types);
+        val[utility::conversions::to_string_t("allowed_extensions")] = ModelBase::toJson(m_Allowed_extensions);
     }
     if(m_User_idIsSet)
     {
@@ -275,14 +275,14 @@ void Grader::fromJson(web::json::value& val)
             setWfName(ModelBase::stringFromJson(fieldValue));
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("submission_types")))
+    if(val.has_field(utility::conversions::to_string_t("allowed_extensions")))
     {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("submission_types")];
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("allowed_extensions")];
         if(!fieldValue.is_null())
         {
             std::shared_ptr<Object> newItem(nullptr);
             newItem->fromJson(fieldValue);
-            setSubmissionTypes( newItem );
+            setAllowedExtensions( newItem );
         }
     }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
@@ -394,11 +394,11 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("wf_name"), m_Wf_name));
         
     }
-    if(m_Submission_typesIsSet)
+    if(m_Allowed_extensionsIsSet)
     {
-        if (m_Submission_types.get())
+        if (m_Allowed_extensions.get())
         {
-            m_Submission_types->toMultipart(multipart, utility::conversions::to_string_t("submission_types."));
+            m_Allowed_extensions->toMultipart(multipart, utility::conversions::to_string_t("allowed_extensions."));
         }
         
     }
@@ -496,13 +496,13 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         setWfName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("wf_name"))));
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("submission_types")))
+    if(multipart->hasContent(utility::conversions::to_string_t("allowed_extensions")))
     {
-        if(multipart->hasContent(utility::conversions::to_string_t("submission_types")))
+        if(multipart->hasContent(utility::conversions::to_string_t("allowed_extensions")))
         {
             std::shared_ptr<Object> newItem(nullptr);
-            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("submission_types."));
-            setSubmissionTypes( newItem );
+            newItem->fromMultiPart(multipart, utility::conversions::to_string_t("allowed_extensions."));
+            setAllowedExtensions( newItem );
         }
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
@@ -841,25 +841,25 @@ void Grader::unsetWf_name()
     m_Wf_nameIsSet = false;
 }
 
-std::shared_ptr<Object> Grader::getSubmissionTypes() const
+std::shared_ptr<Object> Grader::getAllowedExtensions() const
 {
-    return m_Submission_types;
+    return m_Allowed_extensions;
 }
 
 
-void Grader::setSubmissionTypes(std::shared_ptr<Object> value)
+void Grader::setAllowedExtensions(std::shared_ptr<Object> value)
 {
-    m_Submission_types = value;
-    m_Submission_typesIsSet = true;
+    m_Allowed_extensions = value;
+    m_Allowed_extensionsIsSet = true;
 }
-bool Grader::submissionTypesIsSet() const
+bool Grader::allowedExtensionsIsSet() const
 {
-    return m_Submission_typesIsSet;
+    return m_Allowed_extensionsIsSet;
 }
 
-void Grader::unsetSubmission_types()
+void Grader::unsetAllowed_extensions()
 {
-    m_Submission_typesIsSet = false;
+    m_Allowed_extensionsIsSet = false;
 }
 
 int32_t Grader::getUserId() const

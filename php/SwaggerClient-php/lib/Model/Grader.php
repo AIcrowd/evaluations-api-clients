@@ -73,7 +73,7 @@ class Grader implements ModelInterface, ArrayAccess
         'status' => 'string',
         'secrets' => 'object',
         'wf_name' => 'string',
-        'submission_types' => 'object',
+        'allowed_extensions' => 'object',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -100,7 +100,7 @@ class Grader implements ModelInterface, ArrayAccess
         'status' => null,
         'secrets' => null,
         'wf_name' => null,
-        'submission_types' => null,
+        'allowed_extensions' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -148,7 +148,7 @@ class Grader implements ModelInterface, ArrayAccess
         'status' => 'status',
         'secrets' => 'secrets',
         'wf_name' => 'wf_name',
-        'submission_types' => 'submission_types',
+        'allowed_extensions' => 'allowed_extensions',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -175,7 +175,7 @@ class Grader implements ModelInterface, ArrayAccess
         'status' => 'setStatus',
         'secrets' => 'setSecrets',
         'wf_name' => 'setWfName',
-        'submission_types' => 'setSubmissionTypes',
+        'allowed_extensions' => 'setAllowedExtensions',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -202,7 +202,7 @@ class Grader implements ModelInterface, ArrayAccess
         'status' => 'getStatus',
         'secrets' => 'getSecrets',
         'wf_name' => 'getWfName',
-        'submission_types' => 'getSubmissionTypes',
+        'allowed_extensions' => 'getAllowedExtensions',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -283,7 +283,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['secrets'] = isset($data['secrets']) ? $data['secrets'] : null;
         $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
-        $this->container['submission_types'] = isset($data['submission_types']) ? $data['submission_types'] : null;
+        $this->container['allowed_extensions'] = isset($data['allowed_extensions']) ? $data['allowed_extensions'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -700,25 +700,25 @@ class Grader implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets submission_types
+     * Gets allowed_extensions
      *
      * @return object
      */
-    public function getSubmissionTypes()
+    public function getAllowedExtensions()
     {
-        return $this->container['submission_types'];
+        return $this->container['allowed_extensions'];
     }
 
     /**
-     * Sets submission_types
+     * Sets allowed_extensions
      *
-     * @param object $submission_types Type of submissions allowed on the grader
+     * @param object $allowed_extensions Allowed extensions for the grader
      *
      * @return $this
      */
-    public function setSubmissionTypes($submission_types)
+    public function setAllowedExtensions($allowed_extensions)
     {
-        $this->container['submission_types'] = $submission_types;
+        $this->container['allowed_extensions'] = $allowed_extensions;
 
         return $this;
     }

@@ -962,9 +962,9 @@ definitions:
         type: "string"
         description: "Name of the workflow used to setup grader"
         readOnly: true
-      submission_types:
+      allowed_extensions:
         type: "object"
-        description: "Type of submissions allowed on the grader"
+        description: "Allowed extensions for the grader"
         readOnly: true
         properties: {}
       user_id:
@@ -980,7 +980,6 @@ definitions:
       evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
       description: "description"
-      submission_types: "{}"
       workflow_spec: "{}"
       secrets: "{}"
       organisation_id: 5
@@ -990,12 +989,13 @@ definitions:
       name: "name"
       wf_name: "wf_name"
       id: 0
+      allowed_extensions: "{}"
       updated: "2000-01-23T04:56:07.000+00:00"
       dataset: "{}"
       logs: "logs"
       notifications: "notifications"
       status: "status"
-    x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,submission_types,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,user_id,organisation_id}"
   GraderMeta:
     type: "object"
     properties:

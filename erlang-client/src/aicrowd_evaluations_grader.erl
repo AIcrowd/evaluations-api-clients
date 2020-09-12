@@ -21,7 +21,7 @@
        'status' => binary(),
        'secrets' => maps:map(),
        'wf_name' => binary(),
-       'submission_types' => maps:map(),
+       'allowed_extensions' => maps:map(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -42,7 +42,7 @@ encode(#{ 'id' := Id,
           'status' := Status,
           'secrets' := Secrets,
           'wf_name' := WfName,
-          'submission_types' := SubmissionTypes,
+          'allowed_extensions' := AllowedExtensions,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -62,7 +62,7 @@ encode(#{ 'id' := Id,
        'status' => Status,
        'secrets' => Secrets,
        'wf_name' => WfName,
-       'submission_types' => SubmissionTypes,
+       'allowed_extensions' => AllowedExtensions,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

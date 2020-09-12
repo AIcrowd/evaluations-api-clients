@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **status** | **String** | Status of the grader - True if it ready, False otherwise | [optional] [default to null]
 **secrets** | [***Value**](Value.md) | List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml | [optional] [default to null]
 **wf_name** | **String** | Name of the workflow used to setup grader | [optional] [default to null]
-**submission_types** | [***Value**](Value.md) | Type of submissions allowed on the grader | [optional] [default to null]
+**allowed_extensions** | [***Value**](Value.md) | Allowed extensions for the grader | [optional] [default to null]
 **user_id** | **i32** | User ID | [optional] [default to null]
 **organisation_id** | **i32** | Organisation ID | [optional] [default to null]
 

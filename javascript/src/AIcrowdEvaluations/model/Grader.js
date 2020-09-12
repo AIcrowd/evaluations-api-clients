@@ -88,8 +88,8 @@
         obj.secrets = ApiClient.convertToType(data['secrets'], Object);
       if (data.hasOwnProperty('wf_name'))
         obj.wfName = ApiClient.convertToType(data['wf_name'], 'String');
-      if (data.hasOwnProperty('submission_types'))
-        obj.submissionTypes = ApiClient.convertToType(data['submission_types'], Object);
+      if (data.hasOwnProperty('allowed_extensions'))
+        obj.allowedExtensions = ApiClient.convertToType(data['allowed_extensions'], Object);
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -195,10 +195,10 @@
   exports.prototype.wfName = undefined;
 
   /**
-   * Type of submissions allowed on the grader
-   * @member {Object} submissionTypes
+   * Allowed extensions for the grader
+   * @member {Object} allowedExtensions
    */
-  exports.prototype.submissionTypes = undefined;
+  exports.prototype.allowedExtensions = undefined;
 
   /**
    * User ID

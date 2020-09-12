@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **status** | **kotlin.String** | Status of the grader - True if it ready, False otherwise |  [optional]
 **secrets** | [**kotlin.Any**](kotlin.Any.md) | List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml |  [optional]
 **wf_name** | **kotlin.String** | Name of the workflow used to setup grader |  [optional]
-**submission_types** | [**kotlin.Any**](kotlin.Any.md) | Type of submissions allowed on the grader |  [optional]
+**allowed_extensions** | [**kotlin.Any**](kotlin.Any.md) | Allowed extensions for the grader |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

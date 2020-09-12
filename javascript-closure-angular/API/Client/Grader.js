@@ -118,11 +118,11 @@ API.Client.Grader.prototype.secrets;
 API.Client.Grader.prototype.wfName;
 
 /**
- * Type of submissions allowed on the grader
+ * Allowed extensions for the grader
  * @type {!API.Client.Object}
  * @export
  */
-API.Client.Grader.prototype.submissionTypes;
+API.Client.Grader.prototype.allowedExtensions;
 
 /**
  * User ID

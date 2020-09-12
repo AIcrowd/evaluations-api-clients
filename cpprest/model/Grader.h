@@ -165,12 +165,12 @@ public:
     void unsetWf_name();
     void setWfName(utility::string_t value);
     /// <summary>
-    /// Type of submissions allowed on the grader
+    /// Allowed extensions for the grader
     /// </summary>
-    std::shared_ptr<Object> getSubmissionTypes() const;
-    bool submissionTypesIsSet() const;
-    void unsetSubmission_types();
-    void setSubmissionTypes(std::shared_ptr<Object> value);
+    std::shared_ptr<Object> getAllowedExtensions() const;
+    bool allowedExtensionsIsSet() const;
+    void unsetAllowed_extensions();
+    void setAllowedExtensions(std::shared_ptr<Object> value);
     /// <summary>
     /// User ID
     /// </summary>
@@ -218,8 +218,8 @@ protected:
     bool m_SecretsIsSet;
     utility::string_t m_Wf_name;
     bool m_Wf_nameIsSet;
-    std::shared_ptr<Object> m_Submission_types;
-    bool m_Submission_typesIsSet;
+    std::shared_ptr<Object> m_Allowed_extensions;
+    bool m_Allowed_extensionsIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

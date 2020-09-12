@@ -128,7 +128,7 @@ describe 'Grader' do
     end
   end
 
-  describe 'test attribute "submission_types"' do
+  describe 'test attribute "allowed_extensions"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

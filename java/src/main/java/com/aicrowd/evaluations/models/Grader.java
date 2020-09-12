@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T18:16:10.196Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T21:37:47.034Z")
 
 
 
@@ -81,8 +81,8 @@ public class Grader {
   @SerializedName("wf_name")
   private String wfName = null;
 
-  @SerializedName("submission_types")
-  private Object submissionTypes = null;
+  @SerializedName("allowed_extensions")
+  private Object allowedExtensions = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -280,12 +280,12 @@ public class Grader {
   }
 
    /**
-   * Type of submissions allowed on the grader
-   * @return submissionTypes
+   * Allowed extensions for the grader
+   * @return allowedExtensions
   **/
-  @ApiModelProperty(value = "Type of submissions allowed on the grader")
-  public Object getSubmissionTypes() {
-    return submissionTypes;
+  @ApiModelProperty(value = "Allowed extensions for the grader")
+  public Object getAllowedExtensions() {
+    return allowedExtensions;
   }
 
    /**
@@ -332,14 +332,14 @@ public class Grader {
         Objects.equals(this.status, grader.status) &&
         Objects.equals(this.secrets, grader.secrets) &&
         Objects.equals(this.wfName, grader.wfName) &&
-        Objects.equals(this.submissionTypes, grader.submissionTypes) &&
+        Objects.equals(this.allowedExtensions, grader.allowedExtensions) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, submissionTypes, userId, organisationId);
+    return Objects.hash(id, created, updated, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, userId, organisationId);
   }
 
 
@@ -364,7 +364,7 @@ public class Grader {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
-    sb.append("    submissionTypes: ").append(toIndentedString(submissionTypes)).append("\n");
+    sb.append("    allowedExtensions: ").append(toIndentedString(allowedExtensions)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

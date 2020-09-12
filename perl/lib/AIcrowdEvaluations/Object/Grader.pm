@@ -255,10 +255,10 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
-    'submission_types' => {
+    'allowed_extensions' => {
     	datatype => 'object',
-    	base_name => 'submission_types',
-    	description => 'Type of submissions allowed on the grader',
+    	base_name => 'allowed_extensions',
+    	description => 'Allowed extensions for the grader',
     	format => '',
     	read_only => '',
     		},
@@ -295,7 +295,7 @@ __PACKAGE__->swagger_types( {
     'status' => 'string',
     'secrets' => 'object',
     'wf_name' => 'string',
-    'submission_types' => 'object',
+    'allowed_extensions' => 'object',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -317,7 +317,7 @@ __PACKAGE__->attribute_map( {
     'status' => 'status',
     'secrets' => 'secrets',
     'wf_name' => 'wf_name',
-    'submission_types' => 'submission_types',
+    'allowed_extensions' => 'allowed_extensions',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

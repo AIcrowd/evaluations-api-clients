@@ -30,7 +30,7 @@ package com.aicrowd.evaluations.models
  * @param status Status of the grader - True if it ready, False otherwise
  * @param secrets List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
  * @param wf_name Name of the workflow used to setup grader
- * @param submission_types Type of submissions allowed on the grader
+ * @param allowed_extensions Allowed extensions for the grader
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -67,8 +67,8 @@ data class Grader (
     val secrets: kotlin.Any? = null,
     /* Name of the workflow used to setup grader */
     val wf_name: kotlin.String? = null,
-    /* Type of submissions allowed on the grader */
-    val submission_types: kotlin.Any? = null,
+    /* Allowed extensions for the grader */
+    val allowed_extensions: kotlin.Any? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

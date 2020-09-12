@@ -47,8 +47,8 @@ case class Grader (
   secrets: Option[Any] = None,
   // Name of the workflow used to setup grader
   wfName: Option[String] = None,
-  // Type of submissions allowed on the grader
-  submissionTypes: Option[Any] = None,
+  // Allowed extensions for the grader
+  allowedExtensions: Option[Any] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

@@ -46,8 +46,8 @@ type Grader struct {
 	Secrets *interface{} `json:"secrets,omitempty"`
 	// Name of the workflow used to setup grader
 	WfName string `json:"wf_name,omitempty"`
-	// Type of submissions allowed on the grader
-	SubmissionTypes *interface{} `json:"submission_types,omitempty"`
+	// Allowed extensions for the grader
+	AllowedExtensions *interface{} `json:"allowed_extensions,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

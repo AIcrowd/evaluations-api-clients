@@ -189,9 +189,9 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "submission_types"
+     * Test attribute "allowed_extensions"
      */
-    public function testPropertySubmissionTypes()
+    public function testPropertyAllowedExtensions()
     {
     }
 

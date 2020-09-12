@@ -25,7 +25,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"status",
     :"secrets",
     :"wf_name",
-    :"submission_types",
+    :"allowed_extensions",
     :"user_id",
     :"organisation_id"
   ]
@@ -47,7 +47,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"status" => String.t,
     :"secrets" => Object,
     :"wf_name" => String.t,
-    :"submission_types" => Object,
+    :"allowed_extensions" => Object,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }
@@ -60,7 +60,7 @@ defimpl Poison.Decoder, for: AIcrowd.Evaluations.Model.Grader do
     |> deserialize(:"dataset", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"workflow_spec", :struct, AIcrowd.Evaluations.Model.Object, options)
     |> deserialize(:"secrets", :struct, AIcrowd.Evaluations.Model.Object, options)
-    |> deserialize(:"submission_types", :struct, AIcrowd.Evaluations.Model.Object, options)
+    |> deserialize(:"allowed_extensions", :struct, AIcrowd.Evaluations.Model.Object, options)
   end
 end
 

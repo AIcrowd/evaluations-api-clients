@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * SubmissionRetryInput
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T18:16:10.196Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T21:37:47.034Z")
 
 
 

@@ -128,8 +128,8 @@ describe("grader", function()
     end)
   end)
 
-  -- unit tests for the property 'submission_types'
-  describe("property submission_types test", function()
+  -- unit tests for the property 'allowed_extensions'
+  describe("property allowed_extensions test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

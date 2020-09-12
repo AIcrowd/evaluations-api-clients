@@ -62,8 +62,8 @@ module AIcrowdEvaluations
     # Name of the workflow used to setup grader
     attr_accessor :wf_name
 
-    # Type of submissions allowed on the grader
-    attr_accessor :submission_types
+    # Allowed extensions for the grader
+    attr_accessor :allowed_extensions
 
     # User ID
     attr_accessor :user_id
@@ -90,7 +90,7 @@ module AIcrowdEvaluations
         :'status' => :'status',
         :'secrets' => :'secrets',
         :'wf_name' => :'wf_name',
-        :'submission_types' => :'submission_types',
+        :'allowed_extensions' => :'allowed_extensions',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -115,7 +115,7 @@ module AIcrowdEvaluations
         :'status' => :'String',
         :'secrets' => :'Object',
         :'wf_name' => :'String',
-        :'submission_types' => :'Object',
+        :'allowed_extensions' => :'Object',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -193,8 +193,8 @@ module AIcrowdEvaluations
         self.wf_name = attributes[:'wf_name']
       end
 
-      if attributes.has_key?(:'submission_types')
-        self.submission_types = attributes[:'submission_types']
+      if attributes.has_key?(:'allowed_extensions')
+        self.allowed_extensions = attributes[:'allowed_extensions']
       end
 
       if attributes.has_key?(:'user_id')
@@ -245,7 +245,7 @@ module AIcrowdEvaluations
           status == o.status &&
           secrets == o.secrets &&
           wf_name == o.wf_name &&
-          submission_types == o.submission_types &&
+          allowed_extensions == o.allowed_extensions &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -259,7 +259,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, dataset, cluster_id, description, workflow_spec, evaluator_repo, evaluator_repo_tag, name, notifications, logs, meta, status, secrets, wf_name, submission_types, user_id, organisation_id].hash
+      [id, created, updated, dataset, cluster_id, description, workflow_spec, evaluator_repo, evaluator_repo_tag, name, notifications, logs, meta, status, secrets, wf_name, allowed_extensions, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

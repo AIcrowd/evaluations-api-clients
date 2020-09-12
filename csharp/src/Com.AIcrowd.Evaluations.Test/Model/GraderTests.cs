@@ -195,12 +195,12 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WfName'
         }
         /// <summary>
-        /// Test the property 'SubmissionTypes'
+        /// Test the property 'AllowedExtensions'
         /// </summary>
         [Test]
-        public void SubmissionTypesTest()
+        public void AllowedExtensionsTest()
         {
-            // TODO unit test for the property 'SubmissionTypes'
+            // TODO unit test for the property 'AllowedExtensions'
         }
         /// <summary>
         /// Test the property 'UserId'

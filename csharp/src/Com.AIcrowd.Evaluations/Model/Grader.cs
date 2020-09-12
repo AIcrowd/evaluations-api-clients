@@ -173,11 +173,11 @@ namespace Com.AIcrowd.Evaluations.Model
         public string WfName { get; private set; }
 
         /// <summary>
-        /// Type of submissions allowed on the grader
+        /// Allowed extensions for the grader
         /// </summary>
-        /// <value>Type of submissions allowed on the grader</value>
-        [DataMember(Name="submission_types", EmitDefaultValue=false)]
-        public Object SubmissionTypes { get; private set; }
+        /// <value>Allowed extensions for the grader</value>
+        [DataMember(Name="allowed_extensions", EmitDefaultValue=false)]
+        public Object AllowedExtensions { get; private set; }
 
         /// <summary>
         /// User ID
@@ -217,7 +217,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Secrets: ").Append(Secrets).Append("\n");
             sb.Append("  WfName: ").Append(WfName).Append("\n");
-            sb.Append("  SubmissionTypes: ").Append(SubmissionTypes).Append("\n");
+            sb.Append("  AllowedExtensions: ").Append(AllowedExtensions).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -335,9 +335,9 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WfName.Equals(input.WfName))
                 ) && 
                 (
-                    this.SubmissionTypes == input.SubmissionTypes ||
-                    (this.SubmissionTypes != null &&
-                    this.SubmissionTypes.Equals(input.SubmissionTypes))
+                    this.AllowedExtensions == input.AllowedExtensions ||
+                    (this.AllowedExtensions != null &&
+                    this.AllowedExtensions.Equals(input.AllowedExtensions))
                 ) && 
                 (
                     this.UserId == input.UserId ||
@@ -392,8 +392,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Secrets.GetHashCode();
                 if (this.WfName != null)
                     hashCode = hashCode * 59 + this.WfName.GetHashCode();
-                if (this.SubmissionTypes != null)
-                    hashCode = hashCode * 59 + this.SubmissionTypes.GetHashCode();
+                if (this.AllowedExtensions != null)
+                    hashCode = hashCode * 59 + this.AllowedExtensions.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

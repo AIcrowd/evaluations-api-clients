@@ -62,9 +62,9 @@ pub struct Grader {
   /// Name of the workflow used to setup grader
   #[serde(rename = "wf_name")]
   wf_name: Option<String>,
-  /// Type of submissions allowed on the grader
-  #[serde(rename = "submission_types")]
-  submission_types: Option<Value>,
+  /// Allowed extensions for the grader
+  #[serde(rename = "allowed_extensions")]
+  allowed_extensions: Option<Value>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -92,7 +92,7 @@ impl Grader {
       status: None,
       secrets: None,
       wf_name: None,
-      submission_types: None,
+      allowed_extensions: None,
       user_id: None,
       organisation_id: None
     }
@@ -367,21 +367,21 @@ impl Grader {
     self.wf_name = None;
   }
 
-  pub fn set_submission_types(&mut self, submission_types: Value) {
-    self.submission_types = Some(submission_types);
+  pub fn set_allowed_extensions(&mut self, allowed_extensions: Value) {
+    self.allowed_extensions = Some(allowed_extensions);
   }
 
-  pub fn with_submission_types(mut self, submission_types: Value) -> Grader {
-    self.submission_types = Some(submission_types);
+  pub fn with_allowed_extensions(mut self, allowed_extensions: Value) -> Grader {
+    self.allowed_extensions = Some(allowed_extensions);
     self
   }
 
-  pub fn submission_types(&self) -> Option<&Value> {
-    self.submission_types.as_ref()
+  pub fn allowed_extensions(&self) -> Option<&Value> {
+    self.allowed_extensions.as_ref()
   }
 
-  pub fn reset_submission_types(&mut self) {
-    self.submission_types = None;
+  pub fn reset_allowed_extensions(&mut self) {
+    self.allowed_extensions = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

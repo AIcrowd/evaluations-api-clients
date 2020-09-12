@@ -87,8 +87,8 @@
             expect(data.secrets).to.be();
             expect(data.wfName).to.be.a('string');
             expect(data.wfName).to.be("");
-            expect(data.submissionTypes).to.be.a(Object);
-            expect(data.submissionTypes).to.be();
+            expect(data.allowedExtensions).to.be.a(Object);
+            expect(data.allowedExtensions).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -167,8 +167,8 @@
             expect(data.secrets).to.be();
             expect(data.wfName).to.be.a('string');
             expect(data.wfName).to.be("");
-            expect(data.submissionTypes).to.be.a(Object);
-            expect(data.submissionTypes).to.be();
+            expect(data.allowedExtensions).to.be.a(Object);
+            expect(data.allowedExtensions).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -257,8 +257,8 @@
               expect(data.secrets).to.be();
               expect(data.wfName).to.be.a('string');
               expect(data.wfName).to.be("");
-              expect(data.submissionTypes).to.be.a(Object);
-              expect(data.submissionTypes).to.be();
+              expect(data.allowedExtensions).to.be.a(Object);
+              expect(data.allowedExtensions).to.be();
               expect(data.userId).to.be.a('number');
               expect(data.userId).to.be(0);
               expect(data.organisationId).to.be.a('number');
@@ -326,8 +326,8 @@
             expect(data.secrets).to.be();
             expect(data.wfName).to.be.a('string');
             expect(data.wfName).to.be("");
-            expect(data.submissionTypes).to.be.a(Object);
-            expect(data.submissionTypes).to.be();
+            expect(data.allowedExtensions).to.be.a(Object);
+            expect(data.allowedExtensions).to.be();
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');

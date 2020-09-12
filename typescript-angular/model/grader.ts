@@ -77,9 +77,9 @@ export interface Grader {
      */
     readonly wfName?: string;
     /**
-     * Type of submissions allowed on the grader
+     * Allowed extensions for the grader
      */
-    readonly submissionTypes?: any;
+    readonly allowedExtensions?: any;
     /**
      * User ID
      */

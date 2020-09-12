@@ -55,8 +55,8 @@ class Grader {
   /* Name of the workflow used to setup grader */
   String wfName = null
 
-  /* Type of submissions allowed on the grader */
-  Object submissionTypes = null
+  /* Allowed extensions for the grader */
+  Object allowedExtensions = null
 
   /* User ID */
   Integer userId = null

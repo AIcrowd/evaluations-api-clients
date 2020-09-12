@@ -136,10 +136,10 @@
         // expect(instance.wfName).to.be(expectedValueLiteral);
       });
 
-      it('should have the property submissionTypes (base name: "submission_types")', function() {
-        // TODO: update the code to test the property submissionTypes
-        expect(instance).to.have.property('submissionTypes');
-        // expect(instance.submissionTypes).to.be(expectedValueLiteral);
+      it('should have the property allowedExtensions (base name: "allowed_extensions")', function() {
+        // TODO: update the code to test the property allowedExtensions
+        expect(instance).to.have.property('allowedExtensions');
+        // expect(instance.allowedExtensions).to.be(expectedValueLiteral);
       });
 
       it('should have the property userId (base name: "user_id")', function() {

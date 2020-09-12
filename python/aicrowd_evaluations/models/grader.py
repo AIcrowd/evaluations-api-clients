@@ -47,7 +47,7 @@ class Grader(object):
         'status': 'str',
         'secrets': 'object',
         'wf_name': 'str',
-        'submission_types': 'object',
+        'allowed_extensions': 'object',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -69,12 +69,12 @@ class Grader(object):
         'status': 'status',
         'secrets': 'secrets',
         'wf_name': 'wf_name',
-        'submission_types': 'submission_types',
+        'allowed_extensions': 'allowed_extensions',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, submission_types=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -93,7 +93,7 @@ class Grader(object):
         self._status = None
         self._secrets = None
         self._wf_name = None
-        self._submission_types = None
+        self._allowed_extensions = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -129,8 +129,8 @@ class Grader(object):
             self.secrets = secrets
         if wf_name is not None:
             self.wf_name = wf_name
-        if submission_types is not None:
-            self.submission_types = submission_types
+        if allowed_extensions is not None:
+            self.allowed_extensions = allowed_extensions
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -507,27 +507,27 @@ class Grader(object):
         self._wf_name = wf_name
 
     @property
-    def submission_types(self):
-        """Gets the submission_types of this Grader.  # noqa: E501
+    def allowed_extensions(self):
+        """Gets the allowed_extensions of this Grader.  # noqa: E501
 
-        Type of submissions allowed on the grader  # noqa: E501
+        Allowed extensions for the grader  # noqa: E501
 
-        :return: The submission_types of this Grader.  # noqa: E501
+        :return: The allowed_extensions of this Grader.  # noqa: E501
         :rtype: object
         """
-        return self._submission_types
+        return self._allowed_extensions
 
-    @submission_types.setter
-    def submission_types(self, submission_types):
-        """Sets the submission_types of this Grader.
+    @allowed_extensions.setter
+    def allowed_extensions(self, allowed_extensions):
+        """Sets the allowed_extensions of this Grader.
 
-        Type of submissions allowed on the grader  # noqa: E501
+        Allowed extensions for the grader  # noqa: E501
 
-        :param submission_types: The submission_types of this Grader.  # noqa: E501
+        :param allowed_extensions: The allowed_extensions of this Grader.  # noqa: E501
         :type: object
         """
 
-        self._submission_types = submission_types
+        self._allowed_extensions = allowed_extensions
 
     @property
     def user_id(self):

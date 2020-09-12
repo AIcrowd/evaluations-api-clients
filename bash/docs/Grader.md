@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **status** | **string** |  | [optional] [default to null]
 **secrets** | **map** |  | [optional] [default to null]
 **wf_name** | **string** |  | [optional] [default to null]
-**submission_types** | **map** |  | [optional] [default to null]
+**allowed_extensions** | **map** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 
