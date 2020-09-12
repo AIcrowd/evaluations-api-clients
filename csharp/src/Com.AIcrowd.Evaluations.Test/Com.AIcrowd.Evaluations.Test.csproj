@@ -81,7 +81,7 @@ OpenAPI spec version: 1.0.0
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\Com.AIcrowd.Evaluations\Com.AIcrowd.Evaluations.csproj">
-          <Project>{6AC809CC-F8F4-4878-A30A-7523C791851C}</Project>
+          <Project>{1CE6DA62-1966-4D35-B1C9-04D84A999559}</Project>
           <Name>Com.AIcrowd.Evaluations</Name>
       </ProjectReference>
   </ItemGroup>

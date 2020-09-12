@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GraderMeta
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-30T11:45:51.302Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T18:16:10.196Z")
 
 
 
