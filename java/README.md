@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2021-02-11T22:19:41.065Z
+  - Build date: 2021-02-11T23:21:09.710Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
