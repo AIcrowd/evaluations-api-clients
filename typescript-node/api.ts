@@ -336,6 +336,10 @@ export class Grader {
     */
     'updated'?: Date;
     /**
+    * Grader archival status
+    */
+    'archived'?: boolean;
+    /**
     * Dataset metadata
     */
     'dataset'?: any;
@@ -392,6 +396,10 @@ export class Grader {
     */
     'allowedExtensions'?: any;
     /**
+    * Workflow priority to assign
+    */
+    'workflowPriority'?: number;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -417,6 +425,11 @@ export class Grader {
             "name": "updated",
             "baseName": "updated",
             "type": "Date"
+        },
+        {
+            "name": "archived",
+            "baseName": "archived",
+            "type": "boolean"
         },
         {
             "name": "dataset",
@@ -487,6 +500,11 @@ export class Grader {
             "name": "allowedExtensions",
             "baseName": "allowed_extensions",
             "type": "any"
+        },
+        {
+            "name": "workflowPriority",
+            "baseName": "workflow_priority",
+            "type": "number"
         },
         {
             "name": "userId",
@@ -786,6 +804,10 @@ export class Submissions {
     */
     'wfName'?: string;
     /**
+    * Workflow priority to assign
+    */
+    'workflowPriority'?: number;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -861,6 +883,11 @@ export class Submissions {
             "name": "wfName",
             "baseName": "wf_name",
             "type": "string"
+        },
+        {
+            "name": "workflowPriority",
+            "baseName": "workflow_priority",
+            "type": "number"
         },
         {
             "name": "userId",
@@ -1532,6 +1559,61 @@ export class GradersApi {
         (this.authentications as any)[GradersApiApiKeys[key]].apiKey = value;
     }
     /**
+     * Archive a grader
+     * @param graderId 
+     * @param {*} [options] Override http request options.
+     */
+    public archiveGrader (graderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/archive'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling archiveGrader.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Create a new grader
      * @param payload 
      * @param xFields An optional fields mask
@@ -1829,6 +1911,61 @@ export class GradersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Array<Grader>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Unarchive a grader
+     * @param graderId 
+     * @param {*} [options] Override http request options.
+     */
+    public unarchiveGrader (graderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/unarchive'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling unarchiveGrader.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

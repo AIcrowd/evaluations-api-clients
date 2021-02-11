@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ended** | **DateTime** | Evaluation end time | [optional] 
 **meta** | **String** | Additional meta data of the grader | [optional] 
 **wf_name** | **String** | Name of the workflow used to evaluate submission | [optional] 
+**workflow_priority** | **Integer** | Workflow priority to assign | [optional] 
 **user_id** | **Integer** | User ID | [optional] 
 **organisation_id** | **Integer** | Organisation ID | [optional] 
 

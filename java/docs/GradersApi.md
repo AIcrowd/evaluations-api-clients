@@ -4,13 +4,69 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
+[**unarchiveGrader**](GradersApi.md#unarchiveGrader) | **POST** /graders/{grader_id}/unarchive | 
 [**updateGrader**](GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 
+
+<a name="archiveGrader"></a>
+# **archiveGrader**
+> archiveGrader(graderId)
+
+
+
+Archive a grader
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+GradersApi apiInstance = new GradersApi();
+Integer graderId = 56; // Integer | 
+try {
+    apiInstance.archiveGrader(graderId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling GradersApi#archiveGrader");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="createGrader"></a>
 # **createGrader**
@@ -291,6 +347,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;Grader&gt;**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="unarchiveGrader"></a>
+# **unarchiveGrader**
+> unarchiveGrader(graderId)
+
+
+
+Unarchive a grader
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+GradersApi apiInstance = new GradersApi();
+Integer graderId = 56; // Integer | 
+try {
+    apiInstance.unarchiveGrader(graderId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling GradersApi#unarchiveGrader");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
 
 ### Authorization
 

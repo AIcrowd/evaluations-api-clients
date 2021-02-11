@@ -28,10 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T21:37:47.034Z")
-
-
-
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-02-11T22:19:41.065Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -71,6 +68,9 @@ public class Submissions {
 
   @SerializedName("wf_name")
   private String wfName = null;
+
+  @SerializedName("workflow_priority")
+  private Integer workflowPriority = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -222,6 +222,24 @@ public class Submissions {
     return wfName;
   }
 
+  public Submissions workflowPriority(Integer workflowPriority) {
+    this.workflowPriority = workflowPriority;
+    return this;
+  }
+
+   /**
+   * Workflow priority to assign
+   * @return workflowPriority
+  **/
+  @ApiModelProperty(value = "Workflow priority to assign")
+  public Integer getWorkflowPriority() {
+    return workflowPriority;
+  }
+
+  public void setWorkflowPriority(Integer workflowPriority) {
+    this.workflowPriority = workflowPriority;
+  }
+
    /**
    * User ID
    * @return userId
@@ -263,13 +281,14 @@ public class Submissions {
         Objects.equals(this.ended, submissions.ended) &&
         Objects.equals(this.meta, submissions.meta) &&
         Objects.equals(this.wfName, submissions.wfName) &&
+        Objects.equals(this.workflowPriority, submissions.workflowPriority) &&
         Objects.equals(this.userId, submissions.userId) &&
         Objects.equals(this.organisationId, submissions.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, wfName, userId, organisationId);
+    return Objects.hash(id, created, updated, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, wfName, workflowPriority, userId, organisationId);
   }
 
 
@@ -291,6 +310,7 @@ public class Submissions {
     sb.append("    ended: ").append(toIndentedString(ended)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
+    sb.append("    workflowPriority: ").append(toIndentedString(workflowPriority)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

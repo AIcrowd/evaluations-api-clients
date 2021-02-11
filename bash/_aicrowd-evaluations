@@ -300,11 +300,13 @@ case $state in
             "logout[]"             "createCluster[]" \
             "deleteCluster[]" \
             "getCluster[]" \
-            "listClusters[]"             "createGrader[]" \
+            "listClusters[]"             "archiveGrader[]" \
+            "createGrader[]" \
             "deleteGrader[]" \
             "getGrader[]" \
             "getGraderLogs[]" \
             "listGraders[]" \
+            "unarchiveGrader[]" \
             "updateGrader[]"             "createOrganisation[]" \
             "deleteOrganisation[]" \
             "getOrganisation[]" \
@@ -371,6 +373,13 @@ case $state in
 )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      archiveGrader)
+        local -a _op_arguments
+        _op_arguments=(
+          "grader_id=:[PATH] "
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       createGrader)
         local -a _op_arguments
         _op_arguments=(
@@ -411,6 +420,13 @@ case $state in
 "user_id=:[QUERY] Fetch graders created by the user"
           "X-Fields\::[HEADER] An optional fields mask"
 )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      unarchiveGrader)
+        local -a _op_arguments
+        _op_arguments=(
+          "grader_id=:[PATH] "
+                    )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       updateGrader)

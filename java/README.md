@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2020-09-12T21:37:47.034Z
+  - Build date: 2021-02-11T22:19:41.065Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
@@ -111,11 +111,13 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**deleteCluster**](docs/ClustersApi.md#deleteCluster) | **DELETE** /clusters/{cluster_id} | 
 *ClustersApi* | [**getCluster**](docs/ClustersApi.md#getCluster) | **GET** /clusters/{cluster_id} | 
 *ClustersApi* | [**listClusters**](docs/ClustersApi.md#listClusters) | **GET** /clusters/ | 
+*GradersApi* | [**archiveGrader**](docs/GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 *GradersApi* | [**createGrader**](docs/GradersApi.md#createGrader) | **POST** /graders/ | 
 *GradersApi* | [**deleteGrader**](docs/GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
+*GradersApi* | [**unarchiveGrader**](docs/GradersApi.md#unarchiveGrader) | **POST** /graders/{grader_id}/unarchive | 
 *GradersApi* | [**updateGrader**](docs/GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 *OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
 *OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 

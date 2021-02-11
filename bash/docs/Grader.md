@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **integer** |  | [optional] [default to null]
 **created** | **string** |  | [optional] [default to null]
 **updated** | **string** |  | [optional] [default to null]
+**archived** | **boolean** |  | [optional] [default to null]
 **dataset** | **map** |  | [optional] [default to null]
 **cluster_id** | **integer** |  | [optional] [default to null]
 **description** | **string** |  | [optional] [default to null]
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **secrets** | **map** |  | [optional] [default to null]
 **wf_name** | **string** |  | [optional] [default to null]
 **allowed_extensions** | **map** |  | [optional] [default to null]
+**workflow_priority** | **integer** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

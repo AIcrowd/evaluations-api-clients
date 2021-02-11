@@ -59,6 +59,54 @@ export class GradersService {
 
     /**
      * 
+     * Archive a grader
+     * @param graderId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public archiveGrader(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public archiveGrader(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public archiveGrader(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public archiveGrader(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling archiveGrader.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/archive`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * Create a new grader
      * @param payload 
      * @param xFields An optional fields mask
@@ -332,6 +380,54 @@ export class GradersService {
         return this.httpClient.get<Array<Grader>>(`${this.basePath}/graders/`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Unarchive a grader
+     * @param graderId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public unarchiveGrader(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public unarchiveGrader(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public unarchiveGrader(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public unarchiveGrader(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling unarchiveGrader.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/unarchive`,
+            null,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

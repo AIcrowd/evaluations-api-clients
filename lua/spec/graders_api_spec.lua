@@ -15,6 +15,13 @@ Please update as you see appropriate
 ]]
 describe("graders_api", function()
   local aicrowd-evaluations_graders_api = require "aicrowd-evaluations.api.graders_api"
+  -- unit tests for archive_grader
+  describe("archive_grader test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for create_grader
   describe("create_grader test", function()
     it("should work", function()
@@ -45,6 +52,13 @@ describe("graders_api", function()
 
   -- unit tests for list_graders
   describe("list_graders test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for unarchive_grader
+  describe("unarchive_grader test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

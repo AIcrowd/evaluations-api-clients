@@ -4,12 +4,66 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_grader**](GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
+[**unarchive_grader**](GradersApi.md#unarchive_grader) | **POST** /graders/{grader_id}/unarchive | 
 [**update_grader**](GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
+
+
+# **archive_grader**
+> archive_grader(grader_id)
+
+
+
+Archive a grader
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+grader_id = 56 # Integer | 
+
+
+begin
+  api_instance.archive_grader(grader_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->archive_grader: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 
 
 # **create_grader**
@@ -284,6 +338,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Array&lt;Grader&gt;**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **unarchive_grader**
+> unarchive_grader(grader_id)
+
+
+
+Unarchive a grader
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+grader_id = 56 # Integer | 
+
+
+begin
+  api_instance.unarchive_grader(grader_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->unarchive_grader: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 

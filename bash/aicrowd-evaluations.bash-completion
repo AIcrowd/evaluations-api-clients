@@ -74,11 +74,13 @@ _aicrowd-evaluations()
     operations["deleteCluster"]=1
     operations["getCluster"]=1
     operations["listClusters"]=1
+    operations["archiveGrader"]=1
     operations["createGrader"]=1
     operations["deleteGrader"]=1
     operations["getGrader"]=1
     operations["getGraderLogs"]=1
     operations["listGraders"]=1
+    operations["unarchiveGrader"]=1
     operations["updateGrader"]=1
     operations["createOrganisation"]=1
     operations["deleteOrganisation"]=1
@@ -109,11 +111,13 @@ _aicrowd-evaluations()
     operation_parameters["deleteCluster"]="cluster_id= "
     operation_parameters["getCluster"]="cluster_id= X-Fields: "
     operation_parameters["listClusters"]="X-Fields: "
+    operation_parameters["archiveGrader"]="grader_id= "
     operation_parameters["createGrader"]="X-Fields: "
     operation_parameters["deleteGrader"]="grader_id= "
     operation_parameters["getGrader"]="grader_id= X-Fields: "
     operation_parameters["getGraderLogs"]="grader_id= "
     operation_parameters["listGraders"]="per_page= page= meta= name= status= user_id= X-Fields: "
+    operation_parameters["unarchiveGrader"]="grader_id= "
     operation_parameters["updateGrader"]="grader_id= X-Fields: "
     operation_parameters["createOrganisation"]="X-Fields: "
     operation_parameters["deleteOrganisation"]="organisation_id= "

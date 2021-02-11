@@ -4,13 +4,43 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_grader**](GradersApi.md#archive_grader) | **Post** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **Post** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **Delete** /graders/{grader_id} | 
 [**get_grader**](GradersApi.md#get_grader) | **Get** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **Get** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **Get** /graders/ | 
+[**unarchive_grader**](GradersApi.md#unarchive_grader) | **Post** /graders/{grader_id}/unarchive | 
 [**update_grader**](GradersApi.md#update_grader) | **Patch** /graders/{grader_id} | 
 
+
+# **archive_grader**
+> archive_grader(ctx, grader_id)
+
+
+Archive a grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **grader_id** | **i32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_grader**
 > ::models::Grader create_grader(ctx, payload, optional)
@@ -171,6 +201,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vec<::models::Grader>**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unarchive_grader**
+> unarchive_grader(ctx, grader_id)
+
+
+Unarchive a grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **grader_id** | **i32**|  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

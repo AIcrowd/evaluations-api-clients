@@ -65,6 +65,10 @@ export interface Submissions {
      */
     readonly wfName?: string;
     /**
+     * Workflow priority to assign
+     */
+    workflowPriority?: number;
+    /**
      * User ID
      */
     readonly userId?: number;

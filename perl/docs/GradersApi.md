@@ -9,13 +9,65 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_grader**](GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
+[**unarchive_grader**](GradersApi.md#unarchive_grader) | **POST** /graders/{grader_id}/unarchive | 
 [**update_grader**](GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
 
+
+# **archive_grader**
+> archive_grader(grader_id => $grader_id)
+
+
+
+Archive a grader
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $grader_id = 56; # int | 
+
+eval { 
+    $api_instance->archive_grader(grader_id => $grader_id);
+};
+if ($@) {
+    warn "Exception when calling GradersApi->archive_grader: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_grader**
 > Grader create_grader(payload => $payload, x_fields => $x_fields)
@@ -274,6 +326,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ARRAY[Grader]**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unarchive_grader**
+> unarchive_grader(grader_id => $grader_id)
+
+
+
+Unarchive a grader
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::GradersApi;
+my $api_instance = AIcrowdEvaluations::GradersApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $grader_id = 56; # int | 
+
+eval { 
+    $api_instance->unarchive_grader(grader_id => $grader_id);
+};
+if ($@) {
+    warn "Exception when calling GradersApi->unarchive_grader: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

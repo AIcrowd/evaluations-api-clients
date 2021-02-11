@@ -27,6 +27,13 @@ API.Client.Grader.prototype.created;
 API.Client.Grader.prototype.updated;
 
 /**
+ * Grader archival status
+ * @type {!boolean}
+ * @export
+ */
+API.Client.Grader.prototype.archived;
+
+/**
  * Dataset metadata
  * @type {!API.Client.Object}
  * @export
@@ -123,6 +130,13 @@ API.Client.Grader.prototype.wfName;
  * @export
  */
 API.Client.Grader.prototype.allowedExtensions;
+
+/**
+ * Workflow priority to assign
+ * @type {!number}
+ * @export
+ */
+API.Client.Grader.prototype.workflowPriority;
 
 /**
  * User ID

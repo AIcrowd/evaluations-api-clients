@@ -4,13 +4,61 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
+[**unarchiveGrader**](GradersApi.md#unarchiveGrader) | **POST** /graders/{grader_id}/unarchive | 
 [**updateGrader**](GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 
+
+<a name="archiveGrader"></a>
+# **archiveGrader**
+> archiveGrader(graderId)
+
+
+
+Archive a grader
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = GradersApi()
+val graderId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.archiveGrader(graderId)
+} catch (e: ClientException) {
+    println("4xx response calling GradersApi#archiveGrader")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GradersApi#archiveGrader")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="createGrader"></a>
 # **createGrader**
@@ -251,6 +299,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**kotlin.Array&lt;Grader&gt;**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="unarchiveGrader"></a>
+# **unarchiveGrader**
+> unarchiveGrader(graderId)
+
+
+
+Unarchive a grader
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = GradersApi()
+val graderId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.unarchiveGrader(graderId)
+} catch (e: ClientException) {
+    println("4xx response calling GradersApi#unarchiveGrader")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GradersApi#unarchiveGrader")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
 
 ### Authorization
 

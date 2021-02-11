@@ -27,6 +27,7 @@ package com.aicrowd.evaluations.models
  * @param ended Evaluation end time
  * @param meta Additional meta data of the grader
  * @param wf_name Name of the workflow used to evaluate submission
+ * @param workflow_priority Workflow priority to assign
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -57,6 +58,8 @@ data class Submissions (
     val meta: kotlin.String? = null,
     /* Name of the workflow used to evaluate submission */
     val wf_name: kotlin.String? = null,
+    /* Workflow priority to assign */
+    val workflow_priority: kotlin.Int? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

@@ -310,11 +310,13 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**delete_cluster**](docs/ClustersApi.md#delete_cluster) | **DELETE** /clusters/{cluster_id} | 
 *ClustersApi* | [**get_cluster**](docs/ClustersApi.md#get_cluster) | **GET** /clusters/{cluster_id} | 
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters/ | 
+*GradersApi* | [**archive_grader**](docs/GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 *GradersApi* | [**create_grader**](docs/GradersApi.md#create_grader) | **POST** /graders/ | 
 *GradersApi* | [**delete_grader**](docs/GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
 *GradersApi* | [**get_grader**](docs/GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**get_grader_logs**](docs/GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**list_graders**](docs/GradersApi.md#list_graders) | **GET** /graders/ | 
+*GradersApi* | [**unarchive_grader**](docs/GradersApi.md#unarchive_grader) | **POST** /graders/{grader_id}/unarchive | 
 *GradersApi* | [**update_grader**](docs/GradersApi.md#update_grader) | **PATCH** /graders/{grader_id} | 
 *OrganisationsApi* | [**create_organisation**](docs/OrganisationsApi.md#create_organisation) | **POST** /organisations/ | 
 *OrganisationsApi* | [**delete_organisation**](docs/OrganisationsApi.md#delete_organisation) | **DELETE** /organisations/{organisation_id} | 

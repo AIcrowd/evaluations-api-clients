@@ -23,6 +23,9 @@ pub struct Grader {
   /// Last updation time
   #[serde(rename = "updated")]
   updated: Option<String>,
+  /// Grader archival status
+  #[serde(rename = "archived")]
+  archived: Option<bool>,
   /// Dataset metadata
   #[serde(rename = "dataset")]
   dataset: Option<Value>,
@@ -65,6 +68,9 @@ pub struct Grader {
   /// Allowed extensions for the grader
   #[serde(rename = "allowed_extensions")]
   allowed_extensions: Option<Value>,
+  /// Workflow priority to assign
+  #[serde(rename = "workflow_priority")]
+  workflow_priority: Option<i32>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -79,6 +85,7 @@ impl Grader {
       id: None,
       created: None,
       updated: None,
+      archived: None,
       dataset: None,
       cluster_id: None,
       description: None,
@@ -93,6 +100,7 @@ impl Grader {
       secrets: None,
       wf_name: None,
       allowed_extensions: None,
+      workflow_priority: None,
       user_id: None,
       organisation_id: None
     }
@@ -147,6 +155,23 @@ impl Grader {
 
   pub fn reset_updated(&mut self) {
     self.updated = None;
+  }
+
+  pub fn set_archived(&mut self, archived: bool) {
+    self.archived = Some(archived);
+  }
+
+  pub fn with_archived(mut self, archived: bool) -> Grader {
+    self.archived = Some(archived);
+    self
+  }
+
+  pub fn archived(&self) -> Option<&bool> {
+    self.archived.as_ref()
+  }
+
+  pub fn reset_archived(&mut self) {
+    self.archived = None;
   }
 
   pub fn set_dataset(&mut self, dataset: Value) {
@@ -382,6 +407,23 @@ impl Grader {
 
   pub fn reset_allowed_extensions(&mut self) {
     self.allowed_extensions = None;
+  }
+
+  pub fn set_workflow_priority(&mut self, workflow_priority: i32) {
+    self.workflow_priority = Some(workflow_priority);
+  }
+
+  pub fn with_workflow_priority(mut self, workflow_priority: i32) -> Grader {
+    self.workflow_priority = Some(workflow_priority);
+    self
+  }
+
+  pub fn workflow_priority(&self) -> Option<&i32> {
+    self.workflow_priority.as_ref()
+  }
+
+  pub fn reset_workflow_priority(&mut self) {
+    self.workflow_priority = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

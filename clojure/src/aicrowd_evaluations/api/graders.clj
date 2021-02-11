@@ -2,6 +2,26 @@
   (:require [aicrowd-evaluations.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
+(defn archive-grader-with-http-info
+  "
+  Archive a grader"
+  [grader-id ]
+  (check-required-params grader-id)
+  (call-api "/graders/{grader_id}/archive" :post
+            {:path-params   {"grader_id" grader-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn archive-grader
+  "
+  Archive a grader"
+  [grader-id ]
+  (:data (archive-grader-with-http-info grader-id)))
+
 (defn create-grader-with-http-info
   "
   Create a new grader"
@@ -107,6 +127,26 @@
   ([] (list-graders nil))
   ([optional-params]
    (:data (list-graders-with-http-info optional-params))))
+
+(defn unarchive-grader-with-http-info
+  "
+  Unarchive a grader"
+  [grader-id ]
+  (check-required-params grader-id)
+  (call-api "/graders/{grader_id}/unarchive" :post
+            {:path-params   {"grader_id" grader-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn unarchive-grader
+  "
+  Unarchive a grader"
+  [grader-id ]
+  (:data (unarchive-grader-with-http-info grader-id)))
 
 (defn update-grader-with-http-info
   "

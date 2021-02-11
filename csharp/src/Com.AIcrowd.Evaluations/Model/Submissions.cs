@@ -41,7 +41,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="graderId">Grader identifier (required).</param>
         /// <param name="submissionData">URL to the submission code.</param>
         /// <param name="meta">Additional meta data of the grader.</param>
-        public Submissions(int? graderId = default(int?), Object submissionData = default(Object), string meta = default(string))
+        /// <param name="workflowPriority">Workflow priority to assign.</param>
+        public Submissions(int? graderId = default(int?), Object submissionData = default(Object), string meta = default(string), int? workflowPriority = default(int?))
         {
             // to ensure "graderId" is required (not null)
             if (graderId == null)
@@ -54,6 +55,7 @@ namespace Com.AIcrowd.Evaluations.Model
             }
             this.SubmissionData = submissionData;
             this.Meta = meta;
+            this.WorkflowPriority = workflowPriority;
         }
         
         /// <summary>
@@ -148,6 +150,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string WfName { get; private set; }
 
         /// <summary>
+        /// Workflow priority to assign
+        /// </summary>
+        /// <value>Workflow priority to assign</value>
+        [DataMember(Name="workflow_priority", EmitDefaultValue=false)]
+        public int? WorkflowPriority { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -182,6 +191,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Ended: ").Append(Ended).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  WfName: ").Append(WfName).Append("\n");
+            sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -284,6 +294,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WfName.Equals(input.WfName))
                 ) && 
                 (
+                    this.WorkflowPriority == input.WorkflowPriority ||
+                    (this.WorkflowPriority != null &&
+                    this.WorkflowPriority.Equals(input.WorkflowPriority))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -330,6 +345,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Meta.GetHashCode();
                 if (this.WfName != null)
                     hashCode = hashCode * 59 + this.WfName.GetHashCode();
+                if (this.WorkflowPriority != null)
+                    hashCode = hashCode * 59 + this.WorkflowPriority.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

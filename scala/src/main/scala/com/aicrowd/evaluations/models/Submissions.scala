@@ -41,6 +41,8 @@ case class Submissions (
   meta: Option[String] = None,
   // Name of the workflow used to evaluate submission
   wfName: Option[String] = None,
+  // Workflow priority to assign
+  workflowPriority: Option[Integer] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

@@ -4,13 +4,43 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ArchiveGrader**](GradersApi.md#ArchiveGrader) | **Post** /graders/{grader_id}/archive | 
 [**CreateGrader**](GradersApi.md#CreateGrader) | **Post** /graders/ | 
 [**DeleteGrader**](GradersApi.md#DeleteGrader) | **Delete** /graders/{grader_id} | 
 [**GetGrader**](GradersApi.md#GetGrader) | **Get** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#GetGraderLogs) | **Get** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#ListGraders) | **Get** /graders/ | 
+[**UnarchiveGrader**](GradersApi.md#UnarchiveGrader) | **Post** /graders/{grader_id}/unarchive | 
 [**UpdateGrader**](GradersApi.md#UpdateGrader) | **Patch** /graders/{grader_id} | 
 
+
+# **ArchiveGrader**
+> ArchiveGrader(ctx, graderId)
+
+
+Archive a grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **graderId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateGrader**
 > Grader CreateGrader(ctx, payload, optional)
@@ -171,6 +201,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Grader**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UnarchiveGrader**
+> UnarchiveGrader(ctx, graderId)
+
+
+Unarchive a grader
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **graderId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

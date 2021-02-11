@@ -1,13 +1,36 @@
 -module(aicrowd_evaluations_graders_api).
 
--export([create_grader/2, create_grader/3,
+-export([archive_grader/2, archive_grader/3,
+         create_grader/2, create_grader/3,
          delete_grader/2, delete_grader/3,
          get_grader/2, get_grader/3,
          get_grader_logs/2, get_grader_logs/3,
          list_graders/1, list_graders/2,
+         unarchive_grader/2, unarchive_grader/3,
          update_grader/3, update_grader/4]).
 
 -define(BASE_URL, "/v1").
+
+%% @doc 
+%% Archive a grader
+-spec archive_grader(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+archive_grader(Ctx, GraderId) ->
+    archive_grader(Ctx, GraderId, #{}).
+
+-spec archive_grader(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+archive_grader(Ctx, GraderId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = post,
+    Path = ["/graders/", GraderId, "/archive"],
+    QS = [],
+    Headers = [],
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Create a new grader
@@ -108,6 +131,27 @@ list_graders(Ctx, Optional) ->
     Path = ["/graders/"],
     QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['per_page', 'page', 'meta', 'name', 'status', 'user_id'], _OptionalParams),
     Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
+%% Unarchive a grader
+-spec unarchive_grader(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+unarchive_grader(Ctx, GraderId) ->
+    unarchive_grader(Ctx, GraderId, #{}).
+
+-spec unarchive_grader(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+unarchive_grader(Ctx, GraderId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = post,
+    Path = ["/graders/", GraderId, "/unarchive"],
+    QS = [],
+    Headers = [],
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),

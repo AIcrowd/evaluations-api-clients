@@ -41,6 +41,43 @@ API.Client.GradersApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 
 /**
  * 
+ * Archive a grader
+ * @param {!number} graderId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.GradersApi.prototype.archiveGrader = function(graderId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/graders/{grader_id}/archive'
+      .replace('{' + 'grader_id' + '}', String(graderId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'graderId' is set
+  if (!graderId) {
+    throw new Error('Missing required parameter graderId when calling archiveGrader');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'POST',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * Create a new grader
  * @param {!Grader} payload 
  * @param {!string=} opt_xFields An optional fields mask
@@ -244,6 +281,43 @@ API.Client.GradersApi.prototype.listGraders = function(opt_perPage, opt_page, op
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
+ * Unarchive a grader
+ * @param {!number} graderId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.GradersApi.prototype.unarchiveGrader = function(graderId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/graders/{grader_id}/unarchive'
+      .replace('{' + 'grader_id' + '}', String(graderId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'graderId' is set
+  if (!graderId) {
+    throw new Error('Missing required parameter graderId when calling unarchiveGrader');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'POST',
     url: path,
     json: true,
             params: queryParameters,

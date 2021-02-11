@@ -91,6 +91,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'Updated'
         }
         /// <summary>
+        /// Test the property 'Archived'
+        /// </summary>
+        [Test]
+        public void ArchivedTest()
+        {
+            // TODO unit test for the property 'Archived'
+        }
+        /// <summary>
         /// Test the property 'Dataset'
         /// </summary>
         [Test]
@@ -201,6 +209,14 @@ namespace Com.AIcrowd.Evaluations.Test
         public void AllowedExtensionsTest()
         {
             // TODO unit test for the property 'AllowedExtensions'
+        }
+        /// <summary>
+        /// Test the property 'WorkflowPriority'
+        /// </summary>
+        [Test]
+        public void WorkflowPriorityTest()
+        {
+            // TODO unit test for the property 'WorkflowPriority'
         }
         /// <summary>
         /// Test the property 'UserId'

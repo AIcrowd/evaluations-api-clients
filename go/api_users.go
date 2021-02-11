@@ -27,7 +27,7 @@ var (
 
 type UsersApiService service
 
-/* 
+/*
 UsersApiService
 Create a new user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -112,9 +112,7 @@ func (a *UsersApiService) CreateUser(ctx context.Context, payload User, localVar
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -140,7 +138,7 @@ func (a *UsersApiService) CreateUser(ctx context.Context, payload User, localVar
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService
 Delete a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -224,7 +222,7 @@ func (a *UsersApiService) DeleteUser(ctx context.Context, userId int32) (*http.R
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService
 Get information of a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -308,9 +306,7 @@ func (a *UsersApiService) GetUser(ctx context.Context, userId int32, localVarOpt
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -336,7 +332,7 @@ func (a *UsersApiService) GetUser(ctx context.Context, userId int32, localVarOpt
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService
 Get all user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -418,9 +414,7 @@ func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *User
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -446,7 +440,7 @@ func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *User
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService
 Update a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -533,9 +527,7 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userId int32, payload 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -561,7 +553,7 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userId int32, payload 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService
 Add or subtract quota for a user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -647,3 +639,4 @@ func (a *UsersApiService) UpdateUserQuota(ctx context.Context, userId int32, pay
 
 	return localVarHttpResponse, nil
 }
+

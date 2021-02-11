@@ -17,6 +17,7 @@ package com.aicrowd.evaluations.models
  * @param id ID
  * @param created Creation time
  * @param updated Last updation time
+ * @param archived Grader archival status
  * @param dataset Dataset metadata
  * @param cluster_id Cluster to run the grader on
  * @param description Description of the grader
@@ -31,6 +32,7 @@ package com.aicrowd.evaluations.models
  * @param secrets List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
  * @param wf_name Name of the workflow used to setup grader
  * @param allowed_extensions Allowed extensions for the grader
+ * @param workflow_priority Workflow priority to assign
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -43,6 +45,8 @@ data class Grader (
     val created: java.time.LocalDateTime? = null,
     /* Last updation time */
     val updated: java.time.LocalDateTime? = null,
+    /* Grader archival status */
+    val archived: kotlin.Boolean? = null,
     /* Dataset metadata */
     val dataset: kotlin.Any? = null,
     /* Cluster to run the grader on */
@@ -69,6 +73,8 @@ data class Grader (
     val wf_name: kotlin.String? = null,
     /* Allowed extensions for the grader */
     val allowed_extensions: kotlin.Any? = null,
+    /* Workflow priority to assign */
+    val workflow_priority: kotlin.Int? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

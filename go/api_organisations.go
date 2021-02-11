@@ -27,7 +27,7 @@ var (
 
 type OrganisationsApiService service
 
-/* 
+/*
 OrganisationsApiService
 Create a new organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -112,9 +112,7 @@ func (a *OrganisationsApiService) CreateOrganisation(ctx context.Context, payloa
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -140,7 +138,7 @@ func (a *OrganisationsApiService) CreateOrganisation(ctx context.Context, payloa
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 OrganisationsApiService
 Delete an Organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -224,7 +222,7 @@ func (a *OrganisationsApiService) DeleteOrganisation(ctx context.Context, organi
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 OrganisationsApiService
 Get details of an organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -308,9 +306,7 @@ func (a *OrganisationsApiService) GetOrganisation(ctx context.Context, organisat
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -336,7 +332,7 @@ func (a *OrganisationsApiService) GetOrganisation(ctx context.Context, organisat
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 OrganisationsApiService
 List all organisations
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -418,9 +414,7 @@ func (a *OrganisationsApiService) ListOrganisations(ctx context.Context, localVa
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -446,7 +440,7 @@ func (a *OrganisationsApiService) ListOrganisations(ctx context.Context, localVa
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 OrganisationsApiService
 Update an Organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -533,9 +527,7 @@ func (a *OrganisationsApiService) UpdateOrganisation(ctx context.Context, organi
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -561,7 +553,7 @@ func (a *OrganisationsApiService) UpdateOrganisation(ctx context.Context, organi
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 OrganisationsApiService
 Add or subtract quota for an organisation
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -647,3 +639,4 @@ func (a *OrganisationsApiService) UpdateOrganisationQuota(ctx context.Context, o
 
 	return localVarHttpResponse, nil
 }
+

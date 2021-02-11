@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ended** | **string** |  | [optional] [default to null]
 **meta** | **string** |  | [optional] [default to null]
 **wf_name** | **string** |  | [optional] [default to null]
+**workflow_priority** | **integer** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **ended** | [**OffsetDateTime**](OffsetDateTime.md) | Evaluation end time |  [optional]
 **meta** | **String** | Additional meta data of the grader |  [optional]
 **wfName** | **String** | Name of the workflow used to evaluate submission |  [optional]
+**workflowPriority** | **Integer** | Workflow priority to assign |  [optional]
 **userId** | **Integer** | User ID |  [optional]
 **organisationId** | **Integer** | Organisation ID |  [optional]
 

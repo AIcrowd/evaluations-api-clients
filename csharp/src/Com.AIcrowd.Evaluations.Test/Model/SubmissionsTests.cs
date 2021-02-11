@@ -171,6 +171,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WfName'
         }
         /// <summary>
+        /// Test the property 'WorkflowPriority'
+        /// </summary>
+        [Test]
+        public void WorkflowPriorityTest()
+        {
+            // TODO unit test for the property 'WorkflowPriority'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

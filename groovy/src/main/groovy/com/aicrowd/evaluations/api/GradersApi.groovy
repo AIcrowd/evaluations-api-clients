@@ -15,6 +15,28 @@ class GradersApi {
     String basePath = "https://localhost/v1"
     String versionPath = "/api/v1"
 
+    def archiveGrader ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/{grader_id}/archive"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (graderId == null) {
+            throw new RuntimeException("missing required params graderId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    null )
+                    
+    }
     def createGrader ( Grader payload, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/"
@@ -134,6 +156,28 @@ if (!"null".equals(String.valueOf(userId)))
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "array",
                     Grader.class )
+                    
+    }
+    def unarchiveGrader ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/{grader_id}/unarchive"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (graderId == null) {
+            throw new RuntimeException("missing required params graderId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    null )
                     
     }
     def updateGrader ( Integer graderId, GraderMeta payload, String xFields, Closure onSuccess, Closure onFailure)  {

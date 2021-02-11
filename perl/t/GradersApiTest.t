@@ -30,6 +30,14 @@ my $api = AIcrowdEvaluations::GradersApi->new();
 isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 
 #
+# archive_grader test
+#
+{
+    my $grader_id = undef; # replace NULL with a proper value
+    my $result = $api->archive_grader(grader_id => $grader_id);
+}
+
+#
 # create_grader test
 #
 {
@@ -75,6 +83,14 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
     my $user_id = undef; # replace NULL with a proper value
     my $x_fields = undef; # replace NULL with a proper value
     my $result = $api->list_graders(per_page => $per_page, page => $page, meta => $meta, name => $name, status => $status, user_id => $user_id, x_fields => $x_fields);
+}
+
+#
+# unarchive_grader test
+#
+{
+    my $grader_id = undef; # replace NULL with a proper value
+    my $result = $api->unarchive_grader(grader_id => $grader_id);
 }
 
 #

@@ -26,6 +26,10 @@ export interface Grader {
      */
     "updated"?: Date;
     /**
+     * Grader archival status
+     */
+    "archived"?: boolean;
+    /**
      * Dataset metadata
      */
     "dataset"?: any;
@@ -81,6 +85,10 @@ export interface Grader {
      * Allowed extensions for the grader
      */
     "allowedExtensions"?: any;
+    /**
+     * Workflow priority to assign
+     */
+    "workflowPriority"?: number;
     /**
      * User ID
      */

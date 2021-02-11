@@ -12,6 +12,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"id",
     :"created",
     :"updated",
+    :"archived",
     :"dataset",
     :"cluster_id",
     :"description",
@@ -26,6 +27,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"secrets",
     :"wf_name",
     :"allowed_extensions",
+    :"workflow_priority",
     :"user_id",
     :"organisation_id"
   ]
@@ -34,6 +36,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"id" => integer(),
     :"created" => DateTime.t,
     :"updated" => DateTime.t,
+    :"archived" => boolean(),
     :"dataset" => Object,
     :"cluster_id" => integer(),
     :"description" => String.t,
@@ -48,6 +51,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"secrets" => Object,
     :"wf_name" => String.t,
     :"allowed_extensions" => Object,
+    :"workflow_priority" => integer(),
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

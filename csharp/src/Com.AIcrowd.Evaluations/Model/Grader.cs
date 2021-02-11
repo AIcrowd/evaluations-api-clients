@@ -43,7 +43,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="evaluatorRepoTag">Git branch/tag that should be used with the evaluator repository..</param>
         /// <param name="meta">Additional meta data of the grader.</param>
         /// <param name="secrets">List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml.</param>
-        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object))
+        /// <param name="workflowPriority">Workflow priority to assign.</param>
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -58,6 +59,7 @@ namespace Com.AIcrowd.Evaluations.Model
             this.EvaluatorRepoTag = evaluatorRepoTag;
             this.Meta = meta;
             this.Secrets = secrets;
+            this.WorkflowPriority = workflowPriority;
         }
         
         /// <summary>
@@ -80,6 +82,13 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <value>Last updation time</value>
         [DataMember(Name="updated", EmitDefaultValue=false)]
         public DateTime? Updated { get; private set; }
+
+        /// <summary>
+        /// Grader archival status
+        /// </summary>
+        /// <value>Grader archival status</value>
+        [DataMember(Name="archived", EmitDefaultValue=false)]
+        public bool? Archived { get; private set; }
 
         /// <summary>
         /// Dataset metadata
@@ -180,6 +189,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public Object AllowedExtensions { get; private set; }
 
         /// <summary>
+        /// Workflow priority to assign
+        /// </summary>
+        /// <value>Workflow priority to assign</value>
+        [DataMember(Name="workflow_priority", EmitDefaultValue=false)]
+        public int? WorkflowPriority { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -204,6 +220,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
+            sb.Append("  Archived: ").Append(Archived).Append("\n");
             sb.Append("  Dataset: ").Append(Dataset).Append("\n");
             sb.Append("  ClusterId: ").Append(ClusterId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -218,6 +235,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Secrets: ").Append(Secrets).Append("\n");
             sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  AllowedExtensions: ").Append(AllowedExtensions).Append("\n");
+            sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -268,6 +286,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.Updated == input.Updated ||
                     (this.Updated != null &&
                     this.Updated.Equals(input.Updated))
+                ) && 
+                (
+                    this.Archived == input.Archived ||
+                    (this.Archived != null &&
+                    this.Archived.Equals(input.Archived))
                 ) && 
                 (
                     this.Dataset == input.Dataset ||
@@ -340,6 +363,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.AllowedExtensions.Equals(input.AllowedExtensions))
                 ) && 
                 (
+                    this.WorkflowPriority == input.WorkflowPriority ||
+                    (this.WorkflowPriority != null &&
+                    this.WorkflowPriority.Equals(input.WorkflowPriority))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -366,6 +394,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.Created.GetHashCode();
                 if (this.Updated != null)
                     hashCode = hashCode * 59 + this.Updated.GetHashCode();
+                if (this.Archived != null)
+                    hashCode = hashCode * 59 + this.Archived.GetHashCode();
                 if (this.Dataset != null)
                     hashCode = hashCode * 59 + this.Dataset.GetHashCode();
                 if (this.ClusterId != null)
@@ -394,6 +424,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.WfName.GetHashCode();
                 if (this.AllowedExtensions != null)
                     hashCode = hashCode * 59 + this.AllowedExtensions.GetHashCode();
+                if (this.WorkflowPriority != null)
+                    hashCode = hashCode * 59 + this.WorkflowPriority.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

@@ -20,6 +20,8 @@ type Grader struct {
 	Created time.Time `json:"created,omitempty"`
 	// Last updation time
 	Updated time.Time `json:"updated,omitempty"`
+	// Grader archival status
+	Archived bool `json:"archived,omitempty"`
 	// Dataset metadata
 	Dataset *interface{} `json:"dataset,omitempty"`
 	// Cluster to run the grader on
@@ -48,6 +50,8 @@ type Grader struct {
 	WfName string `json:"wf_name,omitempty"`
 	// Allowed extensions for the grader
 	AllowedExtensions *interface{} `json:"allowed_extensions,omitempty"`
+	// Workflow priority to assign
+	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

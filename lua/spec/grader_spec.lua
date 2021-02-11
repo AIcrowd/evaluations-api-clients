@@ -37,6 +37,13 @@ describe("grader", function()
     end)
   end)
 
+  -- unit tests for the property 'archived'
+  describe("property archived test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'dataset'
   describe("property dataset test", function()
     it("should work", function()
@@ -130,6 +137,13 @@ describe("grader", function()
 
   -- unit tests for the property 'allowed_extensions'
   describe("property allowed_extensions test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'workflow_priority'
+  describe("property workflow_priority test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

@@ -28,10 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-09-12T21:37:47.034Z")
-
-
-
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-02-11T22:19:41.065Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -41,6 +38,9 @@ public class Grader {
 
   @SerializedName("updated")
   private OffsetDateTime updated = null;
+
+  @SerializedName("archived")
+  private Boolean archived = null;
 
   @SerializedName("dataset")
   private Object dataset = null;
@@ -84,6 +84,9 @@ public class Grader {
   @SerializedName("allowed_extensions")
   private Object allowedExtensions = null;
 
+  @SerializedName("workflow_priority")
+  private Integer workflowPriority = null;
+
   @SerializedName("user_id")
   private Integer userId = null;
 
@@ -115,6 +118,15 @@ public class Grader {
   @ApiModelProperty(value = "Last updation time")
   public OffsetDateTime getUpdated() {
     return updated;
+  }
+
+   /**
+   * Grader archival status
+   * @return archived
+  **/
+  @ApiModelProperty(value = "Grader archival status")
+  public Boolean isArchived() {
+    return archived;
   }
 
    /**
@@ -288,6 +300,24 @@ public class Grader {
     return allowedExtensions;
   }
 
+  public Grader workflowPriority(Integer workflowPriority) {
+    this.workflowPriority = workflowPriority;
+    return this;
+  }
+
+   /**
+   * Workflow priority to assign
+   * @return workflowPriority
+  **/
+  @ApiModelProperty(value = "Workflow priority to assign")
+  public Integer getWorkflowPriority() {
+    return workflowPriority;
+  }
+
+  public void setWorkflowPriority(Integer workflowPriority) {
+    this.workflowPriority = workflowPriority;
+  }
+
    /**
    * User ID
    * @return userId
@@ -319,6 +349,7 @@ public class Grader {
     return Objects.equals(this.id, grader.id) &&
         Objects.equals(this.created, grader.created) &&
         Objects.equals(this.updated, grader.updated) &&
+        Objects.equals(this.archived, grader.archived) &&
         Objects.equals(this.dataset, grader.dataset) &&
         Objects.equals(this.clusterId, grader.clusterId) &&
         Objects.equals(this.description, grader.description) &&
@@ -333,13 +364,14 @@ public class Grader {
         Objects.equals(this.secrets, grader.secrets) &&
         Objects.equals(this.wfName, grader.wfName) &&
         Objects.equals(this.allowedExtensions, grader.allowedExtensions) &&
+        Objects.equals(this.workflowPriority, grader.workflowPriority) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, userId, organisationId);
+    return Objects.hash(id, created, updated, archived, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, workflowPriority, userId, organisationId);
   }
 
 
@@ -351,6 +383,7 @@ public class Grader {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
+    sb.append("    archived: ").append(toIndentedString(archived)).append("\n");
     sb.append("    dataset: ").append(toIndentedString(dataset)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -365,6 +398,7 @@ public class Grader {
     sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    allowedExtensions: ").append(toIndentedString(allowedExtensions)).append("\n");
+    sb.append("    workflowPriority: ").append(toIndentedString(workflowPriority)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

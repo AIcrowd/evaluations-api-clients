@@ -97,6 +97,13 @@ API.Client.Submissions.prototype.meta;
 API.Client.Submissions.prototype.wfName;
 
 /**
+ * Workflow priority to assign
+ * @type {!number}
+ * @export
+ */
+API.Client.Submissions.prototype.workflowPriority;
+
+/**
  * User ID
  * @type {!number}
  * @export

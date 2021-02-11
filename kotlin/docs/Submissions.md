@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **ended** | [**java.time.LocalDateTime**](java.time.LocalDateTime.md) | Evaluation end time |  [optional]
 **meta** | **kotlin.String** | Additional meta data of the grader |  [optional]
 **wf_name** | **kotlin.String** | Name of the workflow used to evaluate submission |  [optional]
+**workflow_priority** | **kotlin.Int** | Workflow priority to assign |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

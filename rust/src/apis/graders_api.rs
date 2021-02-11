@@ -35,16 +35,81 @@ impl<C: hyper::client::Connect> GradersApiClient<C> {
 }
 
 pub trait GradersApi {
+    fn archive_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn create_grader(&self, payload: ::models::Grader, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>>;
     fn delete_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_grader(&self, grader_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>>;
     fn get_grader_logs(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn list_graders(&self, per_page: &str, page: &str, meta: &str, name: &str, status: &str, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Grader>, Error = Error<serde_json::Value>>>;
+    fn unarchive_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn update_grader(&self, grader_id: i32, payload: ::models::GraderMeta, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>>;
 }
 
 
 impl<C: hyper::client::Connect>GradersApi for GradersApiClient<C> {
+    fn archive_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Post;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/graders/{grader_id}/archive?{}", configuration.base_path, query_string, grader_id=grader_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|_| futures::future::ok(()))
+        )
+    }
+
     fn create_grader(&self, payload: ::models::Grader, x_fields: &str) -> Box<Future<Item = ::models::Grader, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
@@ -388,6 +453,69 @@ impl<C: hyper::client::Connect>GradersApi for GradersApiClient<C> {
                 let parsed: Result<Vec<::models::Grader>, _> = serde_json::from_slice(&body);
                 parsed.map_err(|e| Error::from(e))
             })
+        )
+    }
+
+    fn unarchive_grader(&self, grader_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Post;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/graders/{grader_id}/unarchive?{}", configuration.base_path, query_string, grader_id=grader_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|_| futures::future::ok(()))
         )
     }
 

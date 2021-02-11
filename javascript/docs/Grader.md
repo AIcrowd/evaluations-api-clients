@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **Number** | ID | [optional] 
 **created** | **Date** | Creation time | [optional] 
 **updated** | **Date** | Last updation time | [optional] 
+**archived** | **Boolean** | Grader archival status | [optional] 
 **dataset** | **Object** | Dataset metadata | [optional] 
 **clusterId** | **Number** | Cluster to run the grader on | [optional] 
 **description** | **String** | Description of the grader | [optional] 
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **secrets** | **Object** | List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml | [optional] 
 **wfName** | **String** | Name of the workflow used to setup grader | [optional] 
 **allowedExtensions** | **Object** | Allowed extensions for the grader | [optional] 
+**workflowPriority** | **Number** | Workflow priority to assign | [optional] 
 **userId** | **Number** | User ID | [optional] 
 **organisationId** | **Number** | Organisation ID | [optional] 
 

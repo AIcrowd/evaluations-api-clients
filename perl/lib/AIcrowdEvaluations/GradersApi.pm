@@ -49,6 +49,69 @@ sub new {
 
 
 #
+# archive_grader
+#
+# 
+# 
+# @param int $grader_id  (required)
+{
+    my $params = {
+    'grader_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'archive_grader' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub archive_grader {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'grader_id' is set
+    unless (exists $args{'grader_id'}) {
+      croak("Missing the required parameter 'grader_id' when calling archive_grader");
+    }
+
+    # parse inputs
+    my $_resource_path = '/graders/{grader_id}/archive';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'grader_id'}) {
+        my $_base_variable = "{" . "grader_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'grader_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
+}
+
+#
 # create_grader
 #
 # 
@@ -452,6 +515,69 @@ sub list_graders {
     }
     my $_response_object = $self->{api_client}->deserialize('ARRAY[Grader]', $response);
     return $_response_object;
+}
+
+#
+# unarchive_grader
+#
+# 
+# 
+# @param int $grader_id  (required)
+{
+    my $params = {
+    'grader_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'unarchive_grader' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub unarchive_grader {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'grader_id' is set
+    unless (exists $args{'grader_id'}) {
+      croak("Missing the required parameter 'grader_id' when calling unarchive_grader");
+    }
+
+    # parse inputs
+    my $_resource_path = '/graders/{grader_id}/unarchive';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'grader_id'}) {
+        my $_base_variable = "{" . "grader_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'grader_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
 }
 
 #

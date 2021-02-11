@@ -27,7 +27,7 @@ var (
 
 type SubmissionsApiService service
 
-/* 
+/*
 SubmissionsApiService
 Make a new submission
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -112,9 +112,7 @@ func (a *SubmissionsApiService) CreateSubmission(ctx context.Context, payload Su
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -140,7 +138,7 @@ func (a *SubmissionsApiService) CreateSubmission(ctx context.Context, payload Su
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 Stop evaluation of a submission and delete it
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -224,7 +222,7 @@ func (a *SubmissionsApiService) DeleteSubmission(ctx context.Context, submission
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 Get details of a submission by its ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -308,9 +306,7 @@ func (a *SubmissionsApiService) GetSubmission(ctx context.Context, submissionId 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -336,7 +332,7 @@ func (a *SubmissionsApiService) GetSubmission(ctx context.Context, submissionId 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 Get the submission data by submission ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -420,7 +416,7 @@ func (a *SubmissionsApiService) GetSubmissionData(ctx context.Context, submissio
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 Get the submission logs by submission ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -504,7 +500,7 @@ func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissio
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 List all submissions available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -616,9 +612,7 @@ func (a *SubmissionsApiService) ListSubmissions(ctx context.Context, localVarOpt
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -644,7 +638,7 @@ func (a *SubmissionsApiService) ListSubmissions(ctx context.Context, localVarOpt
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 SubmissionsApiService
 Retry the submissions with given IDs
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -729,9 +723,7 @@ func (a *SubmissionsApiService) RetrySubmissions(ctx context.Context, payload Su
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -756,3 +748,4 @@ func (a *SubmissionsApiService) RetrySubmissions(ctx context.Context, payload Su
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

@@ -12,6 +12,30 @@ defmodule AIcrowd.Evaluations.Api.Graders do
 
 
   @doc """
+  Archive a grader
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - grader_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec archive_grader(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def archive_grader(connection, grader_id, _opts \\ []) do
+    %{}
+    |> method(:post)
+    |> url("/graders/#{grader_id}/archive")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
   Create a new grader
 
   ## Parameters
@@ -156,6 +180,30 @@ defmodule AIcrowd.Evaluations.Api.Graders do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode([%AIcrowd.Evaluations.Model.Grader{}])
+  end
+
+  @doc """
+  Unarchive a grader
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - grader_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec unarchive_grader(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def unarchive_grader(connection, grader_id, _opts \\ []) do
+    %{}
+    |> method(:post)
+    |> url("/graders/#{grader_id}/unarchive")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
   end
 
   @doc """

@@ -29,6 +29,12 @@ class TestGradersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_archive_grader(self):
+        """Test case for archive_grader
+
+        """
+        pass
+
     def test_create_grader(self):
         """Test case for create_grader
 
@@ -55,6 +61,12 @@ class TestGradersApi(unittest.TestCase):
 
     def test_list_graders(self):
         """Test case for list_graders
+
+        """
+        pass
+
+    def test_unarchive_grader(self):
+        """Test case for unarchive_grader
 
         """
         pass

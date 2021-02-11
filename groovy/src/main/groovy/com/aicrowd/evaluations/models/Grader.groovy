@@ -16,6 +16,9 @@ class Grader {
   /* Last updation time */
   Date updated = null
 
+  /* Grader archival status */
+  Boolean archived = null
+
   /* Dataset metadata */
   Object dataset = null
 
@@ -57,6 +60,9 @@ class Grader {
 
   /* Allowed extensions for the grader */
   Object allowedExtensions = null
+
+  /* Workflow priority to assign */
+  Integer workflowPriority = null
 
   /* User ID */
   Integer userId = null

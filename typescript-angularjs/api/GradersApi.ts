@@ -27,6 +27,34 @@ export class GradersApi {
     }
 
     /**
+     * Archive a grader
+     * @param graderId 
+     */
+    public archiveGrader (graderId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/archive'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling archiveGrader.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * Create a new grader
      * @param payload 
      * @param xFields An optional fields mask
@@ -187,6 +215,34 @@ export class GradersApi {
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
+     * Unarchive a grader
+     * @param graderId 
+     */
+    public unarchiveGrader (graderId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/unarchive'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling unarchiveGrader.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'POST',
             url: localVarPath,
             params: queryParameters,
             headers: headerParams

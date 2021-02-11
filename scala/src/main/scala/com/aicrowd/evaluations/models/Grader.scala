@@ -21,6 +21,8 @@ case class Grader (
   created: Option[Date] = None,
   // Last updation time
   updated: Option[Date] = None,
+  // Grader archival status
+  archived: Option[Boolean] = None,
   // Dataset metadata
   dataset: Option[Any] = None,
   // Cluster to run the grader on
@@ -49,6 +51,8 @@ case class Grader (
   wfName: Option[String] = None,
   // Allowed extensions for the grader
   allowedExtensions: Option[Any] = None,
+  // Workflow priority to assign
+  workflowPriority: Option[Integer] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

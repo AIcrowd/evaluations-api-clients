@@ -44,6 +44,7 @@ class Submissions(object):
         'ended': 'datetime',
         'meta': 'str',
         'wf_name': 'str',
+        'workflow_priority': 'int',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -62,11 +63,12 @@ class Submissions(object):
         'ended': 'ended',
         'meta': 'meta',
         'wf_name': 'wf_name',
+        'workflow_priority': 'workflow_priority',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, wf_name=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, wf_name=None, workflow_priority=None, user_id=None, organisation_id=None):  # noqa: E501
         """Submissions - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -82,6 +84,7 @@ class Submissions(object):
         self._ended = None
         self._meta = None
         self._wf_name = None
+        self._workflow_priority = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -111,6 +114,8 @@ class Submissions(object):
             self.meta = meta
         if wf_name is not None:
             self.wf_name = wf_name
+        if workflow_priority is not None:
+            self.workflow_priority = workflow_priority
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -416,6 +421,29 @@ class Submissions(object):
         """
 
         self._wf_name = wf_name
+
+    @property
+    def workflow_priority(self):
+        """Gets the workflow_priority of this Submissions.  # noqa: E501
+
+        Workflow priority to assign  # noqa: E501
+
+        :return: The workflow_priority of this Submissions.  # noqa: E501
+        :rtype: int
+        """
+        return self._workflow_priority
+
+    @workflow_priority.setter
+    def workflow_priority(self, workflow_priority):
+        """Sets the workflow_priority of this Submissions.
+
+        Workflow priority to assign  # noqa: E501
+
+        :param workflow_priority: The workflow_priority of this Submissions.  # noqa: E501
+        :type: int
+        """
+
+        self._workflow_priority = workflow_priority
 
     @property
     def user_id(self):

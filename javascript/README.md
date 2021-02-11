@@ -126,11 +126,13 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.ClustersApi* | [**deleteCluster**](docs/ClustersApi.md#deleteCluster) | **DELETE** /clusters/{cluster_id} | 
 *AicrowdEvaluations.ClustersApi* | [**getCluster**](docs/ClustersApi.md#getCluster) | **GET** /clusters/{cluster_id} | 
 *AicrowdEvaluations.ClustersApi* | [**listClusters**](docs/ClustersApi.md#listClusters) | **GET** /clusters/ | 
+*AicrowdEvaluations.GradersApi* | [**archiveGrader**](docs/GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 *AicrowdEvaluations.GradersApi* | [**createGrader**](docs/GradersApi.md#createGrader) | **POST** /graders/ | 
 *AicrowdEvaluations.GradersApi* | [**deleteGrader**](docs/GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *AicrowdEvaluations.GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
+*AicrowdEvaluations.GradersApi* | [**unarchiveGrader**](docs/GradersApi.md#unarchiveGrader) | **POST** /graders/{grader_id}/unarchive | 
 *AicrowdEvaluations.GradersApi* | [**updateGrader**](docs/GradersApi.md#updateGrader) | **PATCH** /graders/{grader_id} | 
 *AicrowdEvaluations.OrganisationsApi* | [**createOrganisation**](docs/OrganisationsApi.md#createOrganisation) | **POST** /organisations/ | 
 *AicrowdEvaluations.OrganisationsApi* | [**deleteOrganisation**](docs/OrganisationsApi.md#deleteOrganisation) | **DELETE** /organisations/{organisation_id} | 

@@ -40,6 +40,8 @@ type Submissions struct {
 	Meta string `json:"meta,omitempty"`
 	// Name of the workflow used to evaluate submission
 	WfName string `json:"wf_name,omitempty"`
+	// Workflow priority to assign
+	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

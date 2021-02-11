@@ -339,6 +339,25 @@ paths:
           description: "Invalid inputs"
         "404":
           description: "Grader not found"
+  /graders/{grader_id}/archive:
+    post:
+      tags:
+      - "graders"
+      description: "Archive a grader"
+      operationId: "ArchiveGrader"
+      parameters:
+      - name: "grader_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "GraderId"
+      responses:
+        "200":
+          description: "Success"
+        "403":
+          description: "Grader not ready"
+        "404":
+          description: "Grader not found"
   /graders/{grader_id}/logs:
     get:
       tags:
@@ -354,6 +373,25 @@ paths:
       responses:
         "200":
           description: "Success"
+        "404":
+          description: "Grader not found"
+  /graders/{grader_id}/unarchive:
+    post:
+      tags:
+      - "graders"
+      description: "Unarchive a grader"
+      operationId: "UnarchiveGrader"
+      parameters:
+      - name: "grader_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "GraderId"
+      responses:
+        "200":
+          description: "Success"
+        "403":
+          description: "Grader not ready"
         "404":
           description: "Grader not found"
   /organisations/:
@@ -910,6 +948,10 @@ definitions:
         format: "date-time"
         description: "Last updation time"
         readOnly: true
+      archived:
+        type: "boolean"
+        description: "Grader archival status"
+        readOnly: true
       dataset:
         type: "object"
         description: "Dataset metadata"
@@ -967,6 +1009,9 @@ definitions:
         description: "Allowed extensions for the grader"
         readOnly: true
         properties: {}
+      workflow_priority:
+        type: "integer"
+        description: "Workflow priority to assign"
       user_id:
         type: "integer"
         description: "User ID"
@@ -982,20 +1027,22 @@ definitions:
       description: "description"
       workflow_spec: "{}"
       secrets: "{}"
+      archived: true
       organisation_id: 5
       cluster_id: 6
-      user_id: 1
+      user_id: 5
       meta: "meta"
       name: "name"
       wf_name: "wf_name"
       id: 0
       allowed_extensions: "{}"
+      workflow_priority: 1
       updated: "2000-01-23T04:56:07.000+00:00"
       dataset: "{}"
       logs: "logs"
       notifications: "notifications"
       status: "status"
-    x-mask: "{id,created,updated,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,user_id,organisation_id}"
   GraderMeta:
     type: "object"
     properties:
@@ -1086,6 +1133,9 @@ definitions:
         type: "string"
         description: "Name of the workflow used to evaluate submission"
         readOnly: true
+      workflow_priority:
+        type: "integer"
+        description: "Workflow priority to assign"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1102,15 +1152,16 @@ definitions:
       additional_outputs: "{}"
       output: "output"
       organisation_id: 5
-      user_id: 1
+      user_id: 5
       meta: "meta"
       ended: "2000-01-23T04:56:07.000+00:00"
       wf_name: "wf_name"
       id: 0
+      workflow_priority: 1
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "logs"
       status: "status"
-    x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,workflow_priority,user_id,organisation_id}"
   SubmissionRetryInput:
     type: "object"
     properties:

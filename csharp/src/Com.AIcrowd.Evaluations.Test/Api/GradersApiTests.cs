@@ -65,6 +65,18 @@ namespace Com.AIcrowd.Evaluations.Test
 
         
         /// <summary>
+        /// Test ArchiveGrader
+        /// </summary>
+        [Test]
+        public void ArchiveGraderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //instance.ArchiveGrader(graderId);
+            
+        }
+        
+        /// <summary>
         /// Test CreateGrader
         /// </summary>
         [Test]
@@ -130,6 +142,18 @@ namespace Com.AIcrowd.Evaluations.Test
             //string xFields = null;
             //var response = instance.ListGraders(perPage, page, meta, name, status, userId, xFields);
             //Assert.IsInstanceOf<List<Grader>> (response, "response is List<Grader>");
+        }
+        
+        /// <summary>
+        /// Test UnarchiveGrader
+        /// </summary>
+        [Test]
+        public void UnarchiveGraderTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //instance.UnarchiveGrader(graderId);
+            
         }
         
         /// <summary>

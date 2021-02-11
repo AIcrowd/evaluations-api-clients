@@ -234,6 +234,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'workflow_priority' => {
+    	datatype => 'int',
+    	base_name => 'workflow_priority',
+    	description => 'Workflow priority to assign',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -264,6 +271,7 @@ __PACKAGE__->swagger_types( {
     'ended' => 'DateTime',
     'meta' => 'string',
     'wf_name' => 'string',
+    'workflow_priority' => 'int',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -282,6 +290,7 @@ __PACKAGE__->attribute_map( {
     'ended' => 'ended',
     'meta' => 'meta',
     'wf_name' => 'wf_name',
+    'workflow_priority' => 'workflow_priority',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

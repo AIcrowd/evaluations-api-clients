@@ -82,6 +82,32 @@ class GradersApi(
 
   /**
    * 
+   * Archive a grader
+   *
+   * @param graderId  
+   * @return void
+   */
+  def archiveGrader(graderId: Integer) = {
+    val await = Try(Await.result(archiveGraderAsync(graderId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Archive a grader
+   *
+   * @param graderId  
+   * @return Future(void)
+   */
+  def archiveGraderAsync(graderId: Integer) = {
+      helper.archiveGrader(graderId)
+  }
+
+  /**
+   * 
    * Create a new grader
    *
    * @param payload  
@@ -228,6 +254,32 @@ class GradersApi(
 
   /**
    * 
+   * Unarchive a grader
+   *
+   * @param graderId  
+   * @return void
+   */
+  def unarchiveGrader(graderId: Integer) = {
+    val await = Try(Await.result(unarchiveGraderAsync(graderId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Unarchive a grader
+   *
+   * @param graderId  
+   * @return Future(void)
+   */
+  def unarchiveGraderAsync(graderId: Integer) = {
+      helper.unarchiveGrader(graderId)
+  }
+
+  /**
+   * 
    * Update meta details of a grader by its ID. Warning: There is no data validation.
    *
    * @param graderId  
@@ -259,6 +311,22 @@ class GradersApi(
 }
 
 class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
+
+  def archiveGrader(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/graders/{grader_id}/archive")
+      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
 
   def createGrader(payload: Grader,
     xFields: Option[String] = None
@@ -381,6 +449,22 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def unarchiveGrader(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/graders/{grader_id}/unarchive")
+      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

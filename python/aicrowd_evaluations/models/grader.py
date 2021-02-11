@@ -34,6 +34,7 @@ class Grader(object):
         'id': 'int',
         'created': 'datetime',
         'updated': 'datetime',
+        'archived': 'bool',
         'dataset': 'object',
         'cluster_id': 'int',
         'description': 'str',
@@ -48,6 +49,7 @@ class Grader(object):
         'secrets': 'object',
         'wf_name': 'str',
         'allowed_extensions': 'object',
+        'workflow_priority': 'int',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -56,6 +58,7 @@ class Grader(object):
         'id': 'id',
         'created': 'created',
         'updated': 'updated',
+        'archived': 'archived',
         'dataset': 'dataset',
         'cluster_id': 'cluster_id',
         'description': 'description',
@@ -70,16 +73,18 @@ class Grader(object):
         'secrets': 'secrets',
         'wf_name': 'wf_name',
         'allowed_extensions': 'allowed_extensions',
+        'workflow_priority': 'workflow_priority',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, user_id=None, organisation_id=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, archived=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, workflow_priority=None, user_id=None, organisation_id=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
         self._created = None
         self._updated = None
+        self._archived = None
         self._dataset = None
         self._cluster_id = None
         self._description = None
@@ -94,6 +99,7 @@ class Grader(object):
         self._secrets = None
         self._wf_name = None
         self._allowed_extensions = None
+        self._workflow_priority = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -104,6 +110,8 @@ class Grader(object):
             self.created = created
         if updated is not None:
             self.updated = updated
+        if archived is not None:
+            self.archived = archived
         if dataset is not None:
             self.dataset = dataset
         if cluster_id is not None:
@@ -131,6 +139,8 @@ class Grader(object):
             self.wf_name = wf_name
         if allowed_extensions is not None:
             self.allowed_extensions = allowed_extensions
+        if workflow_priority is not None:
+            self.workflow_priority = workflow_priority
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -204,6 +214,29 @@ class Grader(object):
         """
 
         self._updated = updated
+
+    @property
+    def archived(self):
+        """Gets the archived of this Grader.  # noqa: E501
+
+        Grader archival status  # noqa: E501
+
+        :return: The archived of this Grader.  # noqa: E501
+        :rtype: bool
+        """
+        return self._archived
+
+    @archived.setter
+    def archived(self, archived):
+        """Sets the archived of this Grader.
+
+        Grader archival status  # noqa: E501
+
+        :param archived: The archived of this Grader.  # noqa: E501
+        :type: bool
+        """
+
+        self._archived = archived
 
     @property
     def dataset(self):
@@ -528,6 +561,29 @@ class Grader(object):
         """
 
         self._allowed_extensions = allowed_extensions
+
+    @property
+    def workflow_priority(self):
+        """Gets the workflow_priority of this Grader.  # noqa: E501
+
+        Workflow priority to assign  # noqa: E501
+
+        :return: The workflow_priority of this Grader.  # noqa: E501
+        :rtype: int
+        """
+        return self._workflow_priority
+
+    @workflow_priority.setter
+    def workflow_priority(self, workflow_priority):
+        """Sets the workflow_priority of this Grader.
+
+        Workflow priority to assign  # noqa: E501
+
+        :param workflow_priority: The workflow_priority of this Grader.  # noqa: E501
+        :type: int
+        """
+
+        self._workflow_priority = workflow_priority
 
     @property
     def user_id(self):

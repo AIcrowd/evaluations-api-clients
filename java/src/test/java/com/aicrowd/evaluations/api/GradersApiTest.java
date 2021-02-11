@@ -36,6 +36,22 @@ public class GradersApiTest {
     /**
      * 
      *
+     * Archive a grader
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void archiveGraderTest() throws ApiException {
+        Integer graderId = null;
+        api.archiveGrader(graderId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Create a new grader
      *
      * @throws ApiException
@@ -117,6 +133,22 @@ public class GradersApiTest {
         Integer userId = null;
         String xFields = null;
         List<Grader> response = api.listGraders(perPage, page, meta, name, status, userId, xFields);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Unarchive a grader
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void unarchiveGraderTest() throws ApiException {
+        Integer graderId = null;
+        api.unarchiveGrader(graderId);
 
         // TODO: test validations
     }

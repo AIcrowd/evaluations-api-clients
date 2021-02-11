@@ -46,6 +46,9 @@ class Submissions {
   /* Name of the workflow used to evaluate submission */
   String wfName = null
 
+  /* Workflow priority to assign */
+  Integer workflowPriority = null
+
   /* User ID */
   Integer userId = null
 

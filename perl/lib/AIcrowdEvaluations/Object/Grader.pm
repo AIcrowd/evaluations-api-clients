@@ -164,6 +164,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'archived' => {
+    	datatype => 'boolean',
+    	base_name => 'archived',
+    	description => 'Grader archival status',
+    	format => '',
+    	read_only => '',
+    		},
     'dataset' => {
     	datatype => 'object',
     	base_name => 'dataset',
@@ -262,6 +269,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'workflow_priority' => {
+    	datatype => 'int',
+    	base_name => 'workflow_priority',
+    	description => 'Workflow priority to assign',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -282,6 +296,7 @@ __PACKAGE__->swagger_types( {
     'id' => 'int',
     'created' => 'DateTime',
     'updated' => 'DateTime',
+    'archived' => 'boolean',
     'dataset' => 'object',
     'cluster_id' => 'int',
     'description' => 'string',
@@ -296,6 +311,7 @@ __PACKAGE__->swagger_types( {
     'secrets' => 'object',
     'wf_name' => 'string',
     'allowed_extensions' => 'object',
+    'workflow_priority' => 'int',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -304,6 +320,7 @@ __PACKAGE__->attribute_map( {
     'id' => 'id',
     'created' => 'created',
     'updated' => 'updated',
+    'archived' => 'archived',
     'dataset' => 'dataset',
     'cluster_id' => 'cluster_id',
     'description' => 'description',
@@ -318,6 +335,7 @@ __PACKAGE__->attribute_map( {
     'secrets' => 'secrets',
     'wf_name' => 'wf_name',
     'allowed_extensions' => 'allowed_extensions',
+    'workflow_priority' => 'workflow_priority',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

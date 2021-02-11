@@ -22,6 +22,7 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"ended",
     :"meta",
     :"wf_name",
+    :"workflow_priority",
     :"user_id",
     :"organisation_id"
   ]
@@ -40,6 +41,7 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"ended" => DateTime.t,
     :"meta" => String.t,
     :"wf_name" => String.t,
+    :"workflow_priority" => integer(),
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

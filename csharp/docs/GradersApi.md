@@ -4,13 +4,79 @@ All URIs are relative to *https://localhost/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ArchiveGrader**](GradersApi.md#archivegrader) | **POST** /graders/{grader_id}/archive | 
 [**CreateGrader**](GradersApi.md#creategrader) | **POST** /graders/ | 
 [**DeleteGrader**](GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
 [**GetGrader**](GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#listgraders) | **GET** /graders/ | 
+[**UnarchiveGrader**](GradersApi.md#unarchivegrader) | **POST** /graders/{grader_id}/unarchive | 
 [**UpdateGrader**](GradersApi.md#updategrader) | **PATCH** /graders/{grader_id} | 
 
+
+<a name="archivegrader"></a>
+# **ArchiveGrader**
+> void ArchiveGrader (int? graderId)
+
+
+
+Archive a grader
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class ArchiveGraderExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var graderId = 56;  // int? | 
+
+            try
+            {
+                apiInstance.ArchiveGrader(graderId);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.ArchiveGrader: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **int?**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="creategrader"></a>
 # **CreateGrader**
@@ -339,6 +405,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List<Grader>**](Grader.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="unarchivegrader"></a>
+# **UnarchiveGrader**
+> void UnarchiveGrader (int? graderId)
+
+
+
+Unarchive a grader
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class UnarchiveGraderExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var graderId = 56;  // int? | 
+
+            try
+            {
+                apiInstance.UnarchiveGrader(graderId);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.UnarchiveGrader: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **int?**|  | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

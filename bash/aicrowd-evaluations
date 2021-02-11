@@ -104,6 +104,7 @@ operation_parameters_minimum_occurrences["deleteCluster:::cluster_id"]=1
 operation_parameters_minimum_occurrences["getCluster:::cluster_id"]=1
 operation_parameters_minimum_occurrences["getCluster:::X-Fields"]=0
 operation_parameters_minimum_occurrences["listClusters:::X-Fields"]=0
+operation_parameters_minimum_occurrences["archiveGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["createGrader:::payload"]=1
 operation_parameters_minimum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
@@ -117,6 +118,7 @@ operation_parameters_minimum_occurrences["listGraders:::name"]=0
 operation_parameters_minimum_occurrences["listGraders:::status"]=0
 operation_parameters_minimum_occurrences["listGraders:::user_id"]=0
 operation_parameters_minimum_occurrences["listGraders:::X-Fields"]=0
+operation_parameters_minimum_occurrences["unarchiveGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["updateGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["updateGrader:::payload"]=1
 operation_parameters_minimum_occurrences["updateGrader:::X-Fields"]=0
@@ -175,6 +177,7 @@ operation_parameters_maximum_occurrences["deleteCluster:::cluster_id"]=0
 operation_parameters_maximum_occurrences["getCluster:::cluster_id"]=0
 operation_parameters_maximum_occurrences["getCluster:::X-Fields"]=0
 operation_parameters_maximum_occurrences["listClusters:::X-Fields"]=0
+operation_parameters_maximum_occurrences["archiveGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["createGrader:::payload"]=0
 operation_parameters_maximum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
@@ -188,6 +191,7 @@ operation_parameters_maximum_occurrences["listGraders:::name"]=0
 operation_parameters_maximum_occurrences["listGraders:::status"]=0
 operation_parameters_maximum_occurrences["listGraders:::user_id"]=0
 operation_parameters_maximum_occurrences["listGraders:::X-Fields"]=0
+operation_parameters_maximum_occurrences["unarchiveGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["updateGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["updateGrader:::payload"]=0
 operation_parameters_maximum_occurrences["updateGrader:::X-Fields"]=0
@@ -243,6 +247,7 @@ operation_parameters_collection_type["deleteCluster:::cluster_id"]=""
 operation_parameters_collection_type["getCluster:::cluster_id"]=""
 operation_parameters_collection_type["getCluster:::X-Fields"]=""
 operation_parameters_collection_type["listClusters:::X-Fields"]=""
+operation_parameters_collection_type["archiveGrader:::grader_id"]=""
 operation_parameters_collection_type["createGrader:::payload"]=""
 operation_parameters_collection_type["createGrader:::X-Fields"]=""
 operation_parameters_collection_type["deleteGrader:::grader_id"]=""
@@ -256,6 +261,7 @@ operation_parameters_collection_type["listGraders:::name"]=""
 operation_parameters_collection_type["listGraders:::status"]=""
 operation_parameters_collection_type["listGraders:::user_id"]=""
 operation_parameters_collection_type["listGraders:::X-Fields"]=""
+operation_parameters_collection_type["unarchiveGrader:::grader_id"]=""
 operation_parameters_collection_type["updateGrader:::grader_id"]=""
 operation_parameters_collection_type["updateGrader:::payload"]=""
 operation_parameters_collection_type["updateGrader:::X-Fields"]=""
@@ -694,11 +700,13 @@ echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[graders]${OFF}"
 read -r -d '' ops <<EOF
+  ${CYAN}archiveGrader${OFF}; (AUTH)
   ${CYAN}createGrader${OFF}; (AUTH)
   ${CYAN}deleteGrader${OFF}; (AUTH)
   ${CYAN}getGrader${OFF}; (AUTH)
   ${CYAN}getGraderLogs${OFF}; (AUTH)
   ${CYAN}listGraders${OFF}; (AUTH)
+  ${CYAN}unarchiveGrader${OFF}; (AUTH)
   ${CYAN}updateGrader${OFF}; (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
@@ -910,6 +918,28 @@ print_listClusters_help() {
 }
 ##############################################################################
 #
+# Print help for archiveGrader operation
+#
+##############################################################################
+print_archiveGrader_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}archiveGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Archive a grader" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Grader not ready${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
 # Print help for createGrader operation
 #
 ##############################################################################
@@ -1024,6 +1054,28 @@ print_listGraders_help() {
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for unarchiveGrader operation
+#
+##############################################################################
+print_unarchiveGrader_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}unarchiveGrader - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Unarchive a grader" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=403
+    echo -e "${result_color_table[${code:0:1}]}  403;Grader not ready${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1769,6 +1821,42 @@ call_listClusters() {
 
 ##############################################################################
 #
+# Call archiveGrader operation
+#
+##############################################################################
+call_archiveGrader() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(grader_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/graders/{grader_id}/archive" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call createGrader operation
 #
 ##############################################################################
@@ -1972,6 +2060,42 @@ call_listGraders() {
         exit 1
     fi
     local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call unarchiveGrader operation
+#
+##############################################################################
+call_unarchiveGrader() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(grader_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/graders/{grader_id}/unarchive" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
     local headers_curl
     headers_curl=$(header_arguments_to_curl)
     if [[ -n $header_accept ]]; then
@@ -3202,6 +3326,9 @@ case $key in
     listClusters)
     operation="listClusters"
     ;;
+    archiveGrader)
+    operation="archiveGrader"
+    ;;
     createGrader)
     operation="createGrader"
     ;;
@@ -3216,6 +3343,9 @@ case $key in
     ;;
     listGraders)
     operation="listGraders"
+    ;;
+    unarchiveGrader)
+    operation="unarchiveGrader"
     ;;
     updateGrader)
     operation="updateGrader"
@@ -3379,6 +3509,9 @@ case $operation in
     listClusters)
     call_listClusters
     ;;
+    archiveGrader)
+    call_archiveGrader
+    ;;
     createGrader)
     call_createGrader
     ;;
@@ -3393,6 +3526,9 @@ case $operation in
     ;;
     listGraders)
     call_listGraders
+    ;;
+    unarchiveGrader)
+    call_unarchiveGrader
     ;;
     updateGrader)
     call_updateGrader

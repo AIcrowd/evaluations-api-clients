@@ -53,6 +53,9 @@ pub struct Submissions {
   /// Name of the workflow used to evaluate submission
   #[serde(rename = "wf_name")]
   wf_name: Option<String>,
+  /// Workflow priority to assign
+  #[serde(rename = "workflow_priority")]
+  workflow_priority: Option<i32>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -77,6 +80,7 @@ impl Submissions {
       ended: None,
       meta: None,
       wf_name: None,
+      workflow_priority: None,
       user_id: None,
       organisation_id: None
     }
@@ -298,6 +302,23 @@ impl Submissions {
 
   pub fn reset_wf_name(&mut self) {
     self.wf_name = None;
+  }
+
+  pub fn set_workflow_priority(&mut self, workflow_priority: i32) {
+    self.workflow_priority = Some(workflow_priority);
+  }
+
+  pub fn with_workflow_priority(mut self, workflow_priority: i32) -> Submissions {
+    self.workflow_priority = Some(workflow_priority);
+    self
+  }
+
+  pub fn workflow_priority(&self) -> Option<&i32> {
+    self.workflow_priority.as_ref()
+  }
+
+  pub fn reset_workflow_priority(&mut self) {
+    self.workflow_priority = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {
