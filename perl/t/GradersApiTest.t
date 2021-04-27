@@ -55,6 +55,14 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 }
 
 #
+# download_grader_logs test
+#
+{
+    my $grader_id = undef; # replace NULL with a proper value
+    my $result = $api->download_grader_logs(grader_id => $grader_id);
+}
+
+#
 # get_grader test
 #
 {
@@ -68,7 +76,9 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
 #
 {
     my $grader_id = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_logs(grader_id => $grader_id);
+    my $step = undef; # replace NULL with a proper value
+    my $log_lines = undef; # replace NULL with a proper value
+    my $result = $api->get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines);
 }
 
 #

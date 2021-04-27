@@ -89,8 +89,8 @@ class AuthApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
+        if self.api_client.client_side_validation and ('payload' not in params or
+                                                       params['payload'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `payload` when calling `login`")  # noqa: E501
 
         collection_formats = {}

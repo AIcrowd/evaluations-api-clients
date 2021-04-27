@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**downloadGraderLogs**](GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -179,6 +180,60 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="downloadGraderLogs"></a>
+# **downloadGraderLogs**
+> downloadGraderLogs(graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.GradersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+GradersApi apiInstance = new GradersApi();
+Integer graderId = 56; // Integer | 
+try {
+    apiInstance.downloadGraderLogs(graderId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling GradersApi#downloadGraderLogs");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getGrader"></a>
 # **getGrader**
 > Grader getGrader(graderId, xFields)
@@ -238,11 +293,11 @@ Name | Type | Description  | Notes
 
 <a name="getGraderLogs"></a>
 # **getGraderLogs**
-> getGraderLogs(graderId)
+> getGraderLogs(graderId, step, logLines)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```java
@@ -263,8 +318,10 @@ api_key.setApiKey("YOUR API KEY");
 
 GradersApi apiInstance = new GradersApi();
 Integer graderId = 56; // Integer | 
+Integer step = 56; // Integer | Granularity of logs
+Integer logLines = 56; // Integer | Number of lines to fetch
 try {
-    apiInstance.getGraderLogs(graderId);
+    apiInstance.getGraderLogs(graderId, step, logLines);
 } catch (ApiException e) {
     System.err.println("Exception when calling GradersApi#getGraderLogs");
     e.printStackTrace();
@@ -276,6 +333,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **graderId** | **Integer**|  |
+ **step** | **Integer**| Granularity of logs | [optional]
+ **logLines** | **Integer**| Number of lines to fetch | [optional]
 
 ### Return type
 

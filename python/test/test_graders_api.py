@@ -47,6 +47,12 @@ class TestGradersApi(unittest.TestCase):
         """
         pass
 
+    def test_download_grader_logs(self):
+        """Test case for download_grader_logs
+
+        """
+        pass
+
     def test_get_grader(self):
         """Test case for get_grader
 

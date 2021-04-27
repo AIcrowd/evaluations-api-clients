@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**downloadSubmissionLogs**](SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
@@ -101,6 +102,60 @@ try {
     apiInstance.deleteSubmission(submissionId);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#deleteSubmission");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Integer**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="downloadSubmissionLogs"></a>
+# **downloadSubmissionLogs**
+> downloadSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```java
+// Import classes:
+//import com.aicrowd.evaluations.ApiClient;
+//import com.aicrowd.evaluations.ApiException;
+//import com.aicrowd.evaluations.Configuration;
+//import com.aicrowd.evaluations.auth.*;
+//import com.aicrowd.evaluations.api.SubmissionsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+SubmissionsApi apiInstance = new SubmissionsApi();
+Integer submissionId = 56; // Integer | 
+try {
+    apiInstance.downloadSubmissionLogs(submissionId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SubmissionsApi#downloadSubmissionLogs");
     e.printStackTrace();
 }
 ```
@@ -237,11 +292,11 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId)
+> getSubmissionLogs(submissionId, step, logLines)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```java
@@ -262,8 +317,10 @@ api_key.setApiKey("YOUR API KEY");
 
 SubmissionsApi apiInstance = new SubmissionsApi();
 Integer submissionId = 56; // Integer | 
+Integer step = 56; // Integer | Granularity of logs
+Integer logLines = 56; // Integer | Number of lines to fetch
 try {
-    apiInstance.getSubmissionLogs(submissionId);
+    apiInstance.getSubmissionLogs(submissionId, step, logLines);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#getSubmissionLogs");
     e.printStackTrace();
@@ -275,6 +332,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **Integer**|  |
+ **step** | **Integer**| Granularity of logs | [optional]
+ **logLines** | **Integer**| Number of lines to fetch | [optional]
 
 ### Return type
 

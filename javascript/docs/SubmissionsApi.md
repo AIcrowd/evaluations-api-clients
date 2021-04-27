@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**downloadSubmissionLogs**](SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
@@ -102,6 +103,59 @@ var callback = function(error, data, response) {
   }
 };
 apiInstance.deleteSubmission(submissionId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **Number**|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="downloadSubmissionLogs"></a>
+# **downloadSubmissionLogs**
+> downloadSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.SubmissionsApi();
+
+var submissionId = 56; // Number | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.downloadSubmissionLogs(submissionId, callback);
 ```
 
 ### Parameters
@@ -235,11 +289,11 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId)
+> getSubmissionLogs(submissionId, opts)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```javascript
@@ -256,6 +310,10 @@ var apiInstance = new AicrowdEvaluations.SubmissionsApi();
 
 var submissionId = 56; // Number | 
 
+var opts = { 
+  'step': 56, // Number | Granularity of logs
+  'logLines': 56 // Number | Number of lines to fetch
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -264,7 +322,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.getSubmissionLogs(submissionId, callback);
+apiInstance.getSubmissionLogs(submissionId, opts, callback);
 ```
 
 ### Parameters
@@ -272,6 +330,8 @@ apiInstance.getSubmissionLogs(submissionId, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **Number**|  | 
+ **step** | **Number**| Granularity of logs | [optional] 
+ **logLines** | **Number**| Number of lines to fetch | [optional] 
 
 ### Return type
 

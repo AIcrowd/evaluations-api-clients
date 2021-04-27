@@ -90,6 +90,18 @@ namespace Com.AIcrowd.Evaluations.Test
         }
         
         /// <summary>
+        /// Test DownloadSubmissionLogs
+        /// </summary>
+        [Test]
+        public void DownloadSubmissionLogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? submissionId = null;
+            //instance.DownloadSubmissionLogs(submissionId);
+            
+        }
+        
+        /// <summary>
         /// Test GetSubmission
         /// </summary>
         [Test]
@@ -122,7 +134,9 @@ namespace Com.AIcrowd.Evaluations.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? submissionId = null;
-            //instance.GetSubmissionLogs(submissionId);
+            //int? step = null;
+            //int? logLines = null;
+            //instance.GetSubmissionLogs(submissionId, step, logLines);
             
         }
         

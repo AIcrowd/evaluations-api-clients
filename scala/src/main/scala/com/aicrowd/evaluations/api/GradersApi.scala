@@ -162,6 +162,32 @@ class GradersApi(
 
   /**
    * 
+   * Get the grader logs by submission ID
+   *
+   * @param graderId  
+   * @return void
+   */
+  def downloadGraderLogs(graderId: Integer) = {
+    val await = Try(Await.result(downloadGraderLogsAsync(graderId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Get the grader logs by submission ID
+   *
+   * @param graderId  
+   * @return Future(void)
+   */
+  def downloadGraderLogsAsync(graderId: Integer) = {
+      helper.downloadGraderLogs(graderId)
+  }
+
+  /**
+   * 
    * Get details of a grader by its ID
    *
    * @param graderId  
@@ -190,13 +216,15 @@ class GradersApi(
 
   /**
    * 
-   * Get the grader logs by submission ID
+   * Get grader logs from loki
    *
    * @param graderId  
+   * @param step Granularity of logs (optional)
+   * @param logLines Number of lines to fetch (optional)
    * @return void
    */
-  def getGraderLogs(graderId: Integer) = {
-    val await = Try(Await.result(getGraderLogsAsync(graderId), Duration.Inf))
+  def getGraderLogs(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
+    val await = Try(Await.result(getGraderLogsAsync(graderId, step, logLines), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -205,13 +233,15 @@ class GradersApi(
 
   /**
    *  asynchronously
-   * Get the grader logs by submission ID
+   * Get grader logs from loki
    *
    * @param graderId  
+   * @param step Granularity of logs (optional)
+   * @param logLines Number of lines to fetch (optional)
    * @return Future(void)
    */
-  def getGraderLogsAsync(graderId: Integer) = {
-      helper.getGraderLogs(graderId)
+  def getGraderLogsAsync(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
+      helper.getGraderLogs(graderId, step, logLines)
   }
 
   /**
@@ -366,6 +396,22 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
+  def downloadGraderLogs(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/graders/{grader_id}/logs/download")
+      replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
   def getGrader(graderId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Grader]): Future[Grader] = {
@@ -388,7 +434,10 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def getGraderLogs(graderId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def getGraderLogs(graderId: Integer,
+    step: Option[Integer] = None,
+    logLines: Option[Integer] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/graders/{grader_id}/logs")
       replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
@@ -397,6 +446,14 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    step match {
+      case Some(param) => queryParams += "step" -> param.toString
+      case _ => queryParams
+    }
+    logLines match {
+      case Some(param) => queryParams += "log_lines" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

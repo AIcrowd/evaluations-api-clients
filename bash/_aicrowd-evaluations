@@ -303,6 +303,7 @@ case $state in
             "listClusters[]"             "archiveGrader[]" \
             "createGrader[]" \
             "deleteGrader[]" \
+            "downloadGraderLogs[]" \
             "getGrader[]" \
             "getGraderLogs[]" \
             "listGraders[]" \
@@ -314,6 +315,7 @@ case $state in
             "updateOrganisation[]" \
             "updateOrganisationQuota[]"             "createSubmission[]" \
             "deleteSubmission[]" \
+            "downloadSubmissionLogs[]" \
             "getSubmission[]" \
             "getSubmissionData[]" \
             "getSubmissionLogs[]" \
@@ -394,6 +396,13 @@ case $state in
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      downloadGraderLogs)
+        local -a _op_arguments
+        _op_arguments=(
+          "grader_id=:[PATH] "
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       getGrader)
         local -a _op_arguments
         _op_arguments=(
@@ -406,7 +415,9 @@ case $state in
         local -a _op_arguments
         _op_arguments=(
           "grader_id=:[PATH] "
-                    )
+          "step=:[QUERY] Granularity of logs"
+"log_lines=:[QUERY] Number of lines to fetch"
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       listGraders)
@@ -495,6 +506,13 @@ case $state in
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
+      downloadSubmissionLogs)
+        local -a _op_arguments
+        _op_arguments=(
+          "submission_id=:[PATH] "
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
       getSubmission)
         local -a _op_arguments
         _op_arguments=(
@@ -514,7 +532,9 @@ case $state in
         local -a _op_arguments
         _op_arguments=(
           "submission_id=:[PATH] "
-                    )
+          "step=:[QUERY] Granularity of logs"
+"log_lines=:[QUERY] Number of lines to fetch"
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       listSubmissions)

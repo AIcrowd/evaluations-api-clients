@@ -37,9 +37,10 @@ impl<C: hyper::client::Connect> SubmissionsApiClient<C> {
 pub trait SubmissionsApi {
     fn create_submission(&self, payload: ::models::Submissions, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
     fn delete_submission(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn download_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_submission(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
     fn get_submission_data(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn get_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn list_submissions(&self, per_page: &str, page: &str, meta: &str, status: &str, grader_id: i32, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
     fn retry_submissions(&self, payload: ::models::SubmissionRetryInput, x_fields: &str) -> Box<Future<Item = ::models::SubmissionRetry, Error = Error<serde_json::Value>>>;
 }
@@ -143,6 +144,69 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
             query.finish()
         };
         let uri_str = format!("{}/submissions/{submission_id}?{}", configuration.base_path, query_string, submission_id=submission_id);
+
+        // TODO(farcaller): handle error
+        // if let Err(e) = uri {
+        //     return Box::new(futures::future::err(e));
+        // }
+        let mut uri: hyper::Uri = uri_str.parse().unwrap();
+
+        let mut req = hyper::Request::new(method, uri);
+
+        if let Some(ref user_agent) = configuration.user_agent {
+            req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
+        }
+
+
+        for (key, val) in auth_headers {
+            req.headers_mut().set_raw(key, val);
+        }
+
+
+        // send request
+        Box::new(
+        configuration.client.request(req)
+            .map_err(|e| Error::from(e))
+            .and_then(|resp| {
+                let status = resp.status();
+                resp.body().concat2()
+                    .and_then(move |body| Ok((status, body)))
+                    .map_err(|e| Error::from(e))
+            })
+            .and_then(|(status, body)| {
+                if status.is_success() {
+                    Ok(body)
+                } else {
+                    Err(Error::from((status, &*body)))
+                }
+            })
+            .and_then(|_| futures::future::ok(()))
+        )
+    }
+
+    fn download_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+        let configuration: &configuration::Configuration<C> = self.configuration.borrow();
+
+        let mut auth_headers = HashMap::<String, String>::new();
+        let mut auth_query = HashMap::<String, String>::new();
+        if let Some(ref apikey) = configuration.api_key {
+            let key = apikey.key.clone();
+            let val = match apikey.prefix {
+                Some(ref prefix) => format!("{} {}", prefix, key),
+                None => key,
+            };
+            auth_headers.insert("AUTHORIZATION".to_owned(), val);
+        };
+        let method = hyper::Method::Get;
+
+        let query_string = {
+            let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            for (key, val) in &auth_query {
+                query.append_pair(key, val);
+            }
+            query.finish()
+        };
+        let uri_str = format!("{}/submissions/{submission_id}/logs/download?{}", configuration.base_path, query_string, submission_id=submission_id);
 
         // TODO(farcaller): handle error
         // if let Err(e) = uri {
@@ -316,7 +380,7 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
         )
     }
 
-    fn get_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -333,6 +397,8 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
 
         let query_string = {
             let mut query = ::url::form_urlencoded::Serializer::new(String::new());
+            query.append_pair("step", &step.to_string());
+            query.append_pair("log_lines", &log_lines.to_string());
             for (key, val) in &auth_query {
                 query.append_pair(key, val);
             }

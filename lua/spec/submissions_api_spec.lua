@@ -29,6 +29,13 @@ describe("submissions_api", function()
     end)
   end)
 
+  -- unit tests for download_submission_logs
+  describe("download_submission_logs test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for get_submission
   describe("get_submission test", function()
     it("should work", function()

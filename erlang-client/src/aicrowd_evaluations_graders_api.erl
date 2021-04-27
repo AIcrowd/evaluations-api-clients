@@ -3,6 +3,7 @@
 -export([archive_grader/2, archive_grader/3,
          create_grader/2, create_grader/3,
          delete_grader/2, delete_grader/3,
+         download_grader_logs/2, download_grader_logs/3,
          get_grader/2, get_grader/3,
          get_grader_logs/2, get_grader_logs/3,
          list_graders/1, list_graders/2,
@@ -75,6 +76,27 @@ delete_grader(Ctx, GraderId, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
+%% Get the grader logs by submission ID
+-spec download_grader_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+download_grader_logs(Ctx, GraderId) ->
+    download_grader_logs(Ctx, GraderId, #{}).
+
+-spec download_grader_logs(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+download_grader_logs(Ctx, GraderId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = get,
+    Path = ["/graders/", GraderId, "/logs/download"],
+    QS = [],
+    Headers = [],
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
 %% Get details of a grader by its ID
 -spec get_grader(ctx:ctx(), integer()) -> {ok, aicrowd_evaluations_grader:aicrowd_evaluations_grader(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_grader(Ctx, GraderId) ->
@@ -96,7 +118,7 @@ get_grader(Ctx, GraderId, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
-%% Get the grader logs by submission ID
+%% Get grader logs from loki
 -spec get_grader_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_grader_logs(Ctx, GraderId) ->
     get_grader_logs(Ctx, GraderId, #{}).
@@ -108,7 +130,7 @@ get_grader_logs(Ctx, GraderId, Optional) ->
 
     Method = get,
     Path = ["/graders/", GraderId, "/logs"],
-    QS = [],
+    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['step', 'log_lines'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),

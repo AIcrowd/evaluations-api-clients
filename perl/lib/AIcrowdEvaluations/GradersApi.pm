@@ -251,6 +251,69 @@ sub delete_grader {
 }
 
 #
+# download_grader_logs
+#
+# 
+# 
+# @param int $grader_id  (required)
+{
+    my $params = {
+    'grader_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'download_grader_logs' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub download_grader_logs {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'grader_id' is set
+    unless (exists $args{'grader_id'}) {
+      croak("Missing the required parameter 'grader_id' when calling download_grader_logs");
+    }
+
+    # parse inputs
+    my $_resource_path = '/graders/{grader_id}/logs/download';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'grader_id'}) {
+        my $_base_variable = "{" . "grader_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'grader_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
+}
+
+#
 # get_grader
 #
 # 
@@ -334,12 +397,24 @@ sub get_grader {
 # 
 # 
 # @param int $grader_id  (required)
+# @param int $step Granularity of logs (optional)
+# @param int $log_lines Number of lines to fetch (optional)
 {
     my $params = {
     'grader_id' => {
         data_type => 'int',
         description => '',
         required => '1',
+    },
+    'step' => {
+        data_type => 'int',
+        description => 'Granularity of logs',
+        required => '0',
+    },
+    'log_lines' => {
+        data_type => 'int',
+        description => 'Number of lines to fetch',
+        required => '0',
     },
     };
     __PACKAGE__->method_documentation->{ 'get_grader_logs' } = { 
@@ -372,6 +447,16 @@ sub get_grader_logs {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # query params
+    if ( exists $args{'step'}) {
+        $query_params->{'step'} = $self->{api_client}->to_query_value($args{'step'});
+    }
+
+    # query params
+    if ( exists $args{'log_lines'}) {
+        $query_params->{'log_lines'} = $self->{api_client}->to_query_value($args{'log_lines'});
+    }
 
     # path params
     if ( exists $args{'grader_id'}) {

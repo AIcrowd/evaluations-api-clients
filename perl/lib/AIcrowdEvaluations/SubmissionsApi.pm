@@ -188,6 +188,69 @@ sub delete_submission {
 }
 
 #
+# download_submission_logs
+#
+# 
+# 
+# @param int $submission_id  (required)
+{
+    my $params = {
+    'submission_id' => {
+        data_type => 'int',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'download_submission_logs' } = { 
+    	summary => '',
+        params => $params,
+        returns => undef,
+        };
+}
+# @return void
+#
+sub download_submission_logs {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'submission_id' is set
+    unless (exists $args{'submission_id'}) {
+      croak("Missing the required parameter 'submission_id' when calling download_submission_logs");
+    }
+
+    # parse inputs
+    my $_resource_path = '/submissions/{submission_id}/logs/download';
+
+    my $_method = 'GET';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # path params
+    if ( exists $args{'submission_id'}) {
+        my $_base_variable = "{" . "submission_id" . "}";
+        my $_base_value = $self->{api_client}->to_path_value($args{'submission_id'});
+        $_resource_path =~ s/$_base_variable/$_base_value/g;
+    }
+
+    my $_body_data;
+    # authentication setting, if any
+    my $auth_settings = [qw(api_key )];
+
+    # make the API Call
+    $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    return;
+}
+
+#
 # get_submission
 #
 # 
@@ -334,12 +397,24 @@ sub get_submission_data {
 # 
 # 
 # @param int $submission_id  (required)
+# @param int $step Granularity of logs (optional)
+# @param int $log_lines Number of lines to fetch (optional)
 {
     my $params = {
     'submission_id' => {
         data_type => 'int',
         description => '',
         required => '1',
+    },
+    'step' => {
+        data_type => 'int',
+        description => 'Granularity of logs',
+        required => '0',
+    },
+    'log_lines' => {
+        data_type => 'int',
+        description => 'Number of lines to fetch',
+        required => '0',
     },
     };
     __PACKAGE__->method_documentation->{ 'get_submission_logs' } = { 
@@ -372,6 +447,16 @@ sub get_submission_logs {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # query params
+    if ( exists $args{'step'}) {
+        $query_params->{'step'} = $self->{api_client}->to_query_value($args{'step'});
+    }
+
+    # query params
+    if ( exists $args{'log_lines'}) {
+        $query_params->{'log_lines'} = $self->{api_client}->to_query_value($args{'log_lines'});
+    }
 
     # path params
     if ( exists $args{'submission_id'}) {

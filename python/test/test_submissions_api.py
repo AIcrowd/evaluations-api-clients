@@ -41,6 +41,12 @@ class TestSubmissionsApi(unittest.TestCase):
         """
         pass
 
+    def test_download_submission_logs(self):
+        """Test case for download_submission_logs
+
+        """
+        pass
+
     def test_get_submission(self):
         """Test case for get_submission
 

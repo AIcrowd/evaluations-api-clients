@@ -89,8 +89,8 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
+        if self.api_client.client_side_validation and ('payload' not in params or
+                                                       params['payload'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `payload` when calling `create_user`")  # noqa: E501
 
         collection_formats = {}
@@ -190,8 +190,8 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
-        if ('user_id' not in params or
-                params['user_id'] is None):
+        if self.api_client.client_side_validation and ('user_id' not in params or
+                                                       params['user_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `user_id` when calling `delete_user`")  # noqa: E501
 
         collection_formats = {}
@@ -291,8 +291,8 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
-        if ('user_id' not in params or
-                params['user_id'] is None):
+        if self.api_client.client_side_validation and ('user_id' not in params or
+                                                       params['user_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `user_id` when calling `get_user`")  # noqa: E501
 
         collection_formats = {}
@@ -491,12 +491,12 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
-        if ('user_id' not in params or
-                params['user_id'] is None):
+        if self.api_client.client_side_validation and ('user_id' not in params or
+                                                       params['user_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `user_id` when calling `update_user`")  # noqa: E501
         # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
+        if self.api_client.client_side_validation and ('payload' not in params or
+                                                       params['payload'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `payload` when calling `update_user`")  # noqa: E501
 
         collection_formats = {}
@@ -600,12 +600,12 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
-        if ('user_id' not in params or
-                params['user_id'] is None):
+        if self.api_client.client_side_validation and ('user_id' not in params or
+                                                       params['user_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `user_id` when calling `update_user_quota`")  # noqa: E501
         # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
+        if self.api_client.client_side_validation and ('payload' not in params or
+                                                       params['payload'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `payload` when calling `update_user_quota`")  # noqa: E501
 
         collection_formats = {}

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**downloadSubmissionLogs**](SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
@@ -99,6 +100,60 @@ try {
     $apiInstance->deleteSubmission($submission_id);
 } catch (Exception $e) {
     echo 'Exception when calling SubmissionsApi->deleteSubmission: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **int**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **downloadSubmissionLogs**
+> downloadSubmissionLogs($submission_id)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: api_key
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('AUTHORIZATION', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('AUTHORIZATION', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\SubmissionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$submission_id = 56; // int | 
+
+try {
+    $apiInstance->downloadSubmissionLogs($submission_id);
+} catch (Exception $e) {
+    echo 'Exception when calling SubmissionsApi->downloadSubmissionLogs: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -236,11 +291,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSubmissionLogs**
-> getSubmissionLogs($submission_id)
+> getSubmissionLogs($submission_id, $step, $log_lines)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```php
@@ -259,9 +314,11 @@ $apiInstance = new Swagger\Client\Api\SubmissionsApi(
     $config
 );
 $submission_id = 56; // int | 
+$step = 56; // int | Granularity of logs
+$log_lines = 56; // int | Number of lines to fetch
 
 try {
-    $apiInstance->getSubmissionLogs($submission_id);
+    $apiInstance->getSubmissionLogs($submission_id, $step, $log_lines);
 } catch (Exception $e) {
     echo 'Exception when calling SubmissionsApi->getSubmissionLogs: ', $e->getMessage(), PHP_EOL;
 }
@@ -273,6 +330,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submission_id** | **int**|  |
+ **step** | **int**| Granularity of logs | [optional]
+ **log_lines** | **int**| Number of lines to fetch | [optional]
 
 ### Return type
 

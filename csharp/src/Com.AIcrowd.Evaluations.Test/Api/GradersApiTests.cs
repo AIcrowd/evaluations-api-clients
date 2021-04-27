@@ -102,6 +102,18 @@ namespace Com.AIcrowd.Evaluations.Test
         }
         
         /// <summary>
+        /// Test DownloadGraderLogs
+        /// </summary>
+        [Test]
+        public void DownloadGraderLogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? graderId = null;
+            //instance.DownloadGraderLogs(graderId);
+            
+        }
+        
+        /// <summary>
         /// Test GetGrader
         /// </summary>
         [Test]
@@ -122,7 +134,9 @@ namespace Com.AIcrowd.Evaluations.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //int? graderId = null;
-            //instance.GetGraderLogs(graderId);
+            //int? step = null;
+            //int? logLines = null;
+            //instance.GetGraderLogs(graderId, step, logLines);
             
         }
         

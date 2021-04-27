@@ -66,6 +66,30 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   end
 
   @doc """
+  Get the submission logs by submission ID
+
+  ## Parameters
+
+  - connection (AIcrowd.Evaluations.Connection): Connection to server
+  - submission_id (integer()): 
+  - opts (KeywordList): [optional] Optional parameters
+
+  ## Returns
+
+  {:ok, %{}} on success
+  {:error, info} on failure
+  """
+  @spec download_submission_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  def download_submission_logs(connection, submission_id, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/submissions/#{submission_id}/logs/download")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> decode(false)
+  end
+
+  @doc """
   Get details of a submission by its ID
 
   ## Parameters
@@ -119,13 +143,15 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   end
 
   @doc """
-  Get the submission logs by submission ID
+  Get submission logs from loki
 
   ## Parameters
 
   - connection (AIcrowd.Evaluations.Connection): Connection to server
   - submission_id (integer()): 
   - opts (KeywordList): [optional] Optional parameters
+    - :step (integer()): Granularity of logs
+    - :log_lines (integer()): Number of lines to fetch
 
   ## Returns
 
@@ -133,10 +159,15 @@ defmodule AIcrowd.Evaluations.Api.Submissions do
   {:error, info} on failure
   """
   @spec get_submission_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
-  def get_submission_logs(connection, submission_id, _opts \\ []) do
+  def get_submission_logs(connection, submission_id, opts \\ []) do
+    optional_params = %{
+      :"step" => :query,
+      :"log_lines" => :query
+    }
     %{}
     |> method(:get)
     |> url("/submissions/#{submission_id}/logs")
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> decode(false)

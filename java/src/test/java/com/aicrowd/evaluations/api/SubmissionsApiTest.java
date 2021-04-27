@@ -70,6 +70,22 @@ public class SubmissionsApiTest {
     /**
      * 
      *
+     * Get the submission logs by submission ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadSubmissionLogsTest() throws ApiException {
+        Integer submissionId = null;
+        api.downloadSubmissionLogs(submissionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Get details of a submission by its ID
      *
      * @throws ApiException
@@ -103,7 +119,7 @@ public class SubmissionsApiTest {
     /**
      * 
      *
-     * Get the submission logs by submission ID
+     * Get submission logs from loki
      *
      * @throws ApiException
      *          if the Api call fails
@@ -111,7 +127,9 @@ public class SubmissionsApiTest {
     @Test
     public void getSubmissionLogsTest() throws ApiException {
         Integer submissionId = null;
-        api.getSubmissionLogs(submissionId);
+        Integer step = null;
+        Integer logLines = null;
+        api.getSubmissionLogs(submissionId, step, logLines);
 
         // TODO: test validations
     }

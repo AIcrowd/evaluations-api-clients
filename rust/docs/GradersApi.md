@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archive_grader**](GradersApi.md#archive_grader) | **Post** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **Post** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **Delete** /graders/{grader_id} | 
+[**download_grader_logs**](GradersApi.md#download_grader_logs) | **Get** /graders/{grader_id}/logs/download | 
 [**get_grader**](GradersApi.md#get_grader) | **Get** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **Get** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **Get** /graders/ | 
@@ -107,6 +108,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **download_grader_logs**
+> download_grader_logs(ctx, grader_id)
+
+
+Get the grader logs by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **grader_id** | **i32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_grader**
 > ::models::Grader get_grader(ctx, grader_id, optional)
 
@@ -145,10 +174,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_grader_logs**
-> get_grader_logs(ctx, grader_id)
+> get_grader_logs(ctx, grader_id, optional)
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Required Parameters
 
@@ -156,6 +185,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
   **grader_id** | **i32**|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **i32**|  | 
+ **step** | **i32**| Granularity of logs | 
+ **log_lines** | **i32**| Number of lines to fetch | 
 
 ### Return type
 

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_submission**](SubmissionsApi.md#create_submission) | **POST** /submissions/ | 
 [**delete_submission**](SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
+[**download_submission_logs**](SubmissionsApi.md#download_submission_logs) | **GET** /submissions/{submission_id}/logs/download | 
 [**get_submission**](SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
 [**get_submission_data**](SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 [**get_submission_logs**](SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 
@@ -97,6 +98,56 @@ eval {
 };
 if ($@) {
     warn "Exception when calling SubmissionsApi->delete_submission: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submission_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **download_submission_logs**
+> download_submission_logs(submission_id => $submission_id)
+
+
+
+Get the submission logs by submission ID
+
+### Example 
+```perl
+use Data::Dumper;
+use AIcrowdEvaluations::SubmissionsApi;
+my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
+
+    # Configure API key authorization: api_key
+    api_key => {'AUTHORIZATION' => 'YOUR_API_KEY'},
+    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+    #api_key_prefix => {'AUTHORIZATION' => 'Bearer'},
+);
+
+my $submission_id = 56; # int | 
+
+eval { 
+    $api_instance->download_submission_logs(submission_id => $submission_id);
+};
+if ($@) {
+    warn "Exception when calling SubmissionsApi->download_submission_logs: $@\n";
 }
 ```
 
@@ -225,11 +276,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_submission_logs**
-> get_submission_logs(submission_id => $submission_id)
+> get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example 
 ```perl
@@ -244,9 +295,11 @@ my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
 );
 
 my $submission_id = 56; # int | 
+my $step = 56; # int | Granularity of logs
+my $log_lines = 56; # int | Number of lines to fetch
 
 eval { 
-    $api_instance->get_submission_logs(submission_id => $submission_id);
+    $api_instance->get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines);
 };
 if ($@) {
     warn "Exception when calling SubmissionsApi->get_submission_logs: $@\n";
@@ -258,6 +311,8 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submission_id** | **int**|  | 
+ **step** | **int**| Granularity of logs | [optional] 
+ **log_lines** | **int**| Number of lines to fetch | [optional] 
 
 ### Return type
 

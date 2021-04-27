@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**downloadSubmissionLogs**](SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
@@ -55,6 +56,38 @@ Stop evaluation of a submission and delete it
 ### Example
 ```bash
 aicrowd-evaluations deleteSubmission submission_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## **downloadSubmissionLogs**
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```bash
+aicrowd-evaluations downloadSubmissionLogs submission_id=value
 ```
 
 ### Parameters
@@ -147,11 +180,11 @@ Name | Type | Description  | Notes
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```bash
-aicrowd-evaluations getSubmissionLogs submission_id=value
+aicrowd-evaluations getSubmissionLogs submission_id=value  step=value  log_lines=value
 ```
 
 ### Parameters
@@ -159,6 +192,8 @@ aicrowd-evaluations getSubmissionLogs submission_id=value
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **integer** |  |
+ **step** | **integer** | Granularity of logs | [optional]
+ **logLines** | **integer** | Number of lines to fetch | [optional]
 
 ### Return type
 

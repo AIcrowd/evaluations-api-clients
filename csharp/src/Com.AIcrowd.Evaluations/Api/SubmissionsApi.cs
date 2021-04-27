@@ -72,6 +72,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns></returns>
+        void DownloadSubmissionLogs (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DownloadSubmissionLogsWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -116,23 +137,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission logs by submission ID
+        /// Get submission logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns></returns>
-        void GetSubmissionLogs (int? submissionId);
+        void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission logs by submission ID
+        /// Get submission logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId);
+        ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null);
         /// <summary>
         /// 
         /// </summary>
@@ -239,6 +264,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DownloadSubmissionLogsAsync (int? submissionId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the submission logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DownloadSubmissionLogsAsyncWithHttpInfo (int? submissionId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Get details of a submission by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -283,23 +329,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission logs by submission ID
+        /// Get submission logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId);
+        System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the submission logs by submission ID
+        /// Get submission logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null);
         /// <summary>
         /// 
         /// </summary>
@@ -765,6 +815,149 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns></returns>
+        public void DownloadSubmissionLogs (int? submissionId)
+        {
+             DownloadSubmissionLogsWithHttpInfo(submissionId);
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DownloadSubmissionLogsWithHttpInfo (int? submissionId)
+        {
+            // verify the required parameter 'submissionId' is set
+            if (submissionId == null)
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DownloadSubmissionLogs");
+
+            var localVarPath = "/submissions/{submission_id}/logs/download";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DownloadSubmissionLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DownloadSubmissionLogsAsync (int? submissionId)
+        {
+             await DownloadSubmissionLogsAsyncWithHttpInfo(submissionId);
+
+        }
+
+        /// <summary>
+        ///  Get the submission logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submissionId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DownloadSubmissionLogsAsyncWithHttpInfo (int? submissionId)
+        {
+            // verify the required parameter 'submissionId' is set
+            if (submissionId == null)
+                throw new ApiException(400, "Missing required parameter 'submissionId' when calling SubmissionsApi->DownloadSubmissionLogs");
+
+            var localVarPath = "/submissions/{submission_id}/logs/download";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DownloadSubmissionLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         ///  Get details of a submission by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1059,23 +1252,27 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the submission logs by submission ID
+        ///  Get submission logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns></returns>
-        public void GetSubmissionLogs (int? submissionId)
+        public void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null)
         {
-             GetSubmissionLogsWithHttpInfo(submissionId);
+             GetSubmissionLogsWithHttpInfo(submissionId, step, logLines);
         }
 
         /// <summary>
-        ///  Get the submission logs by submission ID
+        ///  Get submission logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId)
+        public ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -1104,6 +1301,8 @@ namespace Com.AIcrowd.Evaluations.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+            if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
+            if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1130,24 +1329,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the submission logs by submission ID
+        ///  Get submission logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId)
+        public async System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null)
         {
-             await GetSubmissionLogsAsyncWithHttpInfo(submissionId);
+             await GetSubmissionLogsAsyncWithHttpInfo(submissionId, step, logLines);
 
         }
 
         /// <summary>
-        ///  Get the submission logs by submission ID
+        ///  Get submission logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submissionId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -1176,6 +1379,8 @@ namespace Com.AIcrowd.Evaluations.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
+            if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
+            if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))

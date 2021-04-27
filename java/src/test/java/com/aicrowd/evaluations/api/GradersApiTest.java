@@ -85,6 +85,22 @@ public class GradersApiTest {
     /**
      * 
      *
+     * Get the grader logs by submission ID
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadGraderLogsTest() throws ApiException {
+        Integer graderId = null;
+        api.downloadGraderLogs(graderId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Get details of a grader by its ID
      *
      * @throws ApiException
@@ -102,7 +118,7 @@ public class GradersApiTest {
     /**
      * 
      *
-     * Get the grader logs by submission ID
+     * Get grader logs from loki
      *
      * @throws ApiException
      *          if the Api call fails
@@ -110,7 +126,9 @@ public class GradersApiTest {
     @Test
     public void getGraderLogsTest() throws ApiException {
         Integer graderId = null;
-        api.getGraderLogs(graderId);
+        Integer step = null;
+        Integer logLines = null;
+        api.getGraderLogs(graderId, step, logLines);
 
         // TODO: test validations
     }

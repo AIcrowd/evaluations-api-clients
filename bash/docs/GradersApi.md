@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**downloadGraderLogs**](GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -111,6 +112,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+## **downloadGraderLogs**
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```bash
+aicrowd-evaluations downloadGraderLogs grader_id=value
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **integer** |  |
+
+### Return type
+
+(empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 ## **getGrader**
 
 
@@ -148,11 +181,11 @@ Name | Type | Description  | Notes
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```bash
-aicrowd-evaluations getGraderLogs grader_id=value
+aicrowd-evaluations getGraderLogs grader_id=value  step=value  log_lines=value
 ```
 
 ### Parameters
@@ -160,6 +193,8 @@ aicrowd-evaluations getGraderLogs grader_id=value
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **graderId** | **integer** |  |
+ **step** | **integer** | Granularity of logs | [optional]
+ **logLines** | **integer** | Number of lines to fetch | [optional]
 
 ### Return type
 

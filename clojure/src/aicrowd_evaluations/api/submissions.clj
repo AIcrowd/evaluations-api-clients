@@ -45,6 +45,26 @@
   [submission-id ]
   (:data (delete-submission-with-http-info submission-id)))
 
+(defn download-submission-logs-with-http-info
+  "
+  Get the submission logs by submission ID"
+  [submission-id ]
+  (check-required-params submission-id)
+  (call-api "/submissions/{submission_id}/logs/download" :get
+            {:path-params   {"submission_id" submission-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn download-submission-logs
+  "
+  Get the submission logs by submission ID"
+  [submission-id ]
+  (:data (download-submission-logs-with-http-info submission-id)))
+
 (defn get-submission-with-http-info
   "
   Get details of a submission by its ID"
@@ -89,23 +109,25 @@
 
 (defn get-submission-logs-with-http-info
   "
-  Get the submission logs by submission ID"
-  [submission-id ]
-  (check-required-params submission-id)
-  (call-api "/submissions/{submission_id}/logs" :get
-            {:path-params   {"submission_id" submission-id }
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json"]
-             :accepts       ["application/json"]
-             :auth-names    ["api_key"]}))
+  Get submission logs from loki"
+  ([submission-id ] (get-submission-logs-with-http-info submission-id nil))
+  ([submission-id {:keys [step log-lines ]}]
+   (check-required-params submission-id)
+   (call-api "/submissions/{submission_id}/logs" :get
+             {:path-params   {"submission_id" submission-id }
+              :header-params {}
+              :query-params  {"step" step "log_lines" log-lines }
+              :form-params   {}
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
 
 (defn get-submission-logs
   "
-  Get the submission logs by submission ID"
-  [submission-id ]
-  (:data (get-submission-logs-with-http-info submission-id)))
+  Get submission logs from loki"
+  ([submission-id ] (get-submission-logs submission-id nil))
+  ([submission-id optional-params]
+   (:data (get-submission-logs-with-http-info submission-id optional-params))))
 
 (defn list-submissions-with-http-info
   "

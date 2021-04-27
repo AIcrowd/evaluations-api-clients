@@ -1727,6 +1727,61 @@ export class GradersApi {
         });
     }
     /**
+     * Get the grader logs by submission ID
+     * @param graderId 
+     * @param {*} [options] Override http request options.
+     */
+    public downloadGraderLogs (graderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/logs/download'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling downloadGraderLogs.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Get details of a grader by its ID
      * @param graderId 
      * @param xFields An optional fields mask
@@ -1785,11 +1840,13 @@ export class GradersApi {
         });
     }
     /**
-     * Get the grader logs by submission ID
+     * Get grader logs from loki
      * @param graderId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      * @param {*} [options] Override http request options.
      */
-    public getGraderLogs (graderId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public getGraderLogs (graderId: number, step?: number, logLines?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/graders/{grader_id}/logs'
             .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
         let localVarQueryParameters: any = {};
@@ -1799,6 +1856,14 @@ export class GradersApi {
         // verify required parameter 'graderId' is not null or undefined
         if (graderId === null || graderId === undefined) {
             throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+        if (step !== undefined) {
+            localVarQueryParameters['step'] = ObjectSerializer.serialize(step, "number");
+        }
+
+        if (logLines !== undefined) {
+            localVarQueryParameters['log_lines'] = ObjectSerializer.serialize(logLines, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -2597,6 +2662,61 @@ export class SubmissionsApi {
         });
     }
     /**
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     * @param {*} [options] Override http request options.
+     */
+    public downloadSubmissionLogs (submissionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/logs/download'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling downloadSubmissionLogs.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.api_key.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Get details of a submission by its ID
      * @param submissionId 
      * @param xFields An optional fields mask
@@ -2710,11 +2830,13 @@ export class SubmissionsApi {
         });
     }
     /**
-     * Get the submission logs by submission ID
+     * Get submission logs from loki
      * @param submissionId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      * @param {*} [options] Override http request options.
      */
-    public getSubmissionLogs (submissionId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
         const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
         let localVarQueryParameters: any = {};
@@ -2724,6 +2846,14 @@ export class SubmissionsApi {
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+        if (step !== undefined) {
+            localVarQueryParameters['step'] = ObjectSerializer.serialize(step, "number");
+        }
+
+        if (logLines !== undefined) {
+            localVarQueryParameters['log_lines'] = ObjectSerializer.serialize(logLines, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

@@ -137,6 +137,32 @@ class SubmissionsApi(
 
   /**
    * 
+   * Get the submission logs by submission ID
+   *
+   * @param submissionId  
+   * @return void
+   */
+  def downloadSubmissionLogs(submissionId: Integer) = {
+    val await = Try(Await.result(downloadSubmissionLogsAsync(submissionId), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   *  asynchronously
+   * Get the submission logs by submission ID
+   *
+   * @param submissionId  
+   * @return Future(void)
+   */
+  def downloadSubmissionLogsAsync(submissionId: Integer) = {
+      helper.downloadSubmissionLogs(submissionId)
+  }
+
+  /**
+   * 
    * Get details of a submission by its ID
    *
    * @param submissionId  
@@ -191,13 +217,15 @@ class SubmissionsApi(
 
   /**
    * 
-   * Get the submission logs by submission ID
+   * Get submission logs from loki
    *
    * @param submissionId  
+   * @param step Granularity of logs (optional)
+   * @param logLines Number of lines to fetch (optional)
    * @return void
    */
-  def getSubmissionLogs(submissionId: Integer) = {
-    val await = Try(Await.result(getSubmissionLogsAsync(submissionId), Duration.Inf))
+  def getSubmissionLogs(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
+    val await = Try(Await.result(getSubmissionLogsAsync(submissionId, step, logLines), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -206,13 +234,15 @@ class SubmissionsApi(
 
   /**
    *  asynchronously
-   * Get the submission logs by submission ID
+   * Get submission logs from loki
    *
    * @param submissionId  
+   * @param step Granularity of logs (optional)
+   * @param logLines Number of lines to fetch (optional)
    * @return Future(void)
    */
-  def getSubmissionLogsAsync(submissionId: Integer) = {
-      helper.getSubmissionLogs(submissionId)
+  def getSubmissionLogsAsync(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
+      helper.getSubmissionLogs(submissionId, step, logLines)
   }
 
   /**
@@ -323,6 +353,22 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
+  def downloadSubmissionLogs(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    // create path and map variables
+    val path = (addFmt("/submissions/{submission_id}/logs/download")
+      replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
   def getSubmission(submissionId: Integer,
     xFields: Option[String] = None
     )(implicit reader: ClientResponseReader[Submissions]): Future[Submissions] = {
@@ -361,7 +407,10 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def getSubmissionLogs(submissionId: Integer)(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def getSubmissionLogs(submissionId: Integer,
+    step: Option[Integer] = None,
+    logLines: Option[Integer] = None
+    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
     // create path and map variables
     val path = (addFmt("/submissions/{submission_id}/logs")
       replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
@@ -370,6 +419,14 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    step match {
+      case Some(param) => queryParams += "step" -> param.toString
+      case _ => queryParams
+    }
+    logLines match {
+      case Some(param) => queryParams += "log_lines" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

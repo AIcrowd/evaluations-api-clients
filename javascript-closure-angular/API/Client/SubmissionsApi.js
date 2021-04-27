@@ -119,6 +119,43 @@ API.Client.SubmissionsApi.prototype.deleteSubmission = function(submissionId, op
 
 /**
  * 
+ * Get the submission logs by submission ID
+ * @param {!number} submissionId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.SubmissionsApi.prototype.downloadSubmissionLogs = function(submissionId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/submissions/{submission_id}/logs/download'
+      .replace('{' + 'submission_id' + '}', String(submissionId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'submissionId' is set
+  if (!submissionId) {
+    throw new Error('Missing required parameter submissionId when calling downloadSubmissionLogs');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * Get details of a submission by its ID
  * @param {!number} submissionId 
  * @param {!string=} opt_xFields An optional fields mask
@@ -196,12 +233,14 @@ API.Client.SubmissionsApi.prototype.getSubmissionData = function(submissionId, o
 
 /**
  * 
- * Get the submission logs by submission ID
+ * Get submission logs from loki
  * @param {!number} submissionId 
+ * @param {!number=} opt_step Granularity of logs
+ * @param {!number=} opt_logLines Number of lines to fetch
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise}
  */
-API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, opt_extraHttpRequestParams) {
+API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, opt_step, opt_logLines, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/submissions/{submission_id}/logs'
       .replace('{' + 'submission_id' + '}', String(submissionId));
@@ -215,6 +254,14 @@ API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, o
   if (!submissionId) {
     throw new Error('Missing required parameter submissionId when calling getSubmissionLogs');
   }
+  if (opt_step !== undefined) {
+    queryParameters['step'] = opt_step;
+  }
+
+  if (opt_logLines !== undefined) {
+    queryParameters['log_lines'] = opt_logLines;
+  }
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',

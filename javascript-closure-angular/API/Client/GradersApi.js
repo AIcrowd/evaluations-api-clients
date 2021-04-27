@@ -155,6 +155,43 @@ API.Client.GradersApi.prototype.deleteGrader = function(graderId, opt_extraHttpR
 
 /**
  * 
+ * Get the grader logs by submission ID
+ * @param {!number} graderId 
+ * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
+ * @return {!angular.$q.Promise}
+ */
+API.Client.GradersApi.prototype.downloadGraderLogs = function(graderId, opt_extraHttpRequestParams) {
+  /** @const {string} */
+  var path = this.basePath_ + '/graders/{grader_id}/logs/download'
+      .replace('{' + 'grader_id' + '}', String(graderId));
+
+  /** @type {!Object} */
+  var queryParameters = {};
+
+  /** @type {!Object} */
+  var headerParams = angular.extend({}, this.defaultHeaders_);
+  // verify required parameter 'graderId' is set
+  if (!graderId) {
+    throw new Error('Missing required parameter graderId when calling downloadGraderLogs');
+  }
+  /** @type {!Object} */
+  var httpRequestParams = {
+    method: 'GET',
+    url: path,
+    json: true,
+            params: queryParameters,
+    headers: headerParams
+  };
+
+  if (opt_extraHttpRequestParams) {
+    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
+  }
+
+  return (/** @type {?} */ (this.http_))(httpRequestParams);
+}
+
+/**
+ * 
  * Get details of a grader by its ID
  * @param {!number} graderId 
  * @param {!string=} opt_xFields An optional fields mask
@@ -195,12 +232,14 @@ API.Client.GradersApi.prototype.getGrader = function(graderId, opt_xFields, opt_
 
 /**
  * 
- * Get the grader logs by submission ID
+ * Get grader logs from loki
  * @param {!number} graderId 
+ * @param {!number=} opt_step Granularity of logs
+ * @param {!number=} opt_logLines Number of lines to fetch
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise}
  */
-API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_extraHttpRequestParams) {
+API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_step, opt_logLines, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/graders/{grader_id}/logs'
       .replace('{' + 'grader_id' + '}', String(graderId));
@@ -214,6 +253,14 @@ API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_extraHttp
   if (!graderId) {
     throw new Error('Missing required parameter graderId when calling getGraderLogs');
   }
+  if (opt_step !== undefined) {
+    queryParameters['step'] = opt_step;
+  }
+
+  if (opt_logLines !== undefined) {
+    queryParameters['log_lines'] = opt_logLines;
+  }
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',

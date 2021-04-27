@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**downloadGraderLogs**](GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -155,6 +156,52 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="downloadGraderLogs"></a>
+# **downloadGraderLogs**
+> downloadGraderLogs(graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = GradersApi()
+val graderId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.downloadGraderLogs(graderId)
+} catch (e: ClientException) {
+    println("4xx response calling GradersApi#downloadGraderLogs")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GradersApi#downloadGraderLogs")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getGrader"></a>
 # **getGrader**
 > Grader getGrader(graderId, xFields)
@@ -206,11 +253,11 @@ Name | Type | Description  | Notes
 
 <a name="getGraderLogs"></a>
 # **getGraderLogs**
-> getGraderLogs(graderId)
+> getGraderLogs(graderId, step, logLines)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```kotlin
@@ -220,8 +267,10 @@ Get the grader logs by submission ID
 
 val apiInstance = GradersApi()
 val graderId : kotlin.Int = 56 // kotlin.Int | 
+val step : kotlin.Int = 56 // kotlin.Int | Granularity of logs
+val logLines : kotlin.Int = 56 // kotlin.Int | Number of lines to fetch
 try {
-    apiInstance.getGraderLogs(graderId)
+    apiInstance.getGraderLogs(graderId, step, logLines)
 } catch (e: ClientException) {
     println("4xx response calling GradersApi#getGraderLogs")
     e.printStackTrace()
@@ -236,6 +285,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **graderId** | **kotlin.Int**|  |
+ **step** | **kotlin.Int**| Granularity of logs | [optional]
+ **logLines** | **kotlin.Int**| Number of lines to fetch | [optional]
 
 ### Return type
 

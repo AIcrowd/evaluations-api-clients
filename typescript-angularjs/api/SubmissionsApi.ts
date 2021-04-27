@@ -86,6 +86,34 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     */
+    public downloadSubmissionLogs (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/submissions/{submission_id}/logs/download'
+            .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'submissionId' is not null or undefined
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling downloadSubmissionLogs.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * Get details of a submission by its ID
      * @param submissionId 
      * @param xFields An optional fields mask
@@ -145,10 +173,12 @@ export class SubmissionsApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get the submission logs by submission ID
+     * Get submission logs from loki
      * @param submissionId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      */
-    public getSubmissionLogs (submissionId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
 
@@ -157,6 +187,14 @@ export class SubmissionsApi {
         // verify required parameter 'submissionId' is not null or undefined
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+        if (step !== undefined) {
+            queryParameters['step'] = step;
+        }
+
+        if (logLines !== undefined) {
+            queryParameters['log_lines'] = logLines;
         }
 
         let httpRequestParams: ng.IRequestConfig = {

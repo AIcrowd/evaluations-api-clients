@@ -65,6 +65,26 @@
   [grader-id ]
   (:data (delete-grader-with-http-info grader-id)))
 
+(defn download-grader-logs-with-http-info
+  "
+  Get the grader logs by submission ID"
+  [grader-id ]
+  (check-required-params grader-id)
+  (call-api "/graders/{grader_id}/logs/download" :get
+            {:path-params   {"grader_id" grader-id }
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["api_key"]}))
+
+(defn download-grader-logs
+  "
+  Get the grader logs by submission ID"
+  [grader-id ]
+  (:data (download-grader-logs-with-http-info grader-id)))
+
 (defn get-grader-with-http-info
   "
   Get details of a grader by its ID"
@@ -89,23 +109,25 @@
 
 (defn get-grader-logs-with-http-info
   "
-  Get the grader logs by submission ID"
-  [grader-id ]
-  (check-required-params grader-id)
-  (call-api "/graders/{grader_id}/logs" :get
-            {:path-params   {"grader_id" grader-id }
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json"]
-             :accepts       ["application/json"]
-             :auth-names    ["api_key"]}))
+  Get grader logs from loki"
+  ([grader-id ] (get-grader-logs-with-http-info grader-id nil))
+  ([grader-id {:keys [step log-lines ]}]
+   (check-required-params grader-id)
+   (call-api "/graders/{grader_id}/logs" :get
+             {:path-params   {"grader_id" grader-id }
+              :header-params {}
+              :query-params  {"step" step "log_lines" log-lines }
+              :form-params   {}
+              :content-types ["application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["api_key"]})))
 
 (defn get-grader-logs
   "
-  Get the grader logs by submission ID"
-  [grader-id ]
-  (:data (get-grader-logs-with-http-info grader-id)))
+  Get grader logs from loki"
+  ([grader-id ] (get-grader-logs grader-id nil))
+  ([grader-id optional-params]
+   (:data (get-grader-logs-with-http-info grader-id optional-params))))
 
 (defn list-graders-with-http-info
   "

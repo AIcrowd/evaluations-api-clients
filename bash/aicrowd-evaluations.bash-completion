@@ -77,6 +77,7 @@ _aicrowd-evaluations()
     operations["archiveGrader"]=1
     operations["createGrader"]=1
     operations["deleteGrader"]=1
+    operations["downloadGraderLogs"]=1
     operations["getGrader"]=1
     operations["getGraderLogs"]=1
     operations["listGraders"]=1
@@ -90,6 +91,7 @@ _aicrowd-evaluations()
     operations["updateOrganisationQuota"]=1
     operations["createSubmission"]=1
     operations["deleteSubmission"]=1
+    operations["downloadSubmissionLogs"]=1
     operations["getSubmission"]=1
     operations["getSubmissionData"]=1
     operations["getSubmissionLogs"]=1
@@ -114,8 +116,9 @@ _aicrowd-evaluations()
     operation_parameters["archiveGrader"]="grader_id= "
     operation_parameters["createGrader"]="X-Fields: "
     operation_parameters["deleteGrader"]="grader_id= "
+    operation_parameters["downloadGraderLogs"]="grader_id= "
     operation_parameters["getGrader"]="grader_id= X-Fields: "
-    operation_parameters["getGraderLogs"]="grader_id= "
+    operation_parameters["getGraderLogs"]="grader_id= step= log_lines= "
     operation_parameters["listGraders"]="per_page= page= meta= name= status= user_id= X-Fields: "
     operation_parameters["unarchiveGrader"]="grader_id= "
     operation_parameters["updateGrader"]="grader_id= X-Fields: "
@@ -127,9 +130,10 @@ _aicrowd-evaluations()
     operation_parameters["updateOrganisationQuota"]="organisation_id= "
     operation_parameters["createSubmission"]="X-Fields: "
     operation_parameters["deleteSubmission"]="submission_id= "
+    operation_parameters["downloadSubmissionLogs"]="submission_id= "
     operation_parameters["getSubmission"]="submission_id= X-Fields: "
     operation_parameters["getSubmissionData"]="submission_id= "
-    operation_parameters["getSubmissionLogs"]="submission_id= "
+    operation_parameters["getSubmissionLogs"]="submission_id= step= log_lines= "
     operation_parameters["listSubmissions"]="per_page= page= meta= status= grader_id= user_id= X-Fields: "
     operation_parameters["retrySubmissions"]="X-Fields: "
     operation_parameters["createUser"]="X-Fields: "

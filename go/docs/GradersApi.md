@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ArchiveGrader**](GradersApi.md#ArchiveGrader) | **Post** /graders/{grader_id}/archive | 
 [**CreateGrader**](GradersApi.md#CreateGrader) | **Post** /graders/ | 
 [**DeleteGrader**](GradersApi.md#DeleteGrader) | **Delete** /graders/{grader_id} | 
+[**DownloadGraderLogs**](GradersApi.md#DownloadGraderLogs) | **Get** /graders/{grader_id}/logs/download | 
 [**GetGrader**](GradersApi.md#GetGrader) | **Get** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#GetGraderLogs) | **Get** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#ListGraders) | **Get** /graders/ | 
@@ -107,6 +108,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **DownloadGraderLogs**
+> DownloadGraderLogs(ctx, graderId)
+
+
+Get the grader logs by submission ID
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **graderId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **GetGrader**
 > Grader GetGrader(ctx, graderId, optional)
 
@@ -145,10 +174,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetGraderLogs**
-> GetGraderLogs(ctx, graderId)
+> GetGraderLogs(ctx, graderId, optional)
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Required Parameters
 
@@ -156,6 +185,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **graderId** | **int32**|  | 
+ **optional** | ***GradersApiGetGraderLogsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GradersApiGetGraderLogsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **step** | **optional.Int32**| Granularity of logs | 
+ **logLines** | **optional.Int32**| Number of lines to fetch | 
 
 ### Return type
 

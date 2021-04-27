@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSubmission**](SubmissionsApi.md#createsubmission) | **POST** /submissions/ | 
 [**DeleteSubmission**](SubmissionsApi.md#deletesubmission) | **DELETE** /submissions/{submission_id} | 
+[**DownloadSubmissionLogs**](SubmissionsApi.md#downloadsubmissionlogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**GetSubmission**](SubmissionsApi.md#getsubmission) | **GET** /submissions/{submission_id} | 
 [**GetSubmissionData**](SubmissionsApi.md#getsubmissiondata) | **GET** /submissions/{submission_id}/data | 
 [**GetSubmissionLogs**](SubmissionsApi.md#getsubmissionlogs) | **GET** /submissions/{submission_id}/logs | 
@@ -117,6 +118,70 @@ namespace Example
             catch (Exception e)
             {
                 Debug.Print("Exception when calling SubmissionsApi.DeleteSubmission: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **int?**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="downloadsubmissionlogs"></a>
+# **DownloadSubmissionLogs**
+> void DownloadSubmissionLogs (int? submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class DownloadSubmissionLogsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new SubmissionsApi();
+            var submissionId = 56;  // int? | 
+
+            try
+            {
+                apiInstance.DownloadSubmissionLogs(submissionId);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SubmissionsApi.DownloadSubmissionLogs: " + e.Message );
             }
         }
     }
@@ -277,11 +342,11 @@ void (empty response body)
 
 <a name="getsubmissionlogs"></a>
 # **GetSubmissionLogs**
-> void GetSubmissionLogs (int? submissionId)
+> void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```csharp
@@ -304,10 +369,12 @@ namespace Example
 
             var apiInstance = new SubmissionsApi();
             var submissionId = 56;  // int? | 
+            var step = 56;  // int? | Granularity of logs (optional) 
+            var logLines = 56;  // int? | Number of lines to fetch (optional) 
 
             try
             {
-                apiInstance.GetSubmissionLogs(submissionId);
+                apiInstance.GetSubmissionLogs(submissionId, step, logLines);
             }
             catch (Exception e)
             {
@@ -323,6 +390,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **int?**|  | 
+ **step** | **int?**| Granularity of logs | [optional] 
+ **logLines** | **int?**| Number of lines to fetch | [optional] 
 
 ### Return type
 

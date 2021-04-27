@@ -133,6 +133,43 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
 
     /**
     * 
+    * Get the grader logs by submission ID
+    * @param graderId  
+    * @return void
+    */
+    fun downloadGraderLogs(graderId: kotlin.Int) : Unit {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/graders/{grader_id}/logs/download".replace("{"+"grader_id"+"}", "$graderId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Unit>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> Unit
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
     * Get details of a grader by its ID
     * @param graderId  
     * @param xFields An optional fields mask (optional)
@@ -172,13 +209,15 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
 
     /**
     * 
-    * Get the grader logs by submission ID
+    * Get grader logs from loki
     * @param graderId  
+    * @param step Granularity of logs (optional)
+    * @param logLines Number of lines to fetch (optional)
     * @return void
     */
-    fun getGraderLogs(graderId: kotlin.Int) : Unit {
+    fun getGraderLogs(graderId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf("step" to listOf("$step"), "log_lines" to listOf("$logLines"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")

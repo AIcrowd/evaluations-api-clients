@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubmission**](SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 [**deleteSubmission**](SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+[**downloadSubmissionLogs**](SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 [**getSubmission**](SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 [**getSubmissionData**](SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 [**getSubmissionLogs**](SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 
@@ -85,6 +86,52 @@ try {
     e.printStackTrace()
 } catch (e: ServerException) {
     println("5xx response calling SubmissionsApi#deleteSubmission")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submissionId** | **kotlin.Int**|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="downloadSubmissionLogs"></a>
+# **downloadSubmissionLogs**
+> downloadSubmissionLogs(submissionId)
+
+
+
+Get the submission logs by submission ID
+
+### Example
+```kotlin
+// Import classes:
+//import com.aicrowd.evaluations.infrastructure.*
+//import com.aicrowd.evaluations.models.*
+
+val apiInstance = SubmissionsApi()
+val submissionId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    apiInstance.downloadSubmissionLogs(submissionId)
+} catch (e: ClientException) {
+    println("4xx response calling SubmissionsApi#downloadSubmissionLogs")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SubmissionsApi#downloadSubmissionLogs")
     e.printStackTrace()
 }
 ```
@@ -205,11 +252,11 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId)
+> getSubmissionLogs(submissionId, step, logLines)
 
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Example
 ```kotlin
@@ -219,8 +266,10 @@ Get the submission logs by submission ID
 
 val apiInstance = SubmissionsApi()
 val submissionId : kotlin.Int = 56 // kotlin.Int | 
+val step : kotlin.Int = 56 // kotlin.Int | Granularity of logs
+val logLines : kotlin.Int = 56 // kotlin.Int | Number of lines to fetch
 try {
-    apiInstance.getSubmissionLogs(submissionId)
+    apiInstance.getSubmissionLogs(submissionId, step, logLines)
 } catch (e: ClientException) {
     println("4xx response calling SubmissionsApi#getSubmissionLogs")
     e.printStackTrace()
@@ -235,6 +284,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **submissionId** | **kotlin.Int**|  |
+ **step** | **kotlin.Int**| Granularity of logs | [optional]
+ **logLines** | **kotlin.Int**| Number of lines to fetch | [optional]
 
 ### Return type
 

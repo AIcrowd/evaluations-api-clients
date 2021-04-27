@@ -211,6 +211,53 @@ export class GradersService {
 
     /**
      * 
+     * Get the grader logs by submission ID
+     * @param graderId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public downloadGraderLogs(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public downloadGraderLogs(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public downloadGraderLogs(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public downloadGraderLogs(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling downloadGraderLogs.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/logs/download`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * Get details of a grader by its ID
      * @param graderId 
      * @param xFields An optional fields mask
@@ -263,18 +310,30 @@ export class GradersService {
 
     /**
      * 
-     * Get the grader logs by submission ID
+     * Get grader logs from loki
      * @param graderId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderLogs(graderId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getGraderLogs(graderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getGraderLogs(graderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getGraderLogs(graderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (graderId === null || graderId === undefined) {
             throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (step !== undefined && step !== null) {
+            queryParameters = queryParameters.set('step', <any>step);
+        }
+        if (logLines !== undefined && logLines !== null) {
+            queryParameters = queryParameters.set('log_lines', <any>logLines);
         }
 
         let headers = this.defaultHeaders;
@@ -300,6 +359,7 @@ export class GradersService {
 
         return this.httpClient.get<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/logs`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -61,6 +61,28 @@ class SubmissionsApi {
                     null )
                     
     }
+    def downloadSubmissionLogs ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/submissions/{submission_id}/logs/download"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (submissionId == null) {
+            throw new RuntimeException("missing required params submissionId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    null )
+                    
+    }
     def getSubmission ( Integer submissionId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}"
@@ -106,7 +128,7 @@ class SubmissionsApi {
                     null )
                     
     }
-    def getSubmissionLogs ( Integer submissionId, Closure onSuccess, Closure onFailure)  {
+    def getSubmissionLogs ( Integer submissionId, Integer step, Integer logLines, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}/logs"
 
@@ -119,7 +141,11 @@ class SubmissionsApi {
             throw new RuntimeException("missing required params submissionId")
         }
 
-        
+        if (!"null".equals(String.valueOf(step)))
+            queryParams.put("step", String.valueOf(step))
+if (!"null".equals(String.valueOf(logLines)))
+            queryParams.put("log_lines", String.valueOf(logLines))
+
 
         // Also still TODO: form params, body param
 

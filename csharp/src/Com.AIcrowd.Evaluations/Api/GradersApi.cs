@@ -93,6 +93,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the grader logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns></returns>
+        void DownloadGraderLogs (int? graderId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the grader logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DownloadGraderLogsWithHttpInfo (int? graderId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -116,23 +137,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the grader logs by submission ID
+        /// Get grader logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns></returns>
-        void GetGraderLogs (int? graderId);
+        void GetGraderLogs (int? graderId, int? step = null, int? logLines = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the grader logs by submission ID
+        /// Get grader logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId);
+        ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null);
         /// <summary>
         /// 
         /// </summary>
@@ -283,6 +308,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Get the grader logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DownloadGraderLogsAsync (int? graderId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Get the grader logs by submission ID
+        /// </remarks>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DownloadGraderLogsAsyncWithHttpInfo (int? graderId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Get details of a grader by its ID
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -306,23 +352,27 @@ namespace Com.AIcrowd.Evaluations.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the grader logs by submission ID
+        /// Get grader logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId);
+        System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get the grader logs by submission ID
+        /// Get grader logs from loki
         /// </remarks>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null);
         /// <summary>
         /// 
         /// </summary>
@@ -954,6 +1004,149 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
+        ///  Get the grader logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns></returns>
+        public void DownloadGraderLogs (int? graderId)
+        {
+             DownloadGraderLogsWithHttpInfo(graderId);
+        }
+
+        /// <summary>
+        ///  Get the grader logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DownloadGraderLogsWithHttpInfo (int? graderId)
+        {
+            // verify the required parameter 'graderId' is set
+            if (graderId == null)
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DownloadGraderLogs");
+
+            var localVarPath = "/graders/{grader_id}/logs/download";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DownloadGraderLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  Get the grader logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DownloadGraderLogsAsync (int? graderId)
+        {
+             await DownloadGraderLogsAsyncWithHttpInfo(graderId);
+
+        }
+
+        /// <summary>
+        ///  Get the grader logs by submission ID
+        /// </summary>
+        /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="graderId"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DownloadGraderLogsAsyncWithHttpInfo (int? graderId)
+        {
+            // verify the required parameter 'graderId' is set
+            if (graderId == null)
+                throw new ApiException(400, "Missing required parameter 'graderId' when calling GradersApi->DownloadGraderLogs");
+
+            var localVarPath = "/graders/{grader_id}/logs/download";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
+            {
+                localVarHeaderParams["AUTHORIZATION"] = this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DownloadGraderLogs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         ///  Get details of a grader by its ID
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1105,23 +1298,27 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the grader logs by submission ID
+        ///  Get grader logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns></returns>
-        public void GetGraderLogs (int? graderId)
+        public void GetGraderLogs (int? graderId, int? step = null, int? logLines = null)
         {
-             GetGraderLogsWithHttpInfo(graderId);
+             GetGraderLogsWithHttpInfo(graderId, step, logLines);
         }
 
         /// <summary>
-        ///  Get the grader logs by submission ID
+        ///  Get grader logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId)
+        public ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
@@ -1150,6 +1347,8 @@ namespace Com.AIcrowd.Evaluations.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
+            if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
+            if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1176,24 +1375,28 @@ namespace Com.AIcrowd.Evaluations.Api
         }
 
         /// <summary>
-        ///  Get the grader logs by submission ID
+        ///  Get grader logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId)
+        public async System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null)
         {
-             await GetGraderLogsAsyncWithHttpInfo(graderId);
+             await GetGraderLogsAsyncWithHttpInfo(graderId, step, logLines);
 
         }
 
         /// <summary>
-        ///  Get the grader logs by submission ID
+        ///  Get grader logs from loki
         /// </summary>
         /// <exception cref="Com.AIcrowd.Evaluations.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="graderId"></param>
+        /// <param name="step">Granularity of logs (optional)</param>
+        /// <param name="logLines">Number of lines to fetch (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
@@ -1222,6 +1425,8 @@ namespace Com.AIcrowd.Evaluations.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
+            if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
+            if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))

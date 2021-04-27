@@ -362,8 +362,39 @@ paths:
     get:
       tags:
       - "graders"
-      description: "Get the grader logs by submission ID"
+      description: "Get grader logs from loki"
       operationId: "GetGraderLogs"
+      parameters:
+      - name: "grader_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "GraderId"
+      - name: "step"
+        in: "query"
+        description: "Granularity of logs"
+        required: false
+        type: "integer"
+        x-exportParamName: "Step"
+        x-optionalDataType: "Int32"
+      - name: "log_lines"
+        in: "query"
+        description: "Number of lines to fetch"
+        required: false
+        type: "integer"
+        x-exportParamName: "LogLines"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Grader not found"
+  /graders/{grader_id}/logs/download:
+    get:
+      tags:
+      - "graders"
+      description: "Get the grader logs by submission ID"
+      operationId: "DownloadGraderLogs"
       parameters:
       - name: "grader_id"
         in: "path"
@@ -730,8 +761,39 @@ paths:
     get:
       tags:
       - "submissions"
-      description: "Get the submission logs by submission ID"
+      description: "Get submission logs from loki"
       operationId: "GetSubmissionLogs"
+      parameters:
+      - name: "submission_id"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "SubmissionId"
+      - name: "step"
+        in: "query"
+        description: "Granularity of logs"
+        required: false
+        type: "integer"
+        x-exportParamName: "Step"
+        x-optionalDataType: "Int32"
+      - name: "log_lines"
+        in: "query"
+        description: "Number of lines to fetch"
+        required: false
+        type: "integer"
+        x-exportParamName: "LogLines"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Submission not found"
+  /submissions/{submission_id}/logs/download:
+    get:
+      tags:
+      - "submissions"
+      description: "Get the submission logs by submission ID"
+      operationId: "DownloadSubmissionLogs"
       parameters:
       - name: "submission_id"
         in: "path"

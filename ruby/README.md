@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *AIcrowdEvaluations::GradersApi* | [**archive_grader**](docs/GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 *AIcrowdEvaluations::GradersApi* | [**create_grader**](docs/GradersApi.md#create_grader) | **POST** /graders/ | 
 *AIcrowdEvaluations::GradersApi* | [**delete_grader**](docs/GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
+*AIcrowdEvaluations::GradersApi* | [**download_grader_logs**](docs/GradersApi.md#download_grader_logs) | **GET** /graders/{grader_id}/logs/download | 
 *AIcrowdEvaluations::GradersApi* | [**get_grader**](docs/GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 *AIcrowdEvaluations::GradersApi* | [**get_grader_logs**](docs/GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 *AIcrowdEvaluations::GradersApi* | [**list_graders**](docs/GradersApi.md#list_graders) | **GET** /graders/ | 
@@ -99,6 +100,7 @@ Class | Method | HTTP request | Description
 *AIcrowdEvaluations::OrganisationsApi* | [**update_organisation_quota**](docs/OrganisationsApi.md#update_organisation_quota) | **PUT** /organisations/{organisation_id}/addquota | 
 *AIcrowdEvaluations::SubmissionsApi* | [**create_submission**](docs/SubmissionsApi.md#create_submission) | **POST** /submissions/ | 
 *AIcrowdEvaluations::SubmissionsApi* | [**delete_submission**](docs/SubmissionsApi.md#delete_submission) | **DELETE** /submissions/{submission_id} | 
+*AIcrowdEvaluations::SubmissionsApi* | [**download_submission_logs**](docs/SubmissionsApi.md#download_submission_logs) | **GET** /submissions/{submission_id}/logs/download | 
 *AIcrowdEvaluations::SubmissionsApi* | [**get_submission**](docs/SubmissionsApi.md#get_submission) | **GET** /submissions/{submission_id} | 
 *AIcrowdEvaluations::SubmissionsApi* | [**get_submission_data**](docs/SubmissionsApi.md#get_submission_data) | **GET** /submissions/{submission_id}/data | 
 *AIcrowdEvaluations::SubmissionsApi* | [**get_submission_logs**](docs/SubmissionsApi.md#get_submission_logs) | **GET** /submissions/{submission_id}/logs | 

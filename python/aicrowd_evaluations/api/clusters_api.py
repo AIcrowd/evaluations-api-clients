@@ -89,8 +89,8 @@ class ClustersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
+        if self.api_client.client_side_validation and ('payload' not in params or
+                                                       params['payload'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `payload` when calling `create_cluster`")  # noqa: E501
 
         collection_formats = {}
@@ -190,8 +190,8 @@ class ClustersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'cluster_id' is set
-        if ('cluster_id' not in params or
-                params['cluster_id'] is None):
+        if self.api_client.client_side_validation and ('cluster_id' not in params or
+                                                       params['cluster_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `cluster_id` when calling `delete_cluster`")  # noqa: E501
 
         collection_formats = {}
@@ -291,8 +291,8 @@ class ClustersApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'cluster_id' is set
-        if ('cluster_id' not in params or
-                params['cluster_id'] is None):
+        if self.api_client.client_side_validation and ('cluster_id' not in params or
+                                                       params['cluster_id'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `cluster_id` when calling `get_cluster`")  # noqa: E501
 
         collection_formats = {}

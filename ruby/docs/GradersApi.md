@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archive_grader**](GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
+[**download_grader_logs**](GradersApi.md#download_grader_logs) | **GET** /graders/{grader_id}/logs/download | 
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
@@ -175,6 +176,58 @@ nil (empty response body)
 
 
 
+# **download_grader_logs**
+> download_grader_logs(grader_id)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```ruby
+# load the gem
+require 'aicrowd_evaluations'
+# setup authorization
+AIcrowdEvaluations.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['AUTHORIZATION'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+end
+
+api_instance = AIcrowdEvaluations::GradersApi.new
+
+grader_id = 56 # Integer | 
+
+
+begin
+  api_instance.download_grader_logs(grader_id)
+rescue AIcrowdEvaluations::ApiError => e
+  puts "Exception when calling GradersApi->download_grader_logs: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **Integer**|  | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
 # **get_grader**
 > Grader get_grader(grader_id, , opts)
 
@@ -233,11 +286,11 @@ Name | Type | Description  | Notes
 
 
 # **get_grader_logs**
-> get_grader_logs(grader_id)
+> get_grader_logs(grader_id, opts)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```ruby
@@ -255,9 +308,13 @@ api_instance = AIcrowdEvaluations::GradersApi.new
 
 grader_id = 56 # Integer | 
 
+opts = { 
+  step: 56, # Integer | Granularity of logs
+  log_lines: 56 # Integer | Number of lines to fetch
+}
 
 begin
-  api_instance.get_grader_logs(grader_id)
+  api_instance.get_grader_logs(grader_id, opts)
 rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->get_grader_logs: #{e}"
 end
@@ -268,6 +325,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grader_id** | **Integer**|  | 
+ **step** | **Integer**| Granularity of logs | [optional] 
+ **log_lines** | **Integer**| Number of lines to fetch | [optional] 
 
 ### Return type
 

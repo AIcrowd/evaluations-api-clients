@@ -108,9 +108,12 @@ operation_parameters_minimum_occurrences["archiveGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["createGrader:::payload"]=1
 operation_parameters_minimum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteGrader:::grader_id"]=1
+operation_parameters_minimum_occurrences["downloadGraderLogs:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getGraderLogs:::grader_id"]=1
+operation_parameters_minimum_occurrences["getGraderLogs:::step"]=0
+operation_parameters_minimum_occurrences["getGraderLogs:::log_lines"]=0
 operation_parameters_minimum_occurrences["listGraders:::per_page"]=0
 operation_parameters_minimum_occurrences["listGraders:::page"]=0
 operation_parameters_minimum_occurrences["listGraders:::meta"]=0
@@ -136,10 +139,13 @@ operation_parameters_minimum_occurrences["updateOrganisationQuota:::payload"]=1
 operation_parameters_minimum_occurrences["createSubmission:::payload"]=1
 operation_parameters_minimum_occurrences["createSubmission:::X-Fields"]=0
 operation_parameters_minimum_occurrences["deleteSubmission:::submission_id"]=1
+operation_parameters_minimum_occurrences["downloadSubmissionLogs:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmission:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmissionLogs:::submission_id"]=1
+operation_parameters_minimum_occurrences["getSubmissionLogs:::step"]=0
+operation_parameters_minimum_occurrences["getSubmissionLogs:::log_lines"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::per_page"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::page"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::meta"]=0
@@ -181,9 +187,12 @@ operation_parameters_maximum_occurrences["archiveGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["createGrader:::payload"]=0
 operation_parameters_maximum_occurrences["createGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteGrader:::grader_id"]=0
+operation_parameters_maximum_occurrences["downloadGraderLogs:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::grader_id"]=0
+operation_parameters_maximum_occurrences["getGraderLogs:::step"]=0
+operation_parameters_maximum_occurrences["getGraderLogs:::log_lines"]=0
 operation_parameters_maximum_occurrences["listGraders:::per_page"]=0
 operation_parameters_maximum_occurrences["listGraders:::page"]=0
 operation_parameters_maximum_occurrences["listGraders:::meta"]=0
@@ -209,10 +218,13 @@ operation_parameters_maximum_occurrences["updateOrganisationQuota:::payload"]=0
 operation_parameters_maximum_occurrences["createSubmission:::payload"]=0
 operation_parameters_maximum_occurrences["createSubmission:::X-Fields"]=0
 operation_parameters_maximum_occurrences["deleteSubmission:::submission_id"]=0
+operation_parameters_maximum_occurrences["downloadSubmissionLogs:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmission:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmission:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::submission_id"]=0
+operation_parameters_maximum_occurrences["getSubmissionLogs:::step"]=0
+operation_parameters_maximum_occurrences["getSubmissionLogs:::log_lines"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::per_page"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::page"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::meta"]=0
@@ -251,9 +263,12 @@ operation_parameters_collection_type["archiveGrader:::grader_id"]=""
 operation_parameters_collection_type["createGrader:::payload"]=""
 operation_parameters_collection_type["createGrader:::X-Fields"]=""
 operation_parameters_collection_type["deleteGrader:::grader_id"]=""
+operation_parameters_collection_type["downloadGraderLogs:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::grader_id"]=""
 operation_parameters_collection_type["getGrader:::X-Fields"]=""
 operation_parameters_collection_type["getGraderLogs:::grader_id"]=""
+operation_parameters_collection_type["getGraderLogs:::step"]=""
+operation_parameters_collection_type["getGraderLogs:::log_lines"]=""
 operation_parameters_collection_type["listGraders:::per_page"]=""
 operation_parameters_collection_type["listGraders:::page"]=""
 operation_parameters_collection_type["listGraders:::meta"]=""
@@ -279,10 +294,13 @@ operation_parameters_collection_type["updateOrganisationQuota:::payload"]=""
 operation_parameters_collection_type["createSubmission:::payload"]=""
 operation_parameters_collection_type["createSubmission:::X-Fields"]=""
 operation_parameters_collection_type["deleteSubmission:::submission_id"]=""
+operation_parameters_collection_type["downloadSubmissionLogs:::submission_id"]=""
 operation_parameters_collection_type["getSubmission:::submission_id"]=""
 operation_parameters_collection_type["getSubmission:::X-Fields"]=""
 operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
 operation_parameters_collection_type["getSubmissionLogs:::submission_id"]=""
+operation_parameters_collection_type["getSubmissionLogs:::step"]=""
+operation_parameters_collection_type["getSubmissionLogs:::log_lines"]=""
 operation_parameters_collection_type["listSubmissions:::per_page"]=""
 operation_parameters_collection_type["listSubmissions:::page"]=""
 operation_parameters_collection_type["listSubmissions:::meta"]=""
@@ -703,6 +721,7 @@ read -r -d '' ops <<EOF
   ${CYAN}archiveGrader${OFF}; (AUTH)
   ${CYAN}createGrader${OFF}; (AUTH)
   ${CYAN}deleteGrader${OFF}; (AUTH)
+  ${CYAN}downloadGraderLogs${OFF}; (AUTH)
   ${CYAN}getGrader${OFF}; (AUTH)
   ${CYAN}getGraderLogs${OFF}; (AUTH)
   ${CYAN}listGraders${OFF}; (AUTH)
@@ -726,6 +745,7 @@ echo "  $ops" | column -t -s ';'
 read -r -d '' ops <<EOF
   ${CYAN}createSubmission${OFF}; (AUTH)
   ${CYAN}deleteSubmission${OFF}; (AUTH)
+  ${CYAN}downloadSubmissionLogs${OFF}; (AUTH)
   ${CYAN}getSubmission${OFF}; (AUTH)
   ${CYAN}getSubmissionData${OFF}; (AUTH)
   ${CYAN}getSubmissionLogs${OFF}; (AUTH)
@@ -986,6 +1006,26 @@ print_deleteGrader_help() {
 }
 ##############################################################################
 #
+# Print help for downloadGraderLogs operation
+#
+##############################################################################
+print_downloadGraderLogs_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}downloadGraderLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get the grader logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Grader not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
 # Print help for getGrader operation
 #
 ##############################################################################
@@ -1014,10 +1054,14 @@ print_getGraderLogs_help() {
     echo ""
     echo -e "${BOLD}${WHITE}getGraderLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get the grader logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e "Get grader logs from loki" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}grader_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: grader_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[integer]${OFF}${OFF} - Granularity of logs${YELLOW} Specify as: step=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}log_lines${OFF} ${BLUE}[integer]${OFF}${OFF} - Number of lines to fetch${YELLOW} Specify as: log_lines=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1278,6 +1322,26 @@ print_deleteSubmission_help() {
 }
 ##############################################################################
 #
+# Print help for downloadSubmissionLogs operation
+#
+##############################################################################
+print_downloadSubmissionLogs_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}downloadSubmissionLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Get the submission logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Success${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Submission not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
 # Print help for getSubmission operation
 #
 ##############################################################################
@@ -1326,10 +1390,14 @@ print_getSubmissionLogs_help() {
     echo ""
     echo -e "${BOLD}${WHITE}getSubmissionLogs - ${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get the submission logs by submission ID" | paste -sd' ' | fold -sw 80
+    echo -e "Get submission logs from loki" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}submission_id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} -  ${YELLOW}Specify as: submission_id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[integer]${OFF}${OFF} - Granularity of logs${YELLOW} Specify as: step=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}log_lines${OFF} ${BLUE}[integer]${OFF}${OFF} - Number of lines to fetch${YELLOW} Specify as: log_lines=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1971,6 +2039,42 @@ call_deleteGrader() {
 
 ##############################################################################
 #
+# Call downloadGraderLogs operation
+#
+##############################################################################
+call_downloadGraderLogs() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(grader_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/graders/{grader_id}/logs/download" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call getGrader operation
 #
 ##############################################################################
@@ -2016,7 +2120,7 @@ call_getGraderLogs() {
     local path_parameter_names=(grader_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=(step log_lines  )
     local path
 
     if ! path=$(build_request_path "/v1/graders/{grader_id}/logs" path_parameter_names query_parameter_names); then
@@ -2649,6 +2753,42 @@ call_deleteSubmission() {
 
 ##############################################################################
 #
+# Call downloadSubmissionLogs operation
+#
+##############################################################################
+call_downloadSubmissionLogs() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(submission_id)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/v1/submissions/{submission_id}/logs/download" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
 # Call getSubmission operation
 #
 ##############################################################################
@@ -2730,7 +2870,7 @@ call_getSubmissionLogs() {
     local path_parameter_names=(submission_id)
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=(step log_lines  )
     local path
 
     if ! path=$(build_request_path "/v1/submissions/{submission_id}/logs" path_parameter_names query_parameter_names); then
@@ -3335,6 +3475,9 @@ case $key in
     deleteGrader)
     operation="deleteGrader"
     ;;
+    downloadGraderLogs)
+    operation="downloadGraderLogs"
+    ;;
     getGrader)
     operation="getGrader"
     ;;
@@ -3373,6 +3516,9 @@ case $key in
     ;;
     deleteSubmission)
     operation="deleteSubmission"
+    ;;
+    downloadSubmissionLogs)
+    operation="downloadSubmissionLogs"
     ;;
     getSubmission)
     operation="getSubmission"
@@ -3518,6 +3664,9 @@ case $operation in
     deleteGrader)
     call_deleteGrader
     ;;
+    downloadGraderLogs)
+    call_downloadGraderLogs
+    ;;
     getGrader)
     call_getGrader
     ;;
@@ -3556,6 +3705,9 @@ case $operation in
     ;;
     deleteSubmission)
     call_deleteSubmission
+    ;;
+    downloadSubmissionLogs)
+    call_downloadSubmissionLogs
     ;;
     getSubmission)
     call_getSubmission

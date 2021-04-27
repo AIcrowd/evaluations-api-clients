@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSubmission**](SubmissionsApi.md#CreateSubmission) | **Post** /submissions/ | 
 [**DeleteSubmission**](SubmissionsApi.md#DeleteSubmission) | **Delete** /submissions/{submission_id} | 
+[**DownloadSubmissionLogs**](SubmissionsApi.md#DownloadSubmissionLogs) | **Get** /submissions/{submission_id}/logs/download | 
 [**GetSubmission**](SubmissionsApi.md#GetSubmission) | **Get** /submissions/{submission_id} | 
 [**GetSubmissionData**](SubmissionsApi.md#GetSubmissionData) | **Get** /submissions/{submission_id}/data | 
 [**GetSubmissionLogs**](SubmissionsApi.md#GetSubmissionLogs) | **Get** /submissions/{submission_id}/logs | 
@@ -55,6 +56,34 @@ Name | Type | Description  | Notes
 
 
 Stop evaluation of a submission and delete it
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **submissionId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **DownloadSubmissionLogs**
+> DownloadSubmissionLogs(ctx, submissionId)
+
+
+Get the submission logs by submission ID
 
 ### Required Parameters
 
@@ -144,10 +173,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetSubmissionLogs**
-> GetSubmissionLogs(ctx, submissionId)
+> GetSubmissionLogs(ctx, submissionId, optional)
 
 
-Get the submission logs by submission ID
+Get submission logs from loki
 
 ### Required Parameters
 
@@ -155,6 +184,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **submissionId** | **int32**|  | 
+ **optional** | ***SubmissionsApiGetSubmissionLogsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a SubmissionsApiGetSubmissionLogsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **step** | **optional.Int32**| Granularity of logs | 
+ **logLines** | **optional.Int32**| Number of lines to fetch | 
 
 ### Return type
 

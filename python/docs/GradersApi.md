@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archive_grader**](GradersApi.md#archive_grader) | **POST** /graders/{grader_id}/archive | 
 [**create_grader**](GradersApi.md#create_grader) | **POST** /graders/ | 
 [**delete_grader**](GradersApi.md#delete_grader) | **DELETE** /graders/{grader_id} | 
+[**download_grader_logs**](GradersApi.md#download_grader_logs) | **GET** /graders/{grader_id}/logs/download | 
 [**get_grader**](GradersApi.md#get_grader) | **GET** /graders/{grader_id} | 
 [**get_grader_logs**](GradersApi.md#get_grader_logs) | **GET** /graders/{grader_id}/logs | 
 [**list_graders**](GradersApi.md#list_graders) | **GET** /graders/ | 
@@ -173,6 +174,58 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **download_grader_logs**
+> download_grader_logs(grader_id)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```python
+from __future__ import print_function
+import time
+import aicrowd_evaluations
+from aicrowd_evaluations.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: api_key
+configuration = aicrowd_evaluations.Configuration()
+configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['AUTHORIZATION'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = aicrowd_evaluations.GradersApi(aicrowd_evaluations.ApiClient(configuration))
+grader_id = 56 # int | 
+
+try:
+    api_instance.download_grader_logs(grader_id)
+except ApiException as e:
+    print("Exception when calling GradersApi->download_grader_logs: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grader_id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_grader**
 > Grader get_grader(grader_id, x_fields=x_fields)
 
@@ -229,11 +282,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_grader_logs**
-> get_grader_logs(grader_id)
+> get_grader_logs(grader_id, step=step, log_lines=log_lines)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```python
@@ -252,9 +305,11 @@ configuration.api_key['AUTHORIZATION'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = aicrowd_evaluations.GradersApi(aicrowd_evaluations.ApiClient(configuration))
 grader_id = 56 # int | 
+step = 56 # int | Granularity of logs (optional)
+log_lines = 56 # int | Number of lines to fetch (optional)
 
 try:
-    api_instance.get_grader_logs(grader_id)
+    api_instance.get_grader_logs(grader_id, step=step, log_lines=log_lines)
 except ApiException as e:
     print("Exception when calling GradersApi->get_grader_logs: %s\n" % e)
 ```
@@ -264,6 +319,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grader_id** | **int**|  | 
+ **step** | **int**| Granularity of logs | [optional] 
+ **log_lines** | **int**| Number of lines to fetch | [optional] 
 
 ### Return type
 

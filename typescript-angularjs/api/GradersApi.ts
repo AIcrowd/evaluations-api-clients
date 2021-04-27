@@ -114,6 +114,34 @@ export class GradersApi {
         return this.$http(httpRequestParams);
     }
     /**
+     * Get the grader logs by submission ID
+     * @param graderId 
+     */
+    public downloadGraderLogs (graderId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+        const localVarPath = this.basePath + '/graders/{grader_id}/logs/download'
+            .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
+
+        let queryParameters: any = {};
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        // verify required parameter 'graderId' is not null or undefined
+        if (graderId === null || graderId === undefined) {
+            throw new Error('Required parameter graderId was null or undefined when calling downloadGraderLogs.');
+        }
+
+        let httpRequestParams: ng.IRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            params: queryParameters,
+            headers: headerParams
+        };
+
+        if (extraHttpRequestParams) {
+            httpRequestParams = (<any>Object).assign(httpRequestParams, extraHttpRequestParams);
+        }
+
+        return this.$http(httpRequestParams);
+    }
+    /**
      * Get details of a grader by its ID
      * @param graderId 
      * @param xFields An optional fields mask
@@ -145,10 +173,12 @@ export class GradersApi {
         return this.$http(httpRequestParams);
     }
     /**
-     * Get the grader logs by submission ID
+     * Get grader logs from loki
      * @param graderId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      */
-    public getGraderLogs (graderId: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public getGraderLogs (graderId: number, step?: number, logLines?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
         const localVarPath = this.basePath + '/graders/{grader_id}/logs'
             .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
 
@@ -157,6 +187,14 @@ export class GradersApi {
         // verify required parameter 'graderId' is not null or undefined
         if (graderId === null || graderId === undefined) {
             throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
+        }
+
+        if (step !== undefined) {
+            queryParameters['step'] = step;
+        }
+
+        if (logLines !== undefined) {
+            queryParameters['log_lines'] = logLines;
         }
 
         let httpRequestParams: ng.IRequestConfig = {

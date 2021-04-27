@@ -1334,6 +1334,42 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadGraderLogs(graderId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'graderId' is not null or undefined
+            if (graderId === null || graderId === undefined) {
+                throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling downloadGraderLogs.');
+            }
+            const localVarPath = `/graders/{grader_id}/logs/download`
+                .replace(`{${"grader_id"}}`, encodeURIComponent(String(graderId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get details of a grader by its ID
          * @param {number} graderId 
          * @param {string} [xFields] An optional fields mask
@@ -1375,12 +1411,14 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Get the grader logs by submission ID
+         * Get grader logs from loki
          * @param {number} graderId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderLogs(graderId: number, options: any = {}): FetchArgs {
+        getGraderLogs(graderId: number, step?: number, logLines?: number, options: any = {}): FetchArgs {
             // verify required parameter 'graderId' is not null or undefined
             if (graderId === null || graderId === undefined) {
                 throw new RequiredError('graderId','Required parameter graderId was null or undefined when calling getGraderLogs.');
@@ -1398,6 +1436,14 @@ export const GradersApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (step !== undefined) {
+                localVarQueryParameter['step'] = step;
+            }
+
+            if (logLines !== undefined) {
+                localVarQueryParameter['log_lines'] = logLines;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1626,6 +1672,24 @@ export const GradersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadGraderLogs(graderId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).downloadGraderLogs(graderId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get details of a grader by its ID
          * @param {number} graderId 
          * @param {string} [xFields] An optional fields mask
@@ -1645,13 +1709,15 @@ export const GradersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Get the grader logs by submission ID
+         * Get grader logs from loki
          * @param {number} graderId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderLogs(graderId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGraderLogs(graderId, options);
+        getGraderLogs(graderId: number, step?: number, logLines?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = GradersApiFetchParamCreator(configuration).getGraderLogs(graderId, step, logLines, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1762,6 +1828,15 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
             return GradersApiFp(configuration).deleteGrader(graderId, options)(fetch, basePath);
         },
         /**
+         * Get the grader logs by submission ID
+         * @param {number} graderId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadGraderLogs(graderId: number, options?: any) {
+            return GradersApiFp(configuration).downloadGraderLogs(graderId, options)(fetch, basePath);
+        },
+        /**
          * Get details of a grader by its ID
          * @param {number} graderId 
          * @param {string} [xFields] An optional fields mask
@@ -1772,13 +1847,15 @@ export const GradersApiFactory = function (configuration?: Configuration, fetch?
             return GradersApiFp(configuration).getGrader(graderId, xFields, options)(fetch, basePath);
         },
         /**
-         * Get the grader logs by submission ID
+         * Get grader logs from loki
          * @param {number} graderId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGraderLogs(graderId: number, options?: any) {
-            return GradersApiFp(configuration).getGraderLogs(graderId, options)(fetch, basePath);
+        getGraderLogs(graderId: number, step?: number, logLines?: number, options?: any) {
+            return GradersApiFp(configuration).getGraderLogs(graderId, step, logLines, options)(fetch, basePath);
         },
         /**
          * List all graders available
@@ -1860,6 +1937,17 @@ export class GradersApi extends BaseAPI {
     }
 
     /**
+     * Get the grader logs by submission ID
+     * @param {number} graderId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GradersApi
+     */
+    public downloadGraderLogs(graderId: number, options?: any) {
+        return GradersApiFp(this.configuration).downloadGraderLogs(graderId, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Get details of a grader by its ID
      * @param {number} graderId 
      * @param {string} [xFields] An optional fields mask
@@ -1872,14 +1960,16 @@ export class GradersApi extends BaseAPI {
     }
 
     /**
-     * Get the grader logs by submission ID
+     * Get grader logs from loki
      * @param {number} graderId 
+     * @param {number} [step] Granularity of logs
+     * @param {number} [logLines] Number of lines to fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GradersApi
      */
-    public getGraderLogs(graderId: number, options?: any) {
-        return GradersApiFp(this.configuration).getGraderLogs(graderId, options)(this.fetch, this.basePath);
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, options?: any) {
+        return GradersApiFp(this.configuration).getGraderLogs(graderId, step, logLines, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2542,6 +2632,42 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
             };
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadSubmissionLogs(submissionId: number, options: any = {}): FetchArgs {
+            // verify required parameter 'submissionId' is not null or undefined
+            if (submissionId === null || submissionId === undefined) {
+                throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling downloadSubmissionLogs.');
+            }
+            const localVarPath = `/submissions/{submission_id}/logs/download`
+                .replace(`{${"submission_id"}}`, encodeURIComponent(String(submissionId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("AUTHORIZATION")
+					: configuration.apiKey;
+                localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get details of a submission by its ID
          * @param {number} submissionId 
          * @param {string} [xFields] An optional fields mask
@@ -2619,12 +2745,14 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
             };
         },
         /**
-         * Get the submission logs by submission ID
+         * Get submission logs from loki
          * @param {number} submissionId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionLogs(submissionId: number, options: any = {}): FetchArgs {
+        getSubmissionLogs(submissionId: number, step?: number, logLines?: number, options: any = {}): FetchArgs {
             // verify required parameter 'submissionId' is not null or undefined
             if (submissionId === null || submissionId === undefined) {
                 throw new RequiredError('submissionId','Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
@@ -2642,6 +2770,14 @@ export const SubmissionsApiFetchParamCreator = function (configuration?: Configu
 					? configuration.apiKey("AUTHORIZATION")
 					: configuration.apiKey;
                 localVarHeaderParameter["AUTHORIZATION"] = localVarApiKeyValue;
+            }
+
+            if (step !== undefined) {
+                localVarQueryParameter['step'] = step;
+            }
+
+            if (logLines !== undefined) {
+                localVarQueryParameter['log_lines'] = logLines;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -2810,6 +2946,24 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadSubmissionLogs(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).downloadSubmissionLogs(submissionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get details of a submission by its ID
          * @param {number} submissionId 
          * @param {string} [xFields] An optional fields mask
@@ -2847,13 +3001,15 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Get the submission logs by submission ID
+         * Get submission logs from loki
          * @param {number} submissionId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionLogs(submissionId: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionLogs(submissionId, options);
+        getSubmissionLogs(submissionId: number, step?: number, logLines?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SubmissionsApiFetchParamCreator(configuration).getSubmissionLogs(submissionId, step, logLines, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2936,6 +3092,15 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
             return SubmissionsApiFp(configuration).deleteSubmission(submissionId, options)(fetch, basePath);
         },
         /**
+         * Get the submission logs by submission ID
+         * @param {number} submissionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadSubmissionLogs(submissionId: number, options?: any) {
+            return SubmissionsApiFp(configuration).downloadSubmissionLogs(submissionId, options)(fetch, basePath);
+        },
+        /**
          * Get details of a submission by its ID
          * @param {number} submissionId 
          * @param {string} [xFields] An optional fields mask
@@ -2955,13 +3120,15 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, fe
             return SubmissionsApiFp(configuration).getSubmissionData(submissionId, options)(fetch, basePath);
         },
         /**
-         * Get the submission logs by submission ID
+         * Get submission logs from loki
          * @param {number} submissionId 
+         * @param {number} [step] Granularity of logs
+         * @param {number} [logLines] Number of lines to fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionLogs(submissionId: number, options?: any) {
-            return SubmissionsApiFp(configuration).getSubmissionLogs(submissionId, options)(fetch, basePath);
+        getSubmissionLogs(submissionId: number, step?: number, logLines?: number, options?: any) {
+            return SubmissionsApiFp(configuration).getSubmissionLogs(submissionId, step, logLines, options)(fetch, basePath);
         },
         /**
          * List all submissions available
@@ -3022,6 +3189,17 @@ export class SubmissionsApi extends BaseAPI {
     }
 
     /**
+     * Get the submission logs by submission ID
+     * @param {number} submissionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public downloadSubmissionLogs(submissionId: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).downloadSubmissionLogs(submissionId, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Get details of a submission by its ID
      * @param {number} submissionId 
      * @param {string} [xFields] An optional fields mask
@@ -3045,14 +3223,16 @@ export class SubmissionsApi extends BaseAPI {
     }
 
     /**
-     * Get the submission logs by submission ID
+     * Get submission logs from loki
      * @param {number} submissionId 
+     * @param {number} [step] Granularity of logs
+     * @param {number} [logLines] Number of lines to fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public getSubmissionLogs(submissionId: number, options?: any) {
-        return SubmissionsApiFp(this.configuration).getSubmissionLogs(submissionId, options)(this.fetch, this.basePath);
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, options?: any) {
+        return SubmissionsApiFp(this.configuration).getSubmissionLogs(submissionId, step, logLines, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -82,6 +82,28 @@ class GradersApi {
                     null )
                     
     }
+    def downloadGraderLogs ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+        // create path and map path parameters (TODO)
+        String resourcePath = "/graders/{grader_id}/logs/download"
+
+        // query params
+        def queryParams = [:]
+        def headerParams = [:]
+    
+        // verify required params are set
+        if (graderId == null) {
+            throw new RuntimeException("missing required params graderId")
+        }
+
+        
+
+        // Also still TODO: form params, body param
+
+        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    null )
+                    
+    }
     def getGrader ( Integer graderId, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/{grader_id}"
@@ -105,7 +127,7 @@ class GradersApi {
                     Grader.class )
                     
     }
-    def getGraderLogs ( Integer graderId, Closure onSuccess, Closure onFailure)  {
+    def getGraderLogs ( Integer graderId, Integer step, Integer logLines, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/{grader_id}/logs"
 
@@ -118,7 +140,11 @@ class GradersApi {
             throw new RuntimeException("missing required params graderId")
         }
 
-        
+        if (!"null".equals(String.valueOf(step)))
+            queryParams.put("step", String.valueOf(step))
+if (!"null".equals(String.valueOf(logLines)))
+            queryParams.put("log_lines", String.valueOf(logLines))
+
 
         // Also still TODO: form params, body param
 

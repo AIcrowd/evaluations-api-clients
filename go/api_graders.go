@@ -308,6 +308,90 @@ func (a *GradersApiService) DeleteGrader(ctx context.Context, graderId int32) (*
 
 /*
 GradersApiService
+Get the grader logs by submission ID
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param graderId
+
+
+*/
+func (a *GradersApiService) DownloadGraderLogs(ctx context.Context, graderId int32) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+		
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/graders/{grader_id}/logs/download"
+	localVarPath = strings.Replace(localVarPath, "{"+"grader_id"+"}", fmt.Sprintf("%v", graderId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["AUTHORIZATION"] = key
+			
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body: localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/*
+GradersApiService
 Get details of a grader by its ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param graderId
@@ -418,13 +502,22 @@ func (a *GradersApiService) GetGrader(ctx context.Context, graderId int32, local
 
 /*
 GradersApiService
-Get the grader logs by submission ID
+Get grader logs from loki
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param graderId
+ * @param optional nil or *GradersApiGetGraderLogsOpts - Optional Parameters:
+     * @param "Step" (optional.Int32) -  Granularity of logs
+     * @param "LogLines" (optional.Int32) -  Number of lines to fetch
 
 
 */
-func (a *GradersApiService) GetGraderLogs(ctx context.Context, graderId int32) (*http.Response, error) {
+
+type GradersApiGetGraderLogsOpts struct { 
+	Step optional.Int32
+	LogLines optional.Int32
+}
+
+func (a *GradersApiService) GetGraderLogs(ctx context.Context, graderId int32, localVarOptionals *GradersApiGetGraderLogsOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -441,6 +534,12 @@ func (a *GradersApiService) GetGraderLogs(ctx context.Context, graderId int32) (
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Step.IsSet() {
+		localVarQueryParams.Add("step", parameterToString(localVarOptionals.Step.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.LogLines.IsSet() {
+		localVarQueryParams.Add("log_lines", parameterToString(localVarOptionals.LogLines.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

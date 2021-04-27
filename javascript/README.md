@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.GradersApi* | [**archiveGrader**](docs/GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 *AicrowdEvaluations.GradersApi* | [**createGrader**](docs/GradersApi.md#createGrader) | **POST** /graders/ | 
 *AicrowdEvaluations.GradersApi* | [**deleteGrader**](docs/GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+*AicrowdEvaluations.GradersApi* | [**downloadGraderLogs**](docs/GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 *AicrowdEvaluations.GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *AicrowdEvaluations.GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *AicrowdEvaluations.GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -142,6 +143,7 @@ Class | Method | HTTP request | Description
 *AicrowdEvaluations.OrganisationsApi* | [**updateOrganisationQuota**](docs/OrganisationsApi.md#updateOrganisationQuota) | **PUT** /organisations/{organisation_id}/addquota | 
 *AicrowdEvaluations.SubmissionsApi* | [**createSubmission**](docs/SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 *AicrowdEvaluations.SubmissionsApi* | [**deleteSubmission**](docs/SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+*AicrowdEvaluations.SubmissionsApi* | [**downloadSubmissionLogs**](docs/SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmission**](docs/SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 *AicrowdEvaluations.SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 

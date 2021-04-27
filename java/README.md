@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2021-02-11T23:21:09.710Z
+  - Build date: 2021-04-27T22:25:30.826Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**archiveGrader**](docs/GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 *GradersApi* | [**createGrader**](docs/GradersApi.md#createGrader) | **POST** /graders/ | 
 *GradersApi* | [**deleteGrader**](docs/GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+*GradersApi* | [**downloadGraderLogs**](docs/GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -127,6 +128,7 @@ Class | Method | HTTP request | Description
 *OrganisationsApi* | [**updateOrganisationQuota**](docs/OrganisationsApi.md#updateOrganisationQuota) | **PUT** /organisations/{organisation_id}/addquota | 
 *SubmissionsApi* | [**createSubmission**](docs/SubmissionsApi.md#createSubmission) | **POST** /submissions/ | 
 *SubmissionsApi* | [**deleteSubmission**](docs/SubmissionsApi.md#deleteSubmission) | **DELETE** /submissions/{submission_id} | 
+*SubmissionsApi* | [**downloadSubmissionLogs**](docs/SubmissionsApi.md#downloadSubmissionLogs) | **GET** /submissions/{submission_id}/logs/download | 
 *SubmissionsApi* | [**getSubmission**](docs/SubmissionsApi.md#getSubmission) | **GET** /submissions/{submission_id} | 
 *SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getSubmissionData) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getSubmissionLogs) | **GET** /submissions/{submission_id}/logs | 

@@ -44,6 +44,7 @@ Class | Method | HTTP request | Description
 *GradersApi* | [**archiveGrader**](docs/GradersApi.md#archivegrader) | **POST** /graders/{grader_id}/archive | 
 *GradersApi* | [**createGrader**](docs/GradersApi.md#creategrader) | **POST** /graders/ | 
 *GradersApi* | [**deleteGrader**](docs/GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
+*GradersApi* | [**downloadGraderLogs**](docs/GradersApi.md#downloadgraderlogs) | **GET** /graders/{grader_id}/logs/download | 
 *GradersApi* | [**getGrader**](docs/GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 *GradersApi* | [**getGraderLogs**](docs/GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 *GradersApi* | [**listGraders**](docs/GradersApi.md#listgraders) | **GET** /graders/ | 
@@ -57,6 +58,7 @@ Class | Method | HTTP request | Description
 *OrganisationsApi* | [**updateOrganisationQuota**](docs/OrganisationsApi.md#updateorganisationquota) | **PUT** /organisations/{organisation_id}/addquota | 
 *SubmissionsApi* | [**createSubmission**](docs/SubmissionsApi.md#createsubmission) | **POST** /submissions/ | 
 *SubmissionsApi* | [**deleteSubmission**](docs/SubmissionsApi.md#deletesubmission) | **DELETE** /submissions/{submission_id} | 
+*SubmissionsApi* | [**downloadSubmissionLogs**](docs/SubmissionsApi.md#downloadsubmissionlogs) | **GET** /submissions/{submission_id}/logs/download | 
 *SubmissionsApi* | [**getSubmission**](docs/SubmissionsApi.md#getsubmission) | **GET** /submissions/{submission_id} | 
 *SubmissionsApi* | [**getSubmissionData**](docs/SubmissionsApi.md#getsubmissiondata) | **GET** /submissions/{submission_id}/data | 
 *SubmissionsApi* | [**getSubmissionLogs**](docs/SubmissionsApi.md#getsubmissionlogs) | **GET** /submissions/{submission_id}/logs | 

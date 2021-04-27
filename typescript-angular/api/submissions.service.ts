@@ -164,6 +164,53 @@ export class SubmissionsService {
 
     /**
      * 
+     * Get the submission logs by submission ID
+     * @param submissionId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public downloadSubmissionLogs(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public downloadSubmissionLogs(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public downloadSubmissionLogs(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public downloadSubmissionLogs(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (submissionId === null || submissionId === undefined) {
+            throw new Error('Required parameter submissionId was null or undefined when calling downloadSubmissionLogs.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
+            headers = headers.set('AUTHORIZATION', this.configuration.apiKeys["AUTHORIZATION"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/logs/download`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
      * Get details of a submission by its ID
      * @param submissionId 
      * @param xFields An optional fields mask
@@ -263,18 +310,30 @@ export class SubmissionsService {
 
     /**
      * 
-     * Get the submission logs by submission ID
+     * Get submission logs from loki
      * @param submissionId 
+     * @param step Granularity of logs
+     * @param logLines Number of lines to fetch
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSubmissionLogs(submissionId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getSubmissionLogs(submissionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getSubmissionLogs(submissionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getSubmissionLogs(submissionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
+        }
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (step !== undefined && step !== null) {
+            queryParameters = queryParameters.set('step', <any>step);
+        }
+        if (logLines !== undefined && logLines !== null) {
+            queryParameters = queryParameters.set('log_lines', <any>logLines);
         }
 
         let headers = this.defaultHeaders;
@@ -300,6 +359,7 @@ export class SubmissionsService {
 
         return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/logs`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

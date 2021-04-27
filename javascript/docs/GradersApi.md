@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archiveGrader**](GradersApi.md#archiveGrader) | **POST** /graders/{grader_id}/archive | 
 [**createGrader**](GradersApi.md#createGrader) | **POST** /graders/ | 
 [**deleteGrader**](GradersApi.md#deleteGrader) | **DELETE** /graders/{grader_id} | 
+[**downloadGraderLogs**](GradersApi.md#downloadGraderLogs) | **GET** /graders/{grader_id}/logs/download | 
 [**getGrader**](GradersApi.md#getGrader) | **GET** /graders/{grader_id} | 
 [**getGraderLogs**](GradersApi.md#getGraderLogs) | **GET** /graders/{grader_id}/logs | 
 [**listGraders**](GradersApi.md#listGraders) | **GET** /graders/ | 
@@ -177,6 +178,59 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="downloadGraderLogs"></a>
+# **downloadGraderLogs**
+> downloadGraderLogs(graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```javascript
+var AicrowdEvaluations = require('aicrowd-evaluations');
+var defaultClient = AicrowdEvaluations.ApiClient.instance;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new AicrowdEvaluations.GradersApi();
+
+var graderId = 56; // Number | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.downloadGraderLogs(graderId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **Number**|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getGrader"></a>
 # **getGrader**
 > Grader getGrader(graderId, , opts)
@@ -236,11 +290,11 @@ Name | Type | Description  | Notes
 
 <a name="getGraderLogs"></a>
 # **getGraderLogs**
-> getGraderLogs(graderId)
+> getGraderLogs(graderId, opts)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```javascript
@@ -257,6 +311,10 @@ var apiInstance = new AicrowdEvaluations.GradersApi();
 
 var graderId = 56; // Number | 
 
+var opts = { 
+  'step': 56, // Number | Granularity of logs
+  'logLines': 56 // Number | Number of lines to fetch
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -265,7 +323,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.getGraderLogs(graderId, callback);
+apiInstance.getGraderLogs(graderId, opts, callback);
 ```
 
 ### Parameters
@@ -273,6 +331,8 @@ apiInstance.getGraderLogs(graderId, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **graderId** | **Number**|  | 
+ **step** | **Number**| Granularity of logs | [optional] 
+ **logLines** | **Number**| Number of lines to fetch | [optional] 
 
 ### Return type
 

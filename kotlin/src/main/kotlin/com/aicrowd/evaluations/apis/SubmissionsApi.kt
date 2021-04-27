@@ -97,6 +97,43 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
+    * Get the submission logs by submission ID
+    * @param submissionId  
+    * @return void
+    */
+    fun downloadSubmissionLogs(submissionId: kotlin.Int) : Unit {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mapOf()
+        
+        val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
+        val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        localVariableHeaders.putAll(contentHeaders)
+        localVariableHeaders.putAll(acceptsHeaders)
+        
+        val localVariableConfig = RequestConfig(
+            RequestMethod.GET,
+            "/submissions/{submission_id}/logs/download".replace("{"+"submission_id"+"}", "$submissionId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders
+        )
+        val response = request<Unit>(
+            localVariableConfig,
+            localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> Unit
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
+        }
+    }
+
+    /**
+    * 
     * Get details of a submission by its ID
     * @param submissionId  
     * @param xFields An optional fields mask (optional)
@@ -173,13 +210,15 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
 
     /**
     * 
-    * Get the submission logs by submission ID
+    * Get submission logs from loki
     * @param submissionId  
+    * @param step Granularity of logs (optional)
+    * @param logLines Number of lines to fetch (optional)
     * @return void
     */
-    fun getSubmissionLogs(submissionId: kotlin.Int) : Unit {
+    fun getSubmissionLogs(submissionId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int) : Unit {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf()
+        val localVariableQuery: MultiValueMap = mapOf("step" to listOf("$step"), "log_lines" to listOf("$logLines"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")

@@ -2,6 +2,7 @@
 
 -export([create_submission/2, create_submission/3,
          delete_submission/2, delete_submission/3,
+         download_submission_logs/2, download_submission_logs/3,
          get_submission/2, get_submission/3,
          get_submission_data/2, get_submission_data/3,
          get_submission_logs/2, get_submission_logs/3,
@@ -53,6 +54,27 @@ delete_submission(Ctx, SubmissionId, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
+%% Get the submission logs by submission ID
+-spec download_submission_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+download_submission_logs(Ctx, SubmissionId) ->
+    download_submission_logs(Ctx, SubmissionId, #{}).
+
+-spec download_submission_logs(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+download_submission_logs(Ctx, SubmissionId, Optional) ->
+    _OptionalParams = maps:get(params, Optional, #{}),
+    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+
+    Method = get,
+    Path = ["/submissions/", SubmissionId, "/logs/download"],
+    QS = [],
+    Headers = [],
+    Body1 = [],
+    ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
+    Opts = maps:get(hackney_opts, Optional, []),
+
+    aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+
+%% @doc 
 %% Get details of a submission by its ID
 -spec get_submission(ctx:ctx(), integer()) -> {ok, aicrowd_evaluations_submissions:aicrowd_evaluations_submissions(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_submission(Ctx, SubmissionId) ->
@@ -95,7 +117,7 @@ get_submission_data(Ctx, SubmissionId, Optional) ->
     aicrowd_evaluations_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
-%% Get the submission logs by submission ID
+%% Get submission logs from loki
 -spec get_submission_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_submission_logs(Ctx, SubmissionId) ->
     get_submission_logs(Ctx, SubmissionId, #{}).
@@ -107,7 +129,7 @@ get_submission_logs(Ctx, SubmissionId, Optional) ->
 
     Method = get,
     Path = ["/submissions/", SubmissionId, "/logs"],
-    QS = [],
+    QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['step', 'log_lines'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),

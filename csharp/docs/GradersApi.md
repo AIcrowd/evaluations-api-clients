@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ArchiveGrader**](GradersApi.md#archivegrader) | **POST** /graders/{grader_id}/archive | 
 [**CreateGrader**](GradersApi.md#creategrader) | **POST** /graders/ | 
 [**DeleteGrader**](GradersApi.md#deletegrader) | **DELETE** /graders/{grader_id} | 
+[**DownloadGraderLogs**](GradersApi.md#downloadgraderlogs) | **GET** /graders/{grader_id}/logs/download | 
 [**GetGrader**](GradersApi.md#getgrader) | **GET** /graders/{grader_id} | 
 [**GetGraderLogs**](GradersApi.md#getgraderlogs) | **GET** /graders/{grader_id}/logs | 
 [**ListGraders**](GradersApi.md#listgraders) | **GET** /graders/ | 
@@ -209,6 +210,70 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="downloadgraderlogs"></a>
+# **DownloadGraderLogs**
+> void DownloadGraderLogs (int? graderId)
+
+
+
+Get the grader logs by submission ID
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Com.AIcrowd.Evaluations.Api;
+using Com.AIcrowd.Evaluations.Client;
+using Com.AIcrowd.Evaluations.Model;
+
+namespace Example
+{
+    public class DownloadGraderLogsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("AUTHORIZATION", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("AUTHORIZATION", "Bearer");
+
+            var apiInstance = new GradersApi();
+            var graderId = 56;  // int? | 
+
+            try
+            {
+                apiInstance.DownloadGraderLogs(graderId);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GradersApi.DownloadGraderLogs: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **graderId** | **int?**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="getgrader"></a>
 # **GetGrader**
 > Grader GetGrader (int? graderId, string xFields = null)
@@ -278,11 +343,11 @@ Name | Type | Description  | Notes
 
 <a name="getgraderlogs"></a>
 # **GetGraderLogs**
-> void GetGraderLogs (int? graderId)
+> void GetGraderLogs (int? graderId, int? step = null, int? logLines = null)
 
 
 
-Get the grader logs by submission ID
+Get grader logs from loki
 
 ### Example
 ```csharp
@@ -305,10 +370,12 @@ namespace Example
 
             var apiInstance = new GradersApi();
             var graderId = 56;  // int? | 
+            var step = 56;  // int? | Granularity of logs (optional) 
+            var logLines = 56;  // int? | Number of lines to fetch (optional) 
 
             try
             {
-                apiInstance.GetGraderLogs(graderId);
+                apiInstance.GetGraderLogs(graderId, step, logLines);
             }
             catch (Exception e)
             {
@@ -324,6 +391,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **graderId** | **int?**|  | 
+ **step** | **int?**| Granularity of logs | [optional] 
+ **logLines** | **int?**| Number of lines to fetch | [optional] 
 
 ### Return type
 
