@@ -136,8 +136,9 @@ namespace Com.AIcrowd.Evaluations.Test
             //int? graderId = null;
             //int? step = null;
             //int? logLines = null;
-            //instance.GetGraderLogs(graderId, step, logLines);
-            
+            //string xFields = null;
+            //var response = instance.GetGraderLogs(graderId, step, logLines, xFields);
+            //Assert.IsInstanceOf<GraderLogs> (response, "response is GraderLogs");
         }
         
         /// <summary>

@@ -114,6 +114,7 @@ operation_parameters_minimum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_minimum_occurrences["getGraderLogs:::grader_id"]=1
 operation_parameters_minimum_occurrences["getGraderLogs:::step"]=0
 operation_parameters_minimum_occurrences["getGraderLogs:::log_lines"]=0
+operation_parameters_minimum_occurrences["getGraderLogs:::X-Fields"]=0
 operation_parameters_minimum_occurrences["listGraders:::per_page"]=0
 operation_parameters_minimum_occurrences["listGraders:::page"]=0
 operation_parameters_minimum_occurrences["listGraders:::meta"]=0
@@ -146,6 +147,7 @@ operation_parameters_minimum_occurrences["getSubmissionData:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmissionLogs:::submission_id"]=1
 operation_parameters_minimum_occurrences["getSubmissionLogs:::step"]=0
 operation_parameters_minimum_occurrences["getSubmissionLogs:::log_lines"]=0
+operation_parameters_minimum_occurrences["getSubmissionLogs:::X-Fields"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::per_page"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::page"]=0
 operation_parameters_minimum_occurrences["listSubmissions:::meta"]=0
@@ -193,6 +195,7 @@ operation_parameters_maximum_occurrences["getGrader:::X-Fields"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::grader_id"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::step"]=0
 operation_parameters_maximum_occurrences["getGraderLogs:::log_lines"]=0
+operation_parameters_maximum_occurrences["getGraderLogs:::X-Fields"]=0
 operation_parameters_maximum_occurrences["listGraders:::per_page"]=0
 operation_parameters_maximum_occurrences["listGraders:::page"]=0
 operation_parameters_maximum_occurrences["listGraders:::meta"]=0
@@ -225,6 +228,7 @@ operation_parameters_maximum_occurrences["getSubmissionData:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::submission_id"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::step"]=0
 operation_parameters_maximum_occurrences["getSubmissionLogs:::log_lines"]=0
+operation_parameters_maximum_occurrences["getSubmissionLogs:::X-Fields"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::per_page"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::page"]=0
 operation_parameters_maximum_occurrences["listSubmissions:::meta"]=0
@@ -269,6 +273,7 @@ operation_parameters_collection_type["getGrader:::X-Fields"]=""
 operation_parameters_collection_type["getGraderLogs:::grader_id"]=""
 operation_parameters_collection_type["getGraderLogs:::step"]=""
 operation_parameters_collection_type["getGraderLogs:::log_lines"]=""
+operation_parameters_collection_type["getGraderLogs:::X-Fields"]=""
 operation_parameters_collection_type["listGraders:::per_page"]=""
 operation_parameters_collection_type["listGraders:::page"]=""
 operation_parameters_collection_type["listGraders:::meta"]=""
@@ -301,6 +306,7 @@ operation_parameters_collection_type["getSubmissionData:::submission_id"]=""
 operation_parameters_collection_type["getSubmissionLogs:::submission_id"]=""
 operation_parameters_collection_type["getSubmissionLogs:::step"]=""
 operation_parameters_collection_type["getSubmissionLogs:::log_lines"]=""
+operation_parameters_collection_type["getSubmissionLogs:::X-Fields"]=""
 operation_parameters_collection_type["listSubmissions:::per_page"]=""
 operation_parameters_collection_type["listSubmissions:::page"]=""
 operation_parameters_collection_type["listSubmissions:::meta"]=""
@@ -1062,6 +1068,7 @@ print_getGraderLogs_help() {
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}log_lines${OFF} ${BLUE}[integer]${OFF}${OFF} - Number of lines to fetch${YELLOW} Specify as: log_lines=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1398,6 +1405,7 @@ print_getSubmissionLogs_help() {
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}log_lines${OFF} ${BLUE}[integer]${OFF}${OFF} - Number of lines to fetch${YELLOW} Specify as: log_lines=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}X-Fields${OFF} ${BLUE}[string]${OFF}${OFF} - An optional fields mask ${YELLOW}Specify as: X-Fields:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200

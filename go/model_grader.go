@@ -23,13 +23,13 @@ type Grader struct {
 	// Grader archival status
 	Archived bool `json:"archived,omitempty"`
 	// Dataset metadata
-	Dataset *interface{} `json:"dataset,omitempty"`
+	Dataset interface{} `json:"dataset,omitempty"`
 	// Cluster to run the grader on
 	ClusterId int32 `json:"cluster_id,omitempty"`
 	// Description of the grader
 	Description string `json:"description,omitempty"`
 	// Argo workflow template spec
-	WorkflowSpec *interface{} `json:"workflow_spec,omitempty"`
+	WorkflowSpec interface{} `json:"workflow_spec,omitempty"`
 	// Git URL of the repository containing the code that will be used for the evaluation
 	EvaluatorRepo string `json:"evaluator_repo"`
 	// Git branch/tag that should be used with the evaluator repository.
@@ -45,11 +45,11 @@ type Grader struct {
 	// Status of the grader - True if it ready, False otherwise
 	Status string `json:"status,omitempty"`
 	// List of key:value pair of secrets that will be replace `{key}` in aicrowd.yaml
-	Secrets *interface{} `json:"secrets,omitempty"`
+	Secrets interface{} `json:"secrets,omitempty"`
 	// Name of the workflow used to setup grader
 	WfName string `json:"wf_name,omitempty"`
 	// Allowed extensions for the grader
-	AllowedExtensions *interface{} `json:"allowed_extensions,omitempty"`
+	AllowedExtensions interface{} `json:"allowed_extensions,omitempty"`
 	// Workflow priority to assign
 	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
 	// User ID

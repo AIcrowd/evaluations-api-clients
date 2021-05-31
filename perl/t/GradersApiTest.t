@@ -78,7 +78,8 @@ isa_ok($api, 'AIcrowdEvaluations::GradersApi');
     my $grader_id = undef; # replace NULL with a proper value
     my $step = undef; # replace NULL with a proper value
     my $log_lines = undef; # replace NULL with a proper value
-    my $result = $api->get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines);
+    my $x_fields = undef; # replace NULL with a proper value
+    my $result = $api->get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines, x_fields => $x_fields);
 }
 
 #

@@ -508,22 +508,24 @@ Get submission logs from loki
  * @param optional nil or *SubmissionsApiGetSubmissionLogsOpts - Optional Parameters:
      * @param "Step" (optional.Int32) -  Granularity of logs
      * @param "LogLines" (optional.Int32) -  Number of lines to fetch
+     * @param "XFields" (optional.String) -  An optional fields mask
 
-
+@return SubmissionLogs
 */
 
 type SubmissionsApiGetSubmissionLogsOpts struct { 
 	Step optional.Int32
 	LogLines optional.Int32
+	XFields optional.String
 }
 
-func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissionId int32, localVarOptionals *SubmissionsApiGetSubmissionLogsOpts) (*http.Response, error) {
+func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissionId int32, localVarOptionals *SubmissionsApiGetSubmissionLogsOpts) (SubmissionLogs, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		
+		localVarReturnValue SubmissionLogs
 	)
 
 	// create path and map variables
@@ -557,6 +559,9 @@ func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissio
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -572,20 +577,25 @@ func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissio
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		return localVarReturnValue, localVarHttpResponse, err
+	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
@@ -593,10 +603,21 @@ func (a *SubmissionsApiService) GetSubmissionLogs(ctx context.Context, submissio
 			error: localVarHttpResponse.Status,
 		}
 		
-		return localVarHttpResponse, newErr
+		if localVarHttpResponse.StatusCode == 200 {
+			var v SubmissionLogs
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+				if err != nil {
+					newErr.error = err.Error()
+					return localVarReturnValue, localVarHttpResponse, newErr
+				}
+				newErr.model = v
+				return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	return localVarReturnValue, localVarHttpResponse, nil
 }
 
 /*

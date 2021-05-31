@@ -276,7 +276,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_submission_logs**
-> get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines)
+> SubmissionLogs get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines, x_fields => $x_fields)
 
 
 
@@ -297,9 +297,11 @@ my $api_instance = AIcrowdEvaluations::SubmissionsApi->new(
 my $submission_id = 56; # int | 
 my $step = 56; # int | Granularity of logs
 my $log_lines = 56; # int | Number of lines to fetch
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    $api_instance->get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines);
+    my $result = $api_instance->get_submission_logs(submission_id => $submission_id, step => $step, log_lines => $log_lines, x_fields => $x_fields);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling SubmissionsApi->get_submission_logs: $@\n";
@@ -313,10 +315,11 @@ Name | Type | Description  | Notes
  **submission_id** | **int**|  | 
  **step** | **int**| Granularity of logs | [optional] 
  **log_lines** | **int**| Number of lines to fetch | [optional] 
+ **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

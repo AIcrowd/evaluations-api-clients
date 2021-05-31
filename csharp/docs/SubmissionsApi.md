@@ -342,7 +342,7 @@ void (empty response body)
 
 <a name="getsubmissionlogs"></a>
 # **GetSubmissionLogs**
-> void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null)
+> SubmissionLogs GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null, string xFields = null)
 
 
 
@@ -371,10 +371,12 @@ namespace Example
             var submissionId = 56;  // int? | 
             var step = 56;  // int? | Granularity of logs (optional) 
             var logLines = 56;  // int? | Number of lines to fetch (optional) 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                apiInstance.GetSubmissionLogs(submissionId, step, logLines);
+                SubmissionLogs result = apiInstance.GetSubmissionLogs(submissionId, step, logLines, xFields);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -392,10 +394,11 @@ Name | Type | Description  | Notes
  **submissionId** | **int?**|  | 
  **step** | **int?**| Granularity of logs | [optional] 
  **logLines** | **int?**| Number of lines to fetch | [optional] 
+ **xFields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

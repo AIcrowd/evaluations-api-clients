@@ -291,7 +291,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSubmissionLogs**
-> getSubmissionLogs($submission_id, $step, $log_lines)
+> \Swagger\Client\Model\SubmissionLogs getSubmissionLogs($submission_id, $step, $log_lines, $x_fields)
 
 
 
@@ -316,9 +316,11 @@ $apiInstance = new Swagger\Client\Api\SubmissionsApi(
 $submission_id = 56; // int | 
 $step = 56; // int | Granularity of logs
 $log_lines = 56; // int | Number of lines to fetch
+$x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $apiInstance->getSubmissionLogs($submission_id, $step, $log_lines);
+    $result = $apiInstance->getSubmissionLogs($submission_id, $step, $log_lines, $x_fields);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubmissionsApi->getSubmissionLogs: ', $e->getMessage(), PHP_EOL;
 }
@@ -332,10 +334,11 @@ Name | Type | Description  | Notes
  **submission_id** | **int**|  |
  **step** | **int**| Granularity of logs | [optional]
  **log_lines** | **int**| Number of lines to fetch | [optional]
+ **x_fields** | **string**| An optional fields mask | [optional]
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\SubmissionLogs**](../Model/SubmissionLogs.md)
 
 ### Authorization
 

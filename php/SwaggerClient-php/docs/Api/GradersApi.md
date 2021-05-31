@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getGraderLogs**
-> getGraderLogs($grader_id, $step, $log_lines)
+> \Swagger\Client\Model\GraderLogs getGraderLogs($grader_id, $step, $log_lines, $x_fields)
 
 
 
@@ -317,9 +317,11 @@ $apiInstance = new Swagger\Client\Api\GradersApi(
 $grader_id = 56; // int | 
 $step = 56; // int | Granularity of logs
 $log_lines = 56; // int | Number of lines to fetch
+$x_fields = "x_fields_example"; // string | An optional fields mask
 
 try {
-    $apiInstance->getGraderLogs($grader_id, $step, $log_lines);
+    $result = $apiInstance->getGraderLogs($grader_id, $step, $log_lines, $x_fields);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GradersApi->getGraderLogs: ', $e->getMessage(), PHP_EOL;
 }
@@ -333,10 +335,11 @@ Name | Type | Description  | Notes
  **grader_id** | **int**|  |
  **step** | **int**| Granularity of logs | [optional]
  **log_lines** | **int**| Number of lines to fetch | [optional]
+ **x_fields** | **string**| An optional fields mask | [optional]
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\GraderLogs**](../Model/GraderLogs.md)
 
 ### Authorization
 

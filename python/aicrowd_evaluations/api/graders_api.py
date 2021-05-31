@@ -549,7 +549,8 @@ class GradersApi(object):
         :param int grader_id: (required)
         :param int step: Granularity of logs
         :param int log_lines: Number of lines to fetch
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: GraderLogs
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -573,12 +574,13 @@ class GradersApi(object):
         :param int grader_id: (required)
         :param int step: Granularity of logs
         :param int log_lines: Number of lines to fetch
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: GraderLogs
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['grader_id', 'step', 'log_lines']  # noqa: E501
+        all_params = ['grader_id', 'step', 'log_lines', 'x_fields']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -611,6 +613,8 @@ class GradersApi(object):
             query_params.append(('log_lines', params['log_lines']))  # noqa: E501
 
         header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -635,7 +639,7 @@ class GradersApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='GraderLogs',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

@@ -40,7 +40,7 @@ pub trait SubmissionsApi {
     fn download_submission_logs(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn get_submission(&self, submission_id: i32, x_fields: &str) -> Box<Future<Item = ::models::Submissions, Error = Error<serde_json::Value>>>;
     fn get_submission_data(&self, submission_id: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32, x_fields: &str) -> Box<Future<Item = ::models::SubmissionLogs, Error = Error<serde_json::Value>>>;
     fn list_submissions(&self, per_page: &str, page: &str, meta: &str, status: &str, grader_id: i32, user_id: i32, x_fields: &str) -> Box<Future<Item = Vec<::models::Submissions>, Error = Error<serde_json::Value>>>;
     fn retry_submissions(&self, payload: ::models::SubmissionRetryInput, x_fields: &str) -> Box<Future<Item = ::models::SubmissionRetry, Error = Error<serde_json::Value>>>;
 }
@@ -380,7 +380,7 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
         )
     }
 
-    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
+    fn get_submission_logs(&self, submission_id: i32, step: i32, log_lines: i32, x_fields: &str) -> Box<Future<Item = ::models::SubmissionLogs, Error = Error<serde_json::Value>>> {
         let configuration: &configuration::Configuration<C> = self.configuration.borrow();
 
         let mut auth_headers = HashMap::<String, String>::new();
@@ -418,6 +418,10 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
             req.headers_mut().set(UserAgent::new(Cow::Owned(user_agent.clone())));
         }
 
+        {
+            let mut headers = req.headers_mut();
+            headers.set_raw("X-Fields", x_fields);
+        }
 
         for (key, val) in auth_headers {
             req.headers_mut().set_raw(key, val);
@@ -441,7 +445,10 @@ impl<C: hyper::client::Connect>SubmissionsApi for SubmissionsApiClient<C> {
                     Err(Error::from((status, &*body)))
                 }
             })
-            .and_then(|_| futures::future::ok(()))
+            .and_then(|body| {
+                let parsed: Result<::models::SubmissionLogs, _> = serde_json::from_slice(&body);
+                parsed.map_err(|e| Error::from(e))
+            })
         )
     }
 

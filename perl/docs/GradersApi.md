@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_grader_logs**
-> get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines)
+> GraderLogs get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines, x_fields => $x_fields)
 
 
 
@@ -298,9 +298,11 @@ my $api_instance = AIcrowdEvaluations::GradersApi->new(
 my $grader_id = 56; # int | 
 my $step = 56; # int | Granularity of logs
 my $log_lines = 56; # int | Number of lines to fetch
+my $x_fields = 'x_fields_example'; # string | An optional fields mask
 
 eval { 
-    $api_instance->get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines);
+    my $result = $api_instance->get_grader_logs(grader_id => $grader_id, step => $step, log_lines => $log_lines, x_fields => $x_fields);
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling GradersApi->get_grader_logs: $@\n";
@@ -314,10 +316,11 @@ Name | Type | Description  | Notes
  **grader_id** | **int**|  | 
  **step** | **int**| Granularity of logs | [optional] 
  **log_lines** | **int**| Number of lines to fetch | [optional] 
+ **x_fields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

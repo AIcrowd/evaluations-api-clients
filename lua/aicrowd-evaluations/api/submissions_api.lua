@@ -16,6 +16,7 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
+local aicrowd-evaluations_submission_logs = require "aicrowd-evaluations.model.submission_logs"
 local aicrowd-evaluations_submission_retry = require "aicrowd-evaluations.model.submission_retry"
 local aicrowd-evaluations_submissions = require "aicrowd-evaluations.model.submissions"
 local aicrowd-evaluations_submission_retry_input = require "aicrowd-evaluations.model.submission_retry_input"
@@ -294,7 +295,7 @@ function submissions_api:get_submission_data(submission_id)
 	end
 end
 
-function submissions_api:get_submission_logs(submission_id, step, log_lines)
+function submissions_api:get_submission_logs(submission_id, step, log_lines, x_fields)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -314,6 +315,9 @@ function submissions_api:get_submission_logs(submission_id, step, log_lines)
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
+	if x_fields then
+		req.headers:upsert("X-Fields", x_fields)
+	end
 	-- api key in headers 'AUTHORIZATION'
 	if self.api_key['AUTHORIZATION'] then
 		req.headers:upsert("api_key", self.api_key['AUTHORIZATION'])
@@ -326,7 +330,18 @@ function submissions_api:get_submission_logs(submission_id, step, log_lines)
 	end
 	local http_status = headers:get(":status")
 	if http_status:sub(1,1) == "2" then
-		return nil, headers
+		local body, err, errno2 = stream:get_body_as_string()
+		-- exception when getting the HTTP body
+		if not body then
+			return nil, err, errno2
+		end
+		stream:shutdown()
+		local result, _, err3 = dkjson.decode(body)
+		-- exception when decoding the HTTP body
+		if result == nil then
+			return nil, err3
+		end
+		return aicrowd-evaluations_submission_logs.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

@@ -2,7 +2,7 @@
 
 AIcrowd Evaluations API
 - API version: 1.0.0
-  - Build date: 2021-05-19T22:53:00.630Z
+  - Build date: 2021-05-31T16:46:21.820Z
 
 API to create and evaluate custom challenges on AIcrowd!
 
@@ -148,10 +148,12 @@ Class | Method | HTTP request | Description
  - [AuthResponse](docs/AuthResponse.md)
  - [Cluster](docs/Cluster.md)
  - [Grader](docs/Grader.md)
+ - [GraderLogs](docs/GraderLogs.md)
  - [GraderMeta](docs/GraderMeta.md)
  - [Login](docs/Login.md)
  - [Organisation](docs/Organisation.md)
  - [OrganisationQuota](docs/OrganisationQuota.md)
+ - [SubmissionLogs](docs/SubmissionLogs.md)
  - [SubmissionRetry](docs/SubmissionRetry.md)
  - [SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [Submissions](docs/Submissions.md)

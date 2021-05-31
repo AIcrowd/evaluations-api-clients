@@ -19,10 +19,12 @@ from aicrowd_evaluations.models.auth_logout import AuthLogout
 from aicrowd_evaluations.models.auth_response import AuthResponse
 from aicrowd_evaluations.models.cluster import Cluster
 from aicrowd_evaluations.models.grader import Grader
+from aicrowd_evaluations.models.grader_logs import GraderLogs
 from aicrowd_evaluations.models.grader_meta import GraderMeta
 from aicrowd_evaluations.models.login import Login
 from aicrowd_evaluations.models.organisation import Organisation
 from aicrowd_evaluations.models.organisation_quota import OrganisationQuota
+from aicrowd_evaluations.models.submission_logs import SubmissionLogs
 from aicrowd_evaluations.models.submission_retry import SubmissionRetry
 from aicrowd_evaluations.models.submission_retry_input import SubmissionRetryInput
 from aicrowd_evaluations.models.submissions import Submissions

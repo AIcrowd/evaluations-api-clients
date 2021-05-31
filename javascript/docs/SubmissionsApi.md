@@ -289,7 +289,7 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId, opts)
+> SubmissionLogs getSubmissionLogs(submissionId, opts)
 
 
 
@@ -312,14 +312,15 @@ var submissionId = 56; // Number |
 
 var opts = { 
   'step': 56, // Number | Granularity of logs
-  'logLines': 56 // Number | Number of lines to fetch
+  'logLines': 56, // Number | Number of lines to fetch
+  'xFields': "xFields_example" // String | An optional fields mask
 };
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getSubmissionLogs(submissionId, opts, callback);
@@ -332,10 +333,11 @@ Name | Type | Description  | Notes
  **submissionId** | **Number**|  | 
  **step** | **Number**| Granularity of logs | [optional] 
  **logLines** | **Number**| Number of lines to fetch | [optional] 
+ **xFields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

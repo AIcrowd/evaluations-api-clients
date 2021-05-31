@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.aicrowd.evaluations.models.SubmissionLogs;
 import com.aicrowd.evaluations.models.SubmissionRetry;
 import com.aicrowd.evaluations.models.SubmissionRetryInput;
 import com.aicrowd.evaluations.models.Submissions;
@@ -675,12 +676,13 @@ public class SubmissionsApi {
      * @param submissionId  (required)
      * @param step Granularity of logs (optional)
      * @param logLines Number of lines to fetch (optional)
+     * @param xFields An optional fields mask (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSubmissionLogsCall(Integer submissionId, Integer step, Integer logLines, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getSubmissionLogsCall(Integer submissionId, Integer step, Integer logLines, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -695,6 +697,8 @@ public class SubmissionsApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("log_lines", logLines));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xFields != null)
+        localVarHeaderParams.put("X-Fields", apiClient.parameterToString(xFields));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -727,7 +731,7 @@ public class SubmissionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSubmissionLogsValidateBeforeCall(Integer submissionId, Integer step, Integer logLines, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getSubmissionLogsValidateBeforeCall(Integer submissionId, Integer step, Integer logLines, String xFields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'submissionId' is set
         if (submissionId == null) {
@@ -735,7 +739,7 @@ public class SubmissionsApi {
         }
         
 
-        com.squareup.okhttp.Call call = getSubmissionLogsCall(submissionId, step, logLines, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getSubmissionLogsCall(submissionId, step, logLines, xFields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -746,10 +750,13 @@ public class SubmissionsApi {
      * @param submissionId  (required)
      * @param step Granularity of logs (optional)
      * @param logLines Number of lines to fetch (optional)
+     * @param xFields An optional fields mask (optional)
+     * @return SubmissionLogs
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void getSubmissionLogs(Integer submissionId, Integer step, Integer logLines) throws ApiException {
-        getSubmissionLogsWithHttpInfo(submissionId, step, logLines);
+    public SubmissionLogs getSubmissionLogs(Integer submissionId, Integer step, Integer logLines, String xFields) throws ApiException {
+        ApiResponse<SubmissionLogs> resp = getSubmissionLogsWithHttpInfo(submissionId, step, logLines, xFields);
+        return resp.getData();
     }
 
     /**
@@ -758,12 +765,14 @@ public class SubmissionsApi {
      * @param submissionId  (required)
      * @param step Granularity of logs (optional)
      * @param logLines Number of lines to fetch (optional)
-     * @return ApiResponse&lt;Void&gt;
+     * @param xFields An optional fields mask (optional)
+     * @return ApiResponse&lt;SubmissionLogs&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> getSubmissionLogsWithHttpInfo(Integer submissionId, Integer step, Integer logLines) throws ApiException {
-        com.squareup.okhttp.Call call = getSubmissionLogsValidateBeforeCall(submissionId, step, logLines, null, null);
-        return apiClient.execute(call);
+    public ApiResponse<SubmissionLogs> getSubmissionLogsWithHttpInfo(Integer submissionId, Integer step, Integer logLines, String xFields) throws ApiException {
+        com.squareup.okhttp.Call call = getSubmissionLogsValidateBeforeCall(submissionId, step, logLines, xFields, null, null);
+        Type localVarReturnType = new TypeToken<SubmissionLogs>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -772,11 +781,12 @@ public class SubmissionsApi {
      * @param submissionId  (required)
      * @param step Granularity of logs (optional)
      * @param logLines Number of lines to fetch (optional)
+     * @param xFields An optional fields mask (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSubmissionLogsAsync(Integer submissionId, Integer step, Integer logLines, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call getSubmissionLogsAsync(Integer submissionId, Integer step, Integer logLines, String xFields, final ApiCallback<SubmissionLogs> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -797,8 +807,9 @@ public class SubmissionsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSubmissionLogsValidateBeforeCall(submissionId, step, logLines, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        com.squareup.okhttp.Call call = getSubmissionLogsValidateBeforeCall(submissionId, step, logLines, xFields, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<SubmissionLogs>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**

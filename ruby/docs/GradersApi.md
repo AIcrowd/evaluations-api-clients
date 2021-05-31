@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 
 # **get_grader_logs**
-> get_grader_logs(grader_id, opts)
+> GraderLogs get_grader_logs(grader_id, opts)
 
 
 
@@ -310,11 +310,13 @@ grader_id = 56 # Integer |
 
 opts = { 
   step: 56, # Integer | Granularity of logs
-  log_lines: 56 # Integer | Number of lines to fetch
+  log_lines: 56, # Integer | Number of lines to fetch
+  x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  api_instance.get_grader_logs(grader_id, opts)
+  result = api_instance.get_grader_logs(grader_id, opts)
+  p result
 rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling GradersApi->get_grader_logs: #{e}"
 end
@@ -327,10 +329,11 @@ Name | Type | Description  | Notes
  **grader_id** | **Integer**|  | 
  **step** | **Integer**| Granularity of logs | [optional] 
  **log_lines** | **Integer**| Number of lines to fetch | [optional] 
+ **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-nil (empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

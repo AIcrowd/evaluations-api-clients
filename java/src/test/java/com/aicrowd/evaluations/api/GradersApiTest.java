@@ -15,6 +15,7 @@ package com.aicrowd.evaluations.api;
 
 import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.Grader;
+import com.aicrowd.evaluations.models.GraderLogs;
 import com.aicrowd.evaluations.models.GraderMeta;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -128,7 +129,8 @@ public class GradersApiTest {
         Integer graderId = null;
         Integer step = null;
         Integer logLines = null;
-        api.getGraderLogs(graderId, step, logLines);
+        String xFields = null;
+        GraderLogs response = api.getGraderLogs(graderId, step, logLines, xFields);
 
         // TODO: test validations
     }

@@ -384,9 +384,19 @@ paths:
         type: "integer"
         x-exportParamName: "LogLines"
         x-optionalDataType: "Int32"
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "Success"
+          schema:
+            $ref: "#/definitions/GraderLogs"
         "404":
           description: "Grader not found"
   /graders/{grader_id}/logs/download:
@@ -783,9 +793,19 @@ paths:
         type: "integer"
         x-exportParamName: "LogLines"
         x-optionalDataType: "Int32"
+      - name: "X-Fields"
+        in: "header"
+        description: "An optional fields mask"
+        required: false
+        type: "string"
+        format: "mask"
+        x-exportParamName: "XFields"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "Success"
+          schema:
+            $ref: "#/definitions/SubmissionLogs"
         "404":
           description: "Submission not found"
   /submissions/{submission_id}/logs/download:
@@ -1135,6 +1155,18 @@ definitions:
       description: "description"
       dataset: "{}"
       notifications: "{}"
+  GraderLogs:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        description: "Status of the operation"
+      data:
+        type: "object"
+        properties: {}
+    example:
+      data: "{}"
+      status: "status"
   Submissions:
     type: "object"
     required:
@@ -1224,6 +1256,18 @@ definitions:
       logs: "logs"
       status: "status"
     x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,workflow_priority,user_id,organisation_id}"
+  SubmissionLogs:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        description: "Status of the operation"
+      data:
+        type: "object"
+        properties: {}
+    example:
+      data: "{}"
+      status: "status"
   SubmissionRetryInput:
     type: "object"
     properties:

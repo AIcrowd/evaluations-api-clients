@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { SubmissionLogs } from '../model/submissionLogs';
 import { SubmissionRetry } from '../model/submissionRetry';
 import { SubmissionRetryInput } from '../model/submissionRetryInput';
 import { Submissions } from '../model/submissions';
@@ -314,17 +315,19 @@ export class SubmissionsService {
      * @param submissionId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<SubmissionLogs>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SubmissionLogs>>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SubmissionLogs>>;
+    public getSubmissionLogs(submissionId: number, step?: number, logLines?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (submissionId === null || submissionId === undefined) {
             throw new Error('Required parameter submissionId was null or undefined when calling getSubmissionLogs.');
         }
+
 
 
 
@@ -337,6 +340,9 @@ export class SubmissionsService {
         }
 
         let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
 
         // authentication (api_key) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
@@ -357,7 +363,7 @@ export class SubmissionsService {
             'application/json'
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/logs`,
+        return this.httpClient.get<SubmissionLogs>(`${this.basePath}/submissions/${encodeURIComponent(String(submissionId))}/logs`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

@@ -111,11 +111,11 @@
   "
   Get submission logs from loki"
   ([submission-id ] (get-submission-logs-with-http-info submission-id nil))
-  ([submission-id {:keys [step log-lines ]}]
+  ([submission-id {:keys [step log-lines x-fields ]}]
    (check-required-params submission-id)
    (call-api "/submissions/{submission_id}/logs" :get
              {:path-params   {"submission_id" submission-id }
-              :header-params {}
+              :header-params {"X-Fields" x-fields }
               :query-params  {"step" step "log_lines" log-lines }
               :form-params   {}
               :content-types ["application/json"]

@@ -118,11 +118,11 @@ get_submission_data(Ctx, SubmissionId, Optional) ->
 
 %% @doc 
 %% Get submission logs from loki
--spec get_submission_logs(ctx:ctx(), integer()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+-spec get_submission_logs(ctx:ctx(), integer()) -> {ok, aicrowd_evaluations_submission_logs:aicrowd_evaluations_submission_logs(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_submission_logs(Ctx, SubmissionId) ->
     get_submission_logs(Ctx, SubmissionId, #{}).
 
--spec get_submission_logs(ctx:ctx(), integer(), maps:map()) -> {ok, [], aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
+-spec get_submission_logs(ctx:ctx(), integer(), maps:map()) -> {ok, aicrowd_evaluations_submission_logs:aicrowd_evaluations_submission_logs(), aicrowd_evaluations_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), aicrowd_evaluations_utils:response_info()}.
 get_submission_logs(Ctx, SubmissionId, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
@@ -130,7 +130,7 @@ get_submission_logs(Ctx, SubmissionId, Optional) ->
     Method = get,
     Path = ["/submissions/", SubmissionId, "/logs"],
     QS = lists:flatten([])++aicrowd_evaluations_utils:optional_params(['step', 'log_lines'], _OptionalParams),
-    Headers = [],
+    Headers = []++aicrowd_evaluations_utils:optional_params(['X-Fields'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = aicrowd_evaluations_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),

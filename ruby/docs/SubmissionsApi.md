@@ -285,7 +285,7 @@ nil (empty response body)
 
 
 # **get_submission_logs**
-> get_submission_logs(submission_id, opts)
+> SubmissionLogs get_submission_logs(submission_id, opts)
 
 
 
@@ -309,11 +309,13 @@ submission_id = 56 # Integer |
 
 opts = { 
   step: 56, # Integer | Granularity of logs
-  log_lines: 56 # Integer | Number of lines to fetch
+  log_lines: 56, # Integer | Number of lines to fetch
+  x_fields: 'x_fields_example' # String | An optional fields mask
 }
 
 begin
-  api_instance.get_submission_logs(submission_id, opts)
+  result = api_instance.get_submission_logs(submission_id, opts)
+  p result
 rescue AIcrowdEvaluations::ApiError => e
   puts "Exception when calling SubmissionsApi->get_submission_logs: #{e}"
 end
@@ -326,10 +328,11 @@ Name | Type | Description  | Notes
  **submission_id** | **Integer**|  | 
  **step** | **Integer**| Granularity of logs | [optional] 
  **log_lines** | **Integer**| Number of lines to fetch | [optional] 
+ **x_fields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-nil (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

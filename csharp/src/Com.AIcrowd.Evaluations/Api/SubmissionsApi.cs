@@ -143,8 +143,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns></returns>
-        void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>SubmissionLogs</returns>
+        SubmissionLogs GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -156,8 +157,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of SubmissionLogs</returns>
+        ApiResponse<SubmissionLogs> GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -335,8 +337,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of SubmissionLogs</returns>
+        System.Threading.Tasks.Task<SubmissionLogs> GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -348,8 +351,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (SubmissionLogs)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SubmissionLogs>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -1258,10 +1262,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns></returns>
-        public void GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>SubmissionLogs</returns>
+        public SubmissionLogs GetSubmissionLogs (int? submissionId, int? step = null, int? logLines = null, string xFields = null)
         {
-             GetSubmissionLogsWithHttpInfo(submissionId, step, logLines);
+             ApiResponse<SubmissionLogs> localVarResponse = GetSubmissionLogsWithHttpInfo(submissionId, step, logLines, xFields);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1271,8 +1277,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of SubmissionLogs</returns>
+        public ApiResponse< SubmissionLogs > GetSubmissionLogsWithHttpInfo (int? submissionId, int? step = null, int? logLines = null, string xFields = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -1303,6 +1310,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
             if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
             if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1323,9 +1331,9 @@ namespace Com.AIcrowd.Evaluations.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<SubmissionLogs>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (SubmissionLogs) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SubmissionLogs)));
         }
 
         /// <summary>
@@ -1335,10 +1343,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of SubmissionLogs</returns>
+        public async System.Threading.Tasks.Task<SubmissionLogs> GetSubmissionLogsAsync (int? submissionId, int? step = null, int? logLines = null, string xFields = null)
         {
-             await GetSubmissionLogsAsyncWithHttpInfo(submissionId, step, logLines);
+             ApiResponse<SubmissionLogs> localVarResponse = await GetSubmissionLogsAsyncWithHttpInfo(submissionId, step, logLines, xFields);
+             return localVarResponse.Data;
 
         }
 
@@ -1349,8 +1359,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="submissionId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (SubmissionLogs)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<SubmissionLogs>> GetSubmissionLogsAsyncWithHttpInfo (int? submissionId, int? step = null, int? logLines = null, string xFields = null)
         {
             // verify the required parameter 'submissionId' is set
             if (submissionId == null)
@@ -1381,6 +1392,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (submissionId != null) localVarPathParams.Add("submission_id", this.Configuration.ApiClient.ParameterToString(submissionId)); // path parameter
             if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
             if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1401,9 +1413,9 @@ namespace Com.AIcrowd.Evaluations.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<SubmissionLogs>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (SubmissionLogs) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SubmissionLogs)));
         }
 
         /// <summary>

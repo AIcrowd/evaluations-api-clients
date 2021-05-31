@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_grader_logs**
-> get_grader_logs(ctx, grader_id, optional)
+> ::models::GraderLogs get_grader_logs(ctx, grader_id, optional)
 
 
 Get grader logs from loki
@@ -195,10 +195,11 @@ Name | Type | Description  | Notes
  **grader_id** | **i32**|  | 
  **step** | **i32**| Granularity of logs | 
  **log_lines** | **i32**| Number of lines to fetch | 
+ **x_fields** | **String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**::models::GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

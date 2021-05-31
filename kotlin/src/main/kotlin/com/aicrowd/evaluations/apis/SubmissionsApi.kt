@@ -11,6 +11,7 @@
 */
 package com.aicrowd.evaluations.apis
 
+import com.aicrowd.evaluations.models.SubmissionLogs
 import com.aicrowd.evaluations.models.SubmissionRetry
 import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
@@ -214,15 +215,17 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
     * @param submissionId  
     * @param step Granularity of logs (optional)
     * @param logLines Number of lines to fetch (optional)
-    * @return void
+    * @param xFields An optional fields mask (optional)
+    * @return SubmissionLogs
     */
-    fun getSubmissionLogs(submissionId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int) : Unit {
+    @Suppress("UNCHECKED_CAST")
+    fun getSubmissionLogs(submissionId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int, xFields: kotlin.String) : SubmissionLogs {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf("step" to listOf("$step"), "log_lines" to listOf("$logLines"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -232,13 +235,13 @@ class SubmissionsApi(basePath: kotlin.String = "https://localhost/v1") : ApiClie
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<SubmissionLogs>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as SubmissionLogs
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

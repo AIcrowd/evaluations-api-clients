@@ -14,6 +14,7 @@ package com.aicrowd.evaluations.api
 
 import java.text.SimpleDateFormat
 
+import com.aicrowd.evaluations.models.SubmissionLogs
 import com.aicrowd.evaluations.models.SubmissionRetry
 import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
@@ -222,10 +223,11 @@ class SubmissionsApi(
    * @param submissionId  
    * @param step Granularity of logs (optional)
    * @param logLines Number of lines to fetch (optional)
-   * @return void
+   * @param xFields An optional fields mask (optional)
+   * @return SubmissionLogs
    */
-  def getSubmissionLogs(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
-    val await = Try(Await.result(getSubmissionLogsAsync(submissionId, step, logLines), Duration.Inf))
+  def getSubmissionLogs(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None, xFields: Option[String] = None): Option[SubmissionLogs] = {
+    val await = Try(Await.result(getSubmissionLogsAsync(submissionId, step, logLines, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -239,10 +241,11 @@ class SubmissionsApi(
    * @param submissionId  
    * @param step Granularity of logs (optional)
    * @param logLines Number of lines to fetch (optional)
-   * @return Future(void)
+   * @param xFields An optional fields mask (optional)
+   * @return Future(SubmissionLogs)
    */
-  def getSubmissionLogsAsync(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
-      helper.getSubmissionLogs(submissionId, step, logLines)
+  def getSubmissionLogsAsync(submissionId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None, xFields: Option[String] = None): Future[SubmissionLogs] = {
+      helper.getSubmissionLogs(submissionId, step, logLines, xFields)
   }
 
   /**
@@ -409,8 +412,9 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
 
   def getSubmissionLogs(submissionId: Integer,
     step: Option[Integer] = None,
-    logLines: Option[Integer] = None
-    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    logLines: Option[Integer] = None,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[SubmissionLogs]): Future[SubmissionLogs] = {
     // create path and map variables
     val path = (addFmt("/submissions/{submission_id}/logs")
       replaceAll("\\{" + "submission_id" + "\\}", submissionId.toString))
@@ -426,6 +430,10 @@ class SubmissionsApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     logLines match {
       case Some(param) => queryParams += "log_lines" -> param.toString
       case _ => queryParams
+    }
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")

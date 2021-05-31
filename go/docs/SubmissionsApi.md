@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetSubmissionLogs**
-> GetSubmissionLogs(ctx, submissionId, optional)
+> SubmissionLogs GetSubmissionLogs(ctx, submissionId, optional)
 
 
 Get submission logs from loki
@@ -194,10 +194,11 @@ Name | Type | Description  | Notes
 
  **step** | **optional.Int32**| Granularity of logs | 
  **logLines** | **optional.Int32**| Number of lines to fetch | 
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

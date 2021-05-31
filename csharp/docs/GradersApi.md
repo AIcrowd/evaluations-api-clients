@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 <a name="getgraderlogs"></a>
 # **GetGraderLogs**
-> void GetGraderLogs (int? graderId, int? step = null, int? logLines = null)
+> GraderLogs GetGraderLogs (int? graderId, int? step = null, int? logLines = null, string xFields = null)
 
 
 
@@ -372,10 +372,12 @@ namespace Example
             var graderId = 56;  // int? | 
             var step = 56;  // int? | Granularity of logs (optional) 
             var logLines = 56;  // int? | Number of lines to fetch (optional) 
+            var xFields = xFields_example;  // string | An optional fields mask (optional) 
 
             try
             {
-                apiInstance.GetGraderLogs(graderId, step, logLines);
+                GraderLogs result = apiInstance.GetGraderLogs(graderId, step, logLines, xFields);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -393,10 +395,11 @@ Name | Type | Description  | Notes
  **graderId** | **int?**|  | 
  **step** | **int?**| Granularity of logs | [optional] 
  **logLines** | **int?**| Number of lines to fetch | [optional] 
+ **xFields** | **string**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

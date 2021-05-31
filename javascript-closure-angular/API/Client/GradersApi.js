@@ -10,6 +10,7 @@
 goog.provide('API.Client.GradersApi');
 
 goog.require('API.Client.Grader');
+goog.require('API.Client.GraderLogs');
 goog.require('API.Client.GraderMeta');
 
 /**
@@ -236,10 +237,11 @@ API.Client.GradersApi.prototype.getGrader = function(graderId, opt_xFields, opt_
  * @param {!number} graderId 
  * @param {!number=} opt_step Granularity of logs
  * @param {!number=} opt_logLines Number of lines to fetch
+ * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise}
+ * @return {!angular.$q.Promise<!API.Client.GraderLogs>}
  */
-API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_step, opt_logLines, opt_extraHttpRequestParams) {
+API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_step, opt_logLines, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/graders/{grader_id}/logs'
       .replace('{' + 'grader_id' + '}', String(graderId));
@@ -260,6 +262,8 @@ API.Client.GradersApi.prototype.getGraderLogs = function(graderId, opt_step, opt
   if (opt_logLines !== undefined) {
     queryParameters['log_lines'] = opt_logLines;
   }
+
+  headerParams['X-Fields'] = opt_xFields;
 
   /** @type {!Object} */
   var httpRequestParams = {

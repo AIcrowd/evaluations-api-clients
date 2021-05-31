@@ -14,6 +14,7 @@
 package com.aicrowd.evaluations.api;
 
 import com.aicrowd.evaluations.ApiException;
+import com.aicrowd.evaluations.models.SubmissionLogs;
 import com.aicrowd.evaluations.models.SubmissionRetry;
 import com.aicrowd.evaluations.models.SubmissionRetryInput;
 import com.aicrowd.evaluations.models.Submissions;
@@ -129,7 +130,8 @@ public class SubmissionsApiTest {
         Integer submissionId = null;
         Integer step = null;
         Integer logLines = null;
-        api.getSubmissionLogs(submissionId, step, logLines);
+        String xFields = null;
+        SubmissionLogs response = api.getSubmissionLogs(submissionId, step, logLines, xFields);
 
         // TODO: test validations
     }

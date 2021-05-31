@@ -185,7 +185,7 @@ Get grader logs from loki
 
 ### Example
 ```bash
-aicrowd-evaluations getGraderLogs grader_id=value  step=value  log_lines=value
+aicrowd-evaluations getGraderLogs grader_id=value  step=value  log_lines=value X-Fields:value
 ```
 
 ### Parameters
@@ -195,10 +195,11 @@ Name | Type | Description  | Notes
  **graderId** | **integer** |  |
  **step** | **integer** | Granularity of logs | [optional]
  **logLines** | **integer** | Number of lines to fetch | [optional]
+ **xFields** | **string** | An optional fields mask | [optional]
 
 ### Return type
 
-(empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

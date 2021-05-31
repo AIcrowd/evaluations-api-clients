@@ -136,8 +136,9 @@ namespace Com.AIcrowd.Evaluations.Test
             //int? submissionId = null;
             //int? step = null;
             //int? logLines = null;
-            //instance.GetSubmissionLogs(submissionId, step, logLines);
-            
+            //string xFields = null;
+            //var response = instance.GetSubmissionLogs(submissionId, step, logLines, xFields);
+            //Assert.IsInstanceOf<SubmissionLogs> (response, "response is SubmissionLogs");
         }
         
         /// <summary>

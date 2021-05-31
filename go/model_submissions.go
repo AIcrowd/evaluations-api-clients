@@ -23,13 +23,13 @@ type Submissions struct {
 	// Grader identifier
 	GraderId int32 `json:"grader_id"`
 	// URL to the submission code
-	SubmissionData *interface{} `json:"submission_data,omitempty"`
+	SubmissionData interface{} `json:"submission_data,omitempty"`
 	// Current status of the submission
 	Status string `json:"status,omitempty"`
 	// S3 link of the output (available after the evaluation)
 	Output string `json:"output,omitempty"`
 	// Array of any additional outputs
-	AdditionalOutputs *interface{} `json:"additional_outputs,omitempty"`
+	AdditionalOutputs interface{} `json:"additional_outputs,omitempty"`
 	// S3 link of the STDOUT of the evaluation
 	Logs string `json:"logs,omitempty"`
 	// Evaluation start time

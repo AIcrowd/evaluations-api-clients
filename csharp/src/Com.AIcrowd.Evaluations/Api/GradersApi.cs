@@ -143,8 +143,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns></returns>
-        void GetGraderLogs (int? graderId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>GraderLogs</returns>
+        GraderLogs GetGraderLogs (int? graderId, int? step = null, int? logLines = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -156,8 +157,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of GraderLogs</returns>
+        ApiResponse<GraderLogs> GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -358,8 +360,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of GraderLogs</returns>
+        System.Threading.Tasks.Task<GraderLogs> GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null, string xFields = null);
 
         /// <summary>
         /// 
@@ -371,8 +374,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null);
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (GraderLogs)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GraderLogs>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null, string xFields = null);
         /// <summary>
         /// 
         /// </summary>
@@ -1304,10 +1308,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns></returns>
-        public void GetGraderLogs (int? graderId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>GraderLogs</returns>
+        public GraderLogs GetGraderLogs (int? graderId, int? step = null, int? logLines = null, string xFields = null)
         {
-             GetGraderLogsWithHttpInfo(graderId, step, logLines);
+             ApiResponse<GraderLogs> localVarResponse = GetGraderLogsWithHttpInfo(graderId, step, logLines, xFields);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1317,8 +1323,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>ApiResponse of GraderLogs</returns>
+        public ApiResponse< GraderLogs > GetGraderLogsWithHttpInfo (int? graderId, int? step = null, int? logLines = null, string xFields = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
@@ -1349,6 +1356,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
             if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
             if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1369,9 +1377,9 @@ namespace Com.AIcrowd.Evaluations.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<GraderLogs>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (GraderLogs) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GraderLogs)));
         }
 
         /// <summary>
@@ -1381,10 +1389,12 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of GraderLogs</returns>
+        public async System.Threading.Tasks.Task<GraderLogs> GetGraderLogsAsync (int? graderId, int? step = null, int? logLines = null, string xFields = null)
         {
-             await GetGraderLogsAsyncWithHttpInfo(graderId, step, logLines);
+             ApiResponse<GraderLogs> localVarResponse = await GetGraderLogsAsyncWithHttpInfo(graderId, step, logLines, xFields);
+             return localVarResponse.Data;
 
         }
 
@@ -1395,8 +1405,9 @@ namespace Com.AIcrowd.Evaluations.Api
         /// <param name="graderId"></param>
         /// <param name="step">Granularity of logs (optional)</param>
         /// <param name="logLines">Number of lines to fetch (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null)
+        /// <param name="xFields">An optional fields mask (optional)</param>
+        /// <returns>Task of ApiResponse (GraderLogs)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<GraderLogs>> GetGraderLogsAsyncWithHttpInfo (int? graderId, int? step = null, int? logLines = null, string xFields = null)
         {
             // verify the required parameter 'graderId' is set
             if (graderId == null)
@@ -1427,6 +1438,7 @@ namespace Com.AIcrowd.Evaluations.Api
             if (graderId != null) localVarPathParams.Add("grader_id", this.Configuration.ApiClient.ParameterToString(graderId)); // path parameter
             if (step != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "step", step)); // query parameter
             if (logLines != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "log_lines", logLines)); // query parameter
+            if (xFields != null) localVarHeaderParams.Add("X-Fields", this.Configuration.ApiClient.ParameterToString(xFields)); // header parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("AUTHORIZATION")))
@@ -1447,9 +1459,9 @@ namespace Com.AIcrowd.Evaluations.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<GraderLogs>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (GraderLogs) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GraderLogs)));
         }
 
         /// <summary>

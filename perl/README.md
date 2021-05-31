@@ -236,10 +236,12 @@ use AIcrowdEvaluations::Object::AuthLogout;
 use AIcrowdEvaluations::Object::AuthResponse;
 use AIcrowdEvaluations::Object::Cluster;
 use AIcrowdEvaluations::Object::Grader;
+use AIcrowdEvaluations::Object::GraderLogs;
 use AIcrowdEvaluations::Object::GraderMeta;
 use AIcrowdEvaluations::Object::Login;
 use AIcrowdEvaluations::Object::Organisation;
 use AIcrowdEvaluations::Object::OrganisationQuota;
+use AIcrowdEvaluations::Object::SubmissionLogs;
 use AIcrowdEvaluations::Object::SubmissionRetry;
 use AIcrowdEvaluations::Object::SubmissionRetryInput;
 use AIcrowdEvaluations::Object::Submissions;
@@ -268,10 +270,12 @@ use AIcrowdEvaluations::Object::AuthLogout;
 use AIcrowdEvaluations::Object::AuthResponse;
 use AIcrowdEvaluations::Object::Cluster;
 use AIcrowdEvaluations::Object::Grader;
+use AIcrowdEvaluations::Object::GraderLogs;
 use AIcrowdEvaluations::Object::GraderMeta;
 use AIcrowdEvaluations::Object::Login;
 use AIcrowdEvaluations::Object::Organisation;
 use AIcrowdEvaluations::Object::OrganisationQuota;
+use AIcrowdEvaluations::Object::SubmissionLogs;
 use AIcrowdEvaluations::Object::SubmissionRetry;
 use AIcrowdEvaluations::Object::SubmissionRetryInput;
 use AIcrowdEvaluations::Object::Submissions;
@@ -346,10 +350,12 @@ Class | Method | HTTP request | Description
  - [AIcrowdEvaluations::Object::AuthResponse](docs/AuthResponse.md)
  - [AIcrowdEvaluations::Object::Cluster](docs/Cluster.md)
  - [AIcrowdEvaluations::Object::Grader](docs/Grader.md)
+ - [AIcrowdEvaluations::Object::GraderLogs](docs/GraderLogs.md)
  - [AIcrowdEvaluations::Object::GraderMeta](docs/GraderMeta.md)
  - [AIcrowdEvaluations::Object::Login](docs/Login.md)
  - [AIcrowdEvaluations::Object::Organisation](docs/Organisation.md)
  - [AIcrowdEvaluations::Object::OrganisationQuota](docs/OrganisationQuota.md)
+ - [AIcrowdEvaluations::Object::SubmissionLogs](docs/SubmissionLogs.md)
  - [AIcrowdEvaluations::Object::SubmissionRetry](docs/SubmissionRetry.md)
  - [AIcrowdEvaluations::Object::SubmissionRetryInput](docs/SubmissionRetryInput.md)
  - [AIcrowdEvaluations::Object::Submissions](docs/Submissions.md)

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GraderMeta
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-05-19T22:53:00.630Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-05-31T16:46:21.820Z")
 public class GraderMeta {
   @SerializedName("dataset")
   private Object dataset = null;

@@ -11,7 +11,7 @@ package aicrowd_evaluations
 
 type SubmissionRetry struct {
 	// List of submission IDs queued for evaluation
-	Queued *interface{} `json:"queued,omitempty"`
+	Queued interface{} `json:"queued,omitempty"`
 	// List of submission IDs failed to get queued
 	Failed []int32 `json:"failed,omitempty"`
 }

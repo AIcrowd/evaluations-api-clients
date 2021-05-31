@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_submission_logs**
-> get_submission_logs(ctx, submission_id, optional)
+> ::models::SubmissionLogs get_submission_logs(ctx, submission_id, optional)
 
 
 Get submission logs from loki
@@ -194,10 +194,11 @@ Name | Type | Description  | Notes
  **submission_id** | **i32**|  | 
  **step** | **i32**| Granularity of logs | 
  **log_lines** | **i32**| Number of lines to fetch | 
+ **x_fields** | **String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**::models::SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

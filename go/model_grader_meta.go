@@ -11,9 +11,9 @@ package aicrowd_evaluations
 
 type GraderMeta struct {
 	// Dataset metadata
-	Dataset *interface{} `json:"dataset,omitempty"`
+	Dataset interface{} `json:"dataset,omitempty"`
 	// Notifications available for the grader
-	Notifications *interface{} `json:"notifications,omitempty"`
+	Notifications interface{} `json:"notifications,omitempty"`
 	// Name of the grader
 	Name string `json:"name,omitempty"`
 	// Description of the grader

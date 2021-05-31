@@ -252,7 +252,7 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId, step, logLines)
+> SubmissionLogs getSubmissionLogs(submissionId, step, logLines, xFields)
 
 
 
@@ -268,8 +268,10 @@ val apiInstance = SubmissionsApi()
 val submissionId : kotlin.Int = 56 // kotlin.Int | 
 val step : kotlin.Int = 56 // kotlin.Int | Granularity of logs
 val logLines : kotlin.Int = 56 // kotlin.Int | Number of lines to fetch
+val xFields : kotlin.String = xFields_example // kotlin.String | An optional fields mask
 try {
-    apiInstance.getSubmissionLogs(submissionId, step, logLines)
+    val result : SubmissionLogs = apiInstance.getSubmissionLogs(submissionId, step, logLines, xFields)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling SubmissionsApi#getSubmissionLogs")
     e.printStackTrace()
@@ -286,10 +288,11 @@ Name | Type | Description  | Notes
  **submissionId** | **kotlin.Int**|  |
  **step** | **kotlin.Int**| Granularity of logs | [optional]
  **logLines** | **kotlin.Int**| Number of lines to fetch | [optional]
+ **xFields** | **kotlin.String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

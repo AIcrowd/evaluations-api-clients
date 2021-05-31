@@ -177,8 +177,9 @@ export class GradersApi {
      * @param graderId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      */
-    public getGraderLogs (graderId: number, step?: number, logLines?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public getGraderLogs (graderId: number, step?: number, logLines?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.GraderLogs> {
         const localVarPath = this.basePath + '/graders/{grader_id}/logs'
             .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
 
@@ -196,6 +197,8 @@ export class GradersApi {
         if (logLines !== undefined) {
             queryParameters['log_lines'] = logLines;
         }
+
+        headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',

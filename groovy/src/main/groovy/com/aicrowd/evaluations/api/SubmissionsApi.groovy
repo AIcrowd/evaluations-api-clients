@@ -5,6 +5,7 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
 import com.aicrowd.evaluations.ApiUtils
 
+import com.aicrowd.evaluations.models.SubmissionLogs
 import com.aicrowd.evaluations.models.SubmissionRetry
 import com.aicrowd.evaluations.models.SubmissionRetryInput
 import com.aicrowd.evaluations.models.Submissions
@@ -128,7 +129,7 @@ class SubmissionsApi {
                     null )
                     
     }
-    def getSubmissionLogs ( Integer submissionId, Integer step, Integer logLines, Closure onSuccess, Closure onFailure)  {
+    def getSubmissionLogs ( Integer submissionId, Integer step, Integer logLines, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/submissions/{submission_id}/logs"
 
@@ -146,12 +147,13 @@ class SubmissionsApi {
 if (!"null".equals(String.valueOf(logLines)))
             queryParams.put("log_lines", String.valueOf(logLines))
 
+        headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    null )
+                    SubmissionLogs.class )
                     
     }
     def listSubmissions ( String perPage, String page, String meta, String status, Integer graderId, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {

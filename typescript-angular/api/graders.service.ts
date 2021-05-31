@@ -19,6 +19,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { Grader } from '../model/grader';
+import { GraderLogs } from '../model/graderLogs';
 import { GraderMeta } from '../model/graderMeta';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -314,17 +315,19 @@ export class GradersService {
      * @param graderId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public getGraderLogs(graderId: number, step?: number, logLines?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, xFields?: string, observe?: 'body', reportProgress?: boolean): Observable<GraderLogs>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, xFields?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GraderLogs>>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, xFields?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GraderLogs>>;
+    public getGraderLogs(graderId: number, step?: number, logLines?: number, xFields?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (graderId === null || graderId === undefined) {
             throw new Error('Required parameter graderId was null or undefined when calling getGraderLogs.');
         }
+
 
 
 
@@ -337,6 +340,9 @@ export class GradersService {
         }
 
         let headers = this.defaultHeaders;
+        if (xFields !== undefined && xFields !== null) {
+            headers = headers.set('X-Fields', String(xFields));
+        }
 
         // authentication (api_key) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["AUTHORIZATION"]) {
@@ -357,7 +363,7 @@ export class GradersService {
             'application/json'
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/logs`,
+        return this.httpClient.get<GraderLogs>(`${this.basePath}/graders/${encodeURIComponent(String(graderId))}/logs`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

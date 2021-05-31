@@ -177,8 +177,9 @@ export class SubmissionsApi {
      * @param submissionId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      */
-    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<{}> {
+    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, xFields?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<models.SubmissionLogs> {
         const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
 
@@ -196,6 +197,8 @@ export class SubmissionsApi {
         if (logLines !== undefined) {
             queryParameters['log_lines'] = logLines;
         }
+
+        headerParams['X-Fields'] = xFields;
 
         let httpRequestParams: ng.IRequestConfig = {
             method: 'GET',

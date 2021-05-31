@@ -9,6 +9,7 @@
  */
 goog.provide('API.Client.SubmissionsApi');
 
+goog.require('API.Client.SubmissionLogs');
 goog.require('API.Client.SubmissionRetry');
 goog.require('API.Client.SubmissionRetryInput');
 goog.require('API.Client.Submissions');
@@ -237,10 +238,11 @@ API.Client.SubmissionsApi.prototype.getSubmissionData = function(submissionId, o
  * @param {!number} submissionId 
  * @param {!number=} opt_step Granularity of logs
  * @param {!number=} opt_logLines Number of lines to fetch
+ * @param {!string=} opt_xFields An optional fields mask
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise}
+ * @return {!angular.$q.Promise<!API.Client.SubmissionLogs>}
  */
-API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, opt_step, opt_logLines, opt_extraHttpRequestParams) {
+API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, opt_step, opt_logLines, opt_xFields, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/submissions/{submission_id}/logs'
       .replace('{' + 'submission_id' + '}', String(submissionId));
@@ -261,6 +263,8 @@ API.Client.SubmissionsApi.prototype.getSubmissionLogs = function(submissionId, o
   if (opt_logLines !== undefined) {
     queryParameters['log_lines'] = opt_logLines;
   }
+
+  headerParams['X-Fields'] = opt_xFields;
 
   /** @type {!Object} */
   var httpRequestParams = {

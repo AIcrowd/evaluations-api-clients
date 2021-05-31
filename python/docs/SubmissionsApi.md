@@ -281,7 +281,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_submission_logs**
-> get_submission_logs(submission_id, step=step, log_lines=log_lines)
+> SubmissionLogs get_submission_logs(submission_id, step=step, log_lines=log_lines, x_fields=x_fields)
 
 
 
@@ -306,9 +306,11 @@ api_instance = aicrowd_evaluations.SubmissionsApi(aicrowd_evaluations.ApiClient(
 submission_id = 56 # int | 
 step = 56 # int | Granularity of logs (optional)
 log_lines = 56 # int | Number of lines to fetch (optional)
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
-    api_instance.get_submission_logs(submission_id, step=step, log_lines=log_lines)
+    api_response = api_instance.get_submission_logs(submission_id, step=step, log_lines=log_lines, x_fields=x_fields)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling SubmissionsApi->get_submission_logs: %s\n" % e)
 ```
@@ -320,10 +322,11 @@ Name | Type | Description  | Notes
  **submission_id** | **int**|  | 
  **step** | **int**| Granularity of logs | [optional] 
  **log_lines** | **int**| Number of lines to fetch | [optional] 
+ **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

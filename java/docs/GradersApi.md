@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 <a name="getGraderLogs"></a>
 # **getGraderLogs**
-> getGraderLogs(graderId, step, logLines)
+> GraderLogs getGraderLogs(graderId, step, logLines, xFields)
 
 
 
@@ -320,8 +320,10 @@ GradersApi apiInstance = new GradersApi();
 Integer graderId = 56; // Integer | 
 Integer step = 56; // Integer | Granularity of logs
 Integer logLines = 56; // Integer | Number of lines to fetch
+String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    apiInstance.getGraderLogs(graderId, step, logLines);
+    GraderLogs result = apiInstance.getGraderLogs(graderId, step, logLines, xFields);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GradersApi#getGraderLogs");
     e.printStackTrace();
@@ -335,10 +337,11 @@ Name | Type | Description  | Notes
  **graderId** | **Integer**|  |
  **step** | **Integer**| Granularity of logs | [optional]
  **logLines** | **Integer**| Number of lines to fetch | [optional]
+ **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

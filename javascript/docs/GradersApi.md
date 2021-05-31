@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 
 <a name="getGraderLogs"></a>
 # **getGraderLogs**
-> getGraderLogs(graderId, opts)
+> GraderLogs getGraderLogs(graderId, opts)
 
 
 
@@ -313,14 +313,15 @@ var graderId = 56; // Number |
 
 var opts = { 
   'step': 56, // Number | Granularity of logs
-  'logLines': 56 // Number | Number of lines to fetch
+  'logLines': 56, // Number | Number of lines to fetch
+  'xFields': "xFields_example" // String | An optional fields mask
 };
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getGraderLogs(graderId, opts, callback);
@@ -333,10 +334,11 @@ Name | Type | Description  | Notes
  **graderId** | **Number**|  | 
  **step** | **Number**| Granularity of logs | [optional] 
  **logLines** | **Number**| Number of lines to fetch | [optional] 
+ **xFields** | **String**| An optional fields mask | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**GraderLogs**](GraderLogs.md)
 
 ### Authorization
 

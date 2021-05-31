@@ -522,6 +522,32 @@ export class Grader {
     }
 }
 
+export class GraderLogs {
+    /**
+    * Status of the operation
+    */
+    'status'?: string;
+    'data'?: any;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "string"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "any"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return GraderLogs.attributeTypeMap;
+    }
+}
+
 export class GraderMeta {
     /**
     * Dataset metadata
@@ -698,6 +724,32 @@ export class OrganisationQuota {
 
     static getAttributeTypeMap() {
         return OrganisationQuota.attributeTypeMap;
+    }
+}
+
+export class SubmissionLogs {
+    /**
+    * Status of the operation
+    */
+    'status'?: string;
+    'data'?: any;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "string"
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "any"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return SubmissionLogs.attributeTypeMap;
     }
 }
 
@@ -1026,10 +1078,12 @@ let typeMap: {[index: string]: any} = {
     "AuthResponse": AuthResponse,
     "Cluster": Cluster,
     "Grader": Grader,
+    "GraderLogs": GraderLogs,
     "GraderMeta": GraderMeta,
     "Login": Login,
     "Organisation": Organisation,
     "OrganisationQuota": OrganisationQuota,
+    "SubmissionLogs": SubmissionLogs,
     "SubmissionRetry": SubmissionRetry,
     "SubmissionRetryInput": SubmissionRetryInput,
     "Submissions": Submissions,
@@ -1844,9 +1898,10 @@ export class GradersApi {
      * @param graderId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public getGraderLogs (graderId: number, step?: number, logLines?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public getGraderLogs (graderId: number, step?: number, logLines?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: GraderLogs;  }> {
         const localVarPath = this.basePath + '/graders/{grader_id}/logs'
             .replace('{' + 'grader_id' + '}', encodeURIComponent(String(graderId)));
         let localVarQueryParameters: any = {};
@@ -1866,6 +1921,7 @@ export class GradersApi {
             localVarQueryParameters['log_lines'] = ObjectSerializer.serialize(logLines, "number");
         }
 
+        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -1890,11 +1946,12 @@ export class GradersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: GraderLogs;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "GraderLogs");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2834,9 +2891,10 @@ export class SubmissionsApi {
      * @param submissionId 
      * @param step Granularity of logs
      * @param logLines Number of lines to fetch
+     * @param xFields An optional fields mask
      * @param {*} [options] Override http request options.
      */
-    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public getSubmissionLogs (submissionId: number, step?: number, logLines?: number, xFields?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: SubmissionLogs;  }> {
         const localVarPath = this.basePath + '/submissions/{submission_id}/logs'
             .replace('{' + 'submission_id' + '}', encodeURIComponent(String(submissionId)));
         let localVarQueryParameters: any = {};
@@ -2856,6 +2914,7 @@ export class SubmissionsApi {
             localVarQueryParameters['log_lines'] = ObjectSerializer.serialize(logLines, "number");
         }
 
+        localVarHeaderParams['X-Fields'] = ObjectSerializer.serialize(xFields, "string");
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -2880,11 +2939,12 @@ export class SubmissionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: SubmissionLogs;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
+                    body = ObjectSerializer.deserialize(body, "SubmissionLogs");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

@@ -12,6 +12,7 @@
 package com.aicrowd.evaluations.apis
 
 import com.aicrowd.evaluations.models.Grader
+import com.aicrowd.evaluations.models.GraderLogs
 import com.aicrowd.evaluations.models.GraderMeta
 
 import com.aicrowd.evaluations.infrastructure.*
@@ -213,15 +214,17 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
     * @param graderId  
     * @param step Granularity of logs (optional)
     * @param logLines Number of lines to fetch (optional)
-    * @return void
+    * @param xFields An optional fields mask (optional)
+    * @return GraderLogs
     */
-    fun getGraderLogs(graderId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int) : Unit {
+    @Suppress("UNCHECKED_CAST")
+    fun getGraderLogs(graderId: kotlin.Int, step: kotlin.Int, logLines: kotlin.Int, xFields: kotlin.String) : GraderLogs {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf("step" to listOf("$step"), "log_lines" to listOf("$logLines"))
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Fields" to xFields)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -231,13 +234,13 @@ class GradersApi(basePath: kotlin.String = "https://localhost/v1") : ApiClient(b
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<GraderLogs>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as GraderLogs
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

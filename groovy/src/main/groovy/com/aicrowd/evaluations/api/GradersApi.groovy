@@ -6,6 +6,7 @@ import static groovyx.net.http.Method.*
 import com.aicrowd.evaluations.ApiUtils
 
 import com.aicrowd.evaluations.models.Grader
+import com.aicrowd.evaluations.models.GraderLogs
 import com.aicrowd.evaluations.models.GraderMeta
 
 import java.util.*;
@@ -127,7 +128,7 @@ class GradersApi {
                     Grader.class )
                     
     }
-    def getGraderLogs ( Integer graderId, Integer step, Integer logLines, Closure onSuccess, Closure onFailure)  {
+    def getGraderLogs ( Integer graderId, Integer step, Integer logLines, String xFields, Closure onSuccess, Closure onFailure)  {
         // create path and map path parameters (TODO)
         String resourcePath = "/graders/{grader_id}/logs"
 
@@ -145,12 +146,13 @@ class GradersApi {
 if (!"null".equals(String.valueOf(logLines)))
             queryParams.put("log_lines", String.valueOf(logLines))
 
+        headerParams.put("X-Fields", xFields)
 
         // Also still TODO: form params, body param
 
         invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
-                    null )
+                    GraderLogs.class )
                     
     }
     def listGraders ( String perPage, String page, String meta, String name, String status, Integer userId, String xFields, Closure onSuccess, Closure onFailure)  {

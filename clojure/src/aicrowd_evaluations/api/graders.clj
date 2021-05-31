@@ -111,11 +111,11 @@
   "
   Get grader logs from loki"
   ([grader-id ] (get-grader-logs-with-http-info grader-id nil))
-  ([grader-id {:keys [step log-lines ]}]
+  ([grader-id {:keys [step log-lines x-fields ]}]
    (check-required-params grader-id)
    (call-api "/graders/{grader_id}/logs" :get
              {:path-params   {"grader_id" grader-id }
-              :header-params {}
+              :header-params {"X-Fields" x-fields }
               :query-params  {"step" step "log_lines" log-lines }
               :form-params   {}
               :content-types ["application/json"]

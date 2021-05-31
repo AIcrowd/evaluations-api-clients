@@ -417,7 +417,8 @@ case $state in
           "grader_id=:[PATH] "
           "step=:[QUERY] Granularity of logs"
 "log_lines=:[QUERY] Number of lines to fetch"
-          )
+          "X-Fields\::[HEADER] An optional fields mask"
+)
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       listGraders)
@@ -534,7 +535,8 @@ case $state in
           "submission_id=:[PATH] "
           "step=:[QUERY] Granularity of logs"
 "log_lines=:[QUERY] Number of lines to fetch"
-          )
+          "X-Fields\::[HEADER] An optional fields mask"
+)
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       listSubmissions)

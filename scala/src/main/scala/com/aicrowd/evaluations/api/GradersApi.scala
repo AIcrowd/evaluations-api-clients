@@ -15,6 +15,7 @@ package com.aicrowd.evaluations.api
 import java.text.SimpleDateFormat
 
 import com.aicrowd.evaluations.models.Grader
+import com.aicrowd.evaluations.models.GraderLogs
 import com.aicrowd.evaluations.models.GraderMeta
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -221,10 +222,11 @@ class GradersApi(
    * @param graderId  
    * @param step Granularity of logs (optional)
    * @param logLines Number of lines to fetch (optional)
-   * @return void
+   * @param xFields An optional fields mask (optional)
+   * @return GraderLogs
    */
-  def getGraderLogs(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
-    val await = Try(Await.result(getGraderLogsAsync(graderId, step, logLines), Duration.Inf))
+  def getGraderLogs(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None, xFields: Option[String] = None): Option[GraderLogs] = {
+    val await = Try(Await.result(getGraderLogsAsync(graderId, step, logLines, xFields), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -238,10 +240,11 @@ class GradersApi(
    * @param graderId  
    * @param step Granularity of logs (optional)
    * @param logLines Number of lines to fetch (optional)
-   * @return Future(void)
+   * @param xFields An optional fields mask (optional)
+   * @return Future(GraderLogs)
    */
-  def getGraderLogsAsync(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None) = {
-      helper.getGraderLogs(graderId, step, logLines)
+  def getGraderLogsAsync(graderId: Integer, step: Option[Integer] = None, logLines: Option[Integer] = None, xFields: Option[String] = None): Future[GraderLogs] = {
+      helper.getGraderLogs(graderId, step, logLines, xFields)
   }
 
   /**
@@ -436,8 +439,9 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
 
   def getGraderLogs(graderId: Integer,
     step: Option[Integer] = None,
-    logLines: Option[Integer] = None
-    )(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+    logLines: Option[Integer] = None,
+    xFields: Option[String] = None
+    )(implicit reader: ClientResponseReader[GraderLogs]): Future[GraderLogs] = {
     // create path and map variables
     val path = (addFmt("/graders/{grader_id}/logs")
       replaceAll("\\{" + "grader_id" + "\\}", graderId.toString))
@@ -453,6 +457,10 @@ class GradersApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     logLines match {
       case Some(param) => queryParams += "log_lines" -> param.toString
       case _ => queryParams
+    }
+    xFields match {
+      case Some(param) => headerParams += "X-Fields" -> param.toString
+      case _ => headerParams
     }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")

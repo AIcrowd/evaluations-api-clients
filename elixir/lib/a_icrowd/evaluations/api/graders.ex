@@ -152,17 +152,19 @@ defmodule AIcrowd.Evaluations.Api.Graders do
   - opts (KeywordList): [optional] Optional parameters
     - :step (integer()): Granularity of logs
     - :log_lines (integer()): Number of lines to fetch
+    - :x_fields (String.t): An optional fields mask
 
   ## Returns
 
-  {:ok, %{}} on success
+  {:ok, %AIcrowd.Evaluations.Model.GraderLogs{}} on success
   {:error, info} on failure
   """
-  @spec get_grader_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec get_grader_logs(Tesla.Env.client, integer(), keyword()) :: {:ok, AIcrowd.Evaluations.Model.GraderLogs.t} | {:error, Tesla.Env.t}
   def get_grader_logs(connection, grader_id, opts \\ []) do
     optional_params = %{
       :"step" => :query,
-      :"log_lines" => :query
+      :"log_lines" => :query,
+      :"X-Fields" => :headers
     }
     %{}
     |> method(:get)
@@ -170,7 +172,7 @@ defmodule AIcrowd.Evaluations.Api.Graders do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> decode(%AIcrowd.Evaluations.Model.GraderLogs{})
   end
 
   @doc """

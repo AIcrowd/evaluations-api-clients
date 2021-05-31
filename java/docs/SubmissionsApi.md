@@ -292,7 +292,7 @@ null (empty response body)
 
 <a name="getSubmissionLogs"></a>
 # **getSubmissionLogs**
-> getSubmissionLogs(submissionId, step, logLines)
+> SubmissionLogs getSubmissionLogs(submissionId, step, logLines, xFields)
 
 
 
@@ -319,8 +319,10 @@ SubmissionsApi apiInstance = new SubmissionsApi();
 Integer submissionId = 56; // Integer | 
 Integer step = 56; // Integer | Granularity of logs
 Integer logLines = 56; // Integer | Number of lines to fetch
+String xFields = "xFields_example"; // String | An optional fields mask
 try {
-    apiInstance.getSubmissionLogs(submissionId, step, logLines);
+    SubmissionLogs result = apiInstance.getSubmissionLogs(submissionId, step, logLines, xFields);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SubmissionsApi#getSubmissionLogs");
     e.printStackTrace();
@@ -334,10 +336,11 @@ Name | Type | Description  | Notes
  **submissionId** | **Integer**|  |
  **step** | **Integer**| Granularity of logs | [optional]
  **logLines** | **Integer**| Number of lines to fetch | [optional]
+ **xFields** | **String**| An optional fields mask | [optional]
 
 ### Return type
 
-null (empty response body)
+[**SubmissionLogs**](SubmissionLogs.md)
 
 ### Authorization
 

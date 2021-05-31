@@ -399,6 +399,7 @@ sub get_submission_data {
 # @param int $submission_id  (required)
 # @param int $step Granularity of logs (optional)
 # @param int $log_lines Number of lines to fetch (optional)
+# @param string $x_fields An optional fields mask (optional)
 {
     my $params = {
     'submission_id' => {
@@ -416,14 +417,19 @@ sub get_submission_data {
         description => 'Number of lines to fetch',
         required => '0',
     },
+    'x_fields' => {
+        data_type => 'string',
+        description => 'An optional fields mask',
+        required => '0',
+    },
     };
     __PACKAGE__->method_documentation->{ 'get_submission_logs' } = { 
     	summary => '',
         params => $params,
-        returns => undef,
+        returns => 'SubmissionLogs',
         };
 }
-# @return void
+# @return SubmissionLogs
 #
 sub get_submission_logs {
     my ($self, %args) = @_;
@@ -458,6 +464,11 @@ sub get_submission_logs {
         $query_params->{'log_lines'} = $self->{api_client}->to_query_value($args{'log_lines'});
     }
 
+    # header params
+    if ( exists $args{'x_fields'}) {
+        $header_params->{'X-Fields'} = $self->{api_client}->to_header_value($args{'x_fields'});
+    }
+
     # path params
     if ( exists $args{'submission_id'}) {
         my $_base_variable = "{" . "submission_id" . "}";
@@ -470,10 +481,14 @@ sub get_submission_logs {
     my $auth_settings = [qw(api_key )];
 
     # make the API Call
-    $self->{api_client}->call_api($_resource_path, $_method,
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
                                            $query_params, $form_params,
                                            $header_params, $_body_data, $auth_settings);
-    return;
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('SubmissionLogs', $response);
+    return $_response_object;
 }
 
 #
