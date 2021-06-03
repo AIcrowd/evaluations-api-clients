@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GraderLogs
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-05-31T16:46:21.820Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-06-03T15:19:31.024Z")
 public class GraderLogs {
   @SerializedName("status")
   private String status = null;
