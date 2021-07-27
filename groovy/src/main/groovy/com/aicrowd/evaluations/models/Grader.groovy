@@ -64,6 +64,9 @@ class Grader {
   /* Workflow priority to assign */
   Integer workflowPriority = null
 
+  /* Path to grader configuration (default: aicrowd.yaml) */
+  String configPath = null
+
   /* User ID */
   Integer userId = null
 

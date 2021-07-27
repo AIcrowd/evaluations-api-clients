@@ -44,7 +44,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="meta">Additional meta data of the grader.</param>
         /// <param name="secrets">List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml.</param>
         /// <param name="workflowPriority">Workflow priority to assign.</param>
-        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?))
+        /// <param name="configPath">Path to grader configuration (default: aicrowd.yaml).</param>
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?), string configPath = default(string))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -60,6 +61,7 @@ namespace Com.AIcrowd.Evaluations.Model
             this.Meta = meta;
             this.Secrets = secrets;
             this.WorkflowPriority = workflowPriority;
+            this.ConfigPath = configPath;
         }
         
         /// <summary>
@@ -196,6 +198,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public int? WorkflowPriority { get; set; }
 
         /// <summary>
+        /// Path to grader configuration (default: aicrowd.yaml)
+        /// </summary>
+        /// <value>Path to grader configuration (default: aicrowd.yaml)</value>
+        [DataMember(Name="config_path", EmitDefaultValue=false)]
+        public string ConfigPath { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -236,6 +245,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  AllowedExtensions: ").Append(AllowedExtensions).Append("\n");
             sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
+            sb.Append("  ConfigPath: ").Append(ConfigPath).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -368,6 +378,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WorkflowPriority.Equals(input.WorkflowPriority))
                 ) && 
                 (
+                    this.ConfigPath == input.ConfigPath ||
+                    (this.ConfigPath != null &&
+                    this.ConfigPath.Equals(input.ConfigPath))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -426,6 +441,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.AllowedExtensions.GetHashCode();
                 if (this.WorkflowPriority != null)
                     hashCode = hashCode * 59 + this.WorkflowPriority.GetHashCode();
+                if (this.ConfigPath != null)
+                    hashCode = hashCode * 59 + this.ConfigPath.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

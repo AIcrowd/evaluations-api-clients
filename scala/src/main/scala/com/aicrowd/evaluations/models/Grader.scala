@@ -53,6 +53,8 @@ case class Grader (
   allowedExtensions: Option[Any] = None,
   // Workflow priority to assign
   workflowPriority: Option[Integer] = None,
+  // Path to grader configuration (default: aicrowd.yaml)
+  configPath: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

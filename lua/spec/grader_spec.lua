@@ -149,6 +149,13 @@ describe("grader", function()
     end)
   end)
 
+  -- unit tests for the property 'config_path'
+  describe("property config_path test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'user_id'
   describe("property user_id test", function()
     it("should work", function()

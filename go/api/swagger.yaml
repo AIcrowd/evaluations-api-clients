@@ -1094,6 +1094,9 @@ definitions:
       workflow_priority:
         type: "integer"
         description: "Workflow priority to assign"
+      config_path:
+        type: "string"
+        description: "Path to grader configuration (default: aicrowd.yaml)"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1108,6 +1111,7 @@ definitions:
       created: "2000-01-23T04:56:07.000+00:00"
       description: "description"
       workflow_spec: "{}"
+      config_path: "config_path"
       secrets: "{}"
       archived: true
       organisation_id: 5
@@ -1124,7 +1128,7 @@ definitions:
       logs: "logs"
       notifications: "notifications"
       status: "status"
-    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,user_id,organisation_id}"
+    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,config_path,user_id,organisation_id}"
   GraderMeta:
     type: "object"
     properties:

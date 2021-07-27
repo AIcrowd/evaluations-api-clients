@@ -52,6 +52,8 @@ type Grader struct {
 	AllowedExtensions interface{} `json:"allowed_extensions,omitempty"`
 	// Workflow priority to assign
 	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
+	// Path to grader configuration (default: aicrowd.yaml)
+	ConfigPath string `json:"config_path,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

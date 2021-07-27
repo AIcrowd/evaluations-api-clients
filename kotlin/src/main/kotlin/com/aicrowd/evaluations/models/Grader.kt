@@ -33,6 +33,7 @@ package com.aicrowd.evaluations.models
  * @param wf_name Name of the workflow used to setup grader
  * @param allowed_extensions Allowed extensions for the grader
  * @param workflow_priority Workflow priority to assign
+ * @param config_path Path to grader configuration (default: aicrowd.yaml)
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -75,6 +76,8 @@ data class Grader (
     val allowed_extensions: kotlin.Any? = null,
     /* Workflow priority to assign */
     val workflow_priority: kotlin.Int? = null,
+    /* Path to grader configuration (default: aicrowd.yaml) */
+    val config_path: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

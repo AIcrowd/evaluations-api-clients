@@ -400,6 +400,10 @@ export class Grader {
     */
     'workflowPriority'?: number;
     /**
+    * Path to grader configuration (default: aicrowd.yaml)
+    */
+    'configPath'?: string;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -505,6 +509,11 @@ export class Grader {
             "name": "workflowPriority",
             "baseName": "workflow_priority",
             "type": "number"
+        },
+        {
+            "name": "configPath",
+            "baseName": "config_path",
+            "type": "string"
         },
         {
             "name": "userId",

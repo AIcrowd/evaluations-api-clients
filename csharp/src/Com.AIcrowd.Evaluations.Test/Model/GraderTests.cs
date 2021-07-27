@@ -219,6 +219,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WorkflowPriority'
         }
         /// <summary>
+        /// Test the property 'ConfigPath'
+        /// </summary>
+        [Test]
+        public void ConfigPathTest()
+        {
+            // TODO unit test for the property 'ConfigPath'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

@@ -90,6 +90,10 @@ export interface Grader {
      */
     "workflowPriority"?: number;
     /**
+     * Path to grader configuration (default: aicrowd.yaml)
+     */
+    "configPath"?: string;
+    /**
      * User ID
      */
     "userId"?: number;

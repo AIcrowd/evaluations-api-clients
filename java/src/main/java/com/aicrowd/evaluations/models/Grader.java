@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-06-22T20:45:42.003Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-07-27T04:46:25.496Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -86,6 +86,9 @@ public class Grader {
 
   @SerializedName("workflow_priority")
   private Integer workflowPriority = null;
+
+  @SerializedName("config_path")
+  private String configPath = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -318,6 +321,24 @@ public class Grader {
     this.workflowPriority = workflowPriority;
   }
 
+  public Grader configPath(String configPath) {
+    this.configPath = configPath;
+    return this;
+  }
+
+   /**
+   * Path to grader configuration (default: aicrowd.yaml)
+   * @return configPath
+  **/
+  @ApiModelProperty(value = "Path to grader configuration (default: aicrowd.yaml)")
+  public String getConfigPath() {
+    return configPath;
+  }
+
+  public void setConfigPath(String configPath) {
+    this.configPath = configPath;
+  }
+
    /**
    * User ID
    * @return userId
@@ -365,13 +386,14 @@ public class Grader {
         Objects.equals(this.wfName, grader.wfName) &&
         Objects.equals(this.allowedExtensions, grader.allowedExtensions) &&
         Objects.equals(this.workflowPriority, grader.workflowPriority) &&
+        Objects.equals(this.configPath, grader.configPath) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, archived, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, workflowPriority, userId, organisationId);
+    return Objects.hash(id, created, updated, archived, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, workflowPriority, configPath, userId, organisationId);
   }
 
 
@@ -399,6 +421,7 @@ public class Grader {
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    allowedExtensions: ").append(toIndentedString(allowedExtensions)).append("\n");
     sb.append("    workflowPriority: ").append(toIndentedString(workflowPriority)).append("\n");
+    sb.append("    configPath: ").append(toIndentedString(configPath)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

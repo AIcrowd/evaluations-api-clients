@@ -24,6 +24,7 @@
        'wf_name' => binary(),
        'allowed_extensions' => maps:map(),
        'workflow_priority' => integer(),
+       'config_path' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -47,6 +48,7 @@ encode(#{ 'id' := Id,
           'wf_name' := WfName,
           'allowed_extensions' := AllowedExtensions,
           'workflow_priority' := WorkflowPriority,
+          'config_path' := ConfigPath,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -69,6 +71,7 @@ encode(#{ 'id' := Id,
        'wf_name' => WfName,
        'allowed_extensions' => AllowedExtensions,
        'workflow_priority' => WorkflowPriority,
+       'config_path' => ConfigPath,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

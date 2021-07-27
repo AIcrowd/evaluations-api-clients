@@ -276,6 +276,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'config_path' => {
+    	datatype => 'string',
+    	base_name => 'config_path',
+    	description => 'Path to grader configuration (default: aicrowd.yaml)',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -312,6 +319,7 @@ __PACKAGE__->swagger_types( {
     'wf_name' => 'string',
     'allowed_extensions' => 'object',
     'workflow_priority' => 'int',
+    'config_path' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -336,6 +344,7 @@ __PACKAGE__->attribute_map( {
     'wf_name' => 'wf_name',
     'allowed_extensions' => 'allowed_extensions',
     'workflow_priority' => 'workflow_priority',
+    'config_path' => 'config_path',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

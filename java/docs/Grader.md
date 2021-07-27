@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **wfName** | **String** | Name of the workflow used to setup grader |  [optional]
 **allowedExtensions** | **Object** | Allowed extensions for the grader |  [optional]
 **workflowPriority** | **Integer** | Workflow priority to assign |  [optional]
+**configPath** | **String** | Path to grader configuration (default: aicrowd.yaml) |  [optional]
 **userId** | **Integer** | User ID |  [optional]
 **organisationId** | **Integer** | Organisation ID |  [optional]
 

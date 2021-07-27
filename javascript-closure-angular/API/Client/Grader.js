@@ -139,6 +139,13 @@ API.Client.Grader.prototype.allowedExtensions;
 API.Client.Grader.prototype.workflowPriority;
 
 /**
+ * Path to grader configuration (default: aicrowd.yaml)
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.configPath;
+
+/**
  * User ID
  * @type {!number}
  * @export

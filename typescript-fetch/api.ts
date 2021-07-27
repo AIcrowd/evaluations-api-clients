@@ -325,6 +325,12 @@ export interface Grader {
      */
     workflowPriority?: number;
     /**
+     * Path to grader configuration (default: aicrowd.yaml)
+     * @type {string}
+     * @memberof Grader
+     */
+    configPath?: string;
+    /**
      * User ID
      * @type {number}
      * @memberof Grader

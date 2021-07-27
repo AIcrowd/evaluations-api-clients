@@ -71,6 +71,9 @@ pub struct Grader {
   /// Workflow priority to assign
   #[serde(rename = "workflow_priority")]
   workflow_priority: Option<i32>,
+  /// Path to grader configuration (default: aicrowd.yaml)
+  #[serde(rename = "config_path")]
+  config_path: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -101,6 +104,7 @@ impl Grader {
       wf_name: None,
       allowed_extensions: None,
       workflow_priority: None,
+      config_path: None,
       user_id: None,
       organisation_id: None
     }
@@ -424,6 +428,23 @@ impl Grader {
 
   pub fn reset_workflow_priority(&mut self) {
     self.workflow_priority = None;
+  }
+
+  pub fn set_config_path(&mut self, config_path: String) {
+    self.config_path = Some(config_path);
+  }
+
+  pub fn with_config_path(mut self, config_path: String) -> Grader {
+    self.config_path = Some(config_path);
+    self
+  }
+
+  pub fn config_path(&self) -> Option<&String> {
+    self.config_path.as_ref()
+  }
+
+  pub fn reset_config_path(&mut self) {
+    self.config_path = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {
