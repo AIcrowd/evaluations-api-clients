@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations", "src\Com.AIcrowd.Evaluations\Com.AIcrowd.Evaluations.csproj", "{9965F1E2-3706-49CB-BAB9-C35843397DF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations", "src\Com.AIcrowd.Evaluations\Com.AIcrowd.Evaluations.csproj", "{8BAFB6B1-9709-4739-91F5-5C1D826256F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.AIcrowd.Evaluations.Test", "src\Com.AIcrowd.Evaluations.Test\Com.AIcrowd.Evaluations.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9965F1E2-3706-49CB-BAB9-C35843397DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9965F1E2-3706-49CB-BAB9-C35843397DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9965F1E2-3706-49CB-BAB9-C35843397DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9965F1E2-3706-49CB-BAB9-C35843397DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BAFB6B1-9709-4739-91F5-5C1D826256F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BAFB6B1-9709-4739-91F5-5C1D826256F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BAFB6B1-9709-4739-91F5-5C1D826256F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BAFB6B1-9709-4739-91F5-5C1D826256F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
