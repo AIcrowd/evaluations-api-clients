@@ -46,6 +46,7 @@ paths:
         format: "mask"
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
+      security: []
       responses:
         "200":
           description: "Success"
@@ -53,7 +54,6 @@ paths:
             $ref: "#/definitions/AuthResponse"
         "401":
           description: "Wrong username or password"
-      security: []
   /auth/logout:
     post:
       tags:
@@ -117,12 +117,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Cluster"
-        "400":
-          description: "Invalid inputs"
   /clusters/{cluster_id}:
     get:
       tags:
@@ -144,12 +144,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Cluster not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Cluster"
-        "404":
-          description: "Cluster not found"
     delete:
       tags:
       - "clusters"
@@ -162,10 +162,10 @@ paths:
         type: "integer"
         x-exportParamName: "ClusterId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Cluster not found"
+        "200":
+          description: "Success"
   /graders/:
     get:
       tags:
@@ -251,16 +251,16 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Grader"
-        "400":
-          description: "Invalid inputs"
         "403":
           description: "Cluster not ready"
         "404":
           description: "Cluster not found"
+        "400":
+          description: "Invalid inputs"
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Grader"
   /graders/{grader_id}:
     get:
       tags:
@@ -282,12 +282,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Grader not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Grader"
-        "404":
-          description: "Grader not found"
     delete:
       tags:
       - "graders"
@@ -300,10 +300,10 @@ paths:
         type: "integer"
         x-exportParamName: "GraderId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Grader not found"
+        "200":
+          description: "Success"
     patch:
       tags:
       - "graders"
@@ -331,14 +331,14 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Grader not found"
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Grader"
-        "400":
-          description: "Invalid inputs"
-        "404":
-          description: "Grader not found"
   /graders/{grader_id}/archive:
     post:
       tags:
@@ -352,12 +352,12 @@ paths:
         type: "integer"
         x-exportParamName: "GraderId"
       responses:
-        "200":
-          description: "Success"
-        "403":
-          description: "Grader not ready"
         "404":
           description: "Grader not found"
+        "403":
+          description: "Grader not ready"
+        "200":
+          description: "Success"
   /graders/{grader_id}/logs:
     get:
       tags:
@@ -393,12 +393,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Grader not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/GraderLogs"
-        "404":
-          description: "Grader not found"
   /graders/{grader_id}/logs/download:
     get:
       tags:
@@ -412,10 +412,10 @@ paths:
         type: "integer"
         x-exportParamName: "GraderId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Grader not found"
+        "200":
+          description: "Success"
   /graders/{grader_id}/unarchive:
     post:
       tags:
@@ -429,12 +429,12 @@ paths:
         type: "integer"
         x-exportParamName: "GraderId"
       responses:
-        "200":
-          description: "Success"
-        "403":
-          description: "Grader not ready"
         "404":
           description: "Grader not found"
+        "403":
+          description: "Grader not ready"
+        "200":
+          description: "Success"
   /organisations/:
     get:
       tags:
@@ -482,10 +482,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/Organisation"
-        "400":
-          description: "Invalid inputs"
         "409":
           description: "Organisation already exists"
+        "400":
+          description: "Invalid inputs"
   /organisations/{organisation_id}:
     get:
       tags:
@@ -507,12 +507,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Organisation not found."
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Organisation"
-        "404":
-          description: "Organisation not found."
     put:
       tags:
       - "organisations"
@@ -539,14 +539,14 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Organisation not found"
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Organisation"
-        "400":
-          description: "Invalid inputs"
-        "404":
-          description: "Organisation not found"
     delete:
       tags:
       - "organisations"
@@ -559,10 +559,10 @@ paths:
         type: "integer"
         x-exportParamName: "OrganisationId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Organisation not found"
+        "200":
+          description: "Success"
   /organisations/{organisation_id}/addquota:
     put:
       tags:
@@ -582,10 +582,10 @@ paths:
           $ref: "#/definitions/OrganisationQuota"
         x-exportParamName: "Payload"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Organisation not found."
+        "200":
+          description: "Success"
   /submissions/:
     get:
       tags:
@@ -671,14 +671,14 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "403":
+          description: "Grader not found or ready"
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submissions"
-        "400":
-          description: "Invalid inputs"
-        "403":
-          description: "Grader not found or ready"
   /submissions/retry:
     post:
       tags:
@@ -701,12 +701,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Submission not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/SubmissionRetry"
-        "404":
-          description: "Submission not found"
   /submissions/{submission_id}:
     get:
       tags:
@@ -728,12 +728,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Submission not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submissions"
-        "404":
-          description: "Submission not found"
     delete:
       tags:
       - "submissions"
@@ -746,10 +746,10 @@ paths:
         type: "integer"
         x-exportParamName: "SubmissionId"
       responses:
-        "201":
-          description: "Success"
         "404":
           description: "Submission not found"
+        "201":
+          description: "Success"
   /submissions/{submission_id}/data:
     get:
       tags:
@@ -763,10 +763,10 @@ paths:
         type: "integer"
         x-exportParamName: "SubmissionId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Submission not found"
+        "200":
+          description: "Success"
   /submissions/{submission_id}/logs:
     get:
       tags:
@@ -802,12 +802,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "Submission not found"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/SubmissionLogs"
-        "404":
-          description: "Submission not found"
   /submissions/{submission_id}/logs/download:
     get:
       tags:
@@ -821,10 +821,10 @@ paths:
         type: "integer"
         x-exportParamName: "SubmissionId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "Submission not found"
+        "200":
+          description: "Success"
   /users/:
     get:
       tags:
@@ -868,12 +868,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        "400":
-          description: "Invalid inputs"
   /users/{user_id}:
     get:
       tags:
@@ -895,12 +895,12 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "User not found."
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        "404":
-          description: "User not found."
     put:
       tags:
       - "users"
@@ -927,14 +927,14 @@ paths:
         x-exportParamName: "XFields"
         x-optionalDataType: "String"
       responses:
+        "404":
+          description: "User not found"
+        "400":
+          description: "Invalid inputs"
         "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        "400":
-          description: "Invalid inputs"
-        "404":
-          description: "User not found"
     delete:
       tags:
       - "users"
@@ -947,10 +947,10 @@ paths:
         type: "integer"
         x-exportParamName: "UserId"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "User not found"
+        "200":
+          description: "Success"
   /users/{user_id}/addquota:
     put:
       tags:
@@ -970,10 +970,10 @@ paths:
           $ref: "#/definitions/UserQuota"
         x-exportParamName: "Payload"
       responses:
-        "200":
-          description: "Success"
         "404":
           description: "User not found"
+        "200":
+          description: "Success"
 securityDefinitions:
   api_key:
     type: "apiKey"
@@ -1487,7 +1487,7 @@ definitions:
     example:
       quota: 0
 responses:
-  MaskError:
-    description: "When any error occurs on mask"
   ParseError:
     description: "When a mask can't be parsed"
+  MaskError:
+    description: "When any error occurs on mask"
