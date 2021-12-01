@@ -13,12 +13,12 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.AuthLogout;
 import com.aicrowd.evaluations.models.AuthResponse;
 import com.aicrowd.evaluations.models.Login;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +39,11 @@ public class AuthApiTest {
      *
      * Log in a user with email and password.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void loginTest() throws ApiException {
+    public void loginTest() throws Exception {
         Login payload = null;
         String xFields = null;
         AuthResponse response = api.login(payload, xFields);
@@ -56,11 +56,11 @@ public class AuthApiTest {
      *
      * Invalidate the current authorization token.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void logoutTest() throws ApiException {
+    public void logoutTest() throws Exception {
         String xFields = null;
         AuthLogout response = api.logout(xFields);
 

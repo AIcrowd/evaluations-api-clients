@@ -13,12 +13,12 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.Grader;
 import com.aicrowd.evaluations.models.GraderLogs;
 import com.aicrowd.evaluations.models.GraderMeta;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +39,11 @@ public class GradersApiTest {
      *
      * Archive a grader
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void archiveGraderTest() throws ApiException {
+    public void archiveGraderTest() throws Exception {
         Integer graderId = null;
         api.archiveGrader(graderId);
 
@@ -55,11 +55,11 @@ public class GradersApiTest {
      *
      * Create a new grader
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createGraderTest() throws ApiException {
+    public void createGraderTest() throws Exception {
         Grader payload = null;
         String xFields = null;
         Grader response = api.createGrader(payload, xFields);
@@ -72,11 +72,11 @@ public class GradersApiTest {
      *
      * Delete a grader by its ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteGraderTest() throws ApiException {
+    public void deleteGraderTest() throws Exception {
         Integer graderId = null;
         api.deleteGrader(graderId);
 
@@ -88,11 +88,11 @@ public class GradersApiTest {
      *
      * Get the grader logs by submission ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void downloadGraderLogsTest() throws ApiException {
+    public void downloadGraderLogsTest() throws Exception {
         Integer graderId = null;
         api.downloadGraderLogs(graderId);
 
@@ -104,11 +104,11 @@ public class GradersApiTest {
      *
      * Get details of a grader by its ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getGraderTest() throws ApiException {
+    public void getGraderTest() throws Exception {
         Integer graderId = null;
         String xFields = null;
         Grader response = api.getGrader(graderId, xFields);
@@ -121,11 +121,11 @@ public class GradersApiTest {
      *
      * Get grader logs from loki
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getGraderLogsTest() throws ApiException {
+    public void getGraderLogsTest() throws Exception {
         Integer graderId = null;
         Integer step = null;
         Integer logLines = null;
@@ -140,11 +140,11 @@ public class GradersApiTest {
      *
      * List all graders available
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void listGradersTest() throws ApiException {
+    public void listGradersTest() throws Exception {
         String perPage = null;
         String page = null;
         String meta = null;
@@ -162,11 +162,11 @@ public class GradersApiTest {
      *
      * Unarchive a grader
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void unarchiveGraderTest() throws ApiException {
+    public void unarchiveGraderTest() throws Exception {
         Integer graderId = null;
         api.unarchiveGrader(graderId);
 
@@ -178,11 +178,11 @@ public class GradersApiTest {
      *
      * Update meta details of a grader by its ID. Warning: There is no data validation.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateGraderTest() throws ApiException {
+    public void updateGraderTest() throws Exception {
         Integer graderId = null;
         GraderMeta payload = null;
         String xFields = null;

@@ -13,13 +13,13 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.SubmissionLogs;
 import com.aicrowd.evaluations.models.SubmissionRetry;
 import com.aicrowd.evaluations.models.SubmissionRetryInput;
 import com.aicrowd.evaluations.models.Submissions;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,11 +40,11 @@ public class SubmissionsApiTest {
      *
      * Make a new submission
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createSubmissionTest() throws ApiException {
+    public void createSubmissionTest() throws Exception {
         Submissions payload = null;
         String xFields = null;
         Submissions response = api.createSubmission(payload, xFields);
@@ -57,11 +57,11 @@ public class SubmissionsApiTest {
      *
      * Stop evaluation of a submission and delete it
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteSubmissionTest() throws ApiException {
+    public void deleteSubmissionTest() throws Exception {
         Integer submissionId = null;
         api.deleteSubmission(submissionId);
 
@@ -73,11 +73,11 @@ public class SubmissionsApiTest {
      *
      * Get the submission logs by submission ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void downloadSubmissionLogsTest() throws ApiException {
+    public void downloadSubmissionLogsTest() throws Exception {
         Integer submissionId = null;
         api.downloadSubmissionLogs(submissionId);
 
@@ -89,11 +89,11 @@ public class SubmissionsApiTest {
      *
      * Get details of a submission by its ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getSubmissionTest() throws ApiException {
+    public void getSubmissionTest() throws Exception {
         Integer submissionId = null;
         String xFields = null;
         Submissions response = api.getSubmission(submissionId, xFields);
@@ -106,11 +106,11 @@ public class SubmissionsApiTest {
      *
      * Get the submission data by submission ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getSubmissionDataTest() throws ApiException {
+    public void getSubmissionDataTest() throws Exception {
         Integer submissionId = null;
         api.getSubmissionData(submissionId);
 
@@ -122,11 +122,11 @@ public class SubmissionsApiTest {
      *
      * Get submission logs from loki
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getSubmissionLogsTest() throws ApiException {
+    public void getSubmissionLogsTest() throws Exception {
         Integer submissionId = null;
         Integer step = null;
         Integer logLines = null;
@@ -141,11 +141,11 @@ public class SubmissionsApiTest {
      *
      * List all submissions available
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void listSubmissionsTest() throws ApiException {
+    public void listSubmissionsTest() throws Exception {
         String perPage = null;
         String page = null;
         String meta = null;
@@ -163,11 +163,11 @@ public class SubmissionsApiTest {
      *
      * Retry the submissions with given IDs
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void retrySubmissionsTest() throws ApiException {
+    public void retrySubmissionsTest() throws Exception {
         SubmissionRetryInput payload = null;
         String xFields = null;
         SubmissionRetry response = api.retrySubmissions(payload, xFields);

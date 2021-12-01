@@ -13,11 +13,11 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.Organisation;
 import com.aicrowd.evaluations.models.OrganisationQuota;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,11 +38,11 @@ public class OrganisationsApiTest {
      *
      * Create a new organisation
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createOrganisationTest() throws ApiException {
+    public void createOrganisationTest() throws Exception {
         Organisation payload = null;
         String xFields = null;
         Organisation response = api.createOrganisation(payload, xFields);
@@ -55,11 +55,11 @@ public class OrganisationsApiTest {
      *
      * Delete an Organisation
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteOrganisationTest() throws ApiException {
+    public void deleteOrganisationTest() throws Exception {
         Integer organisationId = null;
         api.deleteOrganisation(organisationId);
 
@@ -71,11 +71,11 @@ public class OrganisationsApiTest {
      *
      * Get details of an organisation
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getOrganisationTest() throws ApiException {
+    public void getOrganisationTest() throws Exception {
         Integer organisationId = null;
         String xFields = null;
         Organisation response = api.getOrganisation(organisationId, xFields);
@@ -88,11 +88,11 @@ public class OrganisationsApiTest {
      *
      * List all organisations
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void listOrganisationsTest() throws ApiException {
+    public void listOrganisationsTest() throws Exception {
         String xFields = null;
         List<Organisation> response = api.listOrganisations(xFields);
 
@@ -104,11 +104,11 @@ public class OrganisationsApiTest {
      *
      * Update an Organisation
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateOrganisationTest() throws ApiException {
+    public void updateOrganisationTest() throws Exception {
         Integer organisationId = null;
         Organisation payload = null;
         String xFields = null;
@@ -122,11 +122,11 @@ public class OrganisationsApiTest {
      *
      * Add or subtract quota for an organisation
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateOrganisationQuotaTest() throws ApiException {
+    public void updateOrganisationQuotaTest() throws Exception {
         Integer organisationId = null;
         OrganisationQuota payload = null;
         api.updateOrganisationQuota(organisationId, payload);

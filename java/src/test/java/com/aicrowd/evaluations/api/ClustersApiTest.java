@@ -13,10 +13,10 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.Cluster;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,11 +37,11 @@ public class ClustersApiTest {
      *
      * Add a new cluster to AIcrowd and install necessary dependencies
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createClusterTest() throws ApiException {
+    public void createClusterTest() throws Exception {
         Cluster payload = null;
         String xFields = null;
         Cluster response = api.createCluster(payload, xFields);
@@ -54,11 +54,11 @@ public class ClustersApiTest {
      *
      * Delete a cluster by its ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteClusterTest() throws ApiException {
+    public void deleteClusterTest() throws Exception {
         Integer clusterId = null;
         api.deleteCluster(clusterId);
 
@@ -70,11 +70,11 @@ public class ClustersApiTest {
      *
      * Get details of a cluster by its ID
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getClusterTest() throws ApiException {
+    public void getClusterTest() throws Exception {
         Integer clusterId = null;
         String xFields = null;
         Cluster response = api.getCluster(clusterId, xFields);
@@ -87,11 +87,11 @@ public class ClustersApiTest {
      *
      * List all clusters available
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void listClustersTest() throws ApiException {
+    public void listClustersTest() throws Exception {
         String xFields = null;
         List<Cluster> response = api.listClusters(xFields);
 

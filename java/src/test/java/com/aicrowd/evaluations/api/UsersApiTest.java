@@ -13,11 +13,11 @@
 
 package com.aicrowd.evaluations.api;
 
-import com.aicrowd.evaluations.ApiException;
 import com.aicrowd.evaluations.models.User;
 import com.aicrowd.evaluations.models.UserQuota;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,11 +38,11 @@ public class UsersApiTest {
      *
      * Create a new user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createUserTest() throws ApiException {
+    public void createUserTest() throws Exception {
         User payload = null;
         String xFields = null;
         User response = api.createUser(payload, xFields);
@@ -55,11 +55,11 @@ public class UsersApiTest {
      *
      * Delete a user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteUserTest() throws ApiException {
+    public void deleteUserTest() throws Exception {
         Integer userId = null;
         api.deleteUser(userId);
 
@@ -71,11 +71,11 @@ public class UsersApiTest {
      *
      * Get information of a user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getUserTest() throws ApiException {
+    public void getUserTest() throws Exception {
         Integer userId = null;
         String xFields = null;
         User response = api.getUser(userId, xFields);
@@ -88,11 +88,11 @@ public class UsersApiTest {
      *
      * Get all user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void listUsersTest() throws ApiException {
+    public void listUsersTest() throws Exception {
         String xFields = null;
         List<User> response = api.listUsers(xFields);
 
@@ -104,11 +104,11 @@ public class UsersApiTest {
      *
      * Update a user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateUserTest() throws ApiException {
+    public void updateUserTest() throws Exception {
         Integer userId = null;
         User payload = null;
         String xFields = null;
@@ -122,11 +122,11 @@ public class UsersApiTest {
      *
      * Add or subtract quota for a user
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateUserQuotaTest() throws ApiException {
+    public void updateUserQuotaTest() throws Exception {
         Integer userId = null;
         UserQuota payload = null;
         api.updateUserQuota(userId, payload);
