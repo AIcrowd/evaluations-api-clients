@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * SubmissionRetryInput
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-01-07T12:12:32.930Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-01-07T16:31:20.404Z")
 public class SubmissionRetryInput {
   @SerializedName("submissions")
   private List<Integer> submissions = null;
