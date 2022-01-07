@@ -18,7 +18,7 @@ import com.aicrowd.evaluations.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-01-07T16:45:15.708Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-01-07T17:01:44.690Z")
 public class OAuth implements Authentication {
   private String accessToken;
 
