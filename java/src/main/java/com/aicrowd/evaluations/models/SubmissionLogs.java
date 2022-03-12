@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * SubmissionLogs
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-03-12T18:38:08.007Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-03-12T21:34:17.426Z")
 public class SubmissionLogs {
   @SerializedName("status")
   private String status = null;
