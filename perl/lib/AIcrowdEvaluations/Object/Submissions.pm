@@ -241,6 +241,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'minimal_run' => {
+    	datatype => 'boolean',
+    	base_name => 'minimal_run',
+    	description => 'Remove steps like build-image, services, etc from the workflow. Only valid for retries',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -272,6 +279,7 @@ __PACKAGE__->swagger_types( {
     'meta' => 'string',
     'wf_name' => 'string',
     'workflow_priority' => 'int',
+    'minimal_run' => 'boolean',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -291,6 +299,7 @@ __PACKAGE__->attribute_map( {
     'meta' => 'meta',
     'wf_name' => 'wf_name',
     'workflow_priority' => 'workflow_priority',
+    'minimal_run' => 'minimal_run',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

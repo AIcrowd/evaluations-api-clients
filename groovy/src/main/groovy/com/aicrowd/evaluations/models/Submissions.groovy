@@ -49,6 +49,9 @@ class Submissions {
   /* Workflow priority to assign */
   Integer workflowPriority = null
 
+  /* Remove steps like build-image, services, etc from the workflow. Only valid for retries */
+  Boolean minimalRun = null
+
   /* User ID */
   Integer userId = null
 

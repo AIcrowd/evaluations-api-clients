@@ -1234,6 +1234,10 @@ definitions:
       workflow_priority:
         type: "integer"
         description: "Workflow priority to assign"
+      minimal_run:
+        type: "boolean"
+        description: "Remove steps like build-image, services, etc from the workflow.\
+          \ Only valid for retries"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1243,6 +1247,7 @@ definitions:
         description: "Organisation ID"
         readOnly: true
     example:
+      minimal_run: true
       created: "2000-01-23T04:56:07.000+00:00"
       started: "2000-01-23T04:56:07.000+00:00"
       grader_id: 6
@@ -1259,7 +1264,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       logs: "logs"
       status: "status"
-    x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,workflow_priority,user_id,organisation_id}"
+    x-mask: "{id,created,updated,grader_id,submission_data,status,output,additional_outputs,started,ended,meta,deleted,workflow_priority,minimal_run,user_id,organisation_id}"
   SubmissionLogs:
     type: "object"
     properties:

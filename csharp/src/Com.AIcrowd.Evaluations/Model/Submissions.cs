@@ -42,7 +42,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="submissionData">URL to the submission code.</param>
         /// <param name="meta">Additional meta data of the grader.</param>
         /// <param name="workflowPriority">Workflow priority to assign.</param>
-        public Submissions(int? graderId = default(int?), Object submissionData = default(Object), string meta = default(string), int? workflowPriority = default(int?))
+        /// <param name="minimalRun">Remove steps like build-image, services, etc from the workflow. Only valid for retries.</param>
+        public Submissions(int? graderId = default(int?), Object submissionData = default(Object), string meta = default(string), int? workflowPriority = default(int?), bool? minimalRun = default(bool?))
         {
             // to ensure "graderId" is required (not null)
             if (graderId == null)
@@ -56,6 +57,7 @@ namespace Com.AIcrowd.Evaluations.Model
             this.SubmissionData = submissionData;
             this.Meta = meta;
             this.WorkflowPriority = workflowPriority;
+            this.MinimalRun = minimalRun;
         }
         
         /// <summary>
@@ -157,6 +159,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public int? WorkflowPriority { get; set; }
 
         /// <summary>
+        /// Remove steps like build-image, services, etc from the workflow. Only valid for retries
+        /// </summary>
+        /// <value>Remove steps like build-image, services, etc from the workflow. Only valid for retries</value>
+        [DataMember(Name="minimal_run", EmitDefaultValue=false)]
+        public bool? MinimalRun { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -192,6 +201,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
+            sb.Append("  MinimalRun: ").Append(MinimalRun).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -299,6 +309,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.WorkflowPriority.Equals(input.WorkflowPriority))
                 ) && 
                 (
+                    this.MinimalRun == input.MinimalRun ||
+                    (this.MinimalRun != null &&
+                    this.MinimalRun.Equals(input.MinimalRun))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -347,6 +362,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.WfName.GetHashCode();
                 if (this.WorkflowPriority != null)
                     hashCode = hashCode * 59 + this.WorkflowPriority.GetHashCode();
+                if (this.MinimalRun != null)
+                    hashCode = hashCode * 59 + this.MinimalRun.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

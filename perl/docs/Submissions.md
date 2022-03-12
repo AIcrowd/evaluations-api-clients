@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **meta** | **string** | Additional meta data of the grader | [optional] 
 **wf_name** | **string** | Name of the workflow used to evaluate submission | [optional] 
 **workflow_priority** | **int** | Workflow priority to assign | [optional] 
+**minimal_run** | **boolean** | Remove steps like build-image, services, etc from the workflow. Only valid for retries | [optional] 
 **user_id** | **int** | User ID | [optional] 
 **organisation_id** | **int** | Organisation ID | [optional] 
 

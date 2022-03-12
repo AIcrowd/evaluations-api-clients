@@ -179,6 +179,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'WorkflowPriority'
         }
         /// <summary>
+        /// Test the property 'MinimalRun'
+        /// </summary>
+        [Test]
+        public void MinimalRunTest()
+        {
+            // TODO unit test for the property 'MinimalRun'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

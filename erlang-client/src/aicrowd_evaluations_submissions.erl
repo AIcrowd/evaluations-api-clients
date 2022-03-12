@@ -19,6 +19,7 @@
        'meta' => binary(),
        'wf_name' => binary(),
        'workflow_priority' => integer(),
+       'minimal_run' => boolean(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -37,6 +38,7 @@ encode(#{ 'id' := Id,
           'meta' := Meta,
           'wf_name' := WfName,
           'workflow_priority' := WorkflowPriority,
+          'minimal_run' := MinimalRun,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -54,6 +56,7 @@ encode(#{ 'id' := Id,
        'meta' => Meta,
        'wf_name' => WfName,
        'workflow_priority' => WorkflowPriority,
+       'minimal_run' => MinimalRun,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Meta** | **string** | Additional meta data of the grader | [optional] [default to null]
 **WfName** | **string** | Name of the workflow used to evaluate submission | [optional] [default to null]
 **WorkflowPriority** | **int32** | Workflow priority to assign | [optional] [default to null]
+**MinimalRun** | **bool** | Remove steps like build-image, services, etc from the workflow. Only valid for retries | [optional] [default to null]
 **UserId** | **int32** | User ID | [optional] [default to null]
 **OrganisationId** | **int32** | Organisation ID | [optional] [default to null]
 

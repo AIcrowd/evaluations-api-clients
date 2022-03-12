@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **meta** | **kotlin.String** | Additional meta data of the grader |  [optional]
 **wf_name** | **kotlin.String** | Name of the workflow used to evaluate submission |  [optional]
 **workflow_priority** | **kotlin.Int** | Workflow priority to assign |  [optional]
+**minimal_run** | **kotlin.Boolean** | Remove steps like build-image, services, etc from the workflow. Only valid for retries |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

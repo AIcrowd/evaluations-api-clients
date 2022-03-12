@@ -104,6 +104,13 @@ API.Client.Submissions.prototype.wfName;
 API.Client.Submissions.prototype.workflowPriority;
 
 /**
+ * Remove steps like build-image, services, etc from the workflow. Only valid for retries
+ * @type {!boolean}
+ * @export
+ */
+API.Client.Submissions.prototype.minimalRun;
+
+/**
  * User ID
  * @type {!number}
  * @export

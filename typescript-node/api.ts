@@ -869,6 +869,10 @@ export class Submissions {
     */
     'workflowPriority'?: number;
     /**
+    * Remove steps like build-image, services, etc from the workflow. Only valid for retries
+    */
+    'minimalRun'?: boolean;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -949,6 +953,11 @@ export class Submissions {
             "name": "workflowPriority",
             "baseName": "workflow_priority",
             "type": "number"
+        },
+        {
+            "name": "minimalRun",
+            "baseName": "minimal_run",
+            "type": "boolean"
         },
         {
             "name": "userId",

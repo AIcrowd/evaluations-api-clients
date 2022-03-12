@@ -42,6 +42,8 @@ type Submissions struct {
 	WfName string `json:"wf_name,omitempty"`
 	// Workflow priority to assign
 	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
+	// Remove steps like build-image, services, etc from the workflow. Only valid for retries
+	MinimalRun bool `json:"minimal_run,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

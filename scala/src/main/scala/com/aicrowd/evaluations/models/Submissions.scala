@@ -43,6 +43,8 @@ case class Submissions (
   wfName: Option[String] = None,
   // Workflow priority to assign
   workflowPriority: Option[Integer] = None,
+  // Remove steps like build-image, services, etc from the workflow. Only valid for retries
+  minimalRun: Option[Boolean] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

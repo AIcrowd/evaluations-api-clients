@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Submissions
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-01-12T12:58:01.873Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-03-12T18:38:08.007Z")
 public class Submissions {
   @SerializedName("id")
   private Integer id = null;
@@ -71,6 +71,9 @@ public class Submissions {
 
   @SerializedName("workflow_priority")
   private Integer workflowPriority = null;
+
+  @SerializedName("minimal_run")
+  private Boolean minimalRun = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -240,6 +243,24 @@ public class Submissions {
     this.workflowPriority = workflowPriority;
   }
 
+  public Submissions minimalRun(Boolean minimalRun) {
+    this.minimalRun = minimalRun;
+    return this;
+  }
+
+   /**
+   * Remove steps like build-image, services, etc from the workflow. Only valid for retries
+   * @return minimalRun
+  **/
+  @ApiModelProperty(value = "Remove steps like build-image, services, etc from the workflow. Only valid for retries")
+  public Boolean isMinimalRun() {
+    return minimalRun;
+  }
+
+  public void setMinimalRun(Boolean minimalRun) {
+    this.minimalRun = minimalRun;
+  }
+
    /**
    * User ID
    * @return userId
@@ -282,13 +303,14 @@ public class Submissions {
         Objects.equals(this.meta, submissions.meta) &&
         Objects.equals(this.wfName, submissions.wfName) &&
         Objects.equals(this.workflowPriority, submissions.workflowPriority) &&
+        Objects.equals(this.minimalRun, submissions.minimalRun) &&
         Objects.equals(this.userId, submissions.userId) &&
         Objects.equals(this.organisationId, submissions.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, wfName, workflowPriority, userId, organisationId);
+    return Objects.hash(id, created, updated, graderId, submissionData, status, output, additionalOutputs, logs, started, ended, meta, wfName, workflowPriority, minimalRun, userId, organisationId);
   }
 
 
@@ -311,6 +333,7 @@ public class Submissions {
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    workflowPriority: ").append(toIndentedString(workflowPriority)).append("\n");
+    sb.append("    minimalRun: ").append(toIndentedString(minimalRun)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

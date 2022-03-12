@@ -28,6 +28,7 @@ package com.aicrowd.evaluations.models
  * @param meta Additional meta data of the grader
  * @param wf_name Name of the workflow used to evaluate submission
  * @param workflow_priority Workflow priority to assign
+ * @param minimal_run Remove steps like build-image, services, etc from the workflow. Only valid for retries
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -60,6 +61,8 @@ data class Submissions (
     val wf_name: kotlin.String? = null,
     /* Workflow priority to assign */
     val workflow_priority: kotlin.Int? = null,
+    /* Remove steps like build-image, services, etc from the workflow. Only valid for retries */
+    val minimal_run: kotlin.Boolean? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

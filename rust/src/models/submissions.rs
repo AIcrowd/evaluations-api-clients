@@ -56,6 +56,9 @@ pub struct Submissions {
   /// Workflow priority to assign
   #[serde(rename = "workflow_priority")]
   workflow_priority: Option<i32>,
+  /// Remove steps like build-image, services, etc from the workflow. Only valid for retries
+  #[serde(rename = "minimal_run")]
+  minimal_run: Option<bool>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -81,6 +84,7 @@ impl Submissions {
       meta: None,
       wf_name: None,
       workflow_priority: None,
+      minimal_run: None,
       user_id: None,
       organisation_id: None
     }
@@ -319,6 +323,23 @@ impl Submissions {
 
   pub fn reset_workflow_priority(&mut self) {
     self.workflow_priority = None;
+  }
+
+  pub fn set_minimal_run(&mut self, minimal_run: bool) {
+    self.minimal_run = Some(minimal_run);
+  }
+
+  pub fn with_minimal_run(mut self, minimal_run: bool) -> Submissions {
+    self.minimal_run = Some(minimal_run);
+    self
+  }
+
+  pub fn minimal_run(&self) -> Option<&bool> {
+    self.minimal_run.as_ref()
+  }
+
+  pub fn reset_minimal_run(&mut self) {
+    self.minimal_run = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

@@ -23,6 +23,7 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"meta",
     :"wf_name",
     :"workflow_priority",
+    :"minimal_run",
     :"user_id",
     :"organisation_id"
   ]
@@ -42,6 +43,7 @@ defmodule AIcrowd.Evaluations.Model.Submissions do
     :"meta" => String.t,
     :"wf_name" => String.t,
     :"workflow_priority" => integer(),
+    :"minimal_run" => boolean(),
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

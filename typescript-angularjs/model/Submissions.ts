@@ -70,6 +70,10 @@ export interface Submissions {
      */
     "workflowPriority"?: number;
     /**
+     * Remove steps like build-image, services, etc from the workflow. Only valid for retries
+     */
+    "minimalRun"?: boolean;
+    /**
      * User ID
      */
     "userId"?: number;

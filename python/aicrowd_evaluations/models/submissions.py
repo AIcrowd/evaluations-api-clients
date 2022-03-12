@@ -47,6 +47,7 @@ class Submissions(object):
         'meta': 'str',
         'wf_name': 'str',
         'workflow_priority': 'int',
+        'minimal_run': 'bool',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -66,11 +67,12 @@ class Submissions(object):
         'meta': 'meta',
         'wf_name': 'wf_name',
         'workflow_priority': 'workflow_priority',
+        'minimal_run': 'minimal_run',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, wf_name=None, workflow_priority=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, grader_id=None, submission_data=None, status=None, output=None, additional_outputs=None, logs=None, started=None, ended=None, meta=None, wf_name=None, workflow_priority=None, minimal_run=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
         """Submissions - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -90,6 +92,7 @@ class Submissions(object):
         self._meta = None
         self._wf_name = None
         self._workflow_priority = None
+        self._minimal_run = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -121,6 +124,8 @@ class Submissions(object):
             self.wf_name = wf_name
         if workflow_priority is not None:
             self.workflow_priority = workflow_priority
+        if minimal_run is not None:
+            self.minimal_run = minimal_run
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -449,6 +454,29 @@ class Submissions(object):
         """
 
         self._workflow_priority = workflow_priority
+
+    @property
+    def minimal_run(self):
+        """Gets the minimal_run of this Submissions.  # noqa: E501
+
+        Remove steps like build-image, services, etc from the workflow. Only valid for retries  # noqa: E501
+
+        :return: The minimal_run of this Submissions.  # noqa: E501
+        :rtype: bool
+        """
+        return self._minimal_run
+
+    @minimal_run.setter
+    def minimal_run(self, minimal_run):
+        """Sets the minimal_run of this Submissions.
+
+        Remove steps like build-image, services, etc from the workflow. Only valid for retries  # noqa: E501
+
+        :param minimal_run: The minimal_run of this Submissions.  # noqa: E501
+        :type: bool
+        """
+
+        self._minimal_run = minimal_run
 
     @property
     def user_id(self):
