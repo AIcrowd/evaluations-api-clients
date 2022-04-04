@@ -13,7 +13,7 @@
 
 package com.aicrowd.evaluations;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-04T10:01:25.771Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-04T11:02:27.033Z")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 
