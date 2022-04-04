@@ -29,6 +29,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"allowed_extensions",
     :"workflow_priority",
     :"config_path",
+    :"docker_repo",
     :"user_id",
     :"organisation_id"
   ]
@@ -54,6 +55,7 @@ defmodule AIcrowd.Evaluations.Model.Grader do
     :"allowed_extensions" => Object,
     :"workflow_priority" => integer(),
     :"config_path" => String.t,
+    :"docker_repo" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

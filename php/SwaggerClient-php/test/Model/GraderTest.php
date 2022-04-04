@@ -217,6 +217,13 @@ class GraderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "docker_repo"
+     */
+    public function testPropertyDockerRepo()
+    {
+    }
+
+    /**
      * Test attribute "user_id"
      */
     public function testPropertyUserId()

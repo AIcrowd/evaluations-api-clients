@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **allowed_extensions** | **map** |  | [optional] [default to null]
 **workflow_priority** | **integer** |  | [optional] [default to null]
 **config_path** | **string** |  | [optional] [default to null]
+**docker_repo** | **string** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

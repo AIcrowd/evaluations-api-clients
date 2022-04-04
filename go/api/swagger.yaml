@@ -1097,6 +1097,9 @@ definitions:
       config_path:
         type: "string"
         description: "Path to grader configuration (default: aicrowd.yaml)"
+      docker_repo:
+        type: "string"
+        description: "Docker repo to use for grader images"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1107,6 +1110,7 @@ definitions:
         readOnly: true
     example:
       evaluator_repo: "evaluator_repo"
+      docker_repo: "docker_repo"
       evaluator_repo_tag: "evaluator_repo_tag"
       created: "2000-01-23T04:56:07.000+00:00"
       description: "description"
@@ -1128,7 +1132,7 @@ definitions:
       logs: "logs"
       notifications: "notifications"
       status: "status"
-    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,config_path,user_id,organisation_id}"
+    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,config_path,docker_repo,user_id,organisation_id}"
   GraderMeta:
     type: "object"
     properties:

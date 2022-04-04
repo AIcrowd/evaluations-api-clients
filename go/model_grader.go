@@ -54,6 +54,8 @@ type Grader struct {
 	WorkflowPriority int32 `json:"workflow_priority,omitempty"`
 	// Path to grader configuration (default: aicrowd.yaml)
 	ConfigPath string `json:"config_path,omitempty"`
+	// Docker repo to use for grader images
+	DockerRepo string `json:"docker_repo,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

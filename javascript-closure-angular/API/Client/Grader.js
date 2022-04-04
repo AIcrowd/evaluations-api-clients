@@ -146,6 +146,13 @@ API.Client.Grader.prototype.workflowPriority;
 API.Client.Grader.prototype.configPath;
 
 /**
+ * Docker repo to use for grader images
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.dockerRepo;
+
+/**
  * User ID
  * @type {!number}
  * @export

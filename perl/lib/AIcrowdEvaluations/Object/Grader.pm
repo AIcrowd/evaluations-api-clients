@@ -283,6 +283,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'docker_repo' => {
+    	datatype => 'string',
+    	base_name => 'docker_repo',
+    	description => 'Docker repo to use for grader images',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -320,6 +327,7 @@ __PACKAGE__->swagger_types( {
     'allowed_extensions' => 'object',
     'workflow_priority' => 'int',
     'config_path' => 'string',
+    'docker_repo' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -345,6 +353,7 @@ __PACKAGE__->attribute_map( {
     'allowed_extensions' => 'allowed_extensions',
     'workflow_priority' => 'workflow_priority',
     'config_path' => 'config_path',
+    'docker_repo' => 'docker_repo',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

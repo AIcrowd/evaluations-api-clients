@@ -25,6 +25,7 @@
        'allowed_extensions' => maps:map(),
        'workflow_priority' => integer(),
        'config_path' => binary(),
+       'docker_repo' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -49,6 +50,7 @@ encode(#{ 'id' := Id,
           'allowed_extensions' := AllowedExtensions,
           'workflow_priority' := WorkflowPriority,
           'config_path' := ConfigPath,
+          'docker_repo' := DockerRepo,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -72,6 +74,7 @@ encode(#{ 'id' := Id,
        'allowed_extensions' => AllowedExtensions,
        'workflow_priority' => WorkflowPriority,
        'config_path' => ConfigPath,
+       'docker_repo' => DockerRepo,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

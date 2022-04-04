@@ -67,6 +67,9 @@ class Grader {
   /* Path to grader configuration (default: aicrowd.yaml) */
   String configPath = null
 
+  /* Docker repo to use for grader images */
+  String dockerRepo = null
+
   /* User ID */
   Integer userId = null
 

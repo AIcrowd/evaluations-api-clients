@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Grader
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-03-12T21:34:17.426Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-04T10:01:25.771Z")
 public class Grader {
   @SerializedName("id")
   private Integer id = null;
@@ -89,6 +89,9 @@ public class Grader {
 
   @SerializedName("config_path")
   private String configPath = null;
+
+  @SerializedName("docker_repo")
+  private String dockerRepo = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -339,6 +342,24 @@ public class Grader {
     this.configPath = configPath;
   }
 
+  public Grader dockerRepo(String dockerRepo) {
+    this.dockerRepo = dockerRepo;
+    return this;
+  }
+
+   /**
+   * Docker repo to use for grader images
+   * @return dockerRepo
+  **/
+  @ApiModelProperty(value = "Docker repo to use for grader images")
+  public String getDockerRepo() {
+    return dockerRepo;
+  }
+
+  public void setDockerRepo(String dockerRepo) {
+    this.dockerRepo = dockerRepo;
+  }
+
    /**
    * User ID
    * @return userId
@@ -387,13 +408,14 @@ public class Grader {
         Objects.equals(this.allowedExtensions, grader.allowedExtensions) &&
         Objects.equals(this.workflowPriority, grader.workflowPriority) &&
         Objects.equals(this.configPath, grader.configPath) &&
+        Objects.equals(this.dockerRepo, grader.dockerRepo) &&
         Objects.equals(this.userId, grader.userId) &&
         Objects.equals(this.organisationId, grader.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, archived, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, workflowPriority, configPath, userId, organisationId);
+    return Objects.hash(id, created, updated, archived, dataset, clusterId, description, workflowSpec, evaluatorRepo, evaluatorRepoTag, name, notifications, logs, meta, status, secrets, wfName, allowedExtensions, workflowPriority, configPath, dockerRepo, userId, organisationId);
   }
 
 
@@ -422,6 +444,7 @@ public class Grader {
     sb.append("    allowedExtensions: ").append(toIndentedString(allowedExtensions)).append("\n");
     sb.append("    workflowPriority: ").append(toIndentedString(workflowPriority)).append("\n");
     sb.append("    configPath: ").append(toIndentedString(configPath)).append("\n");
+    sb.append("    dockerRepo: ").append(toIndentedString(dockerRepo)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

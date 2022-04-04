@@ -156,6 +156,13 @@ describe("grader", function()
     end)
   end)
 
+  -- unit tests for the property 'docker_repo'
+  describe("property docker_repo test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'user_id'
   describe("property user_id test", function()
     it("should work", function()

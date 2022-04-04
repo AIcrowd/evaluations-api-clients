@@ -227,6 +227,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'ConfigPath'
         }
         /// <summary>
+        /// Test the property 'DockerRepo'
+        /// </summary>
+        [Test]
+        public void DockerRepoTest()
+        {
+            // TODO unit test for the property 'DockerRepo'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

@@ -45,7 +45,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="secrets">List of key:value pair of secrets that will be replace &#x60;{key}&#x60; in aicrowd.yaml.</param>
         /// <param name="workflowPriority">Workflow priority to assign.</param>
         /// <param name="configPath">Path to grader configuration (default: aicrowd.yaml).</param>
-        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?), string configPath = default(string))
+        /// <param name="dockerRepo">Docker repo to use for grader images.</param>
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?), string configPath = default(string), string dockerRepo = default(string))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -62,6 +63,7 @@ namespace Com.AIcrowd.Evaluations.Model
             this.Secrets = secrets;
             this.WorkflowPriority = workflowPriority;
             this.ConfigPath = configPath;
+            this.DockerRepo = dockerRepo;
         }
         
         /// <summary>
@@ -205,6 +207,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string ConfigPath { get; set; }
 
         /// <summary>
+        /// Docker repo to use for grader images
+        /// </summary>
+        /// <value>Docker repo to use for grader images</value>
+        [DataMember(Name="docker_repo", EmitDefaultValue=false)]
+        public string DockerRepo { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -246,6 +255,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  AllowedExtensions: ").Append(AllowedExtensions).Append("\n");
             sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
             sb.Append("  ConfigPath: ").Append(ConfigPath).Append("\n");
+            sb.Append("  DockerRepo: ").Append(DockerRepo).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -383,6 +393,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.ConfigPath.Equals(input.ConfigPath))
                 ) && 
                 (
+                    this.DockerRepo == input.DockerRepo ||
+                    (this.DockerRepo != null &&
+                    this.DockerRepo.Equals(input.DockerRepo))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -443,6 +458,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.WorkflowPriority.GetHashCode();
                 if (this.ConfigPath != null)
                     hashCode = hashCode * 59 + this.ConfigPath.GetHashCode();
+                if (this.DockerRepo != null)
+                    hashCode = hashCode * 59 + this.DockerRepo.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

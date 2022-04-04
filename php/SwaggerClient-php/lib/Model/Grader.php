@@ -77,6 +77,7 @@ class Grader implements ModelInterface, ArrayAccess
         'allowed_extensions' => 'object',
         'workflow_priority' => 'int',
         'config_path' => 'string',
+        'docker_repo' => 'string',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -107,6 +108,7 @@ class Grader implements ModelInterface, ArrayAccess
         'allowed_extensions' => null,
         'workflow_priority' => null,
         'config_path' => null,
+        'docker_repo' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -158,6 +160,7 @@ class Grader implements ModelInterface, ArrayAccess
         'allowed_extensions' => 'allowed_extensions',
         'workflow_priority' => 'workflow_priority',
         'config_path' => 'config_path',
+        'docker_repo' => 'docker_repo',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -188,6 +191,7 @@ class Grader implements ModelInterface, ArrayAccess
         'allowed_extensions' => 'setAllowedExtensions',
         'workflow_priority' => 'setWorkflowPriority',
         'config_path' => 'setConfigPath',
+        'docker_repo' => 'setDockerRepo',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -218,6 +222,7 @@ class Grader implements ModelInterface, ArrayAccess
         'allowed_extensions' => 'getAllowedExtensions',
         'workflow_priority' => 'getWorkflowPriority',
         'config_path' => 'getConfigPath',
+        'docker_repo' => 'getDockerRepo',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -302,6 +307,7 @@ class Grader implements ModelInterface, ArrayAccess
         $this->container['allowed_extensions'] = isset($data['allowed_extensions']) ? $data['allowed_extensions'] : null;
         $this->container['workflow_priority'] = isset($data['workflow_priority']) ? $data['workflow_priority'] : null;
         $this->container['config_path'] = isset($data['config_path']) ? $data['config_path'] : null;
+        $this->container['docker_repo'] = isset($data['docker_repo']) ? $data['docker_repo'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -809,6 +815,30 @@ class Grader implements ModelInterface, ArrayAccess
     public function setConfigPath($config_path)
     {
         $this->container['config_path'] = $config_path;
+
+        return $this;
+    }
+
+    /**
+     * Gets docker_repo
+     *
+     * @return string
+     */
+    public function getDockerRepo()
+    {
+        return $this->container['docker_repo'];
+    }
+
+    /**
+     * Sets docker_repo
+     *
+     * @param string $docker_repo Docker repo to use for grader images
+     *
+     * @return $this
+     */
+    public function setDockerRepo($docker_repo)
+    {
+        $this->container['docker_repo'] = $docker_repo;
 
         return $this;
     }

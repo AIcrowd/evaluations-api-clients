@@ -74,6 +74,9 @@ module AIcrowdEvaluations
     # Path to grader configuration (default: aicrowd.yaml)
     attr_accessor :config_path
 
+    # Docker repo to use for grader images
+    attr_accessor :docker_repo
+
     # User ID
     attr_accessor :user_id
 
@@ -103,6 +106,7 @@ module AIcrowdEvaluations
         :'allowed_extensions' => :'allowed_extensions',
         :'workflow_priority' => :'workflow_priority',
         :'config_path' => :'config_path',
+        :'docker_repo' => :'docker_repo',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -131,6 +135,7 @@ module AIcrowdEvaluations
         :'allowed_extensions' => :'Object',
         :'workflow_priority' => :'Integer',
         :'config_path' => :'String',
+        :'docker_repo' => :'String',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -224,6 +229,10 @@ module AIcrowdEvaluations
         self.config_path = attributes[:'config_path']
       end
 
+      if attributes.has_key?(:'docker_repo')
+        self.docker_repo = attributes[:'docker_repo']
+      end
+
       if attributes.has_key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
@@ -276,6 +285,7 @@ module AIcrowdEvaluations
           allowed_extensions == o.allowed_extensions &&
           workflow_priority == o.workflow_priority &&
           config_path == o.config_path &&
+          docker_repo == o.docker_repo &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -289,7 +299,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, archived, dataset, cluster_id, description, workflow_spec, evaluator_repo, evaluator_repo_tag, name, notifications, logs, meta, status, secrets, wf_name, allowed_extensions, workflow_priority, config_path, user_id, organisation_id].hash
+      [id, created, updated, archived, dataset, cluster_id, description, workflow_spec, evaluator_repo, evaluator_repo_tag, name, notifications, logs, meta, status, secrets, wf_name, allowed_extensions, workflow_priority, config_path, docker_repo, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

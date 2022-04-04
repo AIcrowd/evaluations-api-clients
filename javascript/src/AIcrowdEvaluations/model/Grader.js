@@ -96,6 +96,8 @@
         obj.workflowPriority = ApiClient.convertToType(data['workflow_priority'], 'Number');
       if (data.hasOwnProperty('config_path'))
         obj.configPath = ApiClient.convertToType(data['config_path'], 'String');
+      if (data.hasOwnProperty('docker_repo'))
+        obj.dockerRepo = ApiClient.convertToType(data['docker_repo'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -223,6 +225,12 @@
    * @member {String} configPath
    */
   exports.prototype.configPath = undefined;
+
+  /**
+   * Docker repo to use for grader images
+   * @member {String} dockerRepo
+   */
+  exports.prototype.dockerRepo = undefined;
 
   /**
    * User ID

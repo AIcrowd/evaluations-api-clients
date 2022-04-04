@@ -74,6 +74,9 @@ pub struct Grader {
   /// Path to grader configuration (default: aicrowd.yaml)
   #[serde(rename = "config_path")]
   config_path: Option<String>,
+  /// Docker repo to use for grader images
+  #[serde(rename = "docker_repo")]
+  docker_repo: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -105,6 +108,7 @@ impl Grader {
       allowed_extensions: None,
       workflow_priority: None,
       config_path: None,
+      docker_repo: None,
       user_id: None,
       organisation_id: None
     }
@@ -445,6 +449,23 @@ impl Grader {
 
   pub fn reset_config_path(&mut self) {
     self.config_path = None;
+  }
+
+  pub fn set_docker_repo(&mut self, docker_repo: String) {
+    self.docker_repo = Some(docker_repo);
+  }
+
+  pub fn with_docker_repo(mut self, docker_repo: String) -> Grader {
+    self.docker_repo = Some(docker_repo);
+    self
+  }
+
+  pub fn docker_repo(&self) -> Option<&String> {
+    self.docker_repo.as_ref()
+  }
+
+  pub fn reset_docker_repo(&mut self) {
+    self.docker_repo = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

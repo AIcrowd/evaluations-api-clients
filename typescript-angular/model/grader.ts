@@ -93,6 +93,10 @@ export interface Grader {
      */
     configPath?: string;
     /**
+     * Docker repo to use for grader images
+     */
+    dockerRepo?: string;
+    /**
      * User ID
      */
     readonly userId?: number;

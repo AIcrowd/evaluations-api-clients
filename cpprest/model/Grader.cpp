@@ -56,6 +56,8 @@ Grader::Grader()
     m_Workflow_priorityIsSet = false;
     m_Config_path = utility::conversions::to_string_t("");
     m_Config_pathIsSet = false;
+    m_Docker_repo = utility::conversions::to_string_t("");
+    m_Docker_repoIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -151,6 +153,10 @@ web::json::value Grader::toJson() const
     if(m_Config_pathIsSet)
     {
         val[utility::conversions::to_string_t("config_path")] = ModelBase::toJson(m_Config_path);
+    }
+    if(m_Docker_repoIsSet)
+    {
+        val[utility::conversions::to_string_t("docker_repo")] = ModelBase::toJson(m_Docker_repo);
     }
     if(m_User_idIsSet)
     {
@@ -327,6 +333,14 @@ void Grader::fromJson(web::json::value& val)
             setConfigPath(ModelBase::stringFromJson(fieldValue));
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("docker_repo")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("docker_repo")];
+        if(!fieldValue.is_null())
+        {
+            setDockerRepo(ModelBase::stringFromJson(fieldValue));
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("user_id")];
@@ -457,6 +471,11 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("config_path"), m_Config_path));
         
     }
+    if(m_Docker_repoIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_repo"), m_Docker_repo));
+        
+    }
     if(m_User_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("user_id"), m_User_id));
@@ -571,6 +590,10 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("config_path")))
     {
         setConfigPath(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("config_path"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("docker_repo")))
+    {
+        setDockerRepo(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_repo"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -990,6 +1013,27 @@ bool Grader::configPathIsSet() const
 void Grader::unsetConfig_path()
 {
     m_Config_pathIsSet = false;
+}
+
+utility::string_t Grader::getDockerRepo() const
+{
+    return m_Docker_repo;
+}
+
+
+void Grader::setDockerRepo(utility::string_t value)
+{
+    m_Docker_repo = value;
+    m_Docker_repoIsSet = true;
+}
+bool Grader::dockerRepoIsSet() const
+{
+    return m_Docker_repoIsSet;
+}
+
+void Grader::unsetDocker_repo()
+{
+    m_Docker_repoIsSet = false;
 }
 
 int32_t Grader::getUserId() const

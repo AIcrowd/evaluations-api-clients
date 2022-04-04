@@ -160,6 +160,12 @@
         // expect(instance.configPath).to.be(expectedValueLiteral);
       });
 
+      it('should have the property dockerRepo (base name: "docker_repo")', function() {
+        // TODO: update the code to test the property dockerRepo
+        expect(instance).to.have.property('dockerRepo');
+        // expect(instance.dockerRepo).to.be(expectedValueLiteral);
+      });
+
       it('should have the property userId (base name: "user_id")', function() {
         // TODO: update the code to test the property userId
         expect(instance).to.have.property('userId');

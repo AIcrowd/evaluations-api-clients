@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **AllowedExtensions** | **interface{}** | Allowed extensions for the grader | [optional] [default to null]
 **WorkflowPriority** | **int32** | Workflow priority to assign | [optional] [default to null]
 **ConfigPath** | **string** | Path to grader configuration (default: aicrowd.yaml) | [optional] [default to null]
+**DockerRepo** | **string** | Docker repo to use for grader images | [optional] [default to null]
 **UserId** | **int32** | User ID | [optional] [default to null]
 **OrganisationId** | **int32** | Organisation ID | [optional] [default to null]
 

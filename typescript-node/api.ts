@@ -404,6 +404,10 @@ export class Grader {
     */
     'configPath'?: string;
     /**
+    * Docker repo to use for grader images
+    */
+    'dockerRepo'?: string;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -513,6 +517,11 @@ export class Grader {
         {
             "name": "configPath",
             "baseName": "config_path",
+            "type": "string"
+        },
+        {
+            "name": "dockerRepo",
+            "baseName": "docker_repo",
             "type": "string"
         },
         {

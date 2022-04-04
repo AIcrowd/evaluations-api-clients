@@ -53,6 +53,7 @@ class Grader(object):
         'allowed_extensions': 'object',
         'workflow_priority': 'int',
         'config_path': 'str',
+        'docker_repo': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -78,11 +79,12 @@ class Grader(object):
         'allowed_extensions': 'allowed_extensions',
         'workflow_priority': 'workflow_priority',
         'config_path': 'config_path',
+        'docker_repo': 'docker_repo',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, archived=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, workflow_priority=None, config_path=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, archived=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, workflow_priority=None, config_path=None, docker_repo=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -108,6 +110,7 @@ class Grader(object):
         self._allowed_extensions = None
         self._workflow_priority = None
         self._config_path = None
+        self._docker_repo = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -151,6 +154,8 @@ class Grader(object):
             self.workflow_priority = workflow_priority
         if config_path is not None:
             self.config_path = config_path
+        if docker_repo is not None:
+            self.docker_repo = docker_repo
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -617,6 +622,29 @@ class Grader(object):
         """
 
         self._config_path = config_path
+
+    @property
+    def docker_repo(self):
+        """Gets the docker_repo of this Grader.  # noqa: E501
+
+        Docker repo to use for grader images  # noqa: E501
+
+        :return: The docker_repo of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._docker_repo
+
+    @docker_repo.setter
+    def docker_repo(self, docker_repo):
+        """Sets the docker_repo of this Grader.
+
+        Docker repo to use for grader images  # noqa: E501
+
+        :param docker_repo: The docker_repo of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._docker_repo = docker_repo
 
     @property
     def user_id(self):

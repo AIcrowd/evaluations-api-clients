@@ -331,6 +331,12 @@ export interface Grader {
      */
     configPath?: string;
     /**
+     * Docker repo to use for grader images
+     * @type {string}
+     * @memberof Grader
+     */
+    dockerRepo?: string;
+    /**
      * User ID
      * @type {number}
      * @memberof Grader

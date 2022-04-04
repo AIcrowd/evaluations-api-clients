@@ -193,6 +193,13 @@ public:
     void unsetConfig_path();
     void setConfigPath(utility::string_t value);
     /// <summary>
+    /// Docker repo to use for grader images
+    /// </summary>
+    utility::string_t getDockerRepo() const;
+    bool dockerRepoIsSet() const;
+    void unsetDocker_repo();
+    void setDockerRepo(utility::string_t value);
+    /// <summary>
     /// User ID
     /// </summary>
     int32_t getUserId() const;
@@ -247,6 +254,8 @@ protected:
     bool m_Workflow_priorityIsSet;
     utility::string_t m_Config_path;
     bool m_Config_pathIsSet;
+    utility::string_t m_Docker_repo;
+    bool m_Docker_repoIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

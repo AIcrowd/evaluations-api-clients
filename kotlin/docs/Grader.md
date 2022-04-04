@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **allowed_extensions** | [**kotlin.Any**](kotlin.Any.md) | Allowed extensions for the grader |  [optional]
 **workflow_priority** | **kotlin.Int** | Workflow priority to assign |  [optional]
 **config_path** | **kotlin.String** | Path to grader configuration (default: aicrowd.yaml) |  [optional]
+**docker_repo** | **kotlin.String** | Docker repo to use for grader images |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

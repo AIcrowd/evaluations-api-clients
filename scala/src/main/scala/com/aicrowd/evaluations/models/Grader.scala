@@ -55,6 +55,8 @@ case class Grader (
   workflowPriority: Option[Integer] = None,
   // Path to grader configuration (default: aicrowd.yaml)
   configPath: Option[String] = None,
+  // Docker repo to use for grader images
+  dockerRepo: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID
