@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AuthResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-05T11:32:27.052Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-05T13:12:36.552Z")
 public class AuthResponse {
   @SerializedName("Authorization")
   private String authorization = null;
