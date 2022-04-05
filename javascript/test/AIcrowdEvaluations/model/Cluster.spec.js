@@ -118,6 +118,18 @@
         // expect(instance.argoToken).to.be(expectedValueLiteral);
       });
 
+      it('should have the property minioUser (base name: "minio_user")', function() {
+        // TODO: update the code to test the property minioUser
+        expect(instance).to.have.property('minioUser');
+        // expect(instance.minioUser).to.be(expectedValueLiteral);
+      });
+
+      it('should have the property s3Policy (base name: "s3_policy")', function() {
+        // TODO: update the code to test the property s3Policy
+        expect(instance).to.have.property('s3Policy');
+        // expect(instance.s3Policy).to.be(expectedValueLiteral);
+      });
+
       it('should have the property userId (base name: "user_id")', function() {
         // TODO: update the code to test the property userId
         expect(instance).to.have.property('userId');

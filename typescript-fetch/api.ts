@@ -191,6 +191,18 @@ export interface Cluster {
      */
     argoToken?: string;
     /**
+     * Minio user to give file access to
+     * @type {string}
+     * @memberof Cluster
+     */
+    minioUser?: string;
+    /**
+     * Minio s3 policy
+     * @type {string}
+     * @memberof Cluster
+     */
+    s3Policy?: string;
+    /**
      * User ID
      * @type {number}
      * @memberof Cluster

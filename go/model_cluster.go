@@ -40,6 +40,10 @@ type Cluster struct {
 	ArgoHost string `json:"argo_host,omitempty"`
 	// Argo server token required for authentication
 	ArgoToken string `json:"argo_token,omitempty"`
+	// Minio user to give file access to
+	MinioUser string `json:"minio_user,omitempty"`
+	// Minio s3 policy
+	S3Policy string `json:"s3_policy,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

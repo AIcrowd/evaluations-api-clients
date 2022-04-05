@@ -22,6 +22,8 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"wf_name",
     :"argo_host",
     :"argo_token",
+    :"minio_user",
+    :"s3_policy",
     :"user_id",
     :"organisation_id"
   ]
@@ -40,6 +42,8 @@ defmodule AIcrowd.Evaluations.Model.Cluster do
     :"wf_name" => String.t,
     :"argo_host" => String.t,
     :"argo_token" => String.t,
+    :"minio_user" => String.t,
+    :"s3_policy" => String.t,
     :"user_id" => integer(),
     :"organisation_id" => integer()
   }

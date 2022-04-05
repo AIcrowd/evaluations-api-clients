@@ -107,6 +107,20 @@ describe("cluster", function()
     end)
   end)
 
+  -- unit tests for the property 'minio_user'
+  describe("property minio_user test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 's3_policy'
+  describe("property s3_policy test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
   -- unit tests for the property 'user_id'
   describe("property user_id test", function()
     it("should work", function()

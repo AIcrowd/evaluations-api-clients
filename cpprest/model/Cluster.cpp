@@ -44,6 +44,10 @@ Cluster::Cluster()
     m_Argo_hostIsSet = false;
     m_Argo_token = utility::conversions::to_string_t("");
     m_Argo_tokenIsSet = false;
+    m_Minio_user = utility::conversions::to_string_t("");
+    m_Minio_userIsSet = false;
+    m_S3_policy = utility::conversions::to_string_t("");
+    m_S3_policyIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -105,6 +109,14 @@ web::json::value Cluster::toJson() const
     if(m_Argo_tokenIsSet)
     {
         val[utility::conversions::to_string_t("argo_token")] = ModelBase::toJson(m_Argo_token);
+    }
+    if(m_Minio_userIsSet)
+    {
+        val[utility::conversions::to_string_t("minio_user")] = ModelBase::toJson(m_Minio_user);
+    }
+    if(m_S3_policyIsSet)
+    {
+        val[utility::conversions::to_string_t("s3_policy")] = ModelBase::toJson(m_S3_policy);
     }
     if(m_User_idIsSet)
     {
@@ -203,6 +215,22 @@ void Cluster::fromJson(web::json::value& val)
             setArgoToken(ModelBase::stringFromJson(fieldValue));
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("minio_user")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("minio_user")];
+        if(!fieldValue.is_null())
+        {
+            setMinioUser(ModelBase::stringFromJson(fieldValue));
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("s3_policy")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("s3_policy")];
+        if(!fieldValue.is_null())
+        {
+            setS3Policy(ModelBase::stringFromJson(fieldValue));
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("user_id")];
@@ -280,6 +308,16 @@ void Cluster::toMultipart(std::shared_ptr<MultipartFormData> multipart, const ut
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("argo_token"), m_Argo_token));
         
     }
+    if(m_Minio_userIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("minio_user"), m_Minio_user));
+        
+    }
+    if(m_S3_policyIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("s3_policy"), m_S3_policy));
+        
+    }
     if(m_User_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("user_id"), m_User_id));
@@ -340,6 +378,14 @@ void Cluster::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     if(multipart->hasContent(utility::conversions::to_string_t("argo_token")))
     {
         setArgoToken(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("argo_token"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("minio_user")))
+    {
+        setMinioUser(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("minio_user"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("s3_policy")))
+    {
+        setS3Policy(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("s3_policy"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -592,6 +638,48 @@ bool Cluster::argoTokenIsSet() const
 void Cluster::unsetArgo_token()
 {
     m_Argo_tokenIsSet = false;
+}
+
+utility::string_t Cluster::getMinioUser() const
+{
+    return m_Minio_user;
+}
+
+
+void Cluster::setMinioUser(utility::string_t value)
+{
+    m_Minio_user = value;
+    m_Minio_userIsSet = true;
+}
+bool Cluster::minioUserIsSet() const
+{
+    return m_Minio_userIsSet;
+}
+
+void Cluster::unsetMinio_user()
+{
+    m_Minio_userIsSet = false;
+}
+
+utility::string_t Cluster::getS3Policy() const
+{
+    return m_S3_policy;
+}
+
+
+void Cluster::setS3Policy(utility::string_t value)
+{
+    m_S3_policy = value;
+    m_S3_policyIsSet = true;
+}
+bool Cluster::s3PolicyIsSet() const
+{
+    return m_S3_policyIsSet;
+}
+
+void Cluster::unsetS3_policy()
+{
+    m_S3_policyIsSet = false;
 }
 
 int32_t Cluster::getUserId() const

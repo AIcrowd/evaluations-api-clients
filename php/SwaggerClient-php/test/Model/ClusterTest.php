@@ -168,6 +168,20 @@ class ClusterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "minio_user"
+     */
+    public function testPropertyMinioUser()
+    {
+    }
+
+    /**
+     * Test attribute "s3_policy"
+     */
+    public function testPropertyS3Policy()
+    {
+    }
+
+    /**
      * Test attribute "user_id"
      */
     public function testPropertyUserId()

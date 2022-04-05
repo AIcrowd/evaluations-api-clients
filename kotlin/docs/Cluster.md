@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **wf_name** | **kotlin.String** | Name of the workflow used to setup grader |  [optional]
 **argo_host** | **kotlin.String** | External IP exposed by LoadBalancer Service of argo-server deployment |  [optional]
 **argo_token** | **kotlin.String** | Argo server token required for authentication |  [optional]
+**minio_user** | **kotlin.String** | Minio user to give file access to |  [optional]
+**s3_policy** | **kotlin.String** | Minio s3 policy |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

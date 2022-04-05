@@ -1364,6 +1364,12 @@ definitions:
       argo_token:
         type: "string"
         description: "Argo server token required for authentication"
+      minio_user:
+        type: "string"
+        description: "Minio user to give file access to"
+      s3_policy:
+        type: "string"
+        description: "Minio s3 policy"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1376,9 +1382,11 @@ definitions:
       storage_class: "storage_class"
       argo_host: "argo_host"
       created: "2000-01-23T04:56:07.000+00:00"
+      s3_policy: "s3_policy"
       docker_registry: "docker_registry"
       remote_address: "remote_address"
       organisation_id: 1
+      minio_user: "minio_user"
       user_id: 6
       namespace: "namespace"
       wf_name: "wf_name"
@@ -1388,7 +1396,7 @@ definitions:
       updated: "2000-01-23T04:56:07.000+00:00"
       argo_token: "argo_token"
       status: true
-    x-mask: "{id,created,updated,remote_address,docker_username,namespace,storage_class,status,argo_host,deleted,user_id,organisation_id}"
+    x-mask: "{id,created,updated,remote_address,docker_username,namespace,storage_class,status,argo_host,deleted,minio_user,s3_policy,user_id,organisation_id}"
   Organisation:
     type: "object"
     required:

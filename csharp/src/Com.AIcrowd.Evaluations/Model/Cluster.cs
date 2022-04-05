@@ -45,7 +45,9 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="_namespace">Kubernetes namespace to run the workflows in.</param>
         /// <param name="storageClass">Storage class to use for datasets.</param>
         /// <param name="argoToken">Argo server token required for authentication.</param>
-        public Cluster(string remoteAddress = default(string), string authToken = default(string), string dockerUsername = default(string), string dockerRegistry = default(string), string _namespace = default(string), string storageClass = default(string), string argoToken = default(string))
+        /// <param name="minioUser">Minio user to give file access to.</param>
+        /// <param name="s3Policy">Minio s3 policy.</param>
+        public Cluster(string remoteAddress = default(string), string authToken = default(string), string dockerUsername = default(string), string dockerRegistry = default(string), string _namespace = default(string), string storageClass = default(string), string argoToken = default(string), string minioUser = default(string), string s3Policy = default(string))
         {
             // to ensure "remoteAddress" is required (not null)
             if (remoteAddress == null)
@@ -78,6 +80,8 @@ namespace Com.AIcrowd.Evaluations.Model
             this.Namespace = _namespace;
             this.StorageClass = storageClass;
             this.ArgoToken = argoToken;
+            this.MinioUser = minioUser;
+            this.S3Policy = s3Policy;
         }
         
         /// <summary>
@@ -172,6 +176,20 @@ namespace Com.AIcrowd.Evaluations.Model
         public string ArgoToken { get; set; }
 
         /// <summary>
+        /// Minio user to give file access to
+        /// </summary>
+        /// <value>Minio user to give file access to</value>
+        [DataMember(Name="minio_user", EmitDefaultValue=false)]
+        public string MinioUser { get; set; }
+
+        /// <summary>
+        /// Minio s3 policy
+        /// </summary>
+        /// <value>Minio s3 policy</value>
+        [DataMember(Name="s3_policy", EmitDefaultValue=false)]
+        public string S3Policy { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -206,6 +224,8 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  WfName: ").Append(WfName).Append("\n");
             sb.Append("  ArgoHost: ").Append(ArgoHost).Append("\n");
             sb.Append("  ArgoToken: ").Append(ArgoToken).Append("\n");
+            sb.Append("  MinioUser: ").Append(MinioUser).Append("\n");
+            sb.Append("  S3Policy: ").Append(S3Policy).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -308,6 +328,16 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.ArgoToken.Equals(input.ArgoToken))
                 ) && 
                 (
+                    this.MinioUser == input.MinioUser ||
+                    (this.MinioUser != null &&
+                    this.MinioUser.Equals(input.MinioUser))
+                ) && 
+                (
+                    this.S3Policy == input.S3Policy ||
+                    (this.S3Policy != null &&
+                    this.S3Policy.Equals(input.S3Policy))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -354,6 +384,10 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.ArgoHost.GetHashCode();
                 if (this.ArgoToken != null)
                     hashCode = hashCode * 59 + this.ArgoToken.GetHashCode();
+                if (this.MinioUser != null)
+                    hashCode = hashCode * 59 + this.MinioUser.GetHashCode();
+                if (this.S3Policy != null)
+                    hashCode = hashCode * 59 + this.S3Policy.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

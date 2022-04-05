@@ -86,6 +86,10 @@
         obj.argoHost = ApiClient.convertToType(data['argo_host'], 'String');
       if (data.hasOwnProperty('argo_token'))
         obj.argoToken = ApiClient.convertToType(data['argo_token'], 'String');
+      if (data.hasOwnProperty('minio_user'))
+        obj.minioUser = ApiClient.convertToType(data['minio_user'], 'String');
+      if (data.hasOwnProperty('s3_policy'))
+        obj.s3Policy = ApiClient.convertToType(data['s3_policy'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -171,6 +175,18 @@
    * @member {String} argoToken
    */
   exports.prototype.argoToken = undefined;
+
+  /**
+   * Minio user to give file access to
+   * @member {String} minioUser
+   */
+  exports.prototype.minioUser = undefined;
+
+  /**
+   * Minio s3 policy
+   * @member {String} s3Policy
+   */
+  exports.prototype.s3Policy = undefined;
 
   /**
    * User ID

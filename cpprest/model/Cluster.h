@@ -139,6 +139,20 @@ public:
     void unsetArgo_token();
     void setArgoToken(utility::string_t value);
     /// <summary>
+    /// Minio user to give file access to
+    /// </summary>
+    utility::string_t getMinioUser() const;
+    bool minioUserIsSet() const;
+    void unsetMinio_user();
+    void setMinioUser(utility::string_t value);
+    /// <summary>
+    /// Minio s3 policy
+    /// </summary>
+    utility::string_t getS3Policy() const;
+    bool s3PolicyIsSet() const;
+    void unsetS3_policy();
+    void setS3Policy(utility::string_t value);
+    /// <summary>
     /// User ID
     /// </summary>
     int32_t getUserId() const;
@@ -177,6 +191,10 @@ protected:
     bool m_Argo_hostIsSet;
     utility::string_t m_Argo_token;
     bool m_Argo_tokenIsSet;
+    utility::string_t m_Minio_user;
+    bool m_Minio_userIsSet;
+    utility::string_t m_S3_policy;
+    bool m_S3_policyIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

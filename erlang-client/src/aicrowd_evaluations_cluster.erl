@@ -18,6 +18,8 @@
        'wf_name' => binary(),
        'argo_host' => binary(),
        'argo_token' => binary(),
+       'minio_user' => binary(),
+       's3_policy' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -35,6 +37,8 @@ encode(#{ 'id' := Id,
           'wf_name' := WfName,
           'argo_host' := ArgoHost,
           'argo_token' := ArgoToken,
+          'minio_user' := MinioUser,
+          's3_policy' := S3Policy,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -51,6 +55,8 @@ encode(#{ 'id' := Id,
        'wf_name' => WfName,
        'argo_host' => ArgoHost,
        'argo_token' => ArgoToken,
+       'minio_user' => MinioUser,
+       's3_policy' => S3Policy,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

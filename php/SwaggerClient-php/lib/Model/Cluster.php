@@ -70,6 +70,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'wf_name' => 'string',
         'argo_host' => 'string',
         'argo_token' => 'string',
+        'minio_user' => 'string',
+        's3_policy' => 'string',
         'user_id' => 'int',
         'organisation_id' => 'int'
     ];
@@ -93,6 +95,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'wf_name' => null,
         'argo_host' => null,
         'argo_token' => null,
+        'minio_user' => null,
+        's3_policy' => null,
         'user_id' => null,
         'organisation_id' => null
     ];
@@ -137,6 +141,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'wf_name' => 'wf_name',
         'argo_host' => 'argo_host',
         'argo_token' => 'argo_token',
+        'minio_user' => 'minio_user',
+        's3_policy' => 's3_policy',
         'user_id' => 'user_id',
         'organisation_id' => 'organisation_id'
     ];
@@ -160,6 +166,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'wf_name' => 'setWfName',
         'argo_host' => 'setArgoHost',
         'argo_token' => 'setArgoToken',
+        'minio_user' => 'setMinioUser',
+        's3_policy' => 'setS3Policy',
         'user_id' => 'setUserId',
         'organisation_id' => 'setOrganisationId'
     ];
@@ -183,6 +191,8 @@ class Cluster implements ModelInterface, ArrayAccess
         'wf_name' => 'getWfName',
         'argo_host' => 'getArgoHost',
         'argo_token' => 'getArgoToken',
+        'minio_user' => 'getMinioUser',
+        's3_policy' => 'getS3Policy',
         'user_id' => 'getUserId',
         'organisation_id' => 'getOrganisationId'
     ];
@@ -260,6 +270,8 @@ class Cluster implements ModelInterface, ArrayAccess
         $this->container['wf_name'] = isset($data['wf_name']) ? $data['wf_name'] : null;
         $this->container['argo_host'] = isset($data['argo_host']) ? $data['argo_host'] : null;
         $this->container['argo_token'] = isset($data['argo_token']) ? $data['argo_token'] : null;
+        $this->container['minio_user'] = isset($data['minio_user']) ? $data['minio_user'] : null;
+        $this->container['s3_policy'] = isset($data['s3_policy']) ? $data['s3_policy'] : null;
         $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
         $this->container['organisation_id'] = isset($data['organisation_id']) ? $data['organisation_id'] : null;
     }
@@ -605,6 +617,54 @@ class Cluster implements ModelInterface, ArrayAccess
     public function setArgoToken($argo_token)
     {
         $this->container['argo_token'] = $argo_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets minio_user
+     *
+     * @return string
+     */
+    public function getMinioUser()
+    {
+        return $this->container['minio_user'];
+    }
+
+    /**
+     * Sets minio_user
+     *
+     * @param string $minio_user Minio user to give file access to
+     *
+     * @return $this
+     */
+    public function setMinioUser($minio_user)
+    {
+        $this->container['minio_user'] = $minio_user;
+
+        return $this;
+    }
+
+    /**
+     * Gets s3_policy
+     *
+     * @return string
+     */
+    public function getS3Policy()
+    {
+        return $this->container['s3_policy'];
+    }
+
+    /**
+     * Sets s3_policy
+     *
+     * @param string $s3_policy Minio s3 policy
+     *
+     * @return $this
+     */
+    public function setS3Policy($s3_policy)
+    {
+        $this->container['s3_policy'] = $s3_policy;
 
         return $this;
     }

@@ -53,6 +53,12 @@ pub struct Cluster {
   /// Argo server token required for authentication
   #[serde(rename = "argo_token")]
   argo_token: Option<String>,
+  /// Minio user to give file access to
+  #[serde(rename = "minio_user")]
+  minio_user: Option<String>,
+  /// Minio s3 policy
+  #[serde(rename = "s3_policy")]
+  s3_policy: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -77,6 +83,8 @@ impl Cluster {
       wf_name: None,
       argo_host: None,
       argo_token: None,
+      minio_user: None,
+      s3_policy: None,
       user_id: None,
       organisation_id: None
     }
@@ -292,6 +300,40 @@ impl Cluster {
 
   pub fn reset_argo_token(&mut self) {
     self.argo_token = None;
+  }
+
+  pub fn set_minio_user(&mut self, minio_user: String) {
+    self.minio_user = Some(minio_user);
+  }
+
+  pub fn with_minio_user(mut self, minio_user: String) -> Cluster {
+    self.minio_user = Some(minio_user);
+    self
+  }
+
+  pub fn minio_user(&self) -> Option<&String> {
+    self.minio_user.as_ref()
+  }
+
+  pub fn reset_minio_user(&mut self) {
+    self.minio_user = None;
+  }
+
+  pub fn set_s3_policy(&mut self, s3_policy: String) {
+    self.s3_policy = Some(s3_policy);
+  }
+
+  pub fn with_s3_policy(mut self, s3_policy: String) -> Cluster {
+    self.s3_policy = Some(s3_policy);
+    self
+  }
+
+  pub fn s3_policy(&self) -> Option<&String> {
+    self.s3_policy.as_ref()
+  }
+
+  pub fn reset_s3_policy(&mut self) {
+    self.s3_policy = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

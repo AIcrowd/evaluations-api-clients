@@ -230,6 +230,14 @@ export class Cluster {
     */
     'argoToken'?: string;
     /**
+    * Minio user to give file access to
+    */
+    'minioUser'?: string;
+    /**
+    * Minio s3 policy
+    */
+    's3Policy'?: string;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -304,6 +312,16 @@ export class Cluster {
         {
             "name": "argoToken",
             "baseName": "argo_token",
+            "type": "string"
+        },
+        {
+            "name": "minioUser",
+            "baseName": "minio_user",
+            "type": "string"
+        },
+        {
+            "name": "s3Policy",
+            "baseName": "s3_policy",
             "type": "string"
         },
         {

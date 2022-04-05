@@ -46,6 +46,12 @@ class Cluster {
   /* Argo server token required for authentication */
   String argoToken = null
 
+  /* Minio user to give file access to */
+  String minioUser = null
+
+  /* Minio s3 policy */
+  String s3Policy = null
+
   /* User ID */
   Integer userId = null
 

@@ -27,6 +27,8 @@ package com.aicrowd.evaluations.models
  * @param wf_name Name of the workflow used to setup grader
  * @param argo_host External IP exposed by LoadBalancer Service of argo-server deployment
  * @param argo_token Argo server token required for authentication
+ * @param minio_user Minio user to give file access to
+ * @param s3_policy Minio s3 policy
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -57,6 +59,10 @@ data class Cluster (
     val argo_host: kotlin.String? = null,
     /* Argo server token required for authentication */
     val argo_token: kotlin.String? = null,
+    /* Minio user to give file access to */
+    val minio_user: kotlin.String? = null,
+    /* Minio s3 policy */
+    val s3_policy: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

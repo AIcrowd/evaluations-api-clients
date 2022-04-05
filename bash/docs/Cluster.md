@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **wf_name** | **string** |  | [optional] [default to null]
 **argo_host** | **string** |  | [optional] [default to null]
 **argo_token** | **string** |  | [optional] [default to null]
+**minio_user** | **string** |  | [optional] [default to null]
+**s3_policy** | **string** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

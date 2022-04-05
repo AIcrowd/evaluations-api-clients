@@ -234,6 +234,20 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'minio_user' => {
+    	datatype => 'string',
+    	base_name => 'minio_user',
+    	description => 'Minio user to give file access to',
+    	format => '',
+    	read_only => '',
+    		},
+    's3_policy' => {
+    	datatype => 'string',
+    	base_name => 's3_policy',
+    	description => 'Minio s3 policy',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -264,6 +278,8 @@ __PACKAGE__->swagger_types( {
     'wf_name' => 'string',
     'argo_host' => 'string',
     'argo_token' => 'string',
+    'minio_user' => 'string',
+    's3_policy' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -282,6 +298,8 @@ __PACKAGE__->attribute_map( {
     'wf_name' => 'wf_name',
     'argo_host' => 'argo_host',
     'argo_token' => 'argo_token',
+    'minio_user' => 'minio_user',
+    's3_policy' => 's3_policy',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

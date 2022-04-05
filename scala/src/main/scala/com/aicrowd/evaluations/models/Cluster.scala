@@ -41,6 +41,10 @@ case class Cluster (
   argoHost: Option[String] = None,
   // Argo server token required for authentication
   argoToken: Option[String] = None,
+  // Minio user to give file access to
+  minioUser: Option[String] = None,
+  // Minio s3 policy
+  s3Policy: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

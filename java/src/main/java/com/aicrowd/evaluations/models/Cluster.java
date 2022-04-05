@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Cluster
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-04T16:24:26.640Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2022-04-05T10:55:26.758Z")
 public class Cluster {
   @SerializedName("id")
   private Integer id = null;
@@ -68,6 +68,12 @@ public class Cluster {
 
   @SerializedName("argo_token")
   private String argoToken = null;
+
+  @SerializedName("minio_user")
+  private String minioUser = null;
+
+  @SerializedName("s3_policy")
+  private String s3Policy = null;
 
   @SerializedName("user_id")
   private Integer userId = null;
@@ -255,6 +261,42 @@ public class Cluster {
     this.argoToken = argoToken;
   }
 
+  public Cluster minioUser(String minioUser) {
+    this.minioUser = minioUser;
+    return this;
+  }
+
+   /**
+   * Minio user to give file access to
+   * @return minioUser
+  **/
+  @ApiModelProperty(value = "Minio user to give file access to")
+  public String getMinioUser() {
+    return minioUser;
+  }
+
+  public void setMinioUser(String minioUser) {
+    this.minioUser = minioUser;
+  }
+
+  public Cluster s3Policy(String s3Policy) {
+    this.s3Policy = s3Policy;
+    return this;
+  }
+
+   /**
+   * Minio s3 policy
+   * @return s3Policy
+  **/
+  @ApiModelProperty(value = "Minio s3 policy")
+  public String getS3Policy() {
+    return s3Policy;
+  }
+
+  public void setS3Policy(String s3Policy) {
+    this.s3Policy = s3Policy;
+  }
+
    /**
    * User ID
    * @return userId
@@ -296,13 +338,15 @@ public class Cluster {
         Objects.equals(this.wfName, cluster.wfName) &&
         Objects.equals(this.argoHost, cluster.argoHost) &&
         Objects.equals(this.argoToken, cluster.argoToken) &&
+        Objects.equals(this.minioUser, cluster.minioUser) &&
+        Objects.equals(this.s3Policy, cluster.s3Policy) &&
         Objects.equals(this.userId, cluster.userId) &&
         Objects.equals(this.organisationId, cluster.organisationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerRegistry, namespace, storageClass, status, wfName, argoHost, argoToken, userId, organisationId);
+    return Objects.hash(id, created, updated, remoteAddress, authToken, dockerUsername, dockerRegistry, namespace, storageClass, status, wfName, argoHost, argoToken, minioUser, s3Policy, userId, organisationId);
   }
 
 
@@ -324,6 +368,8 @@ public class Cluster {
     sb.append("    wfName: ").append(toIndentedString(wfName)).append("\n");
     sb.append("    argoHost: ").append(toIndentedString(argoHost)).append("\n");
     sb.append("    argoToken: ").append(toIndentedString(argoToken)).append("\n");
+    sb.append("    minioUser: ").append(toIndentedString(minioUser)).append("\n");
+    sb.append("    s3Policy: ").append(toIndentedString(s3Policy)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    organisationId: ").append(toIndentedString(organisationId)).append("\n");
     sb.append("}");

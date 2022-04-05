@@ -53,6 +53,12 @@ module AIcrowdEvaluations
     # Argo server token required for authentication
     attr_accessor :argo_token
 
+    # Minio user to give file access to
+    attr_accessor :minio_user
+
+    # Minio s3 policy
+    attr_accessor :s3_policy
+
     # User ID
     attr_accessor :user_id
 
@@ -75,6 +81,8 @@ module AIcrowdEvaluations
         :'wf_name' => :'wf_name',
         :'argo_host' => :'argo_host',
         :'argo_token' => :'argo_token',
+        :'minio_user' => :'minio_user',
+        :'s3_policy' => :'s3_policy',
         :'user_id' => :'user_id',
         :'organisation_id' => :'organisation_id'
       }
@@ -96,6 +104,8 @@ module AIcrowdEvaluations
         :'wf_name' => :'String',
         :'argo_host' => :'String',
         :'argo_token' => :'String',
+        :'minio_user' => :'String',
+        :'s3_policy' => :'String',
         :'user_id' => :'Integer',
         :'organisation_id' => :'Integer'
       }
@@ -161,6 +171,14 @@ module AIcrowdEvaluations
         self.argo_token = attributes[:'argo_token']
       end
 
+      if attributes.has_key?(:'minio_user')
+        self.minio_user = attributes[:'minio_user']
+      end
+
+      if attributes.has_key?(:'s3_policy')
+        self.s3_policy = attributes[:'s3_policy']
+      end
+
       if attributes.has_key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
@@ -216,6 +234,8 @@ module AIcrowdEvaluations
           wf_name == o.wf_name &&
           argo_host == o.argo_host &&
           argo_token == o.argo_token &&
+          minio_user == o.minio_user &&
+          s3_policy == o.s3_policy &&
           user_id == o.user_id &&
           organisation_id == o.organisation_id
     end
@@ -229,7 +249,7 @@ module AIcrowdEvaluations
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created, updated, remote_address, auth_token, docker_username, docker_registry, namespace, storage_class, status, wf_name, argo_host, argo_token, user_id, organisation_id].hash
+      [id, created, updated, remote_address, auth_token, docker_username, docker_registry, namespace, storage_class, status, wf_name, argo_host, argo_token, minio_user, s3_policy, user_id, organisation_id].hash
     end
 
     # Builds the object from hash

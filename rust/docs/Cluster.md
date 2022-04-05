@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **wf_name** | **String** | Name of the workflow used to setup grader | [optional] [default to null]
 **argo_host** | **String** | External IP exposed by LoadBalancer Service of argo-server deployment | [optional] [default to null]
 **argo_token** | **String** | Argo server token required for authentication | [optional] [default to null]
+**minio_user** | **String** | Minio user to give file access to | [optional] [default to null]
+**s3_policy** | **String** | Minio s3 policy | [optional] [default to null]
 **user_id** | **i32** | User ID | [optional] [default to null]
 **organisation_id** | **i32** | Organisation ID | [optional] [default to null]
 

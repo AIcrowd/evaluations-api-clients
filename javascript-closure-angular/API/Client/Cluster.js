@@ -97,6 +97,20 @@ API.Client.Cluster.prototype.argoHost;
 API.Client.Cluster.prototype.argoToken;
 
 /**
+ * Minio user to give file access to
+ * @type {!string}
+ * @export
+ */
+API.Client.Cluster.prototype.minioUser;
+
+/**
+ * Minio s3 policy
+ * @type {!string}
+ * @export
+ */
+API.Client.Cluster.prototype.s3Policy;
+
+/**
  * User ID
  * @type {!number}
  * @export

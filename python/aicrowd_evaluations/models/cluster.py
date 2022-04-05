@@ -46,6 +46,8 @@ class Cluster(object):
         'wf_name': 'str',
         'argo_host': 'str',
         'argo_token': 'str',
+        'minio_user': 'str',
+        's3_policy': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -64,11 +66,13 @@ class Cluster(object):
         'wf_name': 'wf_name',
         'argo_host': 'argo_host',
         'argo_token': 'argo_token',
+        'minio_user': 'minio_user',
+        's3_policy': 's3_policy',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_registry=None, namespace=None, storage_class=None, status=None, wf_name=None, argo_host=None, argo_token=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, remote_address=None, auth_token=None, docker_username=None, docker_registry=None, namespace=None, storage_class=None, status=None, wf_name=None, argo_host=None, argo_token=None, minio_user=None, s3_policy=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
         """Cluster - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -87,6 +91,8 @@ class Cluster(object):
         self._wf_name = None
         self._argo_host = None
         self._argo_token = None
+        self._minio_user = None
+        self._s3_policy = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -114,6 +120,10 @@ class Cluster(object):
             self.argo_host = argo_host
         if argo_token is not None:
             self.argo_token = argo_token
+        if minio_user is not None:
+            self.minio_user = minio_user
+        if s3_policy is not None:
+            self.s3_policy = s3_policy
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -423,6 +433,52 @@ class Cluster(object):
         """
 
         self._argo_token = argo_token
+
+    @property
+    def minio_user(self):
+        """Gets the minio_user of this Cluster.  # noqa: E501
+
+        Minio user to give file access to  # noqa: E501
+
+        :return: The minio_user of this Cluster.  # noqa: E501
+        :rtype: str
+        """
+        return self._minio_user
+
+    @minio_user.setter
+    def minio_user(self, minio_user):
+        """Sets the minio_user of this Cluster.
+
+        Minio user to give file access to  # noqa: E501
+
+        :param minio_user: The minio_user of this Cluster.  # noqa: E501
+        :type: str
+        """
+
+        self._minio_user = minio_user
+
+    @property
+    def s3_policy(self):
+        """Gets the s3_policy of this Cluster.  # noqa: E501
+
+        Minio s3 policy  # noqa: E501
+
+        :return: The s3_policy of this Cluster.  # noqa: E501
+        :rtype: str
+        """
+        return self._s3_policy
+
+    @s3_policy.setter
+    def s3_policy(self, s3_policy):
+        """Sets the s3_policy of this Cluster.
+
+        Minio s3 policy  # noqa: E501
+
+        :param s3_policy: The s3_policy of this Cluster.  # noqa: E501
+        :type: str
+        """
+
+        self._s3_policy = s3_policy
 
     @property
     def user_id(self):

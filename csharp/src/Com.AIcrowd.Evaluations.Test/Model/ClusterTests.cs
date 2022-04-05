@@ -171,6 +171,22 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'ArgoToken'
         }
         /// <summary>
+        /// Test the property 'MinioUser'
+        /// </summary>
+        [Test]
+        public void MinioUserTest()
+        {
+            // TODO unit test for the property 'MinioUser'
+        }
+        /// <summary>
+        /// Test the property 'S3Policy'
+        /// </summary>
+        [Test]
+        public void S3PolicyTest()
+        {
+            // TODO unit test for the property 'S3Policy'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]
