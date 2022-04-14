@@ -26,6 +26,7 @@
        'workflow_priority' => integer(),
        'config_path' => binary(),
        'docker_repo' => binary(),
+       'context_dir' => binary(),
        'user_id' => integer(),
        'organisation_id' => integer()
      }.
@@ -51,6 +52,7 @@ encode(#{ 'id' := Id,
           'workflow_priority' := WorkflowPriority,
           'config_path' := ConfigPath,
           'docker_repo' := DockerRepo,
+          'context_dir' := ContextDir,
           'user_id' := UserId,
           'organisation_id' := OrganisationId
         }) ->
@@ -75,6 +77,7 @@ encode(#{ 'id' := Id,
        'workflow_priority' => WorkflowPriority,
        'config_path' => ConfigPath,
        'docker_repo' => DockerRepo,
+       'context_dir' => ContextDir,
        'user_id' => UserId,
        'organisation_id' => OrganisationId
      }.

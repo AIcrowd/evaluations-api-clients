@@ -56,6 +56,8 @@ type Grader struct {
 	ConfigPath string `json:"config_path,omitempty"`
 	// Docker repo to use for grader images
 	DockerRepo string `json:"docker_repo,omitempty"`
+	// Context for grader files inside the repository
+	ContextDir string `json:"context_dir,omitempty"`
 	// User ID
 	UserId int32 `json:"user_id,omitempty"`
 	// Organisation ID

@@ -67,6 +67,7 @@
           payload.workflowPriority = 0;
           payload.configPath = "";
           payload.dockerRepo = "";
+          payload.contextDir = "";
           var opts = {};
           opts.xFields = "xFields_example";
 
@@ -119,6 +120,8 @@
             expect(data.configPath).to.be("");
             expect(data.dockerRepo).to.be.a('string');
             expect(data.dockerRepo).to.be("");
+            expect(data.contextDir).to.be.a('string');
+            expect(data.contextDir).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -226,6 +229,8 @@
             expect(data.configPath).to.be("");
             expect(data.dockerRepo).to.be.a('string');
             expect(data.dockerRepo).to.be("");
+            expect(data.contextDir).to.be.a('string');
+            expect(data.contextDir).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');
@@ -334,6 +339,8 @@
               expect(data.configPath).to.be("");
               expect(data.dockerRepo).to.be.a('string');
               expect(data.dockerRepo).to.be("");
+              expect(data.contextDir).to.be.a('string');
+              expect(data.contextDir).to.be("");
               expect(data.userId).to.be.a('number');
               expect(data.userId).to.be(0);
               expect(data.organisationId).to.be.a('number');
@@ -430,6 +437,8 @@
             expect(data.configPath).to.be("");
             expect(data.dockerRepo).to.be.a('string');
             expect(data.dockerRepo).to.be("");
+            expect(data.contextDir).to.be.a('string');
+            expect(data.contextDir).to.be("");
             expect(data.userId).to.be.a('number');
             expect(data.userId).to.be(0);
             expect(data.organisationId).to.be.a('number');

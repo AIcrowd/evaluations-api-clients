@@ -98,6 +98,8 @@
         obj.configPath = ApiClient.convertToType(data['config_path'], 'String');
       if (data.hasOwnProperty('docker_repo'))
         obj.dockerRepo = ApiClient.convertToType(data['docker_repo'], 'String');
+      if (data.hasOwnProperty('context_dir'))
+        obj.contextDir = ApiClient.convertToType(data['context_dir'], 'String');
       if (data.hasOwnProperty('user_id'))
         obj.userId = ApiClient.convertToType(data['user_id'], 'Number');
       if (data.hasOwnProperty('organisation_id'))
@@ -231,6 +233,12 @@
    * @member {String} dockerRepo
    */
   exports.prototype.dockerRepo = undefined;
+
+  /**
+   * Context for grader files inside the repository
+   * @member {String} contextDir
+   */
+  exports.prototype.contextDir = undefined;
 
   /**
    * User ID

@@ -1100,6 +1100,9 @@ definitions:
       docker_repo:
         type: "string"
         description: "Docker repo to use for grader images"
+      context_dir:
+        type: "string"
+        description: "Context for grader files inside the repository"
       user_id:
         type: "integer"
         description: "User ID"
@@ -1131,8 +1134,9 @@ definitions:
       dataset: "{}"
       logs: "logs"
       notifications: "notifications"
+      context_dir: "context_dir"
       status: "status"
-    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,config_path,docker_repo,user_id,organisation_id}"
+    x-mask: "{id,created,updated,archived,dataset,cluster_id,description,evaluator_repo,evaluator_repo_tag,name,status,allowed_extensions,deleted,workflow_priority,config_path,docker_repo,context_dir,user_id,organisation_id}"
   GraderMeta:
     type: "object"
     properties:

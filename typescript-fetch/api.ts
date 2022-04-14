@@ -349,6 +349,12 @@ export interface Grader {
      */
     dockerRepo?: string;
     /**
+     * Context for grader files inside the repository
+     * @type {string}
+     * @memberof Grader
+     */
+    contextDir?: string;
+    /**
      * User ID
      * @type {number}
      * @memberof Grader

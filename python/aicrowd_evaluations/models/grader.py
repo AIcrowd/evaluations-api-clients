@@ -54,6 +54,7 @@ class Grader(object):
         'workflow_priority': 'int',
         'config_path': 'str',
         'docker_repo': 'str',
+        'context_dir': 'str',
         'user_id': 'int',
         'organisation_id': 'int'
     }
@@ -80,11 +81,12 @@ class Grader(object):
         'workflow_priority': 'workflow_priority',
         'config_path': 'config_path',
         'docker_repo': 'docker_repo',
+        'context_dir': 'context_dir',
         'user_id': 'user_id',
         'organisation_id': 'organisation_id'
     }
 
-    def __init__(self, id=None, created=None, updated=None, archived=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, workflow_priority=None, config_path=None, docker_repo=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, created=None, updated=None, archived=None, dataset=None, cluster_id=None, description=None, workflow_spec=None, evaluator_repo=None, evaluator_repo_tag=None, name=None, notifications=None, logs=None, meta=None, status=None, secrets=None, wf_name=None, allowed_extensions=None, workflow_priority=None, config_path=None, docker_repo=None, context_dir=None, user_id=None, organisation_id=None, _configuration=None):  # noqa: E501
         """Grader - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -111,6 +113,7 @@ class Grader(object):
         self._workflow_priority = None
         self._config_path = None
         self._docker_repo = None
+        self._context_dir = None
         self._user_id = None
         self._organisation_id = None
         self.discriminator = None
@@ -156,6 +159,8 @@ class Grader(object):
             self.config_path = config_path
         if docker_repo is not None:
             self.docker_repo = docker_repo
+        if context_dir is not None:
+            self.context_dir = context_dir
         if user_id is not None:
             self.user_id = user_id
         if organisation_id is not None:
@@ -645,6 +650,29 @@ class Grader(object):
         """
 
         self._docker_repo = docker_repo
+
+    @property
+    def context_dir(self):
+        """Gets the context_dir of this Grader.  # noqa: E501
+
+        Context for grader files inside the repository  # noqa: E501
+
+        :return: The context_dir of this Grader.  # noqa: E501
+        :rtype: str
+        """
+        return self._context_dir
+
+    @context_dir.setter
+    def context_dir(self, context_dir):
+        """Sets the context_dir of this Grader.
+
+        Context for grader files inside the repository  # noqa: E501
+
+        :param context_dir: The context_dir of this Grader.  # noqa: E501
+        :type: str
+        """
+
+        self._context_dir = context_dir
 
     @property
     def user_id(self):

@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **workflow_priority** | **integer** |  | [optional] [default to null]
 **config_path** | **string** |  | [optional] [default to null]
 **docker_repo** | **string** |  | [optional] [default to null]
+**context_dir** | **string** |  | [optional] [default to null]
 **user_id** | **integer** |  | [optional] [default to null]
 **organisation_id** | **integer** |  | [optional] [default to null]
 

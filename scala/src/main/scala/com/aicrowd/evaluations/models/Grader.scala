@@ -57,6 +57,8 @@ case class Grader (
   configPath: Option[String] = None,
   // Docker repo to use for grader images
   dockerRepo: Option[String] = None,
+  // Context for grader files inside the repository
+  contextDir: Option[String] = None,
   // User ID
   userId: Option[Integer] = None,
   // Organisation ID

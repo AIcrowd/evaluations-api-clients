@@ -426,6 +426,10 @@ export class Grader {
     */
     'dockerRepo'?: string;
     /**
+    * Context for grader files inside the repository
+    */
+    'contextDir'?: string;
+    /**
     * User ID
     */
     'userId'?: number;
@@ -540,6 +544,11 @@ export class Grader {
         {
             "name": "dockerRepo",
             "baseName": "docker_repo",
+            "type": "string"
+        },
+        {
+            "name": "contextDir",
+            "baseName": "context_dir",
             "type": "string"
         },
         {

@@ -77,6 +77,9 @@ pub struct Grader {
   /// Docker repo to use for grader images
   #[serde(rename = "docker_repo")]
   docker_repo: Option<String>,
+  /// Context for grader files inside the repository
+  #[serde(rename = "context_dir")]
+  context_dir: Option<String>,
   /// User ID
   #[serde(rename = "user_id")]
   user_id: Option<i32>,
@@ -109,6 +112,7 @@ impl Grader {
       workflow_priority: None,
       config_path: None,
       docker_repo: None,
+      context_dir: None,
       user_id: None,
       organisation_id: None
     }
@@ -466,6 +470,23 @@ impl Grader {
 
   pub fn reset_docker_repo(&mut self) {
     self.docker_repo = None;
+  }
+
+  pub fn set_context_dir(&mut self, context_dir: String) {
+    self.context_dir = Some(context_dir);
+  }
+
+  pub fn with_context_dir(mut self, context_dir: String) -> Grader {
+    self.context_dir = Some(context_dir);
+    self
+  }
+
+  pub fn context_dir(&self) -> Option<&String> {
+    self.context_dir.as_ref()
+  }
+
+  pub fn reset_context_dir(&mut self) {
+    self.context_dir = None;
   }
 
   pub fn set_user_id(&mut self, user_id: i32) {

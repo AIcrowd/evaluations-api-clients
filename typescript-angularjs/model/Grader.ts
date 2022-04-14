@@ -98,6 +98,10 @@ export interface Grader {
      */
     "dockerRepo"?: string;
     /**
+     * Context for grader files inside the repository
+     */
+    "contextDir"?: string;
+    /**
      * User ID
      */
     "userId"?: number;

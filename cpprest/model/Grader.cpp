@@ -58,6 +58,8 @@ Grader::Grader()
     m_Config_pathIsSet = false;
     m_Docker_repo = utility::conversions::to_string_t("");
     m_Docker_repoIsSet = false;
+    m_Context_dir = utility::conversions::to_string_t("");
+    m_Context_dirIsSet = false;
     m_User_id = 0;
     m_User_idIsSet = false;
     m_Organisation_id = 0;
@@ -157,6 +159,10 @@ web::json::value Grader::toJson() const
     if(m_Docker_repoIsSet)
     {
         val[utility::conversions::to_string_t("docker_repo")] = ModelBase::toJson(m_Docker_repo);
+    }
+    if(m_Context_dirIsSet)
+    {
+        val[utility::conversions::to_string_t("context_dir")] = ModelBase::toJson(m_Context_dir);
     }
     if(m_User_idIsSet)
     {
@@ -341,6 +347,14 @@ void Grader::fromJson(web::json::value& val)
             setDockerRepo(ModelBase::stringFromJson(fieldValue));
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("context_dir")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("context_dir")];
+        if(!fieldValue.is_null())
+        {
+            setContextDir(ModelBase::stringFromJson(fieldValue));
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("user_id")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("user_id")];
@@ -476,6 +490,11 @@ void Grader::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("docker_repo"), m_Docker_repo));
         
     }
+    if(m_Context_dirIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("context_dir"), m_Context_dir));
+        
+    }
     if(m_User_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("user_id"), m_User_id));
@@ -594,6 +613,10 @@ void Grader::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     if(multipart->hasContent(utility::conversions::to_string_t("docker_repo")))
     {
         setDockerRepo(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("docker_repo"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("context_dir")))
+    {
+        setContextDir(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("context_dir"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("user_id")))
     {
@@ -1034,6 +1057,27 @@ bool Grader::dockerRepoIsSet() const
 void Grader::unsetDocker_repo()
 {
     m_Docker_repoIsSet = false;
+}
+
+utility::string_t Grader::getContextDir() const
+{
+    return m_Context_dir;
+}
+
+
+void Grader::setContextDir(utility::string_t value)
+{
+    m_Context_dir = value;
+    m_Context_dirIsSet = true;
+}
+bool Grader::contextDirIsSet() const
+{
+    return m_Context_dirIsSet;
+}
+
+void Grader::unsetContext_dir()
+{
+    m_Context_dirIsSet = false;
 }
 
 int32_t Grader::getUserId() const

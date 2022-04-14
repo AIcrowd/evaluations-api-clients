@@ -290,6 +290,13 @@ __PACKAGE__->method_documentation({
     	format => '',
     	read_only => '',
     		},
+    'context_dir' => {
+    	datatype => 'string',
+    	base_name => 'context_dir',
+    	description => 'Context for grader files inside the repository',
+    	format => '',
+    	read_only => '',
+    		},
     'user_id' => {
     	datatype => 'int',
     	base_name => 'user_id',
@@ -328,6 +335,7 @@ __PACKAGE__->swagger_types( {
     'workflow_priority' => 'int',
     'config_path' => 'string',
     'docker_repo' => 'string',
+    'context_dir' => 'string',
     'user_id' => 'int',
     'organisation_id' => 'int'
 } );
@@ -354,6 +362,7 @@ __PACKAGE__->attribute_map( {
     'workflow_priority' => 'workflow_priority',
     'config_path' => 'config_path',
     'docker_repo' => 'docker_repo',
+    'context_dir' => 'context_dir',
     'user_id' => 'user_id',
     'organisation_id' => 'organisation_id'
 } );

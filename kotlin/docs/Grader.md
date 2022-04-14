@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **workflow_priority** | **kotlin.Int** | Workflow priority to assign |  [optional]
 **config_path** | **kotlin.String** | Path to grader configuration (default: aicrowd.yaml) |  [optional]
 **docker_repo** | **kotlin.String** | Docker repo to use for grader images |  [optional]
+**context_dir** | **kotlin.String** | Context for grader files inside the repository |  [optional]
 **user_id** | **kotlin.Int** | User ID |  [optional]
 **organisation_id** | **kotlin.Int** | Organisation ID |  [optional]
 

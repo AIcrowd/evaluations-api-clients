@@ -46,7 +46,8 @@ namespace Com.AIcrowd.Evaluations.Model
         /// <param name="workflowPriority">Workflow priority to assign.</param>
         /// <param name="configPath">Path to grader configuration (default: aicrowd.yaml).</param>
         /// <param name="dockerRepo">Docker repo to use for grader images.</param>
-        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?), string configPath = default(string), string dockerRepo = default(string))
+        /// <param name="contextDir">Context for grader files inside the repository.</param>
+        public Grader(int? clusterId = default(int?), string evaluatorRepo = default(string), string evaluatorRepoTag = default(string), string meta = default(string), Object secrets = default(Object), int? workflowPriority = default(int?), string configPath = default(string), string dockerRepo = default(string), string contextDir = default(string))
         {
             // to ensure "evaluatorRepo" is required (not null)
             if (evaluatorRepo == null)
@@ -64,6 +65,7 @@ namespace Com.AIcrowd.Evaluations.Model
             this.WorkflowPriority = workflowPriority;
             this.ConfigPath = configPath;
             this.DockerRepo = dockerRepo;
+            this.ContextDir = contextDir;
         }
         
         /// <summary>
@@ -214,6 +216,13 @@ namespace Com.AIcrowd.Evaluations.Model
         public string DockerRepo { get; set; }
 
         /// <summary>
+        /// Context for grader files inside the repository
+        /// </summary>
+        /// <value>Context for grader files inside the repository</value>
+        [DataMember(Name="context_dir", EmitDefaultValue=false)]
+        public string ContextDir { get; set; }
+
+        /// <summary>
         /// User ID
         /// </summary>
         /// <value>User ID</value>
@@ -256,6 +265,7 @@ namespace Com.AIcrowd.Evaluations.Model
             sb.Append("  WorkflowPriority: ").Append(WorkflowPriority).Append("\n");
             sb.Append("  ConfigPath: ").Append(ConfigPath).Append("\n");
             sb.Append("  DockerRepo: ").Append(DockerRepo).Append("\n");
+            sb.Append("  ContextDir: ").Append(ContextDir).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  OrganisationId: ").Append(OrganisationId).Append("\n");
             sb.Append("}\n");
@@ -398,6 +408,11 @@ namespace Com.AIcrowd.Evaluations.Model
                     this.DockerRepo.Equals(input.DockerRepo))
                 ) && 
                 (
+                    this.ContextDir == input.ContextDir ||
+                    (this.ContextDir != null &&
+                    this.ContextDir.Equals(input.ContextDir))
+                ) && 
+                (
                     this.UserId == input.UserId ||
                     (this.UserId != null &&
                     this.UserId.Equals(input.UserId))
@@ -460,6 +475,8 @@ namespace Com.AIcrowd.Evaluations.Model
                     hashCode = hashCode * 59 + this.ConfigPath.GetHashCode();
                 if (this.DockerRepo != null)
                     hashCode = hashCode * 59 + this.DockerRepo.GetHashCode();
+                if (this.ContextDir != null)
+                    hashCode = hashCode * 59 + this.ContextDir.GetHashCode();
                 if (this.UserId != null)
                     hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.OrganisationId != null)

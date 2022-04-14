@@ -35,6 +35,7 @@ package com.aicrowd.evaluations.models
  * @param workflow_priority Workflow priority to assign
  * @param config_path Path to grader configuration (default: aicrowd.yaml)
  * @param docker_repo Docker repo to use for grader images
+ * @param context_dir Context for grader files inside the repository
  * @param user_id User ID
  * @param organisation_id Organisation ID
  */
@@ -81,6 +82,8 @@ data class Grader (
     val config_path: kotlin.String? = null,
     /* Docker repo to use for grader images */
     val docker_repo: kotlin.String? = null,
+    /* Context for grader files inside the repository */
+    val context_dir: kotlin.String? = null,
     /* User ID */
     val user_id: kotlin.Int? = null,
     /* Organisation ID */

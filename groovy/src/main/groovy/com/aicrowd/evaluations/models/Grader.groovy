@@ -70,6 +70,9 @@ class Grader {
   /* Docker repo to use for grader images */
   String dockerRepo = null
 
+  /* Context for grader files inside the repository */
+  String contextDir = null
+
   /* User ID */
   Integer userId = null
 

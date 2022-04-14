@@ -200,6 +200,13 @@ public:
     void unsetDocker_repo();
     void setDockerRepo(utility::string_t value);
     /// <summary>
+    /// Context for grader files inside the repository
+    /// </summary>
+    utility::string_t getContextDir() const;
+    bool contextDirIsSet() const;
+    void unsetContext_dir();
+    void setContextDir(utility::string_t value);
+    /// <summary>
     /// User ID
     /// </summary>
     int32_t getUserId() const;
@@ -256,6 +263,8 @@ protected:
     bool m_Config_pathIsSet;
     utility::string_t m_Docker_repo;
     bool m_Docker_repoIsSet;
+    utility::string_t m_Context_dir;
+    bool m_Context_dirIsSet;
     int32_t m_User_id;
     bool m_User_idIsSet;
     int32_t m_Organisation_id;

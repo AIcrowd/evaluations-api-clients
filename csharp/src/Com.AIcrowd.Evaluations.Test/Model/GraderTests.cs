@@ -235,6 +235,14 @@ namespace Com.AIcrowd.Evaluations.Test
             // TODO unit test for the property 'DockerRepo'
         }
         /// <summary>
+        /// Test the property 'ContextDir'
+        /// </summary>
+        [Test]
+        public void ContextDirTest()
+        {
+            // TODO unit test for the property 'ContextDir'
+        }
+        /// <summary>
         /// Test the property 'UserId'
         /// </summary>
         [Test]

@@ -153,6 +153,13 @@ API.Client.Grader.prototype.configPath;
 API.Client.Grader.prototype.dockerRepo;
 
 /**
+ * Context for grader files inside the repository
+ * @type {!string}
+ * @export
+ */
+API.Client.Grader.prototype.contextDir;
+
+/**
  * User ID
  * @type {!number}
  * @export

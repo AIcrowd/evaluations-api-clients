@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **workflowPriority** | **Integer** | Workflow priority to assign |  [optional]
 **configPath** | **String** | Path to grader configuration (default: aicrowd.yaml) |  [optional]
 **dockerRepo** | **String** | Docker repo to use for grader images |  [optional]
+**contextDir** | **String** | Context for grader files inside the repository |  [optional]
 **userId** | **Integer** | User ID |  [optional]
 **organisationId** | **Integer** | Organisation ID |  [optional]
 

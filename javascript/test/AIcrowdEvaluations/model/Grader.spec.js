@@ -166,6 +166,12 @@
         // expect(instance.dockerRepo).to.be(expectedValueLiteral);
       });
 
+      it('should have the property contextDir (base name: "context_dir")', function() {
+        // TODO: update the code to test the property contextDir
+        expect(instance).to.have.property('contextDir');
+        // expect(instance.contextDir).to.be(expectedValueLiteral);
+      });
+
       it('should have the property userId (base name: "user_id")', function() {
         // TODO: update the code to test the property userId
         expect(instance).to.have.property('userId');
